@@ -206,6 +206,13 @@ Congratulations, you've just created a Django application and make it work even 
 Learn more
 ----------
 
+- Teracy's projects
+
+    + https://github.com/teracy-official/teracy
+
+    + https://github.com/teracy-official/teracy-html5boilerplate
+
+
 - Vagrant
 
     + http://www.vagrantup.com/
@@ -225,6 +232,7 @@ Learn more
     + ``virtualenv``: http://www.virtualenv.org/en/latest/
 
     + ``virtualenvwrapper``: http://virtualenvwrapper.readthedocs.org/en/latest/
+
 
 - Python
     
