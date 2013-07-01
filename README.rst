@@ -32,11 +32,11 @@ Getting started
 
 2. From home directory (``~/``), clone this repository, copy ssh keys to ``cookbooks/teracy-dev/files/default/`` and ``vagrant up``. You should prepare yourself a cup of coffee as this would take a little long time (~20-30 mins) to ``vagrant up`` at the first time only.	
 ::
-	$ cd ~/
+    $ cd ~/
     $ git clone git@github.com:teracy-official/chef-dev.git
-	$ cd chef-dev
-	$ cp ~/.ssh/id_rsa* cookbooks/teracy-dev/files/default/
-	$ vagrant up
+    $ cd chef-dev
+    $ cp ~/.ssh/id_rsa* cookbooks/teracy-dev/files/default/
+    $ vagrant up
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
