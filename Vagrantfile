@@ -83,6 +83,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "apt" #required for for vim
     chef.add_recipe "vim"
     chef.add_recipe "python"
+    chef.add_recipe "teracy-dev"
   #   chef.add_recipe "mysql"
   #   chef.add_role "web"
   #
