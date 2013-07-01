@@ -2,7 +2,12 @@
 teracy's chef-dev - get development fun 
 =======================================
 
-Starting project development with teracy's projects is never so easy. chef-dev is where all development happen and we could work on any *unix compatible OS (Mac OSX, Ubuntu, Fedora, you name it) and even on Windows :-D. However, we do NOT recommened Windows for best development expericience.
+This ``chef-dev`` repository was created for developing Django application with ease and fun. It uses ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` are used to configure any neccessary packages.
+
+You can work on any host machine with different OS, even Windows :-). However, Windows is NOT recommended for best development experience. 
+
+It's better to work on any *unix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
+
 
 Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at: http://www.ubuntu.com/download/desktop
 
