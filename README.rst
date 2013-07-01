@@ -11,6 +11,7 @@ It's better to work on any *unix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat,
 
 Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at: http://www.ubuntu.com/download/desktop
 
+
 Getting started
 ---------------
 
@@ -132,9 +133,137 @@ Sweet, everything is cool now! However, the project does not do anything much ye
 Start a Django application
 --------------------------
 
-We're going to create a Django application named ``tutorial`` to display ``Hello World!`` message when accessing http://localhost:8000
+Let's open the browser at http://localhost:8000, we will see a 404 error and it's normal.
+
+We're going to create a Django application named ``hello`` to display ``Hello World!`` message when accessing http://localhost:8000 
+
+It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, get and install it now at: http://www.sublimetext.com/
+
+Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to Project). The ``tutorial`` project should be opened and we could start coding now.
+
+Usually, we need 2 terminal windows: 1 is used for running Django project and 1 is used for normal commands. Just open a new terminal window, change directory to ``chef-dev`` then ``$ vagrant ssh``.
+
+A specific Django application should be put under ``apps`` directory. We're going to create ``hello`` application:
+::
+    $ ws
+    $ workon tutorial
+    $ cd personal/tutorial/apps
+    $ ../manage.py startapp hello
+
+Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py``:
+::
+    INSTALLED_APPS += (
+        'django.contrib.admin',
+        'debug_toolbar',
+        'compressor',
+        'teracy.html5boilerplate',
+        'apps.hello',
+    ) 
+
+Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following content:
+::
+    {% extends 'html5boilerplate/base.html' %}
+
+    {% block body_content %}
+        <h1>Hello World!</h1>
+        <h2>Welcome to Teracy's chef-dev - get development fun!</h2>
+    {% endblock %}
+
+Add ``HomeTemplateView`` to ``apps/hello/views.py``:
+::
+    from django.views.generic import TemplateView
 
 
+    class HomeTemplateView(TemplateView):
+        template_name = 'hello/home.html'
+
+Create ``apps/hello/urls.py`` and configure ``HomeTemplateView`` with following content:
+::
+    from django.conf.urls import url, patterns
+
+    from apps.hello.views import HomeTemplateView
+
+
+    urlpatterns = patterns(
+        '',
+        url(r'^$', HomeTemplateView.as_view(), name='hello_home'),
+    )
+
+Configure the root url on ``urls/dev.py`` by adding the following content:
+::
+    urlpatterns += (
+        url(r'', include('apps.hello.urls')),
+    )  
+
+During development, the server could be stopped by some errors and it's normal. If your coding skill is good enough (j/k :P), the server should be still running. If not, ``./manage.py runserver 0.0.0.0:8000`` again, the server should be started without any error.
+
+Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead of the 404 error page.
+
+
+Congratulations, you've just created a Django application and make it work even though it does nothing other than "Hello World!" page. You should now learn Django by developing many more applications for this project by adapting Django tutorials: https://docs.djangoproject.com/en/1.5/.
+
+
+Learn more
+----------
+
+- Vagrant
+
+    + http://www.vagrantup.com/
+
+- Sublime Text
+    
+    + http://www.sublimetext.com/
+
+- Django
+
+    + https://docs.djangoproject.com/en/1.5/
+
+    + http://www.djangobook.com/en/2.0/index.html
+
+    + ``pip``: http://www.pip-installer.org/en/latest/
+
+    + ``virtualenv``: http://www.virtualenv.org/en/latest/
+
+    + ``virtualenvwrapper``: http://virtualenvwrapper.readthedocs.org/en/latest/
+
+- Python
+    
+    + http://python.org/doc/
+
+    + http://www.diveintopython.net/
+
+- Git
+    
+    + http://git-scm.com/book
+
+- Vim
+    
+    + http://www.openvim.com/tutorial.html
+
+    + https://www.shortcutfoo.com/app/tutorial/vim
+
+- Linux 
+
+    + http://www.quora.com/Linux/What-are-some-time-saving-tips-that-every-Linux-user-should-know
+
+
+Virtual machine's added packages by chef-dev
+--------------------------------------------
+
+The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box and additional packages installed are:
+
+- ``apt``.
+
+- ``vim``.
+
+- ``git``.
+
+- ``Python`` with ``pip``, ``virtualenv`` and ``virtualenvwrapper``.
+
+Problems, want to help each other?
+----------------------------------
+
+During the development and learning, you're welcome to join us with discussions at https://groups.google.com/forum/#!forum/teracy
 
 Frequently asked questions
 --------------------------
