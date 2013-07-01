@@ -57,7 +57,7 @@ You should see the following similar messages at the end of ``$ vagrant up``:
 	[2013-07-01T09:57:11+00:00] INFO: Running report handlers
 	[2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 
-Last but not least, ``$ vagrant ssh`` to ssh-access the virtual machine you have just installed which runs Ubuntu 12.04. You should see the following similar mesasages:
+Last but not least, ``$ vagrant ssh`` to ssh-access the virtual machine you have just installed which runs Ubuntu 12.04. You should see the following similar messages:
 :: 
 	Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
