@@ -8,4 +8,7 @@ version          '0.1.0'
 
 depends          'python'
 
+recipe "teracy-dev::apt", "Installs required packages for teracy's projects."
+recipe "teracy-dev::workspace", "Creates workspace directory for teraciers."
 recipe "teracy-dev::virtualenvwrapper", "Installs virtualenvwrapper using the python_pip resource and configure it."
+recipe "teracy-dev::github", "Copies ssh keys to this virtual machine to access github's repositories."

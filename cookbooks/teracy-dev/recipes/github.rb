@@ -17,7 +17,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "teracy-dev::apt"
-include_recipe "teracy-dev::workspace"
-include_recipe "teracy-dev::virtualenvwrapper"
-include_recipe "teracy-dev::github"
+
+cookbook_file '/home/vagrant/.ssh/id_rsa' do
+    owner 'vagrant'
+    source 'id_rsa'
+    mode 0600	
+end
+
+cookbook_file '/home/vagrant/.ssh/id_rsa.pub' do
+    owner 'vagrant'
+    source 'id_rsa.pub'
+    mode 0622
+end
+

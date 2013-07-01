@@ -7,3 +7,6 @@
 .chef/encrypted_data_bag_secret
 
 .vagrant
+id_rsa
+id_rsa.pub
+workspace
