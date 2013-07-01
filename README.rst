@@ -10,13 +10,19 @@ Getting started
 ---------------
 
 1. If you're on ``Ubuntu``:
-	
-	- Download and run this bash script: 
+
+    1.1. Install ``git``, ``virtualbox``, ``vagrant`` with a provided bash script: 
+    ::
+        $ cd /tmp
+        $ wget https://raw.github.com/teracy-official/devops/master/scripts/setup_working_env_chef.sh
+        $ bash setup_working_env_chef.sh
+
+    1.2. Get github account with ssh keys configured (guide at: https://help.github.com/articles/generating-ssh-keys).
 
 
 1. Or to get started manually, you need to finish 3 following simple steps:
 
-	1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/tags/v1.2.2
+	1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
 
 	1.2. Install ``Virtualbox`` with the version of **4.2.10** at: https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
