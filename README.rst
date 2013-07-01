@@ -42,7 +42,7 @@ Getting started
 
 	Note: If you're on Windows, you SHOULD use ``git-bash`` to execute terminal commands.
 
-2. From home directory (``~/``), clone this repository, copy ssh keys to ``cookbooks/teracy-dev/files/default/`` and ``vagrant up``. You should prepare yourself a cup of coffee as this would take a little long time (~20-30 mins) to ``vagrant up`` at the first time only.	
+2. From home directory (``~/``), clone this repository, copy ssh keys to ``cookbooks/teracy-dev/files/default/`` and ``vagrant up``. You should prepare yourself a cup of coffee as for the first time, it would take a little long time (~20-30 mins) to ``vagrant up``.
 ::
     $ cd ~/
     $ git clone git@github.com:teracy-official/chef-dev.git
