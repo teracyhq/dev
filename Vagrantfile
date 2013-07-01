@@ -76,11 +76,11 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "./cookbooks"
-    chef.roles_path = "./roles"
-    chef.data_bags_path = "./data_bags"
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.data_bags_path = "data_bags"
 
-    chef.add_recipe "apt"
+    chef.add_recipe "apt" #required for for vim
     chef.add_recipe "vim"
     chef.add_recipe "python"
   #   chef.add_recipe "mysql"
