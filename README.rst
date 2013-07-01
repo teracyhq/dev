@@ -2,9 +2,10 @@
 teracy's chef-dev - get development fun 
 =======================================
 
-This ``chef-dev`` repository was created for developing Django application with ease and fun. It uses ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` are used to configure any neccessary packages.
+This ``chef-dev`` repository was created for developing Django applications with ease and fun. We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for installing and configuring any neccessary packages.
 
-You can work on any host machine with different OS, even Windows :-). However, Windows is NOT recommended for best development experience. 
+By using this approach, you can work on any host machine with different OS, even Windows :-). However, Windows is NOT recommended for best development experience. You don't have to install tons of development
+stuffs on your machine but on ``virtualbox`` only.
 
 It's better to work on any *unix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
 
@@ -200,7 +201,7 @@ During development, the server could be stopped by some errors and it's normal. 
 Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead of the 404 error page.
 
 
-Congratulations, you've just created a Django application and make it work even though it does nothing other than "Hello World!" page. You should now learn Django by developing many more applications for this project by adapting Django tutorials: https://docs.djangoproject.com/en/1.5/.
+Congratulations, you've just created a Django application and make it work even though it does nothing other than "Hello World!" page. You should now learn Django by developing many more applications for this ``tutorial`` project by adapting Django tutorials at https://docs.djangoproject.com/en/1.5/.
 
 
 Learn more
@@ -255,8 +256,8 @@ Learn more
     + http://www.quora.com/Linux/What-are-some-time-saving-tips-that-every-Linux-user-should-know
 
 
-Virtual machine's added packages by chef-dev
---------------------------------------------
+Virtual machine's installed and configured packages by chef-dev
+---------------------------------------------------------------
 
 The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box and additional packages installed are:
 
