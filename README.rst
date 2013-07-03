@@ -1,8 +1,8 @@
 =======================================
-teracy's chef-dev - get development fun 
+teracy-dev - get development fun 
 =======================================
 
-This ``chef-dev`` repository was created for developing Django applications with ease and fun. We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for installing and configuring any neccessary packages.
+This ``teracy-dev`` repository was created for developing Django applications with ease and fun. We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for installing and configuring any neccessary packages.
 
 By using this approach, you can work on any host machine with different OS, even Windows :-). However, Windows is NOT recommended for best development experience. You don't have to install tons of development
 stuffs on your machine but on ``virtualbox`` only.
@@ -46,8 +46,8 @@ Getting started
 2. From home directory (``~/``), clone this repository, copy ssh keys to ``cookbooks/teracy-dev/files/default/`` and ``vagrant up``. You should prepare yourself a cup of coffee as for the first time, it would take a little long time (~20-30 mins) to ``vagrant up``.
 ::
     $ cd ~/
-    $ git clone git@github.com:teracy-official/chef-dev.git
-    $ cd chef-dev
+    $ git clone git@github.com:teracy-official/teracy-dev.git
+    $ cd teracy-dev
     $ cp ~/.ssh/id_rsa* cookbooks/teracy-dev/files/default/
     $ vagrant up
 
@@ -74,7 +74,7 @@ Last but not least, ``$ vagrant ssh`` to ssh-access the virtual machine you have
 ``workspace`` directory
 -----------------------
 
-The ``workspace`` directory was created under ``chef-dev``. This ``workspace`` directory is the location where you will store all your work, after ``vagrant up``, the following sub directories will be created if they do not exist yet.
+The ``workspace`` directory was created under ``teracy-dev``. This ``workspace`` directory is the location where you will store all your work, after ``vagrant up``, the following sub directories will be created if they do not exist yet.
 
 ``workspace/personal``: the location to store all your stuffs which you have full control of it (your own projects).
 
@@ -82,7 +82,7 @@ The ``workspace`` directory was created under ``chef-dev``. This ``workspace`` d
 
 ``workspace/teracy``: the location to store all the official stuffs of teracy's at https://github.com/teracy-official
 
-The ``chef-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory on the virtual machine. So you could access this ``workspace`` directory from the virtual machine (``$ cd ~/workspace`` or alias ``$ ws``).
+The ``teracy-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory on the virtual machine. So you could access this ``workspace`` directory from the virtual machine (``$ cd ~/workspace`` or alias ``$ ws``).
 
 From now on, we will ``vagrant ssh`` and run command lines on the virtual machine if not explicitly mentioning about the host machine terminal.
 
@@ -142,7 +142,7 @@ It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, 
 
 Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to Project). The ``tutorial`` project should be opened and we could start coding now.
 
-Usually, we need 2 terminal windows: One is used for running Django project and the other one is used for normal commands. Just open a new terminal window, change directory to ``chef-dev`` then ``$ vagrant ssh``.
+Usually, we need 2 terminal windows: One is used for running Django project and the other one is used for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then ``$ vagrant ssh``.
 
 A specific Django application should be put under ``apps`` directory. We're going to create ``hello`` application:
 ::
@@ -167,7 +167,7 @@ Create ``home.html`` template under ``apps/hello/templates/hello`` directory wit
 
     {% block body_content %}
         <h1>Hello World!</h1>
-        <h2>Welcome to Teracy's chef-dev - get development fun!</h2>
+        <h2>Welcome to <strong>teracy-dev</strong> - get development fun!</h2>
     {% endblock %}
 
 Add ``HomeTemplateView`` to ``apps/hello/views.py``:
@@ -264,8 +264,8 @@ Learn more
     + http://kernelnewbies.org/
 
 
-Virtual machine's installed and configured packages by chef-dev
----------------------------------------------------------------
+Virtual machine's installed and configured packages by ``vagrant`` with ``chef-solo`` provision
+------------------------------------------------------------------------------------------------
 
 The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box and additional packages installed are:
 
