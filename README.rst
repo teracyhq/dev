@@ -277,6 +277,31 @@ The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/op
 
 - ``Python`` with ``pip``, ``virtualenv`` and ``virtualenvwrapper``.
 
+You could see it clearly on ``Vagrantfile`` with the following similar content:
+::
+    # Enable provisioning with chef solo, specifying a cookbooks path, roles
+    # path, and data_bags path (all relative to this Vagrantfile), and adding
+    # some recipes and/or roles.
+    #
+    config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.data_bags_path = "data_bags"
+
+    chef.add_recipe "apt" #required for for vim
+    chef.add_recipe "vim"
+    chef.add_recipe "python"
+    chef.add_recipe "git"
+    chef.add_recipe "teracy-dev"
+    #   chef.add_recipe "mysql"
+    #   chef.add_role "web"
+    #
+    #   # You may also specify custom JSON attributes:
+    #   chef.json = { :mysql_password => "foo" }
+    end
+
+For more information about ``chef``, see it at http://www.opscode.com/chef/.
+
 Problems, want to help each other?
 ----------------------------------
 
