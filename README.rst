@@ -71,10 +71,10 @@ Last but not least, ``$ vagrant ssh`` to ssh-access the virtual machine you have
 *Congratulations, you're set now!*
 	
 
-Workspace directory
--------------------
+``workspace`` directory
+-----------------------
 
-After ``vagrant up``, the ``workspace`` directory was created under ``chef-dev``. This ``workspace`` directory is the location where you will store all your work.
+The ``workspace`` directory was created under ``chef-dev``. This ``workspace`` directory is the location where you will store all your work, after ``vagrant up``, the following sub directories will be created if they do not exist yet.
 
 ``workspace/personal``: the location to store all your stuffs which you have full control of it (your own projects).
 
@@ -82,7 +82,7 @@ After ``vagrant up``, the ``workspace`` directory was created under ``chef-dev``
 
 ``workspace/teracy``: the location to store all the official stuffs of teracy's at https://github.com/teracy-official
 
-You could access this ``workspace`` directory from the virtual machine (``$ cd /vagrant/workspace`` or alias ``$ ws``) or from the host machine (``$ cd ~/chef-dev/workspace``).
+The ``chef-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory on the virtual machine. So you could access this ``workspace`` directory from the virtual machine (``$ cd ~/workspace`` or alias ``$ ws``).
 
 From now on, we will ``vagrant ssh`` and run command lines on the virtual machine if not explicitly mentioning about the host machine terminal.
 
@@ -142,7 +142,7 @@ It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, 
 
 Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to Project). The ``tutorial`` project should be opened and we could start coding now.
 
-Usually, we need 2 terminal windows: 1 is used for running Django project and 1 is used for normal commands. Just open a new terminal window, change directory to ``chef-dev`` then ``$ vagrant ssh``.
+Usually, we need 2 terminal windows: One is used for running Django project and the other one is used for normal commands. Just open a new terminal window, change directory to ``chef-dev`` then ``$ vagrant ssh``.
 
 A specific Django application should be put under ``apps`` directory. We're going to create ``hello`` application:
 ::
@@ -279,26 +279,26 @@ The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/op
 
 You could see it clearly on ``Vagrantfile`` with the following similar content:
 ::
-    # Enable provisioning with chef solo, specifying a cookbooks path, roles
-    # path, and data_bags path (all relative to this Vagrantfile), and adding
-    # some recipes and/or roles.
-    #
-    config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
-    chef.roles_path = "roles"
-    chef.data_bags_path = "data_bags"
+      # Enable provisioning with chef solo, specifying a cookbooks path, roles
+      # path, and data_bags path (all relative to this Vagrantfile), and adding
+      # some recipes and/or roles.
+      #
+      config.vm.provision :chef_solo do |chef|
+        chef.cookbooks_path = "cookbooks"
+        chef.roles_path = "roles"
+        chef.data_bags_path = "data_bags"
 
-    chef.add_recipe "apt" #required for for vim
-    chef.add_recipe "vim"
-    chef.add_recipe "python"
-    chef.add_recipe "git"
-    chef.add_recipe "teracy-dev"
-    #   chef.add_recipe "mysql"
-    #   chef.add_role "web"
-    #
-    #   # You may also specify custom JSON attributes:
-    #   chef.json = { :mysql_password => "foo" }
-    end
+        chef.add_recipe "apt" #required for installing vim (?!)
+        chef.add_recipe "vim"
+        chef.add_recipe "python"
+        chef.add_recipe "git"
+        chef.add_recipe "teracy-dev"
+      #   chef.add_recipe "mysql"
+      #   chef.add_role "web"
+      #
+      #   # You may also specify custom JSON attributes:
+      #   chef.json = { :mysql_password => "foo" }
+      end
 
 For more information about ``chef``, see it at http://www.opscode.com/chef/.
 

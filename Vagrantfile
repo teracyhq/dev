@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "./workspace", "/home/vagrant/workspace"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -80,7 +81,7 @@ Vagrant.configure("2") do |config|
     chef.roles_path = "roles"
     chef.data_bags_path = "data_bags"
 
-    chef.add_recipe "apt" #required for for vim
+    chef.add_recipe "apt" #required for installing vim (?!)
     chef.add_recipe "vim"
     chef.add_recipe "python"
     chef.add_recipe "git"

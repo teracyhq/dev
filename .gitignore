@@ -9,4 +9,10 @@
 .vagrant
 id_rsa
 id_rsa.pub
-workspace
+
+# Ignore workspace sub directories
+workspace/personal
+workspace/readonly
+workspace/teracy
+
+.DS_Store
