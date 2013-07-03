@@ -228,6 +228,8 @@ Learn more
 
     + http://www.djangobook.com/en/2.0/index.html
 
+    + http://www.deploydjango.com/
+
     + ``pip``: http://www.pip-installer.org/en/latest/
 
     + ``virtualenv``: http://www.virtualenv.org/en/latest/
@@ -240,6 +242,8 @@ Learn more
     + http://python.org/doc/
 
     + http://www.diveintopython.net/
+
+    + http://learnpythonthehardway.org/book/
 
 - Git
     
@@ -256,6 +260,8 @@ Learn more
     + http://www.quora.com/Linux/What-are-the-good-online-resources-for-a-linux-newbie
 
     + http://www.quora.com/Linux/What-are-some-time-saving-tips-that-every-Linux-user-should-know
+
+    + http://kernelnewbies.org/
 
 
 Virtual machine's installed and configured packages by chef-dev
