@@ -21,7 +21,7 @@ Getting started
     1.1. Install ``git``, ``virtualbox``, ``vagrant`` with a provided bash script: 
     ::
         $ cd /tmp
-        $ wget https://raw.github.com/teracy-official/devops/master/scripts/setup_working_env_chef.sh
+        $ wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/setup_working_env_chef.sh
         $ bash setup_working_env_chef.sh
 
     1.2. Get github account with ssh keys configured (guide at: https://help.github.com/articles/generating-ssh-keys).
