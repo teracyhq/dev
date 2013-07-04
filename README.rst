@@ -31,11 +31,12 @@ Getting started
 
 1. Or to get started manually, you need to finish 3 following simple steps:
 
-	1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
+    1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
 
-	1.2. Install ``Virtualbox`` with the version of **4.2.10** at: https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
+    1.2. Install ``Virtualbox`` with the version of **4.2.10** at: 
+         https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
-	1.3. Install latest ``git`` version at http://git-scm.com/ to use ``git-bash`` as terminal window.
+    1.3. Install latest ``git`` version at http://git-scm.com/ to use ``git-bash`` as terminal window.
 
 2. From home directory (``~/``), clone this repository and ``$ vagrant up``. You should prepare yourself 
 a cup of coffee as for the first time, it would take a little long time (~20-30 mins) to ``$ vagrant up``. 
@@ -48,24 +49,24 @@ Open your terminal window and type:
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
-	[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
-	[2013-07-01T09:57:11+00:00] INFO: Running report handlers
-	[2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+    [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
+    [2013-07-01T09:57:11+00:00] INFO: Running report handlers
+    [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 
-Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just installed 
-which runs Ubuntu 12.04. You should see the following similar messages:
+Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just 
+installed which runs Ubuntu 12.04. You should see the following similar messages:
 :: 
-	Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
+    Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
-	 * Documentation:  https://help.ubuntu.com/
+     * Documentation:  https://help.ubuntu.com/
 
-	37 packages can be updated.
-	18 updates are security updates.
+    37 packages can be updated.
+    18 updates are security updates.
 
-	Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
+    Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 
 *Congratulations, you're set now!*
-	
+    
 
 ``workspace`` directory
 -----------------------
@@ -87,21 +88,21 @@ The ``teracy-dev/workspace`` directory from host machine was mapped to ``~/works
 on the virtual machine. So you could access this ``workspace`` directory from the virtual machine 
 (``$ cd ~/workspace`` or alias ``$ ws``).
 
-From now on, we will ``$ vagrant ssh`` and run command lines on the virtual machine if not explicitly 
-mentioning about running command lines on the host machine.
+From now on, we will ``$ vagrant ssh`` and run command lines on the virtual machine if not 
+explicitly mentioning about running command lines on the host machine.
 
 Start a Django project
 ----------------------
 
 To start a tutorial Django project, you must run it under a virtual Python environment.
 ::
-	$ mkvirtualenv tutorial
+    $ mkvirtualenv tutorial
 
 You should see the following similar messages:
 ::
-	New python executable in tutorial/bin/python
-	Installing setuptools............done.
-	Installing pip...............done.
+    New python executable in tutorial/bin/python
+    Installing setuptools............done.
+    Installing pip...............done.
 
 You're now under ``tutorial`` virtual Python environment. ``$ deactive`` to escape it or 
 ``$ workon tutorial`` to be under ``tutorial`` virtual Python environment.
@@ -134,12 +135,12 @@ You should see the following similar messages:
     Django version 1.5.1, using settings 'settings.dev'
     Development server is running at http://0.0.0.0:8000/
     Quit the server with CONTROL-C.
-	
+    
 Now open your browser, yes, your browser :-) with http://localhost:8000/admin and login with your 
 created super account.
 
-Sweet, everything is cool now! However, the project does not do anything much yet. You need to create 
-Django applications for it.
+Sweet, everything is cool now! However, the project does not do anything much yet. You need to 
+create Django applications for it.
 
 Start a Django application
 --------------------------
@@ -152,11 +153,12 @@ accessing http://localhost:8000
 It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, get and install it 
 now at: http://www.sublimetext.com/
 
-Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to Project). 
-The ``tutorial`` project should be opened and we could start coding now.
+Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to 
+Project). The ``tutorial`` project should be opened and we could start coding now.
 
-Usually, we need 2 terminal windows: One is used for running Django project and the other one is used 
-for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then ``$ vagrant ssh``.
+Usually, we need 2 terminal windows: One is used for running Django project and the other one is 
+used for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then 
+``$ vagrant ssh``.
 
 A specific Django application should be put under ``apps`` directory. We're going to create 
 ``hello`` application:
@@ -166,13 +168,15 @@ A specific Django application should be put under ``apps`` directory. We're goin
     $ cd personal/tutorial/apps
     $ ../manage.py startapp hello
 
-Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py`` by appending the following configuration:
+Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py`` by appending the following 
+configuration:
 ::
     INSTALLED_APPS += (
         'apps.hello',
     ) 
 
-Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following content:
+Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following 
+content:
 ::
     {% extends 'html5boilerplate/base.html' %}
 
@@ -207,12 +211,18 @@ Configure the root url on ``urls/dev.py`` by adding the following content:
         url(r'', include('apps.hello.urls')),
     )  
 
-During development, the server could be stopped by some errors and it's normal. If your coding skill is good enough (j/k :P), the server should be still running. If not, ``$ ./manage.py runserver 0.0.0.0:8000`` again, the server should be started without any error.
+During development, the server could be stopped by some errors and it's normal. If your coding 
+skill is good enough (j/k :P), the server should be still running. If not, 
+``$ ./manage.py runserver 0.0.0.0:8000`` again, the server should be started without any error.
 
-Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead of the 404 error page.
+Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead 
+of the 404 error page.
 
 
-Congratulations, you've just created a Django application and make it work even though it does nothing other than "Hello World!" page. You should now learn Django by developing many more applications for this ``tutorial`` project by adapting Django tutorials at https://docs.djangoproject.com/en/1.5/.
+Congratulations, you've just created a Django application and make it work even though it does 
+nothing other than "Hello World!" page. You should now learn Django by developing many more 
+applications for this ``tutorial`` project by adapting Django tutorials at 
+https://docs.djangoproject.com/en/1.5/.
 
 
 Learn more
@@ -278,7 +288,8 @@ Learn more
 Virtual machine's installed and configured packages by ``vagrant`` with ``chef-solo`` provision
 ------------------------------------------------------------------------------------------------
 
-The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box and additional packages installed are:
+The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box 
+and additional packages installed are:
 
 - ``apt``.
 
@@ -316,7 +327,8 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 Problems, want to help each other?
 ----------------------------------
 
-During the development and learning, you're welcome to join us with discussions at https://groups.google.com/forum/#!forum/teracy
+During the development and learning, you're welcome to join us with discussions at 
+https://groups.google.com/forum/#!forum/teracy
 
 Frequently asked questions
 --------------------------
