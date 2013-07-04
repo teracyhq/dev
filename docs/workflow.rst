@@ -1,8 +1,8 @@
 Workflow
 ========
 
-At Teracy, we care about the workflow that makes it as much consistent and fun as possible, take less time
-with higher quality of work.
+At Teracy, we care about the workflow that makes it as much consistent and fun as possible, take less 
+time with higher quality of work.
 
 We adopted `A successful Git branching model <http://nvie.com/posts/a-successful-git-branching-model/>`_
 for our workflow with some specific rules. What's the fun with a game without rules :-D?
@@ -12,8 +12,9 @@ Quality checklist
 
 Quality of work must be strictly defined with rules and measurements, especially with software quality.
 
-Any work is accepted as good enough must meet the following requirements of ``quality checklist``:
+Any work is accepted as good enough MUST meet the following requirements of ``quality checklist``:
 
+    - length of the text/code line within 100 characters.
     - follow conventions and stardards
     - any tests must be done and must be passed
     - any documentation must be updated
@@ -39,6 +40,26 @@ For example:
 
     Fabric deployment should be very easy to deploy on both local and remote machine.
     Blah blah blah.....
+
+Git branching off
+-----------------
+
+Usually, a new branch should be branched off from *upstream/develop*. However, there are cases that it does
+not apply:
+
+- Your work depends on a branch other than *upstream/develop*, feel free to branch off from that branch. However,
+keep in mind that you need to rebase on that dependent branch. After that branch is merged ino *upstream/develop*,
+you need to rebase on *upstream/develop* to continue working.
+
+This is the demostration example: *phuonglm* is working on feature_1_fabric_deployment_virtual_machine, and you're
+going to work on feature_2_fabric_deployment_remote_machine, it depends on phuonglm's feature_1.
+::
+    $ git remote add phuonglm https://github.com/phuonglm/teracy
+    $ git fetch phuonglm
+    $ git checkout phuonglm/feature_1_fabric_deployment_virtual_machine -b feature_2_fabric_deployment_remote_machine
+    $ git push origin feature_2_fabric_deployment_remote_machine
+
+Git is a distributed version control system, so collaboration should not be so hard.
 
 
 Let's take a ride on actual workflow.
