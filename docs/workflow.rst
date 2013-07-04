@@ -14,6 +14,7 @@ Quality of work must be strictly defined with rules and measurements, especially
 
 Any work is accepted as good enough MUST meet the following requirements of ``quality checklist``:
 
+    - no tab character
     - length of the text/code line within 100 characters.
     - follow conventions and stardards
     - any tests must be done and must be passed
