@@ -17,8 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "teracy-dev::apt"
-include_recipe "teracy-dev::workspace"
-include_recipe "teracy-dev::alias"
-include_recipe "teracy-dev::virtualenvwrapper"
-include_recipe "teracy-dev::github"
+include_recipe 'teracy-dev::apt'
+include_recipe 'teracy-dev::workspace'
+include_recipe 'teracy-dev::alias'
+include_recipe 'teracy-dev::virtualenvwrapper'
+include_recipe 'teracy-dev::github'
+include_recipe 'teracy-dev::repo'
