@@ -36,7 +36,7 @@ and you're done to start. It's very easy to get started!
 
     1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
 
-    1.2. Install ``Virtualbox`` with the version of **4.2.10** at: 
+    1.2. Install ``virtualbox`` with the version of **4.2.10** at: 
          https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
     1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use 
@@ -346,9 +346,4 @@ https://groups.google.com/forum/#!forum/teracy
 
 Frequently asked questions
 --------------------------
-
-
-
-
-
 
