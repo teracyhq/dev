@@ -16,3 +16,6 @@ workspace/readonly
 workspace/teracy
 
 .DS_Store
+
+*.sublime-project
+*.sublime-workspace

@@ -23,10 +23,10 @@ python_pip 'virtualenvwrapper' do
 end
 
 bash 'configure_virtualenvwrapper' do
-	code <<-EOF
-		echo 'export PROJECT_HOME=/vagrant/workspace/personal' >> /home/vagrant/.profile
-		echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.profile && source /home/vagrant/.profile
-	EOF
+    code <<-EOF
+        echo 'export PROJECT_HOME=/vagrant/workspace/personal' >> /home/vagrant/.profile
+        echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.profile && source /home/vagrant/.profile
+    EOF
     not_if 'grep -q /usr/local/bin/virtualenvwrapper.sh /home/vagrant/.profile'
 end
 

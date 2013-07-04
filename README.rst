@@ -299,6 +299,26 @@ Learn more
     + http://kernelnewbies.org/
 
 
+ssh keys
+--------
+
+1. To be able to use ssh keys on the virtual machine, you must configure the use of ssh from 
+``Vagrantfile``: replace ``"ssh" => false`` by ``"ssh" => true``.
+
+2. Use existing ssh keys: ``id_rsa`` and ``id_rsa.pub`` from *cookbooks/teracy-dev/files/default* 
+will be always copied into the virtual machine each time of login into the virtual machine. This 
+mechanism is used to make sure you can always have updated ssh keys into the virtual machine. Just 
+put files there, and you're done after ``$ vagrant ssh`` again.
+
+3. If you don't want to use existing ssh keys (means that no id_rsa and id_rsa.pub in the cookbook), 
+then ``$ vagrant ssh`` will ask you to create ssh keys right after login. You need to use default 
+key name (id_rsa). These are new generated keys. So to use for ssh access, you must provide this 
+new public key to ssh servers (add public key to github, bitbucket accounts).
+These new generated keys will be also copied into *cookbooks/teracy-dev/files/default*. When the 
+virtual machine is ``destroy`` and ``up`` again, it will be copied into ``./ssh`` directory of the 
+virtual machine again as described in step 2 above.
+
+
 Virtual machine's installed and configured packages by ``vagrant`` with ``chef-solo`` provision
 ------------------------------------------------------------------------------------------------
 
