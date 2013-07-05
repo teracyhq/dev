@@ -2,30 +2,38 @@
 teracy-dev - get development fun!
 =================================
 
-This ``teracy-dev`` repository was created for developing Django applications with ease and fun. 
-We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for 
+This ``teracy-dev`` repository was created for developing Django applications with ease and fun.
+We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for
 installing and configuring any neccessary packages.
 
-By using this approach, we can work on any host machine with different OS, even Windows :-). 
-However, Windows is NOT recommended for best development experience. You don't have to install tons 
+By using this approach, we can work on any host machine with different OS, even Windows :-).
+However, Windows is NOT recommended for best development experience. You don't have to install tons
 of development stuffs on your host machine but on ``virtualbox`` only.
 
 It's better to work on any *nix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
 
 
-Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at: 
+Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at:
 http://www.ubuntu.com/download/desktop
 
 
 Getting started
 ---------------
 
-You're required to install ``VirtualBox``, ``Vagrant`` then download this repository and unzip it,
-and you're done to start. It's very easy to get started!
+- Minmum requirement:
+
+You're required to install ``virtualBox``, ``vagrant``.
+
+If you're on Windows, you must install ``git`` to use ``git-bash`` terminal window.
+
+- Optional recommendation:
+
+You should install ``git``.
+
 
 1. If you're on ``Ubuntu``:
 
-    Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below: 
+    Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
     ::
         $ cd /tmp
         $ wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/setup_working_env_chef.sh
@@ -36,13 +44,13 @@ and you're done to start. It's very easy to get started!
 
     1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
 
-    1.2. Install ``Virtualbox`` with the version of **4.2.10** at: 
+    1.2. Install ``virtualbox`` with the version of **4.2.10** at:
          https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
-    1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use 
-    ``git-bash`` as terminal window.
+    1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use
+    ``git-bash`` as terminal window. However, it's highly recommended to install on your machine.
 
-2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should 
+2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should
 prepare yourself a cup of coffee as for the first time, it would take a little long time 
 (~20-30 mins) to ``$ vagrant up``. 
 
@@ -67,7 +75,7 @@ You should see the following similar messages at the end of ``$ vagrant up``:
     [2013-07-01T09:57:11+00:00] INFO: Running report handlers
     [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 
-Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just 
+Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just
 installed which runs Ubuntu 12.04. You should see the following similar messages:
 :: 
     Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
@@ -85,24 +93,24 @@ installed which runs Ubuntu 12.04. You should see the following similar messages
 ``workspace`` directory
 -----------------------
 
-The ``workspace`` directory was created under ``teracy-dev``. This ``workspace`` directory is the 
-location where you will store all your work, after ``$ vagrant up``, the following sub directories 
+The ``workspace`` directory was created under ``teracy-dev``. This ``workspace`` directory is the
+location where you will store all your work, after ``$ vagrant up``, the following sub directories
 will be created if they do not exist yet.
 
-``workspace/personal``: the location to store all your stuffs which you have full control of it 
+``workspace/personal``: the location to store all your stuffs which you have full control of it
 (your own projects).
 
-``workspace/readonly``: the location to store all the stuffs that you could read only (open source 
+``workspace/readonly``: the location to store all the stuffs that you could read only (open source
 projects).
 
-``workspace/teracy``: the location to store all the official stuffs of teracy's at 
+``workspace/teracy``: the location to store all the official stuffs of teracy's at
 https://github.com/teracy-official
 
-The ``teracy-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory 
-on the virtual machine. So you could access this ``workspace`` directory from the virtual machine 
+The ``teracy-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory
+on the virtual machine. So you could access this ``workspace`` directory from the virtual machine
 (``$ cd ~/workspace`` or alias ``$ ws``).
 
-From now on, we will ``$ vagrant ssh`` and run command lines on the virtual machine if not 
+From now on, we will ``$ vagrant ssh`` and run command lines on the virtual machine if not
 explicitly mentioning about running command lines on the host machine.
 
 Start a Django project
@@ -118,7 +126,7 @@ You should see the following similar messages:
     Installing setuptools............done.
     Installing pip...............done.
 
-You're now under ``tutorial`` virtual Python environment. ``$ deactive`` to escape it or 
+You're now under ``tutorial`` virtual Python environment. ``$ deactive`` to escape it or
 ``$ workon tutorial`` to be under ``tutorial`` virtual Python environment.
  
 Let's continue to setup the ``tutorial`` project:
@@ -135,7 +143,7 @@ Let's continue to setup the ``tutorial`` project:
     $ ./manage.py syncdb
     $ ./manage.py runserver 0.0.0.0:8000
 
-The project https://github.com/teracy-official/teracy.git will help us to get project development 
+The project https://github.com/teracy-official/teracy.git will help us to get project development
 booted with a Django project template (boilerplate) of best practices.
 
 When ``syncdb``, you should create the super account to access the admin page.
@@ -150,10 +158,10 @@ You should see the following similar messages:
     Development server is running at http://0.0.0.0:8000/
     Quit the server with CONTROL-C.
     
-Now open your browser, yes, your browser :-) with http://localhost:8000/admin and login with your 
+Now open your browser, yes, your browser :-) with http://localhost:8000/admin and login with your
 created super account.
 
-Sweet, everything is cool now! However, the project does not do anything much yet. You need to 
+Sweet, everything is cool now! However, the project does not do anything much yet. You need to
 create Django applications for it.
 
 Start a Django application
@@ -161,20 +169,20 @@ Start a Django application
 
 Let's open the browser at http://localhost:8000, we will see a 404 error and it's normal.
 
-We're going to create a Django application named ``hello`` to display ``Hello World!`` message when 
+We're going to create a Django application named ``hello`` to display ``Hello World!`` message when
 accessing http://localhost:8000 
 
-It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, get and install it 
+It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, get and install it
 now at: http://www.sublimetext.com/
 
-Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to 
+Open ``Sublime Text``, add ``workspace/personal/tutorial`` project (Menu: Project -> Add Folder to
 Project). The ``tutorial`` project should be opened and we could start coding now.
 
-Usually, we need 2 terminal windows: One is used for running Django project and the other one is 
-used for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then 
+Usually, we need 2 terminal windows: One is used for running Django project and the other one is
+used for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then
 ``$ vagrant ssh``.
 
-A specific Django application should be put under ``apps`` directory. We're going to create 
+A specific Django application should be put under ``apps`` directory. We're going to create
 ``hello`` application:
 ::
     $ ws
@@ -182,14 +190,14 @@ A specific Django application should be put under ``apps`` directory. We're goin
     $ cd personal/tutorial/apps
     $ ../manage.py startapp hello
 
-Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py`` by appending the following 
+Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py`` by appending the following
 configuration:
 ::
     INSTALLED_APPS += (
         'apps.hello',
     ) 
 
-Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following 
+Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following
 content:
 ::
     {% extends 'html5boilerplate/base.html' %}
@@ -225,17 +233,17 @@ Configure the root url on ``urls/dev.py`` by adding the following content:
         url(r'', include('apps.hello.urls')),
     )  
 
-During development, the server could be stopped by some errors and it's normal. If your coding 
+During development, the server could be stopped by some errors and it's normal. If your coding
 skill is good enough (j/k :P), the server should be still running. If not, 
 ``$ ./manage.py runserver 0.0.0.0:8000`` again, the server should be started without any error.
 
-Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead 
+Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead
 of the 404 error page.
 
 
-Congratulations, you've just created a Django application and make it work even though it does 
-nothing other than "Hello World!" page. You should now learn Django by developing many more 
-applications for this ``tutorial`` project by adapting Django tutorials at 
+Congratulations, you've just created a Django application and make it work even though it does
+nothing other than "Hello World!" page. You should now learn Django by developing many more
+applications for this ``tutorial`` project by adapting Django tutorials at
 https://docs.djangoproject.com/en/1.5/.
 
 
@@ -299,6 +307,26 @@ Learn more
     + http://kernelnewbies.org/
 
 
+ssh keys
+--------
+
+You could use your existing ssh keys or let the virtual machine create new ssh keys for you so that
+the virtual machine could get access to ssh servers.
+
+1. Enable ssh on ``Vagrantfile``: replace ``"ssh" => false`` by ``"ssh" => true``.
+
+2. Use or update existing ssh keys: copy ssh keys into ``cookbooks/teracy-dev/files/default``.
+These ssh keys will be copied into ``~/.ssh`` directory of the virtual machine whenver you reload
+or provision it.
+
+NOTE: You need keep the default name ``id_rsa*`` and add this new ``id_rsa.pub`` to ssh servers.
+Add public key to your github accounts, bitbucket accounts, etc.
+
+3. After enabling ssh usage and there is no ``id_rsa`` and ``id_rsa.pub`` on
+``cookbooks/teracy-dev/files/default``, after the first ``$ vagrant ssh``, you will be prompted to
+create new ssh keys.
+
+
 Virtual machine's installed and configured packages by ``vagrant`` with ``chef-solo`` provision
 ------------------------------------------------------------------------------------------------
 
@@ -341,14 +369,9 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 Problems, want to help each other?
 ----------------------------------
 
-During the development and learning, you're welcome to join us with discussions at 
+During the development and learning, you're welcome to join us with discussions at
 https://groups.google.com/forum/#!forum/teracy
 
 Frequently asked questions
 --------------------------
-
-
-
-
-
 
