@@ -20,6 +20,9 @@ http://www.ubuntu.com/download/desktop
 Getting started
 ---------------
 
+You're required to install ``VirtualBox``, ``Vagrant`` then download this repository and unzip it,
+and you're done to start. It's very easy to get started!
+
 1. If you're on ``Ubuntu``:
 
     Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below: 
@@ -29,17 +32,28 @@ Getting started
         $ bash setup_working_env_chef.sh
 
 
-1. Or to get started manually, you need to finish 3 following simple steps:
+1. Or to get started manually, you need to finish 2 required following simple steps:
 
     1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
 
     1.2. Install ``Virtualbox`` with the version of **4.2.10** at: 
          https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
-    1.3. Install latest ``git`` version at http://git-scm.com/ to use ``git-bash`` as terminal window.
+    1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use 
+    ``git-bash`` as terminal window.
 
-2. From home directory (``~/``), clone this repository and ``$ vagrant up``. You should prepare yourself 
-a cup of coffee as for the first time, it would take a little long time (~20-30 mins) to ``$ vagrant up``. 
+2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should 
+prepare yourself a cup of coffee as for the first time, it would take a little long time 
+(~20-30 mins) to ``$ vagrant up``. 
+
+- No ``git`` installed: 
+Download and unzip this repository at https://github.com/teracy-official/teracy-dev/archive/master.zip
+then open your terminal window:
+::
+    $ cd teracy-dev
+    $ vagrant up
+
+- Have ``git`` installed: 
 Open your terminal window and type:
 ::
     $ cd ~/
