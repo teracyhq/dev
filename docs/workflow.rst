@@ -83,6 +83,14 @@ these new updates:
 
 Git is a distributed version control system, so collaboration like this should be encouraged.
 
+Git force push
+--------------
+
+DON'T ``$ git push origin branch_name -f`` if your branch has another branch depending on.
+
+NEVER ever force push the *offical repository*.
+
+
 Git branch cleaning up
 ----------------------
 
