@@ -95,7 +95,7 @@ Vagrant.configure("2") do |config|
           "/vagrant/workspace/teracy", 
           "/vagrant/workspace/personal"
         ],
-        "ssh" => true # don't use ssh keys on the virtual machine
+        "ssh" => false # by default, don't use ssh keys on the virtual machine
       }
     }
   end

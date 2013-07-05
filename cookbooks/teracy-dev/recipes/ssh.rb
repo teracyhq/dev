@@ -42,7 +42,7 @@ if node['teracy-dev']['ssh']
         owner 'vagrant'
         group 'vagrant'
         mode 00755
-        action :create       
+        action :create
     end
 
     file '/home/vagrant/.teracy/ssh_check' do

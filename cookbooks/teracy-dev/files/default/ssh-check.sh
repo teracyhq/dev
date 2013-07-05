@@ -12,7 +12,7 @@ function check_done() {
 
 function copy_from_cookbook() {
     cp /vagrant/cookbooks/teracy-dev/files/default/id_rsa* ~/.ssh
-    echo "id_rsa* keys from cookbook was copied into this virtual machine."  
+    echo "id_rsa* keys from cookbook was copied into this virtual machine."
 }
 
 function copy_to_cookbook() {
