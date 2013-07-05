@@ -24,7 +24,7 @@ if node['teracy-dev']['ssh']
         owner 'vagrant'
         source 'id_rsa'
         mode 0600
-        action :create_if_missing
+        action :create
         only_if '[ -f /home/vagrant/.teracy/ssh_check ]'
         ignore_failure true
     end
@@ -33,7 +33,7 @@ if node['teracy-dev']['ssh']
         owner 'vagrant'
         source 'id_rsa.pub'
         mode 0600
-        action :create_if_missing
+        action :create
         only_if '[ -f /home/vagrant/.teracy/ssh_check ]'
         ignore_failure true
     end
