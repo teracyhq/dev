@@ -18,15 +18,16 @@
 # limitations under the License.
 #
 
-cookbook_file '/home/vagrant/.ssh/id_rsa' do
-    owner 'vagrant'
-    source 'id_rsa'
-    mode 0600	
-end
+#cookbook_file '/home/vagrant/.ssh/id_rsa' do
+#    owner 'vagrant'
+#    source 'id_rsa'
+#    mode 0600
+#    action:create_if_missing
+#end
 
-cookbook_file '/home/vagrant/.ssh/id_rsa.pub' do
-    owner 'vagrant'
-    source 'id_rsa.pub'
-    mode 0622
-end
+#cookbook_file '/home/vagrant/.ssh/id_rsa.pub' do
+#    owner 'vagrant'
+#    source 'id_rsa.pub'
+#    action:create_if_missing
+#end
 

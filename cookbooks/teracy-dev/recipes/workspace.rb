@@ -3,7 +3,7 @@
 # Cookbook Name:: teracy-dev
 # Recipe:: workspace
 #
-# Copyright 2013, Teracy Inc.
+# Copyright 2013, Teracy, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,31 +18,12 @@
 # limitations under the License.
 #
 
-directory "/vagrant/workspace" do
-	owner "vagrant"
-	group "vagrant"
-	mode 00755
-	action:create	
-end
-
-directory "/vagrant/workspace/readonly" do
-	owner "vagrant"
-	group "vagrant"
-	mode 00755
-	action:create
-end
-
-directory "/vagrant/workspace/teracy" do
-	owner "vagrant"
-	group "vagrant"
-	mode 00755
-	action:create
-end
-
-directory "/vagrant/workspace/personal" do
-	owner "vagrant"
-	group "vagrant"
-	mode 00755
-	action:create	
+node['teracy-dev']['workspace'].each do |dir|
+	directory dir do
+		owner 'vagrant'
+		group 'vagrant'
+		mode 00755
+		action:create
+	end
 end
 

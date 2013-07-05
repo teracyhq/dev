@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 8000, host: 8000
+  config.vm.network :forwarded_port, guest: 8000, host: 8000 #default for developing django applications
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -86,11 +86,17 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "python"
     chef.add_recipe "git"
     chef.add_recipe "teracy-dev"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
-  #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
+
+  # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
+    chef.json = {
+      "teracy-dev" => {
+        "workspace" => [
+          "/vagrant/workspace/readonly", 
+          "/vagrant/workspace/teracy", 
+          "/vagrant/workspace/personal"
+        ]
+      }
+    }
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
