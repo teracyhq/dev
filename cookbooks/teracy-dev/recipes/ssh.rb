@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: github
+# Recipe:: ssh
 #
 # Copyright 2013, Teracy, Inc.
 #
