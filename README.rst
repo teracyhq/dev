@@ -10,7 +10,7 @@ By using this approach, we can work on any host machine with different OS, even 
 However, Windows is NOT recommended for best development experience. You don't have to install tons 
 of development stuffs on your host machine but on ``virtualbox`` only.
 
-It's better to work on any *unix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
+It's better to work on any *nix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
 
 
 Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at: 
