@@ -72,6 +72,9 @@ The output could be similar like this:
     Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
     Successfully added box 'opscode-ubuntu-1204' with provider 'virtualbox'!
 
+Note: During the waiting time, you could enjoy a cup of coffee and reading about ``vagrant`` at
+*Learn more* section near the end of this documentation.
+
 
 - No ``git`` installed: 
 Download and unzip this repository at https://github.com/teracy-official/teracy-dev/archive/master.zip
@@ -266,6 +269,29 @@ applications for this ``tutorial`` project by adapting Django tutorials at
 https://docs.djangoproject.com/en/1.5/.
 
 
+Join and work with us?
+----------------------
+
+We are starting up and have tons of interesting projects to implement. We need you - young
+developers (any gender) having passion to learn and to work in a smart way. What you need to
+do is to ``impress us``.
+
+How to impress us?
+
+- Show your passion to learn and work with us
+
+- Show your interest with our development model
+
+- Join and discuss with us about anything, yes anything :)
+    + Facebook group: https://www.facebook.com/groups/teracy/
+    + Google group: https://groups.google.com/forum/#!forum/teracy
+
+- Contribute to our public projects at: https://github.com/teracy-official/teracy-dev
+
+Well, when you impress us enough, wherever you are, we will find you and offer you the job you
+desire! Remember, "Don't call us, we'll call you." :-).
+
+
 Learn more
 ----------
 
@@ -385,11 +411,6 @@ You could see it clearly on ``Vagrantfile`` with the following similar content:
 
 For more information about ``chef``, see it at http://www.opscode.com/chef/.
 
-Problems, want to help each other?
-----------------------------------
-
-During the development and learning, you're welcome to join us with discussions at
-https://groups.google.com/forum/#!forum/teracy
 
 Frequently asked questions
 --------------------------
