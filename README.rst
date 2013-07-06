@@ -26,6 +26,8 @@ You're required to install ``virtualBox``, ``vagrant``.
 
 If you're on Windows, you must install ``git`` to use ``git-bash`` terminal window.
 
+Note: After installing ``vagrant`` on Windows, you need to restart your computer.
+
 - Optional recommendation:
 
 You should install ``git``.
@@ -52,7 +54,24 @@ You should install ``git``.
 
 2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should
 prepare yourself a cup of coffee as for the first time, it would take a little long time 
-(~20-30 mins) to ``$ vagrant up``. 
+(~20-30 mins with internet speed ~700-800KB/s) to ``$ vagrant up``.
+
+**For slow internet connection**
+
+For slow internet connection (~200KB/s or lower), you could use a download accelerator to
+download .box file (400-500MB) first with the link:
+https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box
+
+And before ``$ vagrant up``, you must execute the command below:
+::
+    $ vagrant box add opscode-ubuntu-1204 path_to_the_downloaded_file.box
+
+The output could be similar like this:
+::
+    Downloading or copying the box...
+    Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
+    Successfully added box 'opscode-ubuntu-1204' with provider 'virtualbox'!
+
 
 - No ``git`` installed: 
 Download and unzip this repository at https://github.com/teracy-official/teracy-dev/archive/master.zip
