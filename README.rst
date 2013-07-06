@@ -6,7 +6,9 @@ This ``teracy-dev`` repository was created for developing Django applications wi
 We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for
 installing and configuring any neccessary packages.
 
-By using this approach, we can work on any host machine with different OS, even Windows :-).
+By using this approach, we can work on any host machine with different OS, even limited support
+for Windows :-). See FAQ section at the end of this document for more details of Windows support.
+
 However, Windows is NOT recommended for best development experience. You don't have to install tons
 of development stuffs on your host machine but on ``virtualbox`` only.
 
@@ -414,4 +416,10 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 
 Frequently asked questions
 --------------------------
+
+1. Does this work on Windows?
+
+It's expected that it should work on Windows. However, we haven't fully tested it yet, we're just
+trying to be cool with Windows, this support depends on ``vagrant``'s support.
+    
 
