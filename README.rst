@@ -4,29 +4,24 @@ teracy-dev - get development fun!
 
 This ``teracy-dev`` repository was created for developing Django applications with ease and fun.
 We're going to use ``virtualbox`` for running Django projects, ``chef`` and ``vagrant`` for
-installing and configuring any neccessary packages.
+installing and configuring any necessary packages.
 
-By using this approach, we can work on any host machine with different OS, even limited support
-for Windows :-). See FAQ section at the end of this document for more details of Windows support.
+By using this approach, we can work on any host machine with different OS. We don't have to
+install tons of development stuffs on the host machine to start. See FAQ section at the end of
+this document for more details of OS support.
 
-However, Windows is NOT recommended for best development experience. You don't have to install tons
-of development stuffs on your host machine but on ``virtualbox`` only.
-
-It's better to work on any *nix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, you name it :-D).
-
-
-Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at:
-http://www.ubuntu.com/download/desktop
+Before getting started, please see the "Frequently asked question" to know some of the common
+problems you could meet and proposed solution when following "getting started" section.
 
 
 Getting started
 ---------------
 
-- Minmum requirement:
+- Minimum requirement:
 
-You're required to install ``virtualBox``, ``vagrant``.
+You're required to install ``virtualbox``, ``vagrant``.
 
-If you're on Windows, you must install ``git`` to use ``git-bash`` terminal window.
+If you're on Windows, you must install ``git`` to use ``Git Bash`` as terminal window.
 
 Note: After installing ``vagrant`` on Windows, you need to restart your computer.
 
@@ -52,11 +47,15 @@ You should install ``git``.
          https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
 
     1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use
-    ``git-bash`` as terminal window. However, it's highly recommended to install on your machine.
+    ``Git Bash`` as terminal window.
 
 2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should
 prepare yourself a cup of coffee as for the first time, it would take a little long time 
 (~20-30 mins with internet speed ~700-800KB/s) to ``$ vagrant up``.
+
+Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
+For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
+``teracy-dev`` directory to import projects into your Sublime Text editor.
 
 **For slow internet connection**
 
@@ -68,7 +67,11 @@ And before ``$ vagrant up``, you must execute the command below:
 ::
     $ vagrant box add opscode-ubuntu-1204 path_to_the_downloaded_file.box
 
-The output could be similar like this:
+If you're on Windows and downloaded the ``.box`` file to your ``Desktop``:
+::
+    $ vagrant box add opscode-ubuntu-1204 ~/Desktop/opscode_ubuntu-12.04-i386_chef-11.4.4.box
+
+The output could be something similar like this:
 ::
     Downloading or copying the box...
     Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
@@ -79,9 +82,11 @@ Note: During the waiting time, you could enjoy a cup of coffee and reading about
 
 
 - No ``git`` installed: 
-Download and unzip this repository at https://github.com/teracy-official/teracy-dev/archive/master.zip
-then open your terminal window:
+Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
+unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
+(Windows). Then open your terminal window:
 ::
+    $ cd ~/
     $ cd teracy-dev
     $ vagrant up
 
@@ -111,7 +116,7 @@ installed which runs Ubuntu 12.04. You should see the following similar messages
 
     Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 
-*Congratulations, you're set now!*
+*Congratulations, you're all set now!*
     
 
 ``workspace`` directory
@@ -274,9 +279,9 @@ https://docs.djangoproject.com/en/1.5/.
 Join and work with us?
 ----------------------
 
-We are starting up and have tons of interesting projects to implement. We need you - young
-developers (any gender) having passion to learn and to work in a smart way. What you need to
-do is to ``impress us``.
+We are starting up and have tons of interesting projects waiting for you. We need you - young
+developers, having passion to learn and to work with us in a smart way. What you need to
+do is to simply ``impress us``.
 
 How to impress us?
 
@@ -290,9 +295,8 @@ How to impress us?
 
 - Contribute to our public projects at: https://github.com/teracy-official/teracy-dev
 
-Well, when you impress us enough, wherever you are, we will find you and offer you the job you
-desire! Remember, "Don't call us, we'll call you." :-).
-
+When you impress us enough, wherever you are, we will find you and offer you the job you
+desire!
 
 Learn more
 ----------
@@ -302,7 +306,6 @@ Learn more
     + https://github.com/teracy-official/teracy
 
     + https://github.com/teracy-official/teracy-html5boilerplate
-
 
 - Vagrant
 
@@ -325,7 +328,6 @@ Learn more
     + ``virtualenv``: http://www.virtualenv.org/en/latest/
 
     + ``virtualenvwrapper``: http://virtualenvwrapper.readthedocs.org/en/latest/
-
 
 - Python
     
@@ -374,8 +376,8 @@ Add public key to your github accounts, bitbucket accounts, etc.
 create new ssh keys.
 
 
-Virtual machine's installed and configured packages by ``vagrant`` with ``chef-solo`` provision
-------------------------------------------------------------------------------------------------
+Installed packages on the virtual machine
+-----------------------------------------
 
 The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box 
 and additional packages installed are:
@@ -417,9 +419,36 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 Frequently asked questions
 --------------------------
 
-1. Does this work on Windows?
+1. **What OS should I use for best development environment?**
 
-It's expected that it should work on Windows. However, we haven't fully tested it yet, we're just
-trying to be cool with Windows, this support depends on ``vagrant``'s support.
-    
+You could use any OS to start development (Windows XP, Windows 7, Windows 8, Mac,
+Ubuntu, etc.)
 
+However, Windows is NOT recommended for best development experience. It's better to work on any
+*nix compatible OS (Mac OSX, Ubuntu, Fedora, Redhat, etc.).
+
+Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at:
+http://www.ubuntu.com/download/desktop
+
+2. **After ``$ vagrant up``, there is an error saying that ``virtualbox`` has error, can't run and
+quit?**
+
+Make sure you install the exact version **4.2.10** of ``virtualbox``.
+
+3. **How could I update ``teracy-dev``?**
+
+Before updating, remember to destroy all running virtual machines as they could become obsolete.
+
+- No ``git`` installed:
+
+    + You need to move all your work under ``workspace`` directory to outside of ``teracy-dev``
+    + Delete ``teracy-dev``
+    + Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
+    unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
+    (Windows).
+    + Move all your work under ``workspace`` to ``teracy-dev/workspace`` and start working as normal.
+
+- Have ``git`` installed:
+::
+    $ git fetch origin
+    $ git merge origin/master
