@@ -442,13 +442,18 @@ Before updating, remember to destroy all running virtual machines as they could 
 - No ``git`` installed:
 
     + You need to move all your work under ``workspace`` directory to outside of ``teracy-dev``
+
     + Delete ``teracy-dev``
+    
     + Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
     unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
     (Windows).
+    
     + Move all your work under ``workspace`` to ``teracy-dev/workspace`` and start working as normal.
 
 - Have ``git`` installed:
+
+Follow these commands below:
 ::
     $ git fetch origin
     $ git merge origin/master
