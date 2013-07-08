@@ -57,29 +57,6 @@ Note: The home directory on ``Git Bash`` normally should point to your user's di
 For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
 ``teracy-dev`` directory to import projects into your Sublime Text editor.
 
-**For slow internet connection**
-
-For slow internet connection (~200KB/s or lower), you could use a download accelerator to
-download .box file (400-500MB) first with the link:
-https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box
-
-And before ``$ vagrant up``, you must execute the command below:
-::
-    $ vagrant box add opscode-ubuntu-1204 path_to_the_downloaded_file.box
-
-If you're on Windows and downloaded the ``.box`` file to your ``Desktop``:
-::
-    $ vagrant box add opscode-ubuntu-1204 ~/Desktop/opscode_ubuntu-12.04-i386_chef-11.4.4.box
-
-The output could be something similar like this:
-::
-    Downloading or copying the box...
-    Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
-    Successfully added box 'opscode-ubuntu-1204' with provider 'virtualbox'!
-
-Note: During the waiting time, you could enjoy a cup of coffee and reading about ``vagrant`` at
-*Learn more* section near the end of this documentation.
-
 
 - No ``git`` installed: 
 Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
@@ -419,7 +396,28 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 Frequently asked questions
 --------------------------
 
-1. **What OS should I use for best development environment?**
+1. **My internet speed is slow, ``$ vagrant up`` takes long time and comes back to 0% after reach
+more than 50%?**
+
+For slow internet connection (~200KB/s or lower), you could use a download accelerator to
+download .box file (400-500MB) first with the link:
+https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box
+
+And before ``$ vagrant up``, you must execute the command below:
+::
+    $ vagrant box add opscode-ubuntu-1204 path_to_the_downloaded_file.box
+
+If you're on Windows and downloaded the ``.box`` file to your ``Desktop`` and:
+::
+    $ vagrant box add opscode-ubuntu-1204 ~/Desktop/opscode_ubuntu-12.04-i386_chef-11.4.4.box
+
+The output could be something similar like this:
+::
+    Downloading or copying the box...
+    Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
+    Successfully added box 'opscode-ubuntu-1204' with provider 'virtualbox'!
+
+2. **What OS should I use for best development environment?**
 
 You could use any OS to start development (Windows XP, Windows 7, Windows 8, Mac,
 Ubuntu, etc.)
@@ -430,25 +428,30 @@ However, Windows is NOT recommended for best development experience. It's better
 Ubuntu 12.04 is a **strongly** recommended OS for development, get it now at:
 http://www.ubuntu.com/download/desktop
 
-2. **After ``$ vagrant up``, there is an error saying that ``virtualbox`` has error, can't run and
+3. **After ``$ vagrant up``, there is an error saying that ``virtualbox`` has error, can't run and
 quit?**
 
 Make sure you install the exact version **4.2.10** of ``virtualbox``.
 
-3. **How could I update ``teracy-dev``?**
+4. **How could I update ``teracy-dev``?**
 
 Before updating, remember to destroy all running virtual machines as they could become obsolete.
 
 - No ``git`` installed:
 
     + You need to move all your work under ``workspace`` directory to outside of ``teracy-dev``
+
     + Delete ``teracy-dev``
+    
     + Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
     unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
     (Windows).
+    
     + Move all your work under ``workspace`` to ``teracy-dev/workspace`` and start working as normal.
 
 - Have ``git`` installed:
+
+Follow these commands below:
 ::
     $ git fetch origin
     $ git merge origin/master
