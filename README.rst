@@ -396,9 +396,8 @@ For more information about ``chef``, see it at http://www.opscode.com/chef/.
 Frequently asked questions
 --------------------------
 
-1. *My internet speed is slow, ``$ vagrant up`` takes long time and comes back to 0% after reach
-more than 50%?*
-
+1. **My internet speed is slow, ``$ vagrant up`` takes long time and comes back to 0% after reach
+more than 50%?**
 
 For slow internet connection (~200KB/s or lower), you could use a download accelerator to
 download .box file (400-500MB) first with the link:
