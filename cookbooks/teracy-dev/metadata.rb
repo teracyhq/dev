@@ -14,3 +14,4 @@ recipe "teracy-dev::apt", "Installs required packages for teracy' project develo
 recipe "teracy-dev::workspace", "Creates workspace directory for teraciers."
 recipe "teracy-dev::virtualenvwrapper", "Installs virtualenvwrapper using the python_pip resource and configure it."
 recipe "teracy-dev::ssh", "Allows to generate or use existing ssh keys."
+recipe "teracy-dev::env", "Configures environment."

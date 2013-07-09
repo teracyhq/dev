@@ -1,8 +1,8 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: virtualenvwrapper
-#
+# Recipe:: env
+# Description: Configures environment
 # Copyright 2013, Teracy, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,16 +18,7 @@
 # limitations under the License.
 #
 
-python_pip 'virtualenvwrapper' do
-  action :install
+
+magic_shell_environment 'EDITOR' do
+    value 'vim'
 end
-
-bash 'configure_virtualenvwrapper' do
-    code <<-EOF
-        echo 'export PROJECT_HOME=/vagrant/workspace/personal' >> /home/vagrant/.profile
-        echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.profile && source /home/vagrant/.profile
-    EOF
-    not_if 'grep -q /usr/local/bin/virtualenvwrapper.sh /home/vagrant/.profile'
-end
-
-
