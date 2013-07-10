@@ -25,6 +25,9 @@ If you're on Windows, you must install ``git`` to use ``Git Bash`` as terminal w
 
 Note: After installing ``vagrant`` on Windows, you need to restart your computer.
 
+**Really Important for Windows**: You MUST ALWAYS run ``virtualbox`` and ``Git Bash`` as
+**administrator** to make symlinks (of virtualenv) work as expected.
+
 - Optional recommendation:
 
 You should install ``git``.
@@ -435,11 +438,13 @@ Make sure you install the exact version **4.2.10** of ``virtualbox``.
 
 4. **How could I update ``teracy-dev``?**
 
-Before updating, remember to destroy all running virtual machines as they could become obsolete.
+We're trying to make the update as painless as possible so that we don't have to ``detroy`` and
+``up`` again as it is time consuming. We try to make the update with ``provision``, acceptable
+``reload``. If we have to ``destroy`` and ``up`` again, it will be the next major release version.
 
 - No ``git`` installed:
 
-    + You need to move all your work under ``workspace`` directory to outside of ``teracy-dev``
+    + You need to move all your work under ``home`` and ``workspace`` directory to outside of ``teracy-dev``
 
     + Delete ``teracy-dev``
     
@@ -447,7 +452,7 @@ Before updating, remember to destroy all running virtual machines as they could 
     unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
     (Windows).
     
-    + Move all your work under ``workspace`` to ``teracy-dev/workspace`` and start working as normal.
+    + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working as normal.
 
 - Have ``git`` installed:
 

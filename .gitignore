@@ -11,9 +11,12 @@ id_rsa
 id_rsa.pub
 
 # Ignore workspace sub directories
-workspace/personal
-workspace/readonly
-workspace/teracy
+workspace/*
+!workspace/.gitkeep
+
+home/.virtualenvs/*
+!home/.virtualenvs/.gitkeep
+
 
 .DS_Store
 
