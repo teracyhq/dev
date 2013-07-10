@@ -336,26 +336,6 @@ Learn more
     + http://kernelnewbies.org/
 
 
-ssh keys
---------
-
-You could use your existing ssh keys or let the virtual machine create new ssh keys for you so that
-the virtual machine could get access to ssh servers.
-
-1. Enable ssh on ``Vagrantfile``: replace ``"ssh" => false`` by ``"ssh" => true``.
-
-2. Use or update existing ssh keys: copy ssh keys into ``cookbooks/teracy-dev/files/default``.
-These ssh keys will be copied into ``~/.ssh`` directory of the virtual machine whenver you reload
-or provision it.
-
-NOTE: You need keep the default name ``id_rsa*`` and add this new ``id_rsa.pub`` to ssh servers.
-Add public key to your github accounts, bitbucket accounts, etc.
-
-3. After enabling ssh usage and there is no ``id_rsa`` and ``id_rsa.pub`` on
-``cookbooks/teracy-dev/files/default``, after the first ``$ vagrant ssh``, you will be prompted to
-create new ssh keys.
-
-
 Installed packages on the virtual machine
 -----------------------------------------
 
