@@ -448,11 +448,15 @@ Follow these commands below:
 ``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine are in sync. You
 could copy your existing ssh keys into one location and it will be available in the other location.
 
-For example, to use existing ssh keys, type the following commands on the host machine terminal
-window:
+5.1. For example, to use existing ssh keys, type the following commands on the host machine
+terminal window:
 ::
     $ cd teracy-dev
     $ cp ~/.ssh/id_rsa* home/.ssh
 
-Or to create new ssh keys on the virtual machine, just create it and these keys will be copied into
-``teracy-dev/home/.ssh``.
+5.2. Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
+into ``teracy-dev/home/.ssh``.
+
+5.3. It's easier to use the host machine to forward ssh access. Just enable it on ``Vagrantfile``
+::
+    config.ssh.forward_agent = true
