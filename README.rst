@@ -61,6 +61,14 @@ For example: ``C:\Documents and Settings\<user_name>``, this is the place you wi
 ``teracy-dev`` directory to import projects into your Sublime Text editor.
 
 
+- Have ``git`` installed: 
+Open your terminal window and type:
+::
+    $ cd ~/
+    $ git clone https://github.com/teracy-official/teracy-dev.git
+    $ cd teracy-dev
+    $ vagrant up
+
 - No ``git`` installed: 
 Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
 unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
@@ -70,13 +78,6 @@ unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings
     $ cd teracy-dev
     $ vagrant up
 
-- Have ``git`` installed: 
-Open your terminal window and type:
-::
-    $ cd ~/
-    $ git clone https://github.com/teracy-official/teracy-dev.git
-    $ cd teracy-dev
-    $ vagrant up
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
@@ -422,6 +423,13 @@ We're trying to make the update as painless as possible so that we don't have to
 ``up`` again as it is time consuming. We try to make the update with ``provision``, acceptable
 ``reload``. If we have to ``destroy`` and ``up`` again, it will be the next major release version.
 
+- Have ``git`` installed:
+
+Follow these commands below:
+::
+    $ git fetch origin
+    $ git merge origin/master
+
 - No ``git`` installed:
 
     + You need to move all your work under ``home`` and ``workspace`` directory to outside of
@@ -436,27 +444,22 @@ We're trying to make the update as painless as possible so that we don't have to
     + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working
     as normal.
 
-- Have ``git`` installed:
-
-Follow these commands below:
-::
-    $ git fetch origin
-    $ git merge origin/master
-
 5. **How to use ssh keys on the virtual machine**?
 
 ``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine are in sync. You
 could copy your existing ssh keys into one location and it will be available in the other location.
 
-5.1. For example, to use existing ssh keys, type the following commands on the host machine
+5.1. It's easier to use the host machine to forward ssh access. Just enable it on ``Vagrantfile``
+::
+    config.ssh.forward_agent = true
+
+It seems that Windows is having problem with ``forward_agent``, Windows users should move to 5.2.
+
+5.2. Or to use existing ssh keys, type the following commands on the host machine
 terminal window:
 ::
     $ cd teracy-dev
     $ cp ~/.ssh/id_rsa* home/.ssh
 
-5.2. Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
+5.3. Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
 into ``teracy-dev/home/.ssh``.
-
-5.3. It's easier to use the host machine to forward ssh access. Just enable it on ``Vagrantfile``
-::
-    config.ssh.forward_agent = true
