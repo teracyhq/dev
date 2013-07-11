@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "./workspace", "/home/vagrant/workspace"
   config.vm.synced_folder "./home/.virtualenvs", "/home/vagrant/.virtualenvs"
-  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh"
+  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :extra => 'dmode=775,fmode=600'
 
   # ssh configuration
   # config.ssh.forward_agent = true
