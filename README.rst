@@ -336,26 +336,6 @@ Learn more
     + http://kernelnewbies.org/
 
 
-ssh keys
---------
-
-You could use your existing ssh keys or let the virtual machine create new ssh keys for you so that
-the virtual machine could get access to ssh servers.
-
-1. Enable ssh on ``Vagrantfile``: replace ``"ssh" => false`` by ``"ssh" => true``.
-
-2. Use or update existing ssh keys: copy ssh keys into ``cookbooks/teracy-dev/files/default``.
-These ssh keys will be copied into ``~/.ssh`` directory of the virtual machine whenver you reload
-or provision it.
-
-NOTE: You need keep the default name ``id_rsa*`` and add this new ``id_rsa.pub`` to ssh servers.
-Add public key to your github accounts, bitbucket accounts, etc.
-
-3. After enabling ssh usage and there is no ``id_rsa`` and ``id_rsa.pub`` on
-``cookbooks/teracy-dev/files/default``, after the first ``$ vagrant ssh``, you will be prompted to
-create new ssh keys.
-
-
 Installed packages on the virtual machine
 -----------------------------------------
 
@@ -444,7 +424,8 @@ We're trying to make the update as painless as possible so that we don't have to
 
 - No ``git`` installed:
 
-    + You need to move all your work under ``home`` and ``workspace`` directory to outside of ``teracy-dev``
+    + You need to move all your work under ``home`` and ``workspace`` directory to outside of
+    ``teracy-dev``
 
     + Delete ``teracy-dev``
     
@@ -452,7 +433,8 @@ We're trying to make the update as painless as possible so that we don't have to
     unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
     (Windows).
     
-    + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working as normal.
+    + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working
+    as normal.
 
 - Have ``git`` installed:
 
@@ -460,3 +442,17 @@ Follow these commands below:
 ::
     $ git fetch origin
     $ git merge origin/master
+
+5. **How to use ssh keys on the virtual machine**?
+
+``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine are in sync. You
+could copy your existing ssh keys into one location and it will be available in the other location.
+
+For example, to use existing ssh keys, type the following commands on the host machine terminal
+window:
+::
+    $ cd teracy-dev
+    $ cp ~/.ssh/id_rsa* home/.ssh
+
+Or to create new ssh keys on the virtual machine, just create it and these keys will be copied into
+``teracy-dev/home/.ssh``.
