@@ -1,7 +1,8 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: github
+# Recipe:: git-config
+# Description: Configures global git
 #
 # Copyright 2013, Teracy, Inc.
 #
@@ -17,9 +18,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe 'teracy-dev::apt'
-include_recipe 'teracy-dev::workspace'
-include_recipe 'teracy-dev::alias'
-include_recipe 'teracy-dev::virtualenvwrapper'
-include_recipe 'teracy-dev::env'
-include_recipe 'teracy-dev::git-config'
+
+template '/home/vagrant/.gitconfig' do
+    source 'gitconfig.erb'
+    owner 'vagrant'
+    group 'vagrant'
+    mode '0664'
+end

@@ -100,8 +100,15 @@ Vagrant.configure("2") do |config|
           "/vagrant/workspace/readonly", 
           "/vagrant/workspace/teracy", 
           "/vagrant/workspace/personal"
-        ]
-      }
+        ],
+        "git" => {
+          "user" => {
+            "name" => "Teracy Dev", # replace by your name
+            "email" => "teracy-dev@teracy.com" # replace by your email
+          },
+          "color" => true
+        }
+      },
     }
   end
 

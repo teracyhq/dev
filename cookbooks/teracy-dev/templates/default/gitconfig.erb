@@ -1,0 +1,8 @@
+[user]
+    name = <%= node['teracy-dev']['git']['user']['name'] %>
+    email = <%= node['teracy-dev']['git']['user']['email'] %>
+
+<% if node['teracy-dev']['git']['color'] %>
+[color]
+    ui = true
+<% end %>
