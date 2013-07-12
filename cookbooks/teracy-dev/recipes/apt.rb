@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-%w{libpq-dev python-dev}.each do |pkg|
+%w{libpq-dev python-dev tree}.each do |pkg|
     apt_package pkg do
         action:install
     end

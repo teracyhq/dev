@@ -345,11 +345,19 @@ and additional packages installed are:
 
 - ``apt``.
 
-- ``vim``.
+- ``vim`` as ``EDITOR`` environment.
 
 - ``git``.
 
 - ``Python`` with ``pip``, ``virtualenv`` and ``virtualenvwrapper``.
+
+- ``libpq-dev``, ``python-dev``
+
+- ``tree``
+
+- aliases:
+
+    + ``ws`` => ``cd ~/workspace``
 
 You could see it clearly on ``Vagrantfile`` with the following similar content:
 ::
