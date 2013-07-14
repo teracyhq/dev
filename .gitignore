@@ -22,3 +22,6 @@ home/.virtualenvs/*
 
 *.sublime-project
 *.sublime-workspace
+
+# docs
+_build
