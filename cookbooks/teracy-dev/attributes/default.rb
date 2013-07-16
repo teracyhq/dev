@@ -4,5 +4,13 @@ default['teracy-dev']['workspace'] = [
     '/vagrant/workspace/personal'
 ]
 
-default['teracy-dev']['git']['user']['name'] = 'Teracy Dev'
-default['teracy-dev']['git']['user']['email'] = 'teracy-dev@teracy.com'
+default['teracy-dev']['git'] = {
+    'user' => {
+        'name' => 'Teracy Dev',
+        'email' => 'teracy-dev@teracy.com'
+    },
+    'color' => true,
+    'commit' => {
+        'template' => true
+    }
+}

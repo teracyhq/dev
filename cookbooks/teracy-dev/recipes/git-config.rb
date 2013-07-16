@@ -25,3 +25,12 @@ template '/home/vagrant/.gitconfig' do
     group 'vagrant'
     mode '0664'
 end
+
+if node['teracy-dev']['git']['commit']['template']
+    template '/home/vagrant/.gitmessage.txt' do
+        source 'gitmessage.erb'
+        owner 'vagrant'
+        group 'vagrant'
+        mode '0664'
+    end
+end

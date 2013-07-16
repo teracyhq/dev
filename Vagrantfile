@@ -106,7 +106,10 @@ Vagrant.configure("2") do |config|
             "name" => "Teracy Dev", # replace by your name
             "email" => "teracy-dev@teracy.com" # replace by your email
           },
-          "color" => true
+          "color" => true, # enable color on git terminal's output
+          "commit" => {
+            "template" => true # use teracy's commit template
+          }
         }
       },
     }
