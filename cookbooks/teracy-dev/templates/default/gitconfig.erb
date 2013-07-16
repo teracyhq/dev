@@ -11,3 +11,14 @@
 [commit]
 	template = /home/vagrant/.gitmessage.txt
 <% end %>
+
+[diff]
+	tool = <%= node['teracy-dev']['git']['diff']['tool'] %>
+
+[merge]
+	tool = <%= node['teracy-dev']['git']['merge']['tool'] %>
+
+<% if !node['teracy-dev']['git']['difftool']['prompt'] %>
+[difftool]
+	prompt = false
+<% end %>

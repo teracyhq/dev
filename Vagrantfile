@@ -109,6 +109,15 @@ Vagrant.configure("2") do |config|
           "color" => true, # enable color on git terminal's output
           "commit" => {
             "template" => true # use teracy's commit template
+          },
+          "diff" => {
+            "tool" => "vimdiff"
+          },
+          "merge" => {
+            "tool" => "vimdiff"
+          },
+          "difftool" => {
+            "prompt" => false
           }
         }
       },
