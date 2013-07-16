@@ -12,5 +12,14 @@ default['teracy-dev']['git'] = {
     'color' => true,
     'commit' => {
         'template' => true
+    },
+    'diff' => {
+        'tool' => 'vimdiff'
+    },
+    'merge' => {
+        'tool' => 'vimdiff'
+    },
+    'difftool' => {
+        'prompt' => false
     }
 }
