@@ -20,5 +20,5 @@
 
 
 magic_shell_alias 'ws' do
-	command 'cd ~/workspace'
+    command 'cd ~/workspace'
 end
