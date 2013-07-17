@@ -51,11 +51,18 @@ we are meant to work together.
 
 3. How to impress us?
 
-- Show your passion to learn and work with us
+- To join our training program, you should have:
 
-- Show your interest with our vision and development philosophy
+    + a computer connected to Internet
 
-- Join and discuss with us about anything, yes anything :)
+    + basic English reading and writing skill. You understand what is written here is basically
+      enough for starting point
+
+    + passion to learn and work with us
+
+    + interest in our vision and development philosophy
+
+- Join and discuss with us about anything, yes anything at:
 
     + Facebook group: https://www.facebook.com/groups/teracy/
 
@@ -64,3 +71,6 @@ we are meant to work together.
 - Contribute to our open source projects at: https://github.com/teracy-official
 
 When you impress us enough, wherever you are, we will find you and offer you the job you desire!
+
+We could work as much flexibly as possible. You could work remote, you could work part-time, even 
+you could arrange the work time as you desire. All you need to do is just **impress us now**!
