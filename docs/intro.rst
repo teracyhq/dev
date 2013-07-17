@@ -58,7 +58,7 @@ please contact us to see if we are meant to work together with other positions.
 
 - To join our training program, you should have:
 
-    + a computer connected to Internet
+    + a computer connected to the Internet
 
     + basic English reading and writing skill. You understand what is written here is basically
       enough for starting point
@@ -79,3 +79,27 @@ When you impress us enough, wherever you are, we will find you and offer you the
 
 We could work as much flexibly as possible. You could work remote, you could work part-time, even 
 you could arrange the work time as you desire. All you need to do is just **impress us now**!
+
+
+What will you get after the training program?
+---------------------------------------------
+
+Everyone will know:
+
+#. how to use ``teracy-dev``
+
+#. basic ``git`` usage, and use github for practice
+
+#. teracy's git workflow
+
+
+If you join ``Python`` training program, you will know how to develop web applications with
+``Django`` web framework.
+
+If you join ``HTML/CSS`` training program, you will know how to convert PSD into HTML pages with
+right structure and presentation.
+
+If you join ``JavaScript`` training program, you will know how to add behavior to web applications.
+
+If you join ``Docs writer`` training program, you will know how to use ``reStructureText`` and
+``Sphinx``.
