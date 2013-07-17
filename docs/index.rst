@@ -13,6 +13,20 @@ Contents:
 
    intro
    getting_started
+   tool_chain
+   style_standards
+   workflow
+   document_writer_training
+   c_c++_training
+   python_training
+   php_training
+   html_css_training
+   js_training
+   java_training
+   objective_c_training
+   ios_training
+   android_training
+
 
 
 
