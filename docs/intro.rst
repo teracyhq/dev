@@ -56,7 +56,9 @@ we are meant to work together.
 - Show your interest with our vision and development philosophy
 
 - Join and discuss with us about anything, yes anything :)
+
     + Facebook group: https://www.facebook.com/groups/teracy/
+
     + Google group: https://groups.google.com/forum/#!forum/teracy
 
 - Contribute to our open source projects at: https://github.com/teracy-official
