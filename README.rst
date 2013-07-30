@@ -53,7 +53,7 @@ You should install ``git``.
     ``Git Bash`` as terminal window.
 
 2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should
-prepare yourself a cup of coffee as for the first time, it would take a little long time 
+prepare yourself a cup of coffee as for the first time, it would take a little long time
 (~20-30 mins with internet speed ~700-800KB/s) to ``$ vagrant up``.
 
 Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
@@ -61,7 +61,7 @@ For example: ``C:\Documents and Settings\<user_name>``, this is the place you wi
 ``teracy-dev`` directory to import projects into your Sublime Text editor.
 
 
-- Have ``git`` installed: 
+- Have ``git`` installed:
 Open your terminal window and type:
 ::
     $ cd ~/
@@ -69,7 +69,7 @@ Open your terminal window and type:
     $ cd teracy-dev
     $ vagrant up
 
-- No ``git`` installed: 
+- No ``git`` installed:
 Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
 unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
 (Windows). Then open your terminal window:
@@ -87,7 +87,7 @@ You should see the following similar messages at the end of ``$ vagrant up``:
 
 Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just
 installed which runs Ubuntu 12.04. You should see the following similar messages:
-:: 
+::
     Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
      * Documentation:  https://help.ubuntu.com/
@@ -98,7 +98,7 @@ installed which runs Ubuntu 12.04. You should see the following similar messages
     Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 
 *Congratulations, you're all set now!*
-    
+
 
 ``workspace`` directory
 -----------------------
@@ -138,7 +138,7 @@ You should see the following similar messages:
 
 You're now under ``tutorial`` virtual Python environment. ``$ deactive`` to escape it or
 ``$ workon tutorial`` to be under ``tutorial`` virtual Python environment.
- 
+
 Let's continue to setup the ``tutorial`` project:
 ::
     $ ws
@@ -148,7 +148,7 @@ Let's continue to setup the ``tutorial`` project:
     $ git init
     $ git remote add teracy https://github.com/teracy-official/teracy.git
     $ git fetch teracy
-    $ git merge teracy/master 
+    $ git merge teracy/master
     $ pip install -r requirements/dev.txt
     $ ./manage.py syncdb
     $ ./manage.py runserver 0.0.0.0:8000
@@ -167,7 +167,7 @@ You should see the following similar messages:
     Django version 1.5.1, using settings 'settings.dev'
     Development server is running at http://0.0.0.0:8000/
     Quit the server with CONTROL-C.
-    
+
 Now open your browser, yes, your browser :-) with http://localhost:8000/admin and login with your
 created super account.
 
@@ -180,7 +180,7 @@ Start a Django application
 Let's open the browser at http://localhost:8000, we will see a 404 error and it's normal.
 
 We're going to create a Django application named ``hello`` to display ``Hello World!`` message when
-accessing http://localhost:8000 
+accessing http://localhost:8000
 
 It's time for coding, so we need an editor for it. ``Sublime Text`` is awesome, get and install it
 now at: http://www.sublimetext.com/
@@ -192,6 +192,37 @@ Usually, we need 2 terminal windows: One is used for running Django project and 
 used for normal commands. Just open a new terminal window, change directory to ``teracy-dev`` then
 ``$ vagrant ssh``.
 
+We're going to use `teracy-html5boilerplate <https://github.com/teracy-official/teracy-html5boilerplate>`_,
+it's a Django wrapper application that includes html5-boilerplate assets and provides base.html for
+starting any web application with html5-boilerplate. So we need to install it on our project.
+
+Add dependency to ``requirements/project/dev.txt`` as follow:
+::
+    git+git://github.com/teracy-official/teracy-html5boilerplate.git@master#egg=teracy-html5boilerplate
+
+Then install it:
+::
+    pip install -r requirements/dev.txt
+
+You should see something like this:
+::
+    Installing collected packages: teracy-html5boilerplate
+        Running setup.py install for teracy-html5boilerplate
+
+            Skipping installation of /home/vagrant/.virtualenvs/tutorial/lib/python2.7/site-packages/teracy/__init__.py (namespace package)
+            Installing /home/vagrant/.virtualenvs/tutorial/lib/python2.7/site-packages/teracy_html5boilerplate-0.1.0.dev0-py2.7-nspkg.pth
+    Successfully installed teracy-html5boilerplate
+    Cleaning up...
+
+Install the teracy-html5boilerplate application to ``settings/project/dev.py``:
+::
+    INSTALLED_APPS += (
+        'teracy.html5boilerplate',
+    )
+
+We need to create ``hello`` application now.
+
+
 A specific Django application should be put under ``apps`` directory. We're going to create
 ``hello`` application:
 ::
@@ -200,12 +231,15 @@ A specific Django application should be put under ``apps`` directory. We're goin
     $ cd personal/tutorial/apps
     $ ../manage.py startapp hello
 
-Add `hello` application to ``INSTALLED_APPS`` on ``settings/dev.py`` by appending the following
+Add `hello` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending the following
 configuration:
 ::
     INSTALLED_APPS += (
+        'teracy.html5boilerplate',
         'apps.hello',
-    ) 
+    )
+
+
 
 Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following
 content:
@@ -237,14 +271,14 @@ Create ``apps/hello/urls.py`` and configure ``HomeTemplateView`` with following 
         url(r'^$', HomeTemplateView.as_view(), name='hello_home'),
     )
 
-Configure the root url on ``urls/dev.py`` by adding the following content:
+Configure the root url on ``urls/project/dev.py`` by adding the following content:
 ::
     urlpatterns += (
         url(r'', include('apps.hello.urls')),
-    )  
+    )
 
 During development, the server could be stopped by some errors and it's normal. If your coding
-skill is good enough (j/k :P), the server should be still running. If not, 
+skill is good enough (j/k :P), the server should be still running. If not,
 ``$ ./manage.py runserver 0.0.0.0:8000`` again, the server should be started without any error.
 
 Now, open your browser at http://localhost:8000 and you should see ``Hello World!`` page instead
@@ -293,7 +327,7 @@ Learn more
     + http://www.vagrantup.com/
 
 - Sublime Text
-    
+
     + http://www.sublimetext.com/
 
 - Django
@@ -311,7 +345,7 @@ Learn more
     + ``virtualenvwrapper``: http://virtualenvwrapper.readthedocs.org/en/latest/
 
 - Python
-    
+
     + http://python.org/doc/
 
     + http://www.diveintopython.net/
@@ -319,17 +353,17 @@ Learn more
     + http://learnpythonthehardway.org/book/
 
 - Git
-    
+
     + http://git-scm.com/book
 
 - Vim
-    
+
     + http://www.openvim.com/tutorial.html
 
     + https://www.shortcutfoo.com/app/tutorial/vim
 
-- Linux 
-    
+- Linux
+
     + http://www.quora.com/Linux/What-are-the-good-online-resources-for-a-linux-newbie
 
     + http://www.quora.com/Linux/What-are-some-time-saving-tips-that-every-Linux-user-should-know
@@ -340,7 +374,7 @@ Learn more
 Installed packages on the virtual machine
 -----------------------------------------
 
-The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box 
+The base box is provided by https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box
 and additional packages installed are:
 
 - ``apt``.
@@ -444,11 +478,11 @@ Follow these commands below:
     ``teracy-dev``
 
     + Delete ``teracy-dev``
-    
+
     + Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
     unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
     (Windows).
-    
+
     + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working
     as normal.
 
