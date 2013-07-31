@@ -99,7 +99,6 @@ installed which runs Ubuntu 12.04. You should see the following similar messages
 
 *Congratulations, you're all set now!*
 
-
 ``workspace`` directory
 -----------------------
 
