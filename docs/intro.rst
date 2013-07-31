@@ -77,7 +77,7 @@ please contact us to see if we are meant to work together with other positions.
 
 When you impress us enough, wherever you are, we will find you and offer you the job you desire!
 
-We could work as much flexibly as possible. You could work remote, you could work part-time, even 
+We could work as much flexibly as possible. You could work remote, you could work part-time, even
 you could arrange the work time as you desire. All you need to do is just **impress us now**!
 
 
@@ -103,3 +103,14 @@ If you join ``JavaScript`` training program, you will know how to add behavior t
 
 If you join ``Docs writer`` training program, you will know how to use ``reStructureText`` and
 ``Sphinx``.
+
+
+Why ``teracy`` name?
+--------------------
+tera- + racy = teracy /ˈtɛrəsɪ/. That's how I came up with this name.
+
+The name could be understood as: "1,000,000,000,000 times of vigorous, lively, energetic,
+entertaining, etc."
+
+However, the actual meaning of this name will depend on all Teraciers to add and contribute
+meanings to the name.
