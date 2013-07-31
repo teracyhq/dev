@@ -146,15 +146,15 @@ Let's continue to setup the ``tutorial`` project:
     $ mkdir tutorial
     $ cd tutorial
     $ git init
-    $ git remote add teracy https://github.com/teracy-official/teracy.git
+    $ git remote add teracy https://github.com/teracy-official/teracy-django-boilerplate.git
     $ git fetch teracy
     $ git merge teracy/master
     $ pip install -r requirements/dev.txt
     $ ./manage.py syncdb
     $ ./manage.py runserver 0.0.0.0:8000
 
-The project https://github.com/teracy-official/teracy.git will help us to get project development
-booted with a Django project template (boilerplate) of best practices.
+The project https://github.com/teracy-official/teracy-django-boilerplate will help us to get
+project development booted with a Django project template (boilerplate) of best practices.
 
 When ``syncdb``, you should create the super account to access the admin page.
 
