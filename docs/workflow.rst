@@ -18,7 +18,7 @@ of ``quality checklist``:
 
     - no tab character
     - length of the text/code line within 100 characters.
-    - follow conventions and stardards
+    - follow conventions and standardsde
     - any tests must be done and must be passed
     - any documentation must be updated
     - the implementation must be good enough from the view of collaborators
@@ -34,7 +34,7 @@ should follow the convention pattern:
 ::
     <issue_title>: <changes description> [#<issueNumber>]
 
-    <Multiline description for detail changes, notices, solutions, etc.>
+    <Multi-line description for detail changes, notices, solutions, etc.>
 
 
 For example:
@@ -56,7 +56,7 @@ your working branch. After that dependent branch is merged ino *upstream/develop
 rebase on *upstream/develop* to continue working so that we could avoid too many conflicts to
 resolve if any.
 
-This is the demostration example: *phuonglm* is working on
+This is the demonstration example: *phuonglm* is working on
 feature_1_fabric_deployment_virtual_machine, and you're going to work on
 feature_2_fabric_deployment_remote_machine, it depends on phuonglm's feature_1. On this case, you
 MUST indicate the branch name with ``deps_<issueNumber>``.
@@ -87,7 +87,7 @@ Git force push
 
 Should not ``$ git push origin branch_name -f`` if your branch has another branch depending on.
 
-NEVER ever force push the *offical repository*.
+NEVER ever force push the *official repository*.
 
 
 Git branch cleaning up
@@ -109,12 +109,12 @@ Delete local branch:
 Let's take a ride on actual workflow.
 
 
-First, init working repositories
---------------------------------
+First, initialize working repositories
+--------------------------------------
 
 To start working on a repository project, ``fork`` it first to your git account.
 
-Your working reposities MUST cloned from your git account and put under ``workspace/personal``
+Your working repositories MUST cloned from your git account and put under ``workspace/personal``
 directory.
 
 For example, you're going to work on https://github.com/teracy-official/teracy-django-boilerplate
@@ -127,7 +127,7 @@ Mine should be https://github.com/hoatle/teracy-django-boilerplate
 ::
     $ ws
     $ cd personal
-    $ git clone git@github.com/hoatle/teracy-django-boilerplate
+    $ git clone git@github.com/hoatle/teracy-django-boilerplate.git
 
 3. Add ``upstream`` repository (the official repository).
 ::
@@ -147,8 +147,8 @@ as possible, then ``push`` that branch to your repository.
 - To start a new improvement, start a new branch with a name of the pattern:
 ``improve_<issueNumber>_<concise_title>``.
 
-For example, you're going to work on the issue #1 with title: *auto deployment with fabric* of type
- *feature*.
+For example, you're going to work on the issue #1 with title: "auto deployment with fabric" of type
+"feature":
 ::
     $ ws
     $ cd personal/teracy-django-boilerplate
@@ -157,7 +157,7 @@ For example, you're going to work on the issue #1 with title: *auto deployment w
     $ git push origin feature_1_auto_fabric_deployment
 
 - Now you're on ``feature_1_auto_fabric_deployment`` branch, just ``focus`` working on it,
-``commit`` and ``push`` as often as possible. Somtimes you need to get updates from
+``commit`` and ``push`` as often as possible. Sometimes you need to get updates from
 ``upstream/develop``, so you need to rebase on it.
 ::
     $ git fetch upstream
@@ -170,7 +170,7 @@ as logical as possible and make a ``pull`` request to the official repository wi
 branch. You will get tons of comments, suggestions and you need to continue working on it to make it
 good enough to be merged into ``upstream/develop`` branch.
 
-Before makeing a pull request, make sure your work must meet the **quality checklist**.
+Before making a pull request, make sure your work must meet the **quality checklist**.
 
 Note: After a ``pull`` request, you will continue to work on your working branch as normal, just
 ``push`` it and the pull request will be updated with your new commits. Ping other Teracier to
@@ -185,7 +185,7 @@ Work on bugs
 
 Before doing anything, try to **reproduce** the bug. If the bug is hard to reproduce, try to get
 some blind clues. If you could not see how to *reproduce* the bug or any clue about it, report it
-to your supervior collaborators to get suggestions and directions.
+to your supervisor collaborators to get suggestions and directions.
 
 If you could **reproduce** the bug, start branching off the *buggy* branch with a name of the
 pattern: ``bug_<issueNumber>_<concise_title>``. Try to **add tests** to reproduce the bug and pass
@@ -203,7 +203,7 @@ OSX" with expected fix for *upstream/develop* branch.
 ``focus``, ``commit`` and ``push`` as often as possible. After the work is done, make a pull
 request.
 
-Work on **critial** bugs
+Work on **critical** bugs
 ------------------------
 
 These kind of bugs need hot-fix as it has *very high priority*.
@@ -223,7 +223,7 @@ remote server crashed!!!" with expected fix for *upstream/master* branch:
 Fix it as fast as possible with *really good tests*, you must make sure there should not have any
 *regression*, then make a pull request to target merging branch.
 
-Offical branch's merging and releasing
+Official branch's merging and releasing
 --------------------------------------
 
 With branch merging and releasing workflow, *senior* collaborators must follow the git branching
@@ -234,7 +234,7 @@ into ``workspace/teracy`` directory.
 
 For example, you need to merge the work of *feature_1_auto_fabric_deployment* branch from
 https://github.com/hoatle/teracy-django-boilerplate
- ::
+::
     $ ws
     $ cd teracy
     $ git clone git@github.com/teracy-official/teracy-django-boilerplate.git
@@ -246,4 +246,4 @@ https://github.com/hoatle/teracy-django-boilerplate
     $ git git merge --no-ff hoatle/feature_1_auto_fabric_deployment
     $ git push origin develop
 
-.. _'A successful Git branching model': http://nvie.com/posts/a-successful-git-branching-model/
+.. _`A successful Git branching model`: http://nvie.com/posts/a-successful-git-branching-model/
