@@ -16,6 +16,8 @@ Contents:
    tool_chain
    style_standards
    workflow
+   git_training
+   most_used_git_commands
    document_writer_training
    c_c++_training
    python_training
