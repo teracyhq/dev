@@ -5,10 +5,9 @@
 # install git
 # install virtualbox-4.2.10
 # install vagrant 1.2.2
-# TODO install rbenv and switch ruby to 1.9.3-p385 for usage later
 
 function command_exists() {
-  type "$1" &> /dev/null;
+    type "$1" &> /dev/null;
 }
 
 if ! command_exists lsb_release ; then

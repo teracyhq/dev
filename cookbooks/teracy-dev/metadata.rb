@@ -8,6 +8,7 @@ version          '0.1.0'
 
 depends          'python'
 depends          'magic_shell'
+depends          'rbenv'
 
 recipe "teracy::alias", "Installs useful alias for teracy's project development."
 recipe "teracy-dev::apt", "Installs required packages for teracy' project development."
@@ -16,3 +17,4 @@ recipe "teracy-dev::virtualenvwrapper", "Installs virtualenvwrapper using the py
 recipe "teracy-dev::env", "Configures environment."
 recipe "teracy-dev::git-config", "Configures global git."
 recipe "teracy-dev::system-python", "Installs system-wide Python packages."
+recipe "teracy-dev::rbenv", "Installs rbenv and related packages."
