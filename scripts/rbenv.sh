@@ -4,7 +4,7 @@
 # kudos to https://learnchef.opscode.com/quickstart/workstation-setup/#linux for manual installation
 
 # How to install:
-# $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh
+# $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh && cd ~
 
 function install_support_packages() {
     sudo apt-get install build-essential git
