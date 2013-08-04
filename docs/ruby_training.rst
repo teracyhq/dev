@@ -10,7 +10,7 @@ Installation
 To install Ruby on your VM, follow these steps:
 ::
     $ vagrant ssh
-    $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh
+    $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh && cd ~
 
 The downloaded script will:
 
