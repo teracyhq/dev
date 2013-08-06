@@ -17,87 +17,7 @@ problems you could meet and proposed solution when following "getting started" s
 Getting started
 ---------------
 
-- Minimum requirement:
-
-You're required to install ``virtualbox``, ``vagrant``.
-
-If you're on Windows, you must install ``git`` to use ``Git Bash`` as terminal window.
-
-Note: After installing ``vagrant`` on Windows, you need to restart your computer.
-
-**Really Important for Windows**: You MUST ALWAYS run ``virtualbox`` and ``Git Bash`` as
-**administrator** to make symlinks (of virtualenv) work as expected.
-
-- Optional recommendation:
-
-You should install ``git``.
-
-
-1. If you're on ``Ubuntu``:
-
-    Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
-    ::
-        $ cd /tmp
-        $ wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/setup_working_env_chef.sh
-        $ bash setup_working_env_chef.sh
-
-
-1. Or to get started manually, you need to finish 2 required following simple steps:
-
-    1.1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
-
-    1.2. Install ``virtualbox`` with the version of **4.2.10** at:
-         https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
-
-    1.3. [Required on Windows only] Install latest ``git`` version at http://git-scm.com/ to use
-    ``Git Bash`` as terminal window.
-
-2. From home directory (``~/``), download or clone this repository and ``$ vagrant up``. You should
-prepare yourself a cup of coffee as for the first time, it would take a little long time
-(~20-30 mins with internet speed ~700-800KB/s) to ``$ vagrant up``.
-
-Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
-For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
-``teracy-dev`` directory to import projects into your Sublime Text editor.
-
-
-- Have ``git`` installed:
-Open your terminal window and type:
-::
-    $ cd ~/
-    $ git clone https://github.com/teracy-official/teracy-dev.git
-    $ cd teracy-dev
-    $ vagrant up
-
-- No ``git`` installed:
-Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
-unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
-(Windows). Then open your terminal window:
-::
-    $ cd ~/
-    $ cd teracy-dev
-    $ vagrant up
-
-
-You should see the following similar messages at the end of ``$ vagrant up``:
-::
-    [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
-    [2013-07-01T09:57:11+00:00] INFO: Running report handlers
-    [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
-
-Last but not least, ``$ vagrant ssh`` to access with ssh the virtual machine you have just
-installed which runs Ubuntu 12.04. You should see the following similar messages:
-::
-    Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
-
-     * Documentation:  https://help.ubuntu.com/
-
-    37 packages can be updated.
-    18 updates are security updates.
-
-    Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
-
-*Congratulations, you're all set now!*
+Follow guide at: http://teracy-dev.teracy.org/getting_started.html
 
 ``workspace`` directory
 -----------------------
@@ -293,24 +213,8 @@ https://docs.djangoproject.com/en/1.5/.
 Join and work with us?
 ----------------------
 
-We are starting up and have tons of interesting projects waiting for you. We need you - young
-developers, having passion to learn and to work with us in a smart way. What you need to
-do is to simply ``impress us``.
+Please read http://teracy-dev.teracy.org/intro.html#join-and-work-with-us
 
-How to impress us?
-
-- Show your passion to learn and work with us
-
-- Show your interest with our development model
-
-- Join and discuss with us about anything, yes anything :)
-    + Facebook group: https://www.facebook.com/groups/teracy/
-    + Google group: https://groups.google.com/forum/#!forum/teracy
-
-- Contribute to our public projects at: https://github.com/teracy-official/teracy-dev
-
-When you impress us enough, wherever you are, we will find you and offer you the job you
-desire!
 
 Learn more
 ----------
