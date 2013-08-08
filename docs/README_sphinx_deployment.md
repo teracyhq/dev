@@ -17,6 +17,8 @@ How to install
 
 You could choose one of these three installation methods, the first one is recommended.
 
+Assuming that your sphinx project is under `docs` directory of your project repository.
+
 1\. Bash script
 
 Just run this bash script from your [sphinx][] project and it's enough.
@@ -24,10 +26,39 @@ Just run this bash script from your [sphinx][] project and it's enough.
 ``` bash
 wget
 ```
+**TODO**
 
 2\. Command line
+
+2.1. If your `sphinx` docs project is under `docs` directory of a `git` repository:
+
+Note: Make sure `docs` directory do not contain the same file name from `sphinx-deployment` project
+as we're going to do [subtree merge][]
+
 ``` bash
-$ git
+$ git remote add -f hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
+$ git merge -s ours --no-commit hoatle-sphinx-deployment/develop
+$ git read-tree --prefix=docs/ -u hoatle-sphinx-deployment/develop
+$ echo "include sphinx_deployment.mk" >> docs/Makefile
+$ git add .
+$ git commit -a
+$ git mv docs/CHANGELOG.md docs/CHANGELOG_sphinx_deployment.md
+$ git mv docs/LICENSE docs/LICENSE_sphinx_deployment
+$ git mv docs/README.md docs/README_sphinx_deployment.md
+$ git commit -m "Rename to avoid conflicts"
+```
+
+2.2. If your [sphinx][] docs is a git repository
+
+``` bash
+$ git remote add hoatle-sphinx-deployment https://github.com/hoatle/sphinx-deployment.git
+$ git fetch hoatle-sphinx-deployment
+$ git merge hoatle-sphinx-deployment/develop
+$ git commit -a
+$ git mv README.md README_sphinx_deployment.md
+$ git mv CHANGELOG.md CHANGELOG_sphinx_deployment.md
+$ git mv LICENSE LICENSE_sphinx_deployment
+$ git commit -a
 ```
 
 3\. Manual
@@ -47,7 +78,8 @@ include sphinx_deployment.mk
 How to configure
 ----------------
 
-You need to configure these deployment configurations following your project organization:
+You need to configure these deployment configurations following your project organization on
+`sphinx_deployment.mk` file:
 
 ``` Makefile
 # Deployment configurations
@@ -92,6 +124,8 @@ Deploy the generated content to the target `$(DEPLOY_BRANCH)`
 How to build with travis-ci
 ---------------------------
 
+Move `.travis.yml` file to your root repository project, and configure it following its
+instruction there.
 
 
 Authors and contributors
@@ -108,3 +142,4 @@ MIT License
 
 
 [sphinx]: http://sphinx-doc.org
+[substree merge]: https://www.kernel.org/pub/software/scm/git/docs/howto/using-merge-subtree.html
