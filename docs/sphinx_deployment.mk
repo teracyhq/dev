@@ -7,7 +7,7 @@ endif
 
 # Copy contents from $(BUILDDIR) this this directory
 ifndef DEPLOY_HTML_DIR
-DEPLOY_HTML_DIR = docs
+DEPLOY_HTML_DIR = docs/develop
 endif
 
 # Configure the right deployment branch
@@ -18,7 +18,7 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-#REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
+REPO_URL       = git@github.com:teracy-official/teracy-dev.git
 endif
 
 init_gh_pages:
