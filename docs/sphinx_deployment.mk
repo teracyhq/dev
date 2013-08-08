@@ -4,7 +4,7 @@
 DEPLOY_DIR      = _deploy
 
 # Copy contents from $(BUILDDIR) this this directory
-DEPLOY_HTML_DIR = docs
+DEPLOY_HTML_DIR = docs/develop
 
 # Configure the right deployment branch
 DEPLOY_BRANCH   = gh-pages
@@ -12,7 +12,7 @@ DEPLOY_BRANCH   = gh-pages
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-#REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
+REPO_URL       = git@github.com:hoatle/teracy-dev.git
 endif
 
 init_gh_pages:
