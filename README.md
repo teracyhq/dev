@@ -9,8 +9,6 @@ This project is intended to be used to deploy [sphinx][] project on:
 - [Rsync](http://en.wikipedia.org/wiki/Rsync)
 - PaaS services: [heroku](http://heroku.com/), etc.
 
-How to install
----------------
 
 You could choose one of these installation methods below, the first one is recommended.
 
@@ -91,11 +89,9 @@ ifndef REPO_URL
 #REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
 endif
 ```
+2. `Makefile`
 
-2\. `Makefile`
-
-- Merge `hoatle-sphinx-deployment` branch into your working branch for all the changes from
-installation and configuration steps above. For example:
+- Merge `hoatle-sphinx-deployment` branch into your working branch. For example:
 
 ``` bash
 $ git checkout master
