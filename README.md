@@ -26,7 +26,7 @@ Just run this bash script from your [sphinx][] project and it's enough.
 ``` bash
 wget
 ```
-# TODO
+**TODO**
 
 2\. Command line
 
