@@ -12,7 +12,7 @@ DEPLOY_BRANCH   = gh-pages
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-REPO_URL       = git@github.com:hoatle/teracy-dev.git
+REPO_URL       = git@github.com:teracy-official/teracy-dev.git
 endif
 
 init_gh_pages:
