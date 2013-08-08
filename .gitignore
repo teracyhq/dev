@@ -25,3 +25,4 @@ home/.virtualenvs/*
 
 # docs
 _build
+_deploy
