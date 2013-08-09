@@ -1,5 +1,6 @@
 branches:
   only:
+  - master
   - develop
 language: python
 install: pip install -r docs/requirements.txt
@@ -7,6 +8,7 @@ before_script:
 - git config --global user.name "Hoat Le"
 - git config --global user.email "hoatlevan@gmail.com"
 - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+- .travis/setup.sh
 - cd docs
 - make setup_gh_pages
 script: make generate
