@@ -26,3 +26,7 @@ home/.virtualenvs/*
 # docs
 _build
 _deploy
+
+# travis-build
+README.rst
+.travis.yml
