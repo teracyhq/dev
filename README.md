@@ -150,6 +150,32 @@ How to build with travis-ci
 Move `.travis.yml` file to your root repository project, and configure it following its
 instruction there and you're done.
 
+You could define the configuration build for travis like example below:
+
+``` Makefile
+branches:
+  only:
+  - master #Configure your automatic build only on a target project branch when there is a push
+language: python
+install: pip install -r requirements.txt # change this to the right project path
+before_script:
+- git config --global user.name "Teracy" # Configure your git user.name here
+- git config --global user.email "your-friends@teracy.com" # Configure your git user.email here
+- export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+- cd docs # change this to your right project path
+- make setup_gh_pages
+script: make generate
+after_script: make deploy
+env:
+  global:
+  - GH_REPO="hoatle/sphinx_deployment" #change this to your right project
+  # override settings from sphinx_deployment.mk
+  - DEPLOY_HTML_DIR = ''
+  # configure the right travis-ci secure key, see sphinx-deployment/README for more details
+  #- secure: im3gWbsEF135C0jKlOIRJUa1tgtsCAaqwGDSpzwe/fnTosqystNE+mhvFfERmy1K4qRg0cbRYGd8L6pP/V7RR3GMqFX4h5wexZeKsCN895S0d7QIWUmw2yJ3+mvk/g+E6q56tORzhKzKVRef5VWkk84EOKrZ/KIeoVpKVAlVR1s=
+
+```
+
 
 Authors and contributors
 ------------------------

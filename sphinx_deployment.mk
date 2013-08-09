@@ -1,13 +1,19 @@
 # Deployment configurations
 
 # The development directory tracking DEPLOY_BRANCH
+ifndef DEPLOY_DIR
 DEPLOY_DIR      = _deploy
+endif
 
 # Copy contents from $(BUILDDIR) this this directory
+ifndef DEPLOY_HTML_DIR
 DEPLOY_HTML_DIR = docs
+endif
 
 # Configure the right deployment branch
+ifndef DEPLOY_BRANCH
 DEPLOY_BRANCH   = gh-pages
+endif
 
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
