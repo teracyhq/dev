@@ -1,6 +1,6 @@
 default['teracy-dev']['workspace'] = [
-    '/vagrant/workspace/readonly', 
-    '/vagrant/workspace/teracy', 
+    '/vagrant/workspace/readonly',
+    '/vagrant/workspace/teracy',
     '/vagrant/workspace/personal'
 ]
 
@@ -23,3 +23,15 @@ default['teracy-dev']['git'] = {
         'prompt' => false
     }
 }
+
+default['teracy-dev']['platform'] = {
+    'python' => true,
+    'ruby' => false
+}
+
+if node['teracy-dev']['platform']['ruby']
+    # ruby installation configuration
+    override[:rbenv][:install_prefix] = '/home/vagrant'
+    override[:rbenv][:user]           = 'vagrant'
+    override[:rbenv][:group]          = 'vagrant'
+end

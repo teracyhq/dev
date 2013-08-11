@@ -1,7 +1,8 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: github
+# Recipe:: python
+# Description: Installs Python platform
 #
 # Copyright 2013, Teracy, Inc.
 #
@@ -17,10 +18,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe 'teracy-dev::apt'
-include_recipe 'teracy-dev::workspace'
-include_recipe 'teracy-dev::alias'
-include_recipe 'teracy-dev::env'
-include_recipe 'teracy-dev::git-config'
-include_recipe 'teracy-dev::python'
-include_recipe 'teracy-dev::rbenv'
+
+if node['teracy-dev']['platform']['python']
+    include_recipe 'python::default'
+
+#    %w{libpq-dev python-dev}.each do |pkg|
+#        apt_package pkg do
+#            action:install
+#        end
+#    end
+
+    include_recipe 'teracy-dev::virtualenvwrapper'
+    include_recipe 'teracy-dev::system-python'
+end
+

@@ -17,8 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-%w{libpq-dev python-dev tree}.each do |pkg|
+%w{tree}.each do |pkg|
     apt_package pkg do
         action:install
     end

@@ -7,20 +7,22 @@ time.
 Installation
 ------------
 
-To install Ruby on your VM, follow these steps:
+Open ``Vagrantfile`` file and find:
 ::
-    $ vagrant ssh
-    $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh && cd ~
+    "platform" => {
+      "python" => true,
+      "ruby" => false
+    }
 
-The downloaded script will:
+Enable ``ruby`` with: ``"ruby" => true``.
 
-- install `rbenv`_
+If you do not want to work with ``python``, disable it with ``"python" => false`` to save provision
+time.
 
-- install Ruby 1.9.3-p194
+Then ``$ vagrant reload`` if your VM is already running, or ``$ vagrant up`` if it is not running
+yet.
 
-.. _rbenv: https://github.com/sstephenson/rbenv
-
-After the installation process, you should verify it works by:
+After the installation process, you should verify if it works by:
 ::
     $ ruby --version
 
