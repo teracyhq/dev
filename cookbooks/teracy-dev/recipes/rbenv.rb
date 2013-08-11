@@ -18,6 +18,13 @@
 # limitations under the License.
 #
 
-include_recipe 'rbenv::default'
-include_recipe 'rbenv::ruby_build'
-rbenv_ruby '1.9.3-p194'
+if node['teracy-dev']['platform']['ruby']
+
+    include_recipe 'rbenv::default'
+    include_recipe 'rbenv::ruby_build'
+
+    rbenv_ruby '1.9.3-p194' do
+        global true
+    end
+
+end

@@ -89,7 +89,6 @@ Vagrant.configure("2") do |config|
 
     chef.add_recipe "apt" #required for installing vim (?!)
     chef.add_recipe "vim"
-    chef.add_recipe "python"
     chef.add_recipe "git"
     chef.add_recipe "teracy-dev"
 
@@ -97,8 +96,8 @@ Vagrant.configure("2") do |config|
     chef.json = {
       "teracy-dev" => {
         "workspace" => [
-          "/vagrant/workspace/readonly", 
-          "/vagrant/workspace/teracy", 
+          "/vagrant/workspace/readonly",
+          "/vagrant/workspace/teracy",
           "/vagrant/workspace/personal"
         ],
         "git" => {
@@ -119,6 +118,10 @@ Vagrant.configure("2") do |config|
           "difftool" => {
             "prompt" => false
           }
+        },
+        "platform" => {
+          "python" => true,
+          "ruby" => false
         }
       },
     }

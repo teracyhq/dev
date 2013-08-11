@@ -19,7 +19,7 @@
 #
 
 python_pip 'virtualenvwrapper' do
-  action :install
+    action :install
 end
 
 bash 'configure_virtualenvwrapper' do
