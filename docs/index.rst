@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to teracy-dev's documentation!
-======================================
+teracy-dev's documentation
+==========================
 
 Contents:
 
@@ -29,8 +29,7 @@ Contents:
    objective_c_training
    ios_training
    android_training
-
-
+   semantic_versioning
 
 
 Indices and tables
