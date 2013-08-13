@@ -5,8 +5,8 @@ branches:
 language: python
 install: pip install -r docs/requirements.txt
 before_script:
-- git config --global user.name "Hoat Le"
-- git config --global user.email "hoatlevan@gmail.com"
+- git config --global user.name "Teracy Bot"
+- git config --global user.email "teracy.com@gmail.com"
 - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
 - . ./.travis/setup.sh
 - echo $DEPLOY_HTML_DIR
@@ -17,4 +17,4 @@ after_script: make deploy
 env:
   global:
   - GH_REPO="teracy-official/teracy-dev"
-  - secure: PXdIZQP5nCjfA/z22FnNl6zfrqPD8ccO5TRHsYiq53Yqx7dqUGmdcqLohw60IHYm6C2z4Wnkp9fqhDtkQ/eGM0UHcr33mBop0/pOypiPz/utjePFHonTTYNjl9X7+TYHpp1V+TaKtJK4J25lK7GuJUPmNLJD6jvUKcENesh984E=
+  - secure: JNsrd5SEkyzMeNdQsndnfJX+QG/QTLCfqtMkjQWvy6VVwCYXHEZkPu49IirItC8/S2wUoe0BMoaMM+IZEHgAKHHt8UQwwOsagbvh5Fu3LBZvpZ/tC1ewp7IlVrVI/cQ38PC5Y6BaN/rHVPMbs27DQhggMFAw9YCnC8lkGzbfZIM=
