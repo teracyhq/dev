@@ -52,16 +52,20 @@ worked. When all intended features are complete, move on releasing "a" version.
   expected. Continue refactoring to reach better software quality and better software stability.
 
 - ``b`` - "beta" means feature complete, only minor bugs are expected. Avoid refactoring here,
-just fix minor bugs here.
+  just fix bugs.
 
 - ``c`` - "rc" means all minor bugs are fixed, the software works stably, and the code will be
-released unless there is a last minute bug found after test campaigns.
+  released unless there is a last minute bug found after test campaigns.
 
 c. Example:
 
 - Snapshot version: ``0.1.0-@``
 
 - Precedence: ``0.1.0-@ < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 < 0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
+
+d. Continuous build metadata
+
+    **//TODO**
 
 Python
 ------
@@ -80,7 +84,7 @@ a. Same with ``Base`` above.
 
 b. Incompatible notes
 
-**//TODO**
+    **//TODO**
 
 
 Java
@@ -102,16 +106,16 @@ a. Same with ``Base`` above.
 
 b. Incompatible notes
 
-**//TODO**
+    **//TODO**
 
 
 Ruby
 ----
 
-**//TODO**
+    **//TODO**
 
 
 PHP
 ---
 
-**//TODO**
+    **//TODO**
