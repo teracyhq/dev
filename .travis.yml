@@ -16,5 +16,5 @@ script: make generate
 after_script: make deploy
 env:
   global:
-  - GH_REPO="teracy-official/teracy-dev"
+  - GH_REPO="teracy-official/dev"
   - secure: JNsrd5SEkyzMeNdQsndnfJX+QG/QTLCfqtMkjQWvy6VVwCYXHEZkPu49IirItC8/S2wUoe0BMoaMM+IZEHgAKHHt8UQwwOsagbvh5Fu3LBZvpZ/tC1ewp7IlVrVI/cQ38PC5Y6BaN/rHVPMbs27DQhggMFAw9YCnC8lkGzbfZIM=
