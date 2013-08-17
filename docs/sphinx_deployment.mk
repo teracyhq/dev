@@ -18,7 +18,7 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-REPO_URL       = git@github.com:teracy-official/teracy-dev.git
+REPO_URL       = git@github.com:teracy-official/dev.git
 endif
 
 init_gh_pages:
