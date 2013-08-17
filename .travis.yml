@@ -17,4 +17,4 @@ after_script: make deploy
 env:
   global:
   - GH_REPO="teracy-official/dev"
-  - secure: JNsrd5SEkyzMeNdQsndnfJX+QG/QTLCfqtMkjQWvy6VVwCYXHEZkPu49IirItC8/S2wUoe0BMoaMM+IZEHgAKHHt8UQwwOsagbvh5Fu3LBZvpZ/tC1ewp7IlVrVI/cQ38PC5Y6BaN/rHVPMbs27DQhggMFAw9YCnC8lkGzbfZIM=
+  - secure: Jt7QOiv7Q6/QTw3q9leGMfgGfGYO9+0KF9vCwgCdDsjqlj8Qtdt31E57OxYHquApyCReR7WHATL1eML4dRcrqX4QOGxzktfX6RD7Mqx2wwutyoP/vfb4SXuLVjofnGTsddHEZW4dfFnFh48QEWsuA4svRvAO4ILt/uTupTvSUBo=
