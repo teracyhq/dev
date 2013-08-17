@@ -17,7 +17,7 @@ problems you could meet and proposed solution when following "getting started" s
 Getting started
 ---------------
 
-Follow guide at: http://teracy-dev.teracy.org/getting_started.html
+Follow guide at: http://dev.teracy.org/docs/0.1.0/getting_started.html
 
 ``workspace`` directory
 -----------------------
