@@ -1,11 +1,39 @@
-# Deployment configurations
+# Copyright (c) Teracy, Inc and individual contributors.
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+
+#     1. Redistributions of source code must retain the above copyright notice,
+#        this list of conditions and the following disclaimer.
+
+#     2. Redistributions in binary form must reproduce the above copyright
+#        notice, this list of conditions and the following disclaimer in the
+#        documentation and/or other materials provided with the distribution.
+
+#     3. Neither the name of Teracy nor the names of its contributors may be used
+#        to endorse or promote products derived from this software without
+#        specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Deployment configurations from sphinx_deployment project
 
 # The development directory tracking DEPLOY_BRANCH
 ifndef DEPLOY_DIR
 DEPLOY_DIR      = _deploy
 endif
 
-# Copy contents from $(BUILDDIR) this this directory
+# Copy contents from $(BUILDDIR) $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR) directory
 ifndef DEPLOY_HTML_DIR
 DEPLOY_HTML_DIR = docs/develop
 endif
@@ -22,7 +50,6 @@ REPO_URL       = git@github.com:teracy-official/dev.git
 endif
 
 init_gh_pages:
-	@echo "Preparing Github deployment branch: $(DEPLOY_BRANCH) for the first time only..."
 	@rm -rf $(DEPLOY_DIR)
 	@mkdir -p $(DEPLOY_DIR)
 	@cd $(DEPLOY_DIR); git init;\
@@ -30,10 +57,14 @@ init_gh_pages:
 		touch .nojekyll;\
 		git add .; git commit -m "sphinx docs init";\
 		git branch -m $(DEPLOY_BRANCH);\
-		git remote add origin $(REPO_URL);\
-		git push -u origin $(DEPLOY_BRANCH) && echo "Now you can 'make setup_gh_pages'"
+		git remote add origin $(REPO_URL);
+	@cd $(DEPLOY_DIR);\
+		if ! git ls-remote origin $(DEPLOY_BRANCH) | grep $(DEPLOY_BRANCH) ; then \
+			echo "Preparing Github deployment branch: $(DEPLOY_BRANCH) for the first time only...";\
+			git push -u origin $(DEPLOY_BRANCH);\
+		fi
 
-setup_gh_pages:
+setup_gh_pages: init_gh_pages
 	@echo "Setting up gh-pages deployment..."
 	@rm -rf $(DEPLOY_DIR)
 	@mkdir -p $(DEPLOY_DIR)
@@ -63,3 +94,5 @@ deploy: prepare_deploy
 	@cd $(DEPLOY_DIR); git add -A; git commit -m "docs updated at `date -u`";\
 		git push origin $(DEPLOY_BRANCH) --quiet
 	@echo "Github Pages deploy is completed at `date -u`"
+
+gen_deploy: generate deploy
