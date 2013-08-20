@@ -10,11 +10,11 @@ function command_exists() {
     type "$1" &> /dev/null;
 }
 
-linux_version=`command_exists lsb_release && lsb_release -i`
+distributor_id=`command_exists lsb_release && lsb_release -i`
 
-if [[ "$linux_version" != *Ubuntu* ]]; then
+if [[ "$distributor_id" != *Ubuntu* ]]; then
     echo "You're not on Ubuntu. This script is currently provided to run under Ubuntu only."
-    exit
+    exit 1
 fi
 
 is_32_bit=true
