@@ -10,7 +10,9 @@ function command_exists() {
     type "$1" &> /dev/null;
 }
 
-if ! command_exists lsb_release ; then
+linux_version=`command_exists lsb_release && lsb_release -i`
+
+if [[ "$linux_version" != *Ubuntu* ]]; then
     echo "You're not on Ubuntu. This script is currently provided to run under Ubuntu only."
     exit
 fi
