@@ -3,25 +3,39 @@ project-name
 
 Project name introduction
 
+Continuous Integration
+----------------------
 
-How to install
---------------
-
-
-How to configure
-----------------
+Usage
+-----
 
 
-How to use
-----------
+Installation
+------------
+
+
+Configuration
+-------------
+
+
+Contributing
+------------
+
+- File issues at https://issues.teracy.org/browse/<project_key>
+
+- Follow workflow at http://dev.teracy.org/docs/develop/workflow.html
 
 
 Author and contributors
 -----------------------
 
+See more details at `AUTHORS.md` and `CONTRIBUTORS.md` files.
+
 
 License
 -------
+
+BSD License
 
 ```
 Copyright (c) Teracy, Inc and individual contributors.
