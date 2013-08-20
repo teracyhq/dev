@@ -1,2 +1,4 @@
-project-name's authors
-======================
+Authors
+=======
+
+Author Name - Email

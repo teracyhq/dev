@@ -1,2 +1,2 @@
-project-name's changelog
-========================
+Change Log
+==========
