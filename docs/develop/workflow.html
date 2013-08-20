@@ -76,8 +76,8 @@ of <tt class="docutils literal"><span class="pre">quality</span> <span class="pr
 <blockquote>
 <div><ul class="simple">
 <li>no tab character</li>
-<li>length of the text/code line within 100 characters.</li>
-<li>follow conventions and standardsde</li>
+<li>length of the text/code line within 100 characters</li>
+<li>follow conventions and standards</li>
 <li>any tests must be done and must be passed</li>
 <li>any documentation must be updated</li>
 <li>the implementation must be good enough from the view of collaborators</li>
@@ -90,12 +90,12 @@ and better over time.</p>
 <h2>Git commit messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h2>
 <p>Git commit message must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><pre>&lt;issue_title&gt;: &lt;changes description&gt; [#&lt;issueNumber&gt;]
+<div class="highlight-python"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
 
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;</pre>
 </div>
 <p>For example:</p>
-<div class="highlight-python"><pre>Auto deployment with Fabric [#1]
+<div class="highlight-python"><pre>DEV-1 | Auto deployment with Fabric
 
 Fabric deployment should be very easy to deploy on both local and remote machine.
 This is the work on local part.</pre>
@@ -105,32 +105,27 @@ This is the work on local part.</pre>
 <h2>Git branching off<a class="headerlink" href="#git-branching-off" title="Permalink to this headline">¶</a></h2>
 <p>Usually, a new branch should be branched off from target to-be-merged remote branch.
 It&#8217;s usually <em>upstream/develop</em>. However, there are cases that it does not apply:</p>
-<ul class="simple">
-<li>Your work depends on a branch other than <em>upstream/develop</em>, feel free to branch off from that</li>
-</ul>
-<p>branch. However, keep in mind that you need to rebase often the work of that dependent branch to
-your working branch. After that dependent branch is merged ino <em>upstream/develop</em>, you need to
-rebase on <em>upstream/develop</em> to continue working so that we could avoid too many conflicts to
-resolve if any.</p>
+<p>Keep in mind that you need to rebase often the work of that dependent branch to
+your working branch.</p>
 <p>This is the demonstration example: <em>phuonglm</em> is working on
-feature_1_fabric_deployment_virtual_machine, and you&#8217;re going to work on
-feature_2_fabric_deployment_remote_machine, it depends on phuonglm&#8217;s feature_1. On this case, you
+features/1_fabric_deployment_virtual_machine, and you&#8217;re going to work on
+features/2_fabric_deployment_remote_machine, it depends on phuonglm&#8217;s features/1. On this case, you
 MUST indicate the branch name with <tt class="docutils literal"><span class="pre">deps_&lt;issueNumber&gt;</span></tt>.</p>
 <div class="highlight-python"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
 $ git fetch phuonglm
-$ git checkout phuonglm/feature_1_fabric_deployment_virtual_machine -b feature_2_fabric_deployment_remote_machine_deps_1
-$ git push origin feature_2_fabric_deployment_remote_machine_deps_1</pre>
+$ git checkout phuonglm/features/1_fabric_deployment_virtual_machine -b features/2_fabric_deployment_remote_machine_deps_1
+$ git push origin features/2_fabric_deployment_remote_machine_deps_1</pre>
 </div>
 <p>After sometime of work, phuonglm&#8217;s feature_1_fabric_deployment_virtual_machine has some updates.</p>
 <div class="highlight-python"><pre>$ git fetch phuonglm
-$ git rebase phuonglm/feature_1_fabric_deployment_virtual_machine
-$ git push origin feature_2_fabric_deployment_remote_machine_deps_1 -f</pre>
+$ git rebase phuonglm/features/1_fabric_deployment_virtual_machine
+$ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f</pre>
 </div>
-<p>When phuonglm&#8217;s feature_1 is merged into <em>upstream/develop</em>, you need to rebase on it to get
+<p>When phuonglm&#8217;s features/1 is merged into <em>upstream/develop</em>, you need to rebase on it to get
 these new updates:</p>
 <div class="highlight-python"><pre>$ git fetch upstream
 $ git rebase upstream/develop
-$ git push origin feature_2_fabric_deployment_remote_machine_deps_1 -f</pre>
+$ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f</pre>
 </div>
 <p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
 </div>
@@ -157,17 +152,17 @@ $ git branch -d branch_name</pre>
 <p>To start working on a repository project, <tt class="docutils literal"><span class="pre">fork</span></tt> it first to your git account.</p>
 <p>Your working repositories MUST cloned from your git account and put under <tt class="docutils literal"><span class="pre">workspace/personal</span></tt>
 directory.</p>
-<p>For example, you&#8217;re going to work on <a class="reference external" href="https://github.com/teracy-official/teracy-django-boilerplate">https://github.com/teracy-official/teracy-django-boilerplate</a>
+<p>For example, you&#8217;re going to work on <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a>
 project, so follow the steps to follow:</p>
 <p>1. <tt class="docutils literal"><span class="pre">Fork</span></tt> the official repository to your github account.
-Mine should be <a class="reference external" href="https://github.com/hoatle/teracy-django-boilerplate">https://github.com/hoatle/teracy-django-boilerplate</a></p>
+Mine should be <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
 <p>2. <tt class="docutils literal"><span class="pre">Clone</span></tt> it to your <tt class="docutils literal"><span class="pre">personal</span></tt> workspace.</p>
 <div class="highlight-python"><pre>$ ws
 $ cd personal
-$ git clone git@github.com/hoatle/teracy-django-boilerplate.git</pre>
+$ git clone git@github.com/hoatle/django-boilerplate.git</pre>
 </div>
 <p>3. Add <tt class="docutils literal"><span class="pre">upstream</span></tt> repository (the official repository).</p>
-<div class="highlight-python"><pre>$ git remote add upstream https://github.com/teracy-official/teracy-django-boilerplate.git</pre>
+<div class="highlight-python"><pre>$ git remote add upstream https://github.com/teracy-official/django-boilerplate.git</pre>
 </div>
 </div>
 <div class="section" id="work-on-features-enhancements-improvements">
@@ -175,26 +170,29 @@ $ git clone git@github.com/hoatle/teracy-django-boilerplate.git</pre>
 <ul class="simple">
 <li>To start a new feature, you MUST branch off from the latest <tt class="docutils literal"><span class="pre">upstream/develop</span></tt> branch with a</li>
 </ul>
-<p>name of the pattern: <tt class="docutils literal"><span class="pre">feature_&lt;issueNumber&gt;_&lt;concise_title&gt;</span></tt>. The title must be concise as much
+<p>name of the pattern: <tt class="docutils literal"><span class="pre">features/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>. The title must be concise as much
 as possible, then <tt class="docutils literal"><span class="pre">push</span></tt> that branch to your repository.</p>
-<ul class="simple">
-<li>To start a new enhancement, start a new branch with a name of the pattern:</li>
-</ul>
-<p><tt class="docutils literal"><span class="pre">enhance_&lt;issueNumber&gt;_&lt;concise_title&gt;</span></tt>.</p>
 <ul class="simple">
 <li>To start a new improvement, start a new branch with a name of the pattern:</li>
 </ul>
-<p><tt class="docutils literal"><span class="pre">improve_&lt;issueNumber&gt;_&lt;concise_title&gt;</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">improvements/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>.</p>
+<ul class="simple">
+<li>To start a new bug, start a new branch with a name of the pattern:</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>.</p>
+<ul class="simple">
+<li>And to start a new task: <tt class="docutils literal"><span class="pre">tasks/&lt;issue_key&gt;_&lt;consise_title&gt;</span></tt>.</li>
+</ul>
 <p>For example, you&#8217;re going to work on the issue #1 with title: &#8220;auto deployment with fabric&#8221; of type
 &#8220;feature&#8221;:</p>
 <div class="highlight-python"><pre>$ ws
-$ cd personal/teracy-django-boilerplate
+$ cd personal/django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/develop -b feature_1_auto_fabric_deployment
-$ git push origin feature_1_auto_fabric_deployment</pre>
+$ git checkout upstream/develop -b features/1_auto_fabric_deployment
+$ git push origin features/1_auto_fabric_deployment</pre>
 </div>
 <ul class="simple">
-<li>Now you&#8217;re on <tt class="docutils literal"><span class="pre">feature_1_auto_fabric_deployment</span></tt> branch, just <tt class="docutils literal"><span class="pre">focus</span></tt> working on it,</li>
+<li>Now you&#8217;re on <tt class="docutils literal"><span class="pre">features/1_auto_fabric_deployment</span></tt> branch, just <tt class="docutils literal"><span class="pre">focus</span></tt> working on it,</li>
 </ul>
 <p><tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible. Sometimes you need to get updates from
 <tt class="docutils literal"><span class="pre">upstream/develop</span></tt>, so you need to rebase on it.</p>
@@ -220,16 +218,16 @@ Congratulations, let&#8217;s get some beer then :-).</p>
 <p>Before doing anything, try to <strong>reproduce</strong> the bug. If the bug is hard to reproduce, try to get
 some blind clues. If you could not see how to <em>reproduce</em> the bug or any clue about it, report it
 to your supervisor collaborators to get suggestions and directions.</p>
-<p>If you could <strong>reproduce</strong> the bug, start branching off the <em>buggy</em> branch with a name of the
-pattern: <tt class="docutils literal"><span class="pre">bug_&lt;issueNumber&gt;_&lt;concise_title&gt;</span></tt>. Try to <strong>add tests</strong> to reproduce the bug and pass
-it.</p>
+<p>If you could <strong>reproduce</strong> the bug, start branching off from the target branch with a name of the
+pattern: <tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>. MUST try to <strong>add tests</strong> to reproduce the bug and
+pass it.</p>
 <p>For example, you&#8217;re going to work on a bug issue #2 with the title: &#8220;fabric does not work on Mac
 OSX&#8221; with expected fix for <em>upstream/develop</em> branch.</p>
 <div class="highlight-python"><pre>$ ws
 $ cd personal/teracy-django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/develop -b bug_2_fabric_not_work_mac_osx
-$ git push origin bug_2_fabric_not_work_mac_osx</pre>
+$ git checkout upstream/develop -b bugs/2_fabric_not_work_mac_osx
+$ git push origin bugs/2_fabric_not_work_mac_osx</pre>
 </div>
 <p><tt class="docutils literal"><span class="pre">focus</span></tt>, <tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible. After the work is done, make a pull
 request.</p>
@@ -238,14 +236,14 @@ request.</p>
 <h2>Work on <strong>critical</strong> bugs<a class="headerlink" href="#work-on-critical-bugs" title="Permalink to this headline">¶</a></h2>
 <p>These kind of bugs need hot-fix as it has <em>very high priority</em>.</p>
 <p>Branch off a branch from the branch that needs hot-fix with a name of the pattern:
-<tt class="docutils literal"><span class="pre">hot-fix_&lt;issueNumber&gt;_&lt;concise_title&gt;</span></tt></p>
+<tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt></p>
 <p>For example, you&#8217;re going to work on a critical bug issue #3 with the title: &#8220;fabric causes the
 remote server crashed!!!&#8221; with expected fix for <em>upstream/master</em> branch:</p>
 <div class="highlight-python"><pre>$ ws
 $ cd personal/teracy-django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/master -b hot-fix_3_fabric_crashes_remote_server
-$ git push origin hot-fix_3_fabric_crashes_remote_server</pre>
+$ git checkout upstream/master -b hot-fixes/3_fabric_crashes_remote_server
+$ git push origin hot-fixes/3_fabric_crashes_remote_server</pre>
 </div>
 <p>Fix it as fast as possible with <em>really good tests</em>, you must make sure there should not have any
 <em>regression</em>, then make a pull request to target merging branch.</p>
@@ -256,8 +254,8 @@ $ git push origin hot-fix_3_fabric_crashes_remote_server</pre>
 model as mentioned by the article above.</p>
 <p>As the merging, pushing must be done on official teracy&#8217;s projects, so you need to clone projects
 into <tt class="docutils literal"><span class="pre">workspace/teracy</span></tt> directory.</p>
-<p>For example, you need to merge the work of <em>feature_1_auto_fabric_deployment</em> branch from
-<a class="reference external" href="https://github.com/hoatle/teracy-django-boilerplate">https://github.com/hoatle/teracy-django-boilerplate</a></p>
+<p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
+<a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
 <div class="highlight-python"><pre>$ ws
 $ cd teracy
 $ git clone git@github.com/teracy-official/teracy-django-boilerplate.git
@@ -266,7 +264,7 @@ $ git fetch origin
 $ git checkout origin/develop
 $ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
 $ git fetch hoatle
-$ git git merge --no-ff hoatle/feature_1_auto_fabric_deployment
+$ git git merge --no-ff hoatle/features/1_auto_fabric_deployment
 $ git push origin develop</pre>
 </div>
 </div>
