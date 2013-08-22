@@ -64,24 +64,16 @@
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p>To get started, you must follow the instruction steps below to setup the development environment.</p>
-<div class="section" id="development-system-prerequisites">
-<h2>Development system prerequisites<a class="headerlink" href="#development-system-prerequisites" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Required:</p>
-<blockquote>
-<div><ul class="simple">
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Required:</strong></p>
+<ul class="simple">
 <li><tt class="docutils literal"><span class="pre">virtualbox</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">vagrant</span></tt></li>
 </ul>
-</div></blockquote>
-</li>
-<li><p class="first">Optional:</p>
-<blockquote>
-<div><ul class="simple">
+<p><strong>2. Optional:</strong></p>
+<ul class="simple">
 <li><tt class="docutils literal"><span class="pre">git</span></tt></li>
-</ul>
-</div></blockquote>
-</li>
 </ul>
 <p><strong>Windows Notes</strong>:</p>
 <ul class="simple">
@@ -90,35 +82,35 @@
 (of virtualenv) work as expected.</li>
 </ul>
 </div>
-<div class="section" id="install-required-packages-automatically">
-<h2>Install required packages automatically<a class="headerlink" href="#install-required-packages-automatically" title="Permalink to this headline">¶</a></h2>
-<p>To install required packages automatically, you need run Ubuntu 12.04. If not, you need to move to
-the next alternative instruction of installing required packages manually.</p>
+<div class="section" id="automatic-installation">
+<h2>Automatic Installation<a class="headerlink" href="#automatic-installation" title="Permalink to this headline">¶</a></h2>
+<p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04. If not, you need to move
+to the next alternative instruction by installing required packages manually.</p>
 <p>Install <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">virtualbox</span></tt>, <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the provided bash script below:</p>
 <div class="highlight-python"><pre>$ cd /tmp
 $ wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/setup_working_env_chef.sh
 $ bash setup_working_env_chef.sh</pre>
 </div>
 </div>
-<div class="section" id="or-install-required-packages-manually">
-<h2>Or install required packages manually<a class="headerlink" href="#or-install-required-packages-manually" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="or-manual-installation">
+<h2>Or Manual Installation<a class="headerlink" href="#or-manual-installation" title="Permalink to this headline">¶</a></h2>
 <p>You need to finish 2 (or 3 on Windows) following required simple steps:</p>
 <ol class="arabic simple">
 <li>Install <strong>latest</strong> <tt class="docutils literal"><span class="pre">vagrant</span></tt> version at: <a class="reference external" href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a></li>
 <li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.2.10</strong> at:
 <a class="reference external" href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_2">https://www.virtualbox.org/wiki/Download_Old_Builds_4_2</a></li>
 <li>[<strong>Required on Windows only</strong>] Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a> to use
-<tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as terminal window.</li>
+<tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as a terminal.</li>
 </ol>
 </div>
-<div class="section" id="clone-this-repository-and-vagrant-up">
-<h2>Clone this repository and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt><a class="headerlink" href="#clone-this-repository-and-vagrant-up" title="Permalink to this headline">¶</a></h2>
-<p>From home directory (<tt class="docutils literal"><span class="pre">~/</span></tt>), download or clone this repository and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>. You should
-prepare yourself a cup of coffee as for the first time, it would take a little long time
+<div class="section" id="environment-up">
+<h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
+<p>From your home directory (<tt class="docutils literal"><span class="pre">~/</span></tt>), download or clone <tt class="docutils literal"><span class="pre">dev</span></tt> repository and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>. You
+should prepare yourself a cup of coffee as for the first time it could take a little long time
 (~20-30 mins with internet speed ~700-800KB/s) to finish <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>.</p>
 <p>Note: The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
 For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
-<tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your Sublime Text editor.</p>
+<tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
 <ul class="simple">
 <li>Have <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
 </ul>
@@ -129,7 +121,7 @@ $ cd teracy-dev
 $ vagrant up</pre>
 </div>
 <ul class="simple">
-<li>No <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
+<li>Or no <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
 </ul>
 <p>Download the repository at <a class="reference external" href="https://github.com/teracy-official/teracy-dev/archive/master.zip">https://github.com/teracy-official/teracy-dev/archive/master.zip</a> and
 unzip with named <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> at <tt class="docutils literal"><span class="pre">~/</span></tt> (<a href="#id1"><span class="problematic" id="id2">*</span></a>unix) or <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>
@@ -143,8 +135,8 @@ $ vagrant up</pre>
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
 [2013-07-01T09:57:11+00:00] INFO: Report handlers complete</pre>
 </div>
-<p>Last but not least, <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt> to access with ssh the virtual machine you have just
-installed which runs Ubuntu 12.04. You should see the following similar messages:</p>
+<p>Last but not least, <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt> to access the virtual machine you have just
+installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>
 <div class="highlight-python"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
  * Documentation:  https://help.ubuntu.com/
@@ -167,10 +159,10 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2</pre>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Getting Started</a><ul>
-<li><a class="reference internal" href="#development-system-prerequisites">Development system prerequisites</a></li>
-<li><a class="reference internal" href="#install-required-packages-automatically">Install required packages automatically</a></li>
-<li><a class="reference internal" href="#or-install-required-packages-manually">Or install required packages manually</a></li>
-<li><a class="reference internal" href="#clone-this-repository-and-vagrant-up">Clone this repository and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt></a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
+<li><a class="reference internal" href="#or-manual-installation">Or Manual Installation</a></li>
+<li><a class="reference internal" href="#environment-up">Environment Up</a></li>
 </ul>
 </li>
 </ul>
