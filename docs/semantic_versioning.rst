@@ -6,12 +6,12 @@ package dependency management. To manage it properly, a consistent semantic vers
 required.
 
 
-However, specific platforms (like Python, Java, Ruby, PHP, etc. ) has different way of managing and
-comparing versions provided by packaging tools. This documentation is used to use semantic version
-for Teracy's software more easily and consistently.
+However, specific platforms (like Python, Java, Ruby, PHP, etc. ) have different ways of managing and
+comparing versions provided by packaging tools. This documentation is used to have rules how to use
+semantic version for Teracy's software more easily and consistently.
 
 There are tons of different version schemas: http://en.wikipedia.org/wiki/Software_versioning.
-At Teracy, the ``Base`` semantic version system MUST be extend from http://semver.org/. The current
+At Teracy, the ``Base`` semantic version system MUST be extended from http://semver.org/. The current
 latest version: http://semver.org/spec/v2.0.0.html.
 
 Note: Never ever increase software version just for ``marketing``, please be **semantic**!
@@ -26,6 +26,8 @@ Base
 **1. Requirements**
 
 a. Must be compatible with http://semver.org/spec/v2.0.0.html
+
+b. All time for meta data must be GMT+0
 
 **2. Specifications**
 
@@ -80,12 +82,42 @@ c. Future take note: http://www.python.org/dev/peps/pep-0440/
 
 **2. Specifications**
 
-a. Same with ``Base`` above.
+a. Schema
 
-b. Incompatible notes
+Format:
+::
+    version ::= major'.'minor'.'patch('-'prerelease)?('-'postrelease)?
+    major ::= digit+
+    minor ::= digit+
+    patch ::= digit+
+    prerelease ::= identifier('-'identifier)+
+    postrelease ::= identifier('-'identifier)+
+    identifier ::= (alpha|digit|'-')
+    digit ::= [0..9]
+    alpha ::= [a..zA..Z]
 
-    **//TODO**
+b. Prerelease tags
 
+- Same as ``Base``.
+
+c. Example
+
+- Snapshot version: ``0.1.0-@``
+
+- Precedence: ``0.1.0-@ < 0.1.0-dev-20130826174530 < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 < 0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
+
+d. Continuous build metadata
+
+Format:
+::
+    version ::= major'.'minor'.'patch'-dev-'YYYYMMDD.hhmmss('-'buildnumber)?
+    buildnumber ::= digit+
+
+- Precedence: ``0.1.0-dev`` < ``0.1.0-dev-20150826`` < ``0.1.0-dev-20150826.101010`` < ``0.1.0-dev-20150826.101010-5``
+
+Note: The format here learns from maven snapshot build to make it consistent.
+
+Note: There is a nightly build provided by ``setuptools`` but it does not do what we want here.
 
 Java
 ----
@@ -95,6 +127,10 @@ Java
 a. Must extends ``Base``
 
 b. Must be compatible with Maven version plugin
+
+- http://maven.apache.org/ref/3.1.0/maven-artifact/xref/org/apache/maven/artifact/versioning/DefaultArtifactVersion.html
+
+- http://docs.codehaus.org/display/MAVEN/Versioning
 
 c. Must be compatible with http://www.osgi.org/download/r5/osgi.core-5.0.0.pdf on ``Version`` part.
 
