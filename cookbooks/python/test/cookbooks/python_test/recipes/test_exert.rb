@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: build-essential
-# Recipe:: smartos
+# Author:: Scott M. Likens <scott@mopub.com>
+# Cookbook Name:: python
+# Recipe:: test_exert
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2013, MoPub, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,13 +18,19 @@
 # limitations under the License.
 #
 
-%w{
-  build-essential
-}.each do |pkg|
-
-  r = package pkg do
-    action( node['build_essential']['compiletime'] ? :nothing : :install )
-  end
-  r.run_action(:install) if node['build_essential']['compiletime']
-
+python_virtualenv "#{Chef::Config[:file_cache_path]}/virtualenv" do
+  interpreter "python"
+  owner "root"
+  group "root"
+  action :create
 end
+
+python_pip "boto" do
+  action :install
+  virtualenv "#{Chef::Config[:file_cache_path]}/virtualenv"
+end
+
+python_pip "psutil" do
+  action :install
+end
+
