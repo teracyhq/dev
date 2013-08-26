@@ -23,7 +23,22 @@ Contributing
 
 - File issues at https://issues.teracy.org/browse/<project_key>
 
-- Follow workflow at http://dev.teracy.org/docs/develop/workflow.html
+- Follow Teracy's workflow at http://dev.teracy.org/docs/develop/workflow.html
+
+Discussions
+-----------
+
+Join us:
+
+- https://groups.google.com/forum/#!forum/teracy
+
+- https://www.facebook.com/groups/teracy
+
+Get our news:
+
+- https://www.facebook.com/teracy.official
+
+- https://twitter.com/teracy_official
 
 
 Author and contributors
