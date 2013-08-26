@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: build-essential
-# Recipe:: smartos
+# Author:: Sean Porter <portertech@hw-ops.com>
+# Cookbook Name:: python
+# Recipe:: test_virtualenv
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2013, Heavy Water Operations, LLC.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,13 +18,20 @@
 # limitations under the License.
 #
 
-%w{
-  build-essential
-}.each do |pkg|
+python_virtualenv "/tmp/virtualenv" do
+  interpreter "python"
+  owner "root"
+  group "root"
+  action :create
+end
 
-  r = package pkg do
-    action( node['build_essential']['compiletime'] ? :nothing : :install )
-  end
-  r.run_action(:install) if node['build_essential']['compiletime']
+python_virtualenv "isolated python environment" do
+  path "/tmp/tobedestroyed"
+  interpreter "python"
+  action :create
+end
 
+python_virtualenv "deleting the isolated python environment" do
+  path "/tmp/tobedestroyed"
+  action :delete
 end
