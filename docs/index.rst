@@ -31,7 +31,7 @@ Contents:
    ios_training
    android_training
    semantic_versioning
-
+   release_process
 
 Indices and tables
 ==================
