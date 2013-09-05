@@ -87,20 +87,28 @@ task :build_ci do
 end
 
 desc "Creates a new cookbook."
-task :new_cookbook, :name do |t, args|
+task :new_cookbook, :name, :cookbook_path do |t, args|
   if args.name
     name = args.name
   else
     name = get_stdin("Enter a name for your new cookbook: ")
   end
 
-  sh "bundle exec knife cookbook create #{name}"
-  sh "bundle exec knife cookbook create_specs #{name}"
-  minitest_path = "cookbooks/#{name}/files/default/tests/minitest"
+  if args.cookbook_path
+    cookbook_path = args.cookbook_path
+  else
+    cookbook_path = get_stdin("Enter cookbook path for your new cookbook: ")
+  end
+
+  sh "bundle exec knife cookbook create #{name} -o #{cookbook_path}"
+  sh "bundle exec knife cookbook create_specs #{name} -o #{cookbook_path}"
+  minitest_path = "#{cookbook_path}/#{name}/files/default/tests/minitest"
   mkdir_p minitest_path
   File.open("#{minitest_path}/default_test.rb", 'w') do |test|
     test.puts "require 'minitest/spec'"
+    test.puts ""
     test.puts "describle_recipe '#{name}::default' do"
+    test.puts ""
     test.puts "end"
   end
 end
