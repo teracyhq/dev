@@ -19,6 +19,8 @@ Installation
 Configuration
 -------------
 
+- Configure environment on `environment.sh` and then `$ . ./environment.sh`, after that
+`$ rake check` to make sure all required environment variables are set.
 
 
 Contributing

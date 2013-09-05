@@ -1,0 +1,9 @@
+language: ruby
+bundler_args: --without development
+before_install:
+    - git submodule update --init --recursive
+script: "bundle exec rake build_ci"
+rvm:
+    - 1.9.3
+gemfile:
+    - Gemfile
