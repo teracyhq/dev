@@ -23,7 +23,7 @@ log_level               :info
 log_location            STDOUT
 
 # Cookbooks
-cookbook_path           ["#{current_dir}/../cookbooks", "#{current_dir}/../vendor-cookbooks"]
+cookbook_path           ["#{current_dir}/../main-cookbooks"]
 cookbook_copyright      my_cookbook_copyright
 cookbook_license        my_cookbook_license
 cookbook_email          my_cookbook_email
