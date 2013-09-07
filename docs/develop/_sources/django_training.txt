@@ -83,7 +83,7 @@ on our project.
 
 Add dependency to ``requirements/project/dev.txt`` as follow:
 ::
-    teracy-django-html5boilerplate
+    teracy-django-html5-boilerplate
 
 Then install it:
 ::
