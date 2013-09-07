@@ -11,16 +11,50 @@ Continuous Integration
 Usage
 -----
 
+** 1. Create a new cookbook **
+
+```
+$ rake new_cookbook
+```
+
+For example:
+
+```
+$ rake new_cookbook[test]
+```
+This will create a `test` cookbook into `main-cookbooks` path.
+
+```
+$ rake new_cookbook[test, my-cookbooks]
+```
+This will create a `test` cookbook into `my-cookbooks` path.
+
+** 2. Build cookbooks **
+
+```
+$ rake build
+```
+This will check all cookbooks under `main-cookbooks` path with: `knife_test`, `foodcritic` and
+`chefspec`
+
+For more tasks, refer to `Rakefile`.
+
 
 Installation
 ------------
+
+- Ruby 1.9.3
+- `$ git submodule update --init --recursive`
+- `$ gem install bundle`
+- `$ bundle install`
 
 
 Configuration
 -------------
 
-- Configure environment on `environment.sh` and then `$ . ./environment.sh`, after that
-`$ rake check` to make sure all required environment variables are set.
+- To work as a chef workstation, configure environment on `environment.sh` and then
+`$ . ./environment.sh`, after that `$ rake check` to make sure all required environment variables
+are set.
 
 
 Contributing
