@@ -33,7 +33,7 @@ to the next alternative instruction by installing required packages manually.
 Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
 ::
     $ cd /tmp
-    $ wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/setup_working_env_chef.sh
+    $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
     $ bash setup_working_env_chef.sh
 
 
@@ -66,7 +66,7 @@ For example: ``C:\Documents and Settings\<user_name>``, this is the place you wi
 Open your terminal window and type:
 ::
     $ cd ~/
-    $ git clone https://github.com/teracy-official/teracy-dev.git
+    $ git clone https://github.com/teracy-official/dev.git teracy-dev
     $ cd teracy-dev
     $ vagrant up
 
