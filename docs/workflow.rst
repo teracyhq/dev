@@ -223,7 +223,7 @@ Fix it as fast as possible with *really good tests*, you must make sure there sh
 *regression*, then make a pull request to target merging branch.
 
 Official branch's merging and releasing
---------------------------------------
+---------------------------------------
 
 With branch merging and releasing workflow, *senior* collaborators must follow the git branching
 model as mentioned by the article above.

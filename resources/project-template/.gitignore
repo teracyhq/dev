@@ -125,3 +125,9 @@ $RECYCLE.BIN/
 Session.vim
 .netrwhist
 *~
+
+# teracy
+!.rbenv-version
+!.travis.yml
+!.gitkeep
+!.gitmodules
