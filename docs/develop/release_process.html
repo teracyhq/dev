@@ -65,6 +65,11 @@
 <ul class="simple">
 <li>Follow workflow, a release branch should be branched off from origin branch that is ready to be
 released (for example: <tt class="docutils literal"><span class="pre">releases/0.1.0</span></tt> branch is branched off from <tt class="docutils literal"><span class="pre">develop</span></tt> branch).</li>
+<li>Set the next iteration version for <tt class="docutils literal"><span class="pre">develop</span></tt> branch. This will make sure there is no snapshot</li>
+</ul>
+<p>version conflict between <tt class="docutils literal"><span class="pre">releases</span></tt> branch and <tt class="docutils literal"><span class="pre">develop</span></tt> branch. Moreover, <tt class="docutils literal"><span class="pre">develop</span></tt> branch
+will not be blocked.</p>
+<ul class="simple">
 <li>Create an issue for DevOps team to create ci job if required.</li>
 <li>Create an issue for Blog team to preparing release announcement post.</li>
 </ul>
