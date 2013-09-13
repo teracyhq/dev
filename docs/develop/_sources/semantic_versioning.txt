@@ -102,10 +102,9 @@ b. Prerelease tags
 
 c. Example
 
-- Snapshot version: ``0.1.0-@``
+- Snapshot version: ``0.1.0-dev0``
 
-- Precedence: ``0.1.0-@ < 0.1.0-dev-20130826.174530 < 0.1.0-a-@ < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 <
-0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
+- Precedence: ``0.1.0-dev0 < 0.1.0-dev-20130826.174530 < 0.1.0-a-dev0 < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 < 0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
 
 d. Continuous build metadata
 
@@ -114,8 +113,7 @@ Format:
     version ::= major'.'minor'.'patch('-'prerelese)?'-dev-'YYYYMMDD.hhmmss('-'buildnumber)?
     buildnumber ::= digit+
 
-- Precedence: ``0.1.0-dev < 0.1.0-dev-20150826 < 0.1.0-dev-20150826.101010 <
-0.1.0-dev-20150826.101010-5 < 0.1.0-a-dev < 0.1.0-a-dev-20150926.101010``
+- Precedence: ``0.1.0-dev0 < 0.1.0-dev-20150826 < 0.1.0-dev-20150826.101010 < 0.1.0-dev-20150826.101010-5 < 0.1.0-a-dev < 0.1.0-a-dev-20150926.101010``
 
 Note: The format here learns from maven snapshot build to make it consistent.
 
@@ -168,8 +166,7 @@ c. Example
 
 - Snapshot version: ``0.1.0-SNAPSHOT``
 
-- Precedence: ``0.1.0-SNAPSHOT < 0.1.0-20130826.174530-1 < 0.1.0-a-SNAPSHOT <
-0.1.0-a-20130827.123421-5 < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 < 0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
+- Precedence: ``0.1.0-SNAPSHOT < 0.1.0-20130826.174530-1 < 0.1.0-a-SNAPSHOT < 0.1.0-a-20130827.123421-5 < 0.1.0-a < 0.1.0-a1 < 0.1.0-a2 < 0.1.0-b < 0.1.0-c < 0.1.0 < 1.0.0``
 
 d. Continuous build metadata
 
@@ -178,8 +175,7 @@ Format:
     version ::= major'.'minor'.'patch('-'prerelease)?-YYYYMMDD.hhmmss('-'buildnumber)?
     buildnumber ::= digit+
 
-- Precedence: ``0.1.0-SNAPSHOT < 0.1.0-20150826 < 0.1.0-20150826.101010 <
-0.1.0-20150826.101010-5 < 0.1.0-a-SNAPSHOT < 0.1.0-a-20150926.101010 < 0.1.0``
+- Precedence: ``0.1.0-SNAPSHOT < 0.1.0-20150826 < 0.1.0-20150826.101010 < 0.1.0-20150826.101010-5 < 0.1.0-a-SNAPSHOT < 0.1.0-a-20150926.101010 < 0.1.0``
 
 
 Ruby

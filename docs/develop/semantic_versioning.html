@@ -161,10 +161,9 @@ alpha ::= [a..zA..Z]</pre>
 <li>Example</li>
 </ol>
 <ul class="simple">
-<li>Snapshot version: <tt class="docutils literal"><span class="pre">0.1.0-&#64;</span></tt></li>
-<li>Precedence: <a href="#id1"><span class="problematic" id="id2">``</span></a>0.1.0-&#64; &lt; 0.1.0-dev-20130826.174530 &lt; 0.1.0-a-&#64; &lt; 0.1.0-a &lt; 0.1.0-a1 &lt; 0.1.0-a2 &lt;</li>
+<li>Snapshot version: <tt class="docutils literal"><span class="pre">0.1.0-dev0</span></tt></li>
+<li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20130826.174530</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a2</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-b</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-c</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span> <span class="pre">&lt;</span> <span class="pre">1.0.0</span></tt></li>
 </ul>
-<p>0.1.0-b &lt; 0.1.0-c &lt; 0.1.0 &lt; 1.0.0``</p>
 <ol class="loweralpha simple" start="4">
 <li>Continuous build metadata</li>
 </ol>
@@ -173,9 +172,8 @@ alpha ::= [a..zA..Z]</pre>
 buildnumber ::= digit+</pre>
 </div>
 <ul class="simple">
-<li>Precedence: <a href="#id3"><span class="problematic" id="id4">``</span></a>0.1.0-dev &lt; 0.1.0-dev-20150826 &lt; 0.1.0-dev-20150826.101010 &lt;</li>
+<li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev-20150926.101010</span></tt></li>
 </ul>
-<p>0.1.0-dev-20150826.101010-5 &lt; 0.1.0-a-dev &lt; 0.1.0-a-dev-20150926.101010``</p>
 <p>Note: The format here learns from maven snapshot build to make it consistent.</p>
 <p>Note: There is a nightly build provided by <tt class="docutils literal"><span class="pre">setuptools</span></tt> but it does not do what we want here.</p>
 </div>
@@ -225,9 +223,8 @@ alpha ::= [a..zA..Z]</pre>
 </ol>
 <ul class="simple">
 <li>Snapshot version: <tt class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span></tt></li>
-<li>Precedence: <a href="#id5"><span class="problematic" id="id6">``</span></a>0.1.0-SNAPSHOT &lt; 0.1.0-20130826.174530-1 &lt; 0.1.0-a-SNAPSHOT &lt;</li>
+<li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20130826.174530-1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-20130827.123421-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a2</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-b</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-c</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span> <span class="pre">&lt;</span> <span class="pre">1.0.0</span></tt></li>
 </ul>
-<p>0.1.0-a-20130827.123421-5 &lt; 0.1.0-a &lt; 0.1.0-a1 &lt; 0.1.0-a2 &lt; 0.1.0-b &lt; 0.1.0-c &lt; 0.1.0 &lt; 1.0.0``</p>
 <ol class="loweralpha simple" start="4">
 <li>Continuous build metadata</li>
 </ol>
@@ -236,9 +233,8 @@ alpha ::= [a..zA..Z]</pre>
 buildnumber ::= digit+</pre>
 </div>
 <ul class="simple">
-<li>Precedence: <a href="#id7"><span class="problematic" id="id8">``</span></a>0.1.0-SNAPSHOT &lt; 0.1.0-20150826 &lt; 0.1.0-20150826.101010 &lt;</li>
+<li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-20150926.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span></tt></li>
 </ul>
-<p>0.1.0-20150826.101010-5 &lt; 0.1.0-a-SNAPSHOT &lt; 0.1.0-a-20150926.101010 &lt; 0.1.0``</p>
 </div>
 <div class="section" id="ruby">
 <h2>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
