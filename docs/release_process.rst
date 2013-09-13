@@ -9,6 +9,10 @@ Start
 - Follow workflow, a release branch should be branched off from origin branch that is ready to be
   released (for example: ``releases/0.1.0`` branch is branched off from ``develop`` branch).
 
+- Set the next iteration version for ``develop`` branch. This will make sure there is no snapshot
+version conflict between ``releases`` branch and ``develop`` branch. Moreover, ``develop`` branch
+will not be blocked.
+
 - Create an issue for DevOps team to create ci job if required.
 
 - Create an issue for Blog team to preparing release announcement post.
