@@ -78,7 +78,8 @@ a. Must extends ``Base``
 
 b. Must be compatible with https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version
 
-c. Future take note: http://www.python.org/dev/peps/pep-0440/
+c. Future take note: http://www.python.org/dev/peps/pep-0440/ and
+   http://www.python.org/dev/peps/pep-0426/
 
 **2. Specifications**
 
@@ -127,7 +128,11 @@ e. Jenkins rules
   ``0.1.0-dev-20130914.101010-15``.
 
 - Staging build when there is no ``-dev0`` affix, add ``-YYYYMMDD.hhmmss-buildnumber``. For example:
-  ``0.1.0-20130915-102030-2``.
+  ``0.1.0-20130915-102030-2``. Note: ``setuptools`` considers this as 'post-release', ``pip``
+  considers this as 'pre-release'. We must specify the right staging version for ``pip`` to install.
+  This should be improved, expected that
+  ``pip install -i http://pypi.teracy.org/teracy/public-staging/+simple/ package-name`` should
+  install the latest staging version of a specified package name.
 
 - Final release includes only final version, for example: ``0.1.0``, ``0.2.0-a``, ``1.0.0``.
 
