@@ -25,6 +25,9 @@ repository, then make pull requests when the release is ready.
 
 - Remember that release branch should not introduce big changes.
 
+- After each staging releases, create an issue for release test campaign to make sure the release
+is stable enough and have a good quality.
+
 End
 ---
 
