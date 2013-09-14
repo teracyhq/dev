@@ -119,6 +119,18 @@ Note: The format here learns from maven snapshot build to make it consistent.
 
 Note: There is a nightly build provided by ``setuptools`` but it does not do what we want here.
 
+e. Jenkins rules
+
+- Always set developing branch with: ``-dev0`` affix.
+
+- Snapshot build: replace ``-dev0`` with ``-dev-YYYYMMDD.hhmmss-buildnumber``. For example:
+  ``0.1.0-dev-20130914.101010-15``.
+
+- Staging build when there is no ``-dev0`` affix, add ``-YYYYMMDD.hhmmss-buildnumber``. For example:
+  ``0.1.0-20130915-102030-2``.
+
+- Final release includes only final version, for example: ``0.1.0``, ``0.2.0-a``, ``1.0.0``.
+
 Java
 ----
 
