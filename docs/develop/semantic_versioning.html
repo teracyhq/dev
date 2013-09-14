@@ -176,6 +176,17 @@ buildnumber ::= digit+</pre>
 </ul>
 <p>Note: The format here learns from maven snapshot build to make it consistent.</p>
 <p>Note: There is a nightly build provided by <tt class="docutils literal"><span class="pre">setuptools</span></tt> but it does not do what we want here.</p>
+<ol class="loweralpha simple" start="5">
+<li>Jenkins rules</li>
+</ol>
+<ul class="simple">
+<li>Always set developing branch with: <tt class="docutils literal"><span class="pre">-dev0</span></tt> affix.</li>
+<li>Snapshot build: replace <tt class="docutils literal"><span class="pre">-dev0</span></tt> with <tt class="docutils literal"><span class="pre">-dev-YYYYMMDD.hhmmss-buildnumber</span></tt>. For example:
+<tt class="docutils literal"><span class="pre">0.1.0-dev-20130914.101010-15</span></tt>.</li>
+<li>Staging build when there is no <tt class="docutils literal"><span class="pre">-dev0</span></tt> affix, add <tt class="docutils literal"><span class="pre">-YYYYMMDD.hhmmss-buildnumber</span></tt>. For example:
+<tt class="docutils literal"><span class="pre">0.1.0-20130915-102030-2</span></tt>.</li>
+<li>Final release includes only final version, for example: <tt class="docutils literal"><span class="pre">0.1.0</span></tt>, <tt class="docutils literal"><span class="pre">0.2.0-a</span></tt>, <tt class="docutils literal"><span class="pre">1.0.0</span></tt>.</li>
+</ul>
 </div>
 <div class="section" id="java">
 <h2>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h2>
