@@ -134,7 +134,8 @@ released unless there is a last minute bug found after test campaigns.</li>
 <ol class="loweralpha simple">
 <li>Must extends <tt class="docutils literal"><span class="pre">Base</span></tt></li>
 <li>Must be compatible with <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version">https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version</a></li>
-<li>Future take note: <a class="reference external" href="http://www.python.org/dev/peps/pep-0440/">http://www.python.org/dev/peps/pep-0440/</a></li>
+<li>Future take note: <a class="reference external" href="http://www.python.org/dev/peps/pep-0440/">http://www.python.org/dev/peps/pep-0440/</a> and
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0426/">http://www.python.org/dev/peps/pep-0426/</a></li>
 </ol>
 <p><strong>2. Specifications</strong></p>
 <ol class="loweralpha simple">
@@ -184,7 +185,11 @@ buildnumber ::= digit+</pre>
 <li>Snapshot build: replace <tt class="docutils literal"><span class="pre">-dev0</span></tt> with <tt class="docutils literal"><span class="pre">-dev-YYYYMMDD.hhmmss-buildnumber</span></tt>. For example:
 <tt class="docutils literal"><span class="pre">0.1.0-dev-20130914.101010-15</span></tt>.</li>
 <li>Staging build when there is no <tt class="docutils literal"><span class="pre">-dev0</span></tt> affix, add <tt class="docutils literal"><span class="pre">-YYYYMMDD.hhmmss-buildnumber</span></tt>. For example:
-<tt class="docutils literal"><span class="pre">0.1.0-20130915-102030-2</span></tt>.</li>
+<tt class="docutils literal"><span class="pre">0.1.0-20130915-102030-2</span></tt>. Note: <tt class="docutils literal"><span class="pre">setuptools</span></tt> considers this as &#8216;post-release&#8217;, <tt class="docutils literal"><span class="pre">pip</span></tt>
+considers this as &#8216;pre-release&#8217;. We must specify the right staging version for <tt class="docutils literal"><span class="pre">pip</span></tt> to install.
+This should be improved, expected that
+<tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-i</span> <span class="pre">http://pypi.teracy.org/teracy/public-staging/+simple/</span> <span class="pre">package-name</span></tt> should
+install the latest staging version of a specified package name.</li>
 <li>Final release includes only final version, for example: <tt class="docutils literal"><span class="pre">0.1.0</span></tt>, <tt class="docutils literal"><span class="pre">0.2.0-a</span></tt>, <tt class="docutils literal"><span class="pre">1.0.0</span></tt>.</li>
 </ul>
 </div>
