@@ -31,7 +31,7 @@ Python coding standards
 
 - Unless otherwise specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
 Except:
-    + Line lenght: Maximum line length is 100 characters.
+    + Line length: Maximum line length is 100 characters.
 
 - Follow http://www.python.org/dev/peps/pep-0257/ for docs string.
 
