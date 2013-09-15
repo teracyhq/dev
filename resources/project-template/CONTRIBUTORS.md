@@ -1,2 +1,4 @@
-project-name's contributors
-===========================
+Contributors
+============
+
+Contributor Name - Email

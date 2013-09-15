@@ -120,8 +120,8 @@ Vagrant.configure("2") do |config|
           }
         },
         "platform" => {
-          "python" => true,
-          "ruby" => false
+          "python" => true, # python platform development, true by default
+          "ruby" => false # ruby platform development, false by default
         }
       },
     }
