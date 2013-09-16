@@ -43,6 +43,7 @@ About Teracy
 
 - productivity
 
+- balance
 
 **5. Teracy development philosophy**
 
