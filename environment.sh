@@ -1,3 +1,4 @@
+# change to a node accordingly
 export OPSCODE_USER="hoatle"
 export OPSCODE_ORGNAME="teracy"
 export KNIFE_CLIENT_KEY_FOLDER="$HOME/.chef"
