@@ -71,6 +71,8 @@ About Teracy
 
 - visualization
 
+- agile
+
 **6. Teracy tone of voice**
 
 - confident
