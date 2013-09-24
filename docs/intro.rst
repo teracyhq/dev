@@ -43,6 +43,7 @@ About Teracy
 
 - productivity
 
+- balance
 
 **5. Teracy development philosophy**
 
@@ -69,6 +70,8 @@ About Teracy
 - collaboration
 
 - visualization
+
+- agile
 
 **6. Teracy tone of voice**
 

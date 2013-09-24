@@ -131,3 +131,7 @@ Session.vim
 !.travis.yml
 !.gitkeep
 !.gitmodules
+
+# docs
+_build
+_deploy
