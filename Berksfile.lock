@@ -1,5 +1,5 @@
 {
-  "sha": "b6271c5a399f7613a2f20ed90d56174c07f56b22",
+  "sha": "ba8c11fc86c59eb2aa8eb312a9974200b61934d1",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -25,6 +25,10 @@
       "locked_version": "1.4.0",
       "constraint": "= 1.4.0"
     },
+    "rbenv": {
+      "locked_version": "1.6.5",
+      "constraint": "= 1.6.5"
+    },
     "chef_handler": {
       "locked_version": "1.1.4"
     },
@@ -43,6 +47,10 @@
     "runit": {
       "locked_version": "1.2.0",
       "constraint": ">= 1.0.0"
+    },
+    "ohai": {
+      "locked_version": "1.1.12",
+      "constraint": ">= 1.1.0"
     }
   }
 }
