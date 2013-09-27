@@ -35,7 +35,7 @@ end
 
 if node['teracy-dev']['platform']['ruby']
     # ruby installation configuration
-    override[:rbenv][:install_prefix] = '/home/vagrant'
-    override[:rbenv][:user]           = 'vagrant'
-    override[:rbenv][:group]          = 'vagrant'
+    override['rbenv']['install_prefix'] = '/home/vagrant'
+    override['rbenv']['user']           = 'vagrant'
+    override['rbenv']['group']          = 'vagrant'
 end
