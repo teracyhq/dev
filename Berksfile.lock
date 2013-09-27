@@ -1,5 +1,5 @@
 {
-  "sha": "340fb2f2b33d7959b2e207c30c1a9ed687193527",
+  "sha": "b59fd440c79722d9f0bc309f6c8dbff750492ac1",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -13,8 +13,28 @@
       "locked_version": "1.0.2",
       "constraint": "= 1.0.2"
     },
+    "git": {
+      "locked_version": "2.6.0",
+      "constraint": "= 2.6.0"
+    },
     "chef_handler": {
       "locked_version": "1.1.4"
+    },
+    "dmg": {
+      "locked_version": "2.0.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "yum": {
+      "locked_version": "2.3.2"
+    },
+    "windows": {
+      "locked_version": "1.10.0"
+    },
+    "runit": {
+      "locked_version": "1.2.0",
+      "constraint": ">= 1.0.0"
     }
   }
 }
