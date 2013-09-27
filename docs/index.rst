@@ -21,6 +21,7 @@ Contents:
    document_writer_training
    c_c++_training
    python_training
+   django_training
    ruby_training
    php_training
    html_css_training
@@ -30,7 +31,7 @@ Contents:
    ios_training
    android_training
    semantic_versioning
-
+   release_process
 
 Indices and tables
 ==================

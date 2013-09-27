@@ -1,0 +1,56 @@
+{
+  "sha": "ba8c11fc86c59eb2aa8eb312a9974200b61934d1",
+  "sources": {
+    "minitest-handler": {
+      "locked_version": "0.1.7",
+      "constraint": "= 0.1.7"
+    },
+    "apt": {
+      "locked_version": "2.1.1",
+      "constraint": "= 2.1.1"
+    },
+    "vim": {
+      "locked_version": "1.0.2",
+      "constraint": "= 1.0.2"
+    },
+    "git": {
+      "locked_version": "2.6.0",
+      "constraint": "= 2.6.0"
+    },
+    "magic_shell": {
+      "locked_version": "0.3.2",
+      "constraint": "= 0.3.2"
+    },
+    "python": {
+      "locked_version": "1.4.0",
+      "constraint": "= 1.4.0"
+    },
+    "rbenv": {
+      "locked_version": "1.6.5",
+      "constraint": "= 1.6.5"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "dmg": {
+      "locked_version": "2.0.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "yum": {
+      "locked_version": "2.3.2"
+    },
+    "windows": {
+      "locked_version": "1.10.0"
+    },
+    "runit": {
+      "locked_version": "1.2.0",
+      "constraint": ">= 1.0.0"
+    },
+    "ohai": {
+      "locked_version": "1.1.12",
+      "constraint": ">= 1.1.0"
+    }
+  }
+}

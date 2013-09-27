@@ -3,28 +3,57 @@ project-name
 
 Project name introduction
 
+Continuous Integration
+----------------------
 
-How to install
---------------
-
-
-How to configure
-----------------
+Usage
+-----
 
 
-How to use
-----------
+Installation
+------------
+
+
+Configuration
+-------------
+
+
+Contributing
+------------
+
+- File issues at https://issues.teracy.org/browse/<project_key>
+
+- Follow Teracy's workflow at http://dev.teracy.org/docs/develop/workflow.html
+
+Discussions
+-----------
+
+Join us:
+
+- https://groups.google.com/forum/#!forum/teracy
+
+- https://www.facebook.com/groups/teracy
+
+Get our news:
+
+- https://www.facebook.com/teracy.official
+
+- https://twitter.com/teracy_official
 
 
 Author and contributors
 -----------------------
 
+See more details at `AUTHORS.md` and `CONTRIBUTORS.md` files.
+
 
 License
 -------
 
+BSD License
+
 ```
-Copyright (c) Teracy, Inc and individual contributors.
+Copyright (c) Teracy, Inc. and individual contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -37,7 +66,7 @@ are permitted provided that the following conditions are met:
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
 
-    3. Neither the name of Teracy nor the names of its contributors may be used
+    3. Neither the name of Teracy, Inc. nor the names of its contributors may be used
        to endorse or promote products derived from this software without
        specific prior written permission.
 
