@@ -19,6 +19,6 @@
 # limitations under the License.
 #
 
-python_pip "Sphinx" do
-    action :install
+python_pip 'Sphinx' do
+  action :install
 end
