@@ -54,36 +54,23 @@ Vagrant.configure("2") do |config|
   #
   # View the documentation for the provider you're using for more
   # information on available options.
-
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
-  # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file opscode-ubuntu-1204.pp in the manifests_path directory.
+  # config.vm.provider :virtualbox do |vb|
+  #   # Don't boot with headless mode
+  #   vb.gui = true
   #
-  # An example Puppet manifest to provision the message of the day:
-  #
-  # # group { "puppet":
-  # #   ensure => "present",
-  # # }
-  # #
-  # # File { owner => 0, group => 0, mode => 0644 }
-  # #
-  # # file { '/etc/motd':
-  # #   content => "Welcome to your Vagrant-built virtual machine!
-  # #               Managed by Puppet.\n"
-  # # }
-  #
-  # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "manifests"
-  #   puppet.manifest_file  = "init.pp"
+  #   # Use VBoxManage to customize the VM. For example to change memory:
+  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
+  #
+  # View the documentation for the provider you're using for more
+  # information on available options.
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = ["vendor-cookbooks", "main-cookbooks"]
     chef.roles_path = "roles"
     chef.data_bags_path = "data_bags"
 
@@ -126,7 +113,6 @@ Vagrant.configure("2") do |config|
       },
     }
   end
-
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
   #
@@ -138,8 +124,14 @@ Vagrant.configure("2") do |config|
   # validation key to validation.pem.
   #
   # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
-  #   chef.validation_key_path = "ORGNAME-validator.pem"
+  #   chef.chef_server_url = ENV['KNIFE_CHEF_SERVER']
+  #   chef.validation_key_path = "#{ENV['KNIFE_VALIDATION_KEY_FOLDER']}/#{ENV['OPSCODE_ORGNAME']}-validator.pem"
+  #   chef.validation_client_name = "#{ENV['OPSCODE_ORGNAME']}-validator"
+  #   chef.node_name = "#{ENV['OPSCODE_USER']}-vagrant"
+  #   chef.run_list = [
+  #     'motd',
+  #     'minitest-handler'
+  #   ]
   # end
   #
   # If you're using the Opscode platform, your validator client is

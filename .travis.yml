@@ -1,19 +1,24 @@
-branches:
-  only:
-  - master
-  - develop
-language: python
-install: pip install -r docs/requirements.txt
+language: ruby
+before_install:
+  - git submodule update --init --recursive
 before_script:
-- git config --global user.name "Teracy Bot"
-- git config --global user.email "teracy.com@gmail.com"
-- export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
-- . ./.travis/setup.sh
-- echo $DEPLOY_HTML_DIR
-- cd docs
-- make setup_gh_pages
-script: make generate
-after_script: make deploy
+  - git config --global user.name "Teracy Bot"
+  - git config --global user.email "teracy.com@gmail.com"
+  - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+  - . ./.travis/setup.sh
+  - echo $DEPLOY_HTML_DIR
+script:
+  - bundle exec rake build
+after_script:
+  - sudo pip install -r docs/requirements.txt --use-mirrors
+  - cd docs
+  - make setup_gh_pages
+  - make generate
+  - make deploy
+rvm:
+  - 1.9.3
+gemfile:
+  - Gemfile
 env:
   global:
   - GH_REPO="teracy-official/dev"
