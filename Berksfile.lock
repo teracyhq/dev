@@ -1,5 +1,5 @@
 {
-  "sha": "0f688bb710a60193a8e8e4610eb0e93075106153",
+  "sha": "340fb2f2b33d7959b2e207c30c1a9ed687193527",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -8,6 +8,10 @@
     "apt": {
       "locked_version": "2.1.1",
       "constraint": "= 2.1.1"
+    },
+    "vim": {
+      "locked_version": "1.0.2",
+      "constraint": "= 1.0.2"
     },
     "chef_handler": {
       "locked_version": "1.1.4"
