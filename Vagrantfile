@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "vendor-cookbooks, main-cookbooks"
+    chef.cookbooks_path = ["vendor-cookbooks", "main-cookbooks"]
     chef.roles_path = "roles"
     chef.data_bags_path = "data_bags"
 

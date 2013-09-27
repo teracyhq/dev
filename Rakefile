@@ -122,6 +122,10 @@ task :knife_test do
   sh "bundle exec knife cookbook test -a -c test/knife.rb"
 end
 
+desc "Installs Berkshelf cookbooks to vendor-cookbooks directory"
+task :berks_install do
+  sh "bundle exec berks install -p vendor-cookbooks"
+end
 
 desc "Uploads Berkshelf cookbooks to our chef server."
 task :berks_upload do
