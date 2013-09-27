@@ -77,7 +77,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "apt" #required for installing vim (?!)
     chef.add_recipe "vim"
     chef.add_recipe "git"
-    #chef.add_recipe "teracy-dev"
+    chef.add_recipe "teracy-dev"
 
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = {
