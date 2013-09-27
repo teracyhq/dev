@@ -1,9 +1,13 @@
 {
-  "sha": "bcd6282b754104840fd837356e539a1a59bb85f3",
+  "sha": "0f688bb710a60193a8e8e4610eb0e93075106153",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
       "constraint": "= 0.1.7"
+    },
+    "apt": {
+      "locked_version": "2.1.1",
+      "constraint": "= 2.1.1"
     },
     "chef_handler": {
       "locked_version": "1.1.4"
