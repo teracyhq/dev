@@ -47,6 +47,8 @@ About Teracy
 
 **5. Teracy development philosophy**
 
+- passion
+
 - thought leader
 
 - DRY (Don't repeat yourself)
