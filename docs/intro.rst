@@ -55,6 +55,10 @@ About Teracy
 
 - security
 
+- monitoring
+
+- backup & recovery
+
 - simplicity
 
 - speed
