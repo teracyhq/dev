@@ -4,8 +4,8 @@
 # kudos to https://learnchef.opscode.com/quickstart/workstation-setup/#linux for manual installation
 
 # How to install:
-# $ cd /tmp && wget https://raw.github.com/teracy-official/teracy-dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh && cd ~
-
+# $ cd /tmp && wget https://raw.github.com/teracy-official/dev/master/scripts/rbenv.sh && chmod +x rbenv.sh && . ./rbenv.sh && cd ~
+# TODO(phuonglm): improve this: non-root user? this was validated on dev VM only, what's about clean Ubuntu instance?
 function install_support_packages() {
     sudo apt-get install build-essential git
 }
