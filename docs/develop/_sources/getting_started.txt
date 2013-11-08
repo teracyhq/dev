@@ -42,7 +42,7 @@ Or Manual Installation
 
 You need to finish 2 (or 3 on Windows) following required simple steps:
 
-1. Install **latest** ``vagrant`` version at: http://downloads.vagrantup.com/
+1. Install ``vagrant`` with the version of **1.2.7** at: http://downloads.vagrantup.com/tags/v1.2.7
 
 2. Install ``virtualbox`` with the version of **4.2.10** at:
    https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
@@ -50,17 +50,13 @@ You need to finish 2 (or 3 on Windows) following required simple steps:
 3. [**Required on Windows only**] Install latest ``git`` version at http://git-scm.com/ to use
    ``Git Bash`` as a terminal.
 
+Notice: You need to install exactly ``vagrant`` **v1.2.7** and ``virtualbox`` **v4.2.10** as it
+was stable enough with our intensive usage and support. We use and run 64 bit architecture every
+day, however, 32 bit archirecture is expected to work, too.
+
+
 Environment Up
 --------------
-
-From your home directory (``~/``), download or clone ``dev`` repository and ``$ vagrant up``. You
-should prepare yourself a cup of coffee as for the first time it could take a little long time
-(~20-30 mins with internet speed ~700-800KB/s) to finish ``$ vagrant up``.
-
-Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
-For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
-``teracy-dev`` directory to import projects into your text editor later for coding.
-
 
 - Have ``git`` installed:
 Open your terminal window and type:
@@ -71,13 +67,18 @@ Open your terminal window and type:
     $ vagrant up
 
 - Or no ``git`` installed:
-Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
+Download the repository at https://github.com/teracy-official/dev/archive/master.zip and
 unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
 (Windows). Then open your terminal window:
 ::
     $ cd ~/
     $ cd teracy-dev
     $ vagrant up
+
+
+Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
+For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
+``teracy-dev`` directory to import projects into your text editor later for coding.
 
 
 You should see the following similar messages at the end of ``$ vagrant up``:

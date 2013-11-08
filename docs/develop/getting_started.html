@@ -96,21 +96,18 @@ $ bash setup_working_env_chef.sh</pre>
 <h2>Or Manual Installation<a class="headerlink" href="#or-manual-installation" title="Permalink to this headline">¶</a></h2>
 <p>You need to finish 2 (or 3 on Windows) following required simple steps:</p>
 <ol class="arabic simple">
-<li>Install <strong>latest</strong> <tt class="docutils literal"><span class="pre">vagrant</span></tt> version at: <a class="reference external" href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a></li>
+<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.2.7</strong> at: <a class="reference external" href="http://downloads.vagrantup.com/tags/v1.2.7">http://downloads.vagrantup.com/tags/v1.2.7</a></li>
 <li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.2.10</strong> at:
 <a class="reference external" href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_2">https://www.virtualbox.org/wiki/Download_Old_Builds_4_2</a></li>
 <li>[<strong>Required on Windows only</strong>] Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a> to use
 <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as a terminal.</li>
 </ol>
+<p>Notice: You need to install exactly <tt class="docutils literal"><span class="pre">vagrant</span></tt> <strong>v1.2.7</strong> and <tt class="docutils literal"><span class="pre">virtualbox</span></tt> <strong>v4.2.10</strong> as it
+was stable enough with our intensive usage and support. We use and run 64 bit architecture every
+day, however, 32 bit archirecture is expected to work, too.</p>
 </div>
 <div class="section" id="environment-up">
 <h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
-<p>From your home directory (<tt class="docutils literal"><span class="pre">~/</span></tt>), download or clone <tt class="docutils literal"><span class="pre">dev</span></tt> repository and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>. You
-should prepare yourself a cup of coffee as for the first time it could take a little long time
-(~20-30 mins with internet speed ~700-800KB/s) to finish <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>.</p>
-<p>Note: The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
-For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
-<tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
 <ul class="simple">
 <li>Have <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
 </ul>
@@ -123,13 +120,16 @@ $ vagrant up</pre>
 <ul class="simple">
 <li>Or no <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
 </ul>
-<p>Download the repository at <a class="reference external" href="https://github.com/teracy-official/teracy-dev/archive/master.zip">https://github.com/teracy-official/teracy-dev/archive/master.zip</a> and
+<p>Download the repository at <a class="reference external" href="https://github.com/teracy-official/dev/archive/master.zip">https://github.com/teracy-official/dev/archive/master.zip</a> and
 unzip with named <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> at <tt class="docutils literal"><span class="pre">~/</span></tt> (<a href="#id1"><span class="problematic" id="id2">*</span></a>unix) or <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>
 (Windows). Then open your terminal window:</p>
 <div class="highlight-python"><pre>$ cd ~/
 $ cd teracy-dev
 $ vagrant up</pre>
 </div>
+<p>Note: The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
+For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
+<tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
 <p>You should see the following similar messages at the end of <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>:</p>
 <div class="highlight-python"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
