@@ -80,3 +80,11 @@ Objective C coding standards
 
 Java coding standards
 ---------------------
+
+- 2 spaces for indentation
+
+
+XML coding standards
+--------------------
+
+- 2 spaces for indentation
