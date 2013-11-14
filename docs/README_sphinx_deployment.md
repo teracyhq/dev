@@ -12,23 +12,31 @@ This project is intended to be used to deploy [sphinx][] project on:
 Usage
 -----
 
-**1. `$ make setup_gh_pages`**
+**1. `$ make generate`**
+
+For generating contents, alias for `$ make html`
+
+**2. `$ make deploy`**
+
+For short-cut deployment, it could be `$ make push`, `$ make rsync` basing on the configuration
+of `DEPLOY_DEFAULT`.
+
+**3. `$ make gen_deploy`**
+
+For short-cut generation and deployment: `$ make generate` and then `$ make deploy`.
+
+**4. `$ make setup_gh_pages`**
 
 For one time only when your [sphinx][] project is cloned to create `$(DEPLOY_DIR)` to track
-`$(DEPLOY_BRANCH)`.
+`$(DEPLOY_BRANCH)`. This shoud be used only for github pages deployment.
 
-**2. `$ make generate`**
+**5. `$ make push`**
 
-For generating contents, alias for `make html`
+For deploying with github pages only.
 
-**3. `$ make deploy`**
+**6. `$ make rsync`**
 
-Deploy the generated content to the target `$(DEPLOY_BRANCH)`
-
-**4. `$ make gen_deploy`**
-
-Generate and deploy the generated content to the target `$(DEPLOY_BRANCH)`
-
+For deploying with rsync only.
 
 Installation
 ------------
@@ -57,6 +65,7 @@ a. You need to copy these following files to your [sphinx][] directory:
 
 - `docs/requirements`
 - `docs/sphinx_deployment.mk`
+- `docs/rsync_exclude`
 
 b. Include `sphinx_deployment.mk` to your `Makefile`:
 
@@ -74,7 +83,6 @@ echo 'include sphinx_deployment.mk' >> Makefile
 ```
 
 
-
 c.. To build with `travis-ci`, you need to copy these following files to your root project directory:
 
 - `.travis.yml`
@@ -88,19 +96,66 @@ You need to configure these following deployment configurations following your p
 `sphinx_deployment.mk` file.
 
 ``` Makefile
-# Deployment configurations
+# Deployment configurations from sphinx_deployment project
 
-# The development directory tracking DEPLOY_BRANCH
+# default deployment when $ make deploy
+# push       : to $ make push
+# rsync      : to $ make rsync
+# push rsync : to $ make push then $ make rsync
+# default value: push
+ifndef DEPLOY_DEFAULT
+DEPLOY_DEFAULT = push
+endif
+
+# The deployment directory to be deployed
+ifndef DEPLOY_DIR
 DEPLOY_DIR      = _deploy
+endif
 
-# Copy contents from $(BUILDDIR) this this directory
+# Copy contents from $(BUILDDIR) to $(DEPLOY_DIR)/$(DEPLOY_HTML_DIR) directory
+ifndef DEPLOY_HTML_DIR
 DEPLOY_HTML_DIR = docs
+endif
+
+
+## -- Rsync Deploy config -- ##
+# Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
+ifndef SSH_USER
+SSH_USER       = user@domain.com
+endif
+
+ifndef SSH_PORT
+SSH_PORT       = 22
+endif
+
+ifndef DOCUMENT_ROOT
+DOCUMENT_ROOT  = ~/website.com/
+endif
+
+#If you choose to delete on sync, rsync will create a 1:1 match
+ifndef RSYNC_DELETE
+RSYNC_DELETE   = false
+endif
+
+# Any extra arguments to pass to rsync
+ifndef RSYNC_ARGS
+RSYNC_ARGS     =
+endif
+
+## -- Github Pages Deploy config -- ##
+
+# Configure the right deployment branch
+ifndef DEPLOY_BRANCH
 DEPLOY_BRANCH   = gh-pages
+endif
 
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
-#REPO_URL       = git@github.com:hoatle/sphinx-deployment.git
+# Configure your right project repo
+# REPO_URL       = git@github.com:teracy-official/sphinx-deployment.git
 endif
+
+## end deployment configuration, don't edit anything below this line ##
 ```
 
 Continuous Integration Build
@@ -134,7 +189,7 @@ License
 BSD License
 
 ```
-Copyright (c) Teracy, Inc and individual contributors.
+Copyright (c) Teracy, Inc. and individual contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -147,7 +202,7 @@ are permitted provided that the following conditions are met:
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
 
-    3. Neither the name of Teracy nor the names of its contributors may be used
+    3. Neither the name of Teracy, Inc. nor the names of its contributors may be used
        to endorse or promote products derived from this software without
        specific prior written permission.
 
