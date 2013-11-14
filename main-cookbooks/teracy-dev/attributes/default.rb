@@ -29,6 +29,8 @@ default['teracy-dev']['platform'] = {
     'ruby' => false
 }
 
+default['teracy-dev']['gettext'] = false
+
 if node['teracy-dev']['platform']['python']
     override['python']['setuptools_script_url'] = 'https://bitbucket.org/pypa/setuptools/raw/1.0/ez_setup.py'
 end

@@ -22,3 +22,10 @@
         action:install
     end
 end
+
+%w{gettext}.each do |pkg|
+    apt_package pkg do
+        action:install
+        only_if { node['teracy-dev']['gettext'] }
+    end
+end
