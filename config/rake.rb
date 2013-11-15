@@ -6,7 +6,7 @@
 ###
 
 # The company name - used for SSL certificates, and in srvious other places
-COMPANY_NAME = "Teracy Inc"
+COMPANY_NAME = "Teracy, Inc."
 
 # The Country Name to use for SSL Certificates
 SSL_COUNTRY_NAME = "VN"
@@ -25,7 +25,7 @@ SSL_EMAIL_ADDRESS = "devops@teracy.com"
 
 # License for new Cookbooks
 # Can be :apachev2 or :none
-NEW_COOKBOOK_LICENSE = :apachev2
+NEW_COOKBOOK_LICENSE = :none
 
 ###
 # Useful Extras (which you probably don't need to change)

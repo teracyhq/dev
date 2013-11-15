@@ -106,9 +106,17 @@ Vagrant.configure("2") do |config|
             "prompt" => false
           }
         },
-        "platform" => {
-          "python" => true, # python platform development, true by default
-          "ruby" => false # ruby platform development, false by default
+        "python" => {
+          "enabled" => true, # python platform development, enabled by default
+          "pip" => {
+            "global" => {
+              #"index-url" => "http://pypi.teracy.org/teracy/public/+simple/"
+            }
+
+          }
+        },
+        "ruby" => {
+          "enabled" => false # ruby platform development, disabled by default
         },
         "gettext" => false # false by default
       },

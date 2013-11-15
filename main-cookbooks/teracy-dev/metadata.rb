@@ -1,10 +1,10 @@
 name             'teracy-dev'
-maintainer       'Teracy Inc'
+maintainer       'Teracy, Inc.'
 maintainer_email 'hoatlevan@gmail.com'
 license          'All rights reserved'
 description      'Installs/Configures teracy-dev'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.2.0'
 
 depends          'python'
 depends          'magic_shell'
@@ -17,4 +17,5 @@ recipe 'teracy-dev::virtualenvwrapper', 'Installs virtualenvwrapper using the py
 recipe 'teracy-dev::env', 'Configures environment.'
 recipe 'teracy-dev::git-config', 'Configures global git.'
 recipe 'teracy-dev::system-python', 'Installs system-wide Python packages.'
+recipe 'teracy-dev::pip-config', 'Configures global pip.'
 recipe 'teracy-dev::rbenv', 'Installs rbenv and related packages.'
