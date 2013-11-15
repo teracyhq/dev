@@ -1,7 +1,8 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: workspace
+# Recipe:: pip-config
+# Description: Configures global pip
 #
 # Copyright 2013, Teracy, Inc.
 #
@@ -31,11 +32,18 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-node['teracy-dev']['workspace'].each do |dir|
-    directory dir do
-        owner 'vagrant'
-        group 'vagrant'
-        mode 00755
-        action:create
-    end
+directory '/home/vagrant/.pip/' do
+    owner 'vagrant'
+    group 'vagrant'
+    mode 00755
+    action:create
+    only_if { node['teracy-dev']['python']['enabled'] }
+end
+
+template '/home/vagrant/.pip/pip.conf' do
+    source 'pipconfig.erb'
+    owner 'vagrant'
+    group 'vagrant'
+    mode '0664'
+    only_if { node['teracy-dev']['python']['enabled'] }
 end

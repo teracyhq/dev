@@ -24,18 +24,29 @@ default['teracy-dev']['git'] = {
     }
 }
 
-default['teracy-dev']['platform'] = {
-    'python' => true,
-    'ruby' => false
+
+
+
+default['teracy-dev']['python'] = {
+    'enabled' => true,
+    'pip' => {
+        'global' => {
+            #'index-url' => 'http://pypi.teracy.org/teracy/public/+simple/'
+        }
+    }
+}
+
+default['teracy-dev']['ruby'] = {
+    'enabled' => false
 }
 
 default['teracy-dev']['gettext'] = false
 
-if node['teracy-dev']['platform']['python']
+if node['teracy-dev']['python']['enabled']
     override['python']['setuptools_script_url'] = 'https://bitbucket.org/pypa/setuptools/raw/1.0/ez_setup.py'
 end
 
-if node['teracy-dev']['platform']['ruby']
+if node['teracy-dev']['ruby']['enabled']
     # ruby installation configuration
     override['rbenv']['install_prefix'] = '/home/vagrant'
     override['rbenv']['user']           = 'vagrant'
