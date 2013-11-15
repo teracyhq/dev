@@ -6,6 +6,9 @@ Change Log
 
 The next milestone release: extend CHEF, better support for python platform development
 
+- Migration from v0.1.0 to v0.2.0
+    + Vagrantfile: https://github.com/teracy-official/dev/commit/f8906c9d5d24951028a41f524e68463ea0bf32f8
+
 - Sub-task
     + [DEV-25] - Define Python Coding Standards
 
