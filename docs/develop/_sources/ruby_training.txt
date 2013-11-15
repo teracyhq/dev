@@ -9,20 +9,20 @@ Installation
 
 Open ``Vagrantfile`` file and find:
 ::
-    "platform" => {
-      "python" => true,
-      "ruby" => false
-    }
 
-Enable ``ruby`` with: ``"ruby" => true``.
+    "ruby" => {
+      "enabled" => false # ruby platform development, disabled by default
+    },
 
-If you do not want to work with ``python``, disable it with ``"python" => false`` to save provision
-time.
+Enable ``ruby`` with: ``"enabled" => true``.
 
-Then ``$ vagrant reload`` if your VM is already running, or ``$ vagrant up`` if it is not running
+If you do not want to work with ``python``, disable it with ``"python" => "enabled" => false`` to
+save provision time.
+
+Then ``$ vagrant provision`` if your VM is already running, or ``$ vagrant up`` if it is not running
 yet.
 
-After the installation process, you should verify if it works by:
+After the provision process, `$ vagrant ssh` and you should verify if it works by:
 ::
     $ ruby --version
 
