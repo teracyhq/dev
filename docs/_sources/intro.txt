@@ -18,19 +18,89 @@ by steps to setup working environment, to learn our toolchain, workflow, and our
 culture.
 
 
-Join and work with us?
-----------------------
+About Teracy
+------------
 
-We are starting up and have tons of interesting projects waiting for you. We need you - young
-developers having passion to learn and to work with us in a smart way. What you need to
-do is to simply ``impress us``.
+**1. Teracy vision**
 
-1. What we're working on?
+    In the (very near) future, there will be many connected-devices and we will make the integration of those devices as much seamless as possible.
 
-We're working on both outsourcing and startup projects. We need a wide range of developers (C/C++,
-Python, Java, PHP, HTML/CSS, JS...), designers (art, web...), QA engineers, sales, marketers, etc.
-to build a world-class team. If these above positions do not match your interest and qualification,
-please contact us to see if we are meant to work together with other positions.
+**2. Teracy mission**
+
+    Create an open ecosystem for Internet of Things (IoT) with seamless integration.
+
+**3. Teracy motto**
+
+    Get things connected!
+
+**4. Teracy values**
+
+- security
+
+- openness
+
+- seamless integration
+
+- productivity
+
+- balance
+
+**5. Teracy development philosophy**
+
+- passion
+
+- thought leader
+
+- DRY (Don't repeat yourself)
+
+- security
+
+- monitoring
+
+- backup & recovery
+
+- simplicity
+
+- speed
+
+- seamless integration
+
+- automation
+
+- consistency
+
+- transparency
+
+- progressive enhancement
+
+- collaboration
+
+- visualization
+
+- agile
+
+**6. Teracy tone of voice**
+
+- confident
+
+- friendly
+
+- trustworthy
+
+- engaging
+
+- respectful
+
+- focused
+
+- inspiring
+
+**7. What we're working on?**
+
+We're working on both outsourcing and startup projects. We need a wide range of developers
+(C/C++, Python, Java, PHP, HTML/CSS, JS...), designers (art, web...), QA engineers, sales,
+marketers, etc. to build a world-class team. If these above positions do not match your interest
+and qualification, please contact us to see if we are meant to work together with other positions.
 
 - We conduct specific R&D to connect, integrate smart devices with user-centric development
   philosophy.
@@ -46,15 +116,15 @@ please contact us to see if we are meant to work together with other positions.
 - We believe in open source, we're going to release our open source projects as much as possible to
   share and leverage community's strengths.
 
-2. Our development philosophy
 
-- DRY (Don't repeat yourself)
+Join and work with us?
+----------------------
 
-- Security, Speed and Simplicity
+We are starting up and have tons of interesting projects waiting for you. We need you - young
+developers having passion to learn and to work with us in a smart way. What you need to
+do is to simply ``impress us``.
 
-- User-centric
-
-3. How to impress us?
+**How to impress us?**
 
 - To join our training program, you should have:
 
@@ -77,8 +147,9 @@ please contact us to see if we are meant to work together with other positions.
 
 When you impress us enough, wherever you are, we will find you and offer you the job you desire!
 
-We could work as much flexibly as possible. You could work remote, you could work part-time, even
-you could arrange the work time as you desire. All you need to do is just **impress us now**!
+We could work as much flexibly as possible. You could work remote, you could work part-time,
+even you could arrange the work time as you desire. All you need to do is just **impress us
+now**!
 
 
 What will you get after the training program?
