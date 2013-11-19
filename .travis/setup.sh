@@ -4,10 +4,10 @@
 
 if [[ $TRAVIS_BRANCH == 'master' ]] ; then
     export DEPLOY_HTML_DIR=docs
+elif [[ $TRAVIS_BRANCH == 'develop' ]] ; then
+    export DEPLOY_HTML_DIR=docs/develop
+elif [[ $TRAVIS_BRANCH =~ ^v[0-9.]+$ ]]; then
+    export DEPLOY_HTML_DIR=docs/${TRAVIS_BRANCH:1}
 else
-    if [[ $TRAVIS_BRANCH == 'develop' ]] ; then
-        export DEPLOY_HTML_DIR=docs/develop
-    else
-        export DEPLOY_HTML_DIR=docs/$TRAVIS_BRANCH
-    fi
+    export DEPLOY_HTML_DIR=docs/$TRAVIS_BRANCH
 fi
