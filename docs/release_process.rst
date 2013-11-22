@@ -10,8 +10,8 @@ Start
   released (for example: ``releases/0.1.0`` branch is branched off from ``develop`` branch).
 
 - Set the next iteration version for ``develop`` branch. This will make sure there is no snapshot
-version conflict between ``releases`` branch and ``develop`` branch. Moreover, ``develop`` branch
-will not be blocked.
+  version conflict between ``releases`` branch and ``develop`` branch. Moreover, ``develop`` branch
+  will not be blocked.
 
 - Create an issue for DevOps team to create ci job if required.
 
@@ -21,15 +21,18 @@ Releasing
 ---------
 
 - Follow specific release process docs on each project, this should be done on your forked
-repository, then make pull requests when the release is ready.
+  repository, then make pull requests when the release is ready.
 
 - Remember that release branch should not introduce big changes.
 
 - After each staging releases, create an issue for release test campaign to make sure the release
-is stable enough and have a good quality.
+  is stable enough and have a good quality.
 
 End
 ---
+
+- Make sure that the tag step must be ready at least **3 days** before the expected release date.
+  Use **UTC** as standard reference time.
 
 - Tag the release: ``$ git tag -a v<version>`` with the message: ``v<version> Release``. For example,
   ``$ git tag -a v0.1.0`` with the message ``v0.1.0 Release``. This message pattern could be later
