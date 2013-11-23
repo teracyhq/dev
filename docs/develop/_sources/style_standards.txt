@@ -6,7 +6,7 @@ must be applied to all other more specific standards if any rule is not overridd
 rules, there will be automatic checking tool to report any rule violations.
 
 
-Common standards
+Common Standards
 ----------------
 
 #. Line length limit must be within 100 characters.
@@ -18,19 +18,21 @@ Common standards
 #. An empty newline at the end of file.
 
 
-Document standards
+Document Standards
 ------------------
 
 
-C/C++ coding standards
+C/C++ Coding Standards
 ----------------------
 
 
-Python coding standards
+Python Coding Standards
 -----------------------
 
 - Unless otherwise specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
-Except:
+
+  Except:
+
     + Line length: Maximum line length is 100 characters.
 
 - Follow http://www.python.org/dev/peps/pep-0257/ for docs string.
@@ -52,39 +54,39 @@ Except:
     + http://www.pylint.org/
     + http://pychecker.sourceforge.net
 
-PHP coding standards
+PHP Coding Standards
 --------------------
 
 
-HTML coding standards
+HTML Coding Standards
 ---------------------
 
 - 2 spaces for indentation
 
 
-CSS coding standards
+CSS Coding Standards
 --------------------
 
 - 2 spaces for indentation
 
 
-JavaScript coding standards
+JavaScript Coding Standards
 ---------------------------
 
 - 2 spaces for indentation
 
 
-Objective C coding standards
+Objective C Coding Standards
 ----------------------------
 
 
-Java coding standards
+Java Coding Standards
 ---------------------
 
 - 2 spaces for indentation
 
 
-XML coding standards
+XML Coding Standards
 --------------------
 
 - 2 spaces for indentation
