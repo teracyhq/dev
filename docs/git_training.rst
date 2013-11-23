@@ -34,7 +34,7 @@ After learning, now it's the time for practice.
     + The repository on your VM should be at: ``workspace/personal/pro-git-practice``
 
     + Read the chapter 2 and practice with your ``pro-git-practice`` repository on your VM at
-    http://git-scm.com/book/en/Git-Basics
+      http://git-scm.com/book/en/Git-Basics
 
     + Remember to push the changes to github so we could see your work and practice.
 
@@ -55,10 +55,10 @@ Push the first commit there on github (Initial setup).
 
 #. Setup project layout
 
-    - Add remote repository https://github.com/teracy-official/teracy-django-boilerplate.git into
-    your repository with named ``teracy``.
+    - Add remote repository https://github.com/teracy-official/django-boilerplate.git into
+      your repository with named ``djbp``.
 
-    - Fetch and merge ``teracy/master`` branch.
+    - Fetch and merge ``djbp/master`` branch.
 
     - Push the merge to your github's repository at ``origin/master``.
 
@@ -73,16 +73,16 @@ Push the first commit there on github (Initial setup).
     - Work on ``Creating models`` section and commit the changes with message ``Creating models``.
 
     - Work on ``Activating models`` section and commit the changes with message: ``Activating
-    models``.
+      models``.
 
     - Work on ``Playing with the API`` section and commit the changes with message: ``Playing with
-    the API``.
+      the API``.
 
     - And push the ``tutorial01`` branch to ``origin/tutorial01`` branch. You should open the
-    repository on github and see the branch there.
+      repository on github and see the branch there.
 
     - Merge (no fast forward) (hint: $ git merge --no-ff) the ``tutorial01`` branch into ``master``
-    branch, then push to ``origin/master`` branch.
+      branch, then push to ``origin/master`` branch.
 
 #. Tutorial 02 at https://docs.djangoproject.com/en/1.5/intro/tutorial02/
 
@@ -91,7 +91,7 @@ Push the first commit there on github (Initial setup).
     - Checkout ``tutorial02`` branch
 
     - Skip ``Activate the admin site`` section as admin is activated by teracy's project layout on
-    ``settings/dev.py``.
+      ``settings/dev.py``.
 
     - Work on ``Make the poll app modifiable in the admin`` section and commit the changes.
 

@@ -1,4 +1,4 @@
-Most used git commands
+Most Used Git Commands
 ======================
 
 New git users usually get confused with new concepts and workflow. To make it easy, this
@@ -30,6 +30,7 @@ I will have the same repository with full permission at https://github.com/hoatl
 with git address: git@github.com:hoatle/teracy-django-boilerplate.git. And I need the following
 commands to clone:
 ::
+
     $ ws
     $ cd personal
     $ git clone git@github.com:hoatle/teracy-django-boilerplate.git
@@ -60,6 +61,7 @@ machine" (feature) which depends on an issue that phuonglm is working on: the is
 the title: "add prod virtual machine with basic packages" (feature). So I need to add phuonglm's
 repository (for example, https://github.com/phuonglm/teracy-django-boilerplate.git):
 ::
+
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
     $ git fetch phuonglm
 
@@ -94,6 +96,7 @@ working branch to make any changes on it.
 For example, I'm going to work on the issue #1 with the title: "Cleaning up the project" of type
 enhancement:
 ::
+
     $ ws
     $ cd personal/teracy
     $ git fetch upstream
@@ -109,10 +112,12 @@ we push this branch into the ``origin`` repository (full permission repository).
 
 To see the list of branches on your local repository::
 ::
+
     $ git branch
 
 You could see something similar like this:
 ::
+
   * docs_10_useful_most_used_git_commands
     docs_5_workflow
     enhance_4_simpler_entry_access
@@ -127,6 +132,7 @@ The asterisk symbol (*) shows what branch you're currently working on.
 
 The switch to another branch:
 ::
+
     $ git checkout branch_name
 
 Fetch
@@ -135,6 +141,7 @@ Fetch
 Fetching is usually used to get new updated from a remote repository and you could ``rebase`` or
 ``merge`` remote branch's updates into your current working branch on local repository.
 ::
+
     $ git fetch upstream
     $ git merge upstream/develop
 
@@ -156,6 +163,7 @@ after you add files into committed list, ``$ git diff --cached`` will help.
 
 Note: You should enable the color mode of git, it's easier to see the changes with colors.
 ::
+
     $ git config --global color.ui true
 
 
@@ -165,6 +173,7 @@ Commit
 When making changes to local repository, these changes must be tracked and committed. To see the
 changes, use ``$ git status``. To commit the changes:
 ::
+
     $ git add .
     $ git commit -a
 
@@ -174,6 +183,7 @@ then ``:wq`` to write changes and quit).
 
 There are cases when you missed something and you want to add more changes into the latest commit:
 ::
+
     $ git add .
     $ git commit --amend
 
@@ -196,6 +206,7 @@ Log
 
     To search commit logs matching a specific pattern, use:
     ::
+
         $ git log -g --grep=<pattern>
 
 
@@ -204,6 +215,7 @@ Push
 
 After some commits and you would like to push into ``origin`` repository::
 ::
+
     $ git push origin enhance_1_project_clean_up
 
 Sometimes when there is diversity (different git commit list between local and remote branch),
@@ -211,6 +223,7 @@ git does not allow you to push. In that case, you need to ``force push`` (means 
 to have you local changes put into the ``origin`` repository, keep only commit history of local
 repository.
 ::
+
     $ git push origin enhance_1_project_clean_up -f
 
 What if you want to keep the ``origin`` and makes the local changes to resolve different commit
@@ -234,6 +247,7 @@ Rebase
 branch should be reorganized and appending to the remote repository. You usually ``rebase`` to get
 the latest changes from ``upstream`` repository.
 ::
+
     $ git fetch upstream
     $ git rebase upstream/develop
 
@@ -262,10 +276,12 @@ Reset
 ``Reset`` means that you could set the working branch to a specific commit history and see all the
 changes.
 ::
+
     $ git reset HEAD~<index>
 
 or:
 ::
+
     $ git reset <commit_hash_id>
 
 This is useful to view all the changes from some commits of your collaborators for an issue.
@@ -288,6 +304,7 @@ Stash
     branch instead of committing these changes to switch to another branch. ``stash`` is a stack like.
     Usually, you need to store all the changes:
     ::
+
         $ git add .
         $ git stash
 
@@ -304,10 +321,10 @@ Stash
     When switching back the repository having stash, you could get the changes from ``stash``.
 
     - ``$ git stash apply`` get the latest stashed content and apply changes to current working
-    branch.
+      branch.
 
     - ``$ git stash apply stash@{<index>}`` to apply changes from a specific stash into current
-    working branch.
+      working branch.
 
 #. drop it
 
@@ -329,7 +346,7 @@ problem solving step, that's why you need ``squash``.
 To squash: ``git rebase -i HEAD~<index>`` and use ``s`` instead of ``pick`` for the commits you want
 to squash.
 
-Learn more
+Learn More
 ----------
 
 - By ``$ git --help``, ``$ git <command> --help`` or ``$ man git-<command>``

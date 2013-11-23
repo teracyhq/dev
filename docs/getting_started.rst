@@ -32,6 +32,7 @@ to the next alternative instruction by installing required packages manually.
 
 Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
 ::
+
     $ cd /tmp
     $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
     $ bash setup_working_env_chef.sh
@@ -59,18 +60,22 @@ Environment Up
 --------------
 
 - Have ``git`` installed:
+
 Open your terminal window and type:
 ::
+
     $ cd ~/
     $ git clone https://github.com/teracy-official/dev.git teracy-dev
     $ cd teracy-dev
     $ vagrant up
 
 - Or no ``git`` installed:
+
 Download the repository at https://github.com/teracy-official/dev/archive/master.zip and
-unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
+unzip with named ``teracy-dev`` at ``~/`` (\*unix) or ``C:\Documents and Settings\<user_name>``
 (Windows). Then open your terminal window:
 ::
+
     $ cd ~/
     $ cd teracy-dev
     $ vagrant up
@@ -83,6 +88,7 @@ For example: ``C:\Documents and Settings\<user_name>``, this is the place you wi
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
+
     [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
     [2013-07-01T09:57:11+00:00] INFO: Running report handlers
     [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
@@ -90,6 +96,7 @@ You should see the following similar messages at the end of ``$ vagrant up``:
 Last but not least, ``$ vagrant ssh`` to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
 ::
+
     Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
      * Documentation:  https://help.ubuntu.com/

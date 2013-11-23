@@ -24,11 +24,13 @@ yet.
 
 After the provision process, `$ vagrant ssh` and you should verify if it works by:
 ::
+
     $ ruby --version
 
 
 And you should see something like this:
 ::
+
     ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
 
 Congratulations, you can do all Ruby related stuffs now!
