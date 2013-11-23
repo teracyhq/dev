@@ -117,7 +117,7 @@ and qualification, please contact us to see if we are meant to work together wit
   share and leverage community's strengths.
 
 
-Join and work with us?
+Join And Work With Us?
 ----------------------
 
 We are starting up and have tons of interesting projects waiting for you. We need you - young
@@ -152,7 +152,7 @@ even you could arrange the work time as you desire. All you need to do is just *
 now**!
 
 
-What will you get after the training program?
+What Will You Get After The Training Program?
 ---------------------------------------------
 
 Everyone will know:
@@ -178,6 +178,7 @@ If you join ``Docs writer`` training program, you will know how to use ``reStruc
 
 Why ``teracy`` name?
 --------------------
+
 tera- + racy = teracy /ˈtɛrəsɪ/. That's how I came up with this name.
 
 The name could be understood as: "1,000,000,000,000 times of vigorous, lively, energetic,
