@@ -7,15 +7,17 @@ Setup
 Follow :doc:`getting_started` guide.
 
 
-Start a Django project
+Start A Django Project
 ----------------------
 
 To start a tutorial Django project, you must run it under a virtual Python environment.
 ::
+
     $ mkvirtualenv tutorial
 
 You should see the following similar messages:
 ::
+
     New python executable in tutorial/bin/python
     Installing setuptools............done.
     Installing pip...............done.
@@ -25,6 +27,7 @@ You're now under ``tutorial`` virtual Python environment. ``$ deactive`` to esca
 
 Let's continue to setup the ``tutorial`` project:
 ::
+
     $ ws
     $ cd personal
     $ mkdir tutorial
@@ -44,6 +47,7 @@ When ``syncdb``, you should create a super account to access the admin page late
 
 You should see the following similar messages:
 ::
+
     Validating models...
 
     0 errors found
@@ -58,7 +62,7 @@ created super account.
 Sweet, everything is cool now! However, the project does not do anything much yet. You need to
 create Django applications for it.
 
-Start a Django application
+Start A Django Application
 --------------------------
 
 Let's open the browser at http://localhost:8000, we will see a 404 error and it's normal.
@@ -83,14 +87,17 @@ on our project.
 
 Add dependency to ``requirements/project/dev.txt`` as follow:
 ::
+
     teracy-django-html5-boilerplate
 
 Then install it:
 ::
+
     pip install -r requirements/dev.txt
 
 You should see something like this:
 ::
+
     Installing collected packages: teracy-django-html5-boilerplate
       Running setup.py install for teracy-django-html5-boilerplate
 
@@ -102,6 +109,7 @@ You should see something like this:
 
 Install the teracy-html5boilerplate application to ``settings/project/dev.py``:
 ::
+
     INSTALLED_APPS += (
         'teracy.html5boilerplate',
     )
@@ -112,6 +120,7 @@ We need to create ``hello`` application now.
 A specific Django application should be put under ``apps`` directory. We're going to create
 ``hello`` application:
 ::
+
     $ ws
     $ workon tutorial
     $ cd personal/tutorial/apps
@@ -120,6 +129,7 @@ A specific Django application should be put under ``apps`` directory. We're goin
 Add `hello` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending the following
 configuration:
 ::
+
     INSTALLED_APPS += (
         'teracy.html5boilerplate',
         'apps.hello',
@@ -130,6 +140,7 @@ configuration:
 Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following
 content:
 ::
+
     {% extends 'html5boilerplate/base.html' %}
 
     {% block body_content %}
@@ -139,6 +150,7 @@ content:
 
 Add ``HomeTemplateView`` to ``apps/hello/views.py``:
 ::
+
     from django.views.generic import TemplateView
 
 
@@ -147,6 +159,7 @@ Add ``HomeTemplateView`` to ``apps/hello/views.py``:
 
 Create ``apps/hello/urls.py`` and configure ``HomeTemplateView`` with following content:
 ::
+
     from django.conf.urls import url, patterns
 
     from apps.hello.views import HomeTemplateView
@@ -159,6 +172,7 @@ Create ``apps/hello/urls.py`` and configure ``HomeTemplateView`` with following 
 
 Configure the root url on ``urls/project/dev.py`` by adding the following content:
 ::
+
     urlpatterns += (
         url(r'', include('apps.hello.urls')),
     )
