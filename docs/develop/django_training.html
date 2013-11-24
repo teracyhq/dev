@@ -86,16 +86,18 @@ $ cd personal
 $ mkdir tutorial
 $ cd tutorial
 $ git init
-$ git remote add teracy https://github.com/teracy-official/django-boilerplate.git
-$ git fetch teracy
-$ git merge teracy/master
-$ pip install -r requirements/dev.txt
-$ ./manage.py syncdb
-$ ./manage.py runserver 0.0.0.0:8000</pre>
+$ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
+$ git fetch djbp
+$ git merge djbp/master
+$ pip install -r requirements/project/dev.txt
+$ ./manage.py syncdb</pre>
 </div>
+<p>When <tt class="docutils literal"><span class="pre">syncdb</span></tt>, you should create a super account to access the admin page later.</p>
 <p>The project <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a> will help us to get
 project development booted with a Django project template (boilerplate) of best practices.</p>
-<p>When <tt class="docutils literal"><span class="pre">syncdb</span></tt>, you should create a super account to access the admin page later.</p>
+<p>Let&#8217;s run the server now:</p>
+<div class="highlight-python"><pre>$ ./manage.py runserver 0.0.0.0:8000</pre>
+</div>
 <p>You should see the following similar messages:</p>
 <div class="highlight-python"><pre>Validating models...
 
@@ -105,7 +107,7 @@ Django version 1.5.1, using settings 'settings.dev'
 Development server is running at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.</pre>
 </div>
-<p>Now open your browser, yes, your browser :-) with <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> and login with your
+<p>Now open your browser, yes, your browser :-) at <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> and login with your
 created super account.</p>
 <p>Sweet, everything is cool now! However, the project does not do anything much yet. You need to
 create Django applications for it.</p>
@@ -127,11 +129,10 @@ it&#8217;s a Django wrapper application that includes <tt class="docutils litera
 <tt class="docutils literal"><span class="pre">base.html</span></tt> for starting any web application with <tt class="docutils literal"><span class="pre">html5-boilerplate</span></tt>. So we need to install it
 on our project.</p>
 <p>Add dependency to <tt class="docutils literal"><span class="pre">requirements/project/dev.txt</span></tt> as follow:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">teracy</span><span class="o">-</span><span class="n">django</span><span class="o">-</span><span class="n">html5</span><span class="o">-</span><span class="n">boilerplate</span>
-</pre></div>
+<div class="highlight-python"><pre>teracy-django-html5-boilerplate==0.3.0</pre>
 </div>
 <p>Then install it:</p>
-<div class="highlight-python"><pre>pip install -r requirements/dev.txt</pre>
+<div class="highlight-python"><pre>pip install -r requirements/project/dev.txt</pre>
 </div>
 <p>You should see something like this:</p>
 <div class="highlight-python"><pre>Installing collected packages: teracy-django-html5-boilerplate
@@ -157,15 +158,15 @@ $ workon tutorial
 $ cd personal/tutorial/apps
 $ ../manage.py startapp hello</pre>
 </div>
-<p>Add <cite>hello</cite> application to <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> on <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt> by appending the following
-configuration:</p>
+<p>Add <cite>hello</cite> application to <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> on <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt> by appending the
+following configuration:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
     <span class="s">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
     <span class="s">&#39;apps.hello&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create <tt class="docutils literal"><span class="pre">home.html</span></tt> template under <tt class="docutils literal"><span class="pre">apps/hello/templates/hello</span></tt> directory with following
+<p>Create <tt class="docutils literal"><span class="pre">home.html</span></tt> template under <tt class="docutils literal"><span class="pre">apps/hello/templates/hello</span></tt> directory with the following
 content:</p>
 <div class="highlight-python"><pre>{% extends 'html5boilerplate/base.html' %}
 
