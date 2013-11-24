@@ -33,17 +33,22 @@ Let's continue to setup the ``tutorial`` project:
     $ mkdir tutorial
     $ cd tutorial
     $ git init
-    $ git remote add teracy https://github.com/teracy-official/django-boilerplate.git
-    $ git fetch teracy
-    $ git merge teracy/master
-    $ pip install -r requirements/dev.txt
+    $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
+    $ git fetch djbp
+    $ git merge djbp/master
+    $ pip install -r requirements/project/dev.txt
     $ ./manage.py syncdb
-    $ ./manage.py runserver 0.0.0.0:8000
+
+When ``syncdb``, you should create a super account to access the admin page later.
 
 The project https://github.com/teracy-official/django-boilerplate will help us to get
 project development booted with a Django project template (boilerplate) of best practices.
 
-When ``syncdb``, you should create a super account to access the admin page later.
+Let's run the server now:
+::
+
+    $ ./manage.py runserver 0.0.0.0:8000
+
 
 You should see the following similar messages:
 ::
@@ -56,7 +61,7 @@ You should see the following similar messages:
     Development server is running at http://0.0.0.0:8000/
     Quit the server with CONTROL-C.
 
-Now open your browser, yes, your browser :-) with http://localhost:8000/admin and login with your
+Now open your browser, yes, your browser :-) at http://localhost:8000/admin and login with your
 created super account.
 
 Sweet, everything is cool now! However, the project does not do anything much yet. You need to
@@ -88,12 +93,12 @@ on our project.
 Add dependency to ``requirements/project/dev.txt`` as follow:
 ::
 
-    teracy-django-html5-boilerplate
+    teracy-django-html5-boilerplate==0.3.0
 
 Then install it:
 ::
 
-    pip install -r requirements/dev.txt
+    pip install -r requirements/project/dev.txt
 
 You should see something like this:
 ::
@@ -126,8 +131,8 @@ A specific Django application should be put under ``apps`` directory. We're goin
     $ cd personal/tutorial/apps
     $ ../manage.py startapp hello
 
-Add `hello` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending the following
-configuration:
+Add `hello` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending the
+following configuration:
 ::
 
     INSTALLED_APPS += (
@@ -137,7 +142,7 @@ configuration:
 
 
 
-Create ``home.html`` template under ``apps/hello/templates/hello`` directory with following
+Create ``home.html`` template under ``apps/hello/templates/hello`` directory with the following
 content:
 ::
 
