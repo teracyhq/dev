@@ -51,9 +51,7 @@ You need to finish 2 (or 3 on Windows) following required simple steps:
 3. [**Required on Windows only**] Install latest ``git`` version at http://git-scm.com/ to use
    ``Git Bash`` as a terminal.
 
-Notice: You need to install exactly ``vagrant`` **v1.2.7** and ``virtualbox`` **v4.2.10** as it
-was stable enough with our intensive usage and support. We use and run 64 bit architecture every
-day, however, 32 bit archirecture is expected to work, too.
+Notice: We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.
 
 
 Environment Up
@@ -92,6 +90,10 @@ You should see the following similar messages at the end of ``$ vagrant up``:
     [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
     [2013-07-01T09:57:11+00:00] INFO: Running report handlers
     [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+
+Notice:
+1. We support for vagrant 1.5.1, virtualbox 4.3.8 AND vagrant 1.5.4, virtualbox 4.3.10
+2. Please note that virtualbox has an installation issue which is reported here ( https://www.virtualbox.org/ticket/4140 ). If you $ vagrant up but can not start virtual box, pls find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and re-install it, it will fix the issues.
 
 Last but not least, ``$ vagrant ssh`` to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
