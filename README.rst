@@ -213,7 +213,7 @@ terminal window:
 into ``teracy-dev/home/.ssh``.
 
 Some notes for troubleshooting
---------------------------
+------------------------------
 
 1. Upgrade support for vagrant 1.5.1, virtualbox 4.3.8 AND vagrant 1.5.4, virtualbox 4.3.10
 2. Please note that virtualbox has an installation issue which is reported here ( https://www.virtualbox.org/ticket/4140 ). 

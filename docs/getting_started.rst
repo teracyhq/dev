@@ -91,9 +91,16 @@ You should see the following similar messages at the end of ``$ vagrant up``:
     [2013-07-01T09:57:11+00:00] INFO: Running report handlers
     [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 
-Notice:
-1. We support for vagrant 1.5.1, virtualbox 4.3.8 AND vagrant 1.5.4, virtualbox 4.3.10
-2. Please note that virtualbox has an installation issue which is reported here ( https://www.virtualbox.org/ticket/4140 ). If you $ vagrant up but can not start virtual box, pls find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and re-install it, it will fix the issues.
+Recommended:
+1. We support for Vagrant 1.5.0 and higher, VirtualBox 4.0 and higher.
+Please consider to update to latest version of Vagrant (1.6.2) and VirtualBox (4.3.12) which many issues 
+are fixed and run faster.
+For more details, please review the release note of VirtualBox (https://www.virtualbox.org/wiki/Changelog)
+
+2. Please note that virtualbox has an installation issue which is reported here 
+(https://www.virtualbox.org/ticket/4140). 
+If you $ vagrant up but can not start virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation 
+directory and re-install it, it will fix the issues.
 
 Last but not least, ``$ vagrant ssh`` to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
