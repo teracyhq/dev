@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.3.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -71,17 +70,19 @@
 <div class="section" id="start-a-django-project">
 <h2>Start A Django Project<a class="headerlink" href="#start-a-django-project" title="Permalink to this headline">¶</a></h2>
 <p>To start a tutorial Django project, you must run it under a virtual Python environment.</p>
-<div class="highlight-python"><pre>$ mkvirtualenv tutorial</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ mkvirtualenv tutorial
+</pre></div>
 </div>
 <p>You should see the following similar messages:</p>
-<div class="highlight-python"><pre>New python executable in tutorial/bin/python
+<div class="highlight-python"><div class="highlight"><pre>New python executable in tutorial/bin/python
 Installing setuptools............done.
-Installing pip...............done.</pre>
+Installing pip...............done.
+</pre></div>
 </div>
 <p>You&#8217;re now under <tt class="docutils literal"><span class="pre">tutorial</span></tt> virtual Python environment. <tt class="docutils literal"><span class="pre">$</span> <span class="pre">deactive</span></tt> to escape it or
 <tt class="docutils literal"><span class="pre">$</span> <span class="pre">workon</span> <span class="pre">tutorial</span></tt> to be under <tt class="docutils literal"><span class="pre">tutorial</span></tt> virtual Python environment.</p>
 <p>Let&#8217;s continue to setup the <tt class="docutils literal"><span class="pre">tutorial</span></tt> project:</p>
-<div class="highlight-python"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal
 $ mkdir tutorial
 $ cd tutorial
@@ -90,22 +91,25 @@ $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
 $ git fetch djbp
 $ git merge djbp/master
 $ pip install -r requirements/project/dev.txt
-$ ./manage.py syncdb</pre>
+$ ./manage.py syncdb
+</pre></div>
 </div>
 <p>When <tt class="docutils literal"><span class="pre">syncdb</span></tt>, you should create a super account to access the admin page later.</p>
 <p>The project <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a> will help us to get
 project development booted with a Django project template (boilerplate) of best practices.</p>
 <p>Let&#8217;s run the server now:</p>
-<div class="highlight-python"><pre>$ ./manage.py runserver 0.0.0.0:8000</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ ./manage.py runserver 0.0.0.0:8000
+</pre></div>
 </div>
 <p>You should see the following similar messages:</p>
-<div class="highlight-python"><pre>Validating models...
+<div class="highlight-python"><div class="highlight"><pre>Validating models...
 
 0 errors found
 July 01, 2013 - 10:44:01
-Django version 1.5.1, using settings 'settings.dev'
+Django version 1.5.1, using settings &#39;settings.dev&#39;
 Development server is running at http://0.0.0.0:8000/
-Quit the server with CONTROL-C.</pre>
+Quit the server with CONTROL-C.
+</pre></div>
 </div>
 <p>Now open your browser, yes, your browser :-) at <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> and login with your
 created super account.</p>
@@ -129,20 +133,23 @@ it&#8217;s a Django wrapper application that includes <tt class="docutils litera
 <tt class="docutils literal"><span class="pre">base.html</span></tt> for starting any web application with <tt class="docutils literal"><span class="pre">html5-boilerplate</span></tt>. So we need to install it
 on our project.</p>
 <p>Add dependency to <tt class="docutils literal"><span class="pre">requirements/project/dev.txt</span></tt> as follow:</p>
-<div class="highlight-python"><pre>teracy-django-html5-boilerplate==0.3.0</pre>
+<div class="highlight-python"><div class="highlight"><pre>teracy-django-html5-boilerplate==0.3.0
+</pre></div>
 </div>
 <p>Then install it:</p>
-<div class="highlight-python"><pre>pip install -r requirements/project/dev.txt</pre>
+<div class="highlight-python"><div class="highlight"><pre>pip install -r requirements/project/dev.txt
+</pre></div>
 </div>
 <p>You should see something like this:</p>
-<div class="highlight-python"><pre>Installing collected packages: teracy-django-html5-boilerplate
+<div class="highlight-python"><div class="highlight"><pre>Installing collected packages: teracy-django-html5-boilerplate
   Running setup.py install for teracy-django-html5-boilerplate
 
     Skipping installation of /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy/__init__.py (namespace package)
     Skipping installation of /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy/__init__.pyc (namespace package)
     Installing /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy_django_html5_boilerplate-0.1.0-py2.7-nspkg.pth
 Successfully installed teracy-django-html5-boilerplate
-Cleaning up...</pre>
+Cleaning up...
+</pre></div>
 </div>
 <p>Install the teracy-html5boilerplate application to <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
@@ -153,10 +160,11 @@ Cleaning up...</pre>
 <p>We need to create <tt class="docutils literal"><span class="pre">hello</span></tt> application now.</p>
 <p>A specific Django application should be put under <tt class="docutils literal"><span class="pre">apps</span></tt> directory. We&#8217;re going to create
 <tt class="docutils literal"><span class="pre">hello</span></tt> application:</p>
-<div class="highlight-python"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre>$ ws
 $ workon tutorial
 $ cd personal/tutorial/apps
-$ ../manage.py startapp hello</pre>
+$ ../manage.py startapp hello
+</pre></div>
 </div>
 <p>Add <cite>hello</cite> application to <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> on <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt> by appending the
 following configuration:</p>
@@ -168,12 +176,13 @@ following configuration:</p>
 </div>
 <p>Create <tt class="docutils literal"><span class="pre">home.html</span></tt> template under <tt class="docutils literal"><span class="pre">apps/hello/templates/hello</span></tt> directory with the following
 content:</p>
-<div class="highlight-python"><pre>{% extends 'html5boilerplate/base.html' %}
+<div class="highlight-python"><div class="highlight"><pre>{% extends &#39;html5boilerplate/base.html&#39; %}
 
 {% block body_content %}
     &lt;h1&gt;Hello World!&lt;/h1&gt;
     &lt;h2&gt;Welcome to &lt;strong&gt;teracy-dev&lt;/strong&gt; - get development fun!&lt;/h2&gt;
-{% endblock %}</pre>
+{% endblock %}
+</pre></div>
 </div>
 <p>Add <tt class="docutils literal"><span class="pre">HomeTemplateView</span></tt> to <tt class="docutils literal"><span class="pre">apps/hello/views.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
@@ -273,7 +282,7 @@ applications for this <tt class="docutils literal"><span class="pre">tutorial</s
     </div>
     <div class="footer">
         &copy; Copyright 2013, Teracy, Inc..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

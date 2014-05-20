@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.3.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -89,15 +88,16 @@ See related link: <a class="reference external" href="http://datasift.github.io/
 <li>Schema:</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><pre>version ::= major'.'minor'.'patch('-'prerelease)?('+'metadata)?
+<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;+&#39;metadata)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
-prerelease ::= identifier('.'identifier)+
-metadata ::= identifier('.'identifier)+
-identifier ::= (alpha|digit|'-')
+prerelease ::= identifier(&#39;.&#39;identifier)+
+metadata ::= identifier(&#39;.&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
 digit ::= [0..9]
-alpha ::= [a..zA..Z]</pre>
+alpha ::= [a..zA..Z]
+</pre></div>
 </div>
 <ol class="loweralpha simple" start="2">
 <li>Prerelease tags:</li>
@@ -141,15 +141,16 @@ released unless there is a last minute bug found after test campaigns.</li>
 <li>Schema</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><pre>version ::= major'.'minor'.'patch('-'prerelease)?('-'postrelease)?
+<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;-&#39;postrelease)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
-prerelease ::= identifier('-'identifier)+
-postrelease ::= identifier('-'identifier)+
-identifier ::= (alpha|digit|'-')
+prerelease ::= identifier(&#39;-&#39;identifier)+
+postrelease ::= identifier(&#39;-&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
 digit ::= [0..9]
-alpha ::= [a..zA..Z]</pre>
+alpha ::= [a..zA..Z]
+</pre></div>
 </div>
 <ol class="loweralpha simple" start="2">
 <li>Prerelease tags</li>
@@ -168,8 +169,9 @@ alpha ::= [a..zA..Z]</pre>
 <li>Continuous build metadata</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><pre>version ::= major'.'minor'.'patch('-'prerelese)?'-dev-'YYYYMMDD.hhmmss('-'buildnumber)?
-buildnumber ::= digit+</pre>
+<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelese)?&#39;-dev-&#39;YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+buildnumber ::= digit+
+</pre></div>
 </div>
 <ul class="simple">
 <li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev-20150926.101010</span></tt></li>
@@ -217,15 +219,16 @@ install the latest staging version of a specified package name.</li>
 <li>Schema</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><pre>version ::= major'.'minor'.'path('-'prerelease)('-'postrelease)?
+<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;path(&#39;-&#39;prerelease)(&#39;-&#39;postrelease)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
-prerelease ::= identifier('-'identifier)+
-postrelease ::= identifier('-'identifier)+
-identifier ::= (alpha|digit|'-')
+prerelease ::= identifier(&#39;-&#39;identifier)+
+postrelease ::= identifier(&#39;-&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
 digit ::= [0..9]
-alpha ::= [a..zA..Z]</pre>
+alpha ::= [a..zA..Z]
+</pre></div>
 </div>
 <ol class="loweralpha simple" start="2">
 <li>Prerelease tags</li>
@@ -244,8 +247,9 @@ alpha ::= [a..zA..Z]</pre>
 <li>Continuous build metadata</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><pre>version ::= major'.'minor'.'patch('-'prerelease)?-YYYYMMDD.hhmmss('-'buildnumber)?
-buildnumber ::= digit+</pre>
+<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?-YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+buildnumber ::= digit+
+</pre></div>
 </div>
 <ul class="simple">
 <li>Precedence: <tt class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-20150926.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span></tt></li>
@@ -326,7 +330,7 @@ buildnumber ::= digit+</pre>
     </div>
     <div class="footer">
         &copy; Copyright 2013, Teracy, Inc..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

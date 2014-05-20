@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.3.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -86,11 +85,12 @@ clone your forked repository into local hard drive to work on it.</p>
 I will have the same repository with full permission at <a class="reference external" href="https://github.com/hoatle/teracy-django-boilerplate">https://github.com/hoatle/teracy-django-boilerplate</a>
 with git address: <a class="reference external" href="mailto:git&#37;&#52;&#48;github&#46;com">git<span>&#64;</span>github<span>&#46;</span>com</a>:hoatle/teracy-django-boilerplate.git. And I need the following
 commands to clone:</p>
-<div class="highlight-python"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal
 $ git clone git@github.com:hoatle/teracy-django-boilerplate.git
 $ git remote add upstream https://github.com/teracy-official/teracy-django-boilerplate.git
-$ git fetch upstream</pre>
+$ git fetch upstream
+</pre></div>
 </div>
 <p>By convention, your full permission repository has <tt class="docutils literal"><span class="pre">origin</span></tt> remote name, <tt class="docutils literal"><span class="pre">upstream</span></tt> remote name
 is used to track updated from official repository.</p>
@@ -111,8 +111,9 @@ other collaborators&#8217; remote repositories.</p>
 machine&#8221; (feature) which depends on an issue that phuonglm is working on: the issue #2 with
 the title: &#8220;add prod virtual machine with basic packages&#8221; (feature). So I need to add phuonglm&#8217;s
 repository (for example, <a class="reference external" href="https://github.com/phuonglm/teracy-django-boilerplate.git">https://github.com/phuonglm/teracy-django-boilerplate.git</a>):</p>
-<div class="highlight-python"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
-$ git fetch phuonglm</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
+$ git fetch phuonglm
+</pre></div>
 </div>
 <ol class="arabic">
 <li><p class="first">remote add</p>
@@ -149,11 +150,12 @@ track of it.</p>
 working branch to make any changes on it.</p>
 <p>For example, I&#8217;m going to work on the issue #1 with the title: &#8220;Cleaning up the project&#8221; of type
 enhancement:</p>
-<div class="highlight-python"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal/teracy
 $ git fetch upstream
 $ git checkout upstream/develop -b enhance_1_project_clean_up
-$ git push origin enhance_1_project_clean_up</pre>
+$ git push origin enhance_1_project_clean_up
+</pre></div>
 </div>
 <p>What do the above commands do? First, we need to <tt class="docutils literal"><span class="pre">cd</span></tt> to the working repository. Then
 get the latest updates from <tt class="docutils literal"><span class="pre">upstream</span></tt> repository (official repository). Then branch off (copy)
@@ -163,31 +165,35 @@ we push this branch into the <tt class="docutils literal"><span class="pre">orig
 <li>List branches</li>
 </ol>
 <p>To see the list of branches on your local repository::</p>
-<div class="highlight-python"><pre>$ git branch</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git branch
+</pre></div>
 </div>
 <p>You could see something similar like this:</p>
-<div class="highlight-python"><pre>* docs_10_useful_most_used_git_commands
+<div class="highlight-python"><div class="highlight"><pre>* docs_10_useful_most_used_git_commands
   docs_5_workflow
   enhance_4_simpler_entry_access
   feature_1_basic_deployment_virtual_machine_deps_4
   feature_8_ssh_keys_configuration_virtual_machine
   master
-  origin/enhance_4_simpler_entry_access</pre>
+  origin/enhance_4_simpler_entry_access
+</pre></div>
 </div>
 <p>The asterisk symbol (*) shows what branch you&#8217;re currently working on.</p>
 <ol class="arabic simple" start="3">
 <li>Switch branches</li>
 </ol>
 <p>The switch to another branch:</p>
-<div class="highlight-python"><pre>$ git checkout branch_name</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git checkout branch_name
+</pre></div>
 </div>
 </div>
 <div class="section" id="fetch">
 <h2>Fetch<a class="headerlink" href="#fetch" title="Permalink to this headline">¶</a></h2>
 <p>Fetching is usually used to get new updated from a remote repository and you could <tt class="docutils literal"><span class="pre">rebase</span></tt> or
 <tt class="docutils literal"><span class="pre">merge</span></tt> remote branch&#8217;s updates into your current working branch on local repository.</p>
-<div class="highlight-python"><pre>$ git fetch upstream
-$ git merge upstream/develop</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git merge upstream/develop
+</pre></div>
 </div>
 </div>
 <div class="section" id="status">
@@ -202,22 +208,25 @@ suggestions command to add/ remove/ discard changes.</p>
 the differences before and after your changes, use <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">diff</span></tt>. This does not show the diff
 after you add files into committed list, <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">diff</span> <span class="pre">--cached</span></tt> will help.</p>
 <p>Note: You should enable the color mode of git, it&#8217;s easier to see the changes with colors.</p>
-<div class="highlight-python"><pre>$ git config --global color.ui true</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git config --global color.ui true
+</pre></div>
 </div>
 </div>
 <div class="section" id="commit">
 <h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
 <p>When making changes to local repository, these changes must be tracked and committed. To see the
 changes, use <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></tt>. To commit the changes:</p>
-<div class="highlight-python"><pre>$ git add .
-$ git commit -a</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git add .
+$ git commit -a
+</pre></div>
 </div>
 <p>And the terminal will open a default editor (usually <tt class="docutils literal"><span class="pre">vim</span></tt> on linux, mac), add your commit
 message, write and quite (vim: press [i] to enter edit mode, then [ESC] to go into view mode,
 then <tt class="docutils literal"><span class="pre">:wq</span></tt> to write changes and quit).</p>
 <p>There are cases when you missed something and you want to add more changes into the latest commit:</p>
-<div class="highlight-python"><pre>$ git add .
-$ git commit --amend</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git add .
+$ git commit --amend
+</pre></div>
 </div>
 <p><tt class="docutils literal"><span class="pre">commit</span> <span class="pre">--amend</span></tt> will allow you to add more changes into the latest commit and edit the commit
 message. Even if you don&#8217;t want to add any changes but to edit the latest commit message,
@@ -236,7 +245,8 @@ message. Even if you don&#8217;t want to add any changes but to edit the latest 
 <li><p class="first">Search</p>
 <blockquote>
 <div><p>To search commit logs matching a specific pattern, use:</p>
-<div class="highlight-python"><pre>$ git log -g --grep=&lt;pattern&gt;</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git log -g --grep=&lt;pattern&gt;
+</pre></div>
 </div>
 </div></blockquote>
 </li>
@@ -245,13 +255,15 @@ message. Even if you don&#8217;t want to add any changes but to edit the latest 
 <div class="section" id="push">
 <h2>Push<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
 <p>After some commits and you would like to push into <tt class="docutils literal"><span class="pre">origin</span></tt> repository::</p>
-<div class="highlight-python"><pre>$ git push origin enhance_1_project_clean_up</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git push origin enhance_1_project_clean_up
+</pre></div>
 </div>
 <p>Sometimes when there is diversity (different git commit list between local and remote branch),
 git does not allow you to push. In that case, you need to <tt class="docutils literal"><span class="pre">force</span> <span class="pre">push</span></tt> (means that you want
 to have you local changes put into the <tt class="docutils literal"><span class="pre">origin</span></tt> repository, keep only commit history of local
 repository.</p>
-<div class="highlight-python"><pre>$ git push origin enhance_1_project_clean_up -f</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git push origin enhance_1_project_clean_up -f
+</pre></div>
 </div>
 <p>What if you want to keep the <tt class="docutils literal"><span class="pre">origin</span></tt> and makes the local changes to resolve different commit
 list? In that case, you could use <tt class="docutils literal"><span class="pre">rebase</span></tt> to make the history be fast-forwarded.</p>
@@ -268,8 +280,9 @@ use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">
 <p><tt class="docutils literal"><span class="pre">rebase</span></tt> means that you want to keep the remote&#8217;s commit list as base, any changes of local
 branch should be reorganized and appending to the remote repository. You usually <tt class="docutils literal"><span class="pre">rebase</span></tt> to get
 the latest changes from <tt class="docutils literal"><span class="pre">upstream</span></tt> repository.</p>
-<div class="highlight-python"><pre>$ git fetch upstream
-$ git rebase upstream/develop</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git rebase upstream/develop
+</pre></div>
 </div>
 <p>If there is any conflict, resolve it, then <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></tt> and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></tt>. Do it until git
 says that you&#8217;re done. Or you could <tt class="docutils literal"><span class="pre">abort</span></tt> the <tt class="docutils literal"><span class="pre">rebase</span></tt> process by <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></tt>.
@@ -289,10 +302,12 @@ that your work is great, finished and you want your work to be merged into <tt c
 <h2>Reset<a class="headerlink" href="#reset" title="Permalink to this headline">¶</a></h2>
 <p><tt class="docutils literal"><span class="pre">Reset</span></tt> means that you could set the working branch to a specific commit history and see all the
 changes.</p>
-<div class="highlight-python"><pre>$ git reset HEAD~&lt;index&gt;</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git reset HEAD~&lt;index&gt;
+</pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-python"><pre>$ git reset &lt;commit_hash_id&gt;</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git reset &lt;commit_hash_id&gt;
+</pre></div>
 </div>
 <p>This is useful to view all the changes from some commits of your collaborators for an issue.</p>
 <ul class="simple">
@@ -311,8 +326,9 @@ current working branch to a specific commit and discard all the changes.</p>
 <div><p><tt class="docutils literal"><span class="pre">stash</span></tt> is a stack and is usually used when you want to store temporarily changes from working
 branch instead of committing these changes to switch to another branch. <tt class="docutils literal"><span class="pre">stash</span></tt> is a stack like.
 Usually, you need to store all the changes:</p>
-<div class="highlight-python"><pre>$ git add .
-$ git stash</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git add .
+$ git stash
+</pre></div>
 </div>
 </div></blockquote>
 </li>
@@ -440,7 +456,7 @@ to squash.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, Teracy, Inc..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

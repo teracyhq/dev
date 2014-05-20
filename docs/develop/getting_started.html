@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.3.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -88,24 +87,34 @@
 <p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04. If not, you need to move
 to the next alternative instruction by installing required packages manually.</p>
 <p>Install <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">virtualbox</span></tt>, <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the provided bash script below:</p>
-<div class="highlight-python"><pre>$ cd /tmp
+<div class="highlight-python"><div class="highlight"><pre>$ cd /tmp
 $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
-$ bash setup_working_env_chef.sh</pre>
+$ bash setup_working_env_chef.sh
+</pre></div>
 </div>
 </div>
 <div class="section" id="or-manual-installation">
 <h2>Or Manual Installation<a class="headerlink" href="#or-manual-installation" title="Permalink to this headline">¶</a></h2>
 <p>You need to finish 2 (or 3 on Windows) following required simple steps:</p>
 <ol class="arabic simple">
-<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.2.7</strong> at: <a class="reference external" href="http://downloads.vagrantup.com/tags/v1.2.7">http://downloads.vagrantup.com/tags/v1.2.7</a></li>
-<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.2.10</strong> at:
-<a class="reference external" href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_2">https://www.virtualbox.org/wiki/Download_Old_Builds_4_2</a></li>
+<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at: <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a></li>
+<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.12</strong> at:
+<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
 <li>[<strong>Required on Windows only</strong>] Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a> to use
 <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as a terminal.</li>
 </ol>
-<p>Notice: You need to install exactly <tt class="docutils literal"><span class="pre">vagrant</span></tt> <strong>v1.2.7</strong> and <tt class="docutils literal"><span class="pre">virtualbox</span></tt> <strong>v4.2.10</strong> as it
-was stable enough with our intensive usage and support. We use and run 64 bit architecture every
-day, however, 32 bit archirecture is expected to work, too.</p>
+<p>Notice: We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.</p>
+</div>
+<div class="section" id="recommended">
+<h2>Recommended:<a class="headerlink" href="#recommended" title="Permalink to this headline">¶</a></h2>
+<p>1. We support for Vagrant 1.5.0 and higher, VirtualBox 4.0 and higher.
+Please consider to update to latest version of Vagrant (1.6.2) and VirtualBox (4.3.12) which many issues
+are fixed and run faster.
+For more details, please review the release note of VirtualBox (<a class="reference external" href="https://www.virtualbox.org/wiki/Changelog">https://www.virtualbox.org/wiki/Changelog</a>)</p>
+<p>2. Please note that virtualbox has an installation issue which is reported here
+(<a class="reference external" href="https://www.virtualbox.org/ticket/4140">https://www.virtualbox.org/ticket/4140</a>).
+If you $ vagrant up but can not start virtual box, please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation
+directory and re-install it, it will fix the issues.</p>
 </div>
 <div class="section" id="environment-up">
 <h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
@@ -113,10 +122,11 @@ day, however, 32 bit archirecture is expected to work, too.</p>
 <li>Have <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
 </ul>
 <p>Open your terminal window and type:</p>
-<div class="highlight-python"><pre>$ cd ~/
+<div class="highlight-python"><div class="highlight"><pre>$ cd ~/
 $ git clone https://github.com/teracy-official/dev.git teracy-dev
 $ cd teracy-dev
-$ vagrant up</pre>
+$ vagrant up
+</pre></div>
 </div>
 <ul class="simple">
 <li>Or no <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
@@ -124,28 +134,41 @@ $ vagrant up</pre>
 <p>Download the repository at <a class="reference external" href="https://github.com/teracy-official/dev/archive/master.zip">https://github.com/teracy-official/dev/archive/master.zip</a> and
 unzip with named <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> at <tt class="docutils literal"><span class="pre">~/</span></tt> (*unix) or <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>
 (Windows). Then open your terminal window:</p>
-<div class="highlight-python"><pre>$ cd ~/
+<div class="highlight-python"><div class="highlight"><pre>$ cd ~/
 $ cd teracy-dev
-$ vagrant up</pre>
+$ vagrant up
+</pre></div>
 </div>
-<p>Note: The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
+<p>Note:</p>
+<p>1. The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
 For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
 <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
+<p>2. You may see the error:</p>
+<div class="highlight-python"><div class="highlight"><pre>Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
+on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH
+environmental variable.
+</pre></div>
+</div>
+<p>Please add path to VirtualBox folder to your environment variable.
+Example: in Window, add it &#8220;C:Program FilesOracleVirtualBox&#8221;.
+If the error still occur, you have to unistall and re-install VirtualBox. It will fix this error.</p>
 <p>You should see the following similar messages at the end of <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>:</p>
-<div class="highlight-python"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
+<div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
-[2013-07-01T09:57:11+00:00] INFO: Report handlers complete</pre>
+[2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+</pre></div>
 </div>
 <p>Last but not least, <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt> to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>
-<div class="highlight-python"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
+<div class="highlight-python"><div class="highlight"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
  * Documentation:  https://help.ubuntu.com/
 
 37 packages can be updated.
 18 updates are security updates.
 
-Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2</pre>
+Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
+</pre></div>
 </div>
 <p><em>Congratulations, you&#8217;re all set now!</em></p>
 </div>
@@ -163,6 +186,7 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2</pre>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
 <li><a class="reference internal" href="#or-manual-installation">Or Manual Installation</a></li>
+<li><a class="reference internal" href="#recommended">Recommended:</a></li>
 <li><a class="reference internal" href="#environment-up">Environment Up</a></li>
 </ul>
 </li>
@@ -213,7 +237,7 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2</pre>
     </div>
     <div class="footer">
         &copy; Copyright 2013, Teracy, Inc..
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>
