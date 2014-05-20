@@ -43,18 +43,28 @@ Or Manual Installation
 
 You need to finish 2 (or 3 on Windows) following required simple steps:
 
-1. Install ``vagrant`` with the version of **1.2.7** at: http://downloads.vagrantup.com/tags/v1.2.7
+1. Install ``vagrant`` with the version of **1.6.2** at: http://www.vagrantup.com/downloads.html
 
-2. Install ``virtualbox`` with the version of **4.2.10** at:
-   https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
+2. Install ``virtualbox`` with the version of **4.3.12** at:
+   https://www.virtualbox.org/wiki/Downloads
 
 3. [**Required on Windows only**] Install latest ``git`` version at http://git-scm.com/ to use
    ``Git Bash`` as a terminal.
 
-Notice: You need to install exactly ``vagrant`` **v1.2.7** and ``virtualbox`` **v4.2.10** as it
-was stable enough with our intensive usage and support. We use and run 64 bit architecture every
-day, however, 32 bit archirecture is expected to work, too.
+Notice: We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.
 
+Recommended:
+------------
+
+1. We support for Vagrant 1.5.0 and higher, VirtualBox 4.0 and higher.
+Please consider to update to latest version of Vagrant (1.6.2) and VirtualBox (4.3.12) which many issues 
+are fixed and run faster.
+For more details, please review the release note of VirtualBox (https://www.virtualbox.org/wiki/Changelog)
+
+2. Please note that virtualbox has an installation issue which is reported here 
+(https://www.virtualbox.org/ticket/4140). 
+If you $ vagrant up but can not start virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation 
+directory and re-install it, it will fix the issues.
 
 Environment Up
 --------------
@@ -81,10 +91,22 @@ unzip with named ``teracy-dev`` at ``~/`` (\*unix) or ``C:\Documents and Setting
     $ vagrant up
 
 
-Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
+Note: 
+
+1. The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
 For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
 ``teracy-dev`` directory to import projects into your text editor later for coding.
 
+2. You may see the error:
+::
+    
+    Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available 
+    on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH 
+    environmental variable.
+
+Please add path to VirtualBox folder to your environment variable.
+Example: in Window, add it "C:\Program Files\Oracle\VirtualBox".
+If the error still occur, you have to unistall and re-install VirtualBox. It will fix this error.
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
