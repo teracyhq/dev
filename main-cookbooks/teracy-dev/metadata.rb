@@ -9,8 +9,8 @@ version          '0.2.0'
 depends          'python'
 depends          'magic_shell'
 depends          'rbenv'
-depends			 'nodejs'
-depends			 'npm'
+depends          'nodejs'
+depends          'npm'
 
 recipe 'teracy::alias', "Installs useful alias for teracy's project development."
 recipe 'teracy-dev::apt', "Installs required packages for teracy' project development."
