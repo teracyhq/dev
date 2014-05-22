@@ -34,15 +34,14 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "./workspace", "/home/vagrant/workspace", :mount_options => ['dmode=777','fmode=777']
   config.vm.synced_folder "./home/.virtualenvs", "/home/vagrant/.virtualenvs"
-  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :mount_options => ['dmode=775','fmode=600']
+  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :mount_options => ['dmode=775','fmode=600'] 
 
   # ssh configuration
-  # config.ssh.forward_agent = true
+  config.ssh.forward_agent = true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-
   
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
@@ -107,13 +106,18 @@ Vagrant.configure("2") do |config|
             "prompt" => false
           }
         },
+        "nodejs" => {
+          "enabled" => true,
+          "npm" => [
+            "grunt-cli",            
+          ]
+        },
         "python" => {
           "enabled" => true, # python platform development, enabled by default
           "pip" => {
             "global" => {
               #"index-url" => "http://pypi.teracy.org/teracy/public/+simple/"
             }
-
           }
         },
         "ruby" => {
