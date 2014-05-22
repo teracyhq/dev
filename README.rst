@@ -106,29 +106,15 @@ Learn more
 
     + http://git-scm.com/book
 
-    + Please note that we support SSH Agent Forwarding by default. It means you don't have to input
-    username & password each time when work with Git like pull, push, rebase...
-    Refer the following guide to implement:
-
-        + Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
-        + Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
-
-        Important notices:
-
-        + Never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
-        (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
-
-        + If you already do that, please change your repo URL by:
-            $ git remote set-url origin (or upstream) SSH-CLone-URL
-            $ git remote show origin (or upstream) ( to check again )
-
-    Make this extra step and make your life simpler.
-
 - Vim
 
     + http://www.openvim.com/tutorial.html
 
     + https://www.shortcutfoo.com/app/tutorial/vim
+
+- Node.js
+
+    + http://nodejs.org/api/
 
 - Linux
 
@@ -137,6 +123,7 @@ Learn more
     + http://www.quora.com/Linux/What-are-some-time-saving-tips-that-every-Linux-user-should-know
 
     + http://kernelnewbies.org/
+
 
 
 Frequently asked questions
