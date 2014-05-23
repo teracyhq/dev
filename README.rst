@@ -14,7 +14,7 @@ problems you could meet with proposed solutions.
 Usage
 -----
 
-- ``$ vagrant up`` to boot the VM
+- ``$ vagrant up`` to boot the VMz
 
 - ``$ vagrant ssh`` to access the VM via SSH
 
@@ -30,7 +30,9 @@ Follow the guide at: http://dev.teracy.org/docs/develop/getting_started.html
 Configuration
 -------------
 
-All configuration is on ``Vagrantfile`` file.
+All configuration is on ``Vagrantfile`` and ``Vagrant_Config.yml`` files.
+We keep all main configurations in Vagrantfile. But actually, you should only work with Vagrant_Config file
+where allows you change every configuration of Vagrant. And we recommend that for some upgrade reasons.
 
 
 ``workspace`` directory
@@ -105,6 +107,29 @@ Learn more
 - Git
 
     + http://git-scm.com/book
+
+    + Please note that we support SSH Agent Forwarding by default. It means you don't have to input 
+    username & password each time when work with Git like pull, push, rebase...
+    Refer the following guide to implement:
+
+         + Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
+         + Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
+
+         Important notices:
+
+         + Never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+         (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
+        
+         + If you already do that, please change your repo URL by: 
+
+             $ git remote set-url origin (or upstream) SSH-CLone-URL
+             $ git remote show origin (or upstream) ( to check again )
+
+    Make this extra step and make your life simpler.
+
+- NodeJs
+
+    + http://nodejs.org/api/
 
 - Vim
 

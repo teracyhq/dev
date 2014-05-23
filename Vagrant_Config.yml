@@ -1,0 +1,75 @@
+#
+# Author:: Hoat Le <hoatlevan@gmail.com>
+# External VagrantFile Configuration
+#
+# Copyright May 2014, Teracy, Inc.
+#
+
+# Every Vagrant virtual environment requires a box, box URL to build.
+web:
+
+  box: "opscode-ubuntu-1204"
+
+  box_url: "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box"
+
+# Config sync folder, list of cookbooks, role, bags and recipe here
+vm:
+  synced_folder: [["./workspace","/home/vagrant/workspace","dmode=777","fmode=777"],
+                  ["./home/.virtualenvs", "/home/vagrant/.virtualenvs"],
+                  ["./home/.ssh", "/home/vagrant/.ssh", "dmode=775","fmode=600"]]
+
+  chef_cookbooks: ["vendor-cookbooks", "main-cookbooks"]
+
+  chef_role: "roles"
+
+  chef_bags_path: "data_bags"
+
+  chef_recipe: ["apt", "vim", "git", "teracy-dev"]
+
+# ssh configuration
+ssh:
+  forward_agent: true
+
+# custom JSON attributes for chef-solo
+teracy-dev:
+
+  workspace: ["/vagrant/workspace/readonly", "/vagrant/workspace/teracy", "/vagrant/workspace/personal"]
+
+  git:  {
+          "user" : {
+            "name" : "Teracy Dev", # replace by your name
+            "email" : "teracy-dev@teracy.com" # replace by your email
+          },
+          "color" : true, # enable color on git terminal's output
+          "commit" : {
+            "template" : true # use teracy's commit template
+          },
+          "diff" : {
+            "tool" : "vimdiff"
+          },
+          "merge" : {
+            "tool" : "vimdiff"
+          },
+          "difftool" : {
+            "prompt" : false
+          }}
+
+  nodejs: {
+          "enabled" : true,
+          "npm" : [
+            "grunt-cli",]
+          }
+
+  python: {
+          "enabled" : true, # python platform development, enabled by default
+          "pip" : {
+            "global" : {
+              #"index-url" => "http://pypi.teracy.org/teracy/public/+simple/"
+            }
+          }}
+
+  ruby: {
+          "enabled" : false # ruby platform development, disabled by default
+        }
+
+  gettext: false # false by default
