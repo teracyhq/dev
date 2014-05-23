@@ -14,7 +14,7 @@ problems you could meet with proposed solutions.
 Usage
 -----
 
-- ``$ vagrant up`` to boot the VMz
+- ``$ vagrant up`` to boot the VM
 
 - ``$ vagrant ssh`` to access the VM via SSH
 
