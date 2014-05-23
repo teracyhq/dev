@@ -30,7 +30,9 @@ Follow the guide at: http://dev.teracy.org/docs/develop/getting_started.html
 Configuration
 -------------
 
-All configuration is on ``Vagrantfile`` file.
+All configuration is on ``Vagrantfile`` and ``Vagrant_Config.yml`` files.
+We keep all main configurations in Vagrantfile. But actually, you should only work with Vagrant_Config file
+where allows you change every configuration of Vagrant. And we recommend that for some upgrade reasons.
 
 
 ``workspace`` directory
@@ -105,6 +107,10 @@ Learn more
 - Git
 
     + http://git-scm.com/book
+
+- NodeJs
+
+    + http://nodejs.org/api/
 
 - Vim
 
@@ -211,13 +217,3 @@ terminal window:
 
 5.3. Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
 into ``teracy-dev/home/.ssh``.
-
-Some notes for troubleshooting
-------------------------------
-
-1. Upgrade support for vagrant 1.5.1, virtualbox 4.3.8 AND vagrant 1.5.4, virtualbox 4.3.10
-2. Please note that virtualbox has an installation issue which is reported here 
-( https://www.virtualbox.org/ticket/4140 ). 
-If you $ vagrant up but can not start virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your 
-installation directory and re-install it, it will fix the issues.
-
