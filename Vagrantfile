@@ -2,24 +2,26 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  require 'yaml'
 
-  if File.exists? ("Vagrant_Config.yml")
-    vconfig = YAML::load_file("Vagrant_Config.yml")
+  require 'json'
+  if File.exists? ("Vagrant_Config.json")
+    file = File.read('Vagrant_Config.json')
   else
-    vconfig = YAML::load_file("Vagrant_Config_Default.yml")
+    file = File.read('Vagrant_Config_Default.json')
   end
+  
+  data_hash = JSON.parse(file)
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = vconfig['web']['box']
+  config.vm.box = data_hash["box"]
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = vconfig['web']['box_url']
+  config.vm.box_url = data_hash['box_url']
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -41,7 +43,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  vconfig['vm']['synced_folder'].each do |x|
+  data_hash['synced_folder'].each do |x|
     
     if x[2].nil? or x[3].nil?
       config.vm.synced_folder x[0], x[1]
@@ -52,7 +54,7 @@ Vagrant.configure("2") do |config|
   end
 
   # ssh configuration
-  config.ssh.forward_agent = vconfig['ssh']['forward_agent']
+  config.ssh.forward_agent = data_hash['forward_agent']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -85,23 +87,25 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = vconfig['vm']['chef_cookbooks']
-    chef.roles_path = vconfig['vm']['chef_role']
-    chef.data_bags_path = vconfig['vm']['chef_bags_path']
+    chef.cookbooks_path = data_hash['chef_cookbooks']
+    chef.roles_path = data_hash['chef_role']
+    chef.data_bags_path = data_hash['chef_bags_path']
 
-    vconfig['vm']['chef_recipe'].each do |x|
+    data_hash['chef_recipe'].each do |x|
       chef.add_recipe x
     end
    
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = {
       "teracy-dev" => {
-        "workspace" => vconfig['teracy-dev']['workspace'],
-        "git" => vconfig['teracy-dev']['git'],
-        "nodejs" => vconfig['teracy-dev']['nodejs'],
-        "python" => vconfig['teracy-dev']['python'],
-        "ruby" => vconfig['teracy-dev']['ruby'],
-        "gettext" => vconfig['teracy-dev']['gettext']
+        "workspace" => data_hash['workspace'],
+        "git" => data_hash['git'],
+        "nodejs" => data_hash['nodejs'],
+        "python" => data_hash['python'],
+        "ruby" => data_hash['ruby'],
+        "java" => data_hash['java'],
+        "maven" => data_hash['maven'],
+        "gettext" => data_hash['gettext']
       },
     }
   end
