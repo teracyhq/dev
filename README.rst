@@ -204,4 +204,4 @@ However, if you want to use new created ssh keys for Vagrant box, then you need 
 could copy your existing ssh keys into one location and it will be available in the other location.
 
 - Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
-into ``teracy-dev/home/.ssh``.
+
