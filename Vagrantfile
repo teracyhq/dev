@@ -2,16 +2,19 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  require 'yaml'
+  vconfig = YAML::load_file("Vagrant_Config.yml")
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode-ubuntu-1204"
+  config.vm.box = vconfig['web']['box']
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box"
+  config.vm.box_url = vconfig['web']['box_url']
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -32,12 +35,19 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "./workspace", "/home/vagrant/workspace", :mount_options => ['dmode=777','fmode=777']
-  config.vm.synced_folder "./home/.virtualenvs", "/home/vagrant/.virtualenvs"
-  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :mount_options => ['dmode=775','fmode=600'] 
+
+  vconfig['vm']['synced_folder'].each do |x|
+    
+    if x[2].nil? or x[3].nil?
+      config.vm.synced_folder x[0], x[1]
+    else
+      config.vm.synced_folder x[0], x[1], :mount_options => [x[2], x[3]]
+    end
+
+  end
 
   # ssh configuration
-  config.ssh.forward_agent = true
+  config.ssh.forward_agent = vconfig['ssh']['forward_agent']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -70,61 +80,23 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["vendor-cookbooks", "main-cookbooks"]
-    chef.roles_path = "roles"
-    chef.data_bags_path = "data_bags"
+    chef.cookbooks_path = vconfig['vm']['chef_cookbooks']
+    chef.roles_path = vconfig['vm']['chef_role']
+    chef.data_bags_path = vconfig['vm']['chef_bags_path']
 
-    chef.add_recipe "apt" #required for installing vim (?!)
-    chef.add_recipe "vim"
-    chef.add_recipe "git"
-    chef.add_recipe "teracy-dev"
-
+    vconfig['vm']['chef_recipe'].each do |x|
+      chef.add_recipe x
+    end
+   
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = {
       "teracy-dev" => {
-        "workspace" => [
-          "/vagrant/workspace/readonly",
-          "/vagrant/workspace/teracy",
-          "/vagrant/workspace/personal"
-        ],
-        "git" => {
-          "user" => {
-            "name" => "Teracy Dev", # replace by your name
-            "email" => "teracy-dev@teracy.com" # replace by your email
-          },
-          "color" => true, # enable color on git terminal's output
-          "commit" => {
-            "template" => true # use teracy's commit template
-          },
-          "diff" => {
-            "tool" => "vimdiff"
-          },
-          "merge" => {
-            "tool" => "vimdiff"
-          },
-          "difftool" => {
-            "prompt" => false
-          }
-        },
-        "nodejs" => {
-          "enabled" => true,
-          "npm" => [
-            "grunt-cli"
-            #"bower" #TODO(vinhtran): support this
-          ]
-        },
-        "python" => {
-          "enabled" => true, # python platform development, enabled by default
-          "pip" => {
-            "global" => {
-              #"index-url" => "http://pypi.teracy.org/teracy/public/+simple/"
-            }
-          }
-        },
-        "ruby" => {
-          "enabled" => false # ruby platform development, disabled by default
-        },
-        "gettext" => false # false by default
+        "workspace" => vconfig['teracy-dev']['workspace'],
+        "git" => vconfig['teracy-dev']['git'],
+        "nodejs" => vconfig['teracy-dev']['nodejs'],
+        "python" => vconfig['teracy-dev']['python'],
+        "ruby" => vconfig['teracy-dev']['ruby'],
+        "gettext" => vconfig['teracy-dev']['gettext']
       },
     }
   end

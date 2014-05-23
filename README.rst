@@ -14,7 +14,7 @@ problems you could meet with proposed solutions.
 Usage
 -----
 
-- ``$ vagrant up`` to boot the VM
+- ``$ vagrant up`` to boot the VMz
 
 - ``$ vagrant ssh`` to access the VM via SSH
 
@@ -30,14 +30,19 @@ Follow the guide at: http://dev.teracy.org/docs/develop/getting_started.html
 Configuration
 -------------
 
-All configuration is on ``Vagrantfile`` file.
+All configuration is on ``Vagrantfile`` and ``Vagrant_Config_Default.yml`` files.
+
+To overrwite default configuration, you need to copy content from ``Vagrant_Config_Default.yml``
+to ``Vagrant_Config.yml`` and adjust it by your needs.
+
+We do this for smooth teracy-dev upgrading.
 
 
 ``workspace`` directory
 -----------------------
 
 The ``workspace`` directory was created under ``teracy-dev``. This ``workspace`` directory is the
-location where you will store all your work, after ``$ vagrant up``, the following sub directories
+location where you will store all your work, after ``$ vagrant up``, the following sub directoriVagrant_Config_Default.ymles
 will be created if they do not exist yet.
 
 ``workspace/personal``: the location to store all your stuffs which you have full control of it
@@ -106,6 +111,29 @@ Learn more
 
     + http://git-scm.com/book
 
+    + Please note that we support SSH Agent Forwarding by default. It means you don't have to input 
+    username & password each time when work with Git like pull, push, rebase...
+    Refer the following guide to implement:
+
+         + Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
+         + Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
+
+         Important notices:
+
+         + Never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+         (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
+        
+         + If you already do that, please change your repo URL by: 
+
+             $ git remote set-url origin (or upstream) SSH-CLone-URL
+             $ git remote show origin (or upstream) ( to check again )
+
+    Make this extra step and make your life simpler.
+
+- NodeJs
+
+    + http://nodejs.org/api/
+
 - Vim
 
     + http://www.openvim.com/tutorial.html
@@ -172,14 +200,9 @@ We're trying to make the update as painless as possible so that we don't have to
 ``up`` again as it is time consuming. We try to make the update with ``provision``, acceptable
 ``reload``. If we have to ``destroy`` and ``up`` again, it will be the next major release version.
 
-Follow these commands below:
+Follow the command below and you're done:
 ::
-    $ git stash
-    $ git fetch origin
-    $ git merge origin/master
-    $ git stash apply
-
-When ``$ git stash apply``, you could get conflicts on ``Vagrantfile``, please resolve it.
+    $ git pull
 
 
 **5. How to use ssh keys on the virtual machine**?
