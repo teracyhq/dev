@@ -3,7 +3,12 @@
 
 Vagrant.configure("2") do |config|
   require 'yaml'
-  vconfig = YAML::load_file("Vagrant_Config.yml")
+
+  if File.exists? ("Vagrant_Config.yml")
+    vconfig = YAML::load_file("Vagrant_Config.yml")
+  else
+    vconfig = YAML::load_file("Vagrant_Config_Default.yml")
+  end
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
