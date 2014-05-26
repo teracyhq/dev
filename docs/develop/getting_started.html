@@ -70,9 +70,6 @@
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">virtualbox</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">vagrant</span></tt></li>
-</ul>
-<p><strong>2. Optional:</strong></p>
-<ul class="simple">
 <li><tt class="docutils literal"><span class="pre">git</span></tt></li>
 </ul>
 <p><strong>Windows Notes</strong>:</p>
@@ -95,32 +92,24 @@ $ bash setup_working_env_chef.sh
 </div>
 <div class="section" id="or-manual-installation">
 <h2>Or Manual Installation<a class="headerlink" href="#or-manual-installation" title="Permalink to this headline">¶</a></h2>
-<p>You need to finish 2 (or 3 on Windows) following required simple steps:</p>
+<p>You need to finish 3 following required simple steps:</p>
 <ol class="arabic simple">
 <li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at: <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a></li>
 <li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.12</strong> at:
 <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
-<li>[<strong>Required on Windows only</strong>] Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a> to use
-<tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as a terminal.</li>
+<li>Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
 </ol>
-<p>Notice: We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.</p>
-</div>
-<div class="section" id="recommended">
-<h2>Recommended:<a class="headerlink" href="#recommended" title="Permalink to this headline">¶</a></h2>
-<p>1. We support for Vagrant 1.5.0 and higher, VirtualBox 4.0 and higher.
-Please consider to update to latest version of Vagrant (1.6.2) and VirtualBox (4.3.12) which many issues
-are fixed and run faster.
-For more details, please review the release note of VirtualBox (<a class="reference external" href="https://www.virtualbox.org/wiki/Changelog">https://www.virtualbox.org/wiki/Changelog</a>)</p>
-<p>2. Please note that virtualbox has an installation issue which is reported here
-(<a class="reference external" href="https://www.virtualbox.org/ticket/4140">https://www.virtualbox.org/ticket/4140</a>).
-If you $ vagrant up but can not start virtual box, please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation
-directory and re-install it, it will fix the issues.</p>
+<p>Notice:</p>
+<ul class="simple">
+<li>We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.</li>
+<li>Please note that virtualbox has an installation issue which is reported here
+(<a class="reference external" href="https://www.virtualbox.org/ticket/4140">https://www.virtualbox.org/ticket/4140</a>). If you <cite>$ vagrant up</cite> but can not start virtual box,
+please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and re-install it,
+this will fix the issue.</li>
+</ul>
 </div>
 <div class="section" id="environment-up">
 <h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Have <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
-</ul>
 <p>Open your terminal window and type:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd ~/
 $ git clone https://github.com/teracy-official/dev.git teracy-dev
@@ -128,18 +117,7 @@ $ cd teracy-dev
 $ vagrant up
 </pre></div>
 </div>
-<ul class="simple">
-<li>Or no <tt class="docutils literal"><span class="pre">git</span></tt> installed:</li>
-</ul>
-<p>Download the repository at <a class="reference external" href="https://github.com/teracy-official/dev/archive/master.zip">https://github.com/teracy-official/dev/archive/master.zip</a> and
-unzip with named <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> at <tt class="docutils literal"><span class="pre">~/</span></tt> (*unix) or <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>
-(Windows). Then open your terminal window:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd ~/
-$ cd teracy-dev
-$ vagrant up
-</pre></div>
-</div>
-<p>Note:</p>
+<p>Notice:</p>
 <p>1. The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
 For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
 <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
@@ -150,8 +128,9 @@ environmental variable.
 </pre></div>
 </div>
 <p>Please add path to VirtualBox folder to your environment variable.
-Example: in Window, add it &#8220;C:Program FilesOracleVirtualBox&#8221;.
-If the error still occur, you have to unistall and re-install VirtualBox. It will fix this error.</p>
+Example: in Window, add this &#8220;C:Program FilesOracleVirtualBox&#8221;.</p>
+<p>If the error still occur, you have to unistall and re-install VirtualBox then Vagrant. This will fix
+this error.</p>
 <p>You should see the following similar messages at the end of <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
@@ -186,7 +165,6 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
 <li><a class="reference internal" href="#or-manual-installation">Or Manual Installation</a></li>
-<li><a class="reference internal" href="#recommended">Recommended:</a></li>
 <li><a class="reference internal" href="#environment-up">Environment Up</a></li>
 </ul>
 </li>
