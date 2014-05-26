@@ -1,5 +1,5 @@
 #
-# Author:: Vinh Tran <hoatlevan@gmail.com>
+# Author:: Vinh Tran <tranvinh169@gmail.com>
 # Cookbook Name:: teracy-dev
 # Recipe:: maven
 # Description: Installs Maven 
