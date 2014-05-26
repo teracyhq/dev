@@ -106,6 +106,24 @@ Learn more
 
     + http://git-scm.com/book
 
+    + Please note that we support SSH Agent Forwarding by default. It means you don't have to input
+    username & password each time when work with Git like pull, push, rebase...
+    Refer the following guide to implement:
+
+        + Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
+        + Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
+
+        Important notices:
+
+        + Never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+        (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
+
+        + If you already do that, please change your repo URL by:
+            $ git remote set-url origin (or upstream) SSH-CLone-URL
+            $ git remote show origin (or upstream) ( to check again )
+
+    Make this extra step and make your life simpler.
+
 - Vim
 
     + http://www.openvim.com/tutorial.html
@@ -159,15 +177,13 @@ http://www.ubuntu.com/download/desktop
 **3. After ``$ vagrant up``, there is an error saying that ``virtualbox`` has error, can't run and
 quit immediately?**
 
-Make sure you install the exact version **4.2.10** of ``virtualbox``.
+Make sure you install the exact version **4.3.12** of ``virtualbox``.
 
 **4. How could I update ``teracy-dev``?**
 
 We're trying to make the update as painless as possible so that we don't have to ``detroy`` and
 ``up`` again as it is time consuming. We try to make the update with ``provision``, acceptable
 ``reload``. If we have to ``destroy`` and ``up`` again, it will be the next major release version.
-
-- Have ``git`` installed:
 
 Follow these commands below:
 ::
@@ -178,46 +194,24 @@ Follow these commands below:
 
 When ``$ git stash apply``, you could get conflicts on ``Vagrantfile``, please resolve it.
 
-- No ``git`` installed:
-
-    + You need to move all your work under ``home`` and ``workspace`` directory to outside of
-    ``teracy-dev``
-
-    + Delete ``teracy-dev``
-
-    + Download the repository at https://github.com/teracy-official/teracy-dev/archive/master.zip and
-    unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
-    (Windows).
-
-    + Move all your work under ``home`` and ``workspace`` back to ``teracy-dev`` and start working
-    as normal.
 
 **5. How to use ssh keys on the virtual machine**?
 
-``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine are in sync. You
+5.1.
+
+``config.ssh.forward_agent = true`` is enabled by default.
+
+It means that we don't have to specify username & password each time when working with Git like
+``pull, push, rebase, etc.``.
+
+
+5.2.
+
+However, if you want to use new created ssh keys for Vagrant box, then you need to set
+``config.ssh.forward_agent = false`` on Vagrantfile or comment that line.
+
+- ``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine are in sync. You
 could copy your existing ssh keys into one location and it will be available in the other location.
 
-5.1. It's easier to use the host machine to forward ssh access. Just enable it on ``Vagrantfile``
-::
-    config.ssh.forward_agent = true
-
-It seems that Windows is having problem with ``forward_agent``, Windows users should move to 5.2.
-
-5.2. Or to use existing ssh keys, type the following commands on the host machine
-terminal window:
-::
-    $ cd teracy-dev
-    $ cp ~/.ssh/id_rsa* home/.ssh
-
-5.3. Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
+- Or to create new ssh keys on the virtual machine, just create it and these keys will be copied
 into ``teracy-dev/home/.ssh``.
-
-Some notes for troubleshooting
-------------------------------
-
-1. Upgrade support for vagrant 1.5.1, virtualbox 4.3.8 AND vagrant 1.5.4, virtualbox 4.3.10
-2. Please note that virtualbox has an installation issue which is reported here 
-( https://www.virtualbox.org/ticket/4140 ). 
-If you $ vagrant up but can not start virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your 
-installation directory and re-install it, it will fix the issues.
-

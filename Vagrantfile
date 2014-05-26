@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :mount_options => ['dmode=775','fmode=600']
 
   # ssh configuration
-  # config.ssh.forward_agent = true
+  config.ssh.forward_agent = true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
