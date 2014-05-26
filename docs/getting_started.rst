@@ -13,6 +13,22 @@ Prerequisites
 - ``vagrant``
 - ``git``
 
+**Notice**
+
+We support SSH Agent Forwarding by default. It means you don't have to submit username & password
+each time when work with Git like ``pull, push, rebase, etc`` on the Vagrant box.
+
+Do the following guide to get it work:
+
+- Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
+
+- Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
+
+- Remember that: never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+  (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
+
+Make this extra step and make your life simpler.
+
 **Windows Notes**:
 
 - You MUST install ``git`` to use ``Git Bash`` and from now on we will call it ``terminal window``.
