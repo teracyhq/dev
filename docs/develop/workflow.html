@@ -90,7 +90,7 @@ and better over time.</p>
 <h2>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h2>
 <p>Git commit message must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
 
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
@@ -107,51 +107,50 @@ This is the work on local part.
 <h2>Git Branching Off<a class="headerlink" href="#git-branching-off" title="Permalink to this headline">¶</a></h2>
 <p>Usually, a new branch should be branched off from target to-be-merged remote branch.
 It&#8217;s usually <em>upstream/develop</em>. However, there are cases that it does not apply:</p>
-<p>Keep in mind that you need to rebase often the work of that upstream branch to
-your working branch.</p>
+<p>Keep in mind that you need to rebase the work of that upstream branch to
+your working branch as often as possible.</p>
 <p>This is the demonstration example: <em>phuonglm</em> is working on
-features/1_fabric_deployment_virtual_machine, and you&#8217;re going to work on
-features/2_fabric_deployment_remote_machine, it depends on phuonglm&#8217;s
-features/1_fabric_deployment_virtual_machine. On this case, you MUST indicate the branch name with
-<tt class="docutils literal"><span class="pre">deps_&lt;issueNumber&gt;</span></tt> affix.</p>
+features/DJBP-1-fabric-deployment-virtual-machine, and you&#8217;re going to work on
+features/DJBP-2-fabric-deployment-remote-machine, it depends on phuonglm&#8217;s
+features/1-fabric-deployment-virtual-machine. On this case, you MUST indicate the branch name with
+<tt class="docutils literal"><span class="pre">deps-&lt;issueNumber&gt;</span></tt> affix.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
 $ git fetch phuonglm
-$ git checkout phuonglm/features/1_fabric_deployment_virtual_machine -b features/2_fabric_deployment_remote_machine_deps_1
-$ git push origin features/2_fabric_deployment_remote_machine_deps_1
+$ git checkout phuonglm/features/DJBP-1-fabric-deployment-virtual-machine -b features/DJBP-2-fabric-deployment-remote-machine-deps-1
+$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1
 </pre></div>
 </div>
-<p>After sometime of work, phuonglm&#8217;s feature_1_fabric_deployment_virtual_machine has some updates and
+<p>After sometime of work, phuonglm&#8217;s features/DJBP-1-fabric-deployment-virtual-machine has some updates and
 you should:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
-$ git rebase phuonglm/features/1_fabric_deployment_virtual_machine
-$ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+$ git rebase phuonglm/features/DJBP-1-fabric-deployment-virtual-machine
+$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
 </pre></div>
 </div>
-<p>When phuonglm&#8217;s features/1_fabric_deployment_virtual_machine is merged into <em>upstream/develop</em>,
+<p>When phuonglm&#8217;s features/DJBP-1-fabric-deployment-virtual-machine is merged into <em>upstream/develop</em>,
 you need to rebase on it to get these new updates:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
 $ git rebase upstream/develop
-$ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
 </pre></div>
 </div>
 <p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
 </div>
 <div class="section" id="git-force-push">
 <h2>Git Force Push<a class="headerlink" href="#git-force-push" title="Permalink to this headline">¶</a></h2>
-<p>Should not <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">branch_name</span> <span class="pre">-f</span></tt> if your branch has another branch depending on.</p>
-<p>NEVER ever force push the <em>official</em> repositories.</p>
+<p>Should not <a href="#id1"><span class="problematic" id="id2">``</span></a>$ git push origin <a href="#id3"><span class="problematic" id="id4">`</span></a>.</p>
 </div>
 <div class="section" id="git-branch-cleaning-up">
 <h2>Git Branch Cleaning Up<a class="headerlink" href="#git-branch-cleaning-up" title="Permalink to this headline">¶</a></h2>
 <p>After your working branch is merged back into official repository, make sure to delete these
 working branches.</p>
 <p>Delete remote branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git push origin :branch_name
+<div class="highlight-python"><div class="highlight"><pre>$ git push origin :branch-name
 </pre></div>
 </div>
 <p>Delete local branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git checkout master
-$ git branch -d branch_name
+$ git branch -d branch-name
 </pre></div>
 </div>
 <p>Let&#8217;s take a ride on actual workflow.</p>
@@ -180,23 +179,23 @@ $ git clone git@github.com/hoatle/django-boilerplate.git
 <h2>Work On Features/ Improvements/ Tasks<a class="headerlink" href="#work-on-features-improvements-tasks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>To start a new feature, you MUST branch off from the latest <tt class="docutils literal"><span class="pre">upstream/develop</span></tt> branch with a
-name of the pattern: <tt class="docutils literal"><span class="pre">features/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>. The title must be concise as much
+name of the pattern: <tt class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>. The title must be concise as much
 as possible, then <tt class="docutils literal"><span class="pre">push</span></tt> that branch to your repository.</li>
 <li>To start a new improvement, start a new branch with a name of the pattern:
-<tt class="docutils literal"><span class="pre">improvements/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>.</li>
-<li>And to start a new task: <tt class="docutils literal"><span class="pre">tasks/&lt;issue_key&gt;_&lt;consise_title&gt;</span></tt>.</li>
+<tt class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>.</li>
+<li>And to start a new task: <tt class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>.</li>
 </ul>
 <p>For example, you&#8217;re going to work on the issue #1 with title: &#8220;auto deployment with fabric&#8221; of type
 &#8220;feature&#8221;:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal/django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/develop -b features/1_auto_fabric_deployment
-$ git push origin features/1_auto_fabric_deployment
+$ git checkout upstream/develop -b features/DJBP-1-auto-fabric-deployment
+$ git push origin features/DJBP-1-auto-fabric-deployment
 </pre></div>
 </div>
 <ul class="simple">
-<li>Now you&#8217;re on <tt class="docutils literal"><span class="pre">features/1_auto_fabric_deployment</span></tt> branch, just <tt class="docutils literal"><span class="pre">focus</span></tt> working on it,
+<li>Now you&#8217;re on <tt class="docutils literal"><span class="pre">features/DJBP-1-auto-fabric-deployment</span></tt> branch, just <tt class="docutils literal"><span class="pre">focus</span></tt> working on it,
 <tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible.</li>
 </ul>
 <p>Sometimes you need to get updates from <tt class="docutils literal"><span class="pre">upstream/develop</span></tt>, so you need to rebase on it:</p>
@@ -213,26 +212,25 @@ on it to make it good enough to be merged into <tt class="docutils literal"><spa
 </ul>
 <p>Before making a pull request, make sure your work must meet the <strong>quality checklist</strong>.</p>
 <p>Note: After a <tt class="docutils literal"><span class="pre">pull</span></tt> request, you will continue to work on your working branch as normal, just
-<tt class="docutils literal"><span class="pre">push</span></tt> it and the pull request will be updated with your new commits. Ping other Teracier to
+<tt class="docutils literal"><span class="pre">push</span></tt> it and the pull request will be updated with your new commits. Ping other Teraciers to
 help reviewing, comments, suggestions, etc.</p>
-<p>When you meet all these long strict requirements, your work will be more welcomed accepted.
-Congratulations, let&#8217;s get some beer then :-).</p>
+<p>When you meet all these long strict requirements, your work will be more welcomed accepted.</p>
 </div>
 <div class="section" id="work-on-bugs">
 <h2>Work On Bugs<a class="headerlink" href="#work-on-bugs" title="Permalink to this headline">¶</a></h2>
 <p>Before doing anything, try to <strong>reproduce</strong> the bug. If the bug is hard to reproduce, try to get
-some blind clues. If you could not see how to <em>reproduce</em> the bug or any clue about it, report it
-to your supervisor to get suggestions and directions.</p>
+some blind guesses and clues. If you could not see how to <em>reproduce</em> the bug or any clue about it,
+report it to your supervisor to get suggestions and directions.</p>
 <p>If you could <strong>reproduce</strong> the bug, start branching off from the target branch with a name of the
-pattern: <tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt>. MUST try to <strong>add tests</strong> to reproduce the bug and
+pattern: <tt class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>. MUST try to <strong>add tests</strong> to reproduce the bug and
 pass it, that&#8217;s the way we create software.</p>
-<p>For example, you&#8217;re going to work on a bug issue #2 with the title: &#8220;fabric does not work on Mac
+<p>For example, you&#8217;re going to work on a bug issue #DJBP-2 with the title: &#8220;fabric does not work on Mac
 OSX&#8221; with expected fix for <em>upstream/develop</em> branch.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal/django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/develop -b bugs/2_fabric_not_work_mac_osx
-$ git push origin bugs/2_fabric_not_work_mac_osx
+$ git checkout upstream/develop -b bugs/DJBP-2-fabric-not-work-mac-osx
+$ git push origin bugs/DJBP-2-fabric-not-work-mac-osx
 </pre></div>
 </div>
 <p><tt class="docutils literal"><span class="pre">focus</span></tt>, <tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible. After the work is done, make a pull
@@ -242,14 +240,14 @@ request.</p>
 <h2>Work On <strong>Critical</strong> Bugs<a class="headerlink" href="#work-on-critical-bugs" title="Permalink to this headline">¶</a></h2>
 <p>These kind of bugs need hot-fix as it has <em>very high priority</em>.</p>
 <p>Branch off a branch from the branch that needs hot-fix with a name of the pattern:
-<tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue_key&gt;_&lt;concise_title&gt;</span></tt></p>
-<p>For example, you&#8217;re going to work on a critical bug issue #3 with the title: &#8220;fabric causes the
+<tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></p>
+<p>For example, you&#8217;re going to work on a critical bug issue #DJBP-3 with the title: &#8220;fabric causes the
 remote server crashed!!!&#8221; with expected fix for <em>upstream/master</em> branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal/django-boilerplate
 $ git fetch upstream
-$ git checkout upstream/master -b hot-fixes/3_fabric_crashes_remote_server
-$ git push origin hot-fixes/3_fabric_crashes_remote_server
+$ git checkout upstream/master -b hot-fixes/DJPB-3-fabric-crashes-remote-server
+$ git push origin hot-fixes/DJBP-3-fabric-crashes-remote-server
 </pre></div>
 </div>
 <p>Fix it as fast as possible with <em>really good tests</em>, you must make sure there should not have any
@@ -261,7 +259,7 @@ $ git push origin hot-fixes/3_fabric_crashes_remote_server
 model as mentioned by the article above.</p>
 <p>As the merging, pushing must be done on official teracy&#8217;s projects, so you need to clone projects
 into <tt class="docutils literal"><span class="pre">workspace/teracy</span></tt> directory.</p>
-<p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
+<p>For example, you need to merge the work of <em>features/DJBP-1-auto-fabric-deployment</em> branch from
 <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd teracy
@@ -271,7 +269,7 @@ $ git fetch origin
 $ git checkout origin/develop
 $ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
 $ git fetch hoatle
-$ git git merge --no-ff hoatle/features/1_auto_fabric_deployment
+$ git git merge --no-ff hoatle/features/DJBP-1-auto-fabric-deployment
 $ git push origin develop
 </pre></div>
 </div>
