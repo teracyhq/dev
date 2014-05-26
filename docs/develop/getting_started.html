@@ -72,6 +72,17 @@
 <li><tt class="docutils literal"><span class="pre">vagrant</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">git</span></tt></li>
 </ul>
+<p><strong>Notice</strong></p>
+<p>We support SSH Agent Forwarding by default. It means you don&#8217;t have to submit username &amp; password
+each time when work with Git like <tt class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></tt> on the Vagrant box.</p>
+<p>Do the following guide to get it work:</p>
+<ul class="simple">
+<li>Mac/ Linux: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac</a></li>
+<li>Window: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows</a></li>
+<li>Remember that: never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+(<a class="reference external" href="http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password">http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password</a>)</li>
+</ul>
+<p>Make this extra step and make your life simpler.</p>
 <p><strong>Windows Notes</strong>:</p>
 <ul class="simple">
 <li>You MUST install <tt class="docutils literal"><span class="pre">git</span></tt> to use <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> and from now on we will call it <tt class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></tt>.</li>
