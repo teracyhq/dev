@@ -33,7 +33,7 @@ Git commit message must convey the actual change/ work of that commit. Usually, 
 should follow the convention pattern:
 ::
 
-    <issue_key> | <issue_title>: <changes description>
+    <issue-key> | <issue_title>: <changes description>
 
     <Multi-line description for detail changes, notices, solutions, etc.>
 
@@ -52,36 +52,36 @@ Git Branching Off
 Usually, a new branch should be branched off from target to-be-merged remote branch.
 It's usually *upstream/develop*. However, there are cases that it does not apply:
 
-Keep in mind that you need to rebase often the work of that upstream branch to
-your working branch.
+Keep in mind that you need to rebase the work of that upstream branch to
+your working branch as often as possible.
 
 This is the demonstration example: *phuonglm* is working on
-features/1_fabric_deployment_virtual_machine, and you're going to work on
-features/2_fabric_deployment_remote_machine, it depends on phuonglm's
-features/1_fabric_deployment_virtual_machine. On this case, you MUST indicate the branch name with
-``deps_<issueNumber>`` affix.
+features/DJBP-1-fabric-deployment-virtual-machine, and you're going to work on
+features/DJBP-2-fabric-deployment-remote-machine, it depends on phuonglm's
+features/1-fabric-deployment-virtual-machine. On this case, you MUST indicate the branch name with
+``deps-<issueNumber>`` affix.
 ::
 
     $ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
     $ git fetch phuonglm
-    $ git checkout phuonglm/features/1_fabric_deployment_virtual_machine -b features/2_fabric_deployment_remote_machine_deps_1
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1
+    $ git checkout phuonglm/features/DJBP-1-fabric-deployment-virtual-machine -b features/DJBP-2-fabric-deployment-remote-machine-deps-1
+    $ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1
 
-After sometime of work, phuonglm's feature_1_fabric_deployment_virtual_machine has some updates and
+After sometime of work, phuonglm's features/DJBP-1-fabric-deployment-virtual-machine has some updates and
 you should:
 ::
 
     $ git fetch phuonglm
-    $ git rebase phuonglm/features/1_fabric_deployment_virtual_machine
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+    $ git rebase phuonglm/features/DJBP-1-fabric-deployment-virtual-machine
+    $ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
 
-When phuonglm's features/1_fabric_deployment_virtual_machine is merged into *upstream/develop*,
+When phuonglm's features/DJBP-1-fabric-deployment-virtual-machine is merged into *upstream/develop*,
 you need to rebase on it to get these new updates:
 ::
 
     $ git fetch upstream
     $ git rebase upstream/develop
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+    $ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
 
 
 Git is a distributed version control system, so collaboration like this should be encouraged.
@@ -90,9 +90,7 @@ Git is a distributed version control system, so collaboration like this should b
 Git Force Push
 --------------
 
-Should not ``$ git push origin branch_name -f`` if your branch has another branch depending on.
-
-NEVER ever force push the *official* repositories.
+Should not ``$ git push origin `.
 
 
 Git Branch Cleaning Up
@@ -104,13 +102,13 @@ working branches.
 Delete remote branch:
 ::
 
-    $ git push origin :branch_name
+    $ git push origin :branch-name
 
 Delete local branch:
 ::
 
     $ git checkout master
-    $ git branch -d branch_name
+    $ git branch -d branch-name
 
 
 Let's take a ride on actual workflow.
@@ -147,13 +145,13 @@ Work On Features/ Improvements/ Tasks
 -------------------------------------
 
 - To start a new feature, you MUST branch off from the latest ``upstream/develop`` branch with a
-  name of the pattern: ``features/<issue_key>_<concise_title>``. The title must be concise as much
+  name of the pattern: ``features/<issue-key>-<concise-title>``. The title must be concise as much
   as possible, then ``push`` that branch to your repository.
 
 - To start a new improvement, start a new branch with a name of the pattern:
-  ``improvements/<issue_key>_<concise_title>``.
+  ``improvements/<issue-key>-<concise-title>``.
 
-- And to start a new task: ``tasks/<issue_key>_<consise_title>``.
+- And to start a new task: ``tasks/<issue-key>-<concise-title>``.
 
 For example, you're going to work on the issue #1 with title: "auto deployment with fabric" of type
 "feature":
@@ -162,10 +160,10 @@ For example, you're going to work on the issue #1 with title: "auto deployment w
     $ ws
     $ cd personal/django-boilerplate
     $ git fetch upstream
-    $ git checkout upstream/develop -b features/1_auto_fabric_deployment
-    $ git push origin features/1_auto_fabric_deployment
+    $ git checkout upstream/develop -b features/DJBP-1-auto-fabric-deployment
+    $ git push origin features/DJBP-1-auto-fabric-deployment
 
-- Now you're on ``features/1_auto_fabric_deployment`` branch, just ``focus`` working on it,
+- Now you're on ``features/DJBP-1-auto-fabric-deployment`` branch, just ``focus`` working on it,
   ``commit`` and ``push`` as often as possible.
 
 Sometimes you need to get updates from ``upstream/develop``, so you need to rebase on it:
@@ -184,33 +182,32 @@ Resolve any conflicts and continue with ``focus``, ``commit`` and ``push`` as of
 Before making a pull request, make sure your work must meet the **quality checklist**.
 
 Note: After a ``pull`` request, you will continue to work on your working branch as normal, just
-``push`` it and the pull request will be updated with your new commits. Ping other Teracier to
+``push`` it and the pull request will be updated with your new commits. Ping other Teraciers to
 help reviewing, comments, suggestions, etc.
 
 When you meet all these long strict requirements, your work will be more welcomed accepted.
-Congratulations, let's get some beer then :-).
 
 
 Work On Bugs
 ------------
 
 Before doing anything, try to **reproduce** the bug. If the bug is hard to reproduce, try to get
-some blind clues. If you could not see how to *reproduce* the bug or any clue about it, report it
-to your supervisor to get suggestions and directions.
+some blind guesses and clues. If you could not see how to *reproduce* the bug or any clue about it,
+report it to your supervisor to get suggestions and directions.
 
 If you could **reproduce** the bug, start branching off from the target branch with a name of the
-pattern: ``bugs/<issue_key>_<concise_title>``. MUST try to **add tests** to reproduce the bug and
+pattern: ``bugs/<issue-key>-<concise-title>``. MUST try to **add tests** to reproduce the bug and
 pass it, that's the way we create software.
 
-For example, you're going to work on a bug issue #2 with the title: "fabric does not work on Mac
+For example, you're going to work on a bug issue #DJBP-2 with the title: "fabric does not work on Mac
 OSX" with expected fix for *upstream/develop* branch.
 ::
 
     $ ws
     $ cd personal/django-boilerplate
     $ git fetch upstream
-    $ git checkout upstream/develop -b bugs/2_fabric_not_work_mac_osx
-    $ git push origin bugs/2_fabric_not_work_mac_osx
+    $ git checkout upstream/develop -b bugs/DJBP-2-fabric-not-work-mac-osx
+    $ git push origin bugs/DJBP-2-fabric-not-work-mac-osx
 
 ``focus``, ``commit`` and ``push`` as often as possible. After the work is done, make a pull
 request.
@@ -221,17 +218,17 @@ Work On **Critical** Bugs
 These kind of bugs need hot-fix as it has *very high priority*.
 
 Branch off a branch from the branch that needs hot-fix with a name of the pattern:
-``hot-fixes/<issue_key>_<concise_title>``
+``hot-fixes/<issue-key>-<concise-title>``
 
-For example, you're going to work on a critical bug issue #3 with the title: "fabric causes the
+For example, you're going to work on a critical bug issue #DJBP-3 with the title: "fabric causes the
 remote server crashed!!!" with expected fix for *upstream/master* branch:
 ::
 
     $ ws
     $ cd personal/django-boilerplate
     $ git fetch upstream
-    $ git checkout upstream/master -b hot-fixes/3_fabric_crashes_remote_server
-    $ git push origin hot-fixes/3_fabric_crashes_remote_server
+    $ git checkout upstream/master -b hot-fixes/DJPB-3-fabric-crashes-remote-server
+    $ git push origin hot-fixes/DJBP-3-fabric-crashes-remote-server
 
 Fix it as fast as possible with *really good tests*, you must make sure there should not have any
 *regression*, then make a pull request to the target merging branch.
@@ -245,7 +242,7 @@ model as mentioned by the article above.
 As the merging, pushing must be done on official teracy's projects, so you need to clone projects
 into ``workspace/teracy`` directory.
 
-For example, you need to merge the work of *features/1_auto_fabric_deployment* branch from
+For example, you need to merge the work of *features/DJBP-1-auto-fabric-deployment* branch from
 https://github.com/hoatle/django-boilerplate
 ::
 
@@ -257,7 +254,7 @@ https://github.com/hoatle/django-boilerplate
     $ git checkout origin/develop
     $ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
     $ git fetch hoatle
-    $ git git merge --no-ff hoatle/features/1_auto_fabric_deployment
+    $ git git merge --no-ff hoatle/features/DJBP-1-auto-fabric-deployment
     $ git push origin develop
 
 Always `merge` with `--no-ff` to make sure we have the merging point to refer to later.
