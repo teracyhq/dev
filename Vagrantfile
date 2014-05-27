@@ -103,8 +103,6 @@ Vagrant.configure("2") do |config|
         "nodejs" => data_hash['nodejs'],
         "python" => data_hash['python'],
         "ruby" => data_hash['ruby'],
-        "java" => data_hash['java'],
-        "maven" => data_hash['maven'],
         "gettext" => data_hash['gettext']
       },
     }

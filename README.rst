@@ -41,7 +41,7 @@ We do this for smooth teracy-dev upgrading.
 -----------------------
 
 The ``workspace`` directory was created under ``teracy-dev``. This ``workspace`` directory is the
-location where you will store all your work, after ``$ vagrant up``, the following sub directoriVagrant_Config_Default.ymles
+location where you will store all your work, after ``$ vagrant up``, the following sub directories
 will be created if they do not exist yet.
 
 ``workspace/personal``: the location to store all your stuffs which you have full control of it
