@@ -70,7 +70,7 @@ local.properties
 
 ## https://github.com/github/gitignore/blob/master/Global/IntelliJ.gitignore
 
-Vagrant_Config.yml
+Vagrant_Config.json
 *.iml
 *.ipr
 *.iws

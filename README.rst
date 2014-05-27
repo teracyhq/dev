@@ -30,13 +30,12 @@ Follow the guide at: http://dev.teracy.org/docs/develop/getting_started.html
 Configuration
 -------------
 
-All configuration is on ``Vagrantfile`` and ``Vagrant_Config_Default.yml`` files.
+All configuration is on ``Vagrantfile`` and ``Vagrant_Config_Default.json`` files.
 
-To overrwite default configuration, you need to copy content from ``Vagrant_Config_Default.yml``
-to ``Vagrant_Config.yml`` and adjust it by your needs.
+To overrwite default configuration, you need to copy content from ``Vagrant_Config_Default.json``
+to ``Vagrant_Config.json`` and adjust it by your needs.
 
 We do this for smooth teracy-dev upgrading.
-
 
 ``workspace`` directory
 -----------------------
