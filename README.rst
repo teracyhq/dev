@@ -32,7 +32,7 @@ Configuration
 
 All configuration is on ``Vagrantfile`` and ``Vagrant_Config_Default.json`` files.
 
-To overrwite default configuration, you need to copy content from ``Vagrant_Config_Default.yml``
+To overrwite default configuration, you need to copy content from ``Vagrant_Config_Default.json``
 to ``Vagrant_Config.json`` and adjust it by your needs.
 
 We do this for smooth teracy-dev upgrading.
