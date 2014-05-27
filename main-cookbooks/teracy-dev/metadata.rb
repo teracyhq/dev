@@ -6,11 +6,9 @@ description      'Installs/Configures teracy-dev'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.0'
 
-depends          'python'
-depends          'magic_shell'
-depends          'rbenv'
-depends          'nodejs'
-depends          'npm'
+%w{ magic_shell java python rbenv maven ark nodejs npm}.each do |dep|
+    depends dep
+end
 
 recipe 'teracy::alias', "Installs useful alias for teracy's project development."
 recipe 'teracy-dev::apt', "Installs required packages for teracy' project development."
