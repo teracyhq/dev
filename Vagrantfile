@@ -26,7 +26,12 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 #default for developing django applications
+  
+  data_hash['forwarded_port'].each do |x|
+    config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
+  end
+  #default for developing django applications
+
   # config.vm.network :forwarded_port, guest: 4000, host: 4000 # octopress preview
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
