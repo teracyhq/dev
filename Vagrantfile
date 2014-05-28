@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   
   data_hash['forwarded_port'].each do |x|
-    config.vm.network :forwarded_port, guest: x[0], host: x[1]
+    config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
   end
   #default for developing django applications
 
