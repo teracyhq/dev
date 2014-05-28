@@ -20,5 +20,5 @@ if node['teracy-dev']['nodejs']['enabled']
             not_if { ::File.exists?(bin_path) }
         end
     end
-
+ 
 end

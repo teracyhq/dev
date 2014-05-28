@@ -63,9 +63,10 @@
     }
   },
   "nodejs":{
-    "enabled":false,
+    "enabled":true,
     "npm":[
-      "grunt-cli"
+      "grunt-cli",
+      "bower"      
     ]
   },
   "python":{
