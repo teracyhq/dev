@@ -60,7 +60,7 @@
     "enabled":true,
     "npm":[
       "grunt-cli",
-      "bower"
+      "bower"      
     ]
   },
   "python":{

@@ -6,7 +6,7 @@ description      'Installs/Configures teracy-dev'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.0'
 
-%w{ magic_shell java python rbenv maven ark nodejs npm}.each do |dep|
+%w{ magic_shell nodejs npm rbenv java ark python}.each do |dep|
     depends dep
 end
 
