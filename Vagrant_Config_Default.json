@@ -1,6 +1,12 @@
 {
   "box":"opscode-ubuntu-1204",
   "box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
+  "forwarded_port":[
+      [
+         8000,
+         8000
+      ]
+  ],
   "synced_folder":[
     [
       "./workspace",
@@ -75,3 +81,4 @@
   },
   "gettext":false
 }
+
