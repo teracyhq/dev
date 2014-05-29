@@ -5,8 +5,7 @@ Vagrant.configure("2") do |config|
 
   require 'json'
   # Load default setting
-  file = File.read('Vagrant_Config.json')
-  
+  file = File.read('Vagrant_Config.json')  
   data_hash = JSON.parse(file)
 
   # Check and override if exist any match JSON object from Vagrant_Config_Override.json
@@ -17,8 +16,6 @@ Vagrant.configure("2") do |config|
       override_data_hash = JSON.parse(override_file)
       puts "Default Vagrant Config will be OVERRIDE by Vagrant_Config_Override.json"
       override_data_hash.each do |key, value|
-        puts key, value
-              
         if data_hash.has_key?(key)
           data_hash[key] = value
         end
@@ -28,9 +25,7 @@ Vagrant.configure("2") do |config|
            "if you want to override default config."
     end
   end
-
-  puts data_hash
-
+ 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.

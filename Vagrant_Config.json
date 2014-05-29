@@ -81,13 +81,13 @@
     "enabled":false
   },
   "java":{
-    "enabled":true,
+    "enabled":false,
     "version":"7",
-    "flavor":"openjdk",
-    "maven":{
-      "enabled":true,
-      "version":"3"
-    }
+    "flavor":"openjdk"
+  },
+  "maven":{
+    "enabled":false,
+    "version":"3"
   },
   "gettext":false
 }
