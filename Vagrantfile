@@ -4,14 +4,24 @@
 Vagrant.configure("2") do |config|
 
   require 'json'
-  if File.exists? ("Vagrant_Config.json")
-    file = File.read('Vagrant_Config.json')
-  else
-    file = File.read('Vagrant_Config_Default.json')
-  end
-  
+  # Load default setting
+  file = File.read('Vagrant_Config.json')  
   data_hash = JSON.parse(file)
 
+  # Check and override if exist any match JSON object from Vagrant_Config_Override.json
+  if File.exist? ('Vagrant_Config_Override.json')
+    override_file = File.read('Vagrant_Config_Override.json')  
+
+    begin      
+      JSON.parse(override_file).each do |key, value|
+        if data_hash.has_key?(key)
+          data_hash[key] = value
+        end
+      end
+    rescue
+    end
+  end
+  
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
