@@ -12,17 +12,16 @@ Vagrant.configure("2") do |config|
   if File.exist? ('Vagrant_Config_Override.json')
     override_file = File.read('Vagrant_Config_Override.json')  
 
-    begin
-      override_data_hash = JSON.parse(override_file)
-      override_data_hash.each do |key, value|
+    begin      
+      JSON.parse(override_file).each do |key, value|
         if data_hash.has_key?(key)
           data_hash[key] = value
         end
       end
-    rescue      
+    rescue
     end
   end
- 
+  
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
