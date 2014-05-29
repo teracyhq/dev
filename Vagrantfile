@@ -4,13 +4,26 @@
 Vagrant.configure("2") do |config|
 
   require 'json'
-  if File.exists? ("Vagrant_Config.json")
-    file = File.read('Vagrant_Config.json')
-  else
-    file = File.read('Vagrant_Config_Default.json')
-  end
+  # Load default setting
+  file = File.read('Vagrant_Config.json')
   
   data_hash = JSON.parse(file)
+
+  # Check and override if exist any match JSON object from Vagrant_Config_Override.json
+  if File.exist? ('Vagrant_Config_Override.json')
+    override_file = File.read('Vagrant_Config_Override.json')  
+
+    begin
+      override_data_hash = JSON.parse(override_file)
+      puts "JSON valid"
+      override_data_hash.each do |j_object|
+        puts j_object
+      end
+    rescue
+      puts "Vagrant_Config_Override.json has an IN-VALID format. Modify it and reload again "\
+           "if you want to override default config."
+    end
+  end
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
