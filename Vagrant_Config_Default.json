@@ -66,7 +66,7 @@
     "enabled":true,
     "npm":[
       "grunt-cli",
-      "bower"      
+      "bower"
     ]
   },
   "python":{
@@ -79,6 +79,15 @@
   },
   "ruby":{
     "enabled":false
+  },
+  "java":{
+    "enabled":false,
+    "version":"7",
+    "flavor":"openjdk",
+    "maven":{
+      "enabled":false,
+      "version":"3"
+    }
   },
   "gettext":false
 }

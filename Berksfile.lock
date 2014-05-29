@@ -24,6 +24,9 @@
       "locked_version": "1.4.0",
       "constraint": "= 1.4.0"
     },
+    "java": {
+      "locked_version": "1.20.0"
+    },
     "rbenv": {
       "locked_version": "1.6.5",
       "constraint": "= 1.6.5"
