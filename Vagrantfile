@@ -15,15 +15,21 @@ Vagrant.configure("2") do |config|
 
     begin
       override_data_hash = JSON.parse(override_file)
-      puts "JSON valid"
-      override_data_hash.each do |j_object|
-        puts j_object
+      puts "Default Vagrant Config will be OVERRIDE by Vagrant_Config_Override.json"
+      override_data_hash.each do |key, value|
+        puts key, value
+              
+        if data_hash.has_key?(key)
+          data_hash[key] = value
+        end
       end
     rescue
       puts "Vagrant_Config_Override.json has an IN-VALID format. Modify it and reload again "\
            "if you want to override default config."
     end
   end
+
+  puts data_hash
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
