@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
 
     begin
       override_data_hash = JSON.parse(override_file)
-      puts "Default Vagrant Config will be OVERRIDE by Vagrant_Config_Override.json"
+      puts "Default Vagrant Config will be OVERRIDDEN by Vagrant_Config_Override.json"
       override_data_hash.each do |key, value|
         if data_hash.has_key?(key)
           data_hash[key] = value
