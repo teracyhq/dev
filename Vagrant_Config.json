@@ -40,7 +40,10 @@
     "apt",
     "vim",
     "git",
-    "teracy-dev"
+    "teracy-dev",
+    "chef-dotdeb",
+    "chef-dotdeb::php54",
+    "php"
   ],
   "chef_json":{
     "teracy-dev":{
@@ -86,6 +89,9 @@
       "ruby":{
         "enabled":false
       },
+      "php":{
+        "enabled":false
+      },
       "java":{
         "enabled":false,
         "version":"7",
@@ -96,6 +102,7 @@
         }
       },
       "gettext":false
+      }
     }
   }
 }

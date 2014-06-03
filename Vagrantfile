@@ -109,7 +109,6 @@ Vagrant.configure("2") do |config|
     data_hash['chef_recipes'].each do |x|
       chef.add_recipe x
     end
-   
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = data_hash['chef_json']
   end

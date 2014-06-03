@@ -2,7 +2,7 @@
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
 # Cookbook Name:: php
-# Recipe:: module_ldap
+# Recipe:: module_fileinfo
 #
 # Copyright 2009-2011, Opscode, Inc.
 #
@@ -19,14 +19,11 @@
 # limitations under the License.
 #
 
-pkg = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => "php53-ldap",
-    "default" => "php-ldap"
-  },
-  "default" => "php5-ldap"
-)
-
-package pkg do
-  action :install
+case node['platform_family']
+when "rhel", "fedora"
+  # enabled by default in php53
+when "debian"
+  package "php5-fileinfo" do
+    action :upgrade
+  end
 end

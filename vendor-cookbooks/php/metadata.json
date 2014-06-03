@@ -1,6 +1,5 @@
 {
   "name": "php",
-  "version": "1.4.6",
   "description": "Installs and maintains php and php modules",
   "long_description": "",
   "maintainer": "Opscode, Inc.",
@@ -13,17 +12,12 @@
     "redhat": ">= 0.0.0",
     "fedora": ">= 0.0.0",
     "scientific": ">= 0.0.0",
-    "amazon": ">= 0.0.0",
-    "windows": ">= 0.0.0",
-    "oracle": ">= 0.0.0"
+    "amazon": ">= 0.0.0"
   },
   "dependencies": {
     "build-essential": ">= 0.0.0",
     "xml": ">= 0.0.0",
-    "mysql": ">= 0.0.0",
-    "yum-epel": ">= 0.0.0",
-    "windows": ">= 0.0.0",
-    "iis": ">= 0.0.0"
+    "mysql": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -53,5 +47,6 @@
     "php::module_mysql": "Install the php5-mysql package",
     "php::module_pgsql": "Install the php5-pgsql packag",
     "php::module_sqlite3": "Install the php5-sqlite3 package"
-  }
+  },
+  "version": "1.1.0"
 }
