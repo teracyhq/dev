@@ -35,7 +35,7 @@
     "apt",
     "vim",
     "git",
-    "teracy-dev"
+    "teracy-dev"        
   ],
   "forward_agent":true,
   "workspace":[
@@ -93,8 +93,7 @@
     }
   },
   "php":{
-    "enabled":false,
-    "version":"5.3.10"
+    "enabled":false    
   },
   "gettext":false
 }
