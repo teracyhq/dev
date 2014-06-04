@@ -40,7 +40,7 @@
   "forward_agent":true,
   "workspace":[
     "/vagrant/workspace/readonly",
-    "/vagrant/workspace/teracy",
+    "/vagrant/workspace/upstream",
     "/vagrant/workspace/personal"
   ],
   "git":{
