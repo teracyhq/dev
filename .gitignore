@@ -106,6 +106,7 @@ Icon
 
 # SublimeText project files
 *.sublime-workspace
+*.sublime-project
 
 ## https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
 
