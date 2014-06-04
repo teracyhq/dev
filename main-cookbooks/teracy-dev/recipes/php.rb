@@ -15,6 +15,5 @@ if node['teracy-dev']['php']['enabled']
 	include_recipe "php::module_fpdf"
 	include_recipe "php::module_gd"
 	include_recipe "php::module_ldap"
-	include_recipe "php::module_memcache"
-
+	
 end

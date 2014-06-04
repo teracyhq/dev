@@ -24,10 +24,22 @@ pkgs = value_for_platform(
     'default' => %w(php php-devel php-cli php-pear)
   },
   [ "debian", "ubuntu" ] => {
-    "default" => %w{ php5-cgi php5 php5-dev php5-cli php-pear php5-xdebug php5-tidy php5-sqlite php5-pgsql php5-memcache php5-mcrypt php5-gmp php5-gd php5-curl}
+    "default" => %w{ php5-cgi php5 php5-dev php5-cli php-pear php5-tidy php5-sqlite php5-pgsql php5-mcrypt php5-gmp php5-gd php5-curl}
   },
   "default" => %w{ php5-cgi php5 php5-dev php5-cli php-pear }
 )
+
+include_recipe "apt"
+
+execute "add-apt-repository" do
+    command "sudo apt-get install python-software-properties -y"
+    action :run
+end
+
+execute "add-apt-repository" do
+    command "sudo add-apt-repository ppa:ondrej/php5-oldstable && sudo apt-get update"
+    action :run
+end
 
 pkgs.each do |pkg|
   package pkg do
