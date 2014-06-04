@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   require 'json'
   # Load default setting
-  file = File.read('Vagrant_Config.json')  
+  file = File.read(File.dirname(__FILE__) + '/Vagrant_Config.json')  
   data_hash = JSON.parse(file)
 
   # Check and override if exist any match JSON object from Vagrant_Config_Override.json
