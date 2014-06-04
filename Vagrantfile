@@ -102,6 +102,7 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
+    # chef.log_level = :debug
     chef.cookbooks_path = data_hash['chef_cookbooks']
     chef.roles_path = data_hash['chef_role']
     chef.data_bags_path = data_hash['chef_bags_path']
@@ -109,7 +110,6 @@ Vagrant.configure("2") do |config|
     data_hash['chef_recipe'].each do |x|
       chef.add_recipe x
     end
-   
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = {
       "teracy-dev" => {
@@ -119,6 +119,7 @@ Vagrant.configure("2") do |config|
         "python" => data_hash['python'],
         "ruby" => data_hash['ruby'],
         "java" => data_hash['java'],
+        "php" => data_hash['php'],
         "gettext" => data_hash['gettext']
       },
     }

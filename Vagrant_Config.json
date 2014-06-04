@@ -35,7 +35,10 @@
     "apt",
     "vim",
     "git",
-    "teracy-dev"
+    "teracy-dev",
+    "chef-dotdeb",
+    "chef-dotdeb::php54",
+    "php"
   ],
   "forward_agent":true,
   "workspace":[
@@ -79,6 +82,9 @@
   },
   "ruby":{
     "enabled":false
+  },
+  "php":{
+    "enabled":true
   },
   "java":{
     "enabled":false,

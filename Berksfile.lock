@@ -27,6 +27,9 @@
     "java": {
       "locked_version": "1.20.0"
     },
+    "php": {
+      "locked_version": "1.4.6"
+    },
     "rbenv": {
       "locked_version": "1.6.5",
       "constraint": "= 1.6.5"
