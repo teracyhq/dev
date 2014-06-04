@@ -111,17 +111,7 @@ Vagrant.configure("2") do |config|
     end
    
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-    chef.json = {
-      "teracy-dev" => {
-        "workspace" => data_hash['workspace'],
-        "git" => data_hash['git'],
-        "nodejs" => data_hash['nodejs'],
-        "python" => data_hash['python'],
-        "ruby" => data_hash['ruby'],
-        "java" => data_hash['java'],
-        "gettext" => data_hash['gettext']
-      },
-    }
+    chef.json = data_hash['chef_json']
   end
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
