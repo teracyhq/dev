@@ -2,21 +2,46 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+
+  require 'json'
+  # Load default setting
+  file = File.read(File.dirname(__FILE__) + '/Vagrant_Config.json')  
+  data_hash = JSON.parse(file)
+
+  # Check and override if exist any match JSON object from Vagrant_Config_Override.json
+  if File.exist? ('Vagrant_Config_Override.json')
+    override_file = File.read('Vagrant_Config_Override.json')  
+
+    begin      
+      JSON.parse(override_file).each do |key, value|
+        if data_hash.has_key?(key)
+          data_hash[key] = value
+        end
+      end
+    rescue
+    end
+  end
+  
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode-ubuntu-1204"
+  config.vm.box = data_hash["box"]
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box"
+  config.vm.box_url = data_hash['box_url']
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 #default for developing django applications
+  
+  data_hash['forwarded_ports'].each do |x|
+    config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
+  end
+  #default for developing django applications
+
   # config.vm.network :forwarded_port, guest: 4000, host: 4000 # octopress preview
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -32,17 +57,24 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "./workspace", "/home/vagrant/workspace"
-  config.vm.synced_folder "./home/.virtualenvs", "/home/vagrant/.virtualenvs"
-  config.vm.synced_folder "./home/.ssh", "/home/vagrant/.ssh", :extra => 'dmode=775,fmode=600'
+
+  data_hash['synced_folders'].each do |x|
+    
+    if x["mount_options"].nil? 
+      config.vm.synced_folder x["host"], x["guest"]
+    else
+      config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
+    end
+
+  end
 
   # ssh configuration
-  # config.ssh.forward_agent = true
+  config.ssh.forward_agent = data_hash['forward_agent']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-
+  
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true
@@ -70,57 +102,16 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["vendor-cookbooks", "main-cookbooks"]
-    chef.roles_path = "roles"
-    chef.data_bags_path = "data_bags"
+    # chef.log_level = :debug
+    chef.cookbooks_path = data_hash['chef_cookbooks']
+    chef.roles_path = data_hash['chef_role']
+    chef.data_bags_path = data_hash['chef_bags_path']
 
-    chef.add_recipe "apt" #required for installing vim (?!)
-    chef.add_recipe "vim"
-    chef.add_recipe "git"
-    chef.add_recipe "teracy-dev"
-
+    data_hash['chef_recipes'].each do |x|
+      chef.add_recipe x
+    end
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-    chef.json = {
-      "teracy-dev" => {
-        "workspace" => [
-          "/vagrant/workspace/readonly",
-          "/vagrant/workspace/teracy",
-          "/vagrant/workspace/personal"
-        ],
-        "git" => {
-          "user" => {
-            "name" => "Teracy Dev", # replace by your name
-            "email" => "teracy-dev@teracy.com" # replace by your email
-          },
-          "color" => true, # enable color on git terminal's output
-          "commit" => {
-            "template" => true # use teracy's commit template
-          },
-          "diff" => {
-            "tool" => "vimdiff"
-          },
-          "merge" => {
-            "tool" => "vimdiff"
-          },
-          "difftool" => {
-            "prompt" => false
-          }
-        },
-        "python" => {
-          "enabled" => true, # python platform development, enabled by default
-          "pip" => {
-            "global" => {
-              #"index-url" => "http://pypi.teracy.org/teracy/public/+simple/"
-            }
-
-          }
-        },
-        "ruby" => {
-          "enabled" => false # ruby platform development, disabled by default
-        },
-        "gettext" => false # false by default
-      },
-    }
+    chef.json = data_hash['chef_json']
   end
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).

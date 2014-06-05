@@ -11,10 +11,23 @@ Prerequisites
 
 - ``virtualbox``
 - ``vagrant``
-
-**2. Optional:**
-
 - ``git``
+
+**Notice**
+
+We support SSH Agent Forwarding by default. It means you don't have to submit username & password
+each time when work with Git like ``pull, push, rebase, etc`` on the Vagrant box.
+
+Do the following guide to get it work:
+
+- Mac/ Linux: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac
+
+- Window: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
+
+- Remember that: never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
+  (http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password)
+
+Make this extra step and make your life simpler.
 
 **Windows Notes**:
 
@@ -32,6 +45,7 @@ to the next alternative instruction by installing required packages manually.
 
 Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
 ::
+
     $ cd /tmp
     $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
     $ bash setup_working_env_chef.sh
@@ -40,49 +54,58 @@ Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below
 Or Manual Installation
 ----------------------
 
-You need to finish 2 (or 3 on Windows) following required simple steps:
+You need to finish 3 following required simple steps:
 
-1. Install ``vagrant`` with the version of **1.2.7** at: http://downloads.vagrantup.com/tags/v1.2.7
+1. Install ``vagrant`` with the version of **1.6.2** at: http://www.vagrantup.com/downloads.html
 
-2. Install ``virtualbox`` with the version of **4.2.10** at:
-   https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
+2. Install ``virtualbox`` with the version of **4.3.12** at:
+   https://www.virtualbox.org/wiki/Downloads
 
-3. [**Required on Windows only**] Install latest ``git`` version at http://git-scm.com/ to use
-   ``Git Bash`` as a terminal.
+3. Install latest ``git`` version at http://git-scm.com/
 
-Notice: You need to install exactly ``vagrant`` **v1.2.7** and ``virtualbox`` **v4.2.10** as it
-was stable enough with our intensive usage and support. We use and run 64 bit architecture every
-day, however, 32 bit archirecture is expected to work, too.
+Notice:
+
+- We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.
+
+- Please note that virtualbox has an installation issue which is reported here
+  (https://www.virtualbox.org/ticket/4140). If you `$ vagrant up` but can not start virtual box,
+  please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and re-install it,
+  this will fix the issue.
 
 
 Environment Up
 --------------
 
-- Have ``git`` installed:
 Open your terminal window and type:
 ::
+
     $ cd ~/
     $ git clone https://github.com/teracy-official/dev.git teracy-dev
     $ cd teracy-dev
     $ vagrant up
 
-- Or no ``git`` installed:
-Download the repository at https://github.com/teracy-official/dev/archive/master.zip and
-unzip with named ``teracy-dev`` at ``~/`` (*unix) or ``C:\Documents and Settings\<user_name>``
-(Windows). Then open your terminal window:
-::
-    $ cd ~/
-    $ cd teracy-dev
-    $ vagrant up
+Notice:
 
-
-Note: The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
+1. The home directory on ``Git Bash`` normally should point to your user's directory on Windows.
 For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
 ``teracy-dev`` directory to import projects into your text editor later for coding.
 
+2. You may see the error:
+::
+
+    Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
+    on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH
+    environmental variable.
+
+Please add path to VirtualBox folder to your environment variable.
+Example: in Window, add this "C:\Program Files\Oracle\VirtualBox".
+
+If the error still occur, you have to unistall and re-install VirtualBox then Vagrant. This will fix
+this error.
 
 You should see the following similar messages at the end of ``$ vagrant up``:
 ::
+
     [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
     [2013-07-01T09:57:11+00:00] INFO: Running report handlers
     [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
@@ -90,6 +113,7 @@ You should see the following similar messages at the end of ``$ vagrant up``:
 Last but not least, ``$ vagrant ssh`` to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
 ::
+
     Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
      * Documentation:  https://help.ubuntu.com/

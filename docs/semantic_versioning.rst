@@ -35,6 +35,7 @@ a. Schema:
 
 Format:
 ::
+
     version ::= major'.'minor'.'patch('-'prerelease)?('+'metadata)?
     major ::= digit+
     minor ::= digit+
@@ -48,7 +49,7 @@ Format:
 b. Prerelease tags:
 
 - ``@`` - "dev" means snapshot version of a in-development branch, where all features must be
-worked. When all intended features are complete, move on releasing "a" version.
+  worked. When all intended features are complete, move on releasing "a" version.
 
 - ``a`` - "alpha" means feature complete but its usage is not stable enough, still major bugs are
   expected. Continue refactoring to reach better software quality and better software stability.
@@ -67,7 +68,7 @@ c. Example:
 
 d. Continuous build metadata
 
-    **//TODO**
+    **//TODO(hoatle): specify this**
 
 Python
 ------
@@ -87,6 +88,7 @@ a. Schema
 
 Format:
 ::
+
     version ::= major'.'minor'.'patch('-'prerelease)?('-'postrelease)?
     major ::= digit+
     minor ::= digit+
@@ -111,6 +113,7 @@ d. Continuous build metadata
 
 Format:
 ::
+
     version ::= major'.'minor'.'patch('-'prerelese)?'-dev-'YYYYMMDD.hhmmss('-'buildnumber)?
     buildnumber ::= digit+
 
@@ -165,6 +168,7 @@ a. Schema
 
 Format:
 ::
+
     version ::= major'.'minor'.'path('-'prerelease)('-'postrelease)?
     major ::= digit+
     minor ::= digit+
@@ -189,6 +193,7 @@ d. Continuous build metadata
 
 Format:
 ::
+
     version ::= major'.'minor'.'patch('-'prerelease)?-YYYYMMDD.hhmmss('-'buildnumber)?
     buildnumber ::= digit+
 
@@ -198,10 +203,10 @@ Format:
 Ruby
 ----
 
-    **//TODO**
+    **//TODO(hoatle): specify this**
 
 
 PHP
 ---
 
-    **//TODO**
+    **//TODO(hoatle): specify this**
