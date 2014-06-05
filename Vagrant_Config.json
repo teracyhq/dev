@@ -87,7 +87,7 @@
         "enabled":false
       },
       "php":{
-        "enabled":true
+        "enabled":false
       },
       "java":{
         "enabled":false,
