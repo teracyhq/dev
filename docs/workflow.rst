@@ -12,7 +12,7 @@ First, Initialize Working Repositories
 --------------------------------------
 
 To start working on a repository project, ``fork`` it first to your git account.
-Your working repositories MUST cloned from your git account
+Your working repositories MUST be cloned from your git account
 
 .. and be stored under ``workspace/personal`` directory (or wherever you want, ``workspace/personal`` )
 
@@ -69,7 +69,7 @@ The successful start is when you have both this remotes on your local developmen
     - ``origin`` (remote from your repo)
     - ``upstream`` (remote from official repo)
 
-If yours is OK, it's time to switch to step 2 : Git Branching Off
+If yours is OK, it's time to switch to step 2: Git Branching Off
 
 .. @TODO : Add remote for review other's works
 
@@ -111,7 +111,7 @@ The workingflow is summarized under 4 major steps :
 - Step 3 : Submit pull-request. Waiting for approve or resolve conflict if appears.
 - Step 4 : Cleanning up branch
 
-Lets get in more detais:
+Let's get in more detais:
 
 **Step 1 : Branching-off base on issue**
 
@@ -120,8 +120,8 @@ Lets get in more detais:
     Working on features
     ::
         $ git fetch upstream
-        $ git checkout upstream/master -b feautures/<issue_key>-<concise_title>
-        $ git push origin feautures/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b features/<issue_key>-<concise_title>
+        $ git push origin features/<issue_key>-<concise_title>
 
     Working on improvements
     ::
@@ -129,15 +129,22 @@ Lets get in more detais:
         $ git checkout upstream/master -b improvements/<issue_key>-<concise_title>
         $ git push origin improvements/<issue_key>-<concise_title>
 
+    Working on tasks or sub-tasks:
+    ::
+        $ git fetch upstream
+        $ git checkout upstream/master -b tasks/<issue_key>-<concise_title>
+        $ git push origin tasks/<issue_key>-<concise_title>
+
     Working on bugs
     ::
         $ git fetch upstream
         $ git checkout upstream/master -b bugs/<issue_key>-<concise_title>
         $ git push origin bugs/<issue_key>-<concise_title>
 
+
     Above are template `Branching off` based on issue's type.
 
-**Step 2 : Developing with Code / Commit / Push**
+**Step 2 : Developing with Code/ Commit/ Push**
 
     During your coding, you would make some commit and push, in that case you have to check TWO things:
 
@@ -150,7 +157,7 @@ Lets get in more detais:
         $ git fetch upstream
         $ git rebase upstream/master
 
-    By doing this, your branch will be merged with updates from others and it would make conflicts.
+    By doing this, your branch will be rebased with updates from others.
     If it has any conflict, you have to resolve them by:
 
     - Edit conflict file
@@ -170,24 +177,24 @@ Lets get in more detais:
 
 **Step 3 : Submit Pull-request**
 
-    When you completed the issue, you have to submit pull-request for reviewing on your work.
+    When you get the issue completed, submit pull-request for reviewing on your work.
     There are TWO steps in submit pull-request:
 
-    1. Send Issue Pull-request
 
-        .. image:: _static/workflow/submit-pull-request-issue.png
-
-    2. Send Code Pull-request
+    1. Send Code Pull-request
 
         .. image:: _static/workflow/submit-pull-request-code-1.png
         .. image:: _static/workflow/submit-pull-request-code-2.png
+
+    2. Send Issue Pull-request
+
+        .. image:: _static/workflow/submit-pull-request-issue.png
 
       Note: After a ``pull`` request, you will continue to work on your working branch as normal, just
       ``push`` it and the pull request will be updated with your new commits. Ping other Teracier to
       help reviewing, comments, suggestions, etc.
 
     When you meet all these long strict requirements, your work will be more welcomed accepted.
-    Congratulations, let's get some beer then :-).
 
 **Step 4 : Cleaning up branch**
 
@@ -199,7 +206,7 @@ Lets get in more detais:
 2. Git Rules
 -------------------------------
 
-For preventing chaos happen we make some rules in the workflow and here are the details
+To prevent chaos happening, we make some rules in the workflow and here are the details:
 
 -----------------
 Branch Name Rules
@@ -209,13 +216,15 @@ When start working on a new issue, you always MUST to start a new branch for it 
 is based on type of the issue, which mean if the issue is :
 
 - ``feature`` => Branch's name is ``features/<issue_key>-<concise_title>``
-- ``improvement`` => Branch's name is ``improvement/<issue_key>-<concise_title>``
+- ``improvement`` => Branch's name is ``improvements/<issue_key>-<concise_title>``
+- ``task or sub-task`` => Branch's name is ``tasks/<issue_key>-<concise_title>``
 - ``bug`` => Branch's name is ``bugs/<issue_key>-<concise_title>``
 - ``critical bug`` => Branch's name is ``hot-fixes/<issue_key>-<concise_title>``
 
 And more :
 
-- ``<issue_key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx .. blah ..blah. The key prefix is based on type of project.
+- ``<issue_key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx .. blah ..blah. The key
+  prefix is based on type of project.
 - ``<concise_title>`` is issue's title which rewritten in concise way and replacing ``space`` with ``-``.
 - ``<issue_key>`` and ``<concise_title>`` is seperated by a ``-`` character.
 
@@ -293,23 +302,23 @@ NEVER ever force push the *official* repositories.
 With branch merging and releasing workflow, *senior* collaborators must follow the git branching
 model as mentioned by the article above.
 
-As the merging, pushing must be done on official teracy's projects, so you need to clone projects
-into ``workspace/teracy`` directory.
+As the merging, pushing must be done on official teracy's projects, so you need to push to
+`upstream` repo.
 
 For example, you need to merge the work of *features/1_auto_fabric_deployment* branch from
 https://github.com/hoatle/django-boilerplate
 ::
 
     $ ws
-    $ cd teracy
-    $ git clone git@github.com/teracy-official/teracy-django-boilerplate.git
-    $ cd teracy
-    $ git fetch origin
-    $ git checkout origin/develop
-    $ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
-    $ git fetch hoatle
-    $ git git merge --no-ff hoatle/features/1_auto_fabric_deployment
-    $ git push origin develop
+    $ cd personal
+    $ git clone git@github.com/hoatle/django-boilerplate.git 
+    $ cd django-boilerplate
+    $ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
+    $ git checkout develop
+    $ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
+    $ git fetch phuonglm
+    $ git git merge --no-ff phuonglm/features/1-auto-fabric-deployment
+    $ git push upstream develop
 
 Always `merge` with `--no-ff` to make sure we have the merging point to refer to later.
 
