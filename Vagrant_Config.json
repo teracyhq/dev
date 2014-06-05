@@ -86,6 +86,9 @@
       "ruby":{
         "enabled":false
       },
+      "php":{
+        "enabled":true
+      },
       "java":{
         "enabled":false,
         "version":"7",
