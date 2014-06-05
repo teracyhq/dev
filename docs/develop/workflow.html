@@ -67,14 +67,203 @@
 less time with higher quality of work.</p>
 <p>We adopted <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> for our development workflow with some specific
 rules. What&#8217;s the fun with a game without rules :-D?</p>
+<div class="section" id="first-initialize-working-repositories">
+<h2>First, Initialize Working Repositories<a class="headerlink" href="#first-initialize-working-repositories" title="Permalink to this headline">¶</a></h2>
+<p>To start working on a repository project, <tt class="docutils literal"><span class="pre">fork</span></tt> it first to your git account.
+Your working repositories MUST be cloned from your git account</p>
+<p>For example, you&#8217;re going to work on <tt class="docutils literal"><span class="pre">https://code.teracy.org/projects/CLIENTS/repos/bitcoinbotclient/browse</span></tt>
+project</p>
+<img alt="_images/project.png" src="_images/project.png" />
+<p>, so follow the following steps :</p>
+<ol class="arabic">
+<li><p class="first"><tt class="docutils literal"><span class="pre">Fork</span></tt> the official repository to your developer account.</p>
+<blockquote>
+<div><p><strong>Step 1 :</strong></p>
+<img alt="_images/fork-1.png" src="_images/fork-1.png" />
+<p><strong>Step 2 :</strong></p>
+<a class="reference internal image-reference" href="_images/fork-2.png"><img alt="_images/fork-2.png" src="_images/fork-2.png" style="width: 500px;" /></a>
+<p>Fork successful, here is your result :</p>
+<img alt="_images/fork-3.png" src="_images/fork-3.png" />
+<p>And my repository&#8217;s url is <tt class="docutils literal"><span class="pre">https://code.teracy.org/users/tucq/repos/bitcoinbotclient/browse</span></tt></p>
+</div></blockquote>
+</li>
+</ol>
+<p>2. <tt class="docutils literal"><span class="pre">Clone</span></tt> it to your workspace.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone ssh://git@code.teracy.org/~tucq/bitcoinbotclient.git
+            ============== &quot;Forked&quot; repo URL ===================
+</pre></div>
+</div>
+<img alt="_images/clone-fork-url.png" src="_images/clone-fork-url.png" />
+<p>3. Add <tt class="docutils literal"><span class="pre">upstream</span></tt> repository (the official repository).</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git remote add upstream ssh://git@code.teracy.org/clients/bitcoinbotclient.git
+                          ================= Official repo URL ==================
+</pre></div>
+</div>
+<img alt="_images/clone-official-url.png" src="_images/clone-official-url.png" />
+<p>4. Re-check to verify your clone :</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git remote -v
+</pre></div>
+</div>
+<img alt="_images/git-remote-info.png" src="_images/git-remote-info.png" />
+<p>The successful start is when you have both this remotes on your local development :</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">origin</span></tt> (remote from your repo)</li>
+<li><tt class="docutils literal"><span class="pre">upstream</span></tt> (remote from official repo)</li>
+</ul>
+</div></blockquote>
+<p>If yours is OK, it&#8217;s time to switch to step 2: Git Branching Off</p>
+</div>
+<div class="section" id="git-branching-off">
+<h2>Git Branching Off<a class="headerlink" href="#git-branching-off" title="Permalink to this headline">¶</a></h2>
+<p>Usually, a new branch should be branched off from target to-be-merged remote branch.
+It&#8217;s often <em>upstream/develop</em> or sometimes <em>upstream/master</em>. However, there are cases that it does not apply:
+Keep in mind that you need to rebase often the work of that upstream branch to your working branch.</p>
+<p>Firstly, you must know what “Branching Off” meaning. In a shorthand, it’s mean you checkout from a branch,
+then create another branch from that checkout.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git checkout branch-1 -b branch-2
+</pre></div>
+</div>
+<p>Here is how it works : Git starts checkout branch-1, then creates branch-2 based on that checkout.
+Now branch-2 is on your local and ready for you to working on it.</p>
+<p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
+</div>
+<div class="section" id="start-working-with-git">
+<h2>Start working with Git<a class="headerlink" href="#start-working-with-git" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="workingflow-in-teracy">
+<h3>1. Workingflow in Teracy<a class="headerlink" href="#workingflow-in-teracy" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/workflow-with-git.png" src="_images/workflow-with-git.png" />
+<p>The workingflow is summarized under 4 major steps :</p>
+<ul class="simple">
+<li>Step 1 : Branching-off based on your issue</li>
+<li>Step 2 : Code / Commit / Push</li>
+<li>Step 3 : Submit pull-request. Waiting for approve or resolve conflict if appears.</li>
+<li>Step 4 : Cleanning up branch</li>
+</ul>
+<p>Let&#8217;s get in more detais:</p>
+<p><strong>Step 1 : Branching-off base on issue</strong></p>
+<blockquote>
+<div><p>If you don&#8217;t know what is the meaning of &#8220;Branching-off&#8221;, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
+<p>Working on features</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git checkout upstream/master -b features/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git push origin features/&lt;issue_key&gt;-&lt;concise_title&gt;
+</pre></div>
+</div>
+<p>Working on improvements</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git checkout upstream/master -b improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git push origin improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
+</pre></div>
+</div>
+<p>Working on tasks or sub-tasks:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git checkout upstream/master -b tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git push origin tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
+</pre></div>
+</div>
+<p>Working on bugs</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git checkout upstream/master -b bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git push origin bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
+</pre></div>
+</div>
+<p>Above are template <cite>Branching off</cite> based on issue&#8217;s type.</p>
+</div></blockquote>
+<p><strong>Step 2 : Developing with Code/ Commit/ Push</strong></p>
+<blockquote>
+<div><p>During your coding, you would make some commit and push, in that case you have to check TWO things:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#quality-checklist">Quality Checklist</a></li>
+<li><a class="reference internal" href="#git-commit-messages">Git Commit Messages</a></li>
+</ul>
+</div></blockquote>
+<p>If there&#8217;re some changes from remote branch (could be <em>upstream/master</em>) that you need,
+you have to rebase your branch with that updates. It could be done by this :</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git rebase upstream/master
+</pre></div>
+</div>
+<p>By doing this, your branch will be rebased with updates from others.
+If it has any conflict, you have to resolve them by:</p>
+<ul>
+<li><p class="first">Edit conflict file</p>
+<blockquote>
+<div><p>Sample on conflict file</p>
+<img alt="_images/conflict-mark.png" src="_images/conflict-mark.png" />
+<p>Sample on resolved-conflict file</p>
+<img alt="_images/conflict-resolved.png" src="_images/conflict-resolved.png" />
+</div></blockquote>
+</li>
+<li><p class="first">Add conflict-resolved-file in git then continue to rebase</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git add path/to/conflict-resolved-file
+$ git rebase --continue
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Step 3 : Submit Pull-request</strong></p>
+<blockquote>
+<div><p>When you get the issue completed, submit pull-request for reviewing on your work.
+There are TWO steps in submit pull-request:</p>
+<ol class="arabic">
+<li><p class="first">Send Code Pull-request</p>
+<blockquote>
+<div><img alt="_images/submit-pull-request-code-1.png" src="_images/submit-pull-request-code-1.png" />
+<img alt="_images/submit-pull-request-code-2.png" src="_images/submit-pull-request-code-2.png" />
+</div></blockquote>
+</li>
+<li><p class="first">Send Issue Pull-request</p>
+<blockquote>
+<div><img alt="_images/submit-pull-request-issue.png" src="_images/submit-pull-request-issue.png" />
+</div></blockquote>
+</li>
+</ol>
+<blockquote>
+<div>Note: After a <tt class="docutils literal"><span class="pre">pull</span></tt> request, you will continue to work on your working branch as normal, just
+<tt class="docutils literal"><span class="pre">push</span></tt> it and the pull request will be updated with your new commits. Ping other Teracier to
+help reviewing, comments, suggestions, etc.</div></blockquote>
+<p>When you meet all these long strict requirements, your work will be more welcomed accepted.</p>
+</div></blockquote>
+<p><strong>Step 4 : Cleaning up branch</strong></p>
+<blockquote>
+<div>After your code get reviewed and approved. It will be merge to offical, so you have to make a
+<a class="reference internal" href="#git-branch-cleaning-up">Git Branch Cleaning Up</a> to clean up your local and get ready for next issue.</div></blockquote>
+</div>
+<div class="section" id="git-rules">
+<h3>2. Git Rules<a class="headerlink" href="#git-rules" title="Permalink to this headline">¶</a></h3>
+<p>To prevent chaos happening, we make some rules in the workflow and here are the details:</p>
+</div>
+<div class="section" id="branch-name-rules">
+<h3>Branch Name Rules<a class="headerlink" href="#branch-name-rules" title="Permalink to this headline">¶</a></h3>
+<p>When start working on a new issue, you always MUST to start a new branch for it and that branch&#8217;s name
+is based on type of the issue, which mean if the issue is :</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">feature</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">features/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">improvement</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">improvements/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">tasks/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+</ul>
+<p>And more :</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx .. blah ..blah. The key
+prefix is based on type of project.</li>
+<li><tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is issue&#8217;s title which rewritten in concise way and replacing <tt class="docutils literal"><span class="pre">space</span></tt> with <tt class="docutils literal"><span class="pre">-</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is seperated by a <tt class="docutils literal"><span class="pre">-</span></tt> character.</li>
+</ul>
+<p>For example, with issue &#8220;CLT-183 | Sharing Tutorial is not firing email #652&#8221; .</p>
+<p>It&#8217;s &lt;issue_key&gt; could be &#8220;CLT-183&#8221; and it&#8217;s &lt;consie_title&gt; is &#8220;sharing-tutorial-is-not-firing-email-#652&#8221;</p>
+</div>
 <div class="section" id="quality-checklist">
-<h2>Quality Checklist<a class="headerlink" href="#quality-checklist" title="Permalink to this headline">¶</a></h2>
+<h3>Quality Checklist<a class="headerlink" href="#quality-checklist" title="Permalink to this headline">¶</a></h3>
 <p>Quality of work must be strictly defined with rules and measurements, especially with software
 quality.</p>
 <p>Any work is accepted as good enough MUST meet the following (including but not limited) requirements
 of <tt class="docutils literal"><span class="pre">quality</span> <span class="pre">checklist</span></tt>:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>no tab character</li>
 <li>length of the text/code line within 100 characters</li>
 <li>follow conventions and standards</li>
@@ -82,15 +271,14 @@ of <tt class="docutils literal"><span class="pre">quality</span> <span class="pr
 <li>any documentation must be updated</li>
 <li>the implementation must be good enough from the view of collaborators</li>
 </ul>
-</div></blockquote>
 <p>We use many automatic tools to detect and reports the quality. Trust me, your work will be better
 and better over time.</p>
 </div>
 <div class="section" id="git-commit-messages">
-<h2>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h2>
+<h3>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
 <p>Git commit message must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
 
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
@@ -103,177 +291,47 @@ This is the work on local part.
 </pre></div>
 </div>
 </div>
-<div class="section" id="git-branching-off">
-<h2>Git Branching Off<a class="headerlink" href="#git-branching-off" title="Permalink to this headline">¶</a></h2>
-<p>Usually, a new branch should be branched off from target to-be-merged remote branch.
-It&#8217;s usually <em>upstream/develop</em>. However, there are cases that it does not apply:</p>
-<p>Keep in mind that you need to rebase the work of that upstream branch to
-your working branch as often as possible.</p>
-<p>This is the demonstration example: <em>phuonglm</em> is working on
-features/DJBP-1-fabric-deployment-virtual-machine, and you&#8217;re going to work on
-features/DJBP-2-fabric-deployment-remote-machine, it depends on phuonglm&#8217;s
-features/1-fabric-deployment-virtual-machine. On this case, you MUST indicate the branch name with
-<tt class="docutils literal"><span class="pre">deps-&lt;issueNumber&gt;</span></tt> affix.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
-$ git fetch phuonglm
-$ git checkout phuonglm/features/DJBP-1-fabric-deployment-virtual-machine -b features/DJBP-2-fabric-deployment-remote-machine-deps-1
-$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1
-</pre></div>
-</div>
-<p>After sometime of work, phuonglm&#8217;s features/DJBP-1-fabric-deployment-virtual-machine has some updates and
-you should:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
-$ git rebase phuonglm/features/DJBP-1-fabric-deployment-virtual-machine
-$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
-</pre></div>
-</div>
-<p>When phuonglm&#8217;s features/DJBP-1-fabric-deployment-virtual-machine is merged into <em>upstream/develop</em>,
-you need to rebase on it to get these new updates:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git rebase upstream/develop
-$ git push origin features/DJBP-2-fabric-deployment-remote-machine-deps-1 -f
-</pre></div>
-</div>
-<p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
-</div>
-<div class="section" id="git-force-push">
-<h2>Git Force Push<a class="headerlink" href="#git-force-push" title="Permalink to this headline">¶</a></h2>
-<p>Should not <a href="#id1"><span class="problematic" id="id2">``</span></a>$ git push origin <a href="#id3"><span class="problematic" id="id4">`</span></a>.</p>
-</div>
 <div class="section" id="git-branch-cleaning-up">
-<h2>Git Branch Cleaning Up<a class="headerlink" href="#git-branch-cleaning-up" title="Permalink to this headline">¶</a></h2>
+<h3>Git Branch Cleaning Up<a class="headerlink" href="#git-branch-cleaning-up" title="Permalink to this headline">¶</a></h3>
 <p>After your working branch is merged back into official repository, make sure to delete these
 working branches.</p>
 <p>Delete remote branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git push origin :branch-name
+<div class="highlight-python"><div class="highlight"><pre>$ git push origin :branch_name
 </pre></div>
 </div>
 <p>Delete local branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git checkout master
-$ git branch -d branch-name
+$ git branch -d branch_name
 </pre></div>
 </div>
-<p>Let&#8217;s take a ride on actual workflow.</p>
 </div>
-<div class="section" id="first-initialize-working-repositories">
-<h2>First, Initialize Working Repositories<a class="headerlink" href="#first-initialize-working-repositories" title="Permalink to this headline">¶</a></h2>
-<p>To start working on a repository project, <tt class="docutils literal"><span class="pre">fork</span></tt> it first to your git account.</p>
-<p>Your working repositories MUST cloned from your git account and be stored under
-<tt class="docutils literal"><span class="pre">workspace/personal</span></tt> directory.</p>
-<p>For example, you&#8217;re going to work on <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a>
-project, so follow the steps to follow:</p>
-<p>1. <tt class="docutils literal"><span class="pre">Fork</span></tt> the official repository to your github account.
-Mine should be <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
-<p>2. <tt class="docutils literal"><span class="pre">Clone</span></tt> it to your <tt class="docutils literal"><span class="pre">personal</span></tt> workspace.</p>
+<div class="section" id="git-force-push">
+<h3>Git Force Push<a class="headerlink" href="#git-force-push" title="Permalink to this headline">¶</a></h3>
+<p>Should not <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">branch_name</span> <span class="pre">-f</span></tt> if your branch has another branch depending on.</p>
+<p>NEVER ever force push the <em>official</em> repositories.</p>
+</div>
+<div class="section" id="official-repository-s-merging-and-releasing">
+<h3>3. Official Repository&#8217;s Merging and Releasing<a class="headerlink" href="#official-repository-s-merging-and-releasing" title="Permalink to this headline">¶</a></h3>
+<p>With branch merging and releasing workflow, <em>senior</em> collaborators must follow the git branching
+model as mentioned by the article above.</p>
+<p>As the merging, pushing must be done on official teracy&#8217;s projects, so you need to push to
+<cite>upstream</cite> repo.</p>
+<p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
+<a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal
 $ git clone git@github.com/hoatle/django-boilerplate.git
-</pre></div>
-</div>
-<p>3. Add <tt class="docutils literal"><span class="pre">upstream</span></tt> repository (the official repository).</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add upstream https://github.com/teracy-official/django-boilerplate.git
-</pre></div>
-</div>
-</div>
-<div class="section" id="work-on-features-improvements-tasks">
-<h2>Work On Features/ Improvements/ Tasks<a class="headerlink" href="#work-on-features-improvements-tasks" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>To start a new feature, you MUST branch off from the latest <tt class="docutils literal"><span class="pre">upstream/develop</span></tt> branch with a
-name of the pattern: <tt class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>. The title must be concise as much
-as possible, then <tt class="docutils literal"><span class="pre">push</span></tt> that branch to your repository.</li>
-<li>To start a new improvement, start a new branch with a name of the pattern:
-<tt class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>.</li>
-<li>And to start a new task: <tt class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>.</li>
-</ul>
-<p>For example, you&#8217;re going to work on the issue #1 with title: &#8220;auto deployment with fabric&#8221; of type
-&#8220;feature&#8221;:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
-$ cd personal/django-boilerplate
-$ git fetch upstream
-$ git checkout upstream/develop -b features/DJBP-1-auto-fabric-deployment
-$ git push origin features/DJBP-1-auto-fabric-deployment
-</pre></div>
-</div>
-<ul class="simple">
-<li>Now you&#8217;re on <tt class="docutils literal"><span class="pre">features/DJBP-1-auto-fabric-deployment</span></tt> branch, just <tt class="docutils literal"><span class="pre">focus</span></tt> working on it,
-<tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible.</li>
-</ul>
-<p>Sometimes you need to get updates from <tt class="docutils literal"><span class="pre">upstream/develop</span></tt>, so you need to rebase on it:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git rebase upstream/develop
-</pre></div>
-</div>
-<p>Resolve any conflicts and continue with <tt class="docutils literal"><span class="pre">focus</span></tt>, <tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible.</p>
-<ul class="simple">
-<li>When the feature is ready to ship, rebase on <tt class="docutils literal"><span class="pre">upstream/develop</span></tt> again, reorganize the commits
-as logical and clean as possible and make a <tt class="docutils literal"><span class="pre">pull</span></tt> request to the official repository with
-target merging branch. You will get tons of comments, suggestions and you need to continue working
-on it to make it good enough to be merged into <tt class="docutils literal"><span class="pre">upstream/develop</span></tt> branch.</li>
-</ul>
-<p>Before making a pull request, make sure your work must meet the <strong>quality checklist</strong>.</p>
-<p>Note: After a <tt class="docutils literal"><span class="pre">pull</span></tt> request, you will continue to work on your working branch as normal, just
-<tt class="docutils literal"><span class="pre">push</span></tt> it and the pull request will be updated with your new commits. Ping other Teraciers to
-help reviewing, comments, suggestions, etc.</p>
-<p>When you meet all these long strict requirements, your work will be more welcomed accepted.</p>
-</div>
-<div class="section" id="work-on-bugs">
-<h2>Work On Bugs<a class="headerlink" href="#work-on-bugs" title="Permalink to this headline">¶</a></h2>
-<p>Before doing anything, try to <strong>reproduce</strong> the bug. If the bug is hard to reproduce, try to get
-some blind guesses and clues. If you could not see how to <em>reproduce</em> the bug or any clue about it,
-report it to your supervisor to get suggestions and directions.</p>
-<p>If you could <strong>reproduce</strong> the bug, start branching off from the target branch with a name of the
-pattern: <tt class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt>. MUST try to <strong>add tests</strong> to reproduce the bug and
-pass it, that&#8217;s the way we create software.</p>
-<p>For example, you&#8217;re going to work on a bug issue #DJBP-2 with the title: &#8220;fabric does not work on Mac
-OSX&#8221; with expected fix for <em>upstream/develop</em> branch.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
-$ cd personal/django-boilerplate
-$ git fetch upstream
-$ git checkout upstream/develop -b bugs/DJBP-2-fabric-not-work-mac-osx
-$ git push origin bugs/DJBP-2-fabric-not-work-mac-osx
-</pre></div>
-</div>
-<p><tt class="docutils literal"><span class="pre">focus</span></tt>, <tt class="docutils literal"><span class="pre">commit</span></tt> and <tt class="docutils literal"><span class="pre">push</span></tt> as often as possible. After the work is done, make a pull
-request.</p>
-</div>
-<div class="section" id="work-on-critical-bugs">
-<h2>Work On <strong>Critical</strong> Bugs<a class="headerlink" href="#work-on-critical-bugs" title="Permalink to this headline">¶</a></h2>
-<p>These kind of bugs need hot-fix as it has <em>very high priority</em>.</p>
-<p>Branch off a branch from the branch that needs hot-fix with a name of the pattern:
-<tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></p>
-<p>For example, you&#8217;re going to work on a critical bug issue #DJBP-3 with the title: &#8220;fabric causes the
-remote server crashed!!!&#8221; with expected fix for <em>upstream/master</em> branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
-$ cd personal/django-boilerplate
-$ git fetch upstream
-$ git checkout upstream/master -b hot-fixes/DJPB-3-fabric-crashes-remote-server
-$ git push origin hot-fixes/DJBP-3-fabric-crashes-remote-server
-</pre></div>
-</div>
-<p>Fix it as fast as possible with <em>really good tests</em>, you must make sure there should not have any
-<em>regression</em>, then make a pull request to the target merging branch.</p>
-</div>
-<div class="section" id="official-repository-s-merging-and-releasing">
-<h2>Official Repository&#8217;s Merging and Releasing<a class="headerlink" href="#official-repository-s-merging-and-releasing" title="Permalink to this headline">¶</a></h2>
-<p>With branch merging and releasing workflow, <em>senior</em> collaborators must follow the git branching
-model as mentioned by the article above.</p>
-<p>As the merging, pushing must be done on official teracy&#8217;s projects, so you need to clone projects
-into <tt class="docutils literal"><span class="pre">workspace/teracy</span></tt> directory.</p>
-<p>For example, you need to merge the work of <em>features/DJBP-1-auto-fabric-deployment</em> branch from
-<a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a></p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
-$ cd teracy
-$ git clone git@github.com/teracy-official/teracy-django-boilerplate.git
-$ cd teracy
-$ git fetch origin
-$ git checkout origin/develop
-$ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
-$ git fetch hoatle
-$ git git merge --no-ff hoatle/features/DJBP-1-auto-fabric-deployment
-$ git push origin develop
+$ cd django-boilerplate
+$ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
+$ git checkout develop
+$ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
+$ git fetch phuonglm
+$ git git merge --no-ff phuonglm/features/1-auto-fabric-deployment
+$ git push upstream develop
 </pre></div>
 </div>
 <p>Always <cite>merge</cite> with <cite>&#8211;no-ff</cite> to make sure we have the merging point to refer to later.</p>
+</div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
@@ -294,16 +352,19 @@ $ git push origin develop
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Workflow</a><ul>
+<li><a class="reference internal" href="#first-initialize-working-repositories">First, Initialize Working Repositories</a></li>
+<li><a class="reference internal" href="#git-branching-off">Git Branching Off</a></li>
+<li><a class="reference internal" href="#start-working-with-git">Start working with Git</a><ul>
+<li><a class="reference internal" href="#workingflow-in-teracy">1. Workingflow in Teracy</a></li>
+<li><a class="reference internal" href="#git-rules">2. Git Rules</a></li>
+<li><a class="reference internal" href="#branch-name-rules">Branch Name Rules</a></li>
 <li><a class="reference internal" href="#quality-checklist">Quality Checklist</a></li>
 <li><a class="reference internal" href="#git-commit-messages">Git Commit Messages</a></li>
-<li><a class="reference internal" href="#git-branching-off">Git Branching Off</a></li>
-<li><a class="reference internal" href="#git-force-push">Git Force Push</a></li>
 <li><a class="reference internal" href="#git-branch-cleaning-up">Git Branch Cleaning Up</a></li>
-<li><a class="reference internal" href="#first-initialize-working-repositories">First, Initialize Working Repositories</a></li>
-<li><a class="reference internal" href="#work-on-features-improvements-tasks">Work On Features/ Improvements/ Tasks</a></li>
-<li><a class="reference internal" href="#work-on-bugs">Work On Bugs</a></li>
-<li><a class="reference internal" href="#work-on-critical-bugs">Work On <strong>Critical</strong> Bugs</a></li>
-<li><a class="reference internal" href="#official-repository-s-merging-and-releasing">Official Repository&#8217;s Merging and Releasing</a></li>
+<li><a class="reference internal" href="#git-force-push">Git Force Push</a></li>
+<li><a class="reference internal" href="#official-repository-s-merging-and-releasing">3. Official Repository&#8217;s Merging and Releasing</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
