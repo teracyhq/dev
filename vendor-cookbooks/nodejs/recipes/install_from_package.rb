@@ -22,6 +22,7 @@
 
 case node['platform_family']
   when 'debian'
+    include_recipe "apt"
     if node['nodejs']['legacy_packages'] == true
       repo = 'http://ppa.launchpad.net/chris-lea/node.js-legacy/ubuntu'
       packages = %w{ nodejs npm }
@@ -33,12 +34,14 @@ case node['platform_family']
       uri repo
       distribution node['lsb']['codename']
       components ['main']
-      keyserver "keyserver.ubuntu.com"
+      keyserver "hkp://keyserver.ubuntu.com:80"
       key "C7917B12"
       action :add
     end
   when 'rhel'
-    include_recipe 'yum::epel'
+    include_recipe 'yum-epel'
+    packages = %w{ nodejs nodejs-devel npm }
+  when 'fedora'
     packages = %w{ nodejs nodejs-devel npm }
   when 'smartos'
     packages = %w{ nodejs }

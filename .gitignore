@@ -70,7 +70,7 @@ local.properties
 
 ## https://github.com/github/gitignore/blob/master/Global/IntelliJ.gitignore
 
-Vagrant_Config.json
+Vagrant_Config_Override.json
 *.iml
 *.ipr
 *.iws
@@ -106,6 +106,7 @@ Icon
 
 # SublimeText project files
 *.sublime-workspace
+*.sublime-project
 
 ## https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
 

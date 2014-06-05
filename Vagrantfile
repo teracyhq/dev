@@ -4,14 +4,24 @@
 Vagrant.configure("2") do |config|
 
   require 'json'
-  if File.exists? ("Vagrant_Config.json")
-    file = File.read('Vagrant_Config.json')
-  else
-    file = File.read('Vagrant_Config_Default.json')
-  end
-  
+  # Load default setting
+  file = File.read(File.dirname(__FILE__) + '/Vagrant_Config.json')  
   data_hash = JSON.parse(file)
 
+  # Check and override if exist any match JSON object from Vagrant_Config_Override.json
+  if File.exist? ('Vagrant_Config_Override.json')
+    override_file = File.read('Vagrant_Config_Override.json')  
+
+    begin      
+      JSON.parse(override_file).each do |key, value|
+        if data_hash.has_key?(key)
+          data_hash[key] = value
+        end
+      end
+    rescue
+    end
+  end
+  
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -27,7 +37,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   
-  data_hash['forwarded_port'].each do |x|
+  data_hash['forwarded_ports'].each do |x|
     config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
   end
   #default for developing django applications
@@ -48,12 +58,12 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  data_hash['synced_folder'].each do |x|
+  data_hash['synced_folders'].each do |x|
     
-    if x[2].nil? or x[3].nil?
-      config.vm.synced_folder x[0], x[1]
+    if x["mount_options"].nil? 
+      config.vm.synced_folder x["host"], x["guest"]
     else
-      config.vm.synced_folder x[0], x[1], :mount_options => [x[2], x[3]]
+      config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
     end
 
   end
@@ -92,25 +102,16 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
+    # chef.log_level = :debug
     chef.cookbooks_path = data_hash['chef_cookbooks']
     chef.roles_path = data_hash['chef_role']
     chef.data_bags_path = data_hash['chef_bags_path']
 
-    data_hash['chef_recipe'].each do |x|
+    data_hash['chef_recipes'].each do |x|
       chef.add_recipe x
     end
-   
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-    chef.json = {
-      "teracy-dev" => {
-        "workspace" => data_hash['workspace'],
-        "git" => data_hash['git'],
-        "nodejs" => data_hash['nodejs'],
-        "python" => data_hash['python'],
-        "ruby" => data_hash['ruby'],
-        "gettext" => data_hash['gettext']
-      },
-    }
+    chef.json = data_hash['chef_json']
   end
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
