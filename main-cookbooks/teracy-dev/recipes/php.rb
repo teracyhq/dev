@@ -7,6 +7,7 @@
 #
 
 if node['teracy-dev']['php']['enabled']    	    
-    
-	include_recipe 'php'
+    include_recipe 'chef-dotdeb'
+    include_recipe 'chef-dotdeb::php54'
+    include_recipe 'php'
 end
