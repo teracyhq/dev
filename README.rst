@@ -50,7 +50,6 @@ will be created if they do not exist yet.
 ``workspace/readonly``: the location to store all the stuffs that you could read only (open source
 projects).
 
-``workspace/upstream``: is used to store all the upstream repositories which you have write permission.
 
 The ``teracy-dev/workspace`` directory from host machine was mapped to ``~/workspace`` directory
 on the virtual machine. So you could access this ``workspace`` directory from the virtual machine
