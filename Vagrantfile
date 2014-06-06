@@ -5,12 +5,12 @@ Vagrant.configure("2") do |config|
 
   require 'json'
   # Load default setting
-  file = File.read(File.dirname(__FILE__) + '/Vagrant_Config.json')  
+  file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
   data_hash = JSON.parse(file)
 
-  # Check and override if exist any match JSON object from Vagrant_Config_Override.json
-  if File.exist? ('Vagrant_Config_Override.json')
-    override_file = File.read('Vagrant_Config_Override.json')  
+  # Check and override if exist any match JSON object from vagrant_config_override.json
+  if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
+    override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
     begin      
       JSON.parse(override_file).each do |key, value|
@@ -27,17 +27,17 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = data_hash["box"]
+  config.vm.box = data_hash["vm_box"]
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = data_hash['box_url']
+  config.vm.box_url = data_hash['vm_box_url']
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   
-  data_hash['forwarded_ports'].each do |x|
+  data_hash['vm_forwarded_ports'].each do |x|
     config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
   end
   #default for developing django applications
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  data_hash['synced_folders'].each do |x|
+  data_hash['vm_synced_folders'].each do |x|
     
     if x["mount_options"].nil? 
       config.vm.synced_folder x["host"], x["guest"]
@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
   end
 
   # ssh configuration
-  config.ssh.forward_agent = data_hash['forward_agent']
+  config.ssh.forward_agent = data_hash['vm_forward_agent']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -102,7 +102,7 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    # chef.log_level = :debug
+    chef.log_level = data_hash['chef_log_level']
     chef.cookbooks_path = data_hash['chef_cookbooks']
     chef.roles_path = data_hash['chef_role']
     chef.data_bags_path = data_hash['chef_bags_path']

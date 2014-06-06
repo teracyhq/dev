@@ -70,7 +70,6 @@ local.properties
 
 ## https://github.com/github/gitignore/blob/master/Global/IntelliJ.gitignore
 
-Vagrant_Config_Override.json
 *.iml
 *.ipr
 *.iws
@@ -155,3 +154,5 @@ workspace/*
 
 home/.virtualenvs/*
 !home/.virtualenvs/.gitkeep
+
+vagrant_config_override.json

@@ -1,14 +1,14 @@
 {
-  "box":"opscode-ubuntu-1204",
-  "box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
-  "forward_agent":true,
-  "forwarded_ports":[
+  "vm_box":"opscode-ubuntu-1204",
+  "vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
+  "vm_forward_agent":true,
+  "vm_forwarded_ports":[
     {
       "guest":8000,
       "host":8000
     }
   ],
-  "synced_folders":[
+  "vm_synced_folders":[
     {
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
@@ -30,6 +30,7 @@
       ]
     }
   ],
+  "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[
     "vendor-cookbooks",
     "main-cookbooks"
