@@ -46,7 +46,6 @@
     "teracy-dev":{
       "workspace":[
         "/vagrant/workspace/readonly",
-        "/vagrant/workspace/upstream",
         "/vagrant/workspace/personal"
       ],
       "git":{
