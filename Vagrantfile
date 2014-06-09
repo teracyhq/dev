@@ -13,12 +13,9 @@ Vagrant.configure("2") do |config|
   if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
     override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
-    begin      
-      JSON.parse(override_file).each do |key, value|
-        if data_hash.has_key?(key)
-          data_hash[key] = value
-        end
-      end
+    begin
+      override_values = JSON.parse(override_file)
+      data_hash = extends(data_hash, override_values)
     rescue Exception => msg
       puts red(msg)
       ans = prompt yellow("You have occured some errors and this file will not be used, do you want to continue? [y/n]: ")
@@ -148,6 +145,21 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+end
+
+def extends(obj1, obj2)
+  obj2.each do |key, value|
+
+    if obj1.has_key?(key)
+      if value.class.name == 'Hash'
+        obj1[key] = extends(obj1[key], obj2[key])
+      else
+        obj1[key] = value
+      end
+    end
+
+  end
+  return obj1
 end
 
 def colorize(text, color_code)
