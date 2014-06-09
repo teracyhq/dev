@@ -1,4 +1,31 @@
 @echo off
+
+:: BatchGotAdmin
+:-------------------------------------
+REM
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM
+if '%errorlevel%' NEQ '0' (
+    echo Requesting administrative privileges...
+    goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    set "params = %*:"=""
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    exit /B
+
+:gotAdmin
+    pushd "%CD%"
+    CD /D "%~dp0"
+:--------------------------------------
+
+@echo off
 echo ===========================================================
 echo !! Powered by Teracy                                     !!
 echo !! This script will install VirtualBox and Vagrant on    !!
@@ -7,31 +34,105 @@ echo !! you see the message "Restart your computer". We will  !!
 echo !! do it when complete.                                  !!
 echo ===========================================================
 echo ...........................................................                                                            
+echo --- Findding installed vagrant and virtualbox ---
+echo.
 
-echo Step 1: DOWNLOAD and INSTALL VIRTUAL BOX
-pause
+setlocal EnableDelayedExpansion
+set vagrantV=0.0
+set vboxV=0.0
+
+set LF=^
+
+:findVagrant
+echo.
+echo ..............Findding vagrant..............
+echo.
+
+for /F "skip=1 tokens=1" %%a in ('wmic product where "Name like 'vagrant'" get Version') do (
+	set "item=%%a"
+	if !vagrantV! EQU 0.0 (
+			if not "!item!"=="" set vagrantV=!item!
+		) 
+)
+
+IF %ERRORLEVEL% NEQ 0 GOTO vagrantNotfound
+IF %vagrantV% EQU 0.0 GOTO vagrantNotfound
+
+set vagrantVs=%vagrantV:.=%
+
+if %vagrantVs% LSS 162 (
+		echo Vagrant found with version %vagrantV% that is not valid, process next step
+		GOTO processVagrant
+	)
+echo Vagrant found with a valid version (%vagrantV%)
+GOTO findVBox
+
+
+:vagrantNotfound
+echo Vagrant notfound, process to download
+GOTO processVagrant
+
+:findVBox
+echo.
+echo ...............Findding virtualbox..............
+echo.
+
+for /F "skip=1 tokens=1" %%b in ('wmic product where "Name like 'vbox'" get Version') do (
+	set "item=%%b"
+	call :removeCR
+	if !vboxV! EQU 0.0 (
+			if not "!item!"=="" set vboxV=!item!
+		) 
+)
+
+IF %ERRORLEVEL% NEQ 0 GOTO vboxNotfound
+IF %vboxV% EQU 0.0 GOTO vboxNotfound
+
+set vboxVs=%vboxV:.=%
+
+if %vboxVs% LSS 4312 (
+		echo Vagrant found with version %vboxV% that is not valid, process next step
+		GOTO processVBox
+	)
+echo Vagrant found with a valid version (%vboxV%)
+GOTO mainProcess
+
+:vboxNotfound
+echo VirtualBox notfound, process to download
+GOTO processVBox
+
+:processVBox
+echo.
+echo --- DOWNLOAD and INSTALL VIRTUAL BOX ---
+echo.
 
 IF NOT EXIST c:\vbox.exe (
-	url2disk -i http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe -o c:\vbox.exe	
+	copy /y NUL c:\vbox.exe >NUL
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe', 'c:\vbox.exe')"
 	)
 
 echo Virtual Box is installing
 START /wait /b C:\vbox.exe
 
-pause
+GOTO mainProcess
 
 echo ...........................................................   
 
-echo Step 2: DOWNLOAD and INSTALL VAGRANT
-pause
+:processVagrant
+echo.
+echo --- DOWNLOAD and INSTALL VAGRANT ---
+echo.
 
 IF NOT EXIST c:\vgrant.msi (
-	url2disk -i https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi -o c:\vgrant.msi
+	copy /y NUL c:\vgrant.msi >NUL
+	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi', 'c:\vgrant.msi')"
 	)
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi
+GOTO findVBox
 
+:mainProcess
 echo ...........................................................   
 
 echo Check Environment Variable
@@ -42,8 +143,8 @@ setx path "%pathToInsert%;%PATH%"
 echo ...........................................................   
 
 :: delete temp file
-del c:\vbox.exe 
-del c:\vgrant.msi 
+IF EXIST c:\vgrant.msi del c:\vgrant.msi
+IF EXIST c:\vbox.exe  del c:\vbox.exe 
 
 setlocal
 :PROMPT
@@ -56,3 +157,9 @@ endlocal
 
 pause
 
+goto :eof
+:removeCR
+
+:removeCR
+set "Item=%Item%"
+exit /b
