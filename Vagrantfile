@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
     override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
     begin
-      override_values = JSON.parse(override_file)
-      data_hash = extends(data_hash, override_values)
+      override_hash = JSON.parse(override_file)
+      data_hash = extends(data_hash, override_hash)
     rescue Exception => msg
       puts red(msg)
       ans = prompt yellow("You have occured some errors and this file will not be used, do you want to continue? [y/n]: ")
