@@ -2,8 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-
+  
   require 'json'
+  load 'lib/utility.rb'
 
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
@@ -14,8 +15,7 @@ Vagrant.configure("2") do |config|
     override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
     begin
-      override_hash = JSON.parse(override_file)
-      data_hash = extends(data_hash, override_hash)
+      data_hash = overrides(data_hash, JSON.parse(override_file))
     rescue Exception => msg
       puts red(msg)
       ans = prompt yellow("You have occured some errors and this file will not be used, do you want to continue? [y/n]: ")
@@ -145,31 +145,5 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-end
 
-def extends(obj1, obj2)
-  obj2.each do |key, value|
-
-    if obj1.has_key?(key)
-      if value.class.name == 'Hash'
-        obj1[key] = extends(obj1[key], obj2[key])
-      else
-        obj1[key] = value
-      end
-    end
-
-  end
-  return obj1
-end
-
-def colorize(text, color_code)
-  "\e[#{color_code}m#{text}\e[0m"
-end
-
-def red(text); colorize(text, 31); end
-def yellow(text); colorize(text, 33); end
-
-def prompt(message)
-  print message
-  return STDIN.gets.chomp
 end
