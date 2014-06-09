@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   
   require 'json'
-  load 'lib/utility.rb'
+  load File.dirname(__FILE__) + '/lib/utility.rb'
 
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
