@@ -2,8 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-
+  
   require 'json'
+  load 'lib/utility.rb'
+
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
   data_hash = JSON.parse(file)
@@ -12,14 +14,16 @@ Vagrant.configure("2") do |config|
   if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
     override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
-    begin      
-      JSON.parse(override_file).each do |key, value|
-        if data_hash.has_key?(key)
-          data_hash[key] = value
-        end
+    begin
+      data_hash = overrides(data_hash, JSON.parse(override_file))
+    rescue Exception => msg
+      puts red(msg)
+      ans = prompt yellow("You have occured some errors and this file will not be used, do you want to continue? [y/n]: ")
+      if ans.downcase != 'y'
+        exit!
       end
-    rescue
     end
+
   end
   
   # All Vagrant configuration is done here. The most common configuration
@@ -141,4 +145,5 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
 end
