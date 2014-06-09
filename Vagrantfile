@@ -4,6 +4,7 @@
 Vagrant.configure("2") do |config|
 
   require 'json'
+
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
   data_hash = JSON.parse(file)
@@ -18,8 +19,14 @@ Vagrant.configure("2") do |config|
           data_hash[key] = value
         end
       end
-    rescue
+    rescue Exception => msg
+      puts red(msg)
+      ans = prompt yellow("You have occured some errors and this file will not be used, do you want to continue? [y/n]: ")
+      if ans.downcase != 'y'
+        exit!
+      end
     end
+
   end
   
   # All Vagrant configuration is done here. The most common configuration
@@ -141,4 +148,16 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+end
+
+def colorize(text, color_code)
+  "\e[#{color_code}m#{text}\e[0m"
+end
+
+def red(text); colorize(text, 31); end
+def yellow(text); colorize(text, 33); end
+
+def prompt(message)
+  print message
+  return STDIN.gets.chomp
 end
