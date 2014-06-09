@@ -8,6 +8,8 @@ def overrides(obj1, obj2)
       else
         obj1[key] = value
       end
+    else
+      puts yellow('IGNORED: try to override non-existing key: ' + key)
     end
 
   end
