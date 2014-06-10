@@ -1,25 +1,28 @@
 language: ruby
 before_install:
-  - git submodule update --init --recursive
+- git submodule update --init --recursive
 before_script:
-  - git config --global user.name "Teracy Bot"
-  - git config --global user.email "teracy.com@gmail.com"
-  - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
-  - . ./.travis/setup.sh
-  - echo $DEPLOY_HTML_DIR
+- git config --global user.name "Teracy Bot"
+- git config --global user.email "teracy.com@gmail.com"
+- export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+- . ./.travis/setup.sh
+- echo $DEPLOY_HTML_DIR
 script:
-  - bundle exec rake build
+- bundle exec rake build
 after_script:
-  - sudo pip install -r docs/requirements.txt --use-mirrors
-  - cd docs
-  - make setup_gh_pages
-  - make generate
-  - make deploy
+- sudo pip install -r docs/requirements.txt --use-mirrors
+- cd docs
+- make setup_gh_pages
+- make generate
+- make deploy
 rvm:
-  - 1.9.3
+- 1.9.3
 gemfile:
-  - Gemfile
+- Gemfile
 env:
   global:
   - GH_REPO="teracy-official/dev"
   - secure: Jt7QOiv7Q6/QTw3q9leGMfgGfGYO9+0KF9vCwgCdDsjqlj8Qtdt31E57OxYHquApyCReR7WHATL1eML4dRcrqX4QOGxzktfX6RD7Mqx2wwutyoP/vfb4SXuLVjofnGTsddHEZW4dfFnFh48QEWsuA4svRvAO4ILt/uTupTvSUBo=
+notifications:
+  slack:
+    secure: bq2R86HUFq0fBr/YcfbuTBXbRXcUP6yb66WRwC9koJK0Et9iynIOu6WLBiQ6qmJhEWEIBNRLqnR2OWQXl3LdYlUaZ1M4e8a1R87g/Mn7LlT7GCrIwVAdr9XpWHi+pmazIk+dMe3jms1JcCjlIimh+eqaFnAmC1pfBHrIVjhCssg=
