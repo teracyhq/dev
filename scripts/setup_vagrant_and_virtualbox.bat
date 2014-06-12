@@ -40,6 +40,7 @@ echo.
 setlocal EnableDelayedExpansion
 set vagrantV=0.0
 set vboxV=0.0
+set restart="false"
 
 set LF=^
 
@@ -50,6 +51,7 @@ echo.
 
 for /F "skip=1 tokens=1" %%a in ('wmic product where "Name like 'vagrant'" get Version') do (
 	set "item=%%a"
+	call :removeCR
 	if !vagrantV! EQU 0.0 (
 			if not "!item!"=="" set vagrantV=!item!
 		) 
@@ -74,10 +76,10 @@ GOTO processVagrant
 
 :findVBox
 echo.
-echo ...............Findding virtualbox..............
+echo ..............Findding virtualbox.............
 echo.
 
-for /F "skip=1 tokens=1" %%b in ('wmic product where "Name like 'vbox'" get Version') do (
+for /F "skip=1 tokens=1" %%b in ('wmic product where "Name like 'Oracle VM VirtualBox%%'" get Version') do (
 	set "item=%%b"
 	call :removeCR
 	if !vboxV! EQU 0.0 (
@@ -89,6 +91,7 @@ IF %ERRORLEVEL% NEQ 0 GOTO vboxNotfound
 IF %vboxV% EQU 0.0 GOTO vboxNotfound
 
 set vboxVs=%vboxV:.=%
+
 
 if %vboxVs% LSS 4312 (
 		echo Vagrant found with version %vboxV% that is not valid, process next step
@@ -114,6 +117,8 @@ IF NOT EXIST c:\vbox.exe (
 echo Virtual Box is installing
 START /wait /b C:\vbox.exe
 
+set restart="true"
+
 GOTO mainProcess
 
 echo ...........................................................   
@@ -130,30 +135,30 @@ IF NOT EXIST c:\vgrant.msi (
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi
+
+set restart="true"
+
 GOTO findVBox
 
 :mainProcess
-echo ...........................................................   
 
-echo Check Environment Variable
-
-set pathToInsert=%ProgramFiles%\Oracle\VirtualBox
-setx path "%pathToInsert%;%PATH%" 
-
-echo ...........................................................   
+echo.
 
 :: delete temp file
 IF EXIST c:\vgrant.msi del c:\vgrant.msi
 IF EXIST c:\vbox.exe  del c:\vbox.exe 
 
-setlocal
-:PROMPT
-SET /P AREYOUSURE=Do you want to restart your computer now. It will apply changes and config (y/N)?
-IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
-	shutdown.exe /r
-:END
-endlocal
+if %restart% EQU "false" GOTO END
 
+
+SET /P AREYOUSURE=Do you want to restart your computer now. It will apply changes and config (y/N)?
+
+
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+shutdown.exe /r
+
+:END
 
 pause
 
