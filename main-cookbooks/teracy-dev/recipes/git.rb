@@ -1,8 +1,8 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: git-config
-# Description: Configures global git
+# Recipe:: git
+# Description: Configures and installs global git
 #
 # Copyright 2013, Teracy, Inc.
 #
@@ -31,6 +31,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
+git_version = node['teracy-dev']['git']['version'].strip()
+
+if !git_version.empty?
+    node.override['git']['version'] = git_version
+    node.override['git']['url'] = "https://www.kernel.org/pub/software/scm/git/git-#{git_version}.tar.gz"
+    node.override['git']['checksum'] = node['teracy-dev']['git']['checksum']
+    include_recipe 'git::source'
+end
 
 template '/home/vagrant/.gitconfig' do
     source 'gitconfig.erb'
