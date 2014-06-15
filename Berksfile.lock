@@ -1,5 +1,5 @@
 {
-  "sha": "4f1068ff16e63e1c00a94c3074c8aaef8de10314",
+  "sha": "62417a3dfec57125c2b087c4069f50aea8ae247d",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -14,8 +14,8 @@
       "constraint": "= 1.0.2"
     },
     "git": {
-      "locked_version": "2.6.0",
-      "constraint": "= 2.6.0"
+      "locked_version": "4.0.2",
+      "constraint": "= 4.0.2"
     },
     "magic_shell": {
       "locked_version": "0.3.2",
@@ -62,15 +62,16 @@
     "build-essential": {
       "locked_version": "2.0.4"
     },
-    "yum": {
-      "locked_version": "3.2.2"
-    },
     "windows": {
       "locked_version": "1.31.0"
     },
     "runit": {
       "locked_version": "1.5.10",
       "constraint": ">= 1.0.0"
+    },
+    "yum": {
+      "locked_version": "3.2.2",
+      "constraint": "~> 3.0"
     },
     "yum-epel": {
       "locked_version": "0.3.6"
