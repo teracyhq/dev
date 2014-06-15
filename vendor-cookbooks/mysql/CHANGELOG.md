@@ -3,6 +3,112 @@ mysql Cookbook CHANGELOG
 This file is used to list changes made in each version of the mysql cookbook.
 
 
+v5.3.0 (2014-06-11)
+-------------------
+- #189 - Fix server_repl_password description
+- #191 - Adding support for server55 and server56 on el-6
+- #193 - Fix syntax in mysql_service example
+- #199 - Adding Suse support
+
+
+v5.2.12 (2014-05-19)
+--------------------
+PR #192 - recipes/server.rb should honor parameter node['mysql']['version']
+
+
+v5.2.10 (2014-05-15)
+--------------------
+- COOK-4394 - restore freebsd support
+
+
+v5.2.8 (2014-05-15)
+-------------------
+- [COOK-4653] - Missing mySQL 5.6 support for Ubuntu 14.04
+
+
+v5.2.6 (2014-05-07)
+-------------------
+- [COOK-4625] - Fix password resource parameter consumption on Debian and Ubuntu
+- Fix up typos and version numbers in PLATFORMS.md
+- Fix up specs from COOK-4613 changes
+
+
+v5.2.4 (2014-05-02)
+-------------------
+- [COOK-4613] - Fix permissions on mysql data_dir to allow global access to mysql.sock
+
+
+v5.2.2 (2014-04-24)
+-------------------
+- [COOK-4564] - Using positive tests for datadir move
+
+
+v5.2.0 (2014-04-22)
+-------------------
+- [COOK-4551] - power grants.sql from resource parameters
+
+
+v5.1.12 (2014-04-21)
+--------------------
+- [COOK-4554] - Support for Debian Sid
+
+
+v5.1.10 (2014-04-21)
+--------------------
+- [COOK-4565] Support for Ubuntu 14.04
+- [COOK-4565] Adding Specs and TK platform
+- Removing non-LTS 13.10 specs and TK platform
+
+
+v5.1.8 (2014-04-12)
+-------------------
+Adding Ubuntu 13.04 to Platforminfo
+
+
+v5.1.6 (2014-04-11)
+-------------------
+- [COOK-4548] - Add template[/etc/mysql/debian.cnf] to Ubuntu provider
+
+
+v5.1.4 (2014-04-11)
+-------------------
+- [COOK-4547] - Shellescape server_root_password
+
+
+v5.1.2 (2014-04-09)
+-------------------
+- [COOK-4519] - Fix error in run_dir for Ubuntu
+- [COOK-4531] - Fix pid and run_dir for Debian
+
+
+v5.1.0 (2014-04-08)
+-------------------
+[COOK-4523] - Allow for both :restart and :reload
+
+
+v5.0.6 (2014-04-07)
+-------------------
+- [COOK-4519] - Updating specs to reflect pid file change on Ubuntu
+
+
+v5.0.4 (2014-04-07)
+-------------------
+- [COOK-4519] - Fix path to pid file on Ubuntu
+
+
+v5.0.2 (2014-04-01)
+-------------------
+- Moving server_deprecated into recipes directory
+
+
+v5.0.0 (2014-03-31)
+-------------------
+- Rewriting as a library cookbook
+- Exposing mysql_service and mysql_client resources
+- User now needs to supply configuration
+- Moving attribute driven recipe to server-deprecated
+
+
 v4.1.2 (2014-02-28)
 -------------------
 - [COOK-4349] - Fix invalid platform check

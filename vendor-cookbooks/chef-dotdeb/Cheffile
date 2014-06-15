@@ -1,6 +1,0 @@
-site 'http://community.opscode.com/api/v1'
-
-# site-cookbooks
-
-cookbook "dotdeb",
-  :path => "."

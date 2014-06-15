@@ -11,6 +11,7 @@ Attributes
 
 - `node['ohai']['plugins']` - sources of plugins, defaults to the `files/default/plugins` directory of this cookbook. You can add additional cookbooks by adding the name of the cookbook as a key and the path of the files directory as the value. You have to make sure that you don't have any file conflicts between multiple cookbooks. The last one to write wins.
 
+- `node['ohai']['hints_path']` - location to drop off hints directory, default is `/etc/chef/ohai/hints`.
 
 Usage
 -----
@@ -26,6 +27,18 @@ http://wiki.opscode.com/display/chef/Writing+Ohai+Plugins
 
 * The "`Ohai::Config[:plugin_path]`" config setting has *NOT* been properly set in the Chef config file
 - The "`Ohai::Config[:plugin_path]`" config setting has been properly set in the Chef config file and there are updated plugins dropped off at "`node['ohai']['plugin_path']`".
+
+LWRP
+----
+
+### `ohai_hint`
+
+Create hints file.  You can find usage examples at `test/cookbooks/ohai_test/recipes/*.rb`.
+
+#### Resource Attributes
+
+  -  `hint_name` - The name of hints file and key. Should be string, default is name of resource.
+  -  `content` - Values of hints. It will be used as automatic attributes. Should be Hash, default is empty Hash class.
 
 
 Example
