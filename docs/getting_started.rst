@@ -50,6 +50,16 @@ Install ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below
     $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
     $ bash setup_working_env_chef.sh
 
+On window (Window 7 & Window 8), every thing is easier, just follow these steps:
+
+1. Open: https://raw.github.com/teracy-official/dev/master/scripts/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
+
+2. Press ``ctrl + s``.
+
+3. Now choose option ``Save as type: Text document``, with name "setup_vagrant_and_virtualbox.bat" (notice the double quote).
+
+4. Open it (by double click on ``setup_vagrant_and_virtualbox.bat``) and now you have ``vagrant`` and ``virtualbox`` installed on your system.
+
 
 Or Manual Installation
 ----------------------
