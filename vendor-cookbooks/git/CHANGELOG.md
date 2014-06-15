@@ -3,6 +3,66 @@ git Cookbook CHANGELOG
 This file is used to list changes made in each version of the git cookbook.
 
 
+v4.0.2 (2014-04-23)
+-------------------
+- [COOK-4482] - Add FreeBSD support for installing git client
+
+
+v4.0.0 (2014-03-18)
+-------------------
+- [COOK-4397] Only use_inline_resources on Chef 11
+
+
+v3.1.0 (2014-03-12)
+-------------------
+- [COOK-4392] - Cleanup git_config LWRP
+
+
+v3.0.0 (2014-02-28)
+-------------------
+[COOK-4387] Add git_config type
+[COOK-4388] Fix up rubocops
+[COOK-4390] Add integration tests for default and server suites
+
+
+v2.10.0 (2014-02-25)
+--------------------
+- [COOK-4146] - wrong dependency in git::source for rhel 6
+- [COOK-3947] - Git cookbook adds itself to the path every run
+
+
+v2.9.0
+------
+Updating to depend on cookbook yum ~> 3
+Fixing style to pass rubocop
+Updating test scaffolding
+
+
+v2.8.4
+------
+fixing metadata version error. locking to 3.0
+
+
+v2.8.1
+------
+Locking yum dependency to '< 3'
+
+
+v2.8.0
+------
+### Bug
+- [COOK-3433] - git::server does not correctly set git-daemon's base-path on Debian
+
+
+v2.7.0
+------
+### Bug
+- **[COOK-3624](https://tickets.opscode.com/browse/COOK-3624)** - Don't restart `xinetd` on each Chef client run
+- **[COOK-3482](https://tickets.opscode.com/browse/COOK-3482)** - Force git to add itself to the current process' PATH
+
+### New Feature
+- **[COOK-3223](https://tickets.opscode.com/browse/COOK-3223)** - Support Omnios and SmartOS package installs
+
 v2.6.0
 ------
 ### Improvement
