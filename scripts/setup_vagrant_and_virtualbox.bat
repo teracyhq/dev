@@ -142,6 +142,9 @@ GOTO findVBox
 
 :mainProcess
 
+set pathToInsert=%ProgramFiles%\Oracle\VirtualBox
+setx path "%pathToInsert%;%PATH%" 
+
 echo.
 
 :: delete temp file
