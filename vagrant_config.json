@@ -70,17 +70,32 @@
       },
       "nodejs":{
         "enabled":true,
-        "npm":[
-          "grunt-cli",
-          "bower"
-        ]
+        "version":"0.10.28",
+        "checksum":"ef08a75f6359a16e672cae684e0804ca7f4554b7",
+        "npm": {
+          "version":"1.4.3",
+          "globals": [
+            {
+              "name": "grunt-cli",
+              "version": "0.1.13"
+            },
+            {
+              "name":"bower",
+              "version":"1.3.5"
+            },
+            {
+              "name":"yo",
+              "version":"1.1.2"
+            }
+          ]
+        }
       },
       "python":{
-        "enabled":true,
+        "enabled":false,
         "pip":{
-          "global":{
+          "globals":[
 
-          }
+          ]
         }
       },
       "ruby":{
