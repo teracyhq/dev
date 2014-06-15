@@ -16,9 +16,8 @@ REQUIREMENTS
 
 ## Cookbooks:
 
-* [build-essential](https://github.com/opscode-cookbooks/build-essential)
-* [apt](https://github.com/cookbooks/apt)
-* [yum](https://github.com/cookbooks/yum)
+* build-essential
+* apt
 
 Opscode cookbooks (http://github.com/opscode/cookbooks/tree/master)
 

@@ -6,8 +6,11 @@
 # Copyright 2014, Teracy, Inc.
 #
 
-if node['teracy-dev']['php']['enabled']    	    
-    include_recipe 'chef-dotdeb'
-    include_recipe 'chef-dotdeb::php54'
+if node['teracy-dev']['php']['enabled']
+    if !node['teracy-dev']['php']['version'].strip().empty?
+        node.override['php']['version'] = node['teracy-dev']['php']['version']
+        node.override['php']['checksum'] = node['teracy-dev']['php']['version']
+        node.override['php']['install_method'] = 'source'
+    end
     include_recipe 'php'
 end

@@ -30,7 +30,8 @@ Chef::Log.info("ohai plugins will be at: #{node['ohai']['plugin_path']}")
 # resources later in the run.
 node['ohai']['plugins'].each_pair do |source_cookbook, path|
 
-  rd = remote_directory node['ohai']['plugin_path'] do
+  rd = remote_directory "#{node['ohai']['plugin_path']} for cookbook #{source_cookbook}" do
+    path node['ohai']['plugin_path']
     cookbook source_cookbook
     source path
     mode '0755' unless platform_family?('windows')

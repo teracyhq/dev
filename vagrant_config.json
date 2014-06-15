@@ -87,12 +87,14 @@
         "enabled":false
       },
       "php":{
-        "enabled":false
+        "enabled":false,
+        "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
+        "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
       },
       "java":{
         "enabled":false,
         "version":"7",
-        "flavor":"openjdk",
+        "flavor":"openjdk", //one of "openjdk", "oracle" or "ibm". Default: "openjdk"
         "maven":{
           "enabled":false,
           "version":"3"

@@ -3,6 +3,18 @@ ohai Cookbook CHANGELOG
 This file is used to list changes made in each version of the ohai cookbook.
 
 
+v2.0.1 (2014-06-07)
+-------------------
+* [COOK-4683] Remove warnings about reopening resource
+
+Please note, this changes the name of a remote_directory resource. It is not expected that anyone would be explicitly notifying this resource but, please review [PR #16](https://github.com/opscode-cookbooks/ohai/pull/16/files) for more info.
+
+
+v2.0.0 (2014-02-25)
+-------------------
+'[COOK-3865] - create lwrp ohai_hint'
+
+
 v1.1.12
 -------
 - Dummy release due to a Community Site upload failure
