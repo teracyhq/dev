@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: pip-config
+# Recipe:: pip_config
 # Description: Configures global pip
 #
 # Copyright 2013, Teracy, Inc.
