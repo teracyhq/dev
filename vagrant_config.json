@@ -100,7 +100,14 @@
         "enabled":true,
         "pip":{
           "globals":[
-
+            {
+              "name":"Sphinx",
+              "version":""
+            },
+            {
+              "name":"restview",
+              "version":""
+            }
           ]
         }
       },
