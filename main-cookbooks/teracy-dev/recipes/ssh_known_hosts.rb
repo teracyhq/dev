@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: github
+# Recipe:: ssh_known_hosts
 #
 # Copyright 2013, Teracy, Inc.
 #
@@ -31,14 +31,6 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-include_recipe 'teracy-dev::apt'
-include_recipe 'teracy-dev::workspace'
-include_recipe 'teracy-dev::alias'
-include_recipe 'teracy-dev::env'
-include_recipe 'teracy-dev::ssh_known_hosts'
-include_recipe 'teracy-dev::git'
-include_recipe 'teracy-dev::python'
-include_recipe 'teracy-dev::java'
-include_recipe 'teracy-dev::php'
-include_recipe 'teracy-dev::rbenv'
-include_recipe 'teracy-dev::node'
+node['teracy-dev']['ssh_known_hosts'].each do |domain|
+    ssh_known_hosts_entry domain
+end
