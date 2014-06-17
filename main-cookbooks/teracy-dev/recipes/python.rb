@@ -42,7 +42,16 @@ if node['teracy-dev']['python']['enabled']
 #    end
 
     include_recipe 'teracy-dev::virtualenvwrapper'
-    include_recipe 'teracy-dev::system_python'
     include_recipe 'teracy-dev::pip_config'
+
+    # install global packages
+
+    node['teracy-dev']['python']['pip']['globals'].each do |pkg|
+        python_pip pkg['name'] do
+            if !pkg['version'].strip().empty?
+                version pkg['version']
+            end
+        end
+    end
 end
 
