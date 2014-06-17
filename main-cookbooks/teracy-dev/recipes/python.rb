@@ -42,7 +42,7 @@ if node['teracy-dev']['python']['enabled']
 #    end
 
     include_recipe 'teracy-dev::virtualenvwrapper'
-    include_recipe 'teracy-dev::system-python'
-    include_recipe 'teracy-dev::pip-config'
+    include_recipe 'teracy-dev::system_python'
+    include_recipe 'teracy-dev::pip_config'
 end
 

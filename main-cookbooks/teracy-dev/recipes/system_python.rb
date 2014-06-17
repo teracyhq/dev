@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: system-python
+# Recipe:: system_python
 # Description: Installs system-wide Python packages
 #
 # Copyright 2013, Teracy, Inc.
