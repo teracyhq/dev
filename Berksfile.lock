@@ -1,5 +1,5 @@
 {
-  "sha": "62417a3dfec57125c2b087c4069f50aea8ae247d",
+  "sha": "d92b98b63d7ae195f565c421f4d72e5dddd8f496",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -53,6 +53,10 @@
       "locked_version": "1.4.6",
       "constraint": "= 1.4.6"
     },
+    "ssh_known_hosts": {
+      "locked_version": "1.3.2",
+      "constraint": "= 1.3.2"
+    },
     "chef_handler": {
       "locked_version": "1.1.6"
     },
@@ -91,6 +95,9 @@
     },
     "iis": {
       "locked_version": "2.1.2"
+    },
+    "partial_search": {
+      "locked_version": "1.0.8"
     }
   }
 }
