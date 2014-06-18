@@ -61,19 +61,15 @@ PHP Coding Standards
 HTML Coding Standards
 ---------------------
 
-- 2 spaces for indentation
-
 
 CSS Coding Standards
 --------------------
 
-- 2 spaces for indentation
 
 
 JavaScript Coding Standards
 ---------------------------
 
-- 2 spaces for indentation
 
 
 Objective C Coding Standards
@@ -83,10 +79,8 @@ Objective C Coding Standards
 Java Coding Standards
 ---------------------
 
-- 2 spaces for indentation
 
 
 XML Coding Standards
 --------------------
 
-- 2 spaces for indentation
