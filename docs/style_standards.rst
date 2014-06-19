@@ -9,13 +9,13 @@ rules, there will be automatic checking tool to report any rule violations.
 Common Standards
 ----------------
 
-#. Line length limit must be within 100 characters (80 characters limit is recommended).
+#. Line length limit must be within 100 characters (80 characters limit is recommended)
 
-#. 4 spaces for indentation; no tab character is allowed.
+#. 4 spaces for indentation; no tab character is allowed
 
-#. No trailing whitespace.
+#. No trailing whitespace
 
-#. An empty newline at the end of file.
+#. An empty newline at the end of file
 
 
 Document Standards
@@ -58,7 +58,7 @@ Java Coding Standards
 - Follow `Code Conventions for the Java TM Programming Language <http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html>`_
 
 - Follow `Google Java Style <http://google-styleguide.googlecode.com/svn/trunk/javaguide.html>`_ but
-  must use **4 spaces** for indentation.
+  must use **4 spaces** for indentation
 
 - Style checking tools:
     + http://checkstyle.sourceforge.net/
@@ -75,7 +75,7 @@ JavaScript Coding Standards
 ---------------------------
 
 - Follow `Google JavaScript Style Guide <https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml>`_
-  but must use **4 spaces** for indentation.
+  but must use **4 spaces** for indentation
 
 - Style checking tools:
     + http://www.jshint.com/
@@ -85,6 +85,19 @@ JavaScript Coding Standards
     + http://www.jshint.com/
 
 
+HTML, CSS Coding Standards
+--------------------------
+
+- Follow `Google HTML/CSS Style Guide <https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml>`_
+  but must use **4 spaces** for indentation
+
+- This apply for CSS pre-processors like `SASS <http://sass-lang.com/>`_,
+  `LESS <http://lesscss.org/>`_, `Stylus <http://learnboost.github.io/stylus/>`_, etc.
+
+- Style checking tools:
+    + https://github.com/praveenvijayan/grunt-html-validation
+
+
 Ruby Coding Standards
 ---------------------
 
@@ -92,15 +105,6 @@ Ruby Coding Standards
 
 PHP Coding Standards
 --------------------
-
-
-HTML Coding Standards
----------------------
-
-
-CSS Coding Standards
---------------------
-
 
 
 Objective C Coding Standards
