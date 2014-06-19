@@ -31,9 +31,9 @@ Python Coding Standards
 
 - Unless otherwise specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
 
-- Follow http://www.python.org/dev/peps/pep-0257/ for docs string.
+- Follow `Google Python Style Guide <http://google-styleguide.googlecode.com/svn/trunk/pyguide.html>`_
 
-- Follow http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
+- Follow http://www.python.org/dev/peps/pep-0257/ for docs string
 
 
 - Style checking tools:
@@ -51,6 +51,45 @@ Python Coding Standards
     + https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python
     + https://dev.launchpad.net/PythonStyleGuide
 
+
+Java Coding Standards
+---------------------
+
+- Follow `Code Conventions for the Java TM Programming Language <http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html>`_
+
+- Follow `Google Java Style <http://google-styleguide.googlecode.com/svn/trunk/javaguide.html>`_ but
+  must use **4 spaces** for indentation.
+
+- Style checking tools:
+    + http://checkstyle.sourceforge.net/
+    + http://pmd.sourceforge.net/
+    + http://findbugs.sourceforge.net/
+    + http://cobertura.github.io/cobertura/
+
+- Interesting links:
+    + http://www.javacodegeeks.com/2012/10/java-code-quality-tools-overview.html
+
+
+
+JavaScript Coding Standards
+---------------------------
+
+- Follow `Google JavaScript Style Guide <https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml>`_
+  but must use **4 spaces** for indentation.
+
+- Style checking tools:
+    + http://www.jshint.com/
+
+- Interesting links:
+    + http://addyosmani.com/blog/javascript-style-guides-and-beautifiers/
+    + http://www.jshint.com/
+
+
+Ruby Coding Standards
+---------------------
+
+
+
 PHP Coding Standards
 --------------------
 
@@ -64,30 +103,10 @@ CSS Coding Standards
 
 
 
-JavaScript Coding Standards
----------------------------
-
-
-
 Objective C Coding Standards
 ----------------------------
 
 
-Java Coding Standards
----------------------
-
-- Follow `Code Conventions for the Java TM Programming Language <http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html>`_
-
-- Style checking tools:
-    + http://checkstyle.sourceforge.net/
-    + http://pmd.sourceforge.net/
-    + http://findbugs.sourceforge.net/
-    + http://cobertura.github.io/cobertura/
-
-- Interesting links:
-    + http://google-styleguide.googlecode.com/svn/trunk/javaguide.html
-    + http://www.javacodegeeks.com/2012/10/java-code-quality-tools-overview.html
-    
 
 XML Coding Standards
 --------------------
