@@ -17,11 +17,11 @@ Your working repositories MUST be cloned from your git account
 .. and be stored under ``workspace/personal`` directory (or wherever you want, ``workspace/personal`` )
 
 For example, you're going to work on ``https://code.teracy.org/projects/CLIENTS/repos/bitcoinbotclient/browse``
-project
+project,
 
 .. image:: _static/workflow/project.png
 
-, so follow the following steps :
+so follow the following steps:
 
 1. ``Fork`` the official repository to your developer account.
 
@@ -86,7 +86,7 @@ then create another branch from that checkout.
 
     $ git checkout branch-1 -b branch-2
 
-Here is how it works : Git starts checkout branch-1, then creates branch-2 based on that checkout.
+Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
 Now branch-2 is on your local and ready for you to working on it.
 
 Git is a distributed version control system, so collaboration like this should be encouraged.
@@ -104,39 +104,43 @@ Start working with Git
 .. @TODO : Detail on making Pull-request
 .. @TODO : Detail on making Resolve Conflict
 
-The workingflow is summarized under 4 major steps :
+The workingflow is summarized under 4 major steps:
 
-- Step 1 : Branching-off based on your issue
-- Step 2 : Code / Commit / Push
-- Step 3 : Submit pull-request. Waiting for approve or resolve conflict if appears.
-- Step 4 : Cleanning up branch
+- Step 1: Branching-off based on your issue
+- Step 2: Code / Commit / Push
+- Step 3: Submit pull-request. Waiting for approve or resolve conflict if appears.
+- Step 4: Cleanning up branch
 
 Let's get in more detais:
 
-**Step 1 : Branching-off base on issue**
+**Step 1: Branching-off base on issue**
 
     If you don't know what is the meaning of "Branching-off", please check `Git Branching Off`_.
 
     Working on features
     ::
+
         $ git fetch upstream
         $ git checkout upstream/master -b features/<issue_key>-<concise_title>
         $ git push origin features/<issue_key>-<concise_title>
 
     Working on improvements
     ::
+
         $ git fetch upstream
         $ git checkout upstream/master -b improvements/<issue_key>-<concise_title>
         $ git push origin improvements/<issue_key>-<concise_title>
 
     Working on tasks or sub-tasks:
     ::
+    
         $ git fetch upstream
         $ git checkout upstream/master -b tasks/<issue_key>-<concise_title>
         $ git push origin tasks/<issue_key>-<concise_title>
 
     Working on bugs
     ::
+    
         $ git fetch upstream
         $ git checkout upstream/master -b bugs/<issue_key>-<concise_title>
         $ git push origin bugs/<issue_key>-<concise_title>
@@ -144,7 +148,7 @@ Let's get in more detais:
 
     Above are template `Branching off` based on issue's type.
 
-**Step 2 : Developing with Code/ Commit/ Push**
+**Step 2: Developing with Code/ Commit/ Push**
 
     During your coding, you would make some commit and push, in that case you have to check TWO things:
 
@@ -152,8 +156,9 @@ Let's get in more detais:
         - `Git Commit Messages`_
 
     If there're some changes from remote branch (could be *upstream/master*) that you need,
-    you have to rebase your branch with that updates. It could be done by this :
+    you have to rebase your branch with that updates. It could be done by this:
     ::
+
         $ git fetch upstream
         $ git rebase upstream/master
 
@@ -161,21 +166,20 @@ Let's get in more detais:
     If it has any conflict, you have to resolve them by:
 
     - Edit conflict file
+        The following is a sample on conflict file:
 
-           Sample on conflict file
+        .. image:: _static/workflow/conflict-mark.png
 
-           .. image:: _static/workflow/conflict-mark.png
+        Sample on resolved-conflict file
 
-           Sample on resolved-conflict file
+        .. image:: _static/workflow/conflict-resolved.png
+    - Add conflict-resolved-file in git then continue to rebase   
+        ::
+      
+            $ git add path/to/conflict-resolved-file
+            $ git rebase --continue
 
-           .. image:: _static/workflow/conflict-resolved.png
-
-    - Add conflict-resolved-file in git then continue to rebase
-      ::
-           $ git add path/to/conflict-resolved-file
-           $ git rebase --continue
-
-**Step 3 : Submit Pull-request**
+**Step 3: Submit Pull-request**
 
     When you get the issue completed, submit pull-request for reviewing on your work.
     There are TWO steps in submit pull-request:
@@ -184,6 +188,7 @@ Let's get in more detais:
     1. Send Code Pull-request
 
         .. image:: _static/workflow/submit-pull-request-code-1.png
+        
         .. image:: _static/workflow/submit-pull-request-code-2.png
 
     2. Send Issue Pull-request
@@ -259,12 +264,13 @@ Git Commit Messages
 Git commit message must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:
 ::
-    <issue_key> | <issue_title>: <changes description>
 
+    <issue_key> | <issue_title>: <changes description>
     <Multi-line description for detail changes, notices, solutions, etc.>
 
 For example:
 ::
+
     DEV-1 | Auto deployment with Fabric
 
     Fabric deployment should be very easy to deploy on both local and remote machine.
@@ -279,10 +285,12 @@ working branches.
 
 Delete remote branch:
 ::
+
     $ git push origin :branch_name
 
 Delete local branch:
 ::
+
     $ git checkout master
     $ git branch -d branch_name
 

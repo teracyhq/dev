@@ -72,9 +72,9 @@ rules. What&#8217;s the fun with a game without rules :-D?</p>
 <p>To start working on a repository project, <tt class="docutils literal"><span class="pre">fork</span></tt> it first to your git account.
 Your working repositories MUST be cloned from your git account</p>
 <p>For example, you&#8217;re going to work on <tt class="docutils literal"><span class="pre">https://code.teracy.org/projects/CLIENTS/repos/bitcoinbotclient/browse</span></tt>
-project</p>
+project,</p>
 <img alt="_images/project.png" src="_images/project.png" />
-<p>, so follow the following steps :</p>
+<p>so follow the following steps:</p>
 <ol class="arabic">
 <li><p class="first"><tt class="docutils literal"><span class="pre">Fork</span></tt> the official repository to your developer account.</p>
 <blockquote>
@@ -124,7 +124,7 @@ then create another branch from that checkout.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git checkout branch-1 -b branch-2
 </pre></div>
 </div>
-<p>Here is how it works : Git starts checkout branch-1, then creates branch-2 based on that checkout.
+<p>Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
 Now branch-2 is on your local and ready for you to working on it.</p>
 <p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
 </div>
@@ -133,15 +133,15 @@ Now branch-2 is on your local and ready for you to working on it.</p>
 <div class="section" id="workingflow-in-teracy">
 <h3>1. Workingflow in Teracy<a class="headerlink" href="#workingflow-in-teracy" title="Permalink to this headline">¶</a></h3>
 <img alt="_images/workflow-with-git.png" src="_images/workflow-with-git.png" />
-<p>The workingflow is summarized under 4 major steps :</p>
+<p>The workingflow is summarized under 4 major steps:</p>
 <ul class="simple">
-<li>Step 1 : Branching-off based on your issue</li>
-<li>Step 2 : Code / Commit / Push</li>
-<li>Step 3 : Submit pull-request. Waiting for approve or resolve conflict if appears.</li>
-<li>Step 4 : Cleanning up branch</li>
+<li>Step 1: Branching-off based on your issue</li>
+<li>Step 2: Code / Commit / Push</li>
+<li>Step 3: Submit pull-request. Waiting for approve or resolve conflict if appears.</li>
+<li>Step 4: Cleanning up branch</li>
 </ul>
 <p>Let&#8217;s get in more detais:</p>
-<p><strong>Step 1 : Branching-off base on issue</strong></p>
+<p><strong>Step 1: Branching-off base on issue</strong></p>
 <blockquote>
 <div><p>If you don&#8217;t know what is the meaning of &#8220;Branching-off&#8221;, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p>Working on features</p>
@@ -170,7 +170,7 @@ $ git push origin bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
 </div>
 <p>Above are template <cite>Branching off</cite> based on issue&#8217;s type.</p>
 </div></blockquote>
-<p><strong>Step 2 : Developing with Code/ Commit/ Push</strong></p>
+<p><strong>Step 2: Developing with Code/ Commit/ Push</strong></p>
 <blockquote>
 <div><p>During your coding, you would make some commit and push, in that case you have to check TWO things:</p>
 <blockquote>
@@ -180,7 +180,7 @@ $ git push origin bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
 </ul>
 </div></blockquote>
 <p>If there&#8217;re some changes from remote branch (could be <em>upstream/master</em>) that you need,
-you have to rebase your branch with that updates. It could be done by this :</p>
+you have to rebase your branch with that updates. It could be done by this:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
 $ git rebase upstream/master
 </pre></div>
@@ -188,23 +188,27 @@ $ git rebase upstream/master
 <p>By doing this, your branch will be rebased with updates from others.
 If it has any conflict, you have to resolve them by:</p>
 <ul>
-<li><p class="first">Edit conflict file</p>
-<blockquote>
-<div><p>Sample on conflict file</p>
+<li><dl class="first docutils">
+<dt>Edit conflict file</dt>
+<dd><p class="first">The following is a sample on conflict file:</p>
 <img alt="_images/conflict-mark.png" src="_images/conflict-mark.png" />
 <p>Sample on resolved-conflict file</p>
-<img alt="_images/conflict-resolved.png" src="_images/conflict-resolved.png" />
-</div></blockquote>
+<img alt="_images/conflict-resolved.png" class="last" src="_images/conflict-resolved.png" />
+</dd>
+</dl>
 </li>
-<li><p class="first">Add conflict-resolved-file in git then continue to rebase</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git add path/to/conflict-resolved-file
+<li><dl class="first docutils">
+<dt>Add conflict-resolved-file in git then continue to rebase</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git add path/to/conflict-resolved-file
 $ git rebase --continue
 </pre></div>
 </div>
+</dd>
+</dl>
 </li>
 </ul>
 </div></blockquote>
-<p><strong>Step 3 : Submit Pull-request</strong></p>
+<p><strong>Step 3: Submit Pull-request</strong></p>
 <blockquote>
 <div><p>When you get the issue completed, submit pull-request for reviewing on your work.
 There are TWO steps in submit pull-request:</p>
@@ -279,7 +283,6 @@ and better over time.</p>
 <p>Git commit message must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
-
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
 </div>
