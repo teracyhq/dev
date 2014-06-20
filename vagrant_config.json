@@ -51,7 +51,7 @@
       ],
       "ssh_known_hosts": [
         "github.com",
-        "teracy.com"
+        "code.teracy.org"
       ],
       "git":{
         "version":"2.0.0", //more at https://www.kernel.org/pub/software/scm/git/
