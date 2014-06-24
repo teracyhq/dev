@@ -1,0 +1,338 @@
+{
+  "name": "mongodb",
+  "description": "Installs and configures mongodb",
+  "long_description": "",
+  "maintainer": "edelight GmbH",
+  "maintainer_email": "markus.korn@edelight.de",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "amazon": ">= 0.0.0"
+  },
+  "dependencies": {
+    "apt": ">= 1.8.2",
+    "yum": ">= 3.0",
+    "python": ">= 0.0.0",
+    "runit": ">= 1.5.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "mongodb/config/dbpath": {
+      "display_name": "dbpath",
+      "description": "Path to store the mongodb data",
+      "default": "/var/lib/mongodb",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/logpath": {
+      "display_name": "logpath",
+      "description": "Path to store the logfiles of a mongodb instance",
+      "default": "/var/log/mongodb/mongodb.log",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/port": {
+      "display_name": "Port",
+      "description": "Port the mongodb instance is running on",
+      "default": "27017",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/reload_action": {
+      "display_name": "Reload",
+      "description": "Action to take when MongoDB config files are modified",
+      "default": "restart",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/client_roles": {
+      "display_name": "Client Roles",
+      "description": "Roles of nodes who need access to the mongodb instance",
+      "type": "array",
+      "default": [
+
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/cluster_name": {
+      "display_name": "Cluster Name",
+      "description": "Name of the mongodb cluster, all nodes of a cluster must have the same name.",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/shard_name": {
+      "display_name": "Shard name",
+      "description": "Name of a mongodb shard",
+      "default": "default",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/sharded_collections": {
+      "display_name": "Sharded Collections",
+      "description": "collections to shard",
+      "type": "array",
+      "default": [
+
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/replSet": {
+      "display_name": "Replicaset Name",
+      "description": "Name of a mongodb replicaset",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/rest": {
+      "display_name": "Enable Rest",
+      "description": "Enable the ReST interface of the webserver",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/smallfiles": {
+      "display_name": "Use small files",
+      "description": "Modify MongoDB to use a smaller default data file size",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/bind_ip": {
+      "display_name": "Bind address",
+      "description": "MongoDB instance bind address",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/package_version": {
+      "display_name": "MongoDB package version",
+      "description": "Version of the MongoDB package to install",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/configfile": {
+      "display_name": "Configuration File",
+      "description": "Name of configuration file to use with when starting mongod/mongos vs command line options",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/config/nojournal": {
+      "display_name": "Disable Journals",
+      "description": "Journals are enabled by default on 64bit after mongo 2.0, this can disable it",
+      "default": "false",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent": {
+      "display_name": "MMS Agent",
+      "description": "Hash of MMS Agent attributes",
+      "type": "hash",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent/api_key": {
+      "display_name": "MMS Agent API Key",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent/monitoring": {
+      "display_name": "MMS Monitoring Agent",
+      "description": "Hash of MMS Monitoring Agent attributes",
+      "type": "hash",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent/monitoring/version": {
+      "display_name": "MMS Monitoring Agent version",
+      "description": "Version of MMS Monitoring Agent to install",
+      "default": "2.0.0.17-1",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent/backup": {
+      "display_name": "MMS Backup Agent",
+      "description": "Hash of MMS Backup Agent attributes",
+      "type": "hash",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "mongodb/mms_agent/backup/version": {
+      "display_name": "MMS Backup Agent version",
+      "description": "Version of MMS Backup Agent to install",
+      "default": "1.4.3.28-1",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "mongodb": "Installs and configures a single node mongodb instance",
+    "mongodb::10gen_repo": "Adds the 10gen repo to get the latest packages",
+    "mongodb::mongos": "Installs and configures a mongos which can be used in a sharded setup",
+    "mongodb::configserver": "Installs and configures a configserver for mongodb sharding",
+    "mongodb::shard": "Installs and configures a single shard",
+    "mongodb::replicaset": "Installs and configures a mongodb replicaset",
+    "mongodb::mms_monitoring_agent": "Installs and configures a MongoDB MMS Monitoring Agent",
+    "mongodb::mms_backup_agent": "Installs and configures a MongoDB MMS Backup Agent"
+  },
+  "version": "0.16.1"
+}
