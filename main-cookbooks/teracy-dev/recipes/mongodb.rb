@@ -12,6 +12,6 @@ if node['teracy-dev']['mongodb']['enabled']
         node.override['mongodb']['install_method'] = 'source'
     end
     
-    include_recipe "mongodb::default"
+    include_recipe 'mongodb::default'
 
 end
