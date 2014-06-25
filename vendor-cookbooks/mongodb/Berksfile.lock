@@ -1,0 +1,25 @@
+DEPENDENCIES
+  chef-solo-search
+  mongodb
+    path: .
+    metadata: true
+
+GRAPH
+  apt (2.3.10)
+  build-essential (2.0.0)
+  chef-solo-search (0.5.1)
+  mongodb (0.16.0)
+    apt (>= 1.8.2)
+    python (>= 0.0.0)
+    runit (>= 1.5.0)
+    yum (>= 3.0.0)
+  python (1.4.6)
+    build-essential (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  runit (1.5.10)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  yum (3.2.0)
+  yum-epel (0.3.6)
+    yum (~> 3.0)

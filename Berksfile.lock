@@ -1,5 +1,5 @@
 {
-  "sha": "d92b98b63d7ae195f565c421f4d72e5dddd8f496",
+  "sha": "bb25582d0e41dd285d5f642decb63596f5b2fde5",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -53,6 +53,10 @@
       "locked_version": "1.4.6",
       "constraint": "= 1.4.6"
     },
+    "mongodb": {
+      "locked_version": "0.16.1",
+      "constraint": "= 0.16.1"
+    },
     "ssh_known_hosts": {
       "locked_version": "1.3.2",
       "constraint": "= 1.3.2"
@@ -91,7 +95,7 @@
       "locked_version": "5.3.0"
     },
     "yum-mysql-community": {
-      "locked_version": "0.1.2"
+      "locked_version": "0.1.4"
     },
     "iis": {
       "locked_version": "2.1.2"

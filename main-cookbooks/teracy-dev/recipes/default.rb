@@ -31,6 +31,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+
 include_recipe 'teracy-dev::apt'
 include_recipe 'teracy-dev::workspace'
 include_recipe 'teracy-dev::alias'
@@ -40,5 +41,6 @@ include_recipe 'teracy-dev::git'
 include_recipe 'teracy-dev::python'
 include_recipe 'teracy-dev::java'
 include_recipe 'teracy-dev::php'
+include_recipe 'teracy-dev::mongodb'
 include_recipe 'teracy-dev::rbenv'
 include_recipe 'teracy-dev::node'

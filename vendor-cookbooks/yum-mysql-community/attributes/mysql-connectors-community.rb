@@ -1,5 +1,5 @@
 default['yum']['mysql-connectors-community']['repositoryid'] = 'mysql-connectors-community'
-default['yum']['mysql-connectors-community']['gpgkey'] = 'https://raw.githubusercontent.com/someara/yum-mysql-community/master/files/mysql_pubkey.asc'
+default['yum']['mysql-connectors-community']['gpgkey'] = 'https://raw.githubusercontent.com/someara/yum-mysql-community/master/files/default/mysql_pubkey.asc'
 default['yum']['mysql-connectors-community']['description'] = 'MySQL Connectors Community'
 default['yum']['mysql-connectors-community']['failovermethod'] = 'priority'
 default['yum']['mysql-connectors-community']['gpgcheck'] = true
