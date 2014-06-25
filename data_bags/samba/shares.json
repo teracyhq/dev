@@ -1,0 +1,15 @@
+{
+  "id": "shares",
+  "shares": {
+    "workspace": {
+      "comment": "Developer workspace",
+      "path": "/home/vagrant/workspace",
+      "guest ok": "yes",
+      "writable": "yes",
+      "printable": "no",
+      "write list": ["vagrant"],
+      "create mask": "0664",
+      "directory mask": "0775"
+    }
+  }
+}

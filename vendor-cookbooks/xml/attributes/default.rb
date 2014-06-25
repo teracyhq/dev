@@ -28,4 +28,8 @@ when 'freebsd', 'arch'
   default['xml']['packages'] = %w[libxml2 libxslt]
 end
 
-default['xml']['nokogiri']['use_system_libraries'] = true
+default['xml']['nokogiri']['use_system_libraries'] = false
+
+# Newest versions will not compile with system libraries
+# https://github.com/sparklemotion/nokogiri/issues/1099
+default['xml']['nokogiri']['version'] = nil

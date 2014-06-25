@@ -38,6 +38,8 @@
   "chef_role":"roles",
   "chef_bags_path":"data_bags",
   "chef_recipes":[
+    "users::sysadmins",
+    "chef-solo-search",
     "apt",
     "vim",
     "git",
@@ -131,6 +133,9 @@
           "enabled":false,
           "version":"3"
         }
+      },
+      "samba" : {
+        "enabled":false
       },
       "gettext":false
     }

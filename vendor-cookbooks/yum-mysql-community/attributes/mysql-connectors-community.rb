@@ -15,6 +15,14 @@ when 'rhel'
     when 2014
       default['yum']['mysql-connectors-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/'
     end
+  when 'redhat'
+    case node['platform_version'].to_i
+    when 5
+      # Real Redhat identifies $releasever as 5Server and 6Server
+      default['yum']['mysql-connectors-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-connectors-community/el/5/$basearch/'
+    when 6
+      default['yum']['mysql-connectors-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/'
+    end
   else # other rhel
     default['yum']['mysql-connectors-community']['baseurl'] = 'http://repo.mysql.com/yum/mysql-connectors-community/el/$releasever/$basearch/'
   end

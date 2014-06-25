@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
   # config.vm.network :forwarded_port, guest: 4000, host: 4000 # octopress preview
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.network :private_network, ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -64,8 +64,8 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   data_hash['vm_synced_folders'].each do |x|
-    
-    if x["mount_options"].nil? 
+
+    if x["mount_options"].nil?
       config.vm.synced_folder x["host"], x["guest"]
     else
       config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
@@ -79,7 +79,7 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-  
+
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true
@@ -117,6 +117,7 @@ Vagrant.configure("2") do |config|
     end
   # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
     chef.json = data_hash['chef_json']
+
   end
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
