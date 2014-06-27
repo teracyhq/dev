@@ -64,11 +64,33 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   data_hash['vm_synced_folders'].each do |x|
-    
-    if x["mount_options"].nil? 
-      config.vm.synced_folder x["host"], x["guest"]
+
+    hostOS = Vagrant::Util::Platform.platform
+    hostOSType = ''
+
+    case hostOS
+    when /^(mswin|mingw).*/
+      hostOSType = 'windows'
+    when /^(linux|cygwin).*/
+      hostOSType = 'linux'
+    when /^(mac|darwin).*/
+      hostOSType = 'mac'
+    end
+
+    if x["supports"].nil?
+      if x["mount_options"].nil? 
+        config.vm.synced_folder x["host"], x["guest"]
+      else
+        config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
+      end
     else
-      config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
+      if x["supports"].include?(hostOSType)
+        if x["mount_options"].nil?
+          config.vm.synced_folder x["host"], x["guest"]
+        else
+          config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
+        end
+      end
     end
 
   end
