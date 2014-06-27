@@ -19,7 +19,9 @@
     },
     {
       "host":"./home/.virtualenvs",
-      "guest":"/home/vagrant/.virtualenvs"
+      "guest":"/home/vagrant/.virtualenvs",
+      "supports": ["linux", "mac"]
+
     },
     {
       "host":"./home/.ssh",
