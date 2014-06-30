@@ -7,9 +7,6 @@
 #
 
 if node['teracy-dev']['mysql']['enabled']
-	if !node['teracy-dev']['mysql']['version'].strip().empty?
-        node.override['mysql']['version'] = node['teracy-dev']['mysql']['version']
-    end
 
     if !node['teracy-dev']['mysql']['password'].strip().empty?
 	    # set password
@@ -18,7 +15,7 @@ if node['teracy-dev']['mysql']['enabled']
 	        server_root_password
 	        server_repl_password
 	  	).each do |pwd|
-	      node.default['mysql'][pwd] = node['dev']['mysql']['password']
+	      node.default['mysql'][pwd] = node['teracy-dev']['mysql']['password']
 		end
 	end
 
@@ -27,8 +24,8 @@ if node['teracy-dev']['mysql']['enabled']
 
     # force apt-get update
     # https://gist.github.com/lvnilesh/4039324/#comment-984780
-    execute "compile-time-apt-get-update" do
-      command "apt-get update"
+    execute 'compile-time-apt-get-update' do
+      command 'apt-get update'
       ignore_failure true
       action :nothing
     end.run_action(:run)
