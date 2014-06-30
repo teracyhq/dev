@@ -132,7 +132,9 @@
       },
       "postgresql":{
         "enabled":false,
-        "password":"teracy",
+        "password":{
+          "postgres":"teracy"
+        },
         "version":"9.3"
       },
       "java":{

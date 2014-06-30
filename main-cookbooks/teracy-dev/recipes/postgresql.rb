@@ -11,10 +11,8 @@ if node['teracy-dev']['postgresql']['enabled']
         node.override['postgresql']['version'] = node['teracy-dev']['postgresql']['version']
     end
 
-    if !node['teracy-dev']['postgresql']['password'].strip().empty?
-        node.override['postgresql']['password'] = node['teracy-dev']['postgresql']['password']
-    end
+    node.override['postgresql']['password'] = node['teracy-dev']['postgresql']['password']
 
     include_recipe 'postgresql::default'
-
+    include_recipe 'postgresql::server'
 end
