@@ -114,7 +114,13 @@
         }
       },
       "ruby":{
-        "enabled":false
+        "enabled":false,
+        "globals":[
+          {
+            "name":"bundle",
+            "version":""
+          }
+        ]
       },
       "php":{
         "enabled":false,
