@@ -74,41 +74,43 @@ This section shows you how to create a Django application named ``hello`` to dis
 World!`` message when accessing http://localhost:8000.
 
 #. Open the browser at http://localhost:8000.
-    You will see a 404 error and it is normal.
+
+   You will see a 404 error and it is normal.
 
 #. Install an editor for coding. If you have had it, skip this step.
 
-    At Teracy, you are suggested to use `Sublime Text <http://www.sublimetext.com/>`_. Download and
-    install it on your computer.
+   At Teracy, you are suggested to use `Sublime Text <http://www.sublimetext.com/>`_. Download and
+   install it on your computer.
 
 #. Open ``Sublime Text``, add ``workspace/personal/tutorial`` project by clicking **Project** ->
-    **Add  Folder to Project**.
-    The ``tutorial`` project should be opened and you can start coding now.
+   **Add  Folder to Project**.
+   
+   The ``tutorial`` project should be opened and you can start coding now.
 
 #. Open two terminal windows:
 
-    Usually, you need two terminal windows:
+   Usually, you need two terminal windows:
 
-    - One is used for running the Django project. Open a new terminal window, change the
-        directory to ``teracy-dev``, then ``$ vagrant ssh``.
+   - One is used for running the Django project. Open a new terminal window, change the
+     directory to ``teracy-dev``, then ``$ vagrant ssh``.
 
-    - The other one is used for normal commands.
+   - The other one is used for normal commands.
 
 #. Install ``teracy-django-html5-boilerplate`` to your project
-    `teracy-django-html5-boilerplate <https://github.com/teracy-official/django-html5-boilerplate>`_
-    is a Django wrapper application that includes ``html5-boilerplate`` assets and provides
-    ``base.html``for starting any web application with ``html5-boilerplate``, so you need to install
-    it on your project.
+   `teracy-django-html5-boilerplate <https://github.com/teracy-official/django-html5-boilerplate>`_
+   is a Django wrapper application that includes ``html5-boilerplate`` assets and provides
+   ``base.html``for starting any web application with ``html5-boilerplate``, so you need to install
+   it on your project.
 
     - Add the following dependency to ``requirements/project/dev.txt``:
-        ::
+      ::
 
-            teracy-django-html5-boilerplate==0.3.0
+        teracy-django-html5-boilerplate==0.3.0
 
     - Install it:
-        ::
+      ::
 
-            pip install -r requirements/project/dev.txt
+        pip install -r requirements/project/dev.txt
 
     You should see something like this:
     ::
@@ -141,15 +143,18 @@ World!`` message when accessing http://localhost:8000.
         $ ../manage.py startapp hello
 
 #. Add the ``hello`` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending
-    the following configuration:
+   the following configuration:
+
     ::
 
         INSTALLED_APPS += (
             'teracy.html5boilerplate',
             'apps.hello',
         )
+
 #. Create the ``home.html`` template under the ``apps/hello/templates/hello`` directory with the
-    following content:
+   following content:
+   
     ::
 
         {% extends 'html5boilerplate/base.html' %}
