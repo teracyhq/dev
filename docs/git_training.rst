@@ -38,14 +38,16 @@ Practising
 
 - Working again on teracy-tutorial
 
-Note: You are encouraged to practice with as many git commands as possible, but have to follow
-strictly all the instructions below, the results will be displayed on github to check.
+.. note::
+    You are encouraged to practice with as many git commands as possible, but have to follow
+    strictly all the instructions below, the results will be displayed on github to check.
 
 As you remember, you practiced to adapt Django's tutorial into Teracy's ``Django boilerplate`` project.
 
 Now you will continue to work on it with git and push it to github.
 
 #. Initial setup:
+
     - Create your repository named ``teracy-tutorial`` on github, and set up the local repo ``   workspace/personal/teracy-tutorial`` on your VM.
 
     - Push this first commit on github (Initial setup).
@@ -72,13 +74,12 @@ Now you will continue to work on it with git and push it to github.
     - Work on the ``Activating models`` section and commit the changes with the message: ``Activating
       models``.
 
-    - Work on the ``Playing with the API`` section and commit the changes with the message: ``Playing with
-      the API``.
+    - Work on the ``Playing with the API`` section and commit the changes with the message: ``Playing
+      with the API``.
 
     - Push the ``tutorial01`` branch to ``origin/tutorial01`` branch. 
 
-    (You should open the
-      repository on github and see the branch there.)
+    (You should open the repository on github and see the branch there.)
 
     - Merge (no fast forward) (hint: $ git merge --no-ff) the ``tutorial01`` branch into the ``master``
       branch, then push to the ``origin/master`` branch.

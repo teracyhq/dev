@@ -52,7 +52,7 @@ For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
       "guest":3000,
       "host":3000
     }
-  ]
+  ],
  
   "chef_json":{
     "teracy-dev":{

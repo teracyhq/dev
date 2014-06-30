@@ -185,16 +185,15 @@ World!`` message when accessing http://localhost:8000.
         )
 
 #. Refresh your browser opening http://localhost:8000 and you should see ``Hello World!`` page instead
-    of the 404 error page.
+   of the 404 error page.
 
 .. note::
 
     During development, the server could be stopped by some errors and it is normal.
     The server should be started without any error with the command:
-
-::
+    ::
     
-    $ ./manage.py runserver 0.0.0.0:8000
+        $ ./manage.py runserver 0.0.0.0:8000
 
 Congratulations, you have just created a Django application and make it work even though it does
 nothing other than "Hello World!" page. You should now learn Django by developing many more

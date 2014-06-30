@@ -13,13 +13,13 @@ Installation
         "ruby" => {
             "enabled" => false # ruby platform development, disabled by default
         },
-#. Enable ``ruby`` with: ``"enabled" => true``.
+#. Enable ``ruby`` with ``"ruby"`` => ``"enabled" => true``.
 
 #. Disable ``python`` with ``"python" => "enabled" => false`` to save provision time if you do not
-    want to work with it. (You can ignore this step.)
+   want to work with it. (You can ignore this step.)
 
 #. ``$ vagrant reload --provision`` if your VM is already running, or ``$ vagrant up`` if it is not
-     running yet.
+   running yet.
 
 #. `$ vagrant ssh` and verify if ``ruby`` works:
     ::
