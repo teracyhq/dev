@@ -1,5 +1,5 @@
 {
-  "sha": "bb25582d0e41dd285d5f642decb63596f5b2fde5",
+  "sha": "5a327529eb056ec1f1d42977a50e468398798d27",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -53,6 +53,10 @@
       "locked_version": "1.4.6",
       "constraint": "= 1.4.6"
     },
+    "mysql": {
+      "locked_version": "5.3.6",
+      "constraint": "= 5.3.6"
+    },
     "mongodb": {
       "locked_version": "0.16.1",
       "constraint": "= 0.16.1"
@@ -91,14 +95,11 @@
     "xml": {
       "locked_version": "1.2.4"
     },
-    "mysql": {
-      "locked_version": "5.3.0"
+    "iis": {
+      "locked_version": "2.1.2"
     },
     "yum-mysql-community": {
       "locked_version": "0.1.4"
-    },
-    "iis": {
-      "locked_version": "2.1.2"
     },
     "partial_search": {
       "locked_version": "1.0.8"
