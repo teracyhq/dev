@@ -180,10 +180,11 @@ Diff
 
         $ git diff --cached
 
-Note: You should enable the color mode of git, it is easier to see the changes with colors.
-::
+.. note::
+    You should enable the color mode of git, it is easier to see the changes with colors.
+    ::
 
-    $ git config --global color.ui true
+        $ git config --global color.ui true
 
 
 Commit
@@ -196,7 +197,9 @@ changes, use ``$ git status``. To commit the changes, use the following commands
     $ git add .
     $ git commit -a
 
-Note: The ``git add .`` or ``git add -A`` command allows you to add all changed files/folder to the committed list. If you just want to commit some of these files/folders, you should use the command below instead:
+The ``git add .`` or ``git add -A`` command allows you to add all changed files/folder to the
+committed list. If you just want to commit some of these files/folders, you should use the command
+below instead:
 ::
 
     $ git add [path_to_files]
@@ -206,7 +209,8 @@ And the terminal will open a default editor (usually ``vim`` on linux, mac), add
 message, write and quite (vim: press [i] to enter edit mode, then [ESC] to go into view mode,
 then ``:wq`` to write changes and quit).
 
-You can add your commit message directly to your commit without the ``vim`` editor by using the command below instead of ``git commit -a``:
+You can add your commit message directly to your commit without the ``vim`` editor by using the
+command below instead of ``git commit -a``:
 ::
     
     $git commit -m "<issue_key>|git commit message"
