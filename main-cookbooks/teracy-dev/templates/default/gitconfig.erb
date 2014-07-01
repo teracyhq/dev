@@ -7,6 +7,12 @@
 	ui = true
 <% end %>
 
+<% if not node['teracy-dev']['git']['core']['filemode'] %>
+[core]
+        filemode = false
+<% end %>
+
+
 <% if node['teracy-dev']['git']['commit']['template'] %>
 [commit]
 	template = /home/vagrant/.gitmessage.txt
