@@ -39,29 +39,35 @@ For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
 ::
 
   {
-  "vm_forwarded_ports":[
-    {
-      "guest":8000,
-      "host":8000
-    },
-    {
-      "guest":4000,
-      "host":4000
-    },
-    {
-      "guest":3000,
-      "host":3000
+    "vm_forwarded_ports":[
+      {
+        "guest":8000,
+        "host":8000
+      },
+      {
+        "guest":4000,
+        "host":4000
+      },
+      {
+        "guest":3000,
+        "host":3000
+      }
+    ],
+   
+    "chef_json":{
+   // Config git for virtualbox
+      "git":{        
+        "user":{
+          "name":"Hoa Vu",
+          "email":"hoavu@teracy.com"
+        }
+      },
+      "teracy-dev":{
+        "java":{
+           "enabled":true
+        }
+      }
     }
-  ],
- 
-  "chef_json":{
-    "teracy-dev":{
-      "java":{
-         "enabled":true
-             }
-          }
-
-       }
   }
 
 We do this for smooth teracy-dev upgrading.
