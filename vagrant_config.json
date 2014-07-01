@@ -121,6 +121,11 @@
         "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
         "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
       },
+      "mysql":{
+        "enabled":false,
+        "version":"5.3.6",
+        "password":"teracy"
+      },
       "mongodb":{
         "enabled":false,
         "version":"2.6.3"
