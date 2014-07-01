@@ -136,6 +136,13 @@
         "enabled":false,
         "version":"2.6.3"
       },
+      "postgresql":{
+        "enabled":false,
+        "password":{
+          "postgres":"teracy"
+        },
+        "version":"9.3"
+      },
       "java":{
         "enabled":false,
         "version":"7",
