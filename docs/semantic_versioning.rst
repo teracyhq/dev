@@ -55,7 +55,7 @@ b. Prerelease tags:
   worked. When all intended features are complete, move on releasing "a" version.
 
 - ``a`` - "alpha" means features completed but its usage is not stable enough, still major bugs
-   are expected. Continue refactoring to reach better software quality and stability.
+  are expected. Continue refactoring to reach better software quality and stability.
 
 - ``b`` - "beta" means features completed, only minor bugs are expected. Avoid refactoring here,
   just fix bugs.
