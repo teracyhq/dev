@@ -67,25 +67,39 @@
 time.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Open <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</p>
-<div class="highlight-python"><div class="highlight"><pre>&quot;ruby&quot; =&gt; {
-  &quot;enabled&quot; =&gt; false # ruby platform development, disabled by default
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Open the <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>&quot;ruby&quot; =&gt; {
+    &quot;enabled&quot; =&gt; false # ruby platform development, disabled by default
 },
 </pre></div>
 </div>
-<p>Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with: <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
-<p>If you do not want to work with <tt class="docutils literal"><span class="pre">python</span></tt>, disable it with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to
-save provision time.</p>
-<p>Then <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not running
-yet.</p>
-<p>After the provision process, <cite>$ vagrant ssh</cite> and you should verify if it works by:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ruby --version
+</dd>
+</dl>
+</li>
+<li><p class="first">Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with <tt class="docutils literal"><span class="pre">&quot;ruby&quot;</span></tt> =&gt; <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
+</li>
+<li><p class="first">Disable <tt class="docutils literal"><span class="pre">python</span></tt> with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to save provision time if you do not
+want to work with it. (You can ignore this step.)</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not
+running yet.</p>
+</li>
+<li><dl class="first docutils">
+<dt><cite>$ vagrant ssh</cite> and verify if <tt class="docutils literal"><span class="pre">ruby</span></tt> works:</dt>
+<dd><div class="first highlight-python"><div class="highlight"><pre>$ vagrant ssh
+$ ruby --version
 </pre></div>
 </div>
 <p>And you should see something like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
+<div class="last highlight-python"><div class="highlight"><pre>ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
 </pre></div>
 </div>
+</dd>
+</dl>
+</li>
+</ol>
 <p>Congratulations, you can do all Ruby related stuffs now!</p>
 </div>
 </div>

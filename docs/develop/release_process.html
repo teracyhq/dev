@@ -60,14 +60,14 @@
   <div class="section" id="release-process">
 <h1>Release Process<a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h1>
 <p>This is the general guide for releasing software packages at Teracy.</p>
-<div class="section" id="start">
-<h2>Start<a class="headerlink" href="#start" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="starting">
+<h2>Starting<a class="headerlink" href="#starting" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Follow workflow, a release branch should be branched off from origin branch that is ready to be
-released (for example: <tt class="docutils literal"><span class="pre">releases/0.1.0</span></tt> branch is branched off from <tt class="docutils literal"><span class="pre">develop</span></tt> branch).</li>
-<li>Set the next iteration version for <tt class="docutils literal"><span class="pre">develop</span></tt> branch. This will make sure there is no snapshot
-version conflict between <tt class="docutils literal"><span class="pre">releases</span></tt> branch and <tt class="docutils literal"><span class="pre">develop</span></tt> branch. Moreover, <tt class="docutils literal"><span class="pre">develop</span></tt> branch
-will not be blocked.</li>
+released (for example: <tt class="docutils literal"><span class="pre">releases/0.1.0</span></tt> branch is branched off from the <tt class="docutils literal"><span class="pre">develop</span></tt> branch).</li>
+<li>Set the next iteration version for the <tt class="docutils literal"><span class="pre">develop</span></tt> branch. This will make sure there is no snapshot
+version conflict between the <tt class="docutils literal"><span class="pre">releases</span></tt> branch and the <tt class="docutils literal"><span class="pre">develop</span></tt> branch. Moreover, the
+<tt class="docutils literal"><span class="pre">develop</span></tt> branch will not be blocked.</li>
 <li>Create an issue for DevOps team to create ci job if required.</li>
 <li>Create an issue for Blog team to preparing release announcement post.</li>
 </ul>
@@ -75,30 +75,30 @@ will not be blocked.</li>
 <div class="section" id="releasing">
 <h2>Releasing<a class="headerlink" href="#releasing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Follow specific release process docs on each project, this should be done on your forked
+<li>Follow specific release process doccuments on each project, this should be done on your forked
 repository, then make pull requests when the release is ready.</li>
 <li>Remember that release branch should not introduce big changes.</li>
 <li>After each staging releases, create an issue for release test campaign to make sure the release
 is stable enough and have a good quality.</li>
 </ul>
 </div>
-<div class="section" id="end">
-<h2>End<a class="headerlink" href="#end" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ending">
+<h2>Ending<a class="headerlink" href="#ending" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Make sure that the tag step must be ready at least <strong>3 days</strong> before the expected release date.
 Use <strong>UTC</strong> as standard reference time.</li>
-<li>Tag the release: <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></tt> with the message: <tt class="docutils literal"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></tt>. For example,
-<tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></tt> with the message <tt class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></tt>. This message pattern could be later
+<li>Tag the release: <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></tt> with the <tt class="docutils literal"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></tt> message. For example,
+<tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></tt> with the <tt class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></tt> message. This message pattern could be later
 used for auto deployment, so make sure the message has the correct pattern.</li>
-<li>Merge the tag release into <tt class="docutils literal"><span class="pre">master</span></tt> branch, then the origin branch. This is specified on the
+<li>Merge the tag release into the <tt class="docutils literal"><span class="pre">master</span></tt> branch, then the origin branch. This is specified on the
 workflow.</li>
-<li>Delete release branch and we&#8217;re done.</li>
+<li>Delete released branch and we are done.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Automation is one of our development philosophy, and we&#8217;re working on it so that releasing
+<p>Automation is one of our development philosophy, and we are working on it so that releasing
 should be automated and really easy to do.</p>
-<p class="last">See releated issue: <a class="reference external" href="https://issues.teracy.org/browse/DEVOPS-21">https://issues.teracy.org/browse/DEVOPS-21</a></p>
+<p class="last">See the releated issue: <a class="reference external" href="https://issues.teracy.org/browse/DEVOPS-21">https://issues.teracy.org/browse/DEVOPS-21</a></p>
 </div>
 </div>
 </div>
@@ -112,9 +112,9 @@ should be automated and really easy to do.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Release Process</a><ul>
-<li><a class="reference internal" href="#start">Start</a></li>
+<li><a class="reference internal" href="#starting">Starting</a></li>
 <li><a class="reference internal" href="#releasing">Releasing</a></li>
-<li><a class="reference internal" href="#end">End</a></li>
+<li><a class="reference internal" href="#ending">Ending</a></li>
 </ul>
 </li>
 </ul>

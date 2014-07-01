@@ -1,9 +1,9 @@
 Style Standards
 ===============
 
-Consistence is one of our goal for development and that's why we need standards. Common standards
-must be applied to all other more specific standards if any rule is not overridden. Following these
-rules, there will be automatic checking tool to report any rule violations.
+Consistence is one of our goals for development and that is the reason why we need standards. Common
+standards must be applied to all other more specific standards if any rule is not overridden.
+Following these rules, there will be automatic checking tool to report any rule violations.
 
 
 Common Standards
@@ -29,7 +29,7 @@ C/C++ Coding Standards
 Python Coding Standards
 -----------------------
 
-- Unless otherwise specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
+- Unless specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
 
 - Follow `Google Python Style Guide <http://google-styleguide.googlecode.com/svn/trunk/pyguide.html>`_
 
@@ -42,7 +42,7 @@ Python Coding Standards
     + http://www.pylint.org/
     + http://pychecker.sourceforge.net
 
-- Interesting links:
+- See more links:
     + http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html
     + http://deeplearning.net/software/pylearn/v2_planning/API_coding_style.html
     + http://docs.python-guide.org/en/latest/writing/style/

@@ -63,29 +63,27 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>To get started, you must follow the instruction steps below to setup the development environment.</p>
+<p>To get started, you must follow the instruction steps below to set up the development environment.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p><strong>1. Required:</strong></p>
+<p><strong>1. Required</strong></p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">virtualbox</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">vagrant</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">git</span></tt></li>
 </ul>
 <p><strong>Notice</strong></p>
-<p>We support SSH Agent Forwarding by default. It means you don&#8217;t have to submit username &amp; password
-each time when work with Git like <tt class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></tt> on the Vagrant box.</p>
+<p>Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username &amp; password
+each time when working with Git like <tt class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></tt> on the Vagrant box.</p>
 <p>Do the following guide to get it work:</p>
 <ul class="simple">
 <li>Mac/ Linux: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac</a></li>
-<li>Window: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows</a></li>
-<li>Remember that: never clone source code by HTTPS or GIT clone URL, we can not implement this by these protocol.
-(<a class="reference external" href="http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password">http://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-password</a>)</li>
+<li>Windows: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows</a></li>
+<li>Clone GitHub repositories using SSH.</li>
 </ul>
-<p>Make this extra step and make your life simpler.</p>
 <p><strong>Windows Notes</strong>:</p>
 <ul class="simple">
-<li>You MUST install <tt class="docutils literal"><span class="pre">git</span></tt> to use <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> and from now on we will call it <tt class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></tt>.</li>
+<li>You MUST install <tt class="docutils literal"><span class="pre">git</span></tt> to use <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt>, from now on, it is called <tt class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></tt>.</li>
 <li>You MUST ALWAYS run <tt class="docutils literal"><span class="pre">virtualbox</span></tt> and <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> as <strong>administrator</strong> to make symlinks
 (of virtualenv) work as expected.</li>
 </ul>
@@ -94,60 +92,71 @@ each time when work with Git like <tt class="docutils literal"><span class="pre"
 <h2>Automatic Installation<a class="headerlink" href="#automatic-installation" title="Permalink to this headline">¶</a></h2>
 <p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04. If not, you need to move
 to the next alternative instruction by installing required packages manually.</p>
-<p>Install <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">virtualbox</span></tt>, <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the provided bash script below:</p>
+<p>Installing <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">virtualbox</span></tt>, <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the provided bash script below:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /tmp
 $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
 $ bash setup_working_env_chef.sh
 </pre></div>
 </div>
-<p>On window (Window 7 &amp; Window 8), every thing is easier, just follow these steps:</p>
+<p>On Windows (Windows 7 &amp; Windows 8), follow these steps:</p>
 <ol class="arabic simple">
 <li>Open: <a class="reference external" href="https://raw.github.com/teracy-official/dev/master/scripts/scripts/setup_vagrant_and_virtualbox.bat">https://raw.github.com/teracy-official/dev/master/scripts/scripts/setup_vagrant_and_virtualbox.bat</a> on Chrome or Firefox.</li>
-<li>Press <tt class="docutils literal"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">s</span></tt>.</li>
-<li>Now choose option <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">type:</span> <span class="pre">Text</span> <span class="pre">document</span></tt>, with name &#8220;setup_vagrant_and_virtualbox.bat&#8221; (notice the double quote).</li>
-<li>Open it (by double click on <tt class="docutils literal"><span class="pre">setup_vagrant_and_virtualbox.bat</span></tt>) and now you have <tt class="docutils literal"><span class="pre">vagrant</span></tt> and <tt class="docutils literal"><span class="pre">virtualbox</span></tt> installed on your system.</li>
+<li>Press <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">S</span></tt>.</li>
+<li>Select the option <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">type:</span> <span class="pre">Text</span> <span class="pre">document</span></tt>, with the name &#8220;setup_vagrant_and_virtualbox.bat&#8221; (notice the double quote).</li>
+<li>Open it by double-clicking on <tt class="docutils literal"><span class="pre">setup_vagrant_and_virtualbox.bat</span></tt>.</li>
 </ol>
+<p>Now you have <tt class="docutils literal"><span class="pre">vagrant</span></tt> and <tt class="docutils literal"><span class="pre">virtualbox</span></tt> installed on your system.</p>
 </div>
-<div class="section" id="or-manual-installation">
-<h2>Or Manual Installation<a class="headerlink" href="#or-manual-installation" title="Permalink to this headline">¶</a></h2>
-<p>You need to finish 3 following required simple steps:</p>
+<div class="section" id="manual-installation">
+<h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at: <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a></li>
+<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at: <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a>.</li>
 <li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.12</strong> at:
 <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></li>
-<li>Install latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
+<li>Install the latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a></li>
 </ol>
-<p>Notice:</p>
+<p><strong>Notice</strong>:</p>
 <ul class="simple">
-<li>We use and run 64 bit architecture every day, however, 32 bit archirecture is expected to work, too.</li>
-<li>Please note that virtualbox has an installation issue which is reported here
-(<a class="reference external" href="https://www.virtualbox.org/ticket/4140">https://www.virtualbox.org/ticket/4140</a>). If you <cite>$ vagrant up</cite> but can not start virtual box,
-please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and re-install it,
-this will fix the issue.</li>
+<li>The 64-bit architecture is used and run every day, however, the 32-bit archirecture is expected to work, too.</li>
+<li>The virtualbox has an installation issue which is reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a>. If you <cite>$ vagrant up</cite> but can not start the virtual box,
+please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and re-install it to fix the issue.</li>
 </ul>
 </div>
 <div class="section" id="environment-up">
 <h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
-<p>Open your terminal window and type:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd ~/
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Open your terminal window and type:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>$ cd ~/
 $ git clone https://github.com/teracy-official/dev.git teracy-dev
 $ cd teracy-dev
 $ vagrant up
 </pre></div>
 </div>
+</dd>
+</dl>
+</li>
+</ol>
 <p>Notice:</p>
-<p>1. The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on Windows.
+<ul>
+<li><p class="first">The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on windows.
 For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
 <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> directory to import projects into your text editor later for coding.</p>
-<p>2. You may see the error:</p>
-<div class="highlight-python"><div class="highlight"><pre>Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
+</li>
+<li><dl class="first docutils">
+<dt>You may see the error:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
 on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH
 environmental variable.
 </pre></div>
 </div>
-<p>Please add path to VirtualBox folder to your environment variable.
-Example: in Window, add this &#8220;C:Program FilesOracleVirtualBox&#8221;.</p>
-<p>If the error still occur, you have to unistall and re-install VirtualBox then Vagrant. This will fix
+</dd>
+</dl>
+</li>
+</ul>
+<p>To fix this error, add the path of the <strong>VirtualBox</strong> folder to your environment variable.</p>
+<p>For example: In Windows, add this &#8220;C:Program FilesOracleVirtualBox&#8221;.</p>
+<p>If the error still occur, you have to unistall and re-install VirtualBox, then Vagrant to fix
 this error.</p>
 <p>You should see the following similar messages at the end of <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
@@ -155,7 +164,7 @@ this error.</p>
 [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 </pre></div>
 </div>
-<p>Last but not least, <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt> to access the virtual machine you have just
+<p>2. Use the <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt> command to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>
 <div class="highlight-python"><div class="highlight"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
@@ -167,7 +176,7 @@ installed which runs Ubuntu 12.04 with ssh. You should see the following similar
 Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 </pre></div>
 </div>
-<p><em>Congratulations, you&#8217;re all set now!</em></p>
+<p><em>Congratulations, you&#8217;ve all set now!</em></p>
 </div>
 </div>
 
@@ -182,7 +191,7 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 <li><a class="reference internal" href="#">Getting Started</a><ul>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
-<li><a class="reference internal" href="#or-manual-installation">Or Manual Installation</a></li>
+<li><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
 <li><a class="reference internal" href="#environment-up">Environment Up</a></li>
 </ul>
 </li>

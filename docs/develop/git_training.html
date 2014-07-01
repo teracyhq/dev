@@ -65,24 +65,22 @@
 <h1>Git Training<a class="headerlink" href="#git-training" title="Permalink to this headline">¶</a></h1>
 <p>Git is a distributed version control systems (DVCS) which was used to manange all Teracy&#8217;s
 development resources. You need to learn to use Git to work with Teracy&#8217;s projects.</p>
-<div class="section" id="learn">
-<h2>Learn<a class="headerlink" href="#learn" title="Permalink to this headline">¶</a></h2>
-<p>There are many free available resources for learning git. These are some of recommended resources
-that you need to learn it.</p>
+<div class="section" id="studying">
+<h2>Studying<a class="headerlink" href="#studying" title="Permalink to this headline">¶</a></h2>
+<p>There are many free available resources for you to study git. The followings are some recommended resources:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://git-scm.com/book">http://git-scm.com/book</a></li>
 <li><a class="reference external" href="http://sixrevisions.com/resources/git-tutorials-beginners/">http://sixrevisions.com/resources/git-tutorials-beginners/</a></li>
 <li><a class="reference external" href="http://documentup.com/skwp/git-workflows-book">http://documentup.com/skwp/git-workflows-book</a></li>
 </ul>
 </div>
-<div class="section" id="practice">
-<h2>Practice<a class="headerlink" href="#practice" title="Permalink to this headline">¶</a></h2>
-<p>After learning, now it&#8217;s the time for practice.</p>
+<div class="section" id="practising">
+<h2>Practising<a class="headerlink" href="#practising" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Prerequisites</p>
 <blockquote>
 <div><ul class="simple">
-<li>github account with configured ssh keys.</li>
+<li>You need to have a github account with configured ssh keys.</li>
 <li><tt class="docutils literal"><span class="pre">teracy-dev</span></tt> is running with working ssh (<tt class="docutils literal"><span class="pre">$</span> <span class="pre">ssh</span> <span class="pre">-T</span> <span class="pre">git&#64;github.com</span></tt> should be ok).</li>
 </ul>
 </div></blockquote>
@@ -90,70 +88,83 @@ that you need to learn it.</p>
 <li><p class="first">Git basics</p>
 <blockquote>
 <div><ul class="simple">
-<li>You&#8217;re going to create <tt class="docutils literal"><span class="pre">pro-git-practice</span></tt> repository on github (via github&#8217;s web UI).</li>
-<li>The repository on your VM should be at: <tt class="docutils literal"><span class="pre">workspace/personal/pro-git-practice</span></tt></li>
+<li>You are going to create a <tt class="docutils literal"><span class="pre">pro-git-practice</span></tt> repository on github (via github&#8217;s web UI).</li>
+<li>The repository on your VM should be at <tt class="docutils literal"><span class="pre">workspace/personal/pro-git-practice</span></tt>.</li>
 <li>Read the chapter 2 and practice with your <tt class="docutils literal"><span class="pre">pro-git-practice</span></tt> repository on your VM at
-<a class="reference external" href="http://git-scm.com/book/en/Git-Basics">http://git-scm.com/book/en/Git-Basics</a></li>
+<a class="reference external" href="http://git-scm.com/book/en/Git-Basics">http://git-scm.com/book/en/Git-Basics</a>.</li>
 <li>Remember to push the changes to github so we could see your work and practice.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Work again on teracy-tutorial</p>
+<li><p class="first">Working again on teracy-tutorial</p>
 </li>
 </ul>
-<p>Note: You&#8217;re encouraged to practice with as many git commands as possible, but have to follow
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You are encouraged to practice with as many git commands as possible, but have to follow
 strictly all the instructions below, the results will be displayed on github to check.</p>
-<p>As you remember, you practiced to adapt Django&#8217;s tutorial into Teracy&#8217;s Django boilerplate project.</p>
-<p>Now you will work on it again with git and push it to github.</p>
-<p>First, create a repository name <tt class="docutils literal"><span class="pre">teracy-tutorial</span></tt> on github, and setup the local repo
-<tt class="docutils literal"><span class="pre">workspace/personal/teracy-tutorial</span></tt> on your VM.</p>
-<p>Push the first commit there on github (Initial setup).</p>
+</div>
+<p>As you remember, you practiced to adapt Django&#8217;s tutorial into Teracy&#8217;s <tt class="docutils literal"><span class="pre">Django</span> <span class="pre">boilerplate</span></tt> project.</p>
+<p>Now you will continue to work on it with git and push it to github.</p>
 <ol class="arabic">
-<li><p class="first">Setup project layout</p>
+<li><p class="first">Initial setup:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Add remote repository <a class="reference external" href="https://github.com/teracy-official/django-boilerplate.git">https://github.com/teracy-official/django-boilerplate.git</a> into
-your repository with named <tt class="docutils literal"><span class="pre">djbp</span></tt>.</li>
-<li>Fetch and merge <tt class="docutils literal"><span class="pre">djbp/master</span></tt> branch.</li>
+<li>Create your repository named <tt class="docutils literal"><span class="pre">teracy-tutorial</span></tt> on github, and set up the local repo ``   workspace/personal/teracy-tutorial`` on your VM.</li>
+<li>Push this first commit on github (Initial setup).</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Setting up project layout</p>
+<blockquote>
+<div><ul class="simple">
+<li>Add the remote repository <a class="reference external" href="https://github.com/teracy-official/django-boilerplate.git">https://github.com/teracy-official/django-boilerplate.git</a> into
+your repository with the <tt class="docutils literal"><span class="pre">djbp</span></tt> name.</li>
+<li>Fetch and merge the <tt class="docutils literal"><span class="pre">djbp/master</span></tt> branch.</li>
 <li>Push the merge to your github&#8217;s repository at <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Tutorial 01 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/">https://docs.djangoproject.com/en/1.5/intro/tutorial01/</a></p>
+<li><p class="first">Tutorial 01 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/">https://docs.djangoproject.com/en/1.5/intro/tutorial01/</a>.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial01</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch</li>
-<li>Skip the section of <tt class="docutils literal"><span class="pre">startproject</span></tt> as we already started a project with <tt class="docutils literal"><span class="pre">teracy</span></tt></li>
-<li>Work on <tt class="docutils literal"><span class="pre">Creating</span> <span class="pre">models</span></tt> section and commit the changes with message <tt class="docutils literal"><span class="pre">Creating</span> <span class="pre">models</span></tt>.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Activating</span> <span class="pre">models</span></tt> section and commit the changes with message: <tt class="docutils literal"><span class="pre">Activating</span>
+<li>Checkout the <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch</li>
+<li>Skip the section of <tt class="docutils literal"><span class="pre">startproject</span></tt> as we already started a project with <tt class="docutils literal"><span class="pre">teracy</span></tt>.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Creating</span> <span class="pre">models</span></tt> section and commit the changes with the message: <tt class="docutils literal"><span class="pre">Creating</span> <span class="pre">models</span></tt>.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Activating</span> <span class="pre">models</span></tt> section and commit the changes with the message: <tt class="docutils literal"><span class="pre">Activating</span>
 <span class="pre">models</span></tt>.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Playing</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">API</span></tt> section and commit the changes with message: <tt class="docutils literal"><span class="pre">Playing</span> <span class="pre">with</span>
-<span class="pre">the</span> <span class="pre">API</span></tt>.</li>
-<li>And push the <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch to <tt class="docutils literal"><span class="pre">origin/tutorial01</span></tt> branch. You should open the
-repository on github and see the branch there.</li>
-<li>Merge (no fast forward) (hint: $ git merge &#8211;no-ff) the <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch into <tt class="docutils literal"><span class="pre">master</span></tt>
-branch, then push to <tt class="docutils literal"><span class="pre">origin/master</span></tt> branch.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Playing</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">API</span></tt> section and commit the changes with the message: <tt class="docutils literal"><span class="pre">Playing</span>
+<span class="pre">with</span> <span class="pre">the</span> <span class="pre">API</span></tt>.</li>
+<li>Push the <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch to <tt class="docutils literal"><span class="pre">origin/tutorial01</span></tt> branch.</li>
+</ul>
+<p>(You should open the repository on github and see the branch there.)</p>
+<ul class="simple">
+<li>Merge (no fast forward) (hint: $ git merge &#8211;no-ff) the <tt class="docutils literal"><span class="pre">tutorial01</span></tt> branch into the <tt class="docutils literal"><span class="pre">master</span></tt>
+branch, then push to the <tt class="docutils literal"><span class="pre">origin/master</span></tt> branch.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Tutorial 02 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial02/">https://docs.djangoproject.com/en/1.5/intro/tutorial02/</a></p>
+<li><p class="first">Tutorial 02 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial02/">https://docs.djangoproject.com/en/1.5/intro/tutorial02/</a>.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial02</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt></li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial02</span></tt> branch</li>
+<li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial02</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
+<li>Checkout <tt class="docutils literal"><span class="pre">tutorial02</span></tt> branch.</li>
 <li>Skip <tt class="docutils literal"><span class="pre">Activate</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">site</span></tt> section as admin is activated by teracy&#8217;s project layout on
 <tt class="docutils literal"><span class="pre">settings/dev.py</span></tt>.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Make</span> <span class="pre">the</span> <span class="pre">poll</span> <span class="pre">app</span> <span class="pre">modifiable</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">admin</span></tt> section and commit the changes.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">form</span></tt> section and commit the changes.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Adding</span> <span class="pre">related</span> <span class="pre">objects</span></tt> section and commit the changes.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">change</span> <span class="pre">list</span></tt> and commit the changes.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">look</span> <span class="pre">and</span> <span class="pre">feel</span></tt> and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Make</span> <span class="pre">the</span> <span class="pre">poll</span> <span class="pre">app</span> <span class="pre">modifiable</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">admin</span></tt> section and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">form</span></tt> section and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Adding</span> <span class="pre">related</span> <span class="pre">objects</span></tt> section and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">change</span> <span class="pre">list</span></tt> section and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">look</span> <span class="pre">and</span> <span class="pre">feel</span></tt> section and commit the changes.</li>
 </ul>
-<p>Note: TEMPLATE_DIRS is already configured by <tt class="docutils literal"><span class="pre">teracy-django-boilerplate</span></tt>, you could just use
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">TEMPLATE_DIRS is already configured by <tt class="docutils literal"><span class="pre">teracy-django-boilerplate</span></tt>, you could just use
 it.</p>
+</div>
 <ul class="simple">
-<li>Work on <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">index</span> <span class="pre">page</span></tt> and commit the changes.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">the</span> <span class="pre">admin</span> <span class="pre">index</span> <span class="pre">page</span></tt> section and commit the changes.</li>
 <li>Push <tt class="docutils literal"><span class="pre">tutorial02</span></tt> to <tt class="docutils literal"><span class="pre">origin/tutorial02</span></tt> and see it on github.</li>
 <li>Merge no fast forward <tt class="docutils literal"><span class="pre">tutorial02</span></tt> into <tt class="docutils literal"><span class="pre">master</span></tt> and push to <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
@@ -163,32 +174,32 @@ it.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial03</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial03</span></tt> branch.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">your</span> <span class="pre">first</span> <span class="pre">view</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Writing</span> <span class="pre">more</span> <span class="pre">views</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">views</span> <span class="pre">that</span> <span class="pre">actually</span> <span class="pre">do</span> <span class="pre">something</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">A</span> <span class="pre">shortcut:</span> <span class="pre">render()</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Raising</span> <span class="pre">a</span> <span class="pre">404</span> <span class="pre">error</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">A</span> <span class="pre">shortcut:</span> <span class="pre">get_object_or_404()</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">404</span> <span class="pre">(page</span> <span class="pre">not</span> <span class="pre">found)</span> <span class="pre">view</span></tt> and commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">500</span> <span class="pre">(server</span> <span class="pre">error)</span> <span class="pre">view</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Use</span> <span class="pre">the</span> <span class="pre">template</span> <span class="pre">system</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Removing</span> <span class="pre">hardcoded</span> <span class="pre">URLs</span> <span class="pre">in</span> <span class="pre">templates</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Namespacing</span> <span class="pre">URL</span> <span class="pre">names</span></tt> -&gt; commit.</li>
+<li>Checkout the <tt class="docutils literal"><span class="pre">tutorial03</span></tt> branch.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">your</span> <span class="pre">first</span> <span class="pre">view</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Writing</span> <span class="pre">more</span> <span class="pre">views</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">views</span> <span class="pre">that</span> <span class="pre">actually</span> <span class="pre">do</span> <span class="pre">something</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">A</span> <span class="pre">shortcut:</span> <span class="pre">render()</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Raising</span> <span class="pre">a</span> <span class="pre">404</span> <span class="pre">error</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">A</span> <span class="pre">shortcut:</span> <span class="pre">get_object_or_404()</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">404</span> <span class="pre">(page</span> <span class="pre">not</span> <span class="pre">found)</span> <span class="pre">view</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">500</span> <span class="pre">(server</span> <span class="pre">error)</span> <span class="pre">view</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Use</span> <span class="pre">the</span> <span class="pre">template</span> <span class="pre">system</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Removing</span> <span class="pre">hardcoded</span> <span class="pre">URLs</span> <span class="pre">in</span> <span class="pre">templates</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Namespacing</span> <span class="pre">URL</span> <span class="pre">names</span></tt> section and commit.</li>
 <li>Push <tt class="docutils literal"><span class="pre">tutorial03</span></tt> to <tt class="docutils literal"><span class="pre">origin/tutorial03</span></tt> and see it on github.</li>
 <li>Merge no fast forward <tt class="docutils literal"><span class="pre">tutorial03</span></tt> into <tt class="docutils literal"><span class="pre">master</span></tt> and push to <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Tutorial 04 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial04/">https://docs.djangoproject.com/en/1.5/intro/tutorial04/</a></p>
+<li><p class="first">Tutorial 04 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial04/">https://docs.djangoproject.com/en/1.5/intro/tutorial04/</a>.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial04</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial04</span></tt> branch.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">simple</span> <span class="pre">form</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Use</span> <span class="pre">generic</span> <span class="pre">views:</span> <span class="pre">Less</span> <span class="pre">code</span> <span class="pre">is</span> <span class="pre">better</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Amend</span> <span class="pre">URLconf</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Amend</span> <span class="pre">views</span></tt> -&gt; commit.</li>
+<li>Checkout the <tt class="docutils literal"><span class="pre">tutorial04</span></tt> branch.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Write</span> <span class="pre">a</span> <span class="pre">simple</span> <span class="pre">form</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Use</span> <span class="pre">generic</span> <span class="pre">views:</span> <span class="pre">Less</span> <span class="pre">code</span> <span class="pre">is</span> <span class="pre">better</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Amend</span> <span class="pre">URLconf</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Amend</span> <span class="pre">views</span></tt> section and commit.</li>
 <li>Push <tt class="docutils literal"><span class="pre">tutorial04</span></tt> to <tt class="docutils literal"><span class="pre">origin/tutorial04</span></tt> and see it on github.</li>
 <li>Merge no fast forward <tt class="docutils literal"><span class="pre">tutorial04</span></tt> into <tt class="docutils literal"><span class="pre">master</span></tt> and push to <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
@@ -198,32 +209,32 @@ it.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial05</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial05</span></tt> branch.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">test</span> <span class="pre">to</span> <span class="pre">expose</span> <span class="pre">the</span> <span class="pre">bug</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Fixing</span> <span class="pre">the</span> <span class="pre">bug</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">More</span> <span class="pre">comprehensive</span> <span class="pre">tests</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Improving</span> <span class="pre">our</span> <span class="pre">view</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Testing</span> <span class="pre">our</span> <span class="pre">new</span> <span class="pre">view</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Testing</span> <span class="pre">the</span> <span class="pre">DetailView</span></tt> -&gt; commit.</li>
+<li>Checkout the <tt class="docutils literal"><span class="pre">tutorial05</span></tt> branch.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">test</span> <span class="pre">to</span> <span class="pre">expose</span> <span class="pre">the</span> <span class="pre">bug</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Fixing</span> <span class="pre">the</span> <span class="pre">bug</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">More</span> <span class="pre">comprehensive</span> <span class="pre">tests</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Improving</span> <span class="pre">our</span> <span class="pre">view</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Testing</span> <span class="pre">our</span> <span class="pre">new</span> <span class="pre">view</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Testing</span> <span class="pre">the</span> <span class="pre">DetailView</span></tt> section and commit.</li>
 <li>Push <tt class="docutils literal"><span class="pre">tutorial05</span></tt> to <tt class="docutils literal"><span class="pre">origin/tutorial05</span></tt> and see it on github.</li>
 <li>Merge no fast forward <tt class="docutils literal"><span class="pre">tutorial05</span></tt> into <tt class="docutils literal"><span class="pre">master</span></tt> and push to <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Tutorial 06 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial06/">https://docs.djangoproject.com/en/1.5/intro/tutorial06/</a></p>
+<li><p class="first">Tutorial 06 at <a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/tutorial06/">https://docs.djangoproject.com/en/1.5/intro/tutorial06/</a>.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Create a branch named <tt class="docutils literal"><span class="pre">tutorial06</span></tt>, branch off from <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
-<li>Checkout <tt class="docutils literal"><span class="pre">tutorial06</span></tt> branch.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">your</span> <span class="pre">app’s</span> <span class="pre">look</span> <span class="pre">and</span> <span class="pre">feel</span></tt> -&gt; commit.</li>
-<li>Work on <tt class="docutils literal"><span class="pre">Adding</span> <span class="pre">a</span> <span class="pre">background-image</span></tt> -&gt; commit.</li>
+<li>Checkout the <tt class="docutils literal"><span class="pre">tutorial06</span></tt> branch.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Customize</span> <span class="pre">your</span> <span class="pre">app’s</span> <span class="pre">look</span> <span class="pre">and</span> <span class="pre">feel</span></tt> section and commit.</li>
+<li>Work on the <tt class="docutils literal"><span class="pre">Adding</span> <span class="pre">a</span> <span class="pre">background-image</span></tt> section and commit.</li>
 <li>Push <tt class="docutils literal"><span class="pre">tutorial06</span></tt> to <tt class="docutils literal"><span class="pre">origin/tutorial06</span></tt> and see it on github.</li>
 <li>Merge no fast forward <tt class="docutils literal"><span class="pre">tutorial06</span></tt> into <tt class="docutils literal"><span class="pre">master</span></tt> and push to <tt class="docutils literal"><span class="pre">origin/master</span></tt>.</li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-<p>Congratulations, now you could work with git with basic commands. You will know more from time to
+<p>Congratulations, now you could work with git with basic commands. You will know more about git from time to
 time when working at Teracy.</p>
 </div>
 </div>
@@ -237,8 +248,8 @@ time when working at Teracy.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Git Training</a><ul>
-<li><a class="reference internal" href="#learn">Learn</a></li>
-<li><a class="reference internal" href="#practice">Practice</a></li>
+<li><a class="reference internal" href="#studying">Studying</a></li>
+<li><a class="reference internal" href="#practising">Practising</a></li>
 </ul>
 </li>
 </ul>
