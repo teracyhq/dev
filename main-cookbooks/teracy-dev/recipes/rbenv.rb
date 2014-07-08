@@ -43,7 +43,7 @@ if node['teracy-dev']['ruby']['enabled']
     node['teracy-dev']['ruby']['globals'].each do |pkg|
         rbenv_gem pkg['name'] do
         	if !pkg['version'].strip().empty?
-                ruby_version pkg['version']
+                version pkg['version']
             end
 	    end
     end
