@@ -66,6 +66,9 @@
         "commit":{
           "template":true
         },
+        "core":{
+          "filemode":false
+        },
         "diff":{
           "tool":"vimdiff"
         },

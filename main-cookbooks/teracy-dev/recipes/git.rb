@@ -55,3 +55,33 @@ template '/home/vagrant/.gitmessage.txt' do
     mode '0664'
     only_if { node['teracy-dev']['git']['commit']['template'] }
 end
+
+ruby_block 'insert_line' do
+  block do
+        if not node['teracy-dev']['git']['core']['filemode']
+            fileName = '/home/vagrant/.bash_profile'
+            if File.exist?(fileName)
+                file = Chef::Util::FileEdit.new(fileName)
+                file.insert_line_if_no_match(/PROMPT_COMMAND=pc/, 
+            '
+PROMPT_COMMAND=pc
+pc () {
+  [ -d .git -a ! -g .git/config ] || return
+  git config core.filemode 0
+  chmod +s .git/config
+}')
+                file.write_file
+            else
+                file = File.open(fileName, 'w')
+                file.puts('
+PROMPT_COMMAND=pc
+pc () {
+  [ -d .git -a ! -g .git/config ] || return
+  git config core.filemode false
+  chmod +s .git/config
+}')
+                file.close
+            end
+        end
+    end
+end
