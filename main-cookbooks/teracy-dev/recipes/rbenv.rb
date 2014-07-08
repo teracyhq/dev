@@ -36,16 +36,17 @@ if node['teracy-dev']['ruby']['enabled']
     include_recipe 'rbenv::default'
     include_recipe 'rbenv::ruby_build'
 
-    rbenv_ruby '1.9.3-p194' do
+    rbenv_ruby node['teracy-dev']['ruby']['version'] do
         global true
+        only_if { !node['teracy-dev']['ruby']['version'].strip().empty? }
     end
-
+    
     node['teracy-dev']['ruby']['globals'].each do |pkg|
         rbenv_gem pkg['name'] do
         	if !pkg['version'].strip().empty?
                 version pkg['version']
             end
-	    end
+        end
     end
 
 end
