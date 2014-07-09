@@ -36,9 +36,29 @@ if node['teracy-dev']['ruby']['enabled']
     include_recipe 'rbenv::default'
     include_recipe 'rbenv::ruby_build'
 
-    rbenv_ruby node['teracy-dev']['ruby']['version'] do
+    node_version = node['teracy-dev']['ruby']['version']
+
+    if node_version.strip().empty?
+        versions = []
+
+        list_versions = `rbenv install -l`
+
+        list_versions.each_line.each do |line| 
+            if !line.include? 'dev'
+                versions.push(line.strip())
+            end
+        end
+
+        node_version = versions.max {
+            |a,b| a.split('.').map { |e| e.to_i } <=> b.split('.').map { |e| e.to_i }
+        }
+    end
+
+    
+
+    rbenv_ruby node_version.strip() do
         global true
-        only_if { !node['teracy-dev']['ruby']['version'].strip().empty? }
+        only_if { !node_version.strip().empty? }
     end
     
     node['teracy-dev']['ruby']['globals'].each do |pkg|
