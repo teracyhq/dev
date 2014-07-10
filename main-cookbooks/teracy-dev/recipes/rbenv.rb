@@ -39,19 +39,23 @@ if node['teracy-dev']['ruby']['enabled']
     node_version = node['teracy-dev']['ruby']['version']
 
     if node_version.strip().empty?
-        versions = []
+        begin
+            versions = []
+            
+            list_versions = `rbenv install -l`
 
-        list_versions = `rbenv install -l`
-
-        list_versions.each_line.each do |line| 
-            if !line.include? 'dev'
-                versions.push(line.strip())
+            list_versions.each_line.each do |line| 
+                if !line.include? 'dev'
+                    versions.push(line.strip())
+                end
             end
-        end
 
-        node_version = versions.max {
-            |a,b| a.split('.').map { |e| e.to_i } <=> b.split('.').map { |e| e.to_i }
-        }
+            node_version = versions.max {
+                |a,b| a.split('.').map { |e| e.to_i } <=> b.split('.').map { |e| e.to_i }
+            }
+        rescue
+            node_version = '2.1.2'
+        end
     end
 
     
