@@ -36,16 +36,41 @@ if node['teracy-dev']['ruby']['enabled']
     include_recipe 'rbenv::default'
     include_recipe 'rbenv::ruby_build'
 
-    rbenv_ruby '1.9.3-p194' do
-        global true
+    node_version = node['teracy-dev']['ruby']['version']
+
+    if node_version.strip().empty?
+        begin
+            versions = []
+            
+            list_versions = `rbenv install -l`
+
+            list_versions.each_line.each do |line| 
+                if !line.include? 'dev'
+                    versions.push(line.strip())
+                end
+            end
+
+            node_version = versions.max {
+                |a,b| a.split('.').map { |e| e.to_i } <=> b.split('.').map { |e| e.to_i }
+            }
+        rescue
+            node_version = '2.1.2'
+        end
     end
 
+    
+
+    rbenv_ruby node_version.strip() do
+        global true
+        only_if { !node_version.strip().empty? }
+    end
+    
     node['teracy-dev']['ruby']['globals'].each do |pkg|
         rbenv_gem pkg['name'] do
         	if !pkg['version'].strip().empty?
                 version pkg['version']
             end
-	    end
+        end
     end
 
 end
