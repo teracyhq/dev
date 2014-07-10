@@ -33,7 +33,9 @@
 #
 
 if node['teracy-dev']['python']['enabled']
-    include_recipe 'python::default'
+    node.default['pyenv']['pythons'] = node['teracy-dev']['python']['versions']
+    node.default['pyenv']['global'] = node['teracy-dev']['python']['versions'][0]
+    include_recipe 'pyenv::system'
 
 #    %w{libpq-dev python-dev}.each do |pkg|
 #        apt_package pkg do
@@ -41,17 +43,54 @@ if node['teracy-dev']['python']['enabled']
 #        end
 #    end
 
+
+    # => git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
+
     include_recipe 'teracy-dev::virtualenvwrapper'
     include_recipe 'teracy-dev::pip_config'
 
-    # install global packages
 
-    node['teracy-dev']['python']['pip']['globals'].each do |pkg|
-        python_pip pkg['name'] do
-            if !pkg['version'].strip().empty?
-                version pkg['version']
+    bash 'mkdir_user_bin' do
+      code <<-EOF
+        mkdir /home/vagrant/.bin/
+      EOF
+      not_if 'ls -la /home/vagrant/.bin/', :user => 'vagrant'
+      user 'vagrant'
+    end
+
+    node.default['python']['install_method'] = 'source'
+    node.default['python']['prefix_dir'] = '/usr/local'
+
+    # install global packages
+    node['teracy-dev']['python']['versions'].each do |version|
+        bash 'change_default_python_version' do
+            code <<-EOF
+                echo $PYENV_VERSION > /usr/local/pyenv/version
+            EOF
+            environment 'PYENV_VERSION' => version
+        end
+
+        node['teracy-dev']['python']['pip']['globals'].each do |pkg|
+            python_pip pkg['name'] do
+                if !pkg['version'].strip().empty?
+                    version pkg['version']
+                end
             end
         end
+        # Link the the pyenv's to system path
+        minnorVersion = version.split('.')[0,2].join('.')
+        link '/home/vagrant/.bin/python#{minnorVersion}' do
+          to '/usr/local/pyenv/versions/#{version}/bin/python'
+          user 'vagrant'
+        end
+    end
+
+    bash 'Restore default python version and update shims' do
+        code <<-EOF
+            source /etc/profile
+            echo $PYENV_VERSION > /usr/local/pyenv/version
+            pyenv rehash
+        EOF
+        environment 'PYENV_VERSION' => node['teracy-dev']['python']['versions'][0]
     end
 end
-

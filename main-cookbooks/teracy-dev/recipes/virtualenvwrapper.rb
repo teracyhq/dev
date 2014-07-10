@@ -31,14 +31,35 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-python_pip 'virtualenvwrapper' do
-    action :install
+# python_pip 'virtualenvwrapper' do
+#     action :install
+# end
+
+
+
+bash 'download_pyenv_virtualenvwrapper' do
+  code <<-EOF
+    git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
+  EOF
+  not_if 'ls -la /usr/local/pyenv/plugins/pyenv-virtualenvwrapper'
+end
+
+node['teracy-dev']['python']['versions'].each do |version|
+  bash 'active_virtualenvwrapper' do
+    code <<-EOF
+      source /etc/profile
+      pyenv virtualenvwrapper
+    EOF
+    environment 'PYENV_VERSION' => version
+  end
 end
 
 bash 'configure_virtualenvwrapper' do
     code <<-EOF
+        source /etc/profile
         echo 'export PROJECT_HOME=/vagrant/workspace/personal' >> /home/vagrant/.bash_profile
-        echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
+        echo 'export PATH=$HOME/.bin/:$PATH' >> /home/vagrant/.bash_profile
+        echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
     EOF
-    not_if 'grep -q /usr/local/bin/virtualenvwrapper.sh /home/vagrant/.bash_profile'
+    not_if 'grep -q pyenv /home/vagrant/.bash_profile'
 end
