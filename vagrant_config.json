@@ -158,18 +158,9 @@
       },
       "apt":[
         {
-          "name": "gettext",
-          "enabled":false
-        },
-        {
-          "name": "tree",
-          "enabled":true,
-          "attributes": {
-          },
-          "action": "install"
+          "name": "tree"
         }
       ]
-      
     }
   }
 }
