@@ -156,7 +156,20 @@
           "version":"3"
         }
       },
-      "gettext":false
+      "apt":[
+        {
+          "name": "gettext",
+          "enabled":false
+        },
+        {
+          "name": "tree",
+          "enabled":true,
+          "attributes": {
+          },
+          "action": "install"
+        }
+      ]
+      
     }
   }
 }
