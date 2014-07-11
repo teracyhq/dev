@@ -31,15 +31,41 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-%w{tree}.each do |pkg|
-    apt_package pkg do
-        action:install
-    end
-end
+# install packages
 
-%w{gettext}.each do |pkg|
-    apt_package pkg do
-        action:install
-        only_if { node['teracy-dev']['gettext'] }
+node['teracy-dev']['apt'].each do |pkg|
+    apt_package pkg['name'].strip() do
+        if pkg['version'] and !pkg['version'].strip().empty?
+            version pkg['version']
+        end
+
+        attributes = pkg['attributes']
+        if attributes
+            if attributes['options']
+                options attributes['options'].strip()
+            end
+
+            if attributes['package_name']
+                package_name attributes['package_name'].strip()
+            end
+
+            if attributes['provider']
+                provider attributes['provider'].strip()
+            end
+
+            if attributes['response_file']
+                response_file attributes['response_file'].strip()
+            end
+
+            if attributes['source']
+                source attributes['source'].strip()
+            end
+        end
+
+        if pkg['action']
+            action pkg['action']
+        else
+            action :install
+        end
     end
 end

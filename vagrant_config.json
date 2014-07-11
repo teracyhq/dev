@@ -156,7 +156,11 @@
           "version":"3"
         }
       },
-      "gettext":false
+      "apt":[
+        {
+          "name": "tree"
+        }
+      ]
     }
   }
 }
