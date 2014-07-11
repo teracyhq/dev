@@ -42,30 +42,29 @@ node['teracy-dev']['apt'].each do |pkg|
 
 	        attributes = pkg['attributes']
 
-	        if attributes
-		        if attributes['arch']
-		            arch attributes['arch'].strip()
-		        end
+	        
+	        
 
-		        if attributes['options']
-		            options attributes['options'].strip()
-		        end
-
-		        if attributes['package_name']
-		            package_name attributes['package_name'].strip()
-		        end
-		        if attributes['provider']
-		            provider attributes['provider'].strip()
-		        end
-
-		        if attributes['response_file']
-		            response_file attributes['response_file'].strip()
-		        end
-
-		        if attributes['source']
-		            source attributes['source'].strip()
-		        end
+	        if attributes['options']
+	            options attributes['options'].strip()
 	        end
+
+	        if attributes['package_name']
+	            package_name attributes['package_name'].strip()
+	        end
+
+	        if attributes['provider']
+	            provider attributes['provider'].strip()
+	        end
+
+	        if attributes['response_file']
+	            response_file attributes['response_file'].strip()
+	        end
+
+	        if attributes['source']
+	            source attributes['source'].strip()
+	        end
+	        
 
 	        if pkg['action']
 	            action pkg['action']
