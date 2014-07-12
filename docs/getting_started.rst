@@ -25,7 +25,6 @@ Do the following guide to get it work:
 - Windows: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
 
 - Clone GitHub repositories using SSH.
-  
 
 **Windows Notes**:
 
@@ -45,12 +44,12 @@ Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script be
 ::
 
     $ cd /tmp
-    $ wget https://raw.github.com/teracy-official/dev/master/scripts/setup_working_env_chef.sh
+    $ wget https://raw.github.com/teracy-official/dev/0.3.0/scripts/setup_working_env_chef.sh
     $ bash setup_working_env_chef.sh
 
 On Windows (Windows 7 & Windows 8), follow these steps:
 
-1. Open: https://raw.github.com/teracy-official/dev/master/scripts/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
+1. Open: https://raw.github.com/teracy-official/dev/0.3.0/scripts/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
 
 2. Press ``Ctrl + S``.
 
