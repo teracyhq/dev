@@ -4,8 +4,12 @@ Release Steps
 docs/conf.py
 ------------
 
-Update docs version on `docs/conf.py`
+- Update docs version on `docs/conf.py`
 
+docs/getting_started.rst
+------------------------
+
+- Change `develop` to the tag version. For example, `develop` to `v0.3.0`
 
 CHANGELOG.md
 ------------
