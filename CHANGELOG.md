@@ -2,7 +2,7 @@ Change Log
 ==========
 
 
-[0.3.0]() (2014-07-24)
+[0.3.0][] (2014-07-24)
 ----------------------
 
 The next milestone release includes:
@@ -56,7 +56,7 @@ Details:
     + [DEV-73] - remove system-python recipe
 
 
-[0.2.0]() (2013-11-20)
+[0.2.0][] (2013-11-20)
 ----------------------
 
 The next milestone release: extend CHEF, better support for python platform development
@@ -90,7 +90,7 @@ The next milestone release: extend CHEF, better support for python platform deve
     + [DEV-35] - upgrade to sphinx-deployment v0.2.0
 
 
-[0.1.0]() (2013-08-17)
+[0.1.0][] (2013-08-17)
 ----------------------
 
 Release the first milestone
