@@ -1,6 +1,11 @@
 Release Steps
 =============
 
+README.rst
+----------
+
+- change `develop` to the tag version. For example, `develop/` to `0.3.0/`
+
 docs/conf.py
 ------------
 
