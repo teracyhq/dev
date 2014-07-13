@@ -21,6 +21,7 @@ Details:
     + [DEV-63] - failed to vagrant up at child directory of teracy-dev
     + [DEV-75] - Fix Doc Syntax Error
     + [DEV-81] - update code.teracy.org instead of teracy.com to ssh known hosts
+    + [DEV-93] - virtualenvwrapper not work
 
 - Improvement
     + [DEV-7]  - Don't mess custom configuration into managed versioned file
