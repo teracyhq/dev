@@ -34,7 +34,7 @@
 
 if node['teracy-dev']['python']['enabled']
     node.default['pyenv']['pythons'] = node['teracy-dev']['python']['versions']
-    node.default['pyenv']['global'] = node['teracy-dev']['python']['versions'][0]
+    node.default['pyenv']['global'] = node['teracy-dev']['python']['global_version']
     include_recipe 'pyenv::system'
 
 #    %w{libpq-dev python-dev}.each do |pkg|
@@ -78,8 +78,8 @@ if node['teracy-dev']['python']['enabled']
             end
         end
         # Link the the pyenv's to system path
-        minnorVersion = version.split('.')[0,2].join('.')
-        link '/home/vagrant/.bin/python#{minnorVersion}' do
+        minor_version = version.split('.')[0,2].join('.')
+        link '/home/vagrant/.bin/python#{minor_version}' do
           to '/usr/local/pyenv/versions/#{version}/bin/python'
           user 'vagrant'
         end
@@ -91,6 +91,6 @@ if node['teracy-dev']['python']['enabled']
             echo $PYENV_VERSION > /usr/local/pyenv/version
             pyenv rehash
         EOF
-        environment 'PYENV_VERSION' => node['teracy-dev']['python']['versions'][0]
+        environment 'PYENV_VERSION' => node['teracy-dev']['python']['global_version']
     end
 end

@@ -2,12 +2,12 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  
+
   require 'json'
   load File.dirname(__FILE__) + '/lib/utility.rb'
 
   # Load default setting
-  file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')  
+  file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
   data_hash = JSON.parse(file)
 
   # Check and override if exist any match JSON object from vagrant_config_override.json
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     end
 
   end
-  
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  
+
   data_hash['vm_forwarded_ports'].each do |x|
     config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
   end
@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
     end
 
     if x["supports"].nil?
-      if x["mount_options"].nil? 
+      if x["mount_options"].nil?
         config.vm.synced_folder x["host"], x["guest"]
       else
         config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
@@ -101,7 +101,7 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-  
+
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true

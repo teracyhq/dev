@@ -103,7 +103,8 @@
       },
       "python":{
         "enabled":true,
-        "versions":[ "2.7.6", "3.4.0" ],
+        "versions":["2.7.6", "3.4.0"],
+        "global_version": "2.7.6",
         "pip":{
           "globals":[
             {
