@@ -7,6 +7,7 @@ Change Log
 
 The next milestone release includes:
 
+- Use teracy base box
 - Support overriding vagrant configuration that is ignored by git
 - Update workspace layout: `workspace/personal` and `workspace/readonly`
 - Bat script to install virtualbox and vagrant automatically for Windows
@@ -49,6 +50,7 @@ Details:
     + [DEV-47] - review and update docs
     + [DEV-51] - Improve and Create visual guide for workflow
     + [DEV-54] - Upgrade support for vagrant and virtualbox
+    + [DEV-55] - Create Teracy base boxes for v0.3.0
     + [DEV-59] - install "bower" by default for node.js support
     + [DEV-66] - upgrade git
     + [DEV-69] - Upgrade npm for teracy-dev
