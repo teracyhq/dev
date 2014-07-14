@@ -57,7 +57,7 @@
       ],
       "git":{
         "version":"2.0.0", //more at https://www.kernel.org/pub/software/scm/git/
-        "checksum":"c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68",
+        "checksum": "c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68",
         "user":{
           "name":"Teracy Dev",
           "email":"teracy-dev@teracy.com"
@@ -103,6 +103,7 @@
       },
       "python":{
         "enabled":true,
+        "versions":[ "2.7.6", "3.4.0" ],
         "pip":{
           "globals":[
             {
