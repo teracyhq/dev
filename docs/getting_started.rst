@@ -50,7 +50,7 @@ Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script be
 
 On Windows (Windows 7 & Windows 8), follow these steps:
 
-1. Open: https://raw.github.com/teracy-official/dev/develop/scripts/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
+1. Open: https://raw.github.com/teracy-official/dev/develop/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
 
 2. Press ``Ctrl + S``.
 
