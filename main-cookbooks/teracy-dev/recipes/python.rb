@@ -79,8 +79,8 @@ if node['teracy-dev']['python']['enabled']
         end
         # Link the the pyenv's to system path
         minor_version = version.split('.')[0,2].join('.')
-        link '/home/vagrant/.bin/python#{minor_version}' do
-          to '/usr/local/pyenv/versions/#{version}/bin/python'
+        link "/home/vagrant/.bin/python#{minor_version}" do
+          to "/usr/local/pyenv/versions/#{version}/bin/python"
           user 'vagrant'
         end
     end
