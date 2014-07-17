@@ -25,7 +25,6 @@ Do the following guide to get it work:
 - Windows: https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows
 
 - Clone GitHub repositories using SSH.
-  
 
 **Windows Notes**:
 

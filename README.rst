@@ -53,10 +53,10 @@ For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
         "host":3000
       }
     ],
-   
+
     "chef_json":{
    // Config git for virtualbox
-      "git":{        
+      "git":{
         "user":{
           "name":"Hoa Vu",
           "email":"hoavu@teracy.com"
@@ -179,17 +179,17 @@ https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef
 
 And before ``$ vagrant up``, you must execute the command below:
 ::
-    
+
     $ vagrant box add opscode-ubuntu-1204 path_to_the_downloaded_file.box
 
 If you're on Windows and downloaded the ``.box`` file to your ``Desktop``, then:
 ::
-    
+
     $ vagrant box add opscode-ubuntu-1204 ~/Desktop/opscode_ubuntu-12.04-i386_chef-11.4.4.box
 
 The output could be something similar like this:
 ::
-    
+
     Downloading or copying the box...
     Extracting box...te: 66.3M/s, Estimated time remaining: 0:00:01)
     Successfully added box 'opscode-ubuntu-1204' with provider 'virtualbox'!
@@ -218,7 +218,7 @@ We're trying to make the update as painless as possible so that we don't have to
 
 Follow the command below and you're done:
 ::
-    
+
     $ git pull
 
 

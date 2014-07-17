@@ -1,7 +1,65 @@
 Change Log
 ==========
 
-[0.2.0]() (2013-11-20)
+
+[0.3.0][] (2014-07-24)
+----------------------
+
+The next milestone release includes:
+
+- Use teracy base box
+- Support overriding vagrant configuration that is ignored by git
+- Update workspace layout: `workspace/personal` and `workspace/readonly`
+- Bat script to install virtualbox and vagrant automatically for Windows
+- More dev platform support: Ruby, Node.js, Java, PHP
+- Database support: mysql, mongodb, postgreSQL
+- docs updated
+
+Details:
+
+- Bug
+    + [DEV-6]  - vm.ssh.forward_agent does not work on windows host
+    + [DEV-63] - failed to vagrant up at child directory of teracy-dev
+    + [DEV-75] - Fix Doc Syntax Error
+    + [DEV-81] - update code.teracy.org instead of teracy.com to ssh known hosts
+    + [DEV-93] - virtualenvwrapper not work
+
+- Improvement
+    + [DEV-7]  - Don't mess custom configuration into managed versioned file
+    + [DEV-45] - automatic docs deploy of 0.2.0 instead of v0.2.0
+    + [DEV-57] - Update workspace layout
+    + [DEV-60] - Vagrant Config override instead of overwrite
+    + [DEV-62] - Update some vagrant config attributes
+    + [DEV-64] - warning when vagrant_config_override.json is malformed
+    + [DEV-65] - Support deep key override
+    + [DEV-77] - Make sure consistent recipe file names (use _ instead of -)
+    + [DEV-80] - Make sure git usage from vagrant box and host work well together
+    + [DEV-82] - Add support for ruby.globals
+    + [DEV-84] - Support ruby.version config
+    + [DEV-88] - Support apt package installer configuration
+
+- New Feature
+    + [DEV-49] - node.js dev support
+    + [DEV-56] - Create .bat file to install vagrant and virtualbox automatically on Windows
+    + [DEV-61] - Support PHP
+    + [DEV-85] - Support mongodb
+    + [DEV-86] - Support mysql db development
+    + [DEV-87] - Support postgreSQL development
+
+- Task
+    + [DEV-47] - review and update docs
+    + [DEV-51] - Improve and Create visual guide for workflow
+    + [DEV-54] - Upgrade support for vagrant and virtualbox
+    + [DEV-55] - Create Teracy base boxes for v0.3.0
+    + [DEV-59] - install "bower" by default for node.js support
+    + [DEV-66] - upgrade git
+    + [DEV-69] - Upgrade npm for teracy-dev
+    + [DEV-71] - Update docs to make sure it's the most up to date
+    + [DEV-72] - remove known_hosts file
+    + [DEV-73] - remove system-python recipe
+
+
+[0.2.0][] (2013-11-20)
 ----------------------
 
 The next milestone release: extend CHEF, better support for python platform development
@@ -35,7 +93,7 @@ The next milestone release: extend CHEF, better support for python platform deve
     + [DEV-35] - upgrade to sphinx-deployment v0.2.0
 
 
-[0.1.0]() (2013-08-17)
+[0.1.0][] (2013-08-17)
 ----------------------
 
 Release the first milestone
@@ -46,3 +104,5 @@ Release the first milestone
 [0.1.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10000
 
 [0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10002
+
+[0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
