@@ -236,3 +236,22 @@ However, if you want to use new created ssh keys for the Vagrant box, then you n
 
 - Or create new ssh keys on the virtual machine, and these keys will be copied
   into ``teracy-dev/home/.ssh``.
+
+
+**6. How to speed up my virtual box**?
+
+You first need to enable `VT-x`_ or `AMD-V`_ on your machine (in your BIOS).
+
+.. _VT-x: http://en.wikipedia.org/wiki/X86_virtualization#Intel_virtualization_.28VT-x.29
+.. _AMD-V: http://en.wikipedia.org/wiki/X86_virtualization#AMD_virtualization_.28AMD-V.29
+
+After that, goto ``vagrant_config_override.json`` and override ``vm_box_customize`` option with the
+following values (can be more if your machine strong enough):
+::
+
+  {
+    "vm_box_customize": {
+      "memory":"1024", // size of memory allowed in MB
+      "cpus":"2" // number of cpu allowed
+    },
+  }

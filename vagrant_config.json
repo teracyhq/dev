@@ -1,5 +1,9 @@
 {
   "vm_box":"teracy/dev",
+  "vm_box_customize": {
+    "memory":"", // size of memory allowed in MB
+    "cpus":"" // number of cpu allowed
+  },
   //"vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
   "vm_forward_agent":true,
   "vm_forwarded_ports":[
