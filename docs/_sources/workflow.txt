@@ -7,7 +7,262 @@ less time with higher quality of work.
 We adopted `A successful Git branching model`_ for our development workflow with some specific
 rules. What's the fun with a game without rules :-D?
 
-Quality checklist
+
+Initializing Working Repositories
+--------------------------------------
+    
+To work on a repository project, ``fork`` it first to your git account.
+Your working repositories MUST be cloned from your git account and stored under
+the ``workspace/personal`` directory.
+
+For example, you are going to work on the
+https://code.teracy.org/projects/PILOT/repos/pixelate/browse project, follow the steps below:
+
+1. ``Fork`` the official repository to your developer account.
+
+    **Step 1**: Click ``Fork``.
+
+    .. image:: _static/workflow/fork-1.png
+
+    **Step 2**: Click ``Fork repository``.
+
+    .. image:: _static/workflow/fork-2.png
+        :width: 500
+
+    Forking successfully with the URL like this:
+
+    .. image:: _static/workflow/fork-3.png
+
+
+2. ``Clone`` it to   workspace.
+
+    **Step 1**: Click ``Clone`` to get the ``.git`` repository clone URL.
+
+    **Step 2**: Copy the URL ``ssh://git@code.teracy.org/~hoavt/pixelate.git`` in the
+    ``SSH`` field.
+
+    **Step 3**: Open the terminal window and type the ``git clone`` command as below:
+    ::
+
+        $ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
+                ============== "Forked" repo URL ===================
+
+    .. image:: _static/workflow/clone-fork-url.png
+
+
+3. Add ``upstream`` repository which is the official repository.
+
+    **Step 1**: Browse the repository ``https://code.teracy.org/projects/PILOT/repos/pixelate/browse``, and click ``Clone`` to get the ``.git`` clone URL.
+
+    **Step 2**: Copy the URL ``ssh://git@code.teracy.org/pilot/pixelate.git`` in the **SSH** field.
+
+    **Step 3**: Open the terminal window and type the ``git remote add upstream`` command as below:
+    ::
+
+        $ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
+            ================= Official repo URL ==================
+
+    .. image:: _static/workflow/clone-official-url.png
+
+4. Recheck to verify your clone by using the ``git remote -v`` command.
+
+    .. image:: _static/workflow/git-remote-info.png
+
+The successful start is when you have both these remotes on your local development:
+
+    - ``origin`` (remote from your repo)
+    - ``upstream`` (remote from official repo)
+
+After initializing working repository successfully, switch to the next step: `Git Branching Off`_.
+
+.. @TODO : Add remote for review other's works
+
+Git Branching Off
+-----------------
+ 
+Usually, a new branch should be branched off from a target to-be-merged remote branch.
+It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases 
+which are not applied:
+Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.
+
+Firstly, you must know what the meaning of “Branching Off” is . In a shorthand, it means you checkout from a branch,
+then create another branch from that checkout.
+::
+
+    $ git checkout branch-1 -b branch-2
+
+Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
+Now branch-2 is on your local and ready for you to work on it.
+
+Git is a distributed version control system, so collaboration like this should be encouraged.
+
+
+Working with Git
+----------------------
+
+-------------------------------
+1. Workflow in Teracy
+-------------------------------
+
+.. image:: _static/workflow/workflow-with-git.png
+
+.. @TODO : Detail on making Pull-request
+.. @TODO : Detail on making Resolve Conflict
+
+The workingflow is summarized under 4 major steps:
+
+- Step 1: Branching-off based on issue
+- Step 2: Developing with Code/ Commit/ Push
+- Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.
+- Step 4: Cleaning up branch`
+
+Let's get in more detais:
+
+**Step 1: Branching-off based on issue**
+
+    If you do not know what the meaning of "Branching-off" is, please check `Git Branching Off`_.
+
+    **Working on features**
+    ::
+
+        $ git fetch upstream
+        $ git checkout upstream/master -b features/<issue_key>-<concise_title>
+        $ git push origin features/<issue_key>-<concise_title>
+
+
+    **Working on improvements**
+    ::
+
+        $ git fetch upstream
+        $ git checkout upstream/master -b improvements/<issue_key>-<concise_title>
+        $ git push origin improvements/<issue_key>-<concise_title>
+
+    **Working on tasks or sub-tasks**
+    ::
+    
+        $ git fetch upstream
+        $ git checkout upstream/master -b tasks/<issue_key>-<concise_title>
+        $ git push origin tasks/<issue_key>-<concise_title>
+
+    **Working on bugs**
+    ::
+    
+        $ git fetch upstream
+        $ git checkout upstream/master -b bugs/<issue_key>-<concise_title>
+        $ git push origin bugs/<issue_key>-<concise_title>
+
+
+    Above are the templates `Branching off` based on an issue's types.
+
+**Step 2: Developing with Code/ Commit/ Push**
+
+    During your coding, you would make some commit and push, in that case you have to check TWO things:
+
+        - `Quality Checklist`_
+        - `Git Commit Messages`_
+
+    If there are some changes from the remote branch (for example, *upstream/master*) that you need,
+    you have to rebase your branch with these updates. It could be done by these commands:
+    ::
+
+        $ git fetch upstream
+        $ git rebase upstream/master
+
+    By doing this, your branch will be rebased with updates from others.
+    If it has any conflicts, you have to resolve them by:
+
+    - Editing conflict file.
+        The sample on a conflict file:
+
+        .. image:: _static/workflow/conflict-mark.png
+
+        The sample on a resolved-conflict file:
+
+        .. image:: _static/workflow/conflict-resolved.png
+    - Adding conflict-resolved-file in git, then continuing to rebase. 
+        ::
+      
+            $ git add path/to/conflict-resolved-file
+            $ git rebase --continue
+
+    After finishing your work, add changed files to commit and push your branch:
+    ::
+
+        $ git add -a
+        $ git commit -m "<issue_key>|git commit message"
+        $ git push origin [your-branch-name]
+
+**Step 3: Submitting Pull-request**
+
+    When your issue branch is pushed, submit pull-request for reviewing on your work.
+    There are TWO steps in submitting a pull-request:
+
+
+    1. Create Pull-request for your code.
+        - Open the **Create Pull Request** form:
+            .. image:: _static/workflow/submit-pull-request-code-1.png            
+
+        - Input the neccessary information into the form:
+
+            .. image:: _static/workflow/create-pull-request-form.png
+
+    2. Copy the pull request link on the browser's address bar.   
+        
+
+    3. Add Pull-request to your issue.
+        - Open your issue --> Click **Workflow** --> Click **Send Pull Request**.
+
+            .. image:: _static/workflow/submit-pull-request-issue.png
+
+        - Paste the pull request link into the **Pull Request URL**, then click **Send Pull Request** in the **Send Pull Request** form. 
+
+            .. image:: _static/workflow/send-pull-request-form.png
+
+
+    .. note::
+     After a ``pull`` request, you will continue to work on your working branch as normal, just
+     ``push`` it and the pull request will be updated with your new commits. Ping other Teraciers to
+     help reviewing, comments, suggestions, etc.
+
+    When you meet all these long strict requirements, your work will be more welcomed accepted.
+
+**Step 4 : Cleaning up branch**
+
+    After your code get reviewed and approved. It will be merged to the offical repository, so you have to make a
+    `Git Branch Cleaning Up`_ to clean up your local and get ready for the next issue.
+
+
+-------------------------------
+2. Git Rules
+-------------------------------
+
+To prevent chaos happening, you should follow some rules below in the workflow:
+
+-----------------
+Branch Name Rules
+-----------------
+
+When start working on a new issue, you always MUST to start a new branch for it and that branch's name
+is based on each type of the issue, which means if the issue is:
+
+- ``feature`` => Branch's name is ``features/<issue_key>-<concise_title>``
+- ``improvement`` => Branch's name is ``improvements/<issue_key>-<concise_title>``
+- ``task or sub-task`` => Branch's name is ``tasks/<issue_key>-<concise_title>``
+- ``bug`` => Branch's name is ``bugs/<issue_key>-<concise_title>``
+- ``critical bug`` => Branch's name is ``hot-fixes/<issue_key>-<concise_title>``
+
+In which:
+
+- ``<issue_key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
+  prefix is based on the type of project.
+- ``<concise_title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
+- ``<issue_key>`` and ``<concise_title>`` is seperated by a ``-`` character.
+
+For example, the issue ``CLT-183 | Sharing Tutorial is not firing email #652``, its branch name can be ``bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652``.
+
+
+-----------------
+Quality Checklist
 -----------------
 
 Quality of work must be strictly defined with rules and measurements, especially with software
@@ -16,233 +271,95 @@ quality.
 Any work is accepted as good enough MUST meet the following (including but not limited) requirements
 of ``quality checklist``:
 
-    - no tab character
-    - length of the text/code line within 100 characters
-    - follow conventions and standards
-    - any tests must be done and must be passed
-    - any documentation must be updated
-    - the implementation must be good enough from the view of collaborators
+- No tab character
+- Length of the text/code line within 100 characters
+- Follow conventions and standards
+- Any tests must be done and must be passed
+- Any documentation must be updated
+- The implementation must be good enough from the view of collaborators
 
-We use many automatic tools to detect and reports the quality. Trust me, your work will be better
-and better over time.
+.. We use many automatic tools to detect and report the quality. Trust me, your work will be better and better over time.
 
-Git commit messages
+-------------------
+Git Commit Messages
 -------------------
 
-Git commit message must convey the actual change/ work of that commit. Usually, the commit message
+Git commit messages must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:
 ::
+
     <issue_key> | <issue_title>: <changes description>
-
     <Multi-line description for detail changes, notices, solutions, etc.>
-
 
 For example:
 ::
+
     DEV-1 | Auto deployment with Fabric
 
     Fabric deployment should be very easy to deploy on both local and remote machine.
     This is the work on local part.
 
-Git branching off
------------------
+----------------------
+Git Branch Cleaning Up
+----------------------
 
-Usually, a new branch should be branched off from target to-be-merged remote branch.
-It's usually *upstream/develop*. However, there are cases that it does not apply:
+After your working branch is merged into the official repository, make sure to delete these
+working branches.
 
-Keep in mind that you need to rebase often the work of that dependent branch to
-your working branch.
+- Deleting remote branch:
+    ::
 
-This is the demonstration example: *phuonglm* is working on
-features/1_fabric_deployment_virtual_machine, and you're going to work on
-features/2_fabric_deployment_remote_machine, it depends on phuonglm's features/1. On this case, you
-MUST indicate the branch name with ``deps_<issueNumber>``.
-::
-    $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
-    $ git fetch phuonglm
-    $ git checkout phuonglm/features/1_fabric_deployment_virtual_machine -b features/2_fabric_deployment_remote_machine_deps_1
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1
+        $ git push origin :branch_name
 
-After sometime of work, phuonglm's feature_1_fabric_deployment_virtual_machine has some updates.
-::
-    $ git fetch phuonglm
-    $ git rebase phuonglm/features/1_fabric_deployment_virtual_machine
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+- Deleting local branch:
+    ::
 
-When phuonglm's features/1 is merged into *upstream/develop*, you need to rebase on it to get
-these new updates:
-::
-    $ git fetch upstream
-    $ git rebase upstream/develop
-    $ git push origin features/2_fabric_deployment_remote_machine_deps_1 -f
+        $ git checkout master
+        $ git branch -d branch_name
 
-
-Git is a distributed version control system, so collaboration like this should be encouraged.
-
-Git force push
+--------------
+Git Force Push
 --------------
 
 Should not ``$ git push origin branch_name -f`` if your branch has another branch depending on.
 
-NEVER ever force push the *official repository*.
+.. note::
+    NEVER force push the *official* repositories.
 
 
-Git branch cleaning up
-----------------------
-
-After your working branch is merged back into official repository, make sure to delete these
-working branches.
-
-Delete remote branch:
-::
-    $ git push origin :branch_name
-
-Delete local branch:
-::
-    $ git checkout master
-    $ git branch -d branch_name
-
-
-Let's take a ride on actual workflow.
-
-
-First, initialize working repositories
---------------------------------------
-
-To start working on a repository project, ``fork`` it first to your git account.
-
-Your working repositories MUST cloned from your git account and put under ``workspace/personal``
-directory.
-
-For example, you're going to work on https://github.com/teracy-official/django-boilerplate
-project, so follow the steps to follow:
-
-1. ``Fork`` the official repository to your github account.
-Mine should be https://github.com/hoatle/django-boilerplate
-
-2. ``Clone`` it to your ``personal`` workspace.
-::
-    $ ws
-    $ cd personal
-    $ git clone git@github.com/hoatle/django-boilerplate.git
-
-3. Add ``upstream`` repository (the official repository).
-::
-    $ git remote add upstream https://github.com/teracy-official/django-boilerplate.git
-
-
-Work on features/ enhancements/ improvements
---------------------------------------------
-
-- To start a new feature, you MUST branch off from the latest ``upstream/develop`` branch with a
-name of the pattern: ``features/<issue_key>_<concise_title>``. The title must be concise as much
-as possible, then ``push`` that branch to your repository.
-
-- To start a new improvement, start a new branch with a name of the pattern:
-``improvements/<issue_key>_<concise_title>``.
-
-- To start a new bug, start a new branch with a name of the pattern:
-``bugs/<issue_key>_<concise_title>``.
-
-- And to start a new task: ``tasks/<issue_key>_<consise_title>``.
-
-For example, you're going to work on the issue #1 with title: "auto deployment with fabric" of type
-"feature":
-::
-    $ ws
-    $ cd personal/django-boilerplate
-    $ git fetch upstream
-    $ git checkout upstream/develop -b features/1_auto_fabric_deployment
-    $ git push origin features/1_auto_fabric_deployment
-
-- Now you're on ``features/1_auto_fabric_deployment`` branch, just ``focus`` working on it,
-``commit`` and ``push`` as often as possible. Sometimes you need to get updates from
-``upstream/develop``, so you need to rebase on it.
-::
-    $ git fetch upstream
-    $ git rebase upstream/develop
-
-Resolve any conflicts and continue with ``focus``, ``commit`` and ``push`` as often as possible.
-
-- When the feature is ready to ship, rebase on ``upstream/develop`` again, reorganize the commits
-as logical as possible and make a ``pull`` request to the official repository with target merging
-branch. You will get tons of comments, suggestions and you need to continue working on it to make it
-good enough to be merged into ``upstream/develop`` branch.
-
-Before making a pull request, make sure your work must meet the **quality checklist**.
-
-Note: After a ``pull`` request, you will continue to work on your working branch as normal, just
-``push`` it and the pull request will be updated with your new commits. Ping other Teracier to
-help reviewing, comments, suggestions, etc.
-
-After all these long strict requirements that you meet, your work will be more welcomed accepted.
-Congratulations, let's get some beer then :-).
-
-
-Work on bugs
-------------
-
-Before doing anything, try to **reproduce** the bug. If the bug is hard to reproduce, try to get
-some blind clues. If you could not see how to *reproduce* the bug or any clue about it, report it
-to your supervisor collaborators to get suggestions and directions.
-
-If you could **reproduce** the bug, start branching off from the target branch with a name of the
-pattern: ``bugs/<issue_key>_<concise_title>``. MUST try to **add tests** to reproduce the bug and
-pass it.
-
-For example, you're going to work on a bug issue #2 with the title: "fabric does not work on Mac
-OSX" with expected fix for *upstream/develop* branch.
-::
-    $ ws
-    $ cd personal/teracy-django-boilerplate
-    $ git fetch upstream
-    $ git checkout upstream/develop -b bugs/2_fabric_not_work_mac_osx
-    $ git push origin bugs/2_fabric_not_work_mac_osx
-
-``focus``, ``commit`` and ``push`` as often as possible. After the work is done, make a pull
-request.
-
-Work on **critical** bugs
-------------------------
-
-These kind of bugs need hot-fix as it has *very high priority*.
-
-Branch off a branch from the branch that needs hot-fix with a name of the pattern:
-``hot-fixes/<issue_key>_<concise_title>``
-
-For example, you're going to work on a critical bug issue #3 with the title: "fabric causes the
-remote server crashed!!!" with expected fix for *upstream/master* branch:
-::
-    $ ws
-    $ cd personal/teracy-django-boilerplate
-    $ git fetch upstream
-    $ git checkout upstream/master -b hot-fixes/3_fabric_crashes_remote_server
-    $ git push origin hot-fixes/3_fabric_crashes_remote_server
-
-Fix it as fast as possible with *really good tests*, you must make sure there should not have any
-*regression*, then make a pull request to target merging branch.
-
-Official branch's merging and releasing
----------------------------------------
+----------------------------------------------
+3. Official Repository's Merging and Releasing
+----------------------------------------------
 
 With branch merging and releasing workflow, *senior* collaborators must follow the git branching
-model as mentioned by the article above.
+model as mentioned in the topics above.
 
-As the merging, pushing must be done on official teracy's projects, so you need to clone projects
-into ``workspace/teracy`` directory.
+As the merging, pushing must be done on official teracy's projects, you need to push to
+the `upstream` repository.
 
 For example, you need to merge the work of *features/1_auto_fabric_deployment* branch from
-https://github.com/hoatle/django-boilerplate
+https://github.com/hoatle/django-boilerplate.
 ::
+
     $ ws
-    $ cd teracy
-    $ git clone git@github.com/teracy-official/teracy-django-boilerplate.git
-    $ cd teracy
-    $ git fetch origin
-    $ git checkout origin/develop
-    $ git remote add hoatle https://github.com/hoatle/teracy-django-boilerplate.git
-    $ git fetch hoatle
-    $ git git merge --no-ff hoatle/features/1_auto_fabric_deployment
-    $ git push origin develop
+    $ cd personal
+    $ git clone git@github.com/hoatle/django-boilerplate.git 
+    $ cd django-boilerplate
+    $ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
+    $ git checkout develop
+    $ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
+    $ git fetch phuonglm
+    $ git merge --no-ff phuonglm/features/1-auto-fabric-deployment
+    $ git push upstream develop
+
+Always `merge` with `--no-ff` to make sure we have the merging point to refer to later.
+
+References
+----------
+
+- http://sethrobertson.github.io/GitBestPractices/
+- http://www.reviewboard.org/docs/codebase/dev/git/clean-commits/
+- http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 .. _`A successful Git branching model`: http://nvie.com/posts/a-successful-git-branching-model/
+.. _`Branch name rule`: #branch-name-rule

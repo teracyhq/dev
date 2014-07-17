@@ -3,18 +3,18 @@ Introduction
 
 Welcome to ``teracy-dev`` - the starting point to learn to join Teracy team.
 
-We, Teraciers, believe that development experience is really important. That's why we care and make
-sure our development environment must be consistent, smooth, and easy to setup. We don't have to
+We, Teraciers, believe that development experience is really important. That's the reason why we care and make
+sure our development environment must be consistent, smooth, and easy to set up. We do not have to
 spend too much time for installing tons of development packages one by one, we want that setup
 process must be automated.
 
 And this ``teracy-dev`` repository was created for that purpose, to make sure working at Teracy with
-ease and fun. We're going to use ``virtualbox`` for running isolated virtual machines, ``chef`` and
+ease and fun. We are using ``virtualbox`` for running isolated virtual machines, ``chef`` and
 ``vagrant`` for installing and configuring any necessary packages automatically.
 
 We work intensively on this documentation so that anyone, who wants to join us, have to pass the
 training program by following the documentation instructions. The documentation will guide you steps
-by steps to setup working environment, to learn our toolchain, workflow, and our development
+by steps to set up working environment, to learn our toolchain, workflow, and our development
 culture.
 
 
@@ -35,71 +35,71 @@ About Teracy
 
 **4. Teracy values**
 
-- security
+- Security
 
-- openness
+- Openness
 
-- seamless integration
+- Seamless integration
 
-- productivity
+- Productivity
 
-- balance
+- Balance
 
 **5. Teracy development philosophy**
 
-- passion
+- Passion
 
-- thought leader
+- Thought leader
 
 - DRY (Don't repeat yourself)
 
-- security
+- Security
 
-- monitoring
+- Monitoring
 
-- backup & recovery
+- Backup & Recovery
 
-- simplicity
+- Simplicity
 
-- speed
+- Speed
 
-- seamless integration
+- Seamless integration
 
-- automation
+- Automation
 
-- consistency
+- Consistency
 
-- transparency
+- Transparency
 
-- progressive enhancement
+- Progressive enhancement
 
-- collaboration
+- Collaboration
 
-- visualization
+- Visualization
 
-- agile
+- Agile
 
 **6. Teracy tone of voice**
 
-- confident
+- Confident
 
-- friendly
+- Friendly
 
-- trustworthy
+- Trustworthy
 
-- engaging
+- Engaging
 
-- respectful
+- Respectful
 
-- focused
+- Focused
 
-- inspiring
+- Inspiring
 
-**7. What we're working on?**
+**7. What we are working on?**
 
-We're working on both outsourcing and startup projects. We need a wide range of developers
+We are working on both outsourcing and startup projects. We need a wide range of developers
 (C/C++, Python, Java, PHP, HTML/CSS, JS...), designers (art, web...), QA engineers, sales,
-marketers, etc. to build a world-class team. If these above positions do not match your interest
+marketers, and more to build a world-class team. If these above positions do not match your interest
 and qualification, please contact us to see if we are meant to work together with other positions.
 
 - We conduct specific R&D to connect, integrate smart devices with user-centric development
@@ -113,12 +113,12 @@ and qualification, please contact us to see if we are meant to work together wit
 
 - We do outsourcing services to keep our long-term business.
 
-- We believe in open source, we're going to release our open source projects as much as possible to
+- We believe in open source, we are going to release our open source projects as much as possible to
   share and leverage community's strengths.
 
 
-Join and work with us?
-----------------------
+Joining And Working With Us?
+----------------------------
 
 We are starting up and have tons of interesting projects waiting for you. We need you - young
 developers having passion to learn and to work with us in a smart way. What you need to
@@ -128,14 +128,14 @@ do is to simply ``impress us``.
 
 - To join our training program, you should have:
 
-    + a computer connected to the Internet
+    + A computer connected to the Internet
 
-    + basic English reading and writing skill. You understand what is written here is basically
-      enough for starting point
+    + Basic English reading and writing skill. You understand what is written here is basically
+      enough for starting point.
 
-    + passion to learn and work with us
+    + Passion to learn and work with us
 
-    + interest in our vision and development philosophy
+    + Interest in our vision and development philosophy
 
 - Join and discuss with us about anything, yes anything at:
 
@@ -152,32 +152,33 @@ even you could arrange the work time as you desire. All you need to do is just *
 now**!
 
 
-What will you get after the training program?
+What Will You Get After The Training Program?
 ---------------------------------------------
 
 Everyone will know:
 
-#. how to use ``teracy-dev``
+#. How to use ``teracy-dev``
 
-#. basic ``git`` usage, and use github for practice
+#. Basic ``git`` usage, and use github for practice
 
-#. teracy's git workflow
+#. Teracy's git workflow
 
 
-If you join ``Python`` training program, you will know how to develop web applications with
-``Django`` web framework.
+- If you join ``Python`` training program, you will know how to develop web applications with
+  ``Django`` web framework.
 
-If you join ``HTML/CSS`` training program, you will know how to convert PSD into HTML pages with
-right structure and presentation.
+- If you join ``HTML/CSS`` training program, you will know how to   convert PSD into HTML pages with
+  right structure and presentation.
 
-If you join ``JavaScript`` training program, you will know how to add behavior to web applications.
+- If you join ``JavaScript`` training program, you will know how to add behavior to web applications.
 
-If you join ``Docs writer`` training program, you will know how to use ``reStructureText`` and
-``Sphinx``.
+- If you join ``Docs writer`` training program, you will know how to use ``reStructureText`` and
+  ``Sphinx``.
 
 
 Why ``teracy`` name?
 --------------------
+
 tera- + racy = teracy /ˈtɛrəsɪ/. That's how I came up with this name.
 
 The name could be understood as: "1,000,000,000,000 times of vigorous, lively, energetic,

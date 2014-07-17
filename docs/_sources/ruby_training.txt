@@ -7,28 +7,29 @@ time.
 Installation
 ------------
 
-Open ``Vagrantfile`` file and find:
-::
+#. Open the ``Vagrantfile`` file and find:
+    ::
 
-    "ruby" => {
-      "enabled" => false # ruby platform development, disabled by default
-    },
+        "ruby" => {
+            "enabled" => false # ruby platform development, disabled by default
+        },
+#. Enable ``ruby`` with ``"ruby"`` => ``"enabled" => true``.
 
-Enable ``ruby`` with: ``"enabled" => true``.
+#. Disable ``python`` with ``"python" => "enabled" => false`` to save provision time if you do not
+   want to work with it. (You can ignore this step.)
 
-If you do not want to work with ``python``, disable it with ``"python" => "enabled" => false`` to
-save provision time.
+#. ``$ vagrant reload --provision`` if your VM is already running, or ``$ vagrant up`` if it is not
+   running yet.
 
-Then ``$ vagrant provision`` if your VM is already running, or ``$ vagrant up`` if it is not running
-yet.
+#. `$ vagrant ssh` and verify if ``ruby`` works:
+    ::
+    
+        $ vagrant ssh
+        $ ruby --version
 
-After the provision process, `$ vagrant ssh` and you should verify if it works by:
-::
-    $ ruby --version
+    And you should see something like this:
+    ::
 
-
-And you should see something like this:
-::
-    ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
+        ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
 
 Congratulations, you can do all Ruby related stuffs now!

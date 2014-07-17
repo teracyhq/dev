@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Ruby Training &mdash; teracy-dev 0.2.0 documentation</title>
+    <title>Ruby Training &mdash; teracy-dev 0.3.0 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.2.0',
+        VERSION:     '0.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.2.0 documentation" href="index.html" />
+    <link rel="top" title="teracy-dev 0.3.0 documentation" href="index.html" />
     <link rel="next" title="PHP Training" href="php_training.html" />
     <link rel="prev" title="Django Training" href="django_training.html" />
     <script>
@@ -52,7 +52,7 @@
         <li class="right" >
           <a href="django_training.html" title="Django Training"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">teracy-dev 0.3.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -67,22 +67,39 @@
 time.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Open <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</p>
-<div class="highlight-python"><pre>"ruby" =&gt; {
-  "enabled" =&gt; false # ruby platform development, disabled by default
-},</pre>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Open the <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>&quot;ruby&quot; =&gt; {
+    &quot;enabled&quot; =&gt; false # ruby platform development, disabled by default
+},
+</pre></div>
 </div>
-<p>Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with: <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
-<p>If you do not want to work with <tt class="docutils literal"><span class="pre">python</span></tt>, disable it with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to
-save provision time.</p>
-<p>Then <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not running
-yet.</p>
-<p>After the provision process, <cite>$ vagrant ssh</cite> and you should verify if it works by:</p>
-<div class="highlight-python"><pre>$ ruby --version</pre>
+</dd>
+</dl>
+</li>
+<li><p class="first">Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with <tt class="docutils literal"><span class="pre">&quot;ruby&quot;</span></tt> =&gt; <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
+</li>
+<li><p class="first">Disable <tt class="docutils literal"><span class="pre">python</span></tt> with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to save provision time if you do not
+want to work with it. (You can ignore this step.)</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not
+running yet.</p>
+</li>
+<li><dl class="first docutils">
+<dt><cite>$ vagrant ssh</cite> and verify if <tt class="docutils literal"><span class="pre">ruby</span></tt> works:</dt>
+<dd><div class="first highlight-python"><div class="highlight"><pre>$ vagrant ssh
+$ ruby --version
+</pre></div>
 </div>
 <p>And you should see something like this:</p>
-<div class="highlight-python"><pre>ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]</pre>
+<div class="last highlight-python"><div class="highlight"><pre>ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
+</pre></div>
 </div>
+</dd>
+</dl>
+</li>
+</ol>
 <p>Congratulations, you can do all Ruby related stuffs now!</p>
 </div>
 </div>
@@ -141,12 +158,12 @@ yet.</p>
         <li class="right" >
           <a href="django_training.html" title="Django Training"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">teracy-dev 0.3.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2013, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+        &copy; Copyright 2013 - 2014, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

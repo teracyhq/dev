@@ -1,43 +1,48 @@
 Style Standards
 ===============
 
-Consistence is one of our goal for development and that's why we need standards. Common standards
-must be applied to all other more specific standards if any rule is not overridden. Following these
-rules, there will be automatic checking tool to report any rule violations.
+Consistence is one of our goals for development and that is the reason why we need standards. Common
+standards must be applied to all other more specific standards if any rule is not overridden.
+Following these rules, there will be automatic checking tool to report any rule violations.
 
 
-Common standards
+Common Standards
 ----------------
 
-#. Line length limit must be within 100 characters.
+#. Line length limit must be within 100 characters (80 characters limit is recommended)
 
-#. 4 spaces for indentation; no tab character is allowed.
+#. 4 spaces for indentation; no tab character is allowed
 
-#. No trailing whitespace.
+#. No trailing whitespace
 
-#. An empty newline at the end of file.
+#. An empty newline at the end of file
 
 
-Document standards
+Document Standards
 ------------------
 
 
-C/C++ coding standards
+C/C++ Coding Standards
 ----------------------
 
 
-Python coding standards
+Python Coding Standards
 -----------------------
 
-- Unless otherwise specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
-Except:
-    + Line length: Maximum line length is 100 characters.
+- Unless specified, follow `PEP 8 <http://www.python.org/dev/peps/pep-0008>`_
 
-- Follow http://www.python.org/dev/peps/pep-0257/ for docs string.
+- Follow `Google Python Style Guide <http://google-styleguide.googlecode.com/svn/trunk/pyguide.html>`_
 
-- Follow http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
+- Follow http://www.python.org/dev/peps/pep-0257/ for docs string
 
-- Interesting links:
+
+- Style checking tools:
+    + https://pypi.python.org/pypi/pep8
+    + https://pypi.python.org/pypi/pyflakes (includes pep8)
+    + http://www.pylint.org/
+    + http://pychecker.sourceforge.net
+
+- See more links:
     + http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html
     + http://deeplearning.net/software/pylearn/v2_planning/API_coding_style.html
     + http://docs.python-guide.org/en/latest/writing/style/
@@ -46,45 +51,67 @@ Except:
     + https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python
     + https://dev.launchpad.net/PythonStyleGuide
 
-- Style checking tools:
-    + https://pypi.python.org/pypi/pep8
-    + https://pypi.python.org/pypi/pyflakes (includes pep8)
-    + http://www.pylint.org/
-    + http://pychecker.sourceforge.net
 
-PHP coding standards
---------------------
-
-
-HTML coding standards
+Java Coding Standards
 ---------------------
 
-- 2 spaces for indentation
+- Follow `Code Conventions for the Java TM Programming Language <http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html>`_
+
+- Follow `Google Java Style <http://google-styleguide.googlecode.com/svn/trunk/javaguide.html>`_ but
+  must use **4 spaces** for indentation
+
+- Style checking tools:
+    + http://checkstyle.sourceforge.net/
+    + http://pmd.sourceforge.net/
+    + http://findbugs.sourceforge.net/
+    + http://cobertura.github.io/cobertura/
+
+- Interesting links:
+    + http://www.javacodegeeks.com/2012/10/java-code-quality-tools-overview.html
 
 
-CSS coding standards
---------------------
 
-- 2 spaces for indentation
-
-
-JavaScript coding standards
+JavaScript Coding Standards
 ---------------------------
 
-- 2 spaces for indentation
+- Follow `Google JavaScript Style Guide <https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml>`_
+  but must use **4 spaces** for indentation
+
+- Style checking tools:
+    + http://www.jshint.com/
+
+- Interesting links:
+    + http://addyosmani.com/blog/javascript-style-guides-and-beautifiers/
+    + http://www.jshint.com/
 
 
-Objective C coding standards
+HTML, CSS Coding Standards
+--------------------------
+
+- Follow `Google HTML/CSS Style Guide <https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml>`_
+  but must use **4 spaces** for indentation
+
+- This apply for CSS pre-processors like `SASS <http://sass-lang.com/>`_,
+  `LESS <http://lesscss.org/>`_, `Stylus <http://learnboost.github.io/stylus/>`_, etc.
+
+- Style checking tools:
+    + https://github.com/praveenvijayan/grunt-html-validation
+
+
+Ruby Coding Standards
+---------------------
+
+
+
+PHP Coding Standards
+--------------------
+
+
+Objective C Coding Standards
 ----------------------------
 
 
-Java coding standards
----------------------
 
-- 2 spaces for indentation
-
-
-XML coding standards
+XML Coding Standards
 --------------------
 
-- 2 spaces for indentation
