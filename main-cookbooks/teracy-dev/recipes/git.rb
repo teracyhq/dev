@@ -34,11 +34,22 @@
 
 git_version = node['teracy-dev']['git']['version'].strip()
 
+current_git_version = ''
+begin
+    current_git_version = `git version`.split(' ')
+    current_git_version = current_git_version[current_git_version.length-1]
+rescue Exception => e
+    current_git_version = ''
+end
+
 if !git_version.empty?
-    node.override['git']['version'] = git_version
-    node.override['git']['url'] = "https://www.kernel.org/pub/software/scm/git/git-#{git_version}.tar.gz"
-    node.override['git']['checksum'] = node['teracy-dev']['git']['checksum']
-    include_recipe 'git::source'
+    if current_git_version != git_version
+        node.override['git']['version'] = git_version
+        node.override['git']['url'] = "https://www.kernel.org/pub/software/scm/git/git-#{git_version}.tar.gz"
+        node.override['git']['checksum'] = node['teracy-dev']['git']['checksum']
+        include_recipe 'git::source'
+    end
+
 end
 
 template '/home/vagrant/.gitconfig' do
