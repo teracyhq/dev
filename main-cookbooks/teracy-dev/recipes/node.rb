@@ -6,15 +6,32 @@
 
 if node['teracy-dev']['nodejs']['enabled']
 
-    if !node['teracy-dev']['nodejs']['version'].strip().empty?
-        node.override['nodejs']['version'] = node['teracy-dev']['nodejs']['version']
-        node.override['nodejs']['checksum'] = node['teracy-dev']['nodejs']['checksum']
-        node.override['nodejs']['install_method'] = 'source'
+    node_version = ''
+    npm_version = ''
+    begin
+        node_version = `node -v`
+        node_version = node_version[1..node_version.length-2]
+        npm_version = `npm -v`
+        npm_version = npm_version[0..npm_version.length-2]
+    rescue Exception => e
+        node_version = ''
+        npm_version = ''
     end
 
-    include_recipe 'nodejs'
+    if !node['teracy-dev']['nodejs']['version'].strip().empty?
+        if node_version != node['teracy-dev']['nodejs']['version'].strip()
+            node.override['nodejs']['version'] = node['teracy-dev']['nodejs']['version']
+            node.override['nodejs']['checksum'] = node['teracy-dev']['nodejs']['checksum']
+            node.override['nodejs']['install_method'] = 'source'
+            include_recipe 'nodejs'
+        end
+    else
+        include_recipe 'nodejs'    
+    end
 
-    if !node['teracy-dev']['nodejs']['npm']['version'].strip().empty?
+
+    if !node['teracy-dev']['nodejs']['npm']['version'].strip().empty? and 
+            npm_version != node['teracy-dev']['nodejs']['npm']['version'].strip()
         node.override['nodejs']['npm'] = node['teracy-dev']['nodejs']['npm']['version']
         include_recipe 'nodejs::npm'
     end
