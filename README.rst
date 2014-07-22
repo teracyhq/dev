@@ -24,7 +24,7 @@ More commands: http://docs.vagrantup.com/v2/cli/index.html
 Installation
 ------------
 
-Follow the guide at: http://dev.teracy.org/docs/0.3.0/getting_started.html
+Follow the guide at: http://dev.teracy.org/docs/0.3.1/getting_started.html
 
 
 Configuration
@@ -99,7 +99,7 @@ Training
 
 We offered free training for recruiting newcomers.
 
-- For Django development, please head to: http://dev.teracy.org/docs/0.3.0/django_training.html
+- For Django development, please head to: http://dev.teracy.org/docs/0.3.1/django_training.html
 
 
 Learn more

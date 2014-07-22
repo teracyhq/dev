@@ -2,7 +2,19 @@ Change Log
 ==========
 
 
-[0.3.0][] (2014-07-24)
+[0.3.1][] (2014-07-22)
+----------------------
+
+bug fixes to reduce provision time and make sure nosetest works well.
+
+- Bug
+    + [DEV-101] - nosetests does not work well on vagrantbox
+
+- Improvement
+    + [DEV-99] - Reduce the provision time of base box v0.3.0 on v0.3.0
+
+
+[0.3.0][] (2014-07-16)
 ----------------------
 
 The next milestone release includes:
@@ -106,3 +118,5 @@ Release the first milestone
 [0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10002
 
 [0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
+
+[0.3.1]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11201
