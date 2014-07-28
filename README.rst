@@ -53,10 +53,10 @@ For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
         "host":3000
       }
     ],
-   
+
     "chef_json":{
    // Config git for virtualbox
-      "git":{        
+      "git":{
         "user":{
           "name":"Hoa Vu",
           "email":"hoavu@teracy.com"
