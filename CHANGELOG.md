@@ -2,6 +2,15 @@ Change Log
 ==========
 
 
+[0.3.2][] (2014-07-28)
+----------------------
+
+bug fix on windows: .virtualenvs permission denied
+
+- Bug
+    + [DEV-109] - permission denied of .virtualenvs on windows
+
+
 [0.3.1][] (2014-07-22)
 ----------------------
 
@@ -120,3 +129,5 @@ Release the first milestone
 [0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
 
 [0.3.1]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11201
+
+[0.3.2]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11203
