@@ -63,12 +63,12 @@ Now you have ``vagrant`` and ``virtualbox`` installed on your system.
 Manual Installation
 ----------------------
 
-1. Install ``vagrant`` with the version of **1.6.2** at: http://www.vagrantup.com/downloads.html.
+1. Install the latest ``git`` version at http://git-scm.com/.
 
 2. Install ``virtualbox`` with the version of **4.3.12** at:
-   https://www.virtualbox.org/wiki/Downloads
-
-3. Install the latest ``git`` version at http://git-scm.com/
+   https://www.virtualbox.org/wiki/Download_Old_Builds_4_3.
+   
+3. Install ``vagrant`` with the version of **1.6.2** at: http://www.vagrantup.com/downloads.html.
 
 **Notice**:
 
