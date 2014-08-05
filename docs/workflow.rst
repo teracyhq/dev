@@ -94,7 +94,43 @@ then create another branch from that checkout.
 Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
 Now branch-2 is on your local and ready for you to work on it.
 
-Git is a distributed version control system, so collaboration like this should be encouraged.
+This is a demonstration example. ``phuonglm`` is working on
+``features/DEV-1-fabric-deployment-virtua-machine``, and you are going to work on
+``features/DEV-2-fabric-deployment-remote-machine`` which depends on
+``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issueNumber>``.
+::
+
+    $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
+    $ git fetch phuonglm                                                                      (2)
+    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtua-machine -b                (3)
+      features/2-fabric-deploymen-remote-machine-dep-1
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1              (4)
+             
+
+Details:
+    - \(1) Adds the official repository from which you use source code for your issue.
+    - \(2) Fetches to get the  new updates of the official repository.
+    - \(3) Creates a new branch on your local device basing the remote branch.
+    - \(4) Pushes your new branch to Git to wait for being reviewed and merged to the ``features/DEV-1`` branch.
+
+When the ``phuonglm’s features/DEV-1-fabric-deployment-virtua-machine`` has some updates, you need to fetch
+and rebase on that branch:
+::
+
+    $ git fetch phuonglm
+    $ git rebase phuonglm/features/DEV-1-fabric-deployment-virtua-machine
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1 -f
+
+When ``phuonglm’s features/DEV-1`` is merged into ``upstream/develop``, you need to rebase on it to get these
+new updates:
+::
+
+    $ git fetch upstream
+    $ git rebase upstream/develop
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1 -f
+
+.. note:: 
+       Git is a distributed version control system, so collaboration like this should be encouraged.
 
 
 Working with Git
@@ -114,7 +150,7 @@ The workingflow is summarized under 4 major steps:
 - Step 1: Branching-off based on issue
 - Step 2: Developing with Code/ Commit/ Push
 - Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.
-- Step 4: Cleaning up branch`
+- Step 4: Cleaning up branch
 
 Let's get in more detais:
 
