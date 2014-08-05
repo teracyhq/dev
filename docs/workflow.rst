@@ -103,7 +103,7 @@ This is a demonstration example. ``phuonglm`` is working on
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
     $ git fetch phuonglm                                                                      (2)
     $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtua-machine -b                (3)
-      features/2-fabric-deploymen-remote-machine-dep-1
+      features/DEV-2-fabric-deploymen-remote-machine-deps-DEV-1
     $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1              (4)
              
 
