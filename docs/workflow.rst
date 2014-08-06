@@ -103,8 +103,8 @@ This is a demonstration example. ``phuonglm`` is working on
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
     $ git fetch phuonglm                                                                      (2)
     $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtua-machine -b                (3)
-      features/DEV-2-fabric-deploymen-remote-machine-deps-DEV-1
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1              (4)
+      features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
              
 
 Details:
@@ -119,7 +119,7 @@ and rebase on that branch:
 
     $ git fetch phuonglm
     $ git rebase phuonglm/features/DEV-1-fabric-deployment-virtua-machine
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1 -f
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 
 When ``phuonglm’s features/DEV-1`` is merged into ``upstream/develop``, you need to rebase on it to get these
 new updates:
@@ -127,7 +127,7 @@ new updates:
 
     $ git fetch upstream
     $ git rebase upstream/develop
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps-DEV-1 -f
+    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 
 .. note:: 
        Git is a distributed version control system, so collaboration like this should be encouraged.
