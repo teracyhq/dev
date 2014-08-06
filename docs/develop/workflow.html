@@ -138,7 +138,45 @@ then create another branch from that checkout.</p>
 </div>
 <p>Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
 Now branch-2 is on your local and ready for you to work on it.</p>
-<p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
+<p>This is a demonstration example. <tt class="docutils literal"><span class="pre">phuonglm</span></tt> is working on
+<tt class="docutils literal"><span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></tt>, and you are going to work on
+<tt class="docutils literal"><span class="pre">features/DEV-2-fabric-deployment-remote-machine</span></tt> which depends on
+<tt class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></tt>. On this case, you MUST indicate the branch name with <tt class="docutils literal"><span class="pre">deps_&lt;issueNumber&gt;</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
+$ git fetch phuonglm                                                                      (2)
+$ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b                (3)
+  features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Details:</dt>
+<dd><ul class="first last simple">
+<li>(1) Adds the official repository from which you use source code for your issue.</li>
+<li>(2) Fetches to get the  new updates of the official repository.</li>
+<li>(3) Creates a new branch on your local device basing the remote branch.</li>
+<li>(4) Pushes your new branch to Git to wait for being reviewed and merged to the <tt class="docutils literal"><span class="pre">features/DEV-1</span></tt> branch.</li>
+</ul>
+</dd>
+</dl>
+<p>When the <tt class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></tt> has some updates, you need to fetch
+and rebase on that branch:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
+$ git rebase phuonglm/features/DEV-1-fabric-deployment-virtual-machine
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+</pre></div>
+</div>
+<p>When <tt class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></tt> is merged into <tt class="docutils literal"><span class="pre">upstream/develop</span></tt>, you need to rebase on it to get these
+new updates:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git rebase upstream/develop
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Git is a distributed version control system, so collaboration like this should be encouraged.</p>
+</div>
 </div>
 <div class="section" id="working-with-git">
 <h2>Working with Git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
@@ -150,7 +188,7 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <li>Step 1: Branching-off based on issue</li>
 <li>Step 2: Developing with Code/ Commit/ Push</li>
 <li>Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.</li>
-<li>Step 4: Cleaning up branch`</li>
+<li>Step 4: Cleaning up branch</li>
 </ul>
 <p>Let&#8217;s get in more detais:</p>
 <p><strong>Step 1: Branching-off based on issue</strong></p>
