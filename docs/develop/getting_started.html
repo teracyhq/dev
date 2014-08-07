@@ -66,20 +66,11 @@
 <p>To get started, you must follow the instruction steps below to set up the development environment.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p><strong>1. Required</strong></p>
+<p>At Teracy, you need to install the tools below:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">virtualbox</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">vagrant</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">git</span></tt></li>
-</ul>
-<p><strong>Notice</strong></p>
-<p>Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username &amp; password
-each time when working with Git like <tt class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></tt> on the Vagrant box.</p>
-<p>Do the following guide to get it work:</p>
-<ul class="simple">
-<li>Mac/ Linux: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-mac</a></li>
-<li>Windows: <a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows">https://help.github.com/articles/working-with-ssh-key-passphrases#platform-windows</a></li>
-<li>Clone GitHub repositories using SSH.</li>
 </ul>
 <p><strong>Windows Notes</strong>:</p>
 <ul class="simple">
@@ -111,9 +102,9 @@ $ bash setup_working_env_chef.sh
 <h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install the latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a>.</li>
-<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.12</strong> at:
+<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.12</strong> at
 <a class="reference external" href="https://www.virtualbox.org/wiki/Download_Old_Builds_4_3">https://www.virtualbox.org/wiki/Download_Old_Builds_4_3</a>.</li>
-<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at: <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a>.</li>
+<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.6.2</strong> at <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a>.</li>
 </ol>
 <p><strong>Notice</strong>:</p>
 <ul class="simple">
@@ -121,6 +112,26 @@ $ bash setup_working_env_chef.sh
 <li>The virtualbox has an installation issue which is reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a>. If you <cite>$ vagrant up</cite> but can not start the virtual box,
 please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and re-install it to fix the issue.</li>
 </ul>
+</div>
+<div class="section" id="adding-ssh-key">
+<h2>Adding SSH Key<a class="headerlink" href="#adding-ssh-key" title="Permalink to this headline">¶</a></h2>
+<p>Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username &amp; password
+each time when working with Git like <tt class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></tt> on the Vagrant box. So, After having installed
+Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.</p>
+<p>Do the following guides to get it work:</p>
+<ul class="simple">
+<li>Mac: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys#platform-mac">https://help.github.com/articles/generating-ssh-keys#platform-mac</a></li>
+<li>Linux: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys#platform-linux">https://help.github.com/articles/generating-ssh-keys#platform-linux</a></li>
+<li>Windows: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys">https://help.github.com/articles/generating-ssh-keys</a></li>
+<li>Clone GitHub repositories using SSH.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You need to use the <strong>ssh-agent</strong> tool that provides a secure way of storing and using your SSH keys. Also, it
+allows you to use git commands on the virtual machine. See
+<a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit">https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit</a> to
+automatically run when opening the terminal window.</p>
+</div>
 </div>
 <div class="section" id="environment-up">
 <h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
@@ -137,7 +148,7 @@ $ vagrant up
 </dl>
 </li>
 </ol>
-<p>Notice:</p>
+<p><strong>Notice</strong></p>
 <ul>
 <li><p class="first">The home directory on <tt class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></tt> normally should point to your user&#8217;s directory on windows.
 For example: <tt class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></tt>, this is the place you will find
@@ -192,6 +203,7 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
 <li><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
+<li><a class="reference internal" href="#adding-ssh-key">Adding SSH Key</a></li>
 <li><a class="reference internal" href="#environment-up">Environment Up</a></li>
 </ul>
 </li>
