@@ -74,6 +74,114 @@ these tools.</p>
 <div class="section" id="sublime-text">
 <h2>Sublime Text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="jira-client">
+<h2>Jira Client<a class="headerlink" href="#jira-client" title="Permalink to this headline">¶</a></h2>
+<p>This section shows you how to use Jira Client to manage your Teracy issues.</p>
+<div class="section" id="downloading-and-installation">
+<h3>Downloading and Installation<a class="headerlink" href="#downloading-and-installation" title="Permalink to this headline">¶</a></h3>
+<p>Download Jira Client installer for Mac, Linux, Win at <a class="reference external" href="http://almworks.com/jiraclient/download.html">http://almworks.com/jiraclient/download.html</a>
+and install on your local device.</p>
+</div>
+<div class="section" id="creating-connection">
+<h3>Creating connection<a class="headerlink" href="#creating-connection" title="Permalink to this headline">¶</a></h3>
+<p>1. Open Jira Client and select <strong>Connection</strong> &#8211;&gt; <strong>New Jira Connection</strong> to open the <strong>New Jira Connection</strong>
+form.</p>
+<blockquote>
+<div><img alt="_images/new-jira-connection.png" class="align-center" src="_images/new-jira-connection.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Input the Jira URL of Teracy <tt class="docutils literal"><span class="pre">https://issues.teracy.org</span></tt> into the <strong>URL</strong> field.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/new-jira-connection-form.png" class="align-center" src="_images/new-jira-connection-form.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Input your username and password used to log in Jira.</li>
+<li>Click <strong>Next</strong> to verify your login and select projects you work with.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/select-projects.png" class="align-center" src="_images/select-projects.png" />
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Click <strong>Next</strong> to name your connection and click <strong>Finish</strong> to complete creating your Jira connection.</li>
+</ol>
+</div>
+<div class="section" id="creating-queries">
+<h3>Creating queries<a class="headerlink" href="#creating-queries" title="Permalink to this headline">¶</a></h3>
+<p>You need to create some queries to manage your issues easily. At Teracy, you are recommended to create queries with
+the hiearachy as the example follows:</p>
+<blockquote>
+<div><img alt="_images/structure-of-queries.png" class="align-center" src="_images/structure-of-queries.png" />
+</div></blockquote>
+<p><strong>1. Creating new query by Sprint</strong></p>
+<p>Right-click your connection name &#8211;&gt; Select <strong>New Query</strong> &#8211;&gt; Select <strong>Sprint</strong> in the
+<strong>Field</strong> column and select your desired sprint in the  <strong>Sprint</strong> column &#8211;&gt; click <strong>OK</strong>.</p>
+<img alt="_images/query-by-sprint.png" class="align-center" src="_images/query-by-sprint.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For each sprint, you should create a query for it.</p>
+</div>
+<p><strong>2. Creating new query by status</strong></p>
+<p>You need to create three queries by status for each sprint: <strong>Open/Reopened</strong>, <strong>In-progress</strong> and <strong>Resolved</strong>.</p>
+<ul>
+<li><p class="first"><strong>Open, Re-opened</strong></p>
+<p>Right-click a query by sprint &#8211;&gt; Select <strong>New Query</strong> &#8211;&gt; Select <strong>Status</strong> in the <strong>Field</strong> column
+&#8211;&gt; Select <strong>Open</strong> and <strong>Re-open</strong> &#8211;&gt; Click <strong>OK</strong>.</p>
+</li>
+<li><p class="first"><strong>In-progess</strong>: Do the same as <strong>Open, Re-opened</strong>.</p>
+</li>
+<li><p class="first"><strong>Resolved</strong>: Do the same as <strong>Open, Re-opened</strong>.</p>
+</li>
+</ul>
+<p><strong>3.  Creating new query by assignee</strong></p>
+<p>For each status, you will create a query by assignee as follows:</p>
+<ul class="simple">
+<li>Right-click a status &#8211;&gt; <strong>New Query</strong> &#8211;&gt; Select <strong>Assignee</strong> in the <strong>Field</strong> column
+&#8211;&gt; Select a assignee in the <strong>Assignee</strong> column &#8211;&gt; Click <strong>OK</strong>.</li>
+</ul>
+<img alt="_images/query-by-assignee.png" class="align-center" src="_images/query-by-assignee.png" />
+</div>
+<div class="section" id="editing-and-removing-queries">
+<h3>Editing and Removing queries<a class="headerlink" href="#editing-and-removing-queries" title="Permalink to this headline">¶</a></h3>
+<p>You can easily edit or delete a query by right-clicking the query and select <strong>Edit Query</strong> or <strong>Remove</strong> in the
+context menu respectively.</p>
+<img alt="_images/edit-remove-query.png" class="align-center" src="_images/edit-remove-query.png" />
+</div>
+<div class="section" id="reloading-query-from-server">
+<h3>Reloading query from server<a class="headerlink" href="#reloading-query-from-server" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, you need to  reload all issues for a query by
+right-clicking the query and selecting <strong>Reload Query from Server</strong> from the context menu.</p>
+</div>
+<div class="section" id="tracking-time">
+<h3>Tracking time<a class="headerlink" href="#tracking-time" title="Permalink to this headline">¶</a></h3>
+<p>At Teracy, you are recommended to use the Jira Client to track off your working time for each issue every day.
+Jira Client measures the exact time you&#8217;ve spent on the issue.</p>
+<ul>
+<li><p class="first"><strong>Starting tracking time</strong></p>
+<p>Select your issue you are working on and click the <strong>Start</strong> button to begin tracking time.</p>
+<img alt="_images/start-button.png" class="align-center" src="_images/start-button.png" />
+</li>
+<li><p class="first"><strong>Stopping tracking time</strong></p>
+<p>When you pause to work or finish your issue, you can stop tracking time by clicking the <strong>Stop</strong> button.</p>
+<img alt="_images/stop-button.png" class="align-center" src="_images/stop-button.png" />
+</li>
+<li><p class="first"><strong>Switching to another issue</strong></p>
+<p>When switching to another issue and you want to record time spent on the issue, open issue and click the
+<strong>Record</strong> button.</p>
+<img alt="_images/starting-tracking-time.png" class="align-center" src="_images/starting-tracking-time.png" />
+</li>
+<li><p class="first"><strong>Adjusting time and duration</strong></p>
+<p>You can also adjust time and duration by clicking the time recorded on the Time Tracker.</p>
+<img alt="_images/edit-time.png" class="align-center" src="_images/edit-time.png" />
+</li>
+</ul>
+<p>Later, you can review the time sheet, make corrections and publish tracked time to JIRA as work logs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can see further usage of Jira Client at <a class="reference external" href="http://almworks.com/jiraclient/features.html">http://almworks.com/jiraclient/features.html</a>.</p>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -88,6 +196,15 @@ these tools.</p>
 <li><a class="reference internal" href="#git">Git</a></li>
 <li><a class="reference internal" href="#vim">Vim</a></li>
 <li><a class="reference internal" href="#sublime-text">Sublime Text</a></li>
+<li><a class="reference internal" href="#jira-client">Jira Client</a><ul>
+<li><a class="reference internal" href="#downloading-and-installation">Downloading and Installation</a></li>
+<li><a class="reference internal" href="#creating-connection">Creating connection</a></li>
+<li><a class="reference internal" href="#creating-queries">Creating queries</a></li>
+<li><a class="reference internal" href="#editing-and-removing-queries">Editing and Removing queries</a></li>
+<li><a class="reference internal" href="#reloading-query-from-server">Reloading query from server</a></li>
+<li><a class="reference internal" href="#tracking-time">Tracking time</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
