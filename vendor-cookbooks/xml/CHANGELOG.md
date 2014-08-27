@@ -2,6 +2,11 @@ xml Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the xml cookbook.
 
+v1.2.6 (2014-06-17)
+-------------------
+- [COOK-4468] Only set ENV variable when needed
+
+
 v1.2.4 (2014-03-27)
 -------------------
 - [COOK-4474] - Bump apt and yum versions in Berksfile, Lock to build-essentials 1.4

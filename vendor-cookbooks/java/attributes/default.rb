@@ -21,8 +21,15 @@
 default['java']['jdk_version'] = '6'
 default['java']['arch'] = kernel['machine'] =~ /x86_64/ ? "x86_64" : "i586"
 default['java']['openjdk_packages'] = []
+default['java']['openjdk_version'] = nil
 default['java']['accept_license_agreement'] = false
 default['java']['set_default'] = true
+default['java']['alternatives_priority'] = 1062
+default['java']['set_etc_environment'] = false
+
+# the following retry parameters apply when downloading oracle java
+default['java']['ark_retries'] = 0
+default['java']['ark_retry_delay'] = 2
 
 case node['platform_family']
 when "windows"
@@ -48,7 +55,19 @@ when 'ibm', 'ibm_tar'
 
   default['java']['ibm']['7']['bin_cmds'] = node['java']['ibm']['6']['bin_cmds'] + [ "pack200", "unpack200" ]
 when 'oracle_rpm'
+  # type of java RPM : jdk or jre
   default['java']['oracle_rpm']['type'] = 'jdk'
+
+  # optional, can be overriden to pin to a version different
+  # from the up-to-date.
+  default['java']['oracle_rpm']['package_version'] = nil
+
+  # optional, some distros re-package the official Oracle's RPM
+  # with a different name
+  default['java']['oracle_rpm']['package_name'] = nil
+
+  # set the JAVA_HOME path, it may be overriden
+  # when a package version is provided.
   default['java']['java_home'] = "/usr/java/latest"
 end
 
@@ -62,7 +81,7 @@ default['java']['jdk']['6']['bin_cmds'] = [ "appletviewer", "apt", "ControlPanel
                                             "java", "javac", "javadoc", "javah", "javap", "javaws", "jconsole", "jcontrol", "jdb", "jhat",
                                             "jinfo", "jmap", "jps", "jrunscript", "jsadebugd", "jstack", "jstat", "jstatd", "jvisualvm",
                                             "keytool", "native2ascii", "orbd", "pack200", "policytool", "rmic", "rmid", "rmiregistry",
-                                            "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc" ]
+                                            "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc"]
 
 # x86_64
 default['java']['jdk']['6']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin'
@@ -78,15 +97,35 @@ default['java']['jdk']['7']['bin_cmds'] = [ "appletviewer", "apt", "ControlPanel
                                             "javadoc", "javafxpackager", "javah", "javap", "javaws", "jcmd", "jconsole", "jcontrol", "jdb",
                                             "jhat", "jinfo", "jmap", "jps", "jrunscript", "jsadebugd", "jstack", "jstat", "jstatd", "jvisualvm",
                                             "keytool", "native2ascii", "orbd", "pack200", "policytool", "rmic", "rmid", "rmiregistry",
-                                            "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc" ]
+                                            "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc"]
 
 # Oracle doesn't seem to publish SHA256 checksums for Java releases, so we use MD5 instead.
 # Official checksums for the latest release can be found at http://www.oracle.com/technetwork/java/javase/downloads/java-se-binaries-checksum-1956892.html
 
 # x86_64
-default['java']['jdk']['7']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz'
-default['java']['jdk']['7']['x86_64']['checksum'] = '764f96c4b078b80adaa5983e75470ff2'
+default['java']['jdk']['7']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz'
+default['java']['jdk']['7']['x86_64']['checksum'] = '81e3e2df33e13781e5fac5756ed90e67'
 
 # i586
-default['java']['jdk']['7']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-i586.tar.gz'
-default['java']['jdk']['7']['i586']['checksum'] = '909d353c1caf6b3b54cc20767a7778ef'
+default['java']['jdk']['7']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-i586.tar.gz'
+default['java']['jdk']['7']['i586']['checksum'] = '715b0e8ba2a06bded75f6a92427e2701'
+
+# jdk8 attributes
+
+default['java']['jdk']['8']['bin_cmds'] = [ "appletviewer", "apt", "ControlPanel", "extcheck", "idlj", "jar", "jarsigner", "java", "javac",
+                                            "javadoc", "javafxpackager", "javah", "javap", "javaws", "jcmd", "jconsole", "jcontrol", "jdb",
+                                            "jdeps", "jhat", "jinfo", "jjs", "jmap", "jmc", "jps", "jrunscript", "jsadebugd", "jstack",
+                                            "jstat", "jstatd", "jvisualvm", "keytool", "native2ascii", "orbd", "pack200", "policytool",
+                                            "rmic", "rmid", "rmiregistry", "schemagen", "serialver", "servertool", "tnameserv",
+                                            "unpack200", "wsgen", "wsimport", "xjc"]
+
+# Oracle doesn't seem to publish SHA256 checksums for Java releases, so we use MD5 instead.
+# Official checksums for the latest release can be found at http://www.oracle.com/technetwork/java/javase/downloads/javase8-binaries-checksum-2133161.html
+
+# x86_64
+default['java']['jdk']['8']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-x64.tar.gz'
+default['java']['jdk']['8']['x86_64']['checksum'] = 'ec7f89dc3697b402e2c851d0488f6299'
+
+# i586
+default['java']['jdk']['8']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-i586.tar.gz'
+default['java']['jdk']['8']['i586']['checksum'] = '5dafdef064e18468f21c65051a6918d7'

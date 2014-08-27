@@ -1,6 +1,6 @@
 {
   "vm_box":"teracy/dev",
-  //"vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
+  // "vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box",
   "vm_forward_agent":true,
   "vm_forwarded_ports":[
     {
@@ -97,6 +97,10 @@
             {
               "name":"yo",
               "version":""
+            },
+            {
+             "name": "phantomjs",
+             "version": ""
             }
           ]
         }
@@ -117,7 +121,7 @@
         }
       },
       "ruby":{
-        "enabled":false,
+        "enabled":true,
         "version": "1.9.3-p194",
         "globals":[
           {
@@ -127,32 +131,32 @@
         ]
       },
       "php":{
-        "enabled":false,
+        "enabled":true,
         "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
         "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
       },
       "mysql":{
-        "enabled":false,
+        "enabled":true,
         "version":"5.3.6",
         "password":"teracy"
       },
       "mongodb":{
-        "enabled":false,
+        "enabled":true,
         "version":"2.6.3"
       },
       "postgresql":{
-        "enabled":false,
+        "enabled":true,
         "password":{
           "postgres":"teracy"
         },
         "version":"9.3"
       },
       "java":{
-        "enabled":false,
+        "enabled":true,
         "version":"7",
-        "flavor":"openjdk", //one of "openjdk", "oracle" or "ibm". Default: "openjdk"
+        "flavor":"oracle", //one of "openjdk", "oracle" or "ibm". Default: "openjdk"
         "maven":{
-          "enabled":false,
+          "enabled":true,
           "version":"3"
         }
       },

@@ -1,8 +1,5 @@
-#
-# Cookbook Name:: openssl
-# Attributes:: default
-#
-# Copyright 2014, Chef Software, Inc. <legal@getchef.com>
+# Cookbook Name:: java
+# Recipe:: default_java_symlink
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-default['openssl']['packages'] = []
-default['openssl']['restart_services'] = []
+link '/usr/lib/jvm/default-java' do
+  to node['java']['java_home']
+  not_if { node['java']['java_home'] == '/usr/lib/jvm/default-java' }
+end
