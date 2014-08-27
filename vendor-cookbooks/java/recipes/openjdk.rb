@@ -43,7 +43,9 @@ if platform_requires_license_acceptance?
 end
 
 node['java']['openjdk_packages'].each do |pkg|
-  package pkg
+  package pkg do
+    version node['java']['openjdk_version'] if node['java']['openjdk_version']
+  end
 end
 
 if platform_family?('debian', 'rhel', 'fedora')
@@ -61,11 +63,8 @@ if platform_family?('debian', 'rhel', 'fedora')
   end
 end
 
-if platform_family?('debian')
-  link '/usr/lib/jvm/default-java' do
-    to node['java']['java_home']
-    not_if { node['java']['java_home'] == '/usr/lib/jvm/default-java' }
-  end
+if node['java']['set_default'] and platform_family?('debian')
+  include_recipe 'java::default_java_symlink'
 end
 
 # We must include this recipe AFTER updating the alternatives or else JAVA_HOME
