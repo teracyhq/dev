@@ -1,5 +1,6 @@
 {
   "vm_box":"teracy/dev",
+  //"vm_box":"teracy/dev-all", override this on vagrant_config_override.json
   // "vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box",
   "vm_forward_agent":true,
   "vm_forwarded_ports":[
@@ -123,7 +124,7 @@
         }
       },
       "ruby":{
-        "enabled":true,
+        "enabled":false,
         "version": "1.9.3-p194",
         "globals":[
           {
@@ -133,28 +134,28 @@
         ]
       },
       "php":{
-        "enabled":true,
+        "enabled":false,
         "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
         "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
       },
       "mysql":{
-        "enabled":true,
+        "enabled":false,
         "version":"5.3.6",
         "password":"teracy"
       },
       "mongodb":{
-        "enabled":true,
+        "enabled":false,
         "version":"2.6.3"
       },
       "postgresql":{
-        "enabled":true,
+        "enabled":false,
         "password":{
           "postgres":"teracy"
         },
         "version":"9.3"
       },
       "java":{
-        "enabled":true,
+        "enabled":false,
         "version":"7",
         "flavor":"oracle", //one of "openjdk", "oracle" or "ibm". Default: "openjdk"
         "maven":{
