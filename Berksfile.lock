@@ -1,5 +1,5 @@
 {
-  "sha": "fe4140e8216190bdeb8af4f8411c1cd077303ccd",
+  "sha": "672f3a026a719e538a795d0aa0a00453473d86ee",
   "sources": {
     "minitest-handler": {
       "locked_version": "0.1.7",
@@ -38,8 +38,8 @@
       "constraint": "= 0.1.2"
     },
     "java": {
-      "locked_version": "1.20.0",
-      "constraint": "= 1.20.0"
+      "locked_version": "1.27.0",
+      "constraint": "= 1.27.0"
     },
     "maven": {
       "locked_version": "1.1.0",
@@ -97,22 +97,19 @@
       "constraint": ">= 1.1.0"
     },
     "xml": {
-      "locked_version": "1.2.4"
+      "locked_version": "1.2.6"
     },
-    "mysql": {
-      "locked_version": "5.3.6"
-    },
-    "yum-mysql-community": {
-      "locked_version": "0.1.4"
+    "chef-sugar": {
+      "locked_version": "2.0.0"
     },
     "iis": {
       "locked_version": "2.1.2"
     },
-    "openssl": {
-      "locked_version": "2.0.0"
+    "yum-mysql-community": {
+      "locked_version": "0.1.8"
     },
-    "chef-sugar": {
-      "locked_version": "2.0.0"
+    "openssl": {
+      "locked_version": "1.1.0"
     },
     "partial_search": {
       "locked_version": "1.0.8"
