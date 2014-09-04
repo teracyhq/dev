@@ -34,6 +34,15 @@ echo !! you see the message "Restart your computer". We will  !!
 echo !! do it when complete.                                  !!
 echo ===========================================================
 echo ...........................................................                                                            
+echo Prepare and downloading resources
+copy /y NUL c:\dp.ps1 >NUL
+
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/master/scripts/Download-File.ps1', 'c:\dp.ps1')"
+
+echo Prepare completed
+
+echo.
+
 echo --- Findding installed vagrant and virtualbox ---
 echo.
 
@@ -94,10 +103,10 @@ set vboxVs=%vboxV:.=%
 
 
 if %vboxVs% LSS 4312 (
-		echo Vagrant found with version %vboxV% that is not valid, process next step
+		echo VirtualBox found with version %vboxV% that is not valid, process next step
 		GOTO processVBox
 	)
-echo Vagrant found with a valid version (%vboxV%)
+echo VirtualBox found with a valid version (%vboxV%)
 GOTO mainProcess
 
 :vboxNotfound
@@ -109,10 +118,9 @@ echo.
 echo --- DOWNLOAD and INSTALL VIRTUAL BOX ---
 echo.
 
-IF NOT EXIST c:\vbox.exe (
-	copy /y NUL c:\vbox.exe >NUL
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe', 'c:\vbox.exe')"
-	)
+copy /y NUL c:\vbox.exe >NUL
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe" "c:\vbox.exe"
+	
 
 echo Virtual Box is installing
 START /wait /b C:\vbox.exe
@@ -128,10 +136,8 @@ echo.
 echo --- DOWNLOAD and INSTALL VAGRANT ---
 echo.
 
-IF NOT EXIST c:\vgrant.msi (
-	copy /y NUL c:\vgrant.msi >NUL
-	powershell -Command "(New-Object Net.WebClient).DownloadFile('https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi', 'c:\vgrant.msi')"
-	)
+copy /y NUL c:\vgrant.msi >NUL
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi" "c:\vgrant.msi"
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi
@@ -150,6 +156,7 @@ echo.
 :: delete temp file
 IF EXIST c:\vgrant.msi del c:\vgrant.msi
 IF EXIST c:\vbox.exe  del c:\vbox.exe 
+IF EXIST c:\dp.ps1  del c:\dp.ps1 
 
 if %restart% EQU "false" GOTO END
 
@@ -171,3 +178,6 @@ goto :eof
 :removeCR
 set "Item=%Item%"
 exit /b
+
+
+:exit
