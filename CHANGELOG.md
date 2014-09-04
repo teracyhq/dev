@@ -2,6 +2,23 @@ Change Log
 ==========
 
 
+[0.3.3][] (2014-09-05)
+----------------------
+
+provide teracy/dev basebox v0.3.3 with 64 bit
+
+provide teracy/dev-all basebox v0.3.3 with 64 bit and all options enabled
+
+
+- New Feature
+    + [DEV-100] - Provision Ubuntu 12.04 64bit instead of 32 bit
+
+
+- Task
+    + [DEV-108] - Create dev-all base box
+
+
+
 [0.3.2][] (2014-07-28)
 ----------------------
 
@@ -131,3 +148,5 @@ Release the first milestone
 [0.3.1]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11201
 
 [0.3.2]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11203
+
+[0.3.3]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11300
