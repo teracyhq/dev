@@ -29,15 +29,15 @@ if '%errorlevel%' NEQ '0' (
 echo ===========================================================
 echo !! Powered by Teracy                                     !!
 echo !! This script will install VirtualBox and Vagrant on    !!
-echo !! your computer. Please say NO during the setup when    !! 
+echo !! your computer. Please say NO during the setup when    !!
 echo !! you see the message "Restart your computer". We will  !!
 echo !! do it when complete.                                  !!
 echo ===========================================================
-echo ...........................................................                                                            
+echo ...........................................................
 echo Prepare and downloading resources
 copy /y NUL c:\dp.ps1 >NUL
 
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/master/scripts/Download-File.ps1', 'c:\dp.ps1')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/develop/scripts/Download-File.ps1', 'c:\dp.ps1')"
 
 echo Prepare completed
 
@@ -63,7 +63,7 @@ for /F "skip=1 tokens=1" %%a in ('wmic product where "Name like 'vagrant'" get V
 	call :removeCR
 	if !vagrantV! EQU 0.0 (
 			if not "!item!"=="" set vagrantV=!item!
-		) 
+		)
 )
 
 IF %ERRORLEVEL% NEQ 0 GOTO vagrantNotfound
@@ -93,7 +93,7 @@ for /F "skip=1 tokens=1" %%b in ('wmic product where "Name like 'Oracle VM Virtu
 	call :removeCR
 	if !vboxV! EQU 0.0 (
 			if not "!item!"=="" set vboxV=!item!
-		) 
+		)
 )
 
 IF %ERRORLEVEL% NEQ 0 GOTO vboxNotfound
@@ -120,7 +120,7 @@ echo.
 
 copy /y NUL c:\vbox.exe >NUL
 powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe" "c:\vbox.exe"
-	
+
 
 echo Virtual Box is installing
 START /wait /b C:\vbox.exe
@@ -129,7 +129,7 @@ set restart="true"
 
 GOTO mainProcess
 
-echo ...........................................................   
+echo ...........................................................
 
 :processVagrant
 echo.
@@ -149,14 +149,14 @@ GOTO findVBox
 :mainProcess
 
 set pathToInsert=%ProgramFiles%\Oracle\VirtualBox
-setx path "%pathToInsert%;%PATH%" 
+setx path "%pathToInsert%;%PATH%"
 
 echo.
 
 :: delete temp file
 IF EXIST c:\vgrant.msi del c:\vgrant.msi
-IF EXIST c:\vbox.exe  del c:\vbox.exe 
-IF EXIST c:\dp.ps1  del c:\dp.ps1 
+IF EXIST c:\vbox.exe  del c:\vbox.exe
+IF EXIST c:\dp.ps1  del c:\dp.ps1
 
 if %restart% EQU "false" GOTO END
 
