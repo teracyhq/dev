@@ -13,6 +13,64 @@ Vim
 
 Sublime Text
 ------------
+At Teracy, you are recommended to use the Sublime Text editor for writing codes, markup and
+documents. You can download and install it at http://www.sublimetext.com/.
+
+Installing useful plugins
+``````````````````````````
+
+After having installed Sublime Text, you should install some plugins below:
+
+- **Package Control**: Go to https://sublime.wbond.net/ --> Click **Install Now**.
+   .. note::
+      You need to have Package Control installed and restart the Sublime Text before installing the
+      following plugins.
+
+- `SublimeCodeIntel <https://github.com/SublimeCodeIntel/SublimeCodeIntel>`_: supports all the
+  languages Komodo Editor supports for Code Intelligence.
+- `Web Inspector <https://github.com/sokolovstas/SublimeWebInspector>`_: works on the top of
+  WebInspectorProtocol. All information is displayed in console and text files.
+- `BDD Tools <http://shashikantjagtap.net/speed-up-your-bdd-with-sublime-text-2/>`_: highlights syntax
+  of .feature files.
+  You should install some packages, including: **Behat**, **Cucumber**, and **Gherkin/Cucumber
+  Format**.
+- `Local History <https://github.com/vishr/local-history>`_: maintains the local history of a file.
+- `Trailing Spaces <https://github.com/SublimeText/TrailingSpaces>`_: Allows highlighting trailing
+  spaces and delete them in a flash.
+
+For example, to install the **SublimeCondeIntel**, do as follows:
+
+1. Open the Sublime Text editor.
+2. Press **Command + Shift + P** (on  OS X) / **Ctrl + Shift + P** (on Windows/Linux);
+   Or click **Tool --> Command Pallette...** --> Type **Install** into the Command Pallette --> select
+   **Install Packages** from the list --> hit Enter and wait while  the  Package Control fetches
+   the latest package list --> Type **SublimeCodeIntel**.
+
+Overring default settings
+`````````````````````````` 
+You must always enable white space characters and set ruler to 100 characters by overriding the
+default settings.
+
+1. Open the Sublime Text editor.
+
+2. Click **Preferences** --> **Settings - Users** --> Copy and paste the content below into the settings:
+  
+  ::
+
+    {
+    "color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
+    "draw_white_space": "all",
+    "font_size": 9,
+    "rulers":
+    [
+        100
+    ],
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trailing_spaces_trim_on_save": true
+    }
+
+
 
 Jira Client
 -----------

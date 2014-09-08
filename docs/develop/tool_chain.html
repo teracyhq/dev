@@ -73,6 +73,73 @@ these tools.</p>
 </div>
 <div class="section" id="sublime-text">
 <h2>Sublime Text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h2>
+<p>At Teracy, you are recommended to use the Sublime Text editor for writing codes, markup and
+documents. You can download and install it at <a class="reference external" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a>.</p>
+<div class="section" id="installing-useful-plugins">
+<h3>Installing useful plugins<a class="headerlink" href="#installing-useful-plugins" title="Permalink to this headline">¶</a></h3>
+<p>After having installed Sublime Text, you should install some plugins below:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Package Control</strong>: Go to <a class="reference external" href="https://sublime.wbond.net/">https://sublime.wbond.net/</a> &#8211;&gt; Click <strong>Install Now</strong>.</dt>
+<dd><div class="first last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You need to have Package Control installed and restart the Sublime Text before installing the
+following plugins.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/SublimeCodeIntel/SublimeCodeIntel">SublimeCodeIntel</a>: supports all the
+languages Komodo Editor supports for Code Intelligence.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/sokolovstas/SublimeWebInspector">Web Inspector</a>: works on the top of
+WebInspectorProtocol. All information is displayed in console and text files.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://shashikantjagtap.net/speed-up-your-bdd-with-sublime-text-2/">BDD Tools</a>: highlights syntax
+of .feature files.
+You should install some packages, including: <strong>Behat</strong>, <strong>Cucumber</strong>, and <strong>Gherkin/Cucumber
+Format</strong>.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/vishr/local-history">Local History</a>: maintains the local history of a file.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/SublimeText/TrailingSpaces">Trailing Spaces</a>: Allows highlighting trailing
+spaces and delete them in a flash.</p>
+</li>
+</ul>
+<p>For example, to install the <strong>SublimeCondeIntel</strong>, do as follows:</p>
+<ol class="arabic simple">
+<li>Open the Sublime Text editor.</li>
+<li>Press <strong>Command + Shift + P</strong> (on  OS X) / <strong>Ctrl + Shift + P</strong> (on Windows/Linux);
+Or click <strong>Tool &#8211;&gt; Command Pallette...</strong> &#8211;&gt; Type <strong>Install</strong> into the Command Pallette &#8211;&gt; select
+<strong>Install Packages</strong> from the list &#8211;&gt; hit Enter and wait while  the  Package Control fetches
+the latest package list &#8211;&gt; Type <strong>SublimeCodeIntel</strong>.</li>
+</ol>
+</div>
+<div class="section" id="overring-default-settings">
+<h3>Overring default settings<a class="headerlink" href="#overring-default-settings" title="Permalink to this headline">¶</a></h3>
+<p>You must always enable white space characters and set ruler to 100 characters by overriding the
+default settings.</p>
+<ol class="arabic simple">
+<li>Open the Sublime Text editor.</li>
+<li>Click <strong>Preferences</strong> &#8211;&gt; <strong>Settings - Users</strong> &#8211;&gt; Copy and paste the content below into the settings:</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+<span class="s">&quot;color_scheme&quot;</span><span class="p">:</span> <span class="s">&quot;Packages/Color Scheme - Default/Solarized (Light).tmTheme&quot;</span><span class="p">,</span>
+<span class="s">&quot;draw_white_space&quot;</span><span class="p">:</span> <span class="s">&quot;all&quot;</span><span class="p">,</span>
+<span class="s">&quot;font_size&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+<span class="s">&quot;rulers&quot;</span><span class="p">:</span>
+<span class="p">[</span>
+    <span class="mi">100</span>
+<span class="p">],</span>
+<span class="s">&quot;tab_size&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="s">&quot;translate_tabs_to_spaces&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s">&quot;trailing_spaces_trim_on_save&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="jira-client">
 <h2>Jira Client<a class="headerlink" href="#jira-client" title="Permalink to this headline">¶</a></h2>
@@ -195,7 +262,11 @@ Jira Client measures the exact time you&#8217;ve spent on the issue.</p>
 <li><a class="reference internal" href="#">Toolchain</a><ul>
 <li><a class="reference internal" href="#git">Git</a></li>
 <li><a class="reference internal" href="#vim">Vim</a></li>
-<li><a class="reference internal" href="#sublime-text">Sublime Text</a></li>
+<li><a class="reference internal" href="#sublime-text">Sublime Text</a><ul>
+<li><a class="reference internal" href="#installing-useful-plugins">Installing useful plugins</a></li>
+<li><a class="reference internal" href="#overring-default-settings">Overring default settings</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#jira-client">Jira Client</a><ul>
 <li><a class="reference internal" href="#downloading-and-installation">Downloading and Installation</a></li>
 <li><a class="reference internal" href="#creating-connection">Creating connection</a></li>
