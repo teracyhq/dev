@@ -63,3 +63,10 @@ bash 'configure_virtualenvwrapper' do
     EOF
     not_if 'grep -q pyenv /home/vagrant/.bash_profile'
 end
+
+directory '/home/vagrant/.virtualenvs' do
+    owner 'vagrant'
+    group 'vagrant'
+    mode 00755
+    recursive true
+end
