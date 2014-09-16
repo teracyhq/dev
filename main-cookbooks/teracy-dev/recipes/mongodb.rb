@@ -9,7 +9,7 @@
 if node['teracy-dev']['mongodb']['enabled']
     if !node['teracy-dev']['mongodb']['version'].strip().empty?
         node.override['mongodb']['version'] = node['teracy-dev']['mongodb']['version']
-        node.override['mongodb']['install_method'] = 'source'
+        node.override['mongodb']['install_method'] = 'mongodb-org'
     end
     
     include_recipe 'mongodb::default'
