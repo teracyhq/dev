@@ -2,6 +2,16 @@ Change Log
 ==========
 
 
+[0.3.4][] (2014-09-18)
+----------------------
+
+bug fixes
+
+- Bug
+    + [DEV-116] - problems related to virtualbox guest addition
+    + [DEV-121] - No "source" of install_method for mongodb recipe
+
+
 [0.3.3][] (2014-09-05)
 ----------------------
 
@@ -150,3 +160,5 @@ Release the first milestone
 [0.3.2]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11203
 
 [0.3.3]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11300
+
+[0.3.4]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11400
