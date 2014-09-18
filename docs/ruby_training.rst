@@ -7,16 +7,28 @@ time.
 Installation
 ------------
 
-#. Open the ``Vagrantfile`` file and find:
-    ::
+#. Enable ``ruby`` by opening the ``vagrant_config_override.josn`` file and adding or apppending
+   the content below:
+   ::
 
-        "ruby" => {
-            "enabled" => false # ruby platform development, disabled by default
-        },
-#. Enable ``ruby`` with ``"ruby"`` => ``"enabled" => true``.
+    "chef_json":{
+        "teracy-dev":{
+          "ruby":{
+            "enabled":true,
+            "globals":[
+              {
+                "name":"bundle",
+                "version":""
+              }
+            ]
+          }    
+        }
+    }
 
-#. Disable ``python`` with ``"python" => "enabled" => false`` to save provision time if you do not
-   want to work with it. (You can ignore this step.)
+
+   .. note ::
+    You can see more default configuration at ``vagrant_config.json``.
+
 
 #. ``$ vagrant reload --provision`` if your VM is already running, or ``$ vagrant up`` if it is not
    running yet.
