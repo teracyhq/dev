@@ -162,30 +162,30 @@ Let's get in more detais:
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b features/<issue_key>-<concise_title>
-        $ git push origin features/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b features/<issue-key>-<concise-title>
+        $ git push origin features/<issue-key>-<concise-title>
 
 
     **Working on improvements**
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b improvements/<issue_key>-<concise_title>
-        $ git push origin improvements/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b improvements/<issue-key>-<concise-title>
+        $ git push origin improvements/<issue-key>-<concise-title>
 
     **Working on tasks or sub-tasks**
     ::
     
         $ git fetch upstream
-        $ git checkout upstream/master -b tasks/<issue_key>-<concise_title>
-        $ git push origin tasks/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b tasks/<issue-key>-<concise-title>
+        $ git push origin tasks/<issue-key>-<concise-title>
 
     **Working on bugs**
     ::
     
         $ git fetch upstream
-        $ git checkout upstream/master -b bugs/<issue_key>-<concise_title>
-        $ git push origin bugs/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b bugs/<issue-key>-<concise-title>
+        $ git push origin bugs/<issue-key>-<concise-title>
 
 
     Above are the templates `Branching off` based on an issue's types.
@@ -225,7 +225,7 @@ Let's get in more detais:
     ::
 
         $ git add -a
-        $ git commit -m "<issue_key>|git commit message"
+        $ git commit -m "<issue-key>|git commit message"
         $ git push origin [your-branch-name]
 
 **Step 3: Submitting Pull-request**
@@ -281,18 +281,18 @@ Branch Name Rules
 When start working on a new issue, you always MUST to start a new branch for it and that branch's name
 is based on each type of the issue, which means if the issue is:
 
-- ``feature`` => Branch's name is ``features/<issue_key>-<concise_title>``
-- ``improvement`` => Branch's name is ``improvements/<issue_key>-<concise_title>``
-- ``task or sub-task`` => Branch's name is ``tasks/<issue_key>-<concise_title>``
-- ``bug`` => Branch's name is ``bugs/<issue_key>-<concise_title>``
-- ``critical bug`` => Branch's name is ``hot-fixes/<issue_key>-<concise_title>``
+- ``feature`` => Branch's name is ``features/<issue-key>-<concise-title>``
+- ``improvement`` => Branch's name is ``improvements/<issue-key>-<concise-title>``
+- ``task or sub-task`` => Branch's name is ``tasks/<issue-key>-<concise-title>``
+- ``bug`` => Branch's name is ``bugs/<issue-key>-<concise-title>``
+- ``critical bug`` => Branch's name is ``hot-fixes/<issue-key>-<concise-title>``
 
 In which:
 
-- ``<issue_key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
+- ``<issue-key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
   prefix is based on the type of project.
-- ``<concise_title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
-- ``<issue_key>`` and ``<concise_title>`` is seperated by a ``-`` character.
+- ``<concise-title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
+- ``<issue-key>`` and ``<concise-title>`` is seperated by a ``-`` character.
 
 For example, the issue ``CLT-183 | Sharing Tutorial is not firing email #652``, its branch name can be ``bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652``.
 
@@ -324,7 +324,7 @@ Git commit messages must convey the actual change/ work of that commit. Usually,
 should follow the convention pattern:
 ::
 
-    <issue_key> | <issue_title>: <changes description>
+    <issue-key> | <issue-title>: <changes description>
     <Multi-line description for detail changes, notices, solutions, etc.>
 
 For example:
