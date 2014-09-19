@@ -7,21 +7,15 @@ time.
 Installation
 ------------
 
-#. Enable ``ruby`` by opening the ``vagrant_config_override.josn`` file and adding or apppending
-   the content below:
+#. Enable ``ruby`` by creating (if not exists) or opening the ``vagrant_config_override.josn`` file
+   and adding or apppending the content below:
    ::
 
     "chef_json":{
         "teracy-dev":{
           "ruby":{
-            "enabled":true,
-            "globals":[
-              {
-                "name":"bundle",
-                "version":""
-              }
-            ]
-          }    
+            "enabled":true
+          }
         }
     }
 
@@ -35,7 +29,7 @@ Installation
 
 #. `$ vagrant ssh` and verify if ``ruby`` works:
     ::
-    
+
         $ vagrant ssh
         $ ruby --version
 
