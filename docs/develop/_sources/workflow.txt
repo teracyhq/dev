@@ -10,7 +10,7 @@ rules. What's the fun with a game without rules :-D?
 
 Initializing Working Repositories
 --------------------------------------
-    
+
 To work on a repository project, ``fork`` it first to your git account.
 Your working repositories MUST be cloned from your git account and stored under
 the ``workspace/personal`` directory.
@@ -79,9 +79,9 @@ After initializing working repository successfully, switch to the next step: `Gi
 
 Git Branching Off
 -----------------
- 
+
 Usually, a new branch should be branched off from a target to-be-merged remote branch.
-It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases 
+It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases
 which are not applied:
 Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.
 
@@ -97,15 +97,18 @@ Now branch-2 is on your local and ready for you to work on it.
 This is a demonstration example. ``phuonglm`` is working on
 ``features/DEV-1-fabric-deployment-virtual-machine``, and you are going to work on
 ``features/DEV-2-fabric-deployment-remote-machine`` which depends on
-``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issueNumber>``.
+``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issue-key>``.
+
+(In case, you are working on a branch which depends on many different branches, the branch name should have
+``deps_<issue-key[_issue-key]>``. For example: ``deps_DEV-1_DEV-2``.)
 ::
 
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
     $ git fetch phuonglm                                                                      (2)
-    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b                (3)
+    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
       features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
     $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
-             
+
 
 Details:
     - \(1) Adds the official repository from which you use source code for your issue.
@@ -129,7 +132,7 @@ new updates:
     $ git rebase upstream/develop
     $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 
-.. note:: 
+.. note::
        Git is a distributed version control system, so collaboration like this should be encouraged.
 
 
@@ -162,30 +165,30 @@ Let's get in more detais:
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b features/<issue_key>-<concise_title>
-        $ git push origin features/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b features/<issue-key>-<concise-title>
+        $ git push origin features/<issue-key>-<concise-title>
 
 
     **Working on improvements**
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b improvements/<issue_key>-<concise_title>
-        $ git push origin improvements/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b improvements/<issue-key>-<concise-title>
+        $ git push origin improvements/<issue-key>-<concise-title>
 
     **Working on tasks or sub-tasks**
     ::
-    
+
         $ git fetch upstream
-        $ git checkout upstream/master -b tasks/<issue_key>-<concise_title>
-        $ git push origin tasks/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b tasks/<issue-key>-<concise-title>
+        $ git push origin tasks/<issue-key>-<concise-title>
 
     **Working on bugs**
     ::
-    
+
         $ git fetch upstream
-        $ git checkout upstream/master -b bugs/<issue_key>-<concise_title>
-        $ git push origin bugs/<issue_key>-<concise_title>
+        $ git checkout upstream/master -b bugs/<issue-key>-<concise-title>
+        $ git push origin bugs/<issue-key>-<concise-title>
 
 
     Above are the templates `Branching off` based on an issue's types.
@@ -215,9 +218,9 @@ Let's get in more detais:
         The sample on a resolved-conflict file:
 
         .. image:: _static/workflow/conflict-resolved.png
-    - Adding conflict-resolved-file in git, then continuing to rebase. 
+    - Adding conflict-resolved-file in git, then continuing to rebase.
         ::
-      
+
             $ git add path/to/conflict-resolved-file
             $ git rebase --continue
 
@@ -225,7 +228,7 @@ Let's get in more detais:
     ::
 
         $ git add -a
-        $ git commit -m "<issue_key>|git commit message"
+        $ git commit -m "<issue-key>|git commit message"
         $ git push origin [your-branch-name]
 
 **Step 3: Submitting Pull-request**
@@ -236,21 +239,21 @@ Let's get in more detais:
 
     1. Create Pull-request for your code.
         - Open the **Create Pull Request** form:
-            .. image:: _static/workflow/submit-pull-request-code-1.png            
+            .. image:: _static/workflow/submit-pull-request-code-1.png
 
         - Input the neccessary information into the form:
 
             .. image:: _static/workflow/create-pull-request-form.png
 
-    2. Copy the pull request link on the browser's address bar.   
-        
+    2. Copy the pull request link on the browser's address bar.
+
 
     3. Add Pull-request to your issue.
         - Open your issue --> Click **Workflow** --> Click **Send Pull Request**.
 
             .. image:: _static/workflow/submit-pull-request-issue.png
 
-        - Paste the pull request link into the **Pull Request URL**, then click **Send Pull Request** in the **Send Pull Request** form. 
+        - Paste the pull request link into the **Pull Request URL**, then click **Send Pull Request** in the **Send Pull Request** form.
 
             .. image:: _static/workflow/send-pull-request-form.png
 
@@ -281,18 +284,18 @@ Branch Name Rules
 When start working on a new issue, you always MUST to start a new branch for it and that branch's name
 is based on each type of the issue, which means if the issue is:
 
-- ``feature`` => Branch's name is ``features/<issue_key>-<concise_title>``
-- ``improvement`` => Branch's name is ``improvements/<issue_key>-<concise_title>``
-- ``task or sub-task`` => Branch's name is ``tasks/<issue_key>-<concise_title>``
-- ``bug`` => Branch's name is ``bugs/<issue_key>-<concise_title>``
-- ``critical bug`` => Branch's name is ``hot-fixes/<issue_key>-<concise_title>``
+- ``feature`` => Branch's name is ``features/<issue-key>-<concise-title>``
+- ``improvement`` => Branch's name is ``improvements/<issue-key>-<concise-title>``
+- ``task or sub-task`` => Branch's name is ``tasks/<issue-key>-<concise-title>``
+- ``bug`` => Branch's name is ``bugs/<issue-key>-<concise-title>``
+- ``critical bug`` => Branch's name is ``hot-fixes/<issue-key>-<concise-title>``
 
 In which:
 
-- ``<issue_key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
+- ``<issue-key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
   prefix is based on the type of project.
-- ``<concise_title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
-- ``<issue_key>`` and ``<concise_title>`` is seperated by a ``-`` character.
+- ``<concise-title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
+- ``<issue-key>`` and ``<concise-title>`` is seperated by a ``-`` character.
 
 For example, the issue ``CLT-183 | Sharing Tutorial is not firing email #652``, its branch name can be ``bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652``.
 
@@ -324,7 +327,7 @@ Git commit messages must convey the actual change/ work of that commit. Usually,
 should follow the convention pattern:
 ::
 
-    <issue_key> | <issue_title>: <changes description>
+    <issue-key> | <issue-title>: <changes description>
     <Multi-line description for detail changes, notices, solutions, etc.>
 
 For example:
@@ -379,7 +382,7 @@ https://github.com/hoatle/django-boilerplate.
 
     $ ws
     $ cd personal
-    $ git clone git@github.com/hoatle/django-boilerplate.git 
+    $ git clone git@github.com/hoatle/django-boilerplate.git
     $ cd django-boilerplate
     $ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
     $ git checkout develop

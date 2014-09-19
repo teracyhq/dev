@@ -141,10 +141,12 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <p>This is a demonstration example. <tt class="docutils literal"><span class="pre">phuonglm</span></tt> is working on
 <tt class="docutils literal"><span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></tt>, and you are going to work on
 <tt class="docutils literal"><span class="pre">features/DEV-2-fabric-deployment-remote-machine</span></tt> which depends on
-<tt class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></tt>. On this case, you MUST indicate the branch name with <tt class="docutils literal"><span class="pre">deps_&lt;issueNumber&gt;</span></tt>.</p>
+<tt class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></tt>. On this case, you MUST indicate the branch name with <tt class="docutils literal"><span class="pre">deps_&lt;issue-key&gt;</span></tt>.</p>
+<p>(In case, you are working on a branch which depends on many different branches, the branch name should have
+<tt class="docutils literal"><span class="pre">deps_&lt;issue-key[_issue-key]&gt;</span></tt>. For example: <tt class="docutils literal"><span class="pre">deps_DEV-1_DEV-2</span></tt>.)</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
 $ git fetch phuonglm                                                                      (2)
-$ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b                (3)
+$ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
   features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
 $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
 </pre></div>
@@ -196,26 +198,26 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 <div><p>If you do not know what the meaning of &#8220;Branching-off&#8221; is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p><strong>Working on features</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b features/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin features/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b features/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin features/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on improvements</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on tasks or sub-tasks</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on bugs</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p>Above are the templates <cite>Branching off</cite> based on an issue&#8217;s types.</p>
@@ -259,7 +261,7 @@ $ git rebase --continue
 </ul>
 <p>After finishing your work, add changed files to commit and push your branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git add -a
-$ git commit -m &quot;&lt;issue_key&gt;|git commit message&quot;
+$ git commit -m &quot;&lt;issue-key&gt;|git commit message&quot;
 $ git push origin [your-branch-name]
 </pre></div>
 </div>
@@ -329,18 +331,18 @@ help reviewing, comments, suggestions, etc.</p>
 <p>When start working on a new issue, you always MUST to start a new branch for it and that branch&#8217;s name
 is based on each type of the issue, which means if the issue is:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">feature</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">features/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">improvement</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">improvements/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">tasks/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">feature</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">improvement</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></tt></li>
 </ul>
 <p>In which:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx. The key
+<li><tt class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></tt> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx. The key
 prefix is based on the type of project.</li>
-<li><tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is the issue&#8217;s title which is rewritten in concise way and replacing <tt class="docutils literal"><span class="pre">space</span></tt> with <tt class="docutils literal"><span class="pre">-</span></tt>.</li>
-<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is seperated by a <tt class="docutils literal"><span class="pre">-</span></tt> character.</li>
+<li><tt class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></tt> is the issue&#8217;s title which is rewritten in concise way and replacing <tt class="docutils literal"><span class="pre">space</span></tt> with <tt class="docutils literal"><span class="pre">-</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></tt> is seperated by a <tt class="docutils literal"><span class="pre">-</span></tt> character.</li>
 </ul>
 <p>For example, the issue <tt class="docutils literal"><span class="pre">CLT-183</span> <span class="pre">|</span> <span class="pre">Sharing</span> <span class="pre">Tutorial</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">firing</span> <span class="pre">email</span> <span class="pre">#652</span></tt>, its branch name can be <tt class="docutils literal"><span class="pre">bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652</span></tt>.</p>
 </div>
@@ -363,7 +365,7 @@ of <tt class="docutils literal"><span class="pre">quality</span> <span class="pr
 <h3>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
 <p>Git commit messages must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue-title&gt;: &lt;changes description&gt;
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
 </div>
