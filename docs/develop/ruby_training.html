@@ -68,20 +68,21 @@ time.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><dl class="first docutils">
-<dt>Open the <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>&quot;ruby&quot; =&gt; {
-    &quot;enabled&quot; =&gt; false # ruby platform development, disabled by default
-},
+<li><p class="first">Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> by creating (if not exists) or opening the <tt class="docutils literal"><span class="pre">vagrant_config_override.josn</span></tt> file
+and adding or apppending the content below:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;chef_json&quot;:{
+    &quot;teracy-dev&quot;:{
+      &quot;ruby&quot;:{
+        &quot;enabled&quot;:true
+      }
+    }
+}
 </pre></div>
 </div>
-</dd>
-</dl>
-</li>
-<li><p class="first">Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with <tt class="docutils literal"><span class="pre">&quot;ruby&quot;</span></tt> =&gt; <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
-</li>
-<li><p class="first">Disable <tt class="docutils literal"><span class="pre">python</span></tt> with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to save provision time if you do not
-want to work with it. (You can ignore this step.)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can see more default configuration at <tt class="docutils literal"><span class="pre">vagrant_config.json</span></tt>.</p>
+</div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not
 running yet.</p>
