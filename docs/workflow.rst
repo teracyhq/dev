@@ -10,7 +10,7 @@ rules. What's the fun with a game without rules :-D?
 
 Initializing Working Repositories
 --------------------------------------
-    
+
 To work on a repository project, ``fork`` it first to your git account.
 Your working repositories MUST be cloned from your git account and stored under
 the ``workspace/personal`` directory.
@@ -79,9 +79,9 @@ After initializing working repository successfully, switch to the next step: `Gi
 
 Git Branching Off
 -----------------
- 
+
 Usually, a new branch should be branched off from a target to-be-merged remote branch.
-It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases 
+It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases
 which are not applied:
 Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.
 
@@ -97,15 +97,18 @@ Now branch-2 is on your local and ready for you to work on it.
 This is a demonstration example. ``phuonglm`` is working on
 ``features/DEV-1-fabric-deployment-virtual-machine``, and you are going to work on
 ``features/DEV-2-fabric-deployment-remote-machine`` which depends on
-``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issueNumber>``.
+``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issue-key>``.
+
+(In case, you are working on a branch which depends on many different branches, the branch name should have
+``deps_<issue-key[_issue-key]>``. For example: ``deps_DEV-1_DEV-2``.)
 ::
 
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
     $ git fetch phuonglm                                                                      (2)
-    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b                (3)
+    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
       features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
     $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
-             
+
 
 Details:
     - \(1) Adds the official repository from which you use source code for your issue.
@@ -129,7 +132,7 @@ new updates:
     $ git rebase upstream/develop
     $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 
-.. note:: 
+.. note::
        Git is a distributed version control system, so collaboration like this should be encouraged.
 
 
@@ -175,14 +178,14 @@ Let's get in more detais:
 
     **Working on tasks or sub-tasks**
     ::
-    
+
         $ git fetch upstream
         $ git checkout upstream/master -b tasks/<issue-key>-<concise-title>
         $ git push origin tasks/<issue-key>-<concise-title>
 
     **Working on bugs**
     ::
-    
+
         $ git fetch upstream
         $ git checkout upstream/master -b bugs/<issue-key>-<concise-title>
         $ git push origin bugs/<issue-key>-<concise-title>
@@ -215,9 +218,9 @@ Let's get in more detais:
         The sample on a resolved-conflict file:
 
         .. image:: _static/workflow/conflict-resolved.png
-    - Adding conflict-resolved-file in git, then continuing to rebase. 
+    - Adding conflict-resolved-file in git, then continuing to rebase.
         ::
-      
+
             $ git add path/to/conflict-resolved-file
             $ git rebase --continue
 
@@ -236,21 +239,21 @@ Let's get in more detais:
 
     1. Create Pull-request for your code.
         - Open the **Create Pull Request** form:
-            .. image:: _static/workflow/submit-pull-request-code-1.png            
+            .. image:: _static/workflow/submit-pull-request-code-1.png
 
         - Input the neccessary information into the form:
 
             .. image:: _static/workflow/create-pull-request-form.png
 
-    2. Copy the pull request link on the browser's address bar.   
-        
+    2. Copy the pull request link on the browser's address bar.
+
 
     3. Add Pull-request to your issue.
         - Open your issue --> Click **Workflow** --> Click **Send Pull Request**.
 
             .. image:: _static/workflow/submit-pull-request-issue.png
 
-        - Paste the pull request link into the **Pull Request URL**, then click **Send Pull Request** in the **Send Pull Request** form. 
+        - Paste the pull request link into the **Pull Request URL**, then click **Send Pull Request** in the **Send Pull Request** form.
 
             .. image:: _static/workflow/send-pull-request-form.png
 
@@ -379,7 +382,7 @@ https://github.com/hoatle/django-boilerplate.
 
     $ ws
     $ cd personal
-    $ git clone git@github.com/hoatle/django-boilerplate.git 
+    $ git clone git@github.com/hoatle/django-boilerplate.git
     $ cd django-boilerplate
     $ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
     $ git checkout develop
