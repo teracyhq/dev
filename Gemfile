@@ -8,6 +8,6 @@ group:development do
   gem 'chef', '11.16.4'
   gem 'chefspec', '4.1.1'
   gem 'foodcritic', '4.0.0'
-  gem 'knife-spork', '~> 1.0.17'
+  gem 'knife-spork', '~> 1.4.1'
   gem 'berkshelf', '2.0.3'
 end
