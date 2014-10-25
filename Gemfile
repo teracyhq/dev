@@ -9,5 +9,5 @@ group:development do
   gem 'chefspec', '4.1.1'
   gem 'foodcritic', '4.0.0'
   gem 'knife-spork', '~> 1.4.1'
-  gem 'berkshelf', '2.0.3'
+  gem 'berkshelf', '2.0.18'
 end
