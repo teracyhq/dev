@@ -28,11 +28,16 @@ end
 
 action :create do
   unless exists?
+    directory new_resource.path do
+      user new_resource.owner if new_resource.owner
+      group new_resource.group if new_resource.group
+    end
     Chef::Log.info("Creating virtualenv #{new_resource} at #{new_resource.path}")
     interpreter = new_resource.interpreter ? " --python=#{new_resource.interpreter}" : ""
     execute "#{virtualenv_cmd}#{interpreter} #{new_resource.options} #{new_resource.path}" do
       user new_resource.owner if new_resource.owner
       group new_resource.group if new_resource.group
+      environment ({ 'HOME' => ::Dir.home(new_resource.owner) }) if new_resource.owner
     end
     new_resource.updated_by_last_action(true)
   end
@@ -61,8 +66,8 @@ def load_current_resource
 end
 
 def virtualenv_cmd()
-  if node['python']['install_method'].eql?("source")
-    ::File.join(node['python']['prefix_dir'], "/bin/virtualenv")
+  if ::File.exists?(node['python']['virtualenv_location'])
+    node['python']['virtualenv_location']
   else
     "virtualenv"
   end

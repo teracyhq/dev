@@ -1,6 +1,16 @@
 yum-epel Cookbook CHANGELOG
 ======================
-This file is used to list changes made in each version of the yum-centos cookbook.
+This file is used to list changes made in each version of the yum-epel cookbook.
+
+v0.5.0 (2014-09-02)
+-------------------
+- Add all attribute available to LWRP to allow for tuning.
+
+
+v0.4.0 (2014-07-27)
+-------------------
+- [#9] Allowing list of repositories to reference configurable.
+
 
 v0.3.6 (2014-04-09)
 -------------------

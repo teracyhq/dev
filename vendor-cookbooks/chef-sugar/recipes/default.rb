@@ -17,8 +17,10 @@
 # limitations under the License.
 #
 
+gem_version = run_context.cookbook_collection[cookbook_name].metadata.version
+
 chef_gem('chef-sugar') do
-  version '2.0.0'
+  version gem_version
   action  :nothing
 end.run_action(:install)
 

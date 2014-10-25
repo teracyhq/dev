@@ -16,6 +16,10 @@ Attributes
 The following attributes are set by default
 
 ``` ruby
+default['yum-epel']['repositories'] = %w{epel epel-debuginfo epel-source epel-testing epel-testing-debuginfo epel-testing-source}
+```
+
+``` ruby
 default['yum']['epel']['repositoryid'] = 'epel'
 default['yum']['epel']['description'] = 'Extra Packages for Enterprise Linux 6 - $basearch'
 default['yum']['epel']['mirrorlist'] = 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-5&arch=$basearch'

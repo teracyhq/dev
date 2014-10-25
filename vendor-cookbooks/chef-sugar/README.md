@@ -4,13 +4,11 @@ Chef::Sugar
 [![Build Status](http://img.shields.io/travis/sethvargo/chef-sugar.svg)][travis]
 [![Dependency Status](http://img.shields.io/gemnasium/sethvargo/chef-sugar.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/sethvargo/chef-sugar.svg)][codeclimate]
-[![Gittip](http://img.shields.io/gittip/sethvargo.svg)][gittip]
 
 [gem]: https://rubygems.org/gems/chef-sugar
 [travis]: http://travis-ci.org/sethvargo/chef-suguar
 [gemnasium]: https://gemnasium.com/sethvargo/chef-sugar
 [codeclimate]: https://codeclimate.com/github/sethvargo/chef-sugar
-[gittip]: https://www.gittip.com/sethvargo
 
 Chef Sugar is a Gem & Chef Recipe that includes series of helpful sugar of the Chef core and other resources to make a cleaner, more lean recipe DSL, enforce DRY principles, and make writing Chef recipes an awesome experience!
 
@@ -152,6 +150,18 @@ encrypted_data_bag_item('accounts', 'hipchat')
 encrypted_data_bag_item_for_environment('accounts', 'github')
 ```
 
+### Docker
+Chef Sugar looks for hints to see if the node being converged is a Docker container. When [Ohai supports checking other nodes](https://github.com/opscode/ohai/pull/428), Chef Sugar will automatically pick up the information.
+
+- `docker?`
+
+#### Examples
+```ruby
+template '/runme' do
+  only_if { docker?(node) }
+end
+```
+
 ### Attributes
 Chef Sugar adds more Chef-like DSL to attribute definitions. Instead of using the Ruby hash syntax, you can define attributes using nested namespaces. This DSL may be more friendly to non-Ruby developers. It can safely be mixed-and-matched with the standard syntax.
 
@@ -273,6 +283,10 @@ node.deep_fetch('apache2', 'config', 'root') => node['apache2']['config']['root'
 - `redhat_enterprise_linux?`
 - `scientific_linux?`
 - `ubuntu?`
+- `solaris2?`
+- `aix?`
+- `smartos?`
+- `omnios?`
 
 There are also a series of dynamically defined matchers that map named operating system release versions and comparison operators in the form "#{platform}\_#{operator}\_#{name}?". For example:
 
@@ -371,6 +385,18 @@ log "Skipping git install, version is at #{version_for('mongo', '-v')}"
 ```ruby
 http_request 'http://...' do
   not_if { vagrant? }
+end
+```
+
+### Virtualization
+- `lxc?`
+- `vmware?`
+
+#### Examples
+```ruby
+service 'ntpd' do
+  action [:enable, :start]
+  not_if { lxc? }
 end
 ```
 

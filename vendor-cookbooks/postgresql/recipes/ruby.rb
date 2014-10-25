@@ -2,9 +2,6 @@
 # Cookbook Name:: postgresql
 # Recipe:: ruby
 #
-# Author:: Joshua Timberman (<joshua@opscode.com>)
-# Copyright 2012 Opscode, Inc.
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -56,7 +53,7 @@ rescue LoadError
 
   begin
     chef_gem "pg"
-  rescue Gem::Installer::ExtensionBuildError => e
+  rescue Gem::Installer::ExtensionBuildError, Mixlib::ShellOut::ShellCommandFailed => e
     # Are we an omnibus install?
     raise if RbConfig.ruby.scan(%r{(chef|opscode)}).empty?
     # Still here, must be omnibus. Lets make this thing install!
