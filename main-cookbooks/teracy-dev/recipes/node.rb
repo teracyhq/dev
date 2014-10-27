@@ -9,9 +9,9 @@ if node['teracy-dev']['nodejs']['enabled']
     node_version = ''
     npm_version = ''
     begin
-        node_version = `node -v`
+        node_version = Mixlib::ShellOut.new('node -v').run_command.stdout
         node_version = node_version[1..node_version.length-2]
-        npm_version = `npm -v`
+        npm_version = Mixlib::ShellOut.new('npm -v').run_command.stdout
         npm_version = npm_version[0..npm_version.length-2]
     rescue Exception => e
         node_version = ''

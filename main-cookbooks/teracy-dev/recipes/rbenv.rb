@@ -33,9 +33,9 @@
 
 if node['teracy-dev']['ruby']['enabled']
 
-    node.default[:rbenv][:user]           = 'vagrant'
-    node.default[:rbenv][:group]          = 'vagrant'
-    node.default[:rbenv][:user_home]      = "/home/vagrant"
+    node.default['rbenv']['user']           = 'vagrant'
+    node.default['rbenv']['group']          = 'vagrant'
+    node.default['rbenv']['user_home']      = '/home/vagrant'
 
     include_recipe 'rbenv::default'
     include_recipe 'rbenv::ruby_build'
@@ -45,8 +45,7 @@ if node['teracy-dev']['ruby']['enabled']
     if node_version.strip().empty?
         begin
             versions = []
-
-            list_versions = `rbenv install -l`
+            list_versions = Mixlib::ShellOut.new('rbenv install -l').run_command.stdout
 
             list_versions.each_line.each do |line|
                 if !line.include? 'dev'
