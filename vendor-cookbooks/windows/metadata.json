@@ -12,28 +12,20 @@
     "chef_handler": ">= 0.0.0"
   },
   "recommendations": {
-
   },
   "suggestions": {
-
   },
   "conflicting": {
-
   },
   "providing": {
-
   },
   "replacing": {
-
   },
   "attributes": {
-
   },
   "groupings": {
-
   },
   "recipes": {
-
   },
-  "version": "1.34.6"
+  "version": "1.34.8"
 }

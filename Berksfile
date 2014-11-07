@@ -1,4 +1,4 @@
-site :opscode
+source "https://supermarket.getchef.com"
 
 cookbook 'minitest-handler', '1.3.2'
 cookbook 'apt', '2.6.0'
@@ -13,7 +13,7 @@ cookbook 'java', '1.28.0'
 cookbook 'maven', '1.2.0'
 cookbook 'ark', '0.9.0'
 cookbook 'php', '1.5.0'
-cookbook 'mysql', '5.5.4'
+cookbook 'mysql', '5.6.1'
 cookbook 'mongodb', '0.16.1'
 cookbook 'postgresql', '3.4.10'
 cookbook 'ssh_known_hosts', '1.3.2'
