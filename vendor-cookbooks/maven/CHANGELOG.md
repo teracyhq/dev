@@ -3,6 +3,10 @@ maven Cookbook CHANGELOG
 This file is used to list changes made in each version of the maven cookbook.
 
 
+v1.2.0
+------
+- Adding flag to allow Java not to be managed by cookbook
+
 v1.1.0
 ------
 [COOK-3849] - Update maven 3 to 3.1.1

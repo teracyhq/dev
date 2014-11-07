@@ -124,7 +124,7 @@ end
 
 desc "Installs Berkshelf cookbooks to vendor-cookbooks directory"
 task :berks_install do
-  sh "bundle exec berks install -p vendor-cookbooks"
+  sh "bundle exec berks vendor vendor-cookbooks"
 end
 
 desc "Uploads Berkshelf cookbooks to our chef server."

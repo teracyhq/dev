@@ -17,19 +17,13 @@
 # limitations under the License.
 #
 
-# There is no vim package on RHEL/CentOS derivatives
-# * vim-minimal gives you /bin/vi
-# * vim-enhanced gives you /usr/bin/vim
-vim_base_pkgs = value_for_platform(
-  ["ubuntu", "debian", "arch"] => { "default" => ["vim"] },
-  ["redhat", "centos", "fedora", "scientific"] => { "default" => ["vim-minimal","vim-enhanced"] },
-  "default" => ["vim"]
-)
-
-vim_base_pkgs.each do |vim_base_pkg|
-  package vim_base_pkg
+begin
+  include_recipe "vim::#{node['vim']['install_method']}"
+rescue Chef::Exceptions::RecipeNotFound
+  Chef::Log.warn "A build-essential recipe does not exist for the platform_family: #{node['platform_family']}"
 end
 
-node[:vim][:extra_packages].each do |vimpkg|
-  package vimpkg
+if node['vim']['use_custom_settings']
+  include_recipe 'vim::settings'
 end
+

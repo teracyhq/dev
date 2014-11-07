@@ -1,0 +1,11 @@
+DEPENDENCIES
+  apt
+  build-essential
+    path: .
+    metadata: true
+  freebsd
+
+GRAPH
+  apt (2.6.0)
+  build-essential (2.0.7)
+  freebsd (0.1.10)

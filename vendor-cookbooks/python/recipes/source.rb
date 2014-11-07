@@ -21,6 +21,7 @@
 include_recipe "build-essential"
 
 configure_options = node['python']['configure_options'].join(" ")
+make_options = node['python']['make_options'].join(" ")
 
 packages = value_for_platform_family(
              "rhel" => ["openssl-devel","bzip2-devel","zlib-devel","expat-devel","db4-devel","sqlite-devel","ncurses-devel","readline-devel"],
@@ -34,8 +35,8 @@ end
 version = node['python']['version']
 install_path = "#{node['python']['prefix_dir']}/bin/python#{version.split(/(^\d+\.\d+)/)[1]}"
 
-remote_file "#{Chef::Config[:file_cache_path]}/Python-#{version}.tar.bz2" do
-  source "#{node['python']['url']}/#{version}/Python-#{version}.tar.bz2"
+remote_file "#{Chef::Config[:file_cache_path]}/Python-#{version}.tgz" do
+  source "#{node['python']['url']}/#{version}/Python-#{version}.tgz"
   checksum node['python']['checksum']
   mode "0644"
   not_if { ::File.exists?(install_path) }
@@ -44,9 +45,9 @@ end
 bash "build-and-install-python" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOF
-  tar -jxvf Python-#{version}.tar.bz2
+  tar -zxvf Python-#{version}.tgz
   (cd Python-#{version} && ./configure #{configure_options})
-  (cd Python-#{version} && make && make install)
+  (cd Python-#{version} && make && make #{make_options})
   EOF
   environment({
       "LDFLAGS" => "-L#{node['python']['prefix_dir']} -L/usr/lib",
@@ -56,3 +57,12 @@ bash "build-and-install-python" do
   }) if platform?("ubuntu") && node['platform_version'].to_f >= 12.04
   not_if { ::File.exists?(install_path) }
 end
+
+# Link install as the default python, to support Python 3.x
+# Otherwise the pip and virtualenv recipes won't work properly
+link node['python']['binary'] do
+  to install_path
+  not_if { ::File.exists?(node['python']['binary']) }
+end
+
+

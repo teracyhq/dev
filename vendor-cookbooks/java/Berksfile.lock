@@ -8,6 +8,6 @@ DEPENDENCIES
 GRAPH
   apt (2.4.0)
   chef_handler (1.1.6)
-  java (1.26.0)
+  java (1.27.0)
   windows (1.33.1)
     chef_handler (>= 0.0.0)

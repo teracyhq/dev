@@ -112,7 +112,7 @@ def current_installed_version
     # incase you upgrade pip with pip!
     if new_resource.package_name.eql?('pip')
       delimeter = /\s/
-      version_check_cmd = "pip --version"
+      version_check_cmd = "#{which_pip(@new_resource)} --version"
     end
     result = shell_out(version_check_cmd)
     (result.exitstatus == 0) ? result.stdout.split(delimeter)[1].strip : nil
@@ -151,7 +151,10 @@ end
 
 def pip_cmd(subcommand, version='')
   options = { :timeout => new_resource.timeout, :user => new_resource.user, :group => new_resource.group }
-  options[:environment] = { 'HOME' => ::File.expand_path("~#{new_resource.user}") } if new_resource.user
+  environment = Hash.new
+  environment['HOME'] = Dir.home(new_resource.user) if new_resource.user
+  environment.merge!(new_resource.environment) if new_resource.environment && !new_resource.environment.empty?
+  options[:environment] = environment
   shell_out!("#{which_pip(new_resource)} #{subcommand} #{new_resource.options} #{new_resource.package_name}#{version}", options)
 end
 
@@ -160,8 +163,8 @@ end
 def which_pip(nr)
   if (nr.respond_to?("virtualenv") && nr.virtualenv)
     ::File.join(nr.virtualenv,'/bin/pip')
-  elsif node['python']['install_method'].eql?("source")
-    ::File.join(node['python']['prefix_dir'], "/bin/pip")
+  elsif ::File.exists?(node['python']['pip_location'])
+    node['python']['pip_location']
   else
     'pip'
   end

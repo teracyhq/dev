@@ -36,7 +36,7 @@ git_version = node['teracy-dev']['git']['version'].strip()
 
 current_git_version = ''
 begin
-    current_git_version = `git version`.split(' ')
+    current_git_version = Mixlib::ShellOut.new('git version').run_command.stdout.split(' ')
     current_git_version = current_git_version[current_git_version.length-1]
 rescue Exception => e
     current_git_version = ''
@@ -82,7 +82,16 @@ pc () {
   chmod +s .git/config
 }')
                 file.write_file
-            else
+            end
+        end
+    end
+end
+
+ruby_block 'insert_line' do
+  block do
+        if not node['teracy-dev']['git']['core']['filemode']
+            fileName = '/home/vagrant/.bash_profile'
+            if not File.exist?(fileName)
                 file = File.open(fileName, 'w')
                 file.puts('
 PROMPT_COMMAND=pc

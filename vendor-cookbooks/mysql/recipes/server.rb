@@ -28,6 +28,8 @@ mysql_service node['mysql']['service_name'] do
   remove_anonymous_users node['mysql']['remove_anonymous_users']
   remove_test_database node['mysql']['remove_test_database']
   root_network_acl node['mysql']['root_network_acl']
-  version node['mysql']['version']
+  package_version node['mysql']['server_package_version']
+  package_action node['mysql']['server_package_action']
+  enable_utf8 node['mysql']['enable_utf8']
   action :create
 end

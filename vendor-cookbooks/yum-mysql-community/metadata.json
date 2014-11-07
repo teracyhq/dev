@@ -1,6 +1,6 @@
 {
   "name": "yum-mysql-community",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "description": "Installs/Configures yum-mysql-community",
   "long_description": "",
   "maintainer": "Chef Software, Inc",
@@ -9,7 +9,7 @@
   "platforms": {
   },
   "dependencies": {
-    "yum": ">= 3.0.0"
+    "yum": ">= 3.0"
   },
   "recommendations": {
   },

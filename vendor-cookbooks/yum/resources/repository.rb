@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-actions :create, :delete, :add, :remove
+actions :create, :delete, :add, :remove, :makecache
 
 default_action :create
 
@@ -37,12 +37,14 @@ attribute :http_caching, :kind_of => String, :equal_to => %w(packages all none),
 attribute :include_config, :kind_of => String, :regex => /.*/, :default => nil
 attribute :includepkgs, :kind_of => String, :regex => /.*/, :default => nil
 attribute :keepalive, :kind_of => [TrueClass, FalseClass], :default => nil
+attribute :make_cache, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :max_retries, :kind_of => String, :regex => /.*/, :default => nil
 attribute :metadata_expire, :kind_of => String, :regex => [/^\d+$/, /^\d+[mhd]$/, /never/], :default => nil
 attribute :mirrorexpire, :kind_of => String, :regex => /.*/, :default => nil
 attribute :mirrorlist, :kind_of => String, :regex => /.*/, :default => nil
-attribute :mirror_expire, :kind_of => String, :regex => /^\d+$/, :default => nil
-attribute :mirrorlist_expire, :kind_of => String, :regex => /^\d+$/, :default => nil
+attribute :mirror_expire, :kind_of => String, :regex => [/^\d+$/, /^\d+[mhd]$/], :default => nil
+attribute :mirrorlist_expire, :kind_of => String, :regex => [/^\d+$/, /^\d+[mhd]$/], :default => nil
+attribute :mode, :default => '0644'
 attribute :priority, :kind_of => String, :regex => /^(\d?[0-9]|[0-9][0-9])$/, :default => nil
 attribute :proxy, :kind_of => String, :regex => /.*/, :default => nil
 attribute :proxy_username, :kind_of => String, :regex => /.*/, :default => nil
@@ -58,6 +60,8 @@ attribute :sslclientcert, :kind_of => String, :regex => /.*/, :default => nil
 attribute :sslclientkey, :kind_of => String, :regex => /.*/, :default => nil
 attribute :sslverify, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :timeout, :kind_of => String, :regex => /^\d+$/, :default => nil
+
+attribute :options, :kind_of => Hash
 
 alias_method :url, :baseurl
 alias_method :keyurl, :gpgkey

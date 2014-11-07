@@ -20,7 +20,7 @@
 # limitations under the License.
 #
 
-include_recipe 'java::default'
+include_recipe 'java::default' if node['maven']['install_java']
 include_recipe 'ark::default'
 
 mvn_version = node['maven']['version'].to_s

@@ -1,6 +1,21 @@
 magic_shell CHANGELOG
 =====================
 
+1.0.0
+-----
+* Refactor providers to support whyrun mode
+* Package custom ChefSpec matchers
+* Add Test Kitchen integration test
+* Update ChefSpec tests
+* Expand environment variables (like `$PATH`)
+* Add Rakefile for running tests
+* Use the latest and greatest testing strategies
+
+0.3.1, 0.3.2
+------------
+
+* **No changes** - chefigonre with `knife cookbook site share` was being ignored, so unnecessary artifacts were uploaded
+
 0.3.0
 ----
 

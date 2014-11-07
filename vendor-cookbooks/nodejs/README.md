@@ -1,80 +1,90 @@
-# <a name="title"></a> nodejs-cookbook [![Build Status](https://secure.travis-ci.org/mdxp/nodejs-cookbook.png)](http://travis-ci.org/mdxp/nodejs-cookbook)
+# [nodejs-cookbook](https://github.com/redguide/nodejs)
+[![CK Version](http://img.shields.io/cookbook/v/nodejs.svg)](https://supermarket.getchef.com/cookbooks/nodejs) [![Build Status](https://img.shields.io/travis/redguide/nodejs.svg)](https://travis-ci.org/redguide/nodejs)
 
-DESCRIPTION
-===========
+## DESCRIPTION
 
-Installs Node.JS
+Installs Node.js and manage npm
 
-REQUIREMENTS
-============
-
-
-## Platform
-
-* Tested on Debian 6 and Ubuntu 10.04
-* Should work fine on Centos, RHEL, etc.
-
-## Cookbooks:
-
-* build-essential
-* apt
-
-Opscode cookbooks (http://github.com/opscode/cookbooks/tree/master)
-
-ATTRIBUTES
-==========
-
-* nodejs['install_method'] = source or package
-* nodejs['version'] - release version of node to install
-* nodejs['src_url'] - download location for node source tarball
-* nodejs['dir'] - location where node will be installed, default /usr/local
-* nodejs['npm'] - version of npm to install
-* nodejs['npm_src_url'] - download location for npm source tarball
-* nodejs['check_sha'] - test for valid sha_sum, default: true
-
-USAGE
-=====
+## USAGE
 
 Include the nodejs recipe to install node on your system based on the default installation method:
+```chef
+include_recipe "nodejs"
+```
+Installation method can be customized with attribute `node['nodejs']['install_method']`
 
-*  include_recipe "nodejs"
+### Install methods
 
-Include the install_from_source recipe to install node from sources:
+#### Package
 
-*  include_recipe "nodejs::install_from_source"
+Install node from packages:
 
-Include the install_from_package recipe to install node from packages:
-Note that only apt (Ubuntu, Debian) appears to have up to date packages available.
-Centos, RHEL, etc are non-functional. (Try install_from_binary for those)
+```chef
+node['nodejs']['install_method'] = 'package' # Not necessary because it's the default
+include_recipe "nodejs"
+# Or
+include_recipe "nodejs::nodejs_from_package"
+```
+Note that only apt (Ubuntu, Debian) appears to have up to date packages available. 
+Centos, RHEL, etc are non-functional (try `nodejs_from_binary` for those).
 
-*  include_recipe "nodejs::install_from_package"
+#### Binary
 
-Include the install_from_binary recipe to install node from official prebuilt binaries:
-(Currently Linux x86, x86_64, armv6l only)
+Install node from official prebuilt binaries:
+```chef
+node['nodejs']['install_method'] = 'binary'
+include_recipe "nodejs"
+# Or
+include_recipe "nodejs::nodejs_from_binary"
+```
 
-*  include_recipe "nodejs::install_from_binary"
+#### Source
 
-Include the npm recipe to install npm:
+Install node from sources:
+```chef
+node['nodejs']['install_method'] = 'source'
+include_recipe "nodejs"
+# Or
+include_recipe "nodejs::nodejs_from_source"
+```
 
-*  include_recipe "nodejs::npm"
+## NPM
 
-LICENSE and AUTHOR
-==================
+Npm is included in nodejs installs by default.
+By default, we are using it and call it `embedded`.
+Adding recipe `nodejs::npm` assure you to have npm installed and let you choose install method with `node['nodejs']['npm']['install_method']`
+```chef
+include_recipe "nodejs::npm"
+```
+_Warning:_ This recipe will include the `nodejs` recipe, which by default includes `nodejs::nodejs_from_package` if you did not set `node['nodejs']['install_method']`.
 
-Author:: Marius Ducea (marius@promethost.com)
-Author:: Nathan L Smith (nlloyds@gmail.com)
+## LWRP
 
-Copyright:: 2010-2012, Promet Solutions
-Copyright:: 2012, Cramer Development, Inc.
+### nodejs_npm
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+`nodejs_npm` let you install npm packages from various sources:
+* npm registry:
+ * name: `attribute :package`
+ * version: `attribute :version` (optionnal)
+* url: `attribute :url`
+ * for git use `git://{your_repo}`
+* from a json (packages.json by default): `attribute :json`
+ * use `true` for default
+ * use a `String` to specify json file
+ 
+Packages can be installed globally (by default) or in a directory (by using `attribute :path`)
 
-    http://www.apache.org/licenses/LICENSE-2.0
+You can append more specific options to npm command with `attribute :options` array :  
+ * use an array of options (w/ dash), they will be added to npm call.
+ * ex: `['--production','--force']` or `['--force-latest']`
+ 
+This LWRP try to use npm bare as much as possible (no custom wrapper).
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+#### [Examples](test/cookbooks/nodejs_test/recipes/npm.rb)
+
+## AUTHORS
+
+* Marius Ducea (marius@promethost.com)
+* Nathan L Smith (nlloyds@gmail.com)
+* Guilhem Lettron (guilhem@lettron.fr)
+* Barthelemy Vessemont (bvessemont@gmail.com)

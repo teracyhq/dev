@@ -53,8 +53,8 @@ def oracle_downloaded?(download_path, new_resource)
   if ::File.exists? download_path
     require 'digest'
     if new_resource.checksum =~ /^[0-9a-f]{32}$/
-      downloaded_sha =  Digest::MD5.file(download_path).hexdigest
-      downloaded_sha == new_resource.md5 
+      downloaded_md5 =  Digest::MD5.file(download_path).hexdigest
+      downloaded_md5 == new_resource.checksum
     else
       downloaded_sha =  Digest::SHA256.file(download_path).hexdigest
       downloaded_sha == new_resource.checksum
@@ -90,6 +90,11 @@ action :install do
   app_dir_name, tarball_name = parse_app_dir_name(new_resource.url)
   app_root = new_resource.app_home.split('/')[0..-2].join('/')
   app_dir = app_root + '/' + app_dir_name
+  if new_resource.group
+    app_group = new_resource.group
+  else
+    app_group = new_resource.owner
+  end
 
   unless new_resource.default
     Chef::Log.debug("processing alternate jdk")
@@ -104,10 +109,10 @@ action :install do
     require 'fileutils'
 
     unless ::File.exists?(app_root)
-      description = "create dir #{app_root} and change owner to #{new_resource.owner}"
+      description = "create dir #{app_root} and change owner to #{new_resource.owner}:#{app_group}"
       converge_by(description) do
           FileUtils.mkdir app_root, :mode => new_resource.app_home_mode
-          FileUtils.chown new_resource.owner, new_resource.owner, app_root
+          FileUtils.chown new_resource.owner, app_group, app_root
       end
     end
 
@@ -153,7 +158,7 @@ action :install do
          end
        when /^.*\.(tar.gz|tgz)/
          cmd = shell_out(
-                            %Q[ tar xvzf "#{Chef::Config[:file_cache_path]}/#{tarball_name}" -C "#{Chef::Config[:file_cache_path]}" ]
+                            %Q[ tar xvzf "#{Chef::Config[:file_cache_path]}/#{tarball_name}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner]
                                   )
          unless cmd.exitstatus == 0
            Chef::Application.fatal!("Failed to extract file #{tarball_name}!")
@@ -168,7 +173,7 @@ action :install do
          end
 
        # change ownership of extracted files
-       FileUtils.chown_R new_resource.owner, new_resource.owner, app_root
+       FileUtils.chown_R new_resource.owner, app_group, app_root
      end
      new_resource.updated_by_last_action(true)
   end

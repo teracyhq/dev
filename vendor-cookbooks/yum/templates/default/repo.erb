@@ -99,11 +99,24 @@ sslclientcert=<%= @config.sslclientcert %>
 <% if @config.sslclientkey %>
 sslclientkey=<%= @config.sslclientkey %>
 <% end %>
-<% if @config.sslverify %>
-sslverify=1
-<% else %>
-sslverify=0
+<% unless @config.sslverify.nil? %>
+sslverify=<%= @config.sslverify %>
 <% end %>
 <% if @config.timeout %>
 timeout=<%= @config.timeout %>
 <% end %>
+<% if @config.options -%>
+<%   @config.options.each do |key, value| -%>
+<%= key %>=<%=
+       case value
+       when Array
+         value.join("\n       ")
+       when TrueClass
+         '1'
+       when FalseClass
+         '0'
+       else
+         value
+       end %>
+<%   end -%>
+<% end -%>
