@@ -23,6 +23,7 @@ class Chef
       attribute :version, :kind_of => String, :default => nil
       attribute :package_version, :kind_of => String, :default => nil
       attribute :package_action, :kind_of => String, :default => nil
+      attribute :enable_utf8, :kind_of => String, :default => false
     end
 
     include Opscode::Mysql::Helpers
@@ -118,6 +119,8 @@ class Chef
         return '5.1' if node['platform_version'].to_i == 6
         return '5.5' if node['platform_version'].to_i == 7
         case node['platform_version']
+        when '14.10'
+          default_version = '5.6'
         when 'jessie/sid', '12.04', '13.04', '13.10', '14.04'
           default_version = '5.5'
         when '10.04'
@@ -131,6 +134,10 @@ class Chef
         default_version = '5.5'
       end
       default_version
+    end
+
+    def parsed_enable_utf8
+      return enable_utf8 if enable_utf8
     end
   end
 end

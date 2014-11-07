@@ -1,6 +1,6 @@
 {
   "name": "mysql",
-  "version": "5.5.4",
+  "version": "5.6.1",
   "description": "Provides mysql_service and mysql_client resources",
   "long_description": "",
   "maintainer": "Chef Software, Inc.",
