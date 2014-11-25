@@ -133,13 +133,18 @@
           }
         ]
       },
+      "apache":{
+        "enabled":true,
+        "default_root": "/home/vagrant/workspace/personal",
+        "listen_port": "9999"
+      },
       "php":{
-        "enabled":false,
+        "enabled":true,
         "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
         "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
       },
       "mysql":{
-        "enabled":false,
+        "enabled":true,
         "version":"5.3.6",
         "password":"teracy"
       },
