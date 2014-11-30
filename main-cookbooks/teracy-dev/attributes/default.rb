@@ -25,8 +25,6 @@ default['teracy-dev']['git'] = {
 }
 
 
-
-
 default['teracy-dev']['python'] = {
     'enabled' => true,
     'pip' => {
