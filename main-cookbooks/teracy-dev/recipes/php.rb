@@ -16,7 +16,7 @@ if node['teracy-dev']['php']['enabled']
       bash 'remove php version if need' do
         code <<-EOF
           php_version=$(php -r \@phpinfo\(\)\; | grep 'PHP Version' -m 1 | awk '{print $4}')
-          if [ "$php_version" != "#{node['teracy-dev']['php']['version']}" ]; then
+          if [ "$php_version" != "#{node['teracy-dev']['php']['version']}" ] || [ ! -f /usr/lib/apache2/modules/mod_php5.so ]; then
               apt-get remove php5* -f || true
               rm $(which php) -rf || true
               rm /usr/lib/apache2/modules/libphp5.so -rf || true

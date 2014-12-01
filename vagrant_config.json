@@ -1,12 +1,17 @@
 {
   "vm_box":"teracy/dev",
   //"vm_box":"teracy/dev-all", override this on vagrant_config_override.json
-  // "vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box",
+  //"vm_box": "opscode-ubuntu-1204-amd64-chef",
+  //"vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box",
   "vm_forward_agent":true,
   "vm_forwarded_ports":[
     {
       "guest":8000,
       "host":8000
+    },
+    {
+      "guest":9999,
+      "host":9999
     }
   ],
   "vm_synced_folders":[
@@ -136,7 +141,7 @@
       "apache":{
         "enabled":true,
         "default_root": "/home/vagrant/workspace/personal",
-        "listen_port": "9999"
+        "listen_port":9999
       },
       "php":{
         "enabled":true,
