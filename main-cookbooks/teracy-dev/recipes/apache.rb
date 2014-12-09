@@ -12,7 +12,12 @@ if node['teracy-dev']['apache']['enabled']
     node.default['apache']['listen_ports'] = [node['teracy-dev']['apache']['listen_port']]
     node.default['apache']['user'] = 'vagrant'
     node.default['apache']['group'] = 'vagrant'
-    include_recipe 'apache2'
+
+    apache_installed = Mixlib::ShellOut.new('which apache2').run_command.stdout
+
+    if apache_installed == ""
+        include_recipe 'apache2'
+    end
 
     file "#{node['apache']['dir']}/sites-available/default.conf" do
       action :delete
@@ -42,14 +47,12 @@ if node['teracy-dev']['apache']['enabled']
         mode '0755'
     end
 
-    apache_module 'php5' do
-      enable false
-    end
-    apache_module 'vhost_alias' do
-      enable true
-    end
-
-    service 'apache2' do
-      action :restart
+    bash 'clean up apache mess' do
+        code <<-EOF
+            a2dismod php5 || true;
+            a2enmod vhost_alias || true;
+            service apache2 restart;
+        EOF
+        user 'root'
     end
 end
