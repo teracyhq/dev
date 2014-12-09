@@ -50,3 +50,7 @@ if node['teracy-dev']['ruby']['enabled']
     override['rbenv']['user']           = 'vagrant'
     override['rbenv']['group']          = 'vagrant'
 end
+
+if node['teracy-dev']['apache']['enabled']
+    override['apache']['dir'] = '/etc/apache2'
+end
