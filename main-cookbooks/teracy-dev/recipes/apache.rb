@@ -15,7 +15,7 @@ if node['teracy-dev']['apache']['enabled']
 
     apache_installed = Mixlib::ShellOut.new('which apache2').run_command.stdout
 
-    if apache_installed == ""
+    if apache_installed == ''
         include_recipe 'apache2'
     end
 
