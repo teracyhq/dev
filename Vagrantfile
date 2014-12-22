@@ -101,27 +101,15 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-
+  # View the documentation for the provider you're using for more
+  # information on available options.
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true
 
     # Use VBoxManage to customize the VM. For example to change memory:
-    # vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
-  #
-  # View the documentation for the provider you're using for more
-  # information on available options.
-  config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--memory", "2048"]
-  end
-  #
-  # View the documentation for the provider you're using for more
-  # information on available options.
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
