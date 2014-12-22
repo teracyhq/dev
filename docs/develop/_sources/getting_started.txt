@@ -18,7 +18,7 @@ At Teracy, you need to install the tools below:
 - You MUST install ``git`` to use ``Git Bash``, from now on, it is called ``terminal window``.
 
 - You MUST ALWAYS run ``virtualbox`` and ``Git Bash`` as **administrator** to make symlinks
-  (of virtualenv) work as expected. 
+  (of virtualenv) work as expected.
 
 Automatic Installation
 ----------------------
@@ -51,10 +51,11 @@ Manual Installation
 
 1. Install the latest ``git`` version at http://git-scm.com/.
 
-2. Install ``virtualbox`` with the version of **4.3.12** at
-   https://www.virtualbox.org/wiki/Download_Old_Builds_4_3.
-   
-3. Install ``vagrant`` with the version of **1.6.2** at http://www.vagrantup.com/downloads.html.
+2. Install ``virtualbox`` with the version of **4.3.20** or newer at
+   https://www.virtualbox.org/wiki/Downloads.
+
+3. Install ``vagrant`` with the version of **1.7.1** or newer at
+   http://www.vagrantup.com/downloads.html.
 
 **Notice**:
 
