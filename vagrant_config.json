@@ -21,11 +21,8 @@
     {
       "host":"./home/.virtualenvs",
       "guest":"/home/vagrant/.virtualenvs",
-      "supports": ["linux", "mac"],
-      "mount_options":[
-        "dmode=755",
-        "fmode=755"
-      ]
+      "supports": ["linux", "mac"]
+
     },
     {
       "host":"./home/.ssh",
