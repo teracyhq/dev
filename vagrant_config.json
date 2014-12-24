@@ -158,6 +158,14 @@
           {
             "name":"bundle",
             "version":""
+          },
+          {
+            "name":"compass",
+            "version":""
+          },
+          {
+            "name":"foreman",
+            "version":""
           }
         ]
       },
