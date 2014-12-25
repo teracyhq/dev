@@ -18,6 +18,11 @@ if node['teracy-dev']['java']['enabled']
 
     if node['teracy-dev']['java']['maven']['enabled']
 		node.default['maven']['version'] = node['teracy-dev']['java']['maven']['version']
+        if node['teracy-dev']['java']['maven']['version'] == '3'
+            node.override['maven']['3']['version'] = '3.2.2'
+            node.override['maven']['3']['url'] = 'http://www.us.apache.org/dist/maven/maven-3/3.2.2/binaries/apache-maven-3.2.2-bin.tar.gz'
+            node.override['maven']['3']['checksum'] = 'cce5914cf8797671fc6e10c4e034b453d854edf711cbc664b478d0f04934cb76'
+        end
 		# node['maven']['m2_home'] - defaults to '/usr/local/maven/'
 		# node['maven']['repositories'] - an array of maven repositories to use; must be specified as an array. 
 		# node['maven']['setup_bin'] - Whether or not to put mvn on your system path, defaults to false
