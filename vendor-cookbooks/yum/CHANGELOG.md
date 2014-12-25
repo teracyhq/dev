@@ -2,6 +2,52 @@ yum Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum cookbook.
 
+v3.5.2 (2014-12-24)
+-------------------
+- Fixing redhat-release detection for Redhat 7
+
+v3.5.1 (2014-11-24)
+-------------------
+- Reverting management of ca-certificates because EL5 was broken
+
+v3.5.0 (2014-11-24)
+-------------------
+- Adding management of ca-certificates package to yum_repository provider
+
+v3.4.1 (2014-10-29)
+-------------------
+- Run yum-makecache only_if new_resource.enabled
+- Allow setting of reposdir in global yum config and man page
+- Change default 'obsoletes' behavior to match yum defaults
+
+v3.4.0 (2014-10-15)
+-------------------
+- Dynamically generate the new_resource attributes
+
+v3.3.2 (2014-09-11)
+-------------------
+- Fix globalconfig resource param for http_caching
+
+v3.3.1 (2014-09-04)
+-------------------
+- Fix issue with sslverify if set to false
+- Add fancy badges
+
+v3.3.0 (2014-09-03)
+-------------------
+- Adding tuning attributes for all supported resource parameters
+- Adding options hash parameter
+- Adding (real) rhel-6.5 and centos-7.0 to test-kitchen coverage
+- Updating regex for mirror_expire and mirrorlist_expire to include /^\d+[mhd]$/
+- Updating README so keepcache reflects reality (defaults to false)
+- Changing 'obsoletes' behavior in globalconfig resource to match
+  default behavior. (now defaults to nil, yum defaults to false)
+- Adding makecache action to repository resource
+- Adding mode parameter to repository resource. Defaults to '0644'.
+
+v3.2.4 (2014-08-20)
+-------------------
+#82 - Adding a makecache parameter
 
 v3.2.2 (2014-06-11)
 -------------------

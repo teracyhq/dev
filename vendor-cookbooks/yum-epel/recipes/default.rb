@@ -16,23 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-%w{
-  epel epel-debuginfo epel-source
-  epel-testing epel-testing-debuginfo epel-testing-source
-  }.each do |repo|
+node['yum-epel']['repositories'].each do |repo|
 
   if node['yum'][repo]['managed']
     yum_repository repo do
-      description node['yum'][repo]['description']
       baseurl node['yum'][repo]['baseurl']
-      mirrorlist node['yum'][repo]['mirrorlist']
+      cost node['yum'][repo]['cost']
+      description node['yum'][repo]['description']
+      enabled node['yum'][repo]['enabled']
+      enablegroups node['yum'][repo]['enablegroups']
+      exclude node['yum'][repo]['exclude']
+      failovermethod node['yum'][repo]['failovermethod']
+      fastestmirror_enabled node['yum'][repo]['fastestmirror_enabled']
       gpgcheck node['yum'][repo]['gpgcheck']
       gpgkey node['yum'][repo]['gpgkey']
-      enabled node['yum'][repo]['enabled']
-      cost node['yum'][repo]['cost']
-      exclude node['yum'][repo]['exclude']
-      enablegroups node['yum'][repo]['enablegroups']
-      failovermethod node['yum'][repo]['failovermethod']
       http_caching node['yum'][repo]['http_caching']
       include_config node['yum'][repo]['include_config']
       includepkgs node['yum'][repo]['includepkgs']
@@ -40,16 +37,24 @@
       max_retries node['yum'][repo]['max_retries']
       metadata_expire node['yum'][repo]['metadata_expire']
       mirror_expire node['yum'][repo]['mirror_expire']
+      mirrorlist node['yum'][repo]['mirrorlist']
+      mirrorlist_expire node['yum'][repo]['mirrorlist_expire']
+      password node['yum'][repo]['password']
       priority node['yum'][repo]['priority']
       proxy node['yum'][repo]['proxy']
       proxy_username node['yum'][repo]['proxy_username']
       proxy_password node['yum'][repo]['proxy_password']
+      report_instanceid node['yum'][repo]['report_instanceid']
       repositoryid node['yum'][repo]['repositoryid']
+      skip_if_unavailable node['yum'][repo]['skip_if_unavailable']
+      source node['yum'][repo]['source']
       sslcacert node['yum'][repo]['sslcacert']
       sslclientcert node['yum'][repo]['sslclientcert']
       sslclientkey node['yum'][repo]['sslclientkey']
       sslverify node['yum'][repo]['sslverify']
       timeout node['yum'][repo]['timeout']
+      username node['yum'][repo]['username']
+
       action :create
     end
   end

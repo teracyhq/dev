@@ -25,6 +25,7 @@ The following cookbooks provided by Opscode are required as noted:
 Attributes
 ----------
 * `node['windows']['allow_pending_reboots']` - used to configure the `WindowsRebootHandler` (via the `windows::reboot_handler` recipe) to act on pending reboots. default is true (ie act on pending reboots).  The value of this attribute only has an effect if the `windows::reboot_handler` is in a node's run list.
+* `node['windows']['allow_reboot_on_failure']` - used to register the `WindowsRebootHandler` (via the `windows::reboot_handler` recipe) as an exception handler too to act on reboots not only at the end of successful Chef runs, but even at the end of failed runs. default is false (ie reboot only after successful runs).  The value of this attribute only has an effect if the `windows::reboot_handler` is in a node's run list.
 
 
 Resource/Provider
@@ -115,6 +116,7 @@ servermanagercmd -query
 #### Providers
 - **Chef::Provider::WindowsFeature::DISM**: Uses Deployment Image Servicing and Management (DISM) to manage roles/features.
 - **Chef::Provider::WindowsFeature::ServerManagerCmd**: Uses Server Manager to manage roles/features.
+- **Chef::Provider::WindowsFeaturePowershell**: Uses Powershell to manage roles/features. (see [COOK-3714](https://tickets.opscode.com/browse/COOK-3714)
 
 #### Examples
 Enable the node as a DHCP Server
@@ -152,6 +154,23 @@ Disable Telnet client/server
     action :remove
   end
 end
+```
+
+### windows_font
+Installs a font.
+
+Font files should be included in the cookbooks
+
+#### Actions
+- :install: install a font to the system fonts directory.
+
+#### Attribute Parameters
+- file: The name of the font file name to install. It should exist in the files/default directory of the cookbook you're calling windows_font from. Defaults to the resource name.
+
+#### Examples
+
+```ruby
+windows_font 'Code New Roman.otf'
 ```
 
 ### windows_package
@@ -481,6 +500,8 @@ Server 2008 due to API usage.
 - :delete: deletes a task
 - :run: runs a task
 - :change: changes the un/pw or command of a task
+- :enable: enable a task
+- :disable: disable a task
 
 #### Attribute Parameters
 - name: name attribute, The task name.
@@ -527,17 +548,32 @@ windows_task 'old task' do
 end
 ```
 
+Enable a task named 'Chef client'
+```ruby
+windows_task 'Chef client' do
+  action :enable
+end
+```
+
+Disable a task named 'Chef client'
+```ruby
+windows_task 'Chef client' do
+  action :disable
+end
+```
+
 ### windows_zipfile
-Most version of Windows do not ship with native cli utility for managing compressed files.  This resource provides a pure-ruby implementation for managing zip files. Be sure to use the `not_if` or `only_if` meta parameters to guard the resource for idempotence or action will be taken on the zip file every Chef run.
+Most version of Windows do not ship with native cli utility for managing compressed files.  This resource provides a pure-ruby implementation for managing zip files. Be sure to use the `not_if` or `only_if` meta parameters to guard the resource for idempotence or action will be taken every Chef run.
 
 #### Actions
 - :unzip: unzip a compressed file
+- :zip: zip a directory (recursively)
 
 #### Attribute Parameters
-- path: name attribute. The path where files will be unzipped to.
-- source: The source of the zip file. This can either be a URI or a local path.
-- overwrite: force an overwrite of the files if the already exists.
-- checksum: useful if source is remote, the SHA-256 checksum of the file--if the local file matches the checksum, Chef will not download it
+- path: name attribute. The path where files will be (un)zipped to.
+- source: source of the zip file (either a URI or local path) for :unzip, or directory to be zipped for :zip.
+- overwrite: force an overwrite of the files if they already exist.
+- checksum: for :unzip, useful if source is remote, if the local file matches the SHA-256 checksum, Chef will not download it.
 
 #### Examples
 
@@ -558,11 +594,18 @@ windows_zipfile 'c:/the_codez' do
 end
 ```
 
+Create a local zipfile
+```ruby
+windows_zipfile 'c:/foo/baz/the_codez.zip' do
+  source 'c:/the_codez'
+  action :zip
+end
+```
 
 Exception/Report Handlers
 -------------------------
 ### WindowsRebootHandler
-Required reboots are a necessary evil of configuring and managing Windows nodes.  This report handler (ie fires at the end of successful Chef runs) acts on requested (Chef initiated) or pending (as determined by the OS per configuration action we performed) reboots.  The `allow_pending_reboots` initialization argument should be set to false if you do not want the handler to automatically reboot a node if it has been determined a reboot is pending.  Reboots can still be requested explicitly via the `windows_reboot` LWRP.
+Required reboots are a necessary evil of configuring and managing Windows nodes.  This report handler (ie fires at the end of Chef runs) acts on requested (Chef initiated) or pending (as determined by the OS per configuration action we performed) reboots.  The `allow_pending_reboots` initialization argument should be set to false if you do not want the handler to automatically reboot a node if it has been determined a reboot is pending.  Reboots can still be requested explicitly via the `windows_reboot` LWRP.
 
 ### Initialization Arguments
 - `allow_pending_reboots`: indicator on whether the handler should act on a the Window's 'pending reboot' state. default is true
@@ -636,6 +679,8 @@ override_attributes(
 ```
 
 This will still allow a reboot to be explicitly requested via the `windows_reboot` LWRP.
+
+By default, the handler will only be registered as a report handler, meaning that it will only fire at the end of successful Chef runs. If the run fails, pending or requested reboots will be ignored. This can lead to a situation where some package was installed and notified a reboot request via the `windows_reboot` LWRP, and then the run fails for some unrelated reason, and the reboot request gets dropped because the resource that notified the reboot request will already be up-to-date at the next run and will not request a reboot again, and thus the requested reboot will never be performed. To change this behavior and register the handler as an exception handler that fires at the end of failed runs too, override `node['windows']['allow_reboot_on_failure']` and set the value to true.
 
 
 License & Authors

@@ -1,5 +1,23 @@
 if defined?(ChefSpec)
+  chefspec_version = Gem.loaded_specs["chefspec"].version
+  if chefspec_version < Gem::Version.new('4.1.0')
+    define_method = ChefSpec::Runner.method(:define_runner_method)
+  else
+    define_method = ChefSpec.method(:define_matcher)
+  end
 
+  define_method.call :windows_package
+  define_method.call :windows_feature
+  define_method.call :windows_task
+  define_method.call :windows_path
+  define_method.call :windows_batch
+  define_method.call :windows_pagefile
+  define_method.call :windows_zipfile
+  define_method.call :windows_shortcut
+  define_method.call :windows_auto_run
+  define_method.call :windows_printer
+  define_method.call :windows_printer_port
+  define_method.call :windows_reboot
   #
   # Assert that a +windows_package+ resource exists in the Chef run with the
   # action +:install+. Given a Chef Recipe that installs "Node.js" as a
@@ -442,10 +460,6 @@ if defined?(ChefSpec)
 
   def cancel_windows_reboot(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:windows_reboot, :cancel, resource_name)
-  end
-
-  def create_windows_shortcut(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:windows_shortcut, :create, resource_name)
   end
 
 end
