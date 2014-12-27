@@ -160,7 +160,7 @@ Vagrant.configure("2") do |config|
 
   # Other configs: https://docs.vagrantup.com/v2/vagrantfile/machine_settings.html
 
-  if !data_hash["vm_boot_timeout"].nil? and !data_hash["vm_boot_timeout"].empty?
+  if !data_hash["vm_boot_timeout"].nil?
     config.vm.boot_timeout = data_hash['vm_boot_timeout']
   end
 
@@ -170,9 +170,8 @@ Vagrant.configure("2") do |config|
 
   if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].empty?
     config.vm.box_download_checksum = data_hash['vm_box_download_checksum']
-  end
 
-  if !data_hash["vm_box_download_checksum_type"].nil? and !data_hash["vm_box_download_checksum_type"].empty?
+    # box_download_checksum_type must be specified if box_download_checksum specified
     config.vm.box_download_checksum_type = data_hash['vm_box_download_checksum_type']
   end
 
@@ -188,20 +187,20 @@ Vagrant.configure("2") do |config|
     config.vm.box_download_ca_path = data_hash['vm_box_download_ca_path']
   end
 
-  if !data_hash["vm_box_download_insecure"].nil? and !data_hash["vm_box_download_insecure"].empty?
+  if !data_hash["vm_box_download_insecure"].nil?
     config.vm.box_download_insecure = data_hash['vm_box_download_insecure']
   end
 
   if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].empty?
-    config.vm.communicator = data_hash['vm_communicator']
+    config.vm.communicator = :data_hash['vm_communicator']
   end
 
-  if !data_hash["vm_graceful_halt_timeout"].nil? and !data_hash["vm_graceful_halt_timeout"].empty?
+  if !data_hash["vm_graceful_halt_timeout"].nil?
     config.vm.graceful_halt_timeout = data_hash['vm_graceful_halt_timeout']
   end
 
   if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].empty?
-    config.vm.guest = data_hash['vm_guest']
+    config.vm.guest = :data_hash['vm_guest']
   end
 
   if !data_hash["vm_hostname"].empty?
@@ -213,7 +212,8 @@ Vagrant.configure("2") do |config|
   end
 
   if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].empty?
-    config.vm.usable_port_range = data_hash['vm_usable_port_range']
+    ranges = data_hash['vm_usable_port_range'].split('..').map{|d| Integer(d)}
+    config.vm.usable_port_range = ranges[0]..ranges[1]
   end
 
 end
