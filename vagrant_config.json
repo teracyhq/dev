@@ -214,5 +214,22 @@
         }
       ]
     }
-  }
+  },
+
+  // Other configs
+  "vm_boot_timeout": "300",
+  "vm_box_check_update": true,
+  "vm_box_download_checksum": "",
+  "vm_box_download_checksum_type": "", // "md5", "sha1", "sha256"
+  "vm_box_download_client_cert": "",
+  "vm_box_download_ca_cert": "",
+  "vm_box_download_ca_path": "",
+  "vm_box_download_insecure": "", // true, false
+  "vm_communicator": "", // :ssh, :winrm
+  "vm_graceful_halt_timeout": "60",
+  "vm_guest": "", // :linux
+  "vm_hostname": "",
+  "vm_post_up_message": "",
+  "vm_post_up_message": "",
+  "vm_usable_port_range": "" // 2200..2250
 }

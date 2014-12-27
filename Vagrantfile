@@ -156,4 +156,64 @@ Vagrant.configure("2") do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
 
+
+
+  # Other configs: https://docs.vagrantup.com/v2/vagrantfile/machine_settings.html
+
+  if !data_hash["vm_boot_timeout"].nil? and !data_hash["vm_boot_timeout"].empty?
+    config.vm.boot_timeout = data_hash['vm_boot_timeout']
+  end
+
+  if !data_hash["vm_box_check_update"].nil?
+    config.vm.box_check_update = data_hash['vm_box_check_update']
+  end
+
+  if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].empty?
+    config.vm.box_download_checksum = data_hash['vm_box_download_checksum']
+  end
+
+  if !data_hash["vm_box_download_checksum_type"].nil? and !data_hash["vm_box_download_checksum_type"].empty?
+    config.vm.box_download_checksum_type = data_hash['vm_box_download_checksum_type']
+  end
+
+  if !data_hash["vm_box_download_client_cert"].nil? and !data_hash["vm_box_download_client_cert"].empty?
+    config.vm.box_download_client_cert = data_hash['vm_box_download_client_cert']
+  end
+
+  if !data_hash["vm_box_download_ca_cert"].nil? and !data_hash["vm_box_download_ca_cert"].empty?
+    config.vm.box_download_ca_cert = data_hash['vm_box_download_ca_cert']
+  end
+
+  if !data_hash["vm_box_download_ca_path"].nil? and !data_hash["vm_box_download_ca_path"].empty?
+    config.vm.box_download_ca_path = data_hash['vm_box_download_ca_path']
+  end
+
+  if !data_hash["vm_box_download_insecure"].nil? and !data_hash["vm_box_download_insecure"].empty?
+    config.vm.box_download_insecure = data_hash['vm_box_download_insecure']
+  end
+
+  if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].empty?
+    config.vm.communicator = data_hash['vm_communicator']
+  end
+
+  if !data_hash["vm_graceful_halt_timeout"].nil? and !data_hash["vm_graceful_halt_timeout"].empty?
+    config.vm.graceful_halt_timeout = data_hash['vm_graceful_halt_timeout']
+  end
+
+  if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].empty?
+    config.vm.guest = data_hash['vm_guest']
+  end
+
+  if !data_hash["vm_hostname"].empty?
+    config.vm.hostname = data_hash['vm_hostname']
+  end
+
+  if !data_hash["vm_post_up_message"].nil? and !data_hash["vm_post_up_message"].empty?
+    config.vm.post_up_message = data_hash['vm_post_up_message']
+  end
+
+  if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].empty?
+    config.vm.usable_port_range = data_hash['vm_usable_port_range']
+  end
+
 end
