@@ -23,7 +23,7 @@ if node['teracy-dev']['java']['enabled']
         maven_version = node['teracy-dev']['java']['maven']['version']
         maven_checksum = node['teracy-dev']['java']['maven']['checksum']
 
-        if maven_version.nil? or maven_version.empty?
+        if maven_version.nil? or maven_version.strip().empty?
             Chef::Log.warn('maven_version is nil or empty, set to install 3.2.5 as default')
             maven_version = '3.2.5'
             maven_checksum = '8c190264bdf591ff9f1268dc0ad940a2726f9e958e367716a09b8aaa7e74a755'
@@ -31,7 +31,7 @@ if node['teracy-dev']['java']['enabled']
 
         mirror = 'http://www.us.apache.org/dist/'
         specified_mirror = node['teracy-dev']['java']['maven']['mirror']
-        if !specified_mirror.nil? and !specified_mirror.empty?
+        if !specified_mirror.nil? and !specified_mirror.strip().empty?
             mirror = specified_mirror
             #TODO(hoatle): add the trailing slash if missing?
         end
@@ -62,7 +62,7 @@ if node['teracy-dev']['java']['enabled']
             setup_bin = node['teracy-dev']['java']['maven']['setup_bin']
             mavenrc_opts = node['teracy-dev']['java']['maven']['maverc_opts']
 
-            if !m2_home.nil? and !m2_home.empty?
+            if !m2_home.nil? and !m2_home.strip().empty?
                 node.default['maven']['m2_home'] = m2_home
             end
 
@@ -77,7 +77,7 @@ if node['teracy-dev']['java']['enabled']
                 node.default['maven']['setup_bin'] = false
             end
 
-            if !mavenrc_opts.nil? and !mavenrc_opts.empty?
+            if !mavenrc_opts.nil? and !mavenrc_opts.strip().empty?
                 node.default['maven']['mavenrc']['opts'] = mavenrc_opts
             end
 
