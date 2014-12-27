@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = data_hash['vm_box_url']
 
-  if !data_hash["vm_box_version"].nil? and !data_hash["vm_box_version"].empty?
+  if !data_hash["vm_box_version"].nil? and !data_hash["vm_box_version"].strip().empty?
     config.vm.box_version = data_hash['vm_box_version']
   end
 
