@@ -19,15 +19,17 @@
         "fmode=664"
       ]
     },
-    {
-      "host":"./home/.virtualenvs",
-      "guest":"/home/vagrant/.virtualenvs",
-      "supports": ["linux", "mac"],
-      "mount_options":[
-        "dmode=755",
-        "fmode=755"
-      ]
-    },
+    //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
+    //to enable this, configure vm_sync_folders on vagrant_config_override.json
+    // {
+    //   "host":"./home/.virtualenvs",
+    //   "guest":"/home/vagrant/.virtualenvs",
+    //   "supports": ["linux", "mac"],
+    //   "mount_options":[
+    //     "dmode=755",
+    //     "fmode=755"
+    //   ]
+    // },
     {
       "host":"./home/.ssh",
       "guest":"/home/vagrant/.ssh",
