@@ -53,6 +53,8 @@ copyright = u'2013 - 2014, Teracy, Inc.'
 # The short X.Y version.
 version = '0.3'
 # The full version, including alpha/beta/rc tags.
+HEAD
+DEV-153 | release v0.3.5: bump 0.3.x version to v0.3.6-@
 release = '0.3.5'
 release = '0.3.6-@'
 
