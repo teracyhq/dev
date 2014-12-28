@@ -31,6 +31,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# backward compatible with teracy/dev v0.3.4 base box
+directory '/home/vagrant/.virtualenvs' do
+    action :delete
+    not_if do ::File.exists?('/home/vagrant/.virtualenvs/premkproject') end
+end
+
 python_pip 'virtualenvwrapper' do
     action :install
 end
