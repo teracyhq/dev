@@ -2,6 +2,21 @@ Change Log
 ==========
 
 
+[0.3.5][] (2014-12-28)
+----------------------
+
+bug fixes and improvements
+
+- Bug
+    + [DEV-116] - problems related to virtualbox guest addition
+    + [DEV-154] - 'open_loop': redirection forbidden caused by berkshelf
+
+
+- Improvement
+    + [DEV-156] - Add options to specify base box version
+
+
+
 [0.3.4][] (2014-09-18)
 ----------------------
 
@@ -162,3 +177,5 @@ Release the first milestone
 [0.3.3]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11300
 
 [0.3.4]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11400
+
+[0.3.5]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11900
