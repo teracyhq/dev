@@ -35,24 +35,29 @@
 #     action :install
 # end
 
-
+# backward compatible with teracy/dev v0.3.4 base box
+directory '/home/vagrant/.virtualenvs' do
+    action :delete
+    not_if do ::File.exists?('/home/vagrant/.virtualenvs/premkproject') end
+end
 
 bash 'download_pyenv_virtualenvwrapper' do
-  code <<-EOF
-    git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
-  EOF
-  not_if 'ls -la /usr/local/pyenv/plugins/pyenv-virtualenvwrapper'
+    code <<-EOF
+        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
+    EOF
+    not_if 'ls -la /usr/local/pyenv/plugins/pyenv-virtualenvwrapper'
 end
 
 node['teracy-dev']['python']['versions'].each do |version|
-  bash 'active_virtualenvwrapper' do
-    code <<-EOF
-      source /etc/profile
-      pyenv virtualenvwrapper
-    EOF
-    environment 'PYENV_VERSION' => version
-  end
+    bash 'active_virtualenvwrapper' do
+        code <<-EOF
+            source /etc/profile
+            pyenv virtualenvwrapper
+        EOF
+        environment 'PYENV_VERSION' => version
+    end
 end
+
 
 bash 'configure_virtualenvwrapper' do
     code <<-EOF
