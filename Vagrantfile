@@ -38,16 +38,74 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = data_hash['vm_box_url']
 
+  # Other configs: https://docs.vagrantup.com/v2/vagrantfile/machine_settings.html
+
+  if !data_hash["vm_box_version"].nil? and !data_hash["vm_box_version"].strip().empty?
+    config.vm.box_version = data_hash['vm_box_version']
+  end
+
+  if !data_hash["vm_boot_timeout"].nil?
+    config.vm.boot_timeout = data_hash['vm_boot_timeout']
+  end
+
+  if !data_hash["vm_box_check_update"].nil?
+    config.vm.box_check_update = data_hash['vm_box_check_update']
+  end
+
+  if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].strip().empty?
+    config.vm.box_download_checksum = data_hash['vm_box_download_checksum']
+
+    # box_download_checksum_type must be specified if box_download_checksum is specified
+    config.vm.box_download_checksum_type = data_hash['vm_box_download_checksum_type']
+  end
+
+  if !data_hash["vm_box_download_client_cert"].nil? and !data_hash["vm_box_download_client_cert"].strip().empty?
+    config.vm.box_download_client_cert = data_hash['vm_box_download_client_cert']
+  end
+
+  if !data_hash["vm_box_download_ca_cert"].nil? and !data_hash["vm_box_download_ca_cert"].strip().empty?
+    config.vm.box_download_ca_cert = data_hash['vm_box_download_ca_cert']
+  end
+
+  if !data_hash["vm_box_download_ca_path"].nil? and !data_hash["vm_box_download_ca_path"].strip().empty?
+    config.vm.box_download_ca_path = data_hash['vm_box_download_ca_path']
+  end
+
+  if !data_hash["vm_box_download_insecure"].nil?
+    config.vm.box_download_insecure = data_hash['vm_box_download_insecure']
+  end
+
+  if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].strip().empty?
+    config.vm.communicator = :data_hash['vm_communicator']
+  end
+
+  if !data_hash["vm_graceful_halt_timeout"].nil?
+    config.vm.graceful_halt_timeout = data_hash['vm_graceful_halt_timeout']
+  end
+
+  if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].strip().empty?
+    config.vm.guest = :data_hash['vm_guest']
+  end
+
+  if !data_hash["vm_guest"].nil? and !data_hash["vm_hostname"].strip().empty?
+    config.vm.hostname = data_hash['vm_hostname']
+  end
+
+  if !data_hash["vm_post_up_message"].nil? and !data_hash["vm_post_up_message"].strip().empty?
+    config.vm.post_up_message = data_hash['vm_post_up_message']
+  end
+
+  if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].strip().empty?
+    ranges = data_hash['vm_usable_port_range'].split('..').map{|d| Integer(d)}
+    config.vm.usable_port_range = ranges[0]..ranges[1]
+  end
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-
   data_hash['vm_forwarded_ports'].each do |x|
     config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
   end
-  #default for developing django applications
-
-  # config.vm.network :forwarded_port, guest: 4000, host: 4000 # octopress preview
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -155,5 +213,6 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
 
 end
