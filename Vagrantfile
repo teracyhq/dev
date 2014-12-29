@@ -168,22 +168,22 @@ Vagrant.configure("2") do |config|
     config.vm.box_check_update = data_hash['vm_box_check_update']
   end
 
-  if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].empty?
+  if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].strip().empty?
     config.vm.box_download_checksum = data_hash['vm_box_download_checksum']
 
     # box_download_checksum_type must be specified if box_download_checksum specified
     config.vm.box_download_checksum_type = data_hash['vm_box_download_checksum_type']
   end
 
-  if !data_hash["vm_box_download_client_cert"].nil? and !data_hash["vm_box_download_client_cert"].empty?
+  if !data_hash["vm_box_download_client_cert"].nil? and !data_hash["vm_box_download_client_cert"].strip().empty?
     config.vm.box_download_client_cert = data_hash['vm_box_download_client_cert']
   end
 
-  if !data_hash["vm_box_download_ca_cert"].nil? and !data_hash["vm_box_download_ca_cert"].empty?
+  if !data_hash["vm_box_download_ca_cert"].nil? and !data_hash["vm_box_download_ca_cert"].strip().empty?
     config.vm.box_download_ca_cert = data_hash['vm_box_download_ca_cert']
   end
 
-  if !data_hash["vm_box_download_ca_path"].nil? and !data_hash["vm_box_download_ca_path"].empty?
+  if !data_hash["vm_box_download_ca_path"].nil? and !data_hash["vm_box_download_ca_path"].strip().empty?
     config.vm.box_download_ca_path = data_hash['vm_box_download_ca_path']
   end
 
@@ -191,7 +191,7 @@ Vagrant.configure("2") do |config|
     config.vm.box_download_insecure = data_hash['vm_box_download_insecure']
   end
 
-  if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].empty?
+  if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].strip().empty?
     config.vm.communicator = :data_hash['vm_communicator']
   end
 
@@ -199,19 +199,19 @@ Vagrant.configure("2") do |config|
     config.vm.graceful_halt_timeout = data_hash['vm_graceful_halt_timeout']
   end
 
-  if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].empty?
+  if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].strip().empty?
     config.vm.guest = :data_hash['vm_guest']
   end
 
-  if !data_hash["vm_hostname"].empty?
+  if !data_hash["vm_hostname"].strip().empty?
     config.vm.hostname = data_hash['vm_hostname']
   end
 
-  if !data_hash["vm_post_up_message"].nil? and !data_hash["vm_post_up_message"].empty?
+  if !data_hash["vm_post_up_message"].nil? and !data_hash["vm_post_up_message"].strip().empty?
     config.vm.post_up_message = data_hash['vm_post_up_message']
   end
 
-  if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].empty?
+  if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].strip().empty?
     ranges = data_hash['vm_usable_port_range'].split('..').map{|d| Integer(d)}
     config.vm.usable_port_range = ranges[0]..ranges[1]
   end
