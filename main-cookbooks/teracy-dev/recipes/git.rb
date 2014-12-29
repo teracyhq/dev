@@ -61,8 +61,6 @@ if !git_version.empty?
 else
     execute 'Remove git bin' do
         command <<-COMMAND
-            (sudo rm -rf $(which git))
-            (sudo apt-get remove git -f)
             (sudo rm -rf #{node['git']['prefix']}/bin/git)
         COMMAND
     end
