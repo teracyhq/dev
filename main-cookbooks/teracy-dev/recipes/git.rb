@@ -47,9 +47,24 @@ if !git_version.empty?
         node.override['git']['version'] = git_version
         node.override['git']['url'] = "https://www.kernel.org/pub/software/scm/git/git-#{git_version}.tar.gz"
         node.override['git']['checksum'] = node['teracy-dev']['git']['checksum']
+
+        execute 'Remove git bin' do
+            command <<-COMMAND
+                (sudo rm -rf $(which git))
+                (sudo apt-get remove git -f)
+                (sudo rm -rf #{node['git']['prefix']}/bin/git)
+            COMMAND
+        end
+
         include_recipe 'git::source'
     end
-
+else
+    execute 'Remove git bin' do
+        command <<-COMMAND
+            (sudo rm -rf #{node['git']['prefix']}/bin/git)
+        COMMAND
+    end
+    include_recipe 'git::default'
 end
 
 template '/home/vagrant/.gitconfig' do

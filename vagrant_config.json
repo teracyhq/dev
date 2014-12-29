@@ -87,8 +87,10 @@
         "code.teracy.org"
       ],
       "git":{
-        "version":"2.0.0", //more at https://www.kernel.org/pub/software/scm/git/
-        "checksum": "c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68",
+        // 2.2.1: 367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589
+        // 2.0.0: c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68
+        "version":"2.2.1", //more at https://www.kernel.org/pub/software/scm/git/
+        "checksum": "367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589",
         "user":{
           "name":"Teracy Dev",
           "email":"teracy-dev@teracy.com"
