@@ -66,7 +66,7 @@ if node['teracy-dev']['java']['enabled']
                 node.default['maven']['m2_home'] = m2_home
             end
 
-            if !repositories.nil? and !repositories.empty?
+            if repositories.kind_of?(Array) and !repositories.empty?
                 node.default['maven']['repositories'] = repositories
             end
 
