@@ -34,6 +34,18 @@ default['teracy-dev']['python'] = {
     }
 }
 
+
+default['teracy-dev']['java'] = {
+    'enabled' => false,
+    'version' => '7',
+    'flavor' => 'oracle', # one of 'openjdk', 'oracle' or 'ibm'. Default: 'oracle'
+    'maven' => {
+      'enabled' => false, # works only when java is enabled
+      'version' => '3.2.5', # we're supporting both 2.x.x and 3.x.x
+      'checksum' => '8c190264bdf591ff9f1268dc0ad940a2726f9e958e367716a09b8aaa7e74a755' # sha256
+    }
+}
+
 default['teracy-dev']['ruby'] = {
     'enabled' => false
 }
