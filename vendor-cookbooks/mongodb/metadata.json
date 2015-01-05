@@ -334,5 +334,5 @@
     "mongodb::mms_monitoring_agent": "Installs and configures a MongoDB MMS Monitoring Agent",
     "mongodb::mms_backup_agent": "Installs and configures a MongoDB MMS Backup Agent"
   },
-  "version": "0.16.1"
+  "version": "0.16.2"
 }

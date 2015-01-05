@@ -144,6 +144,7 @@ define :mongodb_instance,
     variables(
       :config => new_resource.config
     )
+    helpers MongoDBConfigHelpers
     mode '0644'
     notifies new_resource.reload_action, "service[#{new_resource.name}]"
   end
@@ -169,6 +170,12 @@ define :mongodb_instance,
     not_if { new_resource.is_mongos }
   end
 
+  # Reload systemctl for RHEL 7+ after modifying the init file.
+  execute 'mongodb-systemctl-daemon-reload' do
+    command 'systemctl daemon-reload'
+    action :nothing
+  end
+
   # init script
   template new_resource.init_file do
     cookbook new_resource.template_cookbook
@@ -178,12 +185,17 @@ define :mongodb_instance,
     mode mode
     variables(
       :provides =>       provider,
+      :dbconfig_file  => new_resource.dbconfig_file,
       :sysconfig_file => new_resource.sysconfig_file,
       :ulimit =>         new_resource.ulimit,
       :bind_ip =>        new_resource.bind_ip,
       :port =>           new_resource.port
     )
     notifies new_resource.reload_action, "service[#{new_resource.name}]"
+
+    if(platform_family?('rhel') && node['platform_version'].to_i >= 7)
+      notifies :run, 'execute[mongodb-systemctl-daemon-reload]', :immediately
+    end
   end
 
   # service
@@ -194,7 +206,7 @@ define :mongodb_instance,
     new_resource.service_notifies.each do |service_notify|
       notifies :run, service_notify
     end
-    notifies :create, 'ruby_block[config_replicaset]' if new_resource.is_replicaset && new_resource.auto_configure_replicaset
+    notifies :create, 'ruby_block[config_replicaset]', :immediately if new_resource.is_replicaset && new_resource.auto_configure_replicaset
     notifies :create, 'ruby_block[config_sharding]', :immediately if new_resource.is_mongos && new_resource.auto_configure_sharding
       # we don't care about a running mongodb service in these cases, all we need is stopping it
     ignore_failure true if new_resource.name == 'mongodb'

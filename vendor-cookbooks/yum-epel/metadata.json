@@ -1,6 +1,6 @@
 {
   "name": "yum-epel",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Installs/Configures yum-epel",
   "long_description": "",
   "maintainer": "Chef",

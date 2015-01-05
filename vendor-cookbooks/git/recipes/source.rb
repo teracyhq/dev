@@ -23,11 +23,13 @@ include_recipe 'yum-epel' if node['platform_family'] == 'rhel' && node['platform
 
 # move this to attributes.
 case node['platform_family']
+when 'fedora'
+  pkgs = %w{ openssl-devel libcurl-devel expat-devel perl-ExtUtils-MakeMaker }
 when 'rhel'
   case node['platform_version'].to_i
   when 5
     pkgs = %w{ expat-devel gettext-devel curl-devel openssl-devel zlib-devel }
-  when 6
+  when 6, 7
     pkgs = %w{ expat-devel gettext-devel libcurl-devel openssl-devel perl-ExtUtils-MakeMaker zlib-devel }
   else
     pkgs = %w{ expat-devel gettext-devel curl-devel openssl-devel perl-ExtUtils-MakeMaker zlib-devel } if node['platform'] == 'amazon'
@@ -55,6 +57,5 @@ execute "Extracting and Building Git #{node['git']['version']} from Source" do
     (mkdir git-#{node['git']['version']} && tar -zxf git-#{node['git']['version']}.tar.gz -C git-#{node['git']['version']} --strip-components 1)
     (cd git-#{node['git']['version']} && make prefix=#{node['git']['prefix']} install)
   COMMAND
-  creates "#{node['git']['prefix']}/bin/git"
   not_if "git --version | grep #{node['git']['version']}"
 end

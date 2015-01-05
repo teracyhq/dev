@@ -15,7 +15,7 @@ stop on runlevel [06]
 
 script
   NAME=<%= @provides %>
-  ENABLE_MONGODB="yes"
+  ENABLE_MONGOD="yes"
   if [ -f <%= @sysconfig_file %> ]; then
     . <%= @sysconfig_file %>;
   fi
