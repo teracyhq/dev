@@ -42,7 +42,6 @@ if node['teracy-dev']['codebox']['enabled']
 
 	# npm install codebox
 	bash 'install codebox for user: ' + user do
-        cwd '/home/' + user
     	code <<-EOH
 			sudo npm install -g codebox -f
         EOH
@@ -53,14 +52,12 @@ if node['teracy-dev']['codebox']['enabled']
     config = {}
     config['user'] = user
     config['install_path'] = install_path
-    config['sync_dir'] = '/home/vagrant/workspace'
+    config['sync_dir'] = node['teracy-dev']['codebox']['sync_dir']
     config['port'] = node['teracy-dev']['codebox']['port']
-    config['nginx_port'] = node['teracy-dev']['codebox']['nginx_port']
-    config['password_enabled'] = node['teracy-dev']['codebox']['password_enabled']
-    config['htpasswd'] = node['teracy-dev']['codebox']['htpasswd']
+    config['script_name'] = '/etc/init.d/codebox'
 
 	# rubocop:disable HashSyntax
-	template '/etc/init.d/codebox_' + config['port'].to_s do
+	template config['script_name'] do
     	source 'codebox.init.erb'
         mode 0755
         owner 'root'
@@ -71,7 +68,7 @@ if node['teracy-dev']['codebox']['enabled']
 
 	service 'codebox_' + config['port'].to_s do
 		supports :status => true, :restart => true
-		start_command 'codebox run ' + config['sync_dir'] + ' -p ' + config['port'].to_s
+		start_command config['script_name'] + ' start'
 		action [:enable, :start]
 	end
 end

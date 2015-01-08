@@ -70,8 +70,6 @@ end
 default['teracy-dev']['codebox'] = {
     'enabled' => false,
     'user' => 'vagrant',
-    'password_enabled' => true,
-    'htpasswd' => 'nvY5kVYwc71xE',
     'port' => 30000,
-    'nginx_port' => 20000
+    'sync_dir' => '/home/vagrant/workspace'
 }
