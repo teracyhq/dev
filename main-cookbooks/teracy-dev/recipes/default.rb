@@ -31,7 +31,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-include_recipe 'teracy-dev::apt'
+#include_recipe 'teracy-dev::apt'
 include_recipe 'teracy-dev::workspace'
 include_recipe 'teracy-dev::alias'
 include_recipe 'teracy-dev::env'

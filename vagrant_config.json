@@ -72,6 +72,7 @@
   "chef_role":"roles",
   "chef_bags_path":"data_bags",
   "chef_recipes":[
+    "teracy-dev::apt",
     "apt",
     "vim",
     "git",
@@ -211,11 +212,32 @@
           //"mirror":"http://mirrors.viethosting.vn/apache/"
         }
       },
-      "apt":[
-        {
-          "name": "tree"
-        }
-      ]
+      "apt":{
+        //the mirror to use instead of the default one on /etc/apt/sources.list
+        // ref: http://mirrors.ubuntu.com/mirrors.txt
+        // ref: http://askubuntu.com/questions/39922/how-do-you-select-the-fastest-mirror-from-the-command-line/
+        // use http://mirrors.digipower.vn/ubuntu/archive/ if you're in Vietnam
+        //"mirror":"http://mirrors.digipower.vn/ubuntu/archive/",
+        "mirror":"",
+        //add more repositories
+        "repositories":[
+          // {
+          //   "name":"vagrant_precise",
+          //   "attributes":{
+          //     "uri":"http://mirrors.digipower.vn/ubuntu/archive/",
+          //     "components":["main","restricted","universe","multiverse"],
+          //     "distribution":"precise",
+          //     "deb_src":true
+          //   },
+          //   "action":"add"
+          //
+        ],
+        "packages":[
+          {
+            "name":"tree"
+          }
+        ]
+      }
     }
   }
   //,
