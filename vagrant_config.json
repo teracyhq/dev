@@ -75,7 +75,6 @@
     "teracy-dev::apt",
     "apt",
     "vim",
-    "git",
     "teracy-dev"
   ],
   "chef_json":{
