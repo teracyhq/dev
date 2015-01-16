@@ -51,6 +51,7 @@ if node['teracy-dev']['apache']['enabled']
         code <<-EOF
             a2dismod php5 || true;
             a2enmod vhost_alias || true;
+            cat /etc/apache2/apache2.conf | grep "EnableSendfile Off" || echo -e "EnableSendfile Off\nEnableMMAP Off" >> /etc/apache2/apache2.conf;
             service apache2 restart;
         EOF
         user 'root'
