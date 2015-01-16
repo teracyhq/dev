@@ -119,7 +119,7 @@ echo --- DOWNLOAD and INSTALL VIRTUAL BOX ---
 echo.
 
 copy /y NUL c:\vbox.exe >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://download.virtualbox.org/virtualbox/4.3.8/VirtualBox-4.3.8-92456-Win.exe" "c:\vbox.exe"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe" "c:\vbox.exe"
 
 
 echo Virtual Box is installing
