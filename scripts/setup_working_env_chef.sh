@@ -11,16 +11,20 @@ function command_exists() {
 }
 
 distributor_id=`command_exists lsb_release && lsb_release -i`
-code_name=$(lsb_release -a | grep Codename | awk '{print $2}')
-vagrant_version="1.7.2"
+
 
 if [[ "$distributor_id" != *Ubuntu* ]]; then
     echo "You're not on Ubuntu. This script is currently provided to run under Ubuntu only."
     exit 1
 fi
 
+code_name=$(lsb_release -a | grep Codename | awk '{print $2}')
+vagrant_version="1.7.2"
+
 if [ "$code_name" == "trusty" ] || [ "$code_name" == "saucy" ] || [ "$code_name" == "utopic" ]; then
     vbox_download_code_name="raring"
+else
+    vbox_download_code_name="$code_name"
 fi
 
 is_32_bit=true
