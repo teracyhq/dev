@@ -48,14 +48,14 @@ fi
 
 
 function install_git() {
-    sudo apt-get install git
+    sudo apt-get -f -y install git
 }
 
 function install_virtualbox() {
     cd /tmp
     wget $virtualbox_link
     sudo dpkg -i virtualbox-*~Ubuntu~*
-    sudo apt-get install -f
+    sudo apt-get install -f -y
     cd -
 }
 
@@ -63,7 +63,7 @@ function install_vagrant() {
     cd /tmp
     wget $vagrant_link
     sudo dpkg -i vagrant_*
-    sudo apt-get install -f
+    sudo apt-get install -f -y
     cd -
 }
 
