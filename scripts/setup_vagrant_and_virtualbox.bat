@@ -119,7 +119,7 @@ echo --- DOWNLOAD and INSTALL VIRTUAL BOX ---
 echo.
 
 copy /y NUL c:\vbox.exe >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://dlc.sun.com.edgesuite.net/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe" "c:\vbox.exe"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe" "c:\vbox.exe"
 
 
 echo Virtual Box is installing
@@ -137,7 +137,7 @@ echo --- DOWNLOAD and INSTALL VAGRANT ---
 echo.
 
 copy /y NUL c:\vgrant.msi >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi" "c:\vgrant.msi"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi" "c:\vgrant.msi"
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi
