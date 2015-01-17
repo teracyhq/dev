@@ -23,15 +23,13 @@ At Teracy, you need to install the tools below:
 Automatic Installation
 ----------------------
 
-To install required packages automatically, you need run **Ubuntu** 12.04. If not, you need to move
-to the next alternative instruction by installing required packages manually.
+To install required packages automatically, you need run **Ubuntu** 12.04 and newer. If not, you
+need to move to the next alternative instruction by installing required packages manually.
 
 Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
 ::
 
-    $ cd /tmp
-    $ wget https://raw.github.com/teracy-official/dev/develop/scripts/setup_working_env_chef.sh
-    $ bash setup_working_env_chef.sh
+    $ cd /tmp && wget -qO- https://raw.github.com/teracy-official/dev/develop/scripts/setup_working_env_chef.sh | bash
 
 On Windows (Windows 7 & Windows 8), follow these steps:
 
@@ -47,14 +45,14 @@ Now you have ``vagrant`` and ``virtualbox`` installed on your system.
 
 
 Manual Installation
-----------------------
+-------------------
 
 1. Install the latest ``git`` version at http://git-scm.com/.
 
-2. Install ``virtualbox`` with the version of **4.3.20** or newer at
+2. Install ``virtualbox`` with the version of **4.3.20** at
    https://www.virtualbox.org/wiki/Downloads.
 
-3. Install ``vagrant`` with the version of **1.7.1** or newer at
+3. Install ``vagrant`` with the version of **1.7.2** or newer at
    http://www.vagrantup.com/downloads.html.
 
 **Notice**:
