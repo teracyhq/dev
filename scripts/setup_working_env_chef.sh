@@ -18,7 +18,7 @@ if [[ "$distributor_id" != *Ubuntu* ]]; then
     exit 1
 fi
 
-code_name=$(lsb_release -a | grep Codename | awk '{print $2}')
+code_name=$(lsb_release -a 2>&1 | grep Codename | awk '{print $2}')
 vagrant_version="1.7.2"
 
 if [ "$code_name" == "trusty" ] || [ "$code_name" == "saucy" ] || [ "$code_name" == "utopic" ]; then
