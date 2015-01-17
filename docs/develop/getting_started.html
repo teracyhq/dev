@@ -81,12 +81,10 @@
 </div>
 <div class="section" id="automatic-installation">
 <h2>Automatic Installation<a class="headerlink" href="#automatic-installation" title="Permalink to this headline">¶</a></h2>
-<p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04. If not, you need to move
-to the next alternative instruction by installing required packages manually.</p>
+<p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04 and newer. If not, you
+need to move to the next alternative instruction by installing required packages manually.</p>
 <p>Installing <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">virtualbox</span></tt>, <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the provided bash script below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /tmp
-$ wget https://raw.github.com/teracy-official/dev/develop/scripts/setup_working_env_chef.sh
-$ bash setup_working_env_chef.sh
+<div class="highlight-python"><div class="highlight"><pre>$ cd /tmp &amp;&amp; wget -qO- https://raw.github.com/teracy-official/dev/develop/scripts/setup_working_env_chef.sh | bash
 </pre></div>
 </div>
 <p>On Windows (Windows 7 &amp; Windows 8), follow these steps:</p>
@@ -102,9 +100,9 @@ $ bash setup_working_env_chef.sh
 <h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install the latest <tt class="docutils literal"><span class="pre">git</span></tt> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a>.</li>
-<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.20</strong> or newer at
+<li>Install <tt class="docutils literal"><span class="pre">virtualbox</span></tt> with the version of <strong>4.3.20</strong> at
 <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>.</li>
-<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.7.1</strong> or newer at
+<li>Install <tt class="docutils literal"><span class="pre">vagrant</span></tt> with the version of <strong>1.7.2</strong> or newer at
 <a class="reference external" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a>.</li>
 </ol>
 <p><strong>Notice</strong>:</p>
