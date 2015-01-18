@@ -177,12 +177,13 @@
       "apache":{
         "enabled":true,
         "default_root": "/home/vagrant/workspace/personal",
-        "listen_port":9999
+        "listen_port":9999,
+        "version" : "2.4" // "2.2" or "2.4" only
       },
       "php":{
         "enabled":true,
-        "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
-        "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
+        "version":"5.5.20", //empty string: default ubuntu distribution; http://php.net/downloads.php
+        "checksum":"9dfc1d4d2b44fb7e2b4ee9651d032203"
       },
       "mysql":{
         "enabled":true,
