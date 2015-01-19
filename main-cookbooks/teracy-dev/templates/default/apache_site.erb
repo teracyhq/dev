@@ -8,12 +8,12 @@ UseCanonicalName Off
   DocumentRoot <%= node['apache']['docroot_dir'] %>/
   <Directory />
     Options FollowSymLinks
-    AllowOverride None
+    AllowOverride All
   </Directory>
 
   <Directory <%= node['apache']['docroot_dir'] %>/>
     Options Indexes FollowSymLinks MultiViews
-    AllowOverride None
+    AllowOverride All
     <% if node['apache']['version'] == '2.4' -%>
     Require all granted
     # This directive allows us to have apache2's default start page
@@ -57,12 +57,12 @@ UseCanonicalName Off
   VirtualDocumentRoot <%= node['apache']['docroot_dir'] %>/%-4+
   <Directory />
     Options FollowSymLinks
-    AllowOverride None
+    AllowOverride All
   </Directory>
 
   <Directory <%= node['apache']['docroot_dir'] %>/ >
     Options Indexes FollowSymLinks MultiViews
-    AllowOverride None
+    AllowOverride All
     <% if node['apache']['version'] == '2.4' -%>
     Require all granted
     # This directive allows us to have apache2's default start page
