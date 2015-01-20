@@ -17,36 +17,27 @@ if node['teracy-dev']['apache']['enabled']
     apache_installed = Mixlib::ShellOut.new('which apache2').run_command.stdout
     apache_version =  Mixlib::ShellOut.new('apache2 -v | grep -o "[0-9]\.[0-9]"').run_command.stdout
     if apache_installed == '' or apache_version != node['teracy-dev']['apache']['version']
-        bash 'clean up previous install apapche' do
+        bash 'clean up previous install Apache' do
             code <<-EOF
                 apt-get purge apache2 -y -f
                 apt-get purge apache2* -y -f
                 apt-get purge apache2 apache2-utils apache2.2-bin apache2-common -y -f
-                apt-get install -y python-software-properties
                 apt-get autoremove
                 rm -rf /etc/apache2 && rm -rf /usr/lib/apache2
             EOF
             user 'root'
         end
         if node['teracy-dev']['apache']['version'] == '2.2'
-            bash 'remove apache 2.4 ppa' do
-                code <<-EOF
-                    add-apt-repository -y --remove ppa:ondrej/apache2
-                    apt-get update
-                EOF
-                user 'root'
+            apt_repository 'apache24' do
+                action :remove
             end
         else
-            bash 'add apache 2.4 ppa' do
-                code <<-EOF
-                    add-apt-repository -y ppa:ondrej/apache2
-                    apt-get update
-                EOF
-                user 'root'
+            apt_repository 'apache24' do
+                uri 'ppa:ondrej/apache2'
+                distribution node['lsb']['codename']
+                action :add
             end
         end
-        Mixlib::ShellOut.new('apt-get update').run_command
-
         include_recipe 'apache2'
     end
 
