@@ -43,9 +43,10 @@
         "dmode=775",
         "fmode=664"
       ]
-    },
+    }
     //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
     //to enable this, configure vm_sync_folders on vagrant_config_override.json
+    //WARNING: enable this will cause bad performance impact of the Python apps
     // {
     //   "host":"./home/.virtualenvs",
     //   "guest":"/home/vagrant/.virtualenvs",
@@ -55,14 +56,15 @@
     //     "fmode=755"
     //   ]
     // },
-    {
-      "host":"./home/.ssh",
-      "guest":"/home/vagrant/.ssh",
-      "mount_options":[
-        "dmode=775",
-        "fmode=600"
-      ]
-    }
+    //disable .ssh mapping due to this: https://issues.teracy.org/browse/DEV-162
+    // {
+    //   "host":"./home/.ssh",
+    //   "guest":"/home/vagrant/.ssh",
+    //   "mount_options":[
+    //     "dmode=775",
+    //     "fmode=600"
+    //   ]
+    // }
   ],
   "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[

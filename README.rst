@@ -225,14 +225,54 @@ Follow the command below and you're done:
 **5. How to use ssh keys on the virtual machine**?
 
 
-``config.ssh.forward_agent = true`` is enabled by default. It means that we do not have to specify username & password each time when working with Git like
-``pull, push, rebase, etc.``.
+``"vm_forward_agent":true`` is enabled by default. It means that we do not have to specify username
+and password each time when working with Git like ``pull, push, rebase, etc.``.
 
 However, if you want to use new created ssh keys for the Vagrant box, then you need to set
-``config.ssh.forward_agent = false`` on ``Vagrantfile`` or comment that line.
+``"vm_forward_agent":false`` on ``vagrant_config_override.json``.
 
-- ``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual  machine are in sync. You
-  can copy your existing ssh keys into one location and it will be available in the other location;
+- Get ``teracy-dev/home/.ssh`` on the host machine and ``~/.ssh`` on the virtual machine in sync by
+adding this line on ``vagrant_config_override.json``:
+::
 
-- Or create new ssh keys on the virtual machine, and these keys will be copied
+    "vm_synced_folders":[
+      {
+        "host":"./workspace",
+        "guest":"/home/vagrant/workspace",
+        "mount_options":[
+          "dmode=775",
+          "fmode=664"
+        ]
+      },
+      //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
+      //to enable this, configure vm_sync_folders on vagrant_config_override.json
+      //WARNING: enable this will cause bad performance impact of the Python apps
+      // {
+      //   "host":"./home/.virtualenvs",
+      //   "guest":"/home/vagrant/.virtualenvs",
+      //   "supports": ["linux", "mac"],
+      //   "mount_options":[
+      //     "dmode=755",
+      //     "fmode=755"
+      //   ]
+      // },
+      //disable .ssh mapping due to this: https://issues.teracy.org/browse/DEV-162
+      {
+        "host":"./home/.ssh",
+        "guest":"/home/vagrant/.ssh",
+        "mount_options":[
+          "dmode=775",
+          "fmode=600"
+        ]
+      }
+    ],
+
+
+then ``$ vagrant reload``.
+
+After that you could copy your existing ssh keys into one location and it will be synced in both
+.ssh directories.
+
+
+- Or create new ssh keys on the virtual machine, and these keys will be synced
   into ``teracy-dev/home/.ssh``.
