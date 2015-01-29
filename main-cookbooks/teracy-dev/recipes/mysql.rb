@@ -24,11 +24,13 @@ if node['teracy-dev']['mysql']['enabled']
 
     # force apt-get update
     # https://gist.github.com/lvnilesh/4039324/#comment-984780
-    execute 'compile-time-apt-get-update' do
-      command 'apt-get update'
-      ignore_failure true
-      action :nothing
-    end.run_action(:run)
+    if !mysql_installed?
+      execute 'compile-time-apt-get-update' do
+        command 'apt-get update'
+        ignore_failure true
+        action :nothing
+      end.run_action(:run)
+    end
 
     include_recipe 'mysql::server'
     include_recipe 'mysql::client'
