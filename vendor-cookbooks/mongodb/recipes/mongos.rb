@@ -26,7 +26,7 @@ node.override['mongodb']['instance_name'] = 'mongos'
 include_recipe 'mongodb::install'
 include_recipe 'mongodb::mongo_gem'
 
-service node[:mongodb][:default_init_name] do
+service 'mongodb' do
   action [:disable, :stop]
 end
 

@@ -5,7 +5,8 @@
 # chkconfig: 35 85 15
 # description: Mongo is a scalable, document-oriented database.
 # processname: <%= @provides %>
-# config: <%= @dbconfig_file %>
+# config: /etc/mongod.conf
+# pidfile: /var/run/mongo/mongo.pid
 
 . /etc/rc.d/init.d/functions
 

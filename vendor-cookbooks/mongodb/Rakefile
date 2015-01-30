@@ -6,12 +6,12 @@ require 'rake/testtask'
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new do |t|
-  t.rspec_opts = 'test/unit'
+  t.rspec_opts = '--default_path test/unit'
 end
 
 require 'rubocop/rake_task'
 desc 'Run RuboCop to check style'
-RuboCop::RakeTask.new(:rubocop) do |task|
+Rubocop::RakeTask.new(:rubocop) do |task|
   task.patterns = ['**/*.rb']
   # only show the files with failures
   #task.formatters = ['files']

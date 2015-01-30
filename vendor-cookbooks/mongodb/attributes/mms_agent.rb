@@ -1,7 +1,7 @@
 default['mongodb']['mms_agent']['api_key'] = nil
 default['mongodb']['mms_agent']['package_url'] = 'https://mms.mongodb.com/download/agent/%{agent_type}/mongodb-mms-%{agent_type}-agent'
 
-default['mongodb']['mms_agent']['monitoring']['version'] = '2.2.0.70-1'
+default['mongodb']['mms_agent']['monitoring']['version'] = '2.1.2.43-1'
 default['mongodb']['mms_agent']['monitoring']['mmsApiKey'] = node['mongodb']['mms_agent']['api_key']
 default['mongodb']['mms_agent']['monitoring']['mmsBaseUrl'] = 'https://mms.mongodb.com'
 default['mongodb']['mms_agent']['monitoring']['configCollectionsEnabled'] = true
@@ -16,8 +16,8 @@ default['mongodb']['mms_agent']['monitoring']['enableMunin'] = true
 default['mongodb']['mms_agent']['monitoring']['useSslForAllConnections'] = false
 default['mongodb']['mms_agent']['monitoring']['sslRequireValidServerCertificates'] = false
 
-default['mongodb']['mms_agent']['backup']['version'] = '2.1.0.106-1'
-default['mongodb']['mms_agent']['backup']['mmsApiKey'] = node['mongodb']['mms_agent']['api_key']
+default['mongodb']['mms_agent']['backup']['version'] = '1.4.6.43-1'
+default['mongodb']['mms_agent']['backup']['apiKey'] = node['mongodb']['mms_agent']['api_key']
 default['mongodb']['mms_agent']['backup']['mothership'] = 'api-backup.mongodb.com'
 default['mongodb']['mms_agent']['backup']['https'] = true
 default['mongodb']['mms_agent']['backup']['sslRequireValidServerCertificates'] = false
