@@ -1,6 +1,6 @@
 {
   "name": "yum",
-  "version": "3.4.1",
+  "version": "3.5.2",
   "description": "Configures various yum components on Red Hat-like systems",
   "long_description": "",
   "maintainer": "Chef",

@@ -60,6 +60,7 @@ action :config do
     cmd << "/bindings:#{@new_resource.protocol.to_s}/*:#{@new_resource.port}:"
     Chef::Log.debug(cmd)
     shell_out!(cmd)
+    @new_resource.updated_by_last_action(true)
   end
 
   if @new_resource.path
@@ -67,6 +68,7 @@ action :config do
     cmd << "/physicalPath:\"#{win_friendly_path(@new_resource.path)}\""
     Chef::Log.debug(cmd)
     shell_out!(cmd)
+    @new_resource.updated_by_last_action(true)
   end
   
   if @new_resource.site_id
@@ -74,6 +76,7 @@ action :config do
     cmd << " /id:#{@new_resource.site_id}"
     Chef::Log.debug(cmd)
     shell_out!(cmd)
+    @new_resource.updated_by_last_action(true)
   end
 
   # pools looks like it's actually part of the app

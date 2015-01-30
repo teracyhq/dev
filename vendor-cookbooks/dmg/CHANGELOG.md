@@ -2,6 +2,9 @@ dmg Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the dmg ookbook.
 
+v2.2.2 (2014-11-12)
+-------------------
+- #23, add chefspec matchers
 
 v2.2.0 (2014-02-25)
 -------------------

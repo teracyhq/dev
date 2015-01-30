@@ -21,41 +21,56 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Gather a list of all nodes, warning if using Chef Solo
-if Chef::Config[:solo]
-  Chef::Log.warn 'ssh_known_hosts requires Chef search - Chef Solo does not support search!'
-
-  # On Chef Solo, we still want the current node to be in the ssh_known_hosts
-  hosts = [node]
+if node['ssh_known_hosts']['use_data_bag_cache']
+  # Load hosts from the ssh known hosts cacher (if the data bag exists)
+  unless Chef::DataBag.list.key?(node['ssh_known_hosts']['cacher']['data_bag'])
+    fail 'use_data_bag_cache is set but the configured data bag was not found'
+  end
+  
+  hosts = data_bag_item(
+    node['ssh_known_hosts']['cacher']['data_bag'],
+    node['ssh_known_hosts']['cacher']['data_bag_item']
+  )['keys']
+  Chef::Log.info "hosts data bag: #{hosts.inspect}"
 else
-  hosts = partial_search(:node, "keys_ssh:* NOT name:#{node.name}",
-                         :keys => {
-                           'hostname' => [ 'hostname' ],
-                           'fqdn'     => [ 'fqdn' ],
-                           'ipaddress' => [ 'ipaddress' ],
-                           'host_rsa_public' => [ 'keys', 'ssh', 'host_rsa_public' ],
-                           'host_dsa_public' => [ 'keys', 'ssh', 'host_dsa_public' ]
-                         }
-                        ).collect do |host|
-                          {
-                            'fqdn' => host['fqdn'] || host['ipaddress'] || host['hostname'],
-                            'key' => host['host_rsa_public'] || host['host_dsa_public']
-                          }
+  # Gather a list of all nodes, warning if using Chef Solo
+  if Chef::Config[:solo]
+    Chef::Log.warn 'ssh_known_hosts requires Chef search - Chef Solo does not support search!'
+
+    # On Chef Solo, we still want the current node to be in the ssh_known_hosts
+    hosts = [node]
+  else
+    hosts = partial_search(:node, "keys_ssh:* NOT name:#{node.name}",
+                           :keys => {
+                             'hostname' => [ 'hostname' ],
+                             'fqdn'     => [ 'fqdn' ],
+                             'ipaddress' => [ 'ipaddress' ],
+                             'host_rsa_public' => [ 'keys', 'ssh', 'host_rsa_public' ],
+                             'host_dsa_public' => [ 'keys', 'ssh', 'host_dsa_public' ]
+                           }
+                          ).collect do |host|
+                            {
+                              'fqdn' => host['fqdn'] || host['ipaddress'] || host['hostname'],
+                              'key' => host['host_rsa_public'] || host['host_dsa_public']
+                            }
+    end
   end
 end
 
 # Add the data from the data_bag to the list of nodes.
 # We need to rescue in case the data_bag doesn't exist.
-begin
-  hosts += data_bag('ssh_known_hosts').collect do |item|
-    entry = data_bag_item('ssh_known_hosts', item)
-    {
-      'fqdn' => entry['fqdn'] || entry['ipaddress'] || entry['hostname'],
-      'key'  => entry['rsa'] || entry['dsa']
-    }
+if Chef::DataBag.list.key?('ssh_known_hosts')
+  begin
+    hosts += data_bag('ssh_known_hosts').collect do |item|
+      entry = data_bag_item('ssh_known_hosts', item)
+      {
+        'fqdn' => entry['fqdn'] || entry['ipaddress'] || entry['hostname'],
+        'key'  => entry['rsa'] || entry['dsa']
+      }
+    end
+  rescue
+    Chef::Log.info "Could not load data bag 'ssh_known_hosts'"
   end
-rescue
-  Chef::Log.info "Could not load data bag 'ssh_known_hosts'"
 end
 
 # Loop over the hosts and add 'em

@@ -34,6 +34,7 @@ action :add do
     Chef::Log.debug(cmd)
     shell_out!(cmd)
     Chef::Log.info("App created")
+    @new_resource.updated_by_last_action(true)
   else
     Chef::Log.debug("#{@new_resource} app already exists - nothing to do")
   end
@@ -47,6 +48,7 @@ action :config do
   cmd << " /enabledProtocols:\"#{@new_resource.enabled_protocols}\"" if @new_resource.enabled_protocols
   Chef::Log.debug(cmd)
   shell_out!(cmd)
+  @new_resource.updated_by_last_action(true)
 
   if @new_resource.physical_path
     cmd = "#{appcmd} set vdir /vdir.name:\"#{vdir_identifier}\""

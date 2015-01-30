@@ -1,3 +1,7 @@
+v2.1.6 (2014-11-12)
+-------------------
+- [#78] Adds new_resource.updated_by_last_action calls
+
 v2.1.5 (2014-09-15)
 -------------------
 - [#68] Add win_friendly_path to all appcmd.exe /physicalPath arguments

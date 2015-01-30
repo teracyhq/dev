@@ -1,6 +1,11 @@
-xml Cookbook CHANGELOG
-=======================
-This file is used to list changes made in each version of the xml cookbook.
+v1.2.9 (2014-12-10)
+-------------------
+- Re-release with stove 3.2.2 to get a metadata.rb
+
+v1.2.8 (2014-12-09)
+-------------------
+- [#11] Fix warning message from build-essential
+- [#13] pin nokogiri to a working version
 
 v1.2.6 (2014-06-17)
 -------------------

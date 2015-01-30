@@ -23,6 +23,8 @@ node['postgresql']['server']['packages'].each do |pg_pack|
 
 end
 
+include_recipe "postgresql::server_conf"
+
 service "postgresql" do
   service_name node['postgresql']['server']['service_name']
   supports :restart => true, :status => true, :reload => true

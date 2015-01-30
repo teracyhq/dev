@@ -24,8 +24,22 @@ def whyrun_supported?
 end
 
 action :create do
-  key = (new_resource.key || `ssh-keyscan -H -t#{node['ssh_known_hosts']['key_type']} -p #{new_resource.port} #{new_resource.host}`)
-  comment = key.split("\n").first || ""
+
+  if new_resource.key
+
+    if new_resource.key_type == 'rsa' || new_resource.key_type == 'dsa'
+      key_type = "ssh-#{new_resource.key_type}"
+    else
+      key_type = new_resource.key_type
+    end
+
+    key = "#{new_resource.host} #{key_type} #{new_resource.key}"
+    
+  else
+
+    key = `ssh-keyscan -t#{node['ssh_known_hosts']['key_type']} -p #{new_resource.port} #{new_resource.host}`
+  end
+    comment = key.split("\n").first || ""
 
   if key_exists?(key, comment)
     Chef::Log.debug "Known hosts key for #{new_resource.name} already exists - skipping"

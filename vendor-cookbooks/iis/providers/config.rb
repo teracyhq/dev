@@ -29,6 +29,7 @@ action :config do
   Chef::Log.debug(cmd)
   shell_out!(cmd, :returns => @new_resource.returns)
   Chef::Log.info("IIS Config command run")
+  @new_resource.updated_by_last_action(true)
 end
 
 private
