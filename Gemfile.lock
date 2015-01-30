@@ -3,7 +3,7 @@ GEM
   specs:
     addressable (2.3.6)
     app_conf (0.4.2)
-    berkshelf (3.2.0)
+    berkshelf (3.2.2)
       addressable (~> 2.3.4)
       berkshelf-api-client (~> 1.2)
       buff-config (~> 1.0)
@@ -57,7 +57,7 @@ GEM
       hashie (~> 2.0)
       mixlib-log (~> 1.3)
       rack
-    chefspec (4.1.1)
+    chefspec (4.2.0)
       chef (>= 11.14)
       fauxhai (~> 2.0)
       rspec (~> 3.0)
@@ -103,7 +103,7 @@ GEM
     libyajl2 (1.2.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.6.1)
+    mini_portile (0.6.2)
     minitar (0.5.4)
     mixlib-authentication (1.3.0)
       mixlib-log
@@ -142,8 +142,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.5.2)
-    rake (10.3.2)
+    rack (1.6.0)
+    rake (10.4.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     retryable (1.3.6)
@@ -201,9 +201,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  berkshelf (= 3.2.0)
+  berkshelf (= 3.2.2)
   chef (= 11.16.4)
-  chefspec (= 4.1.1)
+  chefspec (= 4.2.0)
   foodcritic (= 4.0.0)
   knife-spork (~> 1.4.2)
-  rake (= 10.3.2)
+  rake (= 10.4.2)

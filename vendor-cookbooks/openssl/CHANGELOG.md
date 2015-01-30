@@ -2,6 +2,9 @@ openssl Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openssl cookbook.
 
+v2.0.2 (2014-12-30)
+-------------------
+- Call cert.to_pem before recipe DSL
 
 v2.0.0 (2014-06-11)
 -------------------

@@ -1,8 +1,9 @@
 ssh_known_hosts Cookbook
 ========================
-The Chef `ssh_known_hosts` cookbook exposes resource and default recipe for adding hosts and keys to the `/etc/ssh_known_hosts` file.
+The Chef `ssh_known_hosts` cookbook exposes resource and default recipe for adding hosts and keys to the `/etc/ssh/ssh_known_hosts` file.
 
-- The default recipe builds `/etc/ssh/ssh_known_hosts` based on search indexes using `rsa,dsa` key types and ohai data.
+- The default recipe builds `/etc/ssh/ssh_known_hosts` based either on search indexes using `rsa,dsa` key types and ohai data **or**, when `['ssh_known_hosts']['use_data_bag_cache']` is `true`, on the contents of a data bag that is maintained by the `cacher` recipe running on a worker node.
+- The cacher recipe builds and maintains a data bag based on search indexes using `rsa,dsa` key types and ohai data.
 - The LWRP provides a way to add custom entries in your own recipes.
 
 You can also optionally put other host keys in a data bag called "`ssh_known_hosts`". See below for details.
@@ -44,6 +45,12 @@ ssh_known_hosts_entry 'github.com' do
 end
 ```
 
+### Cacher
+
+Use the `cacher` recipe on a single "worker" node somewhere in your cluster to maintain a data bag (`server_data/known_hosts` by default) containing all of your nodes host keys.  The advantage to this approach is that is much faster than running a search of all nodes, and substantially lightens the load on locally hosted Chef servers.  The drawback is that the data is slightly delayed (because the cacher worker must converge first).
+
+To use the cacher, simply include the `ssh_known_hosts::cacher` cookbook in a wrapper cookbook or run list on a designated worker node.
+
 #### Attributes
 
 The following attributes are set on a per-platform basis, see the `attributes/default.rb`.
@@ -53,7 +60,8 @@ The following attributes are set on a per-platform basis, see the `attributes/de
 * `node['ssh_known_hosts']['key_type']` - Determines which key type ssh-keyscan will use to determine the 
   host key, different systems will have different available key types, check your manpage for available 
   key types for ssh-keyscan. Defaults to 'rsa,dsa'
-
+* `node['ssh_known_hosts']['use_data_bag_cache']` - Use the data bag maintained by the cacher server to build `/etc/ssh/ssh_known_hosts` instead of a direct search (requires that a node be set up to run the cacher recipe regularly).
+* `node['ssh_known_hosts']['cacher']['data_bag']`/`node['ssh_known_hosts']['cacher']['data_bag_item']` - Data bag where cacher recipe should store its keys.
 
 #### LWRP Attributes
 
@@ -158,6 +166,17 @@ There are additional optional values you may use in the data bag:
     </tr>
   </tbody>
 </table>
+
+###ChefSpec matchers
+
+A custom matcher is available for you to use in recipe tests.
+
+``` 
+describe 'my_cookbook::my_recipe' do
+	let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+	it { expect(chef_run).to append_to_ssh_known_hosts 'github.com' }
+end
+```
 
 
 License and Authors

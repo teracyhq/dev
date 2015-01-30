@@ -21,21 +21,6 @@ package 'apache2' do
   package_name node['apache']['package']
 end
 
-service 'apache2' do
-  service_name node['apache']['package']
-  case node['platform_family']
-  when 'rhel'
-    reload_command '/sbin/service httpd graceful'
-  when 'debian'
-    provider Chef::Provider::Service::Debian
-  when 'arch'
-    service_name 'httpd'
-  end
-  supports [:start, :restart, :reload, :status]
-  action [:enable, :start]
-  only_if "#{node['apache']['binary']} -t", :environment => { 'APACHE_LOG_DIR' => node['apache']['log_dir'] }, :timeout => 2
-end
-
 %w(sites-available sites-enabled mods-available mods-enabled conf-available conf-enabled).each do |dir|
   directory "#{node['apache']['dir']}/#{dir}" do
     mode '0755'
@@ -45,9 +30,8 @@ end
 end
 
 %w(default 000-default).each do |site|
-  file "#{node['apache']['dir']}/sites-enabled/#{site}" do
+  link "#{node['apache']['dir']}/sites-enabled/#{site}" do
     action :delete
-    backup false
   end
 
   file "#{node['apache']['dir']}/sites-available/#{site}" do
@@ -69,6 +53,12 @@ end
 package node['apache']['perl_pkg']
 
 %w(a2ensite a2dissite a2enmod a2dismod a2enconf a2disconf).each do |modscript|
+
+  link "/usr/sbin/#{modscript}" do
+    action :delete
+    only_if { ::File.symlink?("/usr/sbin/#{modscript}") }
+  end
+
   template "/usr/sbin/#{modscript}" do
     source "#{modscript}.erb"
     mode '0700'
@@ -196,6 +186,21 @@ web_app 'default' do
   enable node['apache']['default_site_enabled']
 end
 
-apache_site '000-default' do
+apache_site node['apache']['default_site_name'] do
   enable node['apache']['default_site_enabled']
+end
+
+service 'apache2' do
+  service_name node['apache']['package']
+  case node['platform_family']
+  when 'rhel'
+    reload_command '/sbin/service httpd graceful'
+  when 'debian'
+    provider Chef::Provider::Service::Debian
+  when 'arch'
+    service_name 'httpd'
+  end
+  supports [:start, :restart, :reload, :status]
+  action [:enable, :start]
+  only_if "#{node['apache']['binary']} -t", :environment => { 'APACHE_LOG_DIR' => node['apache']['log_dir'] }, :timeout => 10
 end

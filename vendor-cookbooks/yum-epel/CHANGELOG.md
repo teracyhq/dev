@@ -1,6 +1,13 @@
 yum-epel Cookbook CHANGELOG
 ======================
-This file is used to list changes made in each version of the yum-epel cookbook.
+
+v0.6.0 (2015-01-03)
+-------------------
+- Adding EL7 support
+
+v0.5.3 (2014-10-28)
+-------------------
+- Revert Use HTTPS for GPG keys and mirror lists
 
 v0.5.2 (2014-10-28)
 -------------------

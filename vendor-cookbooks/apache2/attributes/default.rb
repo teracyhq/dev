@@ -1,8 +1,9 @@
 #
 # Cookbook Name:: apache2
-# Attributes:: apache
+# Attributes:: default
 #
 # Copyright 2008-2013, Opscode, Inc.
+# Copyright 2014, Viverae, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,26 +18,61 @@
 # limitations under the License.
 #
 
-if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 13.10
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'debian' && node['platform_version'].to_f >= 8.0
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'redhat' && node['platform_version'].to_f >= 7.0
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'centos' && node['platform_version'].to_f >= 7.0
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'fedora' && node['platform_version'].to_f >= 18
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'opensuse' && node['platform_version'].to_f >= 13.1
-  default['apache']['version'] = '2.4'
-elsif node['platform'] == 'freebsd' && node['platform_version'].to_f >= 10.0
-  default['apache']['version'] = '2.4'
-else
-  default['apache']['version'] = '2.2'
-end
+default['apache']['mpm'] =
+  case node['platform_family']
+  when 'debian'
+    case node['platform']
+    when 'ubuntu'
+      if node['platform_version'].to_f >= 14.04
+        'event'
+      elsif node['platform_version'].to_f >= 12.04
+        'worker'
+      else
+        'prefork'
+      end
+    when 'debian'
+      node['platform_version'].to_f >= 7.0 ? 'worker' : 'prefork'
+    when 'linuxmint'
+      node['platform_version'].to_i >= 17 ? 'event' : 'prefork'
+    else
+      'prefork'
+    end
+  else
+    'prefork'
+  end
+
+default['apache']['version'] =
+  case node['platform_family']
+  when 'debian'
+    case node['platform']
+    when 'ubuntu'
+      node['platform_version'].to_f >= 13.10 ? '2.4' : '2.2'
+    when 'linuxmint'
+      node['platform_version'].to_i >= 16 ? '2.4' : '2.2'
+    when 'debian', 'raspbian'
+      node['platform_version'].to_f >= 8.0 ? '2.4' : '2.2'
+    else
+      '2.4'
+    end
+  when 'rhel'
+    node['platform_version'].to_f >= 7.0 ? '2.4' : '2.2'
+  when 'fedora'
+    node['platform_version'].to_f >= 18 ? '2.4' : '2.2'
+  when 'suse'
+    case node['platform']
+    when 'opensuse'
+      node['platform_version'].to_f >= 13.1 ? '2.4' : '2.2'
+      # FIXME: when "suse" for SLES
+    else
+      '2.4'
+    end
+  when 'freebsd'
+    node['platform_version'].to_f >= 10.0 ? '2.4' : '2.2'
+  else
+    '2.4'
+  end
 
 default['apache']['root_group'] = 'root'
-
 default['apache']['default_site_name'] = 'default'
 
 # Where the various parts of apache are
@@ -101,7 +137,6 @@ when 'debian', 'ubuntu'
   default['apache']['group']       = 'www-data'
   default['apache']['binary']      = '/usr/sbin/apache2'
   default['apache']['conf_dir']    = '/etc/apache2'
-  default['apache']['docroot_dir'] = '/var/www'
   default['apache']['cgibin_dir']  = '/usr/lib/cgi-bin'
   default['apache']['icondir']     = '/usr/share/apache2/icons'
   default['apache']['cache_dir']   = '/var/cache/apache2'
@@ -110,8 +145,10 @@ when 'debian', 'ubuntu'
   # this should use COOK-3917 to educate the initscript of the pid location
   if node['apache']['version'] == '2.4'
     default['apache']['pid_file']    = '/var/run/apache2/apache2.pid'
+    default['apache']['docroot_dir'] = '/var/www/html'
   else
     default['apache']['pid_file']    = '/var/run/apache2.pid'
+    default['apache']['docroot_dir'] = '/var/www'
   end
   default['apache']['lib_dir']     = '/usr/lib/apache2'
   default['apache']['libexec_dir']  = "#{node['apache']['lib_dir']}/modules"
@@ -207,13 +244,14 @@ default['apache']['timeout']           = 300
 default['apache']['keepalive']         = 'On'
 default['apache']['keepaliverequests'] = 100
 default['apache']['keepalivetimeout']  = 5
+default['apache']['locale'] = 'C'
 default['apache']['sysconfig_additional_params'] = {}
 default['apache']['default_site_enabled'] = false
 
 # Security
 default['apache']['servertokens']    = 'Prod'
 default['apache']['serversignature'] = 'On'
-default['apache']['traceenable']     = 'On'
+default['apache']['traceenable']     = 'Off'
 
 # mod_auth_openids
 default['apache']['allowed_openids'] = []
@@ -227,7 +265,6 @@ default['apache']['ext_status'] = false
 # mod_info Allow list, space seprated list of allowed entries.
 default['apache']['info_allow_list'] = '127.0.0.1 ::1'
 
-default['apache']['mpm'] = 'prefork'
 # Prefork Attributes
 default['apache']['prefork']['startservers']        = 16
 default['apache']['prefork']['minspareservers']     = 16
@@ -255,13 +292,6 @@ default['apache']['event']['threadlimit']         = 192
 default['apache']['event']['threadsperchild']     = 64
 default['apache']['event']['maxrequestworkers']   = 1024
 default['apache']['event']['maxconnectionsperchild'] = 0
-
-# ITK Attributes
-default['apache']['itk']['startservers']        = 16
-default['apache']['itk']['minspareservers']     = 16
-default['apache']['itk']['maxspareservers']     = 32
-default['apache']['itk']['maxrequestworkers']   = 150
-default['apache']['itk']['maxconnectionsperchild'] = 0
 
 # mod_proxy settings
 default['apache']['proxy']['require']    = 'all denied'

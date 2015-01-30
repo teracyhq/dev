@@ -103,12 +103,12 @@ default['java']['jdk']['7']['bin_cmds'] = [ "appletviewer", "apt", "ControlPanel
 # Official checksums for the latest release can be found at http://www.oracle.com/technetwork/java/javase/downloads/java-se-binaries-checksum-1956892.html
 
 # x86_64
-default['java']['jdk']['7']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz'
-default['java']['jdk']['7']['x86_64']['checksum'] = '81e3e2df33e13781e5fac5756ed90e67'
+default['java']['jdk']['7']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz'
+default['java']['jdk']['7']['x86_64']['checksum'] = '22761b214b1505f1a9671b124b0f44f4'
 
 # i586
-default['java']['jdk']['7']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-i586.tar.gz'
-default['java']['jdk']['7']['i586']['checksum'] = '715b0e8ba2a06bded75f6a92427e2701'
+default['java']['jdk']['7']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-i586.tar.gz'
+default['java']['jdk']['7']['i586']['checksum'] = '54899d0733d9a8697da59de79a02cc8f'
 
 # jdk8 attributes
 
@@ -120,12 +120,12 @@ default['java']['jdk']['8']['bin_cmds'] = [ "appletviewer", "apt", "ControlPanel
                                             "unpack200", "wsgen", "wsimport", "xjc"]
 
 # Oracle doesn't seem to publish SHA256 checksums for Java releases, so we use MD5 instead.
-# Official checksums for the latest release can be found at http://www.oracle.com/technetwork/java/javase/downloads/javase8-binaries-checksum-2133161.html
+# Official checksums for the latest release can be found at https://www.oracle.com/webfolder/s/digest/8u25checksum.html
 
 # x86_64
-default['java']['jdk']['8']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-x64.tar.gz'
-default['java']['jdk']['8']['x86_64']['checksum'] = 'ec7f89dc3697b402e2c851d0488f6299'
+default['java']['jdk']['8']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.tar.gz'
+default['java']['jdk']['8']['x86_64']['checksum'] = 'e145c03a7edc845215092786bcfba77e'
 
 # i586
-default['java']['jdk']['8']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-i586.tar.gz'
-default['java']['jdk']['8']['i586']['checksum'] = '5dafdef064e18468f21c65051a6918d7'
+default['java']['jdk']['8']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-i586.tar.gz'
+default['java']['jdk']['8']['i586']['checksum'] = 'b5b16247f66643727d9b6d4bc7c5efda'
