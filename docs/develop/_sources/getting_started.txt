@@ -49,11 +49,11 @@ Manual Installation
 
 1. Install the latest ``git`` version at http://git-scm.com/.
 
-2. Install ``virtualbox`` with the version of **4.3.20** at
+2. Install ``virtualbox`` with the exact version of **4.3.20** at
    https://www.virtualbox.org/wiki/Downloads.
 
-3. Install ``vagrant`` with the version of **1.7.2** or newer at
-   http://www.vagrantup.com/downloads.html.
+3. Install ``vagrant`` with the exact version of **1.7.1** at
+   https://www.vagrantup.com/download-archive/v1.7.1.html.
 
 **Notice**:
 
