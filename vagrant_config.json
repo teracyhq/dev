@@ -123,8 +123,12 @@
           "version":"1.4.3",
           "globals": [
             {
-              "name": "grunt-cli",
-              "version": ""
+              "name":"grunt-cli",
+              "version":""
+            },
+            {
+              "name":"gulp",
+              "version":""
             },
             {
               "name":"bower",
@@ -135,8 +139,8 @@
               "version":""
             },
             {
-             "name": "phantomjs",
-             "version": ""
+             "name":"phantomjs",
+             "version":""
             }
           ]
         }
