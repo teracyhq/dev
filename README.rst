@@ -39,32 +39,13 @@ For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
 ::
 
   {
-    "vm_forwarded_ports":[
-      {
-        "guest":8000,
-        "host":8000
-      },
-      {
-        "guest":4000,
-        "host":4000
-      },
-      {
-        "guest":3000,
-        "host":3000
-      }
-    ],
-
     "chef_json":{
-   // Config git for virtualbox
-      "git":{
-        "user":{
-          "name":"Hoa Vu",
-          "email":"hoavu@teracy.com"
-        }
-      },
       "teracy-dev":{
-        "java":{
-           "enabled":true
+        "git":{
+          "user":{
+            "name":"hoavt",
+            "email":"hoavt@teracy.com"
+          }
         }
       }
     }

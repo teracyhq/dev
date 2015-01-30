@@ -137,7 +137,7 @@ echo --- DOWNLOAD and INSTALL VAGRANT ---
 echo.
 
 copy /y NUL c:\vgrant.msi >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi" "c:\vgrant.msi"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi" "c:\vgrant.msi"
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi
