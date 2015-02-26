@@ -185,7 +185,7 @@
         ]
       },
       "nginx": {
-        "enabled":false,
+        "enabled":true,
         "default_root": "/home/vagrant/workspace/personal",
         "listen_port":9998,
         "version": "1.7.8"
