@@ -11,12 +11,12 @@ if node['teracy-dev']['nginx']['enabled']
     node.override['nginx']['source']['use_existing_user'] = true
     node.override['nginx']['sendfile'] = 'off'
     node.override['nginx']['install_method'] = 'source'
-    node.override['nginx']['init_style'] = "upstart"
+    node.override['nginx']['init_style'] = 'upstart'
 
     node.override['nginx']['version'] = node['teracy-dev']['nginx']['version']
     node.override['nginx']['default_root'] = node['teracy-dev']['nginx']['default_root']
-    node.override['nginx']['source']['prefix'] = "/opt/nginx"
-    node.override['nginx']['prefix'] = "/opt/nginx"
+    node.override['nginx']['source']['prefix'] = '/opt/nginx'
+    node.override['nginx']['prefix'] = '/opt/nginx'
 
     node.override['nginx']['user'] = 'vagrant'
     node.override['nginx']['group'] = 'vagrant'
@@ -33,7 +33,7 @@ if node['teracy-dev']['nginx']['enabled']
             EOF
             user 'root'
         end
-        node.from_file(run_context.resolve_attribute("nginx", "source"))
+        node.from_file(run_context.resolve_attribute('nginx', 'source'))
         include_recipe 'nginx'
     end
     template "#{node['nginx']['dir']}/sites-available/default.conf" do

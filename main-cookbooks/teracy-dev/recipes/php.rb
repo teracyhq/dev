@@ -8,10 +8,10 @@
 
 if node['teracy-dev']['php']['enabled']
   if !node['teracy-dev']['php']['version'].strip().empty?
-      if node['teracy-dev']['apache']['enabled']
-        package 'apache2-dev' do
-          action :install
-        end
+
+      package 'apache2-dev' do
+        action :install
+        only_if {node['teracy-dev']['apache']['enabled']}
       end
 
       bash 'remove php version if need' do
@@ -47,31 +47,32 @@ if node['teracy-dev']['php']['enabled']
             mv /usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/mod_php5.so
             echo 'LoadModule php5_module        /usr/lib/apache2/modules/mod_php5.so' > /etc/apache2/mods-available/php5.load
           EOF
-          only_if 'ls -la /usr/lib/apache2/modules/libphp5.so'
           user 'root'
+          only_if 'ls -la /usr/lib/apache2/modules/libphp5.so'
         end
       end
 
-      if node['teracy-dev']['apache']['enabled']
-        package 'apache2-dev' do
-          action :install
-        end
+      package 'apache2-dev' do
+        action :install
+        only_if {node['teracy-dev']['apache']['enabled']}
       end
+
   else
-    	include_recipe 'php'
-      if  node['teracy-dev']['mysql']['enabled']
-		include_recipe 'php::module_mysql'
-	end
-  end
-  if node['teracy-dev']['apache']['enabled']
-    bash 'clean up apache mess' do
-        code <<-EOF
-            a2enmod php5 || true;
-            service apache2 restart;
-        EOF
-        user 'root'
+  	include_recipe 'php'
+    if  node['teracy-dev']['mysql']['enabled']
+		  include_recipe 'php::module_mysql'
     end
   end
+
+  bash 'clean up apache mess' do
+      code <<-EOF
+          a2enmod php5 || true;
+          service apache2 restart;
+      EOF
+      user 'root'
+      only_if {node['teracy-dev']['apache']['enabled']}
+  end
+
   if node['teracy-dev']['nginx']['enabled']
     apt_package 'php5-fpm' do
       action :install
