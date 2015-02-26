@@ -31,6 +31,10 @@
       "host":9999
     },
     {
+      "guest":9998, //apache2
+      "host":9998
+    },
+    {
       "guest":35729, //livereload
       "host":35729
     }
@@ -179,6 +183,12 @@
             "version":""
           }
         ]
+      },
+      "nginx": {
+        "enabled":false,
+        "default_root": "/home/vagrant/workspace/personal",
+        "listen_port":9998,
+        "version": "1.7.8"
       },
       "apache":{
         "enabled":true,
