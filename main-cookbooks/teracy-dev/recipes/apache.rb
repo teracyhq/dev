@@ -1,7 +1,7 @@
 #
 # Author:: Phuong <phuonglm@teracy.com>
 # Cookbook Name:: dev
-# Recipe:: nginx
+# Recipe:: apache
 #
 # Copyright 2014, Teracy, Inc.
 #
