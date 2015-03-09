@@ -31,7 +31,7 @@
       "host":9999
     },
     {
-      "guest":9998, //apache2
+      "guest":9998, //nginx
       "host":9998
     },
     {
