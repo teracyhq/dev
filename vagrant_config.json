@@ -70,6 +70,12 @@
     //   ]
     // }
   ],
+  "vb":{ //virtualbox
+    //"gui":true,
+    //"name":"teracy-dev",
+    "memory":1024,
+    "cpus":1
+  },
   "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[
     "vendor-cookbooks",

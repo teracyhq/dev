@@ -163,10 +163,24 @@ Vagrant.configure("2") do |config|
   # information on available options.
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
-    # vb.gui = true
+    if data_hash['vb']['gui']  == true
+      vb.gui = true
+    end
+
+    if !data_hash['vb']['name'].nil? and !data_hash['vb']['name'].strip().empty?
+      vb.name = data_hash['vb']['name'].strip()
+    end
+
+    if !data_hash['vb']['memory'].nil? and data_hash['vb']['memory'] > 0
+      vb.memory = data_hash['vb']['memory']
+    end
+
+    if !data_hash['vb']['cpus'].nil? and data_hash['vb']['cpus'] > 0
+      vb.cpus = data_hash['vb']['cpus']
+    end
 
     # Use VBoxManage to customize the VM. For example to change memory:
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    # vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
