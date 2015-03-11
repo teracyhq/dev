@@ -162,25 +162,41 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
   config.vm.provider :virtualbox do |vb|
+
+    vb_hash = data_hash['vb']
+
     # Don't boot with headless mode
-    if data_hash['vb']['gui']  == true
+    if vb_hash['gui']  == true
       vb.gui = true
     end
 
-    if !data_hash['vb']['name'].nil? and !data_hash['vb']['name'].strip().empty?
-      vb.name = data_hash['vb']['name'].strip()
+    # general settings for modifyvm: https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
+    # TODO(hoatle): add support for key<1-N> type
+    # TODO(hoatle): add support for other settings
+
+    # FIXME(hoatle): there were 3 loops here, why?
+    # puts vb_hash
+
+    general_settings_keys = ['name', 'groups', 'description', 'ostype', 'memory', 'vram', 'acpi',
+      'ioapic', 'hardwareuuid', 'cpus', 'rtcuseutc', 'cpuhotplug', 'plugcpu', 'unplugcpu',
+      'cpuexecutioncap', 'pae', 'longmode', 'synthcpu', 'hpet', 'hwvirtex', 'triplefaultreset',
+      'nestedpaging', 'largepages', 'vtxvpid', 'vtxux', 'accelerate3d', 'bioslogofadein',
+      'bioslogodisplaytime', 'bioslogoimagepath', 'biosbootmenu', 'snapshotfolder', 'firmware',
+      'guestmemoryballoon', 'defaultfrontend'
+    ]
+
+    vb_hash.each do |key, val|
+      if general_settings_keys.include?(key) and !vb_hash[key].nil?
+        if vb_hash[key].instance_of? String
+          if !vb_hash[key].strip().empty?
+            vb.customize ["modifyvm", :id, "--" + key, vb_hash[key].strip()]
+          end
+        else
+          vb.customize ["modifyvm", :id, "--" + key, vb_hash[key]]
+        end
+      end
     end
 
-    if !data_hash['vb']['memory'].nil? and data_hash['vb']['memory'] > 0
-      vb.memory = data_hash['vb']['memory']
-    end
-
-    if !data_hash['vb']['cpus'].nil? and data_hash['vb']['cpus'] > 0
-      vb.cpus = data_hash['vb']['cpus']
-    end
-
-    # Use VBoxManage to customize the VM. For example to change memory:
-    # vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
