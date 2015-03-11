@@ -39,8 +39,8 @@
     </script>
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,14 +52,14 @@
         <li class="right" >
           <a href="python_training.html" title="Python Training"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="django-training">
 <h1>Django Training<a class="headerlink" href="#django-training" title="Permalink to this headline">¶</a></h1>
@@ -69,7 +69,7 @@
 </div>
 <div class="section" id="starting-a-django-project">
 <h2>Starting A Django Project<a class="headerlink" href="#starting-a-django-project" title="Permalink to this headline">¶</a></h2>
-<p>In this section, you will know how to create a <tt class="docutils literal"><span class="pre">tutorial</span></tt> Django project via some following simple
+<p>In this section, you will know how to create a <code class="docutils literal"><span class="pre">tutorial</span></code> Django project via some following simple
 steps:</p>
 <ol class="arabic">
 <li><dl class="first docutils">
@@ -83,13 +83,13 @@ Installing setuptools............done.
 Installing pip...............done.
 </pre></div>
 </div>
-<p class="last">You are now under the <tt class="docutils literal"><span class="pre">tutorial</span></tt> virtual Python environment. Use <tt class="docutils literal"><span class="pre">$</span> <span class="pre">deactive</span></tt> to escape it or
-<tt class="docutils literal"><span class="pre">$</span> <span class="pre">workon</span> <span class="pre">tutorial</span></tt> to be under the <tt class="docutils literal"><span class="pre">tutorial</span></tt> virtual Python environment.</p>
+<p class="last">You are now under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment. Use <code class="docutils literal"><span class="pre">$</span> <span class="pre">deactive</span></code> to escape it or
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">workon</span> <span class="pre">tutorial</span></code> to be under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Set up the <tt class="docutils literal"><span class="pre">tutorial</span></tt> project:</dt>
+<dt>Set up the <code class="docutils literal"><span class="pre">tutorial</span></code> project:</dt>
 <dd><div class="first highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal
 $ mkdir tutorial
@@ -102,7 +102,7 @@ $ pip install -r requirements/project/dev.txt
 $ ./manage.py syncdb
 </pre></div>
 </div>
-<p>When <tt class="docutils literal"><span class="pre">syncdb</span></tt>, you should create a super account to access the admin page later.</p>
+<p>When <code class="docutils literal"><span class="pre">syncdb</span></code>, you should create a super account to access the admin page later.</p>
 <p class="last">The project <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a> will help you get
 project development booted with a Django project template (boilerplate) of the best practices.</p>
 </dd>
@@ -134,8 +134,8 @@ create Django applications for it.</p>
 </div>
 <div class="section" id="starting-a-django-application">
 <h2>Starting A Django Application<a class="headerlink" href="#starting-a-django-application" title="Permalink to this headline">¶</a></h2>
-<p>This section shows you how to create a Django application named <tt class="docutils literal"><span class="pre">hello</span></tt> to display the <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">World!</span></tt> message when accessing <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
+<p>This section shows you how to create a Django application named <code class="docutils literal"><span class="pre">hello</span></code> to display the <code class="docutils literal"><span class="pre">Hello</span>
+<span class="pre">World!</span></code> message when accessing <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
 <ol class="arabic">
 <li><p class="first">Open the browser at <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
 <p>You will see a 404 error and it is normal.</p>
@@ -144,26 +144,26 @@ create Django applications for it.</p>
 <p>At Teracy, you are suggested to use <a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a>. Download and
 install it on your computer.</p>
 </li>
-<li><p class="first">Open <tt class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></tt>, add <tt class="docutils literal"><span class="pre">workspace/personal/tutorial</span></tt> project by clicking <strong>Project</strong> -&gt;
+<li><p class="first">Open <code class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></code>, add <code class="docutils literal"><span class="pre">workspace/personal/tutorial</span></code> project by clicking <strong>Project</strong> -&gt;
 <strong>Add  Folder to Project</strong>.</p>
-<p>The <tt class="docutils literal"><span class="pre">tutorial</span></tt> project should be opened and you can start coding now.</p>
+<p>The <code class="docutils literal"><span class="pre">tutorial</span></code> project should be opened and you can start coding now.</p>
 </li>
 <li><p class="first">Open two terminal windows:</p>
 <p>Usually, you need two terminal windows:</p>
 <ul class="simple">
 <li>One is used for running the Django project. Open a new terminal window, change the
-directory to <tt class="docutils literal"><span class="pre">teracy-dev</span></tt>, then <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></tt>.</li>
+directory to <code class="docutils literal"><span class="pre">teracy-dev</span></code>, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>.</li>
 <li>The other one is used for normal commands.</li>
 </ul>
 </li>
-<li><p class="first">Install <tt class="docutils literal"><span class="pre">teracy-django-html5-boilerplate</span></tt> to your project
+<li><p class="first">Install <code class="docutils literal"><span class="pre">teracy-django-html5-boilerplate</span></code> to your project
 <a class="reference external" href="https://github.com/teracy-official/django-html5-boilerplate">teracy-django-html5-boilerplate</a>
-is a Django wrapper application that includes <tt class="docutils literal"><span class="pre">html5-boilerplate</span></tt> assets and provides
-<tt class="docutils literal"><span class="pre">base.html``for</span> <span class="pre">starting</span> <span class="pre">any</span> <span class="pre">web</span> <span class="pre">application</span> <span class="pre">with</span> <span class="pre">``html5-boilerplate</span></tt>, so you need to install
+is a Django wrapper application that includes <code class="docutils literal"><span class="pre">html5-boilerplate</span></code> assets and provides
+<code class="docutils literal"><span class="pre">base.html``for</span> <span class="pre">starting</span> <span class="pre">any</span> <span class="pre">web</span> <span class="pre">application</span> <span class="pre">with</span> <span class="pre">``html5-boilerplate</span></code>, so you need to install
 it on your project.</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Add the following dependency to <tt class="docutils literal"><span class="pre">requirements/project/dev.txt</span></tt>:</p>
+<li><p class="first">Add the following dependency to <code class="docutils literal"><span class="pre">requirements/project/dev.txt</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>teracy-django-html5-boilerplate==0.3.0
 </pre></div>
 </div>
@@ -188,7 +188,7 @@ Running setup.py install for teracy-django-html5-boilerplate
 </div></blockquote>
 </li>
 <li><dl class="first docutils">
-<dt>Install the <tt class="docutils literal"><span class="pre">teracy-html5boilerplate</span></tt> application to <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt>:</dt>
+<dt>Install the <code class="docutils literal"><span class="pre">teracy-html5boilerplate</span></code> application to <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code>:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
  <span class="s">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
   <span class="p">)</span>
@@ -197,11 +197,11 @@ Running setup.py install for teracy-django-html5-boilerplate
 </dd>
 </dl>
 </li>
-<li><p class="first">Create  the <tt class="docutils literal"><span class="pre">hello</span></tt> application</p>
+<li><p class="first">Create  the <code class="docutils literal"><span class="pre">hello</span></code> application</p>
 <blockquote>
 <div><div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">A specific Django application should be put under <tt class="docutils literal"><span class="pre">apps</span></tt> directory.</p>
+<p class="last">A specific Django application should be put under <code class="docutils literal"><span class="pre">apps</span></code> directory.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ workon tutorial
@@ -211,7 +211,7 @@ $ ../manage.py startapp hello
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Add the <tt class="docutils literal"><span class="pre">hello</span></tt> application to <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> on <tt class="docutils literal"><span class="pre">settings/project/dev.py</span></tt> by appending
+<li><p class="first">Add the <code class="docutils literal"><span class="pre">hello</span></code> application to <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> on <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code> by appending
 the following configuration:</p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
@@ -222,7 +222,7 @@ the following configuration:</p>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first">Create the <tt class="docutils literal"><span class="pre">home.html</span></tt> template under the <tt class="docutils literal"><span class="pre">apps/hello/templates/hello</span></tt> directory with the
+<li><p class="first">Create the <code class="docutils literal"><span class="pre">home.html</span></code> template under the <code class="docutils literal"><span class="pre">apps/hello/templates/hello</span></code> directory with the
 following content:</p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre>{% extends &#39;html5boilerplate/base.html&#39; %}
@@ -236,7 +236,7 @@ following content:</p>
 </div></blockquote>
 </li>
 <li><dl class="first docutils">
-<dt>Add <tt class="docutils literal"><span class="pre">HomeTemplateView</span></tt> to <tt class="docutils literal"><span class="pre">apps/hello/views.py</span></tt>:</dt>
+<dt>Add <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> to <code class="docutils literal"><span class="pre">apps/hello/views.py</span></code>:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
 
 <span class="k">class</span> <span class="nc">HomeTemplateView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
@@ -247,7 +247,7 @@ following content:</p>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Create <tt class="docutils literal"><span class="pre">apps/hello/urls.py</span></tt> and configure <tt class="docutils literal"><span class="pre">HomeTemplateView</span></tt> with following content:</dt>
+<dt>Create <code class="docutils literal"><span class="pre">apps/hello/urls.py</span></code> and configure <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> with following content:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">patterns</span>
 
 <span class="kn">from</span> <span class="nn">apps.hello.views</span> <span class="kn">import</span> <span class="n">HomeTemplateView</span>
@@ -263,7 +263,7 @@ following content:</p>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Configure the root URL on <tt class="docutils literal"><span class="pre">urls/project/dev.py</span></tt> by adding the following content:</dt>
+<dt>Configure the root URL on <code class="docutils literal"><span class="pre">urls/project/dev.py</span></code> by adding the following content:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="p">(</span>
     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">&#39;apps.hello.urls&#39;</span><span class="p">)),</span>
 <span class="p">)</span>
@@ -272,7 +272,7 @@ following content:</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Refresh your browser opening <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> and you should see <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">World!</span></tt> page instead
+<li><p class="first">Refresh your browser opening <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> and you should see <code class="docutils literal"><span class="pre">Hello</span> <span class="pre">World!</span></code> page instead
 of the 404 error page.</p>
 </li>
 </ol>
@@ -286,7 +286,7 @@ The server should be started without any error with the command:</p>
 </div>
 <p>Congratulations, you have just created a Django application and make it work even though it does
 nothing other than &#8220;Hello World!&#8221; page. You should now learn Django by developing many more
-applications for this <tt class="docutils literal"><span class="pre">tutorial</span></tt> project by adapting Django tutorials at
+applications for this <code class="docutils literal"><span class="pre">tutorial</span></code> project by adapting Django tutorials at
 <a class="reference external" href="https://docs.djangoproject.com/en/1.5/">https://docs.djangoproject.com/en/1.5/</a>.</p>
 </div>
 </div>
@@ -295,7 +295,7 @@ applications for this <tt class="docutils literal"><span class="pre">tutorial</s
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -313,12 +313,14 @@ applications for this <tt class="docutils literal"><span class="pre">tutorial</s
   <h4>Next topic</h4>
   <p class="topless"><a href="ruby_training.html"
                         title="next chapter">Ruby Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/django_training.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/django_training.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -335,7 +337,7 @@ applications for this <tt class="docutils literal"><span class="pre">tutorial</s
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -347,12 +349,12 @@ applications for this <tt class="docutils literal"><span class="pre">tutorial</s
         <li class="right" >
           <a href="python_training.html" title="Python Training"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.
     </div>
   </body>
 </html>
