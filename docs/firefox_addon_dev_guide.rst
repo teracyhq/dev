@@ -1,0 +1,137 @@
+Firefox Add-ons Development Guide
+=================================
+
+To develop add-on for Firefox, we need to install the SDK and optional amo-validator. In this guide,
+we're going to install both on teracy-dev VM.
+
+At the time of writing this guide, we're going to install the latest SDK (v1.17) and latest
+amo-validator (v1.6.0). It's expected that this guide should work with latest SDK and amo-validator.
+
+At the time of writing this guide, native JavaScript SDK is not ready for prime time yet. In the
+future, we will add the instruction here. However, as it's nodejs module, it's very easy to install
+on teracy-dev VM as nodejs is available by default.
+
+First of all, make sure that teracy-dev VM is running, if not yet, please follow the guide here
+at: :doc:`getting_started`
+
+Firefox Add-ons SDK Installation
+--------------------------------
+
+This installation guide is based on https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation
+
+.. note::
+
+  Within teracy-dev VM with default configuration:
+
+  - Python 2.7 is already available by default
+
+  - Firefox is not availble, so we could not use the commands involving Firefox, for example:
+    `$ cfx run` or `$ cfx test`
+
+To install the SDK, the following steps need accomplishing:
+
+#. `$ vagrant ssh` if we are not `ssh-ing` the teracy-dev VM yet.
+
+#. Download the SDK
+   ::
+
+    $ cd ~/workspace/readonly
+    $ wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
+    $ tar -xf jetpack-sdk-latest.tar.gz
+
+   After extracting, it's expected that the SDK is available at `~/workspace/readonly/addon-sdk-1.17`
+
+#. Making `activate` permanent
+   ::
+
+    $ sudo ln -s ~/workspace/readonly/add-on-sdk-1.17/bin/cfx /usr/local/bin/cfx
+
+And from now on we could use `$ cfx` anywhere. To verify, try the command below:
+::
+
+    $ cfx --version
+
+And we should see the following output:
+::
+
+    Add-on SDK 1.17 (12f7d53e8b5fc015a15fa4a30fa588e81e9e9b2e)
+
+We could start building Firefox Add-ons now by following the instruction at:
+https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started
+
+
+addons.mozilla.org Validator Installation
+-----------------------------------------
+
+To publish the add-ons on AMO, it requires review process and `amo-validator` is provided to
+help us to spot some common problems as early as possible.
+
+`amo-validator` is available as Python package at: https://pypi.python.org/pypi/amo-validator
+
+To install amo-validator, we need add `amo-validator` and `fastchardet` to python system packages.
+
+#. Open `vagrant_config_override.js` and override the default `python` configuration as following:
+   ::
+
+    {
+      "chef_json":{
+        "python":{
+          "pip":{
+            "globals":[
+              {
+                "name":"Sphinx"
+              },
+              {
+                "name":"restview"
+              },
+              {
+                "name":"fastchardet",
+                "supported_python_versions":["2.7.6"]
+              },
+              {
+                "name":"amo-validator",
+                "supported_python_versions":["2.7.6"]
+              }
+            ]
+          }
+        }
+      }
+    }
+
+   .. note::
+     At the time of this writing, `fastchardet` is required by `amo-validator` but included in
+     `setup.py`, that's the reason why we need to add it in the configuration above.
+
+#. Provision the teracy-dev VM
+   ::
+
+    $ vagrant provision
+
+   After that, `addon-validator` should be available. Try the following commands to verify:
+   ::
+
+    $ vagrant ssh
+    $ addon-validator
+
+   And we should see the following output:
+   ::
+
+    usage: addon-validator [-h]
+                           [-t {theme,multi,dictionary,extension,webapp,search,any,languagepack}]
+                           [-o {text,json}] [-v] [--boring] [--determined]
+                           [--selfhosted]
+                           [--approved_applications APPROVED_APPLICATIONS]
+                           [--target-maxversion TARGET_MAXVERSION]
+                           [--target-minversion TARGET_MINVERSION]
+                           [--for-appversions FOR_APPVERSIONS] [--timeout TIMEOUT]
+                           package
+    addon-validator: error: too few arguments
+
+From now on, we could use `addon-validator` anywhere to check for the Firefox add-ons before
+submitting to AMO. This would save us a lot of time when preparing for AMO publishing.
+
+References
+----------
+- https://developer.mozilla.org/en-US/Add-ons
+- https://blog.mozilla.org/addons/2014/06/05/how-to-develop-firefox-extension/
+
