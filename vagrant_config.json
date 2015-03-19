@@ -156,12 +156,12 @@
         "pip":{
           "globals":[
             {
-              "name":"Sphinx",
-              "version":""
+              "name":"Sphinx"
+              //"version":"" //means latest
+              //"supported_python_versions": [] //means all
             },
             {
-              "name":"restview",
-              "version":""
+              "name":"restview"
             }
           ]
         }
