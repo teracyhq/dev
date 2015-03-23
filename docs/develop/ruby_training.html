@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="top" title="teracy-dev 0.4.0-@ documentation" href="index.html" />
-    <link rel="next" title="PHP Training" href="php_training.html" />
+    <link rel="next" title="Ruby Development Guide" href="ruby_dev_guide.html" />
     <link rel="prev" title="Django Training" href="django_training.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -47,7 +47,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="php_training.html" title="PHP Training"
+          <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="django_training.html" title="Django Training"
@@ -63,45 +63,10 @@
             
   <div class="section" id="ruby-training">
 <h1>Ruby Training<a class="headerlink" href="#ruby-training" title="Permalink to this headline">¶</a></h1>
-<p>By default, <code class="docutils literal"><span class="pre">teracy-dev</span></code> will not install Ruby when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> to avoid too much provision
-time.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p class="first">Enable <code class="docutils literal"><span class="pre">ruby</span></code> by creating (if not exists) or opening the <code class="docutils literal"><span class="pre">vagrant_config_override.josn</span></code> file
-and adding or apppending the content below:</p>
-<div class="highlight-python"><div class="highlight"><pre>&quot;chef_json&quot;:{
-    &quot;teracy-dev&quot;:{
-      &quot;ruby&quot;:{
-        &quot;enabled&quot;:true
-      }
-    }
-}
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You can see more default configuration at <code class="docutils literal"><span class="pre">vagrant_config.json</span></code>.</p>
-</div>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> if your VM is already running, or <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> if it is not
-running yet.</p>
-</li>
-<li><dl class="first docutils">
-<dt><cite>$ vagrant ssh</cite> and verify if <code class="docutils literal"><span class="pre">ruby</span></code> works:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ vagrant ssh
-$ ruby --version
-</pre></div>
-</div>
-<p>And you should see something like this:</p>
-<div class="last highlight-python"><div class="highlight"><pre>ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-</ol>
-<p>Congratulations, you can do all Ruby related stuffs now!</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This document is moved to <a class="reference internal" href="ruby_dev_guide.html"><em>Ruby Development Guide</em></a>.
+This document will be deleted soon!!!</p>
 </div>
 </div>
 
@@ -111,20 +76,12 @@ $ ruby --version
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Ruby Training</a><ul>
-<li><a class="reference internal" href="#installation">Installation</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="django_training.html"
                         title="previous chapter">Django Training</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="php_training.html"
-                        title="next chapter">PHP Training</a></p>
+  <p class="topless"><a href="ruby_dev_guide.html"
+                        title="next chapter">Ruby Development Guide</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -156,7 +113,7 @@ $ ruby --version
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="php_training.html" title="PHP Training"
+          <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              >next</a> |</li>
         <li class="right" >
           <a href="django_training.html" title="Django Training"
