@@ -83,6 +83,8 @@ As ``Ruby`` is already installed along with ``rbenv``, we could start using ``Ru
 
     ..  code-block:: bash
 
+        $ ws
+        $ cd personal
         $ rbenv install 2.2.1
         $ rbenv local 2.2.1
         $ gem install rails
