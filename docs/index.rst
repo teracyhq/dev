@@ -18,6 +18,7 @@ Contents:
    workflow
    git_training
    most_used_git_commands
+   firefox_addon_dev_guide
    document_writer_training
    c_c++_training
    python_training
