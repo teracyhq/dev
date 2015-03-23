@@ -7,7 +7,7 @@
   "vm_forward_agent":true,
   "vm_forwarded_ports":[
     {
-      "guest":3000, //node apps
+      "guest":3000, //node apps, RoR
       "host":3000
     },
     {
@@ -17,6 +17,10 @@
     {
       "guest":4000, //octopress
       "host":4000
+    },
+    {
+      "guest":4567, //sinatra
+      "host":4567
     },
     {
       "guest":5000, //flask
