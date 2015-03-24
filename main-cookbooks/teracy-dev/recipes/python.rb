@@ -71,7 +71,8 @@ if node['teracy-dev']['python']['enabled']
         end
 
         node['teracy-dev']['python']['pip']['globals'].each do |pkg|
-            python_pip pkg['name'] do
+            python_pip "install #{pkg['name']}" do
+                package_name pkg['name']
                 if !pkg['version'].nil? and !pkg['version'].strip().empty?
                     version pkg['version']
                 end
