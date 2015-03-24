@@ -72,9 +72,13 @@ if node['teracy-dev']['python']['enabled']
 
         node['teracy-dev']['python']['pip']['globals'].each do |pkg|
             python_pip pkg['name'] do
-                if !pkg['version'].strip().empty?
+                if !pkg['version'].nil? and !pkg['version'].strip().empty?
                     version pkg['version']
                 end
+                only_if { !pkg['supported_python_versions'].nil? and
+                          (pkg['supported_python_versions'].empty? or
+                            pkg['supported_python_versions'].include?(version))
+                        }
             end
         end
         # Link the the pyenv's to system path
