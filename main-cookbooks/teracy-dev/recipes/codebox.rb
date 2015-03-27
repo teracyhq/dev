@@ -66,6 +66,13 @@ if node['teracy-dev']['codebox']['enabled']
         action :create
 	end
 
+
+    service 'codebox' do
+        supports :status => true, :restart => true
+        stop_command config['script_name'] + ' stop'
+        action [:stop]
+    end
+
 	service 'codebox' do
 		supports :status => true, :restart => true
 		start_command config['script_name'] + ' start'
