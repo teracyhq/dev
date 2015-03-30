@@ -41,6 +41,10 @@
     {
       "guest":35729, //livereload
       "host":35729
+    },
+    {
+      "guest":30000, //codebox
+      "host":30000
     }
   ],
   "vm_synced_folders":[
@@ -256,6 +260,11 @@
             "name":"tree"
           }
         ]
+      },
+      "codebox": {
+        "enabled":false,
+        "port":30000,
+        "sync_dir":"/home/vagrant/workspace"
       }
     }
   }

@@ -66,3 +66,10 @@ end
 if node['teracy-dev']['apache']['enabled']
     override['apache']['dir'] = '/etc/apache2'
 end
+
+default['teracy-dev']['codebox'] = {
+    'enabled' => false,
+    'user' => 'vagrant',
+    'port' => 30000,
+    'sync_dir' => '/home/vagrant/workspace'
+}

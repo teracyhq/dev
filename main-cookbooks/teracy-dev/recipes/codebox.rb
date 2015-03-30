@@ -1,9 +1,9 @@
 #
-# Author:: Hoat Le <hoatlevan@gmail.com>
+# Author:: Dat Phan <datphan@teracy.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: github
+# Recipe:: codebox
 #
-# Copyright 2013, Teracy, Inc.
+# Copyright 2013 - 2015, Teracy, Inc.
 #
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
@@ -31,20 +31,51 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-#include_recipe 'teracy-dev::apt'
-include_recipe 'teracy-dev::workspace'
-include_recipe 'teracy-dev::alias'
-include_recipe 'teracy-dev::env'
-include_recipe 'teracy-dev::ssh_known_hosts'
-include_recipe 'teracy-dev::git'
-include_recipe 'teracy-dev::python'
-include_recipe 'teracy-dev::java'
-include_recipe 'teracy-dev::apache'
-include_recipe 'teracy-dev::nginx'
-include_recipe 'teracy-dev::php'
-include_recipe 'teracy-dev::mongodb'
-include_recipe 'teracy-dev::mysql'
-include_recipe 'teracy-dev::postgresql'
-include_recipe 'teracy-dev::rbenv'
-include_recipe 'teracy-dev::node'
-include_recipe 'teracy-dev::codebox'
+# ref: https://github.com/brtz/chef-codebox
+if node['teracy-dev']['codebox']['enabled']
+
+    # Encoding: UTF-8
+    # Copyright (c) 2014, Nils Bartels, see LICENSE for details
+
+    user = node['teracy-dev']['codebox']['user']
+    install_path = '/usr/local/lib'
+
+    # npm install codebox
+    bash 'install codebox for user: ' + user do
+        code <<-EOH
+            sudo npm install -g codebox -f
+            EOH
+        not_if { ::File.exists?(install_path + '/node_modules/codebox/bin/codebox.js') }
+    end
+
+
+    config = {}
+    config['user'] = user
+    config['install_path'] = install_path
+    config['sync_dir'] = node['teracy-dev']['codebox']['sync_dir']
+    config['port'] = node['teracy-dev']['codebox']['port']
+    config['script_name'] = '/etc/init.d/codebox'
+
+    # rubocop:disable HashSyntax
+    template config['script_name'] do
+        source 'codebox.init.erb'
+        mode 0755
+        owner 'root'
+        group 'root'
+        variables(:config => config)
+        action :create
+    end
+
+
+    service 'codebox' do
+        supports :status => true, :restart => true
+        stop_command config['script_name'] + ' stop'
+        action [:stop]
+    end
+
+    service 'codebox' do
+        supports :status => true, :restart => true
+        start_command config['script_name'] + ' start'
+        action [:enable, :start]
+    end
+end
