@@ -14,6 +14,7 @@ Contents:
    intro
    getting_started
    tool_chain
+   built_in_ide
    style_standards
    workflow
    git_training
