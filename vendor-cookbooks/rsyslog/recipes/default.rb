@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+extend RsyslogCookbook::Helpers
+
 package 'rsyslog'
 package 'rsyslog-relp' if node['rsyslog']['use_relp']
 
@@ -32,8 +34,8 @@ directory "#{node['rsyslog']['config_prefix']}/rsyslog.d" do
 end
 
 directory node['rsyslog']['working_dir']  do
-  owner 'root'
-  group 'root'
+  owner node['rsyslog']['user']
+  group node['rsyslog']['group']
   mode  '0700'
 end
 
@@ -84,14 +86,4 @@ if platform_family?('omnios')
   end
 end
 
-if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 12.04
-  service_provider = Chef::Provider::Service::Upstart
-else
-  service_provider = nil
-end
-
-service node['rsyslog']['service_name'] do
-  supports :restart => true, :reload => true, :status => true
-  action   [:enable, :start]
-  provider service_provider
-end
+declare_rsyslog_service

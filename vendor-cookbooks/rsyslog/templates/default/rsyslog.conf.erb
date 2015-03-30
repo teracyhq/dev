@@ -52,9 +52,9 @@ $UDPServerRun <%= node['rsyslog']['port'] %>
 ###########################
 
 <% if node["rsyslog"]["default_file_template"] -%>
-#
+# 
 # Default log format template
-#
+# 
 $ActionFileDefaultTemplate <%= node["rsyslog"]["default_file_template"] %>
 <% elsif !node["rsyslog"]["high_precision_timestamps"] -%>
 #

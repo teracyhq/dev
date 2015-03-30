@@ -1,5 +1,5 @@
 #
-# Author:: Sean OMeara (<someara@getchef.com>)
+# Author:: Sean OMeara (<sean@chef.io>)
 # Recipe:: yum-mysql-community::mysql55
 #
 # Copyright 2014, Chef Software, Inc.

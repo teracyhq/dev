@@ -22,13 +22,20 @@ return if node['rsyslog']['server']
 
 include_recipe 'rsyslog::default'
 
+def chef_solo_search_installed?
+  klass = ::Search.const_get('Helper')
+  return klass.is_a?(Class)
+rescue NameError
+  return false
+end
+
 # On Chef Solo, we use the node['rsyslog']['server_ip'] attribute, and on
 # normal Chef, we leverage the search query.
-if Chef::Config[:solo]
+if Chef::Config[:solo] && !chef_solo_search_installed?
   if node['rsyslog']['server_ip']
     rsyslog_servers = Array(node['rsyslog']['server_ip'])
   else
-    Chef::Application.fatal!("Chef Solo does not support search. You must set node['rsyslog']['server_ip']!")
+    Chef::Application.fatal!("Chef Solo does not support search. You must set node['rsyslog']['server_ip'] or use the chef-solo-search cookbook!")
   end
 else
   results = search(:node, node['rsyslog']['server_search']).map do |server|
@@ -61,5 +68,5 @@ end
 
 file "#{node['rsyslog']['config_prefix']}/rsyslog.d/server.conf" do
   action   :delete
-  notifies :reload, "service[#{node['rsyslog']['service_name']}]"
+  notifies :restart, "service[#{node['rsyslog']['service_name']}]"
 end

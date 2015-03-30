@@ -1,0 +1,21 @@
+server {
+        listen <%= node['nginx']['port'] %>;
+        server_name <%= @server_name %>;
+
+	access_log   /var/log/nginx/<%= @server_name %>.access.log;
+	error_log    /var/log/nginx/<%= @server_name %>.error.log;
+
+        root <%= @docroot %>;
+        index index.php;
+
+        location / {
+                try_files $uri $uri/ /index.php?$args; 
+        }
+
+        location ~ \.php$ {
+                try_files $uri =404;
+                include fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_param  SCRIPT_FILENAME  <%= @docroot %>$fastcgi_script_name;
+        }
+}

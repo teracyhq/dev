@@ -20,3 +20,4 @@ cookbook 'ssh_known_hosts', '2.0.0'
 cookbook 'pyenv', git: "https://github.com/sds/chef-pyenv"
 cookbook 'apache2', '3.0.0'
 cookbook 'nginx', '2.7.4'
+cookbook 'phpmyadmin', '1.0.7', git: 'git@github.com:priestjim/chef-phpmyadmin.git'

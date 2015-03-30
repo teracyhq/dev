@@ -2,6 +2,17 @@ Chef Sugar Changelog
 =========================
 This file is used to list changes made in each version of the chef-sugar cookbook and gem.
 
+v2.5.0 (2015-01-05)
+-------------------
+### Improvements
+- Add `data_bag_item_for_environment` function
+- Add `kvm?` matcher
+- Add `virtualbox?` matcher
+
+### Bug Fixes
+- Use `.key?` to check for hash key presence, raising an `AttributeDoesNotExist`
+  error sooner
+
 v2.4.1 (2014-10-12)
 -------------------
 - No changes from v2.4.0 - forced a new version upload to the Chef Supermarket

@@ -4,7 +4,7 @@
 #
 # Author:: Joseph Holsten (<joseph@josephholsten.com>)
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2008-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,4 +42,5 @@ end
 
 chef_gem 'nokogiri' do
   version node['xml']['nokogiri']['version']
+  action :install
 end

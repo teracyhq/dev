@@ -1,10 +1,10 @@
 {
   "name": "yum-mysql-community",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "description": "Installs/Configures yum-mysql-community",
   "long_description": "",
   "maintainer": "Chef Software, Inc",
-  "maintainer_email": "Sean OMeara <someara@getchef.com>",
+  "maintainer_email": "Sean OMeara <sean@chef.io>",
   "license": "Apache 2.0",
   "platforms": {
   },
