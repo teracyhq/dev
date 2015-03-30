@@ -1,9 +1,9 @@
 #
-# Author:: Hoat Le <hoatlevan@gmail.com>
+# Author:: Dat Phan <datphan@teracy.com>
 # Cookbook Name:: teracy-dev
 # Recipe:: codebox
 #
-# Copyright 2013, Teracy, Inc.
+# Copyright 2013 - 2015, Teracy, Inc.
 #
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
@@ -40,13 +40,13 @@ if node['teracy-dev']['codebox']['enabled']
     user = node['teracy-dev']['codebox']['user']
     install_path = '/usr/local/lib'
 
-	# npm install codebox
-	bash 'install codebox for user: ' + user do
-    	code <<-EOH
-			sudo npm install -g codebox -f
-        EOH
+    # npm install codebox
+    bash 'install codebox for user: ' + user do
+        code <<-EOH
+            sudo npm install -g codebox -f
+            EOH
         not_if { ::File.exists?(install_path + '/node_modules/codebox/bin/codebox.js') }
-	end
+    end
 
 
     config = {}
@@ -56,15 +56,15 @@ if node['teracy-dev']['codebox']['enabled']
     config['port'] = node['teracy-dev']['codebox']['port']
     config['script_name'] = '/etc/init.d/codebox'
 
-	# rubocop:disable HashSyntax
-	template config['script_name'] do
-    	source 'codebox.init.erb'
+    # rubocop:disable HashSyntax
+    template config['script_name'] do
+        source 'codebox.init.erb'
         mode 0755
         owner 'root'
         group 'root'
         variables(:config => config)
         action :create
-	end
+    end
 
 
     service 'codebox' do
@@ -73,9 +73,9 @@ if node['teracy-dev']['codebox']['enabled']
         action [:stop]
     end
 
-	service 'codebox' do
-		supports :status => true, :restart => true
-		start_command config['script_name'] + ' start'
-		action [:enable, :start]
-	end
+    service 'codebox' do
+        supports :status => true, :restart => true
+        start_command config['script_name'] + ' start'
+        action [:enable, :start]
+    end
 end

@@ -264,7 +264,7 @@
       "codebox": {
         "enabled":false,
         "port":30000,
-        "sync_dir":"/home/vagrant/workspace/personal"
+        "sync_dir":"/home/vagrant/workspace"
       }
     }
   }
