@@ -139,7 +139,8 @@ require 'chef/sugar/core_extensions'
 
 ### Data Bag
 - `encrypted_data_bag_item` - a handy DSL method for loading encrypted data bag items the same way you load a regular data bag item; this requires `Chef::Config[:encrypted_data_bag_secret]` is set!
-- `encrypted_data_bag_item_for_environment` - find the data bag entry for the current node's Chef environment.
+- `encrypted_data_bag_item_for_environment` - find the encrypted data bag entry for the current node's Chef environment.
+- `data_bag_item_for_environment` - find the data bag entry for the current node's Chef environment.
 
 #### Examples
 ```ruby
@@ -148,6 +149,10 @@ encrypted_data_bag_item('accounts', 'hipchat')
 
 ```ruby
 encrypted_data_bag_item_for_environment('accounts', 'github')
+```
+
+```ruby
+data_bag_item_for_environment('accounts', 'github')
 ```
 
 ### Docker
@@ -258,13 +263,16 @@ end
 ```
 
 ### Node
+
+Additional methods for the `node` object
+
 - `deep_fetch` - safely fetch a nested attribute.
 - `deep_fetch!` - fetch a nested attribute, raising a more semantic error if the key does not exist.
 - `in?` - determine if the node is in the given Chef environment.
 
 #### Examples
 ```ruby
-credentials = if in?('production')
+credentials = if node.in?('production')
                 Chef::EncryptedDataBag.new('...')
               else
                 data_bag('...')
@@ -389,7 +397,9 @@ end
 ```
 
 ### Virtualization
+- `kvm?`
 - `lxc?`
+- `virtualbox?`
 - `vmware?`
 
 #### Examples

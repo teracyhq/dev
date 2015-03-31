@@ -13,6 +13,9 @@ DEPENDENCIES
   nodejs (= 2.2.0)
   npm (= 0.1.2)
   php (= 1.5.0)
+  phpmyadmin
+    git: git@github.com:priestjim/chef-phpmyadmin.git
+    revision: f8b24f720d24504a5bbd0871c8f90aa24d30f7be
   postgresql (= 3.4.14)
   pyenv
     git: https://github.com/sds/chef-pyenv
@@ -88,6 +91,10 @@ GRAPH
     windows (>= 0.0.0)
     xml (>= 0.0.0)
     yum-epel (>= 0.0.0)
+  phpmyadmin (1.0.7)
+    apache2 (>= 0.0.0)
+    nginx (>= 0.0.0)
+    php (>= 0.0.0)
   postgresql (3.4.14)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)

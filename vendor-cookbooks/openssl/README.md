@@ -39,7 +39,7 @@ Usage
 Most often this will be used to generate a secure password for an attribute. In a recipe:
 
 ```ruby
-::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+::Chef::Recipe.send(:include, Chef::OpenSSL::Password)
 node.set_unless[:my_password] = secure_password
 ```
 
@@ -80,7 +80,7 @@ License and Author
 ==================
 
 Author:: Jesse Nelson (<spheromak@gmail.com>)
-Author:: Joshua Timberman (<joshua@opscode.com>)
+Author:: Joshua Timberman (<joshua@chef.io>)
 =======
 
 
@@ -98,8 +98,8 @@ include_recipe 'openssl::upgrade'
 This will ensure that openssl is upgraded to the latest version so the `stats_collector` service won't be exploited (hopefully!).
 
 ```text
-Copyright:: 2009-2011, Opscode, Inc
-Copyright:: 2014, Chef Software, Inc <legal@getchef.com>
+Copyright:: 2009-2011, Chef Software, Inc
+Copyright:: 2014, Chef Software, Inc <legal@chef.io>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,6 +1,6 @@
 XML Cookbook
 ============
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/xml.png?branch=master)](http://travis-ci.org/opscode-cookbooks/xml)
+[![Build Status](https://secure.travis-ci.org/chef-cookbooks/xml.png?branch=master)](http://travis-ci.org/chef-cookbooks/xml)
 
 Installs development package for libxml.
 
@@ -33,10 +33,10 @@ Installs the nokogiri gem into Chef's Ruby environment so it can be used in reci
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
 
 ```text
-Copyright 2009-2013, Opscode, Inc.
+Copyright 2009-2013, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

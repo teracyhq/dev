@@ -20,7 +20,7 @@
 
 actions :add, :delete, :config
 
-attribute :app_name, :kind_of => String, :name_attribute => true
+attribute :site_name, :kind_of => String, :name_attribute => true
 attribute :path, :kind_of => String, :default => '/'
 attribute :application_pool, :kind_of => String
 attribute :physical_path, :kind_of => String

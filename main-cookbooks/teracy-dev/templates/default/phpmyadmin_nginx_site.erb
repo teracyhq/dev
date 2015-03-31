@@ -1,0 +1,68 @@
+# You may add here your
+# server {
+#  ...
+# }
+# statements for each of your virtual hosts
+
+server {
+    listen <%= node['teracy-dev']['phpmyadmin']['listen_port']%> default;
+
+    server_name  _;
+    client_max_body_size 1000M;
+
+
+    root   /opt/phpmyadmin/;
+    index  index.php index.html index.htm;
+
+    location / {
+        autoindex on;
+    }
+
+    location ~ ^.+\.php {
+        root   /opt/phpmyadmin/;
+        fastcgi_read_timeout 300;
+        fastcgi_keep_conn on;
+        try_files $uri =404;
+        proxy_buffering off;
+        gzip off;
+        fastcgi_pass 127.0.0.1:9000;
+
+        fastcgi_index  index.php;
+        fastcgi_param  QUERY_STRING       $query_string;
+        fastcgi_param  REQUEST_METHOD     $request_method;
+        fastcgi_param  CONTENT_TYPE       $content_type;
+        fastcgi_param  CONTENT_LENGTH     $content_length;
+
+
+        fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+
+        fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
+        fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param  DOCUMENT_ROOT      $document_root;
+        fastcgi_param  REQUEST_URI        $request_uri;
+        fastcgi_param  DOCUMENT_URI       $document_uri;
+        fastcgi_param  SERVER_PROTOCOL    $server_protocol;
+
+        #fastcgi_split_path_info          ^(.+\.php)(/.+)$;
+        fastcgi_split_path_info           ^((?U).+\.php)(/?.+)$;
+        #the two lines below are possible now because of the fastcgi_split_path_info function
+        fastcgi_param  PATH_INFO          $document_uri;
+        fastcgi_param  PATH_TRANSLATED    $document_root$fastcgi_path_info;
+
+        fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
+        fastcgi_param  SERVER_SOFTWARE    nginx/$nginx_version;
+
+        fastcgi_param  REMOTE_ADDR        $remote_addr;
+        #fastcgi_param  REMOTE_ADDR       $http_x_real_ip;
+        fastcgi_param  REMOTE_PORT        $remote_port;
+        fastcgi_param  SERVER_ADDR        $server_addr;
+        fastcgi_param  SERVER_PORT        $server_port;
+        fastcgi_param  SERVER_NAME        $server_name;
+        fastcgi_pass_header         Authorization;
+        # fastcgi_intercept_errors    on;
+        # PHP only, required if PHP was built with --enable-force-cgi-redirect
+        fastcgi_param  HTTP_SCHEME	  $scheme;
+        fastcgi_param  REDIRECT_STATUS    200;
+    }
+}
+

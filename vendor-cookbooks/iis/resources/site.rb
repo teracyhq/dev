@@ -1,9 +1,9 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
 # Cookbook Name:: iis
 # Resource:: site
 #
-# Copyright:: 2011, Opscode, Inc.
+# Copyright:: 2011, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ attribute :host_header, :kind_of => String, :default => nil
 attribute :bindings, :kind_of => String, :default => nil
 attribute :application_pool, :kind_of => String, :default => nil
 attribute :options, :kind_of => String, :default => ''
+attribute :log_directory, :kind_of => String, :default => "#{node['iis']['pubroot']}\\logs\\LogFiles"
+attribute :log_period, :kind_of => Symbol, :default => :Daily, :equal_to => [:Daily, :Hourly, :MaxSize, :Monthly, :Weekly]
+attribute :log_truncsize, :kind_of => Integer, :default => 1048576 
 
 attr_accessor :exists, :running
 

@@ -10,8 +10,8 @@ Requirements
 ### Platforms
 Tested on:
 - Ubuntu 10.04+
-- RedHat 5+
-- Fedora 19+
+- Red Hat / CentOS 5+
+- Fedora 20+
 - OmniOS r151006c
 
 ### Other
@@ -24,14 +24,14 @@ See `attributes/default.rb` for default values.
 
 * `node['rsyslog']['log_dir']` - If the node is an rsyslog server, this specifies the directory where the logs should be stored.
 * `node['rsyslog']['working_dir']` - The temporary working directory where messages are buffered
-* `node['rsyslog']['server']` - Determined automaticaly and set to true on the server.
+* `node['rsyslog']['server']` - Determined automatically and set to true on the server.
 * `node['rsyslog']['server_ip']` - If not defined then search will be used to determine rsyslog server. Default is `nil`.  This can be a string or an array.
 * `node['rsyslog']['server_search']` - Specify the criteria for the server search operation. Default is `role:loghost`.
 * `node['rsyslog']['protocol']` - Specify whether to use `udp` or `tcp` for remote loghost. Default is `tcp`.
 * `node['rsyslog']['port']` - Specify the port which rsyslog should connect to a remote loghost.
 * `node['rsyslog']['remote_logs']` - Specify wether to send all logs to a remote server (client option). Default is `true`.
 * `node['rsyslog']['per_host_dir']` - "PerHost" directories for template statements in `35-server-per-host.conf`. Default value is the previous cookbook version's value, to preserve compatibility. See __server__ recipe below.
-* `node['rsyslog']['priv_seperation']` - Whether to use privilege seperation or not.
+* `node['rsyslog']['priv_seperation']` - Whether to use privilege separation or not.
 * `node['rsyslog']['max_message_size']` - Specify the maximum allowed message size. Default is 2k.
 * `node['rsyslog']['user']` - Who should own the configuration files and directories
 * `node['rsyslog']['group']` - Who should group-own the configuration files and directories
@@ -100,9 +100,33 @@ For example, to change this to just the hostname, set the attribute `node['rsysl
 
 At this time, the server can only listen on UDP *or* TCP.
 
+Resources
+=========
+
+file_input
+----------
+
+Configures a (text file input
+monitor)[http://www.rsyslog.com/doc/imfile.html] to push a log file into
+rsyslog.
+
+Attributes:
+* `name`: name of the resource, also used for the syslog tag. Required.
+* `file`: file path for input file to monitor. Required.
+* `priority`: config order priority. Defaults to `99`.
+* `severity`: syslog severity. Must be one of `emergency`, `alert`,
+`critical`, `error`, `warning`, `notice`, `info` or `debug`. If
+undefined, rsyslog interprets this as `notice`.
+* `facility`: syslog facility. Must be one of `auth`, `authpriv`,
+`daemon`, `cron`, `ftp`, `lpr`, `kern`, `mail`, `news`, `syslog`,
+`user`, `uucp`, `local0`, ... , `local7`. If undefined, rsyslog
+interprets this as `local0`.
+* `cookbook`: cookbook containing the template. Defaults to `rsyslog`.
+* `source`: template file source. Defaults to `file-input.conf.erb`
+
 
 Usage
------
+=====
 Use `recipe[rsyslog]` to install and start rsyslog as a basic configured service for standalone systems.
 
 Use `recipe[rsyslog::client]` to have nodes log to a remote server (which is found via the `server_ip` attribute or by the recipe's search call -- see __client__)
@@ -110,6 +134,9 @@ Use `recipe[rsyslog::client]` to have nodes log to a remote server (which is fou
 Use `recipe[rsyslog::server]` to set up a rsyslog server. It will listen on `node['rsyslog']['port']` protocol `node['rsyslog']['protocol']`.
 
 If you set up a different kind of centralized loghost (syslog-ng, graylog2, logstash, etc), you can still send log messages to it as long as the port and protocol match up with the server software. See __Examples__
+
+Use `rsyslog_file_input` within your recipes to forward log files to
+your remote syslog server.
 
 
 ### Examples
@@ -179,7 +206,7 @@ This section details "quick development" steps. For a detailed explanation, see 
 
     $ bundle install
 
-4. Make your changes/patches/fixes, committing appropiately
+4. Make your changes/patches/fixes, committing appropriately
 5. **Write tests**
 6. Run the tests:
     - bundle exec foodcritic -f any .
@@ -196,12 +223,12 @@ This section details "quick development" steps. For a detailed explanation, see 
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@getchef.com>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
 - Author:: Denis Barishev (<denz@twiket.com>)
 - Author:: Tim Smith (<tsmith84@gmail.com>)
 
 ```text
-Copyright:: 2009-2014, Chef Software, Inc
+Copyright:: 2009-2015, Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

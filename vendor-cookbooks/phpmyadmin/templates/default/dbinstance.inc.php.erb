@@ -1,0 +1,55 @@
+<?php
+
+$i++;
+
+/* Authentication type */
+$cfg['Servers'][$i]['auth_type'] = '<%= @auth_type %>';
+/* Server parameters */
+$cfg['Servers'][$i]['host'] = '<%= @host %>';
+$cfg['Servers'][$i]['port'] = '<%= @port %>';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['compress'] = true;
+/* Select mysqli if your server has it */
+$cfg['Servers'][$i]['extension'] = 'mysqli';
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
+
+$cfg['Servers'][$i]['user'] = '<%= @user %>';
+$cfg['Servers'][$i]['password'] = '<%= @pass %>';
+<% if @hide_dbs %>
+$cfg['Servers'][$i]['hide_db'] = '^<%= @hide_dbs.join('|') %>$';
+<% end %>
+$cfg['Servers'][$i]['verbose'] = '<%= @name %>';
+
+/* rajk - for blobstreaming */
+$cfg['Servers'][$i]['bs_garbage_threshold'] = 50;
+$cfg['Servers'][$i]['bs_repository_threshold'] = '32M';
+$cfg['Servers'][$i]['bs_temp_blob_timeout'] = 600;
+$cfg['Servers'][$i]['bs_temp_log_threshold'] = '32M';
+
+<% unless @pma_user.empty? || @pma_pass.empty? || @pma_db.empty? %>
+/* User for advanced features */
+$cfg['Servers'][$i]['controluser']      = '<%= @pma_user %>';
+$cfg['Servers'][$i]['controlpass']      = '<%= @pma_pass %>';
+$cfg['Servers'][$i]['pmadb']            = '<%= @pma_db %>';
+/* Advanced phpMyAdmin features */
+$cfg['Servers'][$i]['bookmarktable']    = 'pma__bookmark';
+$cfg['Servers'][$i]['relation']         = 'pma__relation';
+$cfg['Servers'][$i]['table_info']       = 'pma__table_info';
+$cfg['Servers'][$i]['table_coords']     = 'pma__table_coords';
+$cfg['Servers'][$i]['pdf_pages']        = 'pma__pdf_pages';
+$cfg['Servers'][$i]['column_info']      = 'pma__column_info';
+$cfg['Servers'][$i]['history']          = 'pma__history';
+$cfg['Servers'][$i]['table_uiprefs']    = 'pma__table_uiprefs';
+$cfg['Servers'][$i]['tracking']         = 'pma__tracking';
+$cfg['Servers'][$i]['userconfig']       = 'pma__userconfig';
+$cfg['Servers'][$i]['recent']           = 'pma__recent';
+$cfg['Servers'][$i]['favorite']         = 'pma__favorite';
+$cfg['Servers'][$i]['users']            = 'pma__users';
+$cfg['Servers'][$i]['usergroups']       = 'pma__usergroups';
+$cfg['Servers'][$i]['navigationhiding'] = 'pma__navigationhiding';
+$cfg['Servers'][$i]['savedsearches']    = 'pma__savedsearches';
+$cfg['Servers'][$i]['central_columns']  = 'pma__central_columns';
+
+/* Contrib / Swekey authentication */
+$cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf';
+<% end %>

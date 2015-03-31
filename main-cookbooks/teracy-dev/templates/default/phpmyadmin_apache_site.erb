@@ -1,0 +1,13 @@
+Listen 9997
+<VirtualHost _default_:<%= node['teracy-dev']['phpmyadmin']['listen_port']%>>
+  ServerAdmin admin@dev.teracy.net
+
+  DocumentRoot /opt/phpmyadmin/
+  <Directory />
+    Options FollowSymLinks
+  </Directory>
+
+  CustomLog /var/log/apache2/phpMyAdmin.access.log combined
+  ServerSignature On
+  ErrorLog /var/log/apache2/phpMyAdmin.error.log
+</VirtualHost>

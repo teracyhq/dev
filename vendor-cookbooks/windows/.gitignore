@@ -1,5 +1,0 @@
-.kitchen/
-.kitchen.local.yml
-Berksfile.lock
-Gemfile.lock
-.bundle

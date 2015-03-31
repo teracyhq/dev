@@ -39,6 +39,10 @@
       "host":9998
     },
     {
+      "guest":9997, //phpmyadmin
+      "host":9997
+    },
+    {
       "guest":35729, //livereload
       "host":35729
     },
@@ -265,6 +269,11 @@
         "enabled":false,
         "port":30000,
         "sync_dir":"/home/vagrant/workspace"
+      },
+      "phpmyadmin": {
+        "enabled":true,
+        "listen_port": 9997,
+        "install_dir": "/opt/phpmyadmin"
       }
     }
   }

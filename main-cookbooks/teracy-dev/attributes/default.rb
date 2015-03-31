@@ -73,3 +73,9 @@ default['teracy-dev']['codebox'] = {
     'port' => 30000,
     'sync_dir' => '/home/vagrant/workspace'
 }
+
+default['teracy-dev']['phpmyadmin'] = {
+    'enabled' => false,
+    'listen_port' => 9997,
+    'install_dir' => '/opt/phpmyadmin'
+}
