@@ -25,8 +25,9 @@ Contents:
    c_c++_training
    python_training
    django_training
-   ruby_training
    ruby_dev_guide
+   ruby_training
+   php_dev_guide
    php_training
    html_css_training
    js_training
