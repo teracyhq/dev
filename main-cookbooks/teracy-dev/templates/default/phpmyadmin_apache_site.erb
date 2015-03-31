@@ -1,5 +1,5 @@
 Listen 9997
-<VirtualHost _default_:9997>
+<VirtualHost _default_:<%= node['teracy-dev']['phpmyadmin']['listen_port']%>>
   ServerAdmin admin@dev.teracy.net
 
   DocumentRoot /opt/phpmyadmin/

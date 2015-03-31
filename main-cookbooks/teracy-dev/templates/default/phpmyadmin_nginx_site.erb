@@ -5,7 +5,7 @@
 # statements for each of your virtual hosts
 
 server {
-    listen 9997 default;
+    listen <%= node['teracy-dev']['phpmyadmin']['listen_port']%> default;
 
     server_name  _;
     client_max_body_size 1000M;

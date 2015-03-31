@@ -272,6 +272,7 @@
       },
       "phpmyadmin": {
         "enabled":true,
+        "listen_port": 9997,
         "install_dir": "/opt/phpmyadmin"
       }
     }

@@ -21,6 +21,12 @@ if node['teracy-dev']['phpmyadmin']['enabled']
         link "#{node['apache']['dir']}/sites-enabled/phpMyAdmin.conf" do
             to "#{node['apache']['dir']}/sites-available/phpMyAdmin.conf"
         end
+        bash 'restart Apache' do
+            code <<-EOF
+                service apache2 restart;
+            EOF
+            user 'root'
+        end
     elsif node['teracy-dev']['nginx']['enabled']
         template "#{node['nginx']['dir']}/sites-available/phpMyAdmin.conf" do
             source 'phpmyadmin_nginx_site.erb'
@@ -31,6 +37,12 @@ if node['teracy-dev']['phpmyadmin']['enabled']
 
         link "#{node['nginx']['dir']}/sites-enabled/phpMyAdmin.conf" do
             to "#{node['nginx']['dir']}/sites-available/phpMyAdmin.conf"
+        end
+        bash 'restart Apache' do
+            code <<-EOF
+                service nginx restart;
+            EOF
+            user 'root'
         end
     end
 end
