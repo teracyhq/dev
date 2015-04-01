@@ -102,15 +102,15 @@ Verify ``LAMP`` and ``LEMP``
         Zend Engine v2.4.0, Copyright (c) 1998-2014 Zend Technologies
 
 
-Open http://localhost:9998 to see ``Nginx`` serving *workspace/personal* directory by default.
+Open http://localhost:9998 to see ``Nginx`` serving the *workspace/personal* directory by default.
 
-Open http://localhost:9999 to see ``Apache`` serving *workspace/personal* directory by default.
+Open http://localhost:9999 to see ``Apache`` serving the *workspace/personal* directory by default.
 
 
 ``info.php`` Page
 -----------------
 
-Create *info.php* on *workspace/personal/info* directory:
+Create *info.php* on the *workspace/personal/info* directory:
 
 ..  code-block:: bash
 
@@ -122,7 +122,7 @@ Create *info.php* on *workspace/personal/info* directory:
     $ echo "  phpinfo();" >> info.php
     $ echo "?>" >> info.php
 
-After the command lines above, we should have *workspace/personal/info/info.php* file with the
+After the command lines above, we should have the *workspace/personal/info/info.php* file with the
 following content:
 
 ..  code-block:: php
@@ -131,12 +131,14 @@ following content:
       phpinfo();
     ?>
 
-Open http://localhost:9998/info/info.php we should see php info on the system, like:
+Open http://localhost:9998/info/info.php we should see php info of the system like the screenshot
+below:
 
 ..  image:: _static/php-dev-guide/LEMP_info.png
     :align: center
 
-Open http://localhost:9999/info/info.php we should see php info on the system, like:
+Open http://localhost:9999/info/info.php we should see php info of the system like the screenshot
+below:
 
 ..  image:: _static/php-dev-guide/LAMP_info.png
     :align: center
@@ -231,7 +233,7 @@ We'll follow http://laravel.com/docs/5.0/installation to get started with ``Lara
     Open http://localhost:9999/blog/public/ and we should see "Laravel 5" page.
 
 
-We can start digging ``Laravel`` fraomework now: http://laravel.com/docs/5.0/routing
+We can start digging ``Laravel`` framework now: http://laravel.com/docs/5.0/routing
 
 
 ``Symfony`` Framework
@@ -336,7 +338,7 @@ We'll follow https://www.drupal.org/documentation/install to get started with ``
     Open http://localhost:9999/drupal-7.35 and follow installation wizard.
 
 
-We can start digging ``Drupal`` cms now: https://www.drupal.org/documentation
+We can start digging ``Drupal`` CMS now: https://www.drupal.org/documentation
 
 
 ``Joomla!`` CMS
@@ -363,11 +365,11 @@ We'll follow https://docs.joomla.org/J3.x:Installing_Joomla to get started with 
 
     We'll use *joomla* as database with *root* as username and *teracy* as password by default.
 
-#. Setup
+#.  Setup
 
     Open http://localhost:9999/joomla and follow installation wizard.
 
-We can start digging ``Joomla!`` cms now: https://docs.joomla.org/J3.x:Getting_Started_with_Joomla!
+We can start digging ``Joomla!`` CMS now: https://docs.joomla.org/J3.x:Getting_Started_with_Joomla!
 
 
 ``Wordpress`` CMS
@@ -400,7 +402,7 @@ We'll follow http://codex.wordpress.org/Installing_WordPress to get started with
     Open http://localhost:9999/wordpress and follow installation wizard.
 
 
-We can start digging ``Wordpress`` cms now: http://codex.wordpress.org/Getting_Started_with_WordPress
+We can start digging ``Wordpress`` CMS now: http://codex.wordpress.org/Getting_Started_with_WordPress
 
 References
 ----------
