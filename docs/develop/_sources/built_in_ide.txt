@@ -9,6 +9,9 @@ need to enable it to use.
 
 The built-in editor we support is Codebox_ - it's more than an editor, it's an IDE.
 
+..  image:: _static/built-in-ide/teracy_codebox_screenshot.png
+    :align: center
+
 
 Default Configuration
 ---------------------
