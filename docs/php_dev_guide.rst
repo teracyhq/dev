@@ -298,7 +298,7 @@ with ``Yii`` framework.
     Verify the installation by opening http://localhost:9999/basic/web/index.php
 
     ..  todo::
-        http://localhost:9999/basic/web/index.php (Ngix) did not work out of the box yet.
+        http://localhost:9999/basic/web/index.php (Nginx) did not work out of the box yet.
 
 
 We can start digging ``Yii`` framework now: http://www.yiiframework.com/doc-2.0/guide-start-hello.html
