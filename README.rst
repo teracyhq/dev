@@ -35,7 +35,7 @@ All configuration is in the ``Vagrantfile`` and ``vagrant_config.json`` files.
 To override the default configuration, you need to copy the key you want to override from ``vagrant_config.json``
 to your newly created ``vagrant_config_override.json`` file and adjust it by your needs.
 
-For example, override the ``vm_forwarded_ports`` and ``java`` keys as follows.
+For example, override the ``git`` keys as follows.
 ::
 
   {
