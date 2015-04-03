@@ -82,35 +82,122 @@ as password by default.
 PostgreSQL
 ----------
 
-``PostgreSQL`` is disabled by default on the teracy-dev VM.
+``PostgreSQL`` is disabled by default on the teracy-dev VM:
+
+..  code-block:: json
+
+    {
+      "postgresql":{
+        "enabled":false,
+        "password":{
+          "postgres":"teracy"
+        },
+        "version":"9.3"
+      }
+    }
 
 #.  Enable
+
+    To enable, we need to override the default configuration by appending *postgresql* attribute within
+    *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
+
+    ..  code-block:: json
+
+        {
+          "chef_json":{
+            "teracy-dev":{
+              "postgresql":{
+                "enabled":true
+              }
+            }
+          }
+        }
+
+    Save the file and then ``$ vagrant provision``, after that ``PostgreSQL`` should be installed.
+
+    By default, we use `postgres` as username and `teracy` as password to access the enabled
+    ``PostgreSQL`` database instance.
+
+
+#.  Verify
+
+    Within vagrant ssh session, by:
+
+    ..  code-block:: bash
+
+        $ vagrant ssh
+        $ psql -U postgres -h localhost
+
+    And we should see the following output:
+
+    ..  code-block:: bash
+
+        Password for user postgres:
+        psql (9.1.14)
+        SSL connection (cipher: DHE-RSA-AES256-SHA, bits: 256)
+        Type "help" for help.
+
+        postgres=#
+
+    To exit the ``PostgreSQL`` shell:
+
+    ..  code-block:: bash
+
+        postgres=# \q
+
+#.  Initialize the super user *vagrant* role and default *vagrant* database
+
+    This step is required for the first time when the ``PostgreSQL`` database is enabled and
+    installed.
+
+    ..  code-block:: bash
+
+        $ sudo su postgres
+        $ createuser vagrant
+
+    Type ``y`` and hit enter when asked “Shall the new role be a superuser?”
+
+    Now we can exit the *su* subshell to go back to the vagrant user SSH session:
+
+    ..  code-block:: bash
+
+        $ exit
+
+    Now create *vagrant* database:
+
+    ..  code-block:: bash
+
+        $ createdb vagrant
 
 
 #.  Local access
 
+    When *vagrant* super user and *vagrant* database is created, we just need to type:
+
+    ..  code-block::
+
+        $ psql
+
+    And we should the the following output:
+
+    ..  code-block:: bash
+
+        psql (9.1.14)
+        Type "help" for help.
+
+        vagrant=#
+
+    Type ``\q`` to exit the ``PostgreSQL`` shell.
 
 #.  Remote access
 
     ..  todo::
-        We need to support this
+        We need to support this by https://issues.teracy.org/browse/DEV-221
 
 
 MongoDB
 -------
 
-``PostgreSQL`` is disabled by default on the teracy-dev VM.
-
-#.  Enable
-
-
-#.  Local access
-
-
-#.  Remote access
-
-    ..  todo::
-        We need to support this
 
 
 
