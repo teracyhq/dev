@@ -78,6 +78,8 @@ as password by default.
     ..  image:: _static/databases-guide/phpMyAdmin.png
         :align: center
 
+From now on we can start digging ``MySQL`` database at: http://dev.mysql.com/doc/
+
 
 PostgreSQL
 ----------
@@ -194,6 +196,8 @@ PostgreSQL
     ..  todo::
         We need to support this by https://issues.teracy.org/browse/DEV-221
 
+From now on we can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
+
 
 MongoDB
 -------
@@ -286,6 +290,7 @@ MongoDB
         For easier development, by default the ``MongoDB`` instance does not require username and
         password.
 
+From now on we can start digging ``MongoDB`` database at: http://docs.mongodb.org/manual/
 
 References
 ----------
