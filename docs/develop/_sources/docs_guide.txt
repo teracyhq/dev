@@ -14,8 +14,8 @@ Style Guide
     Need to have docs style guide here
 
 
-reStructuredText Wring
-----------------------
+reStructuredText Writing
+------------------------
 
 For easier .rst writing, we use restview_.
 
