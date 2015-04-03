@@ -187,7 +187,7 @@ PostgreSQL
 
         vagrant=#
 
-    Type ``\q`` to exit the ``PostgreSQL`` shell.
+    Type ``\q`` to quit the ``PostgreSQL`` shell.
 
 #.  Remote access
 
@@ -198,7 +198,93 @@ PostgreSQL
 MongoDB
 -------
 
+``MongoDB`` is disabled by default on the teracy-dev VM:
 
+..  code-block:: json
+
+    {
+      "mongodb":{
+        "enabled":false,
+        "version":"2.6.3"
+      }
+    }
+
+
+#.  Enable
+
+    To enable, we need to override the default configuration by appending *mongodb* attribute within
+    *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
+
+    ..  code-block:: json
+
+        {
+          "chef_json":{
+            "teracy-dev":{
+              "mongodb":{
+                "enabled":true
+              }
+            }
+          }
+        }
+
+    Save the file and then ``$ vagrant provision``, after that ``MongoDB`` should be installed.
+
+#.  Verify
+
+    Within vagrant ssh session, by:
+
+    ..  code-block:: bash
+
+        $ vagrant ssh
+        $ mongo
+
+    And we should the the following output:
+
+    ..  code-block: bash
+
+        MongoDB shell version: 2.6.9
+        connecting to: test
+        >
+
+    Type ``exit`` to quit the ``MongoDB`` shell.
+
+#.  Local access
+
+    Just type ``mongo`` and we're done.
+
+
+#.  Remote access
+
+    By default, the default port *27017* is forwarded to the guest machine, to remote access it, we
+    only need to specify the host ip address when required:
+
+    - host: the guest machine's IP address or *127.0.0.1* or *localhost* or none to access from the
+    guest machine
+
+    For example, from a guest machine:
+
+    ..  code-block:: bash
+
+        $ mongo
+
+    or:
+
+    ..  code-block:: bash
+
+        $ mongo localhost
+
+    We could replace *localhost* with *127.0.0.1*.
+
+    or from a different machine to the machine running the teracy-dev VM with ip: *192.168.1.111*
+
+    ..  code-block:: bash
+
+        $ mongo 192.168.1.111
+
+
+    ..  notice::
+        For easier development, by default the ``MongoDB`` instance does not require username and
+        password.
 
 
 References
