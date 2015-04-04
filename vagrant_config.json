@@ -262,6 +262,9 @@
         "packages":[
           {
             "name":"tree"
+          },
+          {
+            "name":"postgresql-contrib" // for rails
           }
         ]
       },
