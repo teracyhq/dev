@@ -27,7 +27,7 @@ This installation guide is based on https://developer.mozilla.org/en-US/Add-ons/
 
   - Python 2.7 is already available by default
 
-  - Firefox is not availble, so we cannot use the commands involving Firefox, for example:
+  - Firefox is not available, so we cannot use the commands involving Firefox, for example:
     ``$ cfx run`` or ``$ cfx test``
 
 To install the SDK, the following steps need accomplishing:
@@ -58,7 +58,7 @@ And from now on we can use ``$ cfx`` anywhere. To verify, try the command below:
 
 And we should see the following output:
 
-..  code-block: bash
+..  code-block:: bash
 
     Add-on SDK 1.17 (12f7d53e8b5fc015a15fa4a30fa588e81e9e9b2e)
 
