@@ -130,11 +130,12 @@ PostgreSQL
         $ vagrant ssh
         $ psql -U postgres -h localhost
 
+    Type *teracy* when being prompted for the password: ``Password for user postgres:``
+
     And we should see the following output:
 
     ..  code-block:: bash
 
-        Password for user postgres:
         psql (9.1.14)
         SSL connection (cipher: DHE-RSA-AES256-SHA, bits: 256)
         Type "help" for help.
