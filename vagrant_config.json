@@ -82,6 +82,13 @@
     //   ]
     // }
   ],
+  "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
+    //"gui":true,
+    //"name":"teracy-dev",
+    "memory":1048,
+    //"cpus":1,
+    "description":"teracy-dev vagrant box"
+  },
   "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[
     "vendor-cookbooks",
