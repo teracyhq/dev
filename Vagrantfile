@@ -187,12 +187,9 @@ Vagrant.configure("2") do |config|
 
     vb_hash.each do |key, val|
       if general_settings_keys.include?(key) and !vb_hash[key].nil?
-        if vb_hash[key].instance_of? String
-          if !vb_hash[key].strip().empty?
-            vb.customize ["modifyvm", :id, "--" + key, vb_hash[key].strip()]
-          end
-        else
-          vb.customize ["modifyvm", :id, "--" + key, vb_hash[key]]
+        val = val.to_s.strip()
+        if !val.empty?
+          vb.customize ["modifyvm", :id, "--" + key, val]
         end
       end
     end
