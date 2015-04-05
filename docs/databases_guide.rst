@@ -177,7 +177,7 @@ PostgreSQL
 
     When *vagrant* super user and *vagrant* database is created, we just need to type:
 
-    ..  code-block::
+    ..  code-block:: bash
 
         $ psql
 
