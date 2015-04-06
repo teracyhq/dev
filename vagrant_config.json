@@ -12,7 +12,11 @@
     },
     {
       "guest":3306, //mysql
-      "host":6603
+      "host":6603  //TODO(hoatle): use 3306 instead?
+    },
+    {
+      "guest":27017, //mongodb
+      "host":27017
     },
     {
       "guest":4000, //octopress
