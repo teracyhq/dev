@@ -58,8 +58,9 @@
     //"auto_config":true, // for private_network mode + ip
     //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
   },
-  "vm_synced_folders":[
+  "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
     {
+      "type":"virtual_box", // virtualbox, "nfs", "rsync" or "smb"
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
       "mount_options":[

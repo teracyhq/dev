@@ -109,22 +109,22 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   vm_network = data_hash['vm_network']
 
-  if vm_network['mode'] == 'forwarded_port'
+  case vm_network['mode']
+  when 'forwarded_port'
     vm_network['forwarded_ports'].each do |item|
       config.vm.network :forwarded_port, guest: item["guest"], host: item["host"]
     end
-  elsif vm_network['mode'] == 'private_network'
+  when 'private_network'
     ip = vm_network['ip']
     type = vm_network['type']
     if !ip.nil? and !ip.strip().empty?
       auto_config = !(vm_network['auto_config'] == false)
       config.vm.network :private_network, ip: ip.strip(), auto_config: auto_config
-    elsif !type.nil? and type.strip() == 'dhcp'
-      config.vm.network :private_network, type: 'dhcp'
     else
-      puts red('ip or type (dhcp) required for private_network mode')
+      # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
+      config.vm.network :private_network, type: 'dhcp'
     end
-  elsif vm_network['mode'] == 'public_network'
+  when 'public_network'
     ip = vm_network['ip']
     bridge = vm_network['bridge']
 
@@ -158,36 +158,47 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  data_hash['vm_synced_folders'].each do |x|
+  data_hash['vm_synced_folders'].each do |item|
+    options = {}
+    host_os = Vagrant::Util::Platform.platform
+    host_os_type = ''
 
-    hostOS = Vagrant::Util::Platform.platform
-    hostOSType = ''
-
-    case hostOS
+    case host_os
     when /^(mswin|mingw).*/
-      hostOSType = 'windows'
+      host_os_type = 'windows'
     when /^(linux|cygwin).*/
-      hostOSType = 'linux'
+      host_os_type = 'linux'
     when /^(mac|darwin).*/
-      hostOSType = 'mac'
+      host_os_type = 'mac'
     end
 
-    if x["supports"].nil?
-      if x["mount_options"].nil?
-        config.vm.synced_folder x["host"], x["guest"]
-      else
-        config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
-      end
-    else
-      if x["supports"].include?(hostOSType)
-        if x["mount_options"].nil?
-          config.vm.synced_folder x["host"], x["guest"]
-        else
-          config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
-        end
-      end
+    # options from http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
+    options[:create] = item['create'] unless item['create'].nil?
+    options[:disabled] = item['disabled'] unless item['disabled'].nil?
+    options[:owner] = item['owner'] unless item['owner'].nil?
+    options[:group] = item['group'] unless item['group'].nil?
+    options[:mount_options] = item['mount_options'] unless item['mount_options'].nil?
+    options[:type] = item['type'] unless item['type'].nil?
+
+    case item['type']
+    when 'nfs'
+      options[:nfs_export] = item['nfs_export'] if !!item['nfs_export'] == item['nfs_export']
+      options[:nfs_udp] = item['nfs_udp'] if !!item['nfs_udp'] == item['nfs_udp']
+      options[:nfs_version] = item['nfs_version'] unless item['nfs_version'].nil?
+    when 'rsync'
+      options[:rsync__args] = item['rsync__args'] unless item['rsync__args'].nil? or item['rsync__args'].strip().empty?
+      options[:rsync__auto] = item['rsync__auto'] if !!item['rsync__auto'] == item['rsync__auto']
+      options[:rsync__chown] = item['rsync__chown'] if !!item['rsync__chown'] == item['rsync__chown']
+      options[:rsync__exclude] = item['rsync__exclude'] unless item['rsync__exclude'].nil? or item['rsync__exclude'].empty?
+    when 'smb'
+      options[:smb_host] = item['smb_host'] unless item['smb_host'].nil? or item['smb_host'].empty?
+      options[:smb_password] = item['smb_password'] unless item['smb_password'].nil? or item['smb_password'].empty?
+      options[:smb_username] = item['smb_username'] unless item['smb_password'].nil? or item['smb_password'].empty?
     end
 
+    if item['supports'].nil? or item['supports'].include?(host_os_type)
+      config.vm.synced_folder item['host'], item['guest'], options
+    end
   end
 
   # ssh configuration
