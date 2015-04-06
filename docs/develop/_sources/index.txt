@@ -22,6 +22,7 @@ Contents:
    firefox_addon_dev_guide
    docs_guide
    document_writer_training
+   databases_guide
    c_c++_training
    python_training
    django_training
