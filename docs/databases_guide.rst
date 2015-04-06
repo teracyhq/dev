@@ -264,7 +264,7 @@ MongoDB
     only need to specify the host ip address when required:
 
     - host: the guest machine's IP address or *127.0.0.1* or *localhost* or none to access from the
-    guest machine
+      guest machine
 
     For example, from a guest machine:
 
