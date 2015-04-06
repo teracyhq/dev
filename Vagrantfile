@@ -107,9 +107,42 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  data_hash['vm_forwarded_ports'].each do |x|
-    config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
+  vm_network = data_hash['vm_network']
+
+  if vm_network['mode'] == 'forwarded_port'
+    vm_network['forwarded_ports'].each do |item|
+      config.vm.network :forwarded_port, guest: item["guest"], host: item["host"]
+    end
+  elsif vm_network['mode'] == 'private_network'
+    ip = vm_network['ip']
+    type = vm_network['type']
+    if !ip.nil? and !ip.strip().empty?
+      auto_config = !(vm_network['auto_config'] == false)
+      config.vm.network :private_network, ip: ip.strip(), auto_config: auto_config
+    elsif !type.nil? and type.strip() == 'dhcp'
+      config.vm.network :private_network, type: 'dhcp'
+    else
+      puts red('ip or type (dhcp) required for private_network mode')
+    end
+  elsif vm_network['mode'] == 'public_network'
+    ip = vm_network['ip']
+    bridge = vm_network['bridge']
+
+    if !bridge.nil? and !bridge.strip().empty?
+      if !ip.nil? and !ip.strip().empty?
+        config.vm.network :public_network, ip: ip.strip(), bridge: bridge
+      else
+        config.vm.network :public_network, bridge: bridge
+      end
+    else
+      if !ip.nil? and !ip.strip().empty?
+        config.vm.network :public_network, ip: ip.strip()
+      else
+        config.vm.network :public_network
+      end
+    end
   end
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
