@@ -37,7 +37,7 @@ steps:
         $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
         $ git fetch djbp
         $ git merge djbp/master
-        $ pip install -r requirements/dev.txt
+        $ pip install -r requirements/project/dev.txt
         $ ./manage.py syncdb
 
     When ``syncdb``, you should create a super account to access the admin page later.
