@@ -29,6 +29,7 @@ steps:
 
 #. Set up the ``tutorial`` project:
     ::
+        dfaf14124@@$E!24!@$!1241
 
         $ ws
         $ cd personal
