@@ -31,6 +31,15 @@ Vagrant.configure("2") do |config|
 
   end
 
+  # detect old configuration, puts an error to help users to migrate to new changes of configuration
+  if !data_hash['vm_forwarded_ports'].nil?
+    message = 'ERROR: vagrant_config_override.json has old configuration of vm_forwarded_ports. '
+    message << "Use vm_network['forwarded_ports'] instead. "
+    message << 'Details: https://issues.teracy.org/browse/DEV-198'
+    puts red(message)
+    exit!
+  end
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
