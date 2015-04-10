@@ -29,7 +29,6 @@ steps:
 
 #. Set up the ``tutorial`` project:
     ::
-1111
         $ ws
         $ cd personal
         $ mkdir tutorial
