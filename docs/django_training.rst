@@ -29,17 +29,8 @@ steps:
 
 #. Set up the ``tutorial`` project:
     ::
+
         $ ws
-        $ cd personal
-        $ mkdir tutorial
-        $ cd tutorial
-        $ git init
-        $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
-        $ git fetch djbp
-        $ git merge djbp/master
-        $ pip install -r requirements/project/dev.txt
-        $ ./manage.py syncdb 
-		$ ws
         $ cd personal
         $ mkdir tutorial
         $ cd tutorial
