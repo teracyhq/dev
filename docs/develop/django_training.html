@@ -98,8 +98,8 @@ $ git init
 $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
 $ git fetch djbp
 $ git merge djbp/master
-$ pip install -r requirements/project/dev.txt
-$ ./manage.py syncdb
+$ pip install -r requirements/dev.txt
+$ python manage.py syncdb
 </pre></div>
 </div>
 <p>When <code class="docutils literal"><span class="pre">syncdb</span></code>, you should create a super account to access the admin page later.</p>
@@ -110,7 +110,7 @@ project development booted with a Django project template (boilerplate) of the b
 </li>
 <li><dl class="first docutils">
 <dt>Run the server now:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ ./manage.py runserver 0.0.0.0:8000
+<dd><div class="first highlight-python"><div class="highlight"><pre>$ python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 <p>You should see the following similar messages:</p>
@@ -169,7 +169,7 @@ it on your project.</p>
 </div>
 </li>
 <li><p class="first">Install it:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install -r requirements/project/dev.txt
+<div class="highlight-python"><div class="highlight"><pre>pip install -r requirements/dev.txt
 </pre></div>
 </div>
 </li>
@@ -206,7 +206,7 @@ Running setup.py install for teracy-django-html5-boilerplate
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ workon tutorial
 $ cd personal/tutorial/apps
-$ ../manage.py startapp hello
+$ python manage.py startapp hello
 </pre></div>
 </div>
 </div></blockquote>
@@ -280,7 +280,7 @@ of the 404 error page.</p>
 <p class="first admonition-title">Note</p>
 <p>During development, the server could be stopped by some errors and it is normal.
 The server should be started without any error with the command:</p>
-<div class="last highlight-python"><div class="highlight"><pre>$ ./manage.py runserver 0.0.0.0:8000
+<div class="last highlight-python"><div class="highlight"><pre>$ python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 </div>
