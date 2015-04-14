@@ -38,8 +38,8 @@
     </script>
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -48,14 +48,14 @@
         <li class="right" >
           <a href="semantic_versioning.html" title="Semantic Versioning"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="release-process">
 <h1>Release Process<a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h1>
@@ -64,10 +64,10 @@
 <h2>Starting<a class="headerlink" href="#starting" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Follow workflow, a release branch should be branched off from origin branch that is ready to be
-released (for example: <tt class="docutils literal"><span class="pre">releases/0.1.0</span></tt> branch is branched off from the <tt class="docutils literal"><span class="pre">develop</span></tt> branch).</li>
-<li>Set the next iteration version for the <tt class="docutils literal"><span class="pre">develop</span></tt> branch. This will make sure there is no snapshot
-version conflict between the <tt class="docutils literal"><span class="pre">releases</span></tt> branch and the <tt class="docutils literal"><span class="pre">develop</span></tt> branch. Moreover, the
-<tt class="docutils literal"><span class="pre">develop</span></tt> branch will not be blocked.</li>
+released (for example: <code class="docutils literal"><span class="pre">releases/0.1.0</span></code> branch is branched off from the <code class="docutils literal"><span class="pre">develop</span></code> branch).</li>
+<li>Set the next iteration version for the <code class="docutils literal"><span class="pre">develop</span></code> branch. This will make sure there is no snapshot
+version conflict between the <code class="docutils literal"><span class="pre">releases</span></code> branch and the <code class="docutils literal"><span class="pre">develop</span></code> branch. Moreover, the
+<code class="docutils literal"><span class="pre">develop</span></code> branch will not be blocked.</li>
 <li>Create an issue for DevOps team to create ci job if required.</li>
 <li>Create an issue for Blog team to preparing release announcement post.</li>
 </ul>
@@ -87,10 +87,10 @@ is stable enough and have a good quality.</li>
 <ul class="simple">
 <li>Make sure that the tag step must be ready at least <strong>3 days</strong> before the expected release date.
 Use <strong>UTC</strong> as standard reference time.</li>
-<li>Tag the release: <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></tt> with the <tt class="docutils literal"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></tt> message. For example,
-<tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></tt> with the <tt class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></tt> message. This message pattern could be later
+<li>Tag the release: <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></code> with the <code class="docutils literal"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></code> message. For example,
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></code> with the <code class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></code> message. This message pattern could be later
 used for auto deployment, so make sure the message has the correct pattern.</li>
-<li>Merge the tag release into the <tt class="docutils literal"><span class="pre">master</span></tt> branch, then the origin branch. This is specified on the
+<li>Merge the tag release into the <code class="docutils literal"><span class="pre">master</span></code> branch, then the origin branch. This is specified on the
 workflow.</li>
 <li>Delete released branch and we are done.</li>
 </ul>
@@ -107,7 +107,7 @@ should be automated and really easy to do.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -122,12 +122,14 @@ should be automated and really easy to do.</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="semantic_versioning.html"
                         title="previous chapter">Semantic Versioning</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/release_process.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/release_process.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -144,7 +146,7 @@ should be automated and really easy to do.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -153,12 +155,12 @@ should be automated and really easy to do.</p>
         <li class="right" >
           <a href="semantic_versioning.html" title="Semantic Versioning"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2013 - 2014, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

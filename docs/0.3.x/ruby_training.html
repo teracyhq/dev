@@ -39,8 +39,8 @@
     </script>
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,24 +52,24 @@
         <li class="right" >
           <a href="django_training.html" title="Django Training"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="ruby-training">
 <h1>Ruby Training<a class="headerlink" href="#ruby-training" title="Permalink to this headline">¶</a></h1>
-<p>By default, <tt class="docutils literal"><span class="pre">teracy-dev</span></tt> will not install Ruby when <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> to avoid too much provision
+<p>By default, <code class="docutils literal"><span class="pre">teracy-dev</span></code> will not install Ruby when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> to avoid too much provision
 time.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><dl class="first docutils">
-<dt>Open the <tt class="docutils literal"><span class="pre">Vagrantfile</span></tt> file and find:</dt>
+<dt>Open the <code class="docutils literal"><span class="pre">Vagrantfile</span></code> file and find:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre>&quot;ruby&quot; =&gt; {
     &quot;enabled&quot; =&gt; false # ruby platform development, disabled by default
 },
@@ -78,16 +78,16 @@ time.</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Enable <tt class="docutils literal"><span class="pre">ruby</span></tt> with <tt class="docutils literal"><span class="pre">&quot;ruby&quot;</span></tt> =&gt; <tt class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></tt>.</p>
+<li><p class="first">Enable <code class="docutils literal"><span class="pre">ruby</span></code> with <code class="docutils literal"><span class="pre">&quot;ruby&quot;</span></code> =&gt; <code class="docutils literal"><span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">true</span></code>.</p>
 </li>
-<li><p class="first">Disable <tt class="docutils literal"><span class="pre">python</span></tt> with <tt class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></tt> to save provision time if you do not
+<li><p class="first">Disable <code class="docutils literal"><span class="pre">python</span></code> with <code class="docutils literal"><span class="pre">&quot;python&quot;</span> <span class="pre">=&gt;</span> <span class="pre">&quot;enabled&quot;</span> <span class="pre">=&gt;</span> <span class="pre">false</span></code> to save provision time if you do not
 want to work with it. (You can ignore this step.)</p>
 </li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></tt> if your VM is already running, or <tt class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></tt> if it is not
+<li><p class="first"><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> if your VM is already running, or <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> if it is not
 running yet.</p>
 </li>
 <li><dl class="first docutils">
-<dt><cite>$ vagrant ssh</cite> and verify if <tt class="docutils literal"><span class="pre">ruby</span></tt> works:</dt>
+<dt><cite>$ vagrant ssh</cite> and verify if <code class="docutils literal"><span class="pre">ruby</span></code> works:</dt>
 <dd><div class="first highlight-python"><div class="highlight"><pre>$ vagrant ssh
 $ ruby --version
 </pre></div>
@@ -108,7 +108,7 @@ $ ruby --version
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -124,12 +124,14 @@ $ ruby --version
   <h4>Next topic</h4>
   <p class="topless"><a href="php_training.html"
                         title="next chapter">PHP Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/ruby_training.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ruby_training.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -146,7 +148,7 @@ $ ruby --version
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -158,12 +160,12 @@ $ ruby --version
         <li class="right" >
           <a href="django_training.html" title="Django Training"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2013 - 2014, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

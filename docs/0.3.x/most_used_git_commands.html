@@ -39,8 +39,8 @@
     </script>
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -52,14 +52,14 @@
         <li class="right" >
           <a href="git_training.html" title="Git Training"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="most-used-git-commands">
 <h1>Most Used Git Commands<a class="headerlink" href="#most-used-git-commands" title="Permalink to this headline">¶</a></h1>
@@ -73,7 +73,7 @@ more easily.</p>
 <h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline">¶</a></h2>
 <p>This is not really git concept, it was introduced by github. Basically, you can copy a repository
 into your git account (github, bitbucket) so that you could have full permission on it. The
-repository you copied from is called <tt class="docutils literal"><span class="pre">upstream</span></tt> (official repository) by convention. The forking
+repository you copied from is called <code class="docutils literal"><span class="pre">upstream</span></code> (official repository) by convention. The forking
 action is done on the web UI. You do not need to use  the git command for this kind of concept.</p>
 <p>Teraciers must fork the official Teracy&#8217;s projects into their accounts to work.</p>
 </div>
@@ -83,7 +83,7 @@ action is done on the web UI. You do not need to use  the git command for this k
 clone your forked repository into your local hard drive to work on it.</p>
 <p>For example, I fork the official repository at <a class="reference external" href="https://github.com/teracy-official/teracy-django-boilerplate">https://github.com/teracy-official/teracy-django-boilerplate</a>.
 I will have the same repository with full permission at <a class="reference external" href="https://github.com/hoatle/teracy-django-boilerplate">https://github.com/hoatle/teracy-django-boilerplate</a>
-with the <tt class="docutils literal"><span class="pre">git&#64;github.com:hoatle/teracy-django-boilerplate.git</span></tt> git address. To clone it, I use the following
+with the <code class="docutils literal"><span class="pre">git&#64;github.com:hoatle/teracy-django-boilerplate.git</span></code> git address. To clone it, I use the following
 commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal
@@ -92,7 +92,7 @@ $ git remote add upstream https://github.com/teracy-official/teracy-django-boile
 $ git fetch upstream
 </pre></div>
 </div>
-<p>By convention, your full permission repository has <tt class="docutils literal"><span class="pre">origin</span></tt> remote name, <tt class="docutils literal"><span class="pre">upstream</span></tt> remote name
+<p>By convention, your full permission repository has <code class="docutils literal"><span class="pre">origin</span></code> remote name, <code class="docutils literal"><span class="pre">upstream</span></code> remote name
 is used to track updated from official repository.</p>
 </div>
 <div class="section" id="remote">
@@ -102,8 +102,8 @@ Remote repository is the repository stored somewhere else by a git server. You m
 your local repository and push these changes to remote repositories.</p>
 <p>By convention, there are two most used remote repositories:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">origin</span></tt>: is the repository you clone into the local repository.</li>
-<li><tt class="docutils literal"><span class="pre">upstream</span></tt>: is the official repository that you need to keep track of it.</li>
+<li><code class="docutils literal"><span class="pre">origin</span></code>: is the repository you clone into the local repository.</li>
+<li><code class="docutils literal"><span class="pre">upstream</span></code>: is the official repository that you need to keep track of it.</li>
 </ul>
 <p>With DVCS (Distributed version control system) like git, you are encouraged to collaborate with
 other collaborators&#8217; remote repositories.</p>
@@ -143,7 +143,7 @@ track of it.</p>
 </li>
 <li><p class="first">remote delete</p>
 <blockquote>
-<div><p>Don&#8217;t want to keep track of a remote repository, then remove (<tt class="docutils literal"><span class="pre">rm</span></tt>) it:</p>
+<div><p>Don&#8217;t want to keep track of a remote repository, then remove (<code class="docutils literal"><span class="pre">rm</span></code>) it:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git rm &lt;remote_name&gt;
 </pre></div>
 </div>
@@ -157,7 +157,7 @@ track of it.</p>
 <p>When there is an issue that you are going to work, the first thing you need to do is to create a new
 working branch to make any changes on it.</p>
 <p>For example, I am going to work on the issue #1 with the title: &#8220;Cleaning up the project&#8221; of the
-<tt class="docutils literal"><span class="pre">enhancement</span></tt> type:</p>
+<code class="docutils literal"><span class="pre">enhancement</span></code> type:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ws
 $ cd personal/teracy
 $ git fetch upstream
@@ -165,10 +165,10 @@ $ git checkout upstream/develop -b enhance_1_project_clean_up
 $ git push origin enhance_1_project_clean_up
 </pre></div>
 </div>
-<p>What do the above commands do? First, we need to <tt class="docutils literal"><span class="pre">cd</span></tt> to the working repository. Then
-get the latest updates from <tt class="docutils literal"><span class="pre">upstream</span></tt> repository (official repository). Then branch off (copy)
-<tt class="docutils literal"><span class="pre">upstream/develop</span></tt> branch content into local branch with name <em>enhance_1_project_clean_up</em>. Then
-we push this branch into the <tt class="docutils literal"><span class="pre">origin</span></tt> repository (full permission repository).</p>
+<p>What do the above commands do? First, we need to <code class="docutils literal"><span class="pre">cd</span></code> to the working repository. Then
+get the latest updates from <code class="docutils literal"><span class="pre">upstream</span></code> repository (official repository). Then branch off (copy)
+<code class="docutils literal"><span class="pre">upstream/develop</span></code> branch content into local branch with name <em>enhance_1_project_clean_up</em>. Then
+we push this branch into the <code class="docutils literal"><span class="pre">origin</span></code> repository (full permission repository).</p>
 <p><strong>2. Listing branches</strong></p>
 <p>To see the list of branches on your local repository::</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git branch
@@ -193,8 +193,8 @@ we push this branch into the <tt class="docutils literal"><span class="pre">orig
 </div>
 <div class="section" id="fetch">
 <h2>Fetch<a class="headerlink" href="#fetch" title="Permalink to this headline">¶</a></h2>
-<p>Fetching is usually used to get new updated from a remote repository and you could <tt class="docutils literal"><span class="pre">rebase</span></tt> or
-<tt class="docutils literal"><span class="pre">merge</span></tt> remote branch&#8217;s updates into your current working branch on the local repository.</p>
+<p>Fetching is usually used to get new updated from a remote repository and you could <code class="docutils literal"><span class="pre">rebase</span></code> or
+<code class="docutils literal"><span class="pre">merge</span></code> remote branch&#8217;s updates into your current working branch on the local repository.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
 $ git merge upstream/develop
 </pre></div>
@@ -220,7 +220,7 @@ suggestions command to add/ remove/ discard these changes.</p>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>If your changed files/folders are already added to the committed list, it means you have used the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></tt> command, use the command below:</dt>
+<dt>If your changed files/folders are already added to the committed list, it means you have used the <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> command, use the command below:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre>$ git diff --cached
 </pre></div>
 </div>
@@ -239,23 +239,23 @@ suggestions command to add/ remove/ discard these changes.</p>
 <div class="section" id="commit">
 <h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
 <p>When making changes to the local repository, these changes must be tracked and committed. To see the
-changes, use <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></tt>. To commit the changes, use the following commands:</p>
+changes, use <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></code>. To commit the changes, use the following commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git add .
 $ git commit -a
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></tt> or <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-A</span></tt> command allows you to add all changed files/folder to the
+<p>The <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> or <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-A</span></code> command allows you to add all changed files/folder to the
 committed list. If you just want to commit some of these files/folders, you should use the command
 below instead:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git add [path_to_files]
 $ git commit -a
 </pre></div>
 </div>
-<p>And the terminal will open a default editor (usually <tt class="docutils literal"><span class="pre">vim</span></tt> on linux, mac), add your commit
+<p>And the terminal will open a default editor (usually <code class="docutils literal"><span class="pre">vim</span></code> on linux, mac), add your commit
 message, write and quite (vim: press [i] to enter edit mode, then [ESC] to go into view mode,
-then <tt class="docutils literal"><span class="pre">:wq</span></tt> to write changes and quit).</p>
-<p>You can add your commit message directly to your commit without the <tt class="docutils literal"><span class="pre">vim</span></tt> editor by using the
-command below instead of <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></tt>:</p>
+then <code class="docutils literal"><span class="pre">:wq</span></code> to write changes and quit).</p>
+<p>You can add your commit message directly to your commit without the <code class="docutils literal"><span class="pre">vim</span></code> editor by using the
+command below instead of <code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$git commit -m &quot;&lt;issue_key&gt;|git commit message&quot;
 </pre></div>
 </div>
@@ -264,7 +264,7 @@ command below instead of <tt class="docutils literal"><span class="pre">git</spa
 $ git commit --amend
 </pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></tt> will allow you to add more changes into the latest commit and edit the commit
+<p><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code> will allow you to add more changes into the latest commit and edit the commit
 message. Even if you do not want to add any changes but to edit the latest commit message,
 you should use this command.</p>
 </div>
@@ -289,7 +289,7 @@ you should use this command.</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Press [Enter] to scroll the list till the end or press <tt class="docutils literal"><span class="pre">q</span></tt> to quit.</p>
+<li><p class="first">Press [Enter] to scroll the list till the end or press <code class="docutils literal"><span class="pre">q</span></code> to quit.</p>
 </li>
 </ul>
 </div></blockquote>
@@ -303,25 +303,25 @@ you should use this command.</p>
 </div>
 <div class="section" id="push">
 <h2>Push<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
-<p>After some commits and you would like to push them into the <tt class="docutils literal"><span class="pre">origin</span></tt> repository, do as follows:</p>
+<p>After some commits and you would like to push them into the <code class="docutils literal"><span class="pre">origin</span></code> repository, do as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git push origin enhance_1_project_clean_up
 </pre></div>
 </div>
 <p>Sometimes when there is diversity which means there are difference between git commit list on the local and remote branch,
-git does not allow you to push. In that case, you need to <tt class="docutils literal"><span class="pre">force</span> <span class="pre">push</span></tt> (means that you want
-to have you local changes put into the <tt class="docutils literal"><span class="pre">origin</span></tt> repository, keep only commit history of local
+git does not allow you to push. In that case, you need to <code class="docutils literal"><span class="pre">force</span> <span class="pre">push</span></code> (means that you want
+to have you local changes put into the <code class="docutils literal"><span class="pre">origin</span></code> repository, keep only commit history of local
 repository.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git push origin enhance_1_project_clean_up -f
 </pre></div>
 </div>
-<p>If you want to keep the <tt class="docutils literal"><span class="pre">origin</span></tt> and make the local changes to resolve different commit
-list, you can use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">rebase</span></tt> to make the history be fast-forwarded.</p>
+<p>If you want to keep the <code class="docutils literal"><span class="pre">origin</span></code> and make the local changes to resolve different commit
+list, you can use <code class="docutils literal"><span class="pre">git</span> <span class="pre">rebase</span></code> to make the history be fast-forwarded.</p>
 <p>Fast-forward means that your local repository is in sync with remote repository with some
 additional commits. When you push, the additional commits will be appended into remote history
 repository.</p>
 <p>WARNING: <cite>force push</cite> can make you lost some commits if you are not careful enough. This
 is true when you merge work from other branches into your local branch. In such case, you could
-use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">reflog</span></tt>, find the hash commit and <tt class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">&lt;hash&gt;</span></tt> to get back the changes.</p>
+use <code class="docutils literal"><span class="pre">git</span> <span class="pre">reflog</span></code>, find the hash commit and <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">&lt;hash&gt;</span></code> to get back the changes.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">NEVER EVER force push the official repositories.</p>
@@ -329,30 +329,30 @@ use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">
 </div>
 <div class="section" id="rebase">
 <h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">rebase</span></tt> means that you want to keep the remote&#8217;s commit list as base, any changes of local
-branch should be reorganized and appending to the remote repository. You usually <tt class="docutils literal"><span class="pre">rebase</span></tt> to get
-the latest changes from the <tt class="docutils literal"><span class="pre">upstream</span></tt> repository.</p>
+<p><code class="docutils literal"><span class="pre">rebase</span></code> means that you want to keep the remote&#8217;s commit list as base, any changes of local
+branch should be reorganized and appending to the remote repository. You usually <code class="docutils literal"><span class="pre">rebase</span></code> to get
+the latest changes from the <code class="docutils literal"><span class="pre">upstream</span></code> repository.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
 $ git rebase upstream/develop
 </pre></div>
 </div>
-<p>If there is any conflict, resolve it, then <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></tt> and <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></tt>. Do it until git
-says that you are done; Or you could <tt class="docutils literal"><span class="pre">abort</span></tt> the <tt class="docutils literal"><span class="pre">rebase</span></tt> process by <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></tt>.
-Everything will come back before the <tt class="docutils literal"><span class="pre">rebase</span></tt> process after <tt class="docutils literal"><span class="pre">abort</span></tt>.</p>
+<p>If there is any conflict, resolve it, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>. Do it until git
+says that you are done; Or you could <code class="docutils literal"><span class="pre">abort</span></code> the <code class="docutils literal"><span class="pre">rebase</span></code> process by <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></code>.
+Everything will come back before the <code class="docutils literal"><span class="pre">rebase</span></code> process after <code class="docutils literal"><span class="pre">abort</span></code>.</p>
 </div>
 <div class="section" id="merge">
 <h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">merge</span></tt> is used to join 2 or more commit histories together (from different branches).</p>
+<p><code class="docutils literal"><span class="pre">merge</span></code> is used to join 2 or more commit histories together (from different branches).</p>
 </div>
 <div class="section" id="pull-request">
 <h2>Pull request<a class="headerlink" href="#pull-request" title="Permalink to this headline">¶</a></h2>
-<p>This concept is not introduced by <tt class="docutils literal"><span class="pre">git</span></tt> but <tt class="docutils literal"><span class="pre">github</span></tt>, which means that you do not have any git
-command here. Pull request is done on the web UI of github (bitbucket) to notify the <tt class="docutils literal"><span class="pre">upstream</span></tt>
-that your work is great, finished and you want your work to be merged into the <tt class="docutils literal"><span class="pre">upstream</span></tt> repository.</p>
+<p>This concept is not introduced by <code class="docutils literal"><span class="pre">git</span></code> but <code class="docutils literal"><span class="pre">github</span></code>, which means that you do not have any git
+command here. Pull request is done on the web UI of github (bitbucket) to notify the <code class="docutils literal"><span class="pre">upstream</span></code>
+that your work is great, finished and you want your work to be merged into the <code class="docutils literal"><span class="pre">upstream</span></code> repository.</p>
 </div>
 <div class="section" id="reset">
 <h2>Reset<a class="headerlink" href="#reset" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">Reset</span></tt> means that you could set the working branch to a specific commit history and see all the
+<p><code class="docutils literal"><span class="pre">Reset</span></code> means that you could set the working branch to a specific commit history and see all the
 changes.</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git reset HEAD~&lt;index&gt;
 </pre></div>
@@ -402,8 +402,8 @@ $ git reset --hard &lt;commit_hash_id&gt;
 <h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">¶</a></h2>
 <p><strong>1. stash it</strong></p>
 <blockquote>
-<div><p><tt class="docutils literal"><span class="pre">stash</span></tt> is a stack and is usually used when you want to store temporarily changes from a working
-branch instead of committing these changes to switch to another branch. <tt class="docutils literal"><span class="pre">stash</span></tt> is a stack like.
+<div><p><code class="docutils literal"><span class="pre">stash</span></code> is a stack and is usually used when you want to store temporarily changes from a working
+branch instead of committing these changes to switch to another branch. <code class="docutils literal"><span class="pre">stash</span></code> is a stack like.
 Usually, you need to store all the changes:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git add .
 $ git stash
@@ -426,7 +426,7 @@ $ git stash
 </div></blockquote>
 <p><strong>4. apply it</strong></p>
 <blockquote>
-<div><p>When switching back the repository having stash, you could get the changes from <tt class="docutils literal"><span class="pre">stash</span></tt>.</p>
+<div><p>When switching back the repository having stash, you could get the changes from <code class="docutils literal"><span class="pre">stash</span></code>.</p>
 <ul>
 <li><p class="first">To get the latest stashed content and apply changes to the current working
 branch:</p>
@@ -457,15 +457,15 @@ branch:</p>
 <h2>Squash<a class="headerlink" href="#squash" title="Permalink to this headline">¶</a></h2>
 <p>Warning: Squash is used to rewrite your git history, so use on your own full permission repository
 ONLY.</p>
-<p><tt class="docutils literal"><span class="pre">squash</span></tt> means you choose one or some commits and <tt class="docutils literal"><span class="pre">amend</span></tt> to its previous commit to be a
+<p><code class="docutils literal"><span class="pre">squash</span></code> means you choose one or some commits and <code class="docutils literal"><span class="pre">amend</span></code> to its previous commit to be a
 single commit.</p>
 <p>When working, you &#8220;commit early, commit often&#8221;, and you get a list of commits that is hard for your
 collaborators to review, and each commit is not atomic itself. Each commit should be an atomic
-problem solving step, that is the reason why you need <tt class="docutils literal"><span class="pre">squash</span></tt>:</p>
+problem solving step, that is the reason why you need <code class="docutils literal"><span class="pre">squash</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git rebase -i HEAD~&lt;index&gt;
 </pre></div>
 </div>
-<p>Use <tt class="docutils literal"><span class="pre">s</span></tt> instead of <tt class="docutils literal"><span class="pre">pick</span></tt> for the commits you want
+<p>Use <code class="docutils literal"><span class="pre">s</span></code> instead of <code class="docutils literal"><span class="pre">pick</span></code> for the commits you want
 to squash.</p>
 </div>
 <div class="section" id="learn-more">
@@ -486,7 +486,7 @@ $ man git-&lt;command&gt;
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -518,12 +518,14 @@ $ man git-&lt;command&gt;
   <h4>Next topic</h4>
   <p class="topless"><a href="document_writer_training.html"
                         title="next chapter">Document Writer Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/most_used_git_commands.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/most_used_git_commands.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -540,7 +542,7 @@ $ man git-&lt;command&gt;
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -552,12 +554,12 @@ $ man git-&lt;command&gt;
         <li class="right" >
           <a href="git_training.html" title="Git Training"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.3.6-@ documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2013 - 2014, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>
