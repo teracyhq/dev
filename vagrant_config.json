@@ -5,59 +5,61 @@
   //"vm_box_url":"https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box",
   "vm_box_version": "",
   "vm_forward_agent":true,
-  "vm_network": { // see: http://docs.vagrantup.com/v2/networking/index.html
-    "mode":"forwarded_port", // one of "forwarded_port", "private_network" or "public_network"
-    "forwarded_ports": [ //for forwarded_port mode //TODO(hoatle): support more http://docs.vagrantup.com/v2/networking/forwarded_ports.html
-      {
-        "guest":3000, //node apps, RoR
-        "host":3000
-      },
-      {
-        "guest":3306, //mysql
-        "host":6603
-      },
-      {
-        "guest":4000, //octopress
-        "host":4000
-      },
-      {
-        "guest":4567, //sinatra
-        "host":4567
-      },
-      {
-        "guest":5000, //flask
-        "host":5000
-      },
-      {
-        "guest":8000, //django
-        "host":8000
-      },
-      {
-        "guest":9999, //apache2
-        "host":9999
-      },
-      {
-        "guest":9998, //nginx
-        "host":9998
-      },
-      {
-        "guest":9997, //phpmyadmin
-        "host":9997
-      },
-      {
-        "guest":35729, //livereload
-        "host":35729
-      },
-      {
-        "guest":30000, //codebox
-        "host":30000
-      }
-    ]
-    //"ip":"192.168.3.14", // for private_network, public_network mode
-    //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
-    //"auto_config":true, // for private_network mode + ip
-    //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
-  },
+  "vm_networks": [
+    { // see: http://docs.vagrantup.com/v2/networking/index.html
+      "mode":"forwarded_port", // one of "forwarded_port", "private_network" or "public_network"
+      "forwarded_ports": [ //for forwarded_port mode //TODO(hoatle): support more http://docs.vagrantup.com/v2/networking/forwarded_ports.html
+        {
+          "guest":3000, //node apps, RoR
+          "host":3000
+        },
+        {
+          "guest":3306, //mysql
+          "host":6605
+        },
+        {
+          "guest":4000, //octopress
+          "host":4000
+        },
+        {
+          "guest":4567, //sinatra
+          "host":4567
+        },
+        {
+          "guest":5000, //flask
+          "host":5000
+        },
+        {
+          "guest":8000, //django
+          "host":8000
+        },
+        {
+          "guest":9999, //apache2
+          "host":9999
+        },
+        {
+          "guest":9998, //nginx
+          "host":9998
+        },
+        {
+          "guest":9997, //phpmyadmin
+          "host":9997
+        },
+        {
+          "guest":35729, //livereload
+          "host":35729
+        },
+        {
+          "guest":30000, //codebox
+          "host":30000
+        }
+      ]
+      //"ip":"192.168.3.14", // for private_network, public_network mode
+      //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
+      //"auto_config":true, // for private_network mode + ip
+      //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
+    }
+  ],
   "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
     {
       "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb"

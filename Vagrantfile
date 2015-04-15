@@ -116,41 +116,34 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  vm_network = data_hash['vm_network']
-
-  case vm_network['mode']
-  when 'forwarded_port'
-    vm_network['forwarded_ports'].each do |item|
-      config.vm.network :forwarded_port, guest: item["guest"], host: item["host"]
-    end
-  when 'private_network'
-    ip = vm_network['ip']
-    type = vm_network['type']
-    if !ip.nil? and !ip.strip().empty?
-      auto_config = !(vm_network['auto_config'] == false)
-      config.vm.network :private_network, ip: ip.strip(), auto_config: auto_config
-    else
-      # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
-      config.vm.network :private_network, type: 'dhcp'
-    end
-  when 'public_network'
-    ip = vm_network['ip']
-    bridge = vm_network['bridge']
-
-    if !bridge.nil? and !bridge.strip().empty?
-      if !ip.nil? and !ip.strip().empty?
-        config.vm.network :public_network, ip: ip.strip(), bridge: bridge
-      else
-        config.vm.network :public_network, bridge: bridge
+  vm_networks = data_hash['vm_networks']
+  vm_networks.each do |vm_network|
+    if vm_network['mode'] == 'forwarded_port'
+      vm_network['forwarded_ports'].each do |item|
+        config.vm.network :forwarded_port, guest: item['guest'], host: item['host']
       end
     else
-      if !ip.nil? and !ip.strip().empty?
-        config.vm.network :public_network, ip: ip.strip()
-      else
-        config.vm.network :public_network
+      options = {}
+      case vm_network['mode']
+      when 'private_network'
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? and ip.strip().empty?
+        if options[:ip].nil? or options[:ip].empty?
+          # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
+          options[:type] = 'dhcp'
+        else
+          options[:auto_config] = !(vm_network['auto_config'] == false)
+        end
+      when 'public_network'
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? or vm_network['ip'].strip().empty?
+        options[:bridge] = vm_network['bridge'] unless vm_network['bridge'].nil? or vm_network['bridge'].empty?
       end
+
+      config.vm.network vm_network['mode'], options
+
     end
   end
+
+
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
