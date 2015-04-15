@@ -187,7 +187,7 @@ Vagrant.configure("2") do |config|
     options[:owner] = item['owner'] unless item['owner'].nil?
     options[:group] = item['group'] unless item['group'].nil?
     options[:mount_options] = item['mount_options'] unless item['mount_options'].nil?
-    options[:type] = item['type'] unless item['type'].nil?
+    options[:type] = item['type'] unless item['type'].nil? or item['type'] == 'virtual_box'
 
     case item['type']
     when 'nfs'
