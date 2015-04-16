@@ -3,6 +3,10 @@
 
 Vagrant.configure("2") do |config|
 
+
+  # TODO(hoatle): support this json configuration
+  # config.omnibus.chef_version = :latest
+
   require 'json'
   load File.dirname(__FILE__) + '/lib/utility.rb'
 

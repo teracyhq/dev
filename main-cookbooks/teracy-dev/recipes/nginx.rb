@@ -14,6 +14,7 @@ if node['teracy-dev']['nginx']['enabled']
     node.override['nginx']['init_style'] = 'upstart'
 
     node.override['nginx']['version'] = node['teracy-dev']['nginx']['version']
+    node.override['nginx']['source']['checksum'] = node['teracy-dev']['nginx']['checksum']
     node.override['nginx']['default_root'] = node['teracy-dev']['nginx']['default_root']
     node.override['nginx']['source']['prefix'] = '/opt/nginx'
     node.override['nginx']['prefix'] = '/opt/nginx'

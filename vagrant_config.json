@@ -145,7 +145,7 @@
       "nodejs":{
         "enabled":true,
         "version":"0.10.28",
-        "checksum":"ef08a75f6359a16e672cae684e0804ca7f4554b7",
+        "checksum":"abddc6441e0f208f6ed8a045e0293f713ea7f6dfb2d6a9a2024bf8b1b4617710",
         "npm": {
           "version":"1.4.3",
           "globals": [
@@ -194,7 +194,7 @@
         "version": "1.9.3-p194",
         "globals":[
           {
-            "name":"bundle",
+            "name":"bundler",
             "version":""
           },
           {
@@ -211,7 +211,8 @@
         "enabled":true,
         "default_root": "/home/vagrant/workspace/personal",
         "listen_port":9998,
-        "version": "1.7.8"
+        "version": "1.7.8",
+        "checksum": "12f75ec302d3d3b841408e59bbf5116d38527b8c679abfcba7ceb866be60e8e5"
       },
       "apache":{
         "enabled":true,
@@ -221,7 +222,7 @@
       "php":{
         "enabled":true,
         "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
-        "checksum":"9caf973b19ba93bb2b78f78c61643d5d"
+        "checksum":"9fa51d3e44783802ea51b910719ad524a8994524f7cf7307f683fe89191bc401"
       },
       "mysql":{
         "enabled":true,

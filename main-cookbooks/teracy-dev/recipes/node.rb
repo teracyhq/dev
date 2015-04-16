@@ -21,16 +21,16 @@ if node['teracy-dev']['nodejs']['enabled']
     if !node['teracy-dev']['nodejs']['version'].strip().empty?
         if node_version != node['teracy-dev']['nodejs']['version'].strip()
             node.override['nodejs']['version'] = node['teracy-dev']['nodejs']['version']
-            node.override['nodejs']['checksum'] = node['teracy-dev']['nodejs']['checksum']
+            node.override['nodejs']['source']['checksum'] = node['teracy-dev']['nodejs']['checksum']
             node.override['nodejs']['install_method'] = 'source'
             include_recipe 'nodejs'
         end
     else
-        include_recipe 'nodejs'    
+        include_recipe 'nodejs'
     end
 
 
-    if !node['teracy-dev']['nodejs']['npm']['version'].strip().empty? and 
+    if !node['teracy-dev']['nodejs']['npm']['version'].strip().empty? and
             npm_version != node['teracy-dev']['nodejs']['npm']['version'].strip()
         node.override['nodejs']['npm'] = node['teracy-dev']['nodejs']['npm']['version']
         include_recipe 'nodejs::npm'
@@ -51,5 +51,5 @@ if node['teracy-dev']['nodejs']['enabled']
             not_if { ::File.exists?(bin_path) }
         end
     end
- 
+
 end
