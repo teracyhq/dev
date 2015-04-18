@@ -119,7 +119,7 @@ if !node['teracy-dev']['apt']['repositories'].empty?
     end
 end
 
-
+include_recipe 'apt'
 
 if !node['teracy-dev']['apt']['packages'].empty?
     Chef::Log.info 'packages management'
