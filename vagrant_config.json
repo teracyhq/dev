@@ -102,7 +102,6 @@
   "chef_bags_path":"data_bags",
   "chef_recipes":[
     "teracy-dev::apt",
-    "apt",
     "vim",
     "teracy-dev"
   ],
