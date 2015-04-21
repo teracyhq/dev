@@ -62,7 +62,10 @@
   ],
   "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
     {
-      "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb"
+      "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed, 
+                    // ssh to vm and install cifs-utils allow vm mount smb directory 
+                    // mount.cifs need to use with dir_mode file_mode instead of dmode fmode
+                    // Windows 7 need powershell 3.0 to create smb share on windows
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
       "mount_options":[
