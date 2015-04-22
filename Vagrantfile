@@ -31,6 +31,15 @@ Vagrant.configure("2") do |config|
 
   end
 
+  # detect old configuration, puts an error to help users to migrate to new changes of configuration
+  if !data_hash['vm_forwarded_ports'].nil?
+    message = 'ERROR: vagrant_config_override.json has old configuration of vm_forwarded_ports. '
+    message << "Use vm_network['forwarded_ports'] instead. "
+    message << 'Details: https://issues.teracy.org/browse/DEV-198'
+    puts red(message)
+    exit!
+  end
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -107,9 +116,35 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  data_hash['vm_forwarded_ports'].each do |x|
-    config.vm.network :forwarded_port, guest: x["guest"], host: x["host"]
+  vm_networks = data_hash['vm_networks']
+  vm_networks.each do |vm_network|
+    if vm_network['mode'] == 'forwarded_port'
+      vm_network['forwarded_ports'].each do |item|
+        config.vm.network :forwarded_port, guest: item['guest'], host: item['host']
+      end
+    else
+      options = {}
+      case vm_network['mode']
+      when 'private_network'
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? and ip.strip().empty?
+        if options[:ip].nil? or options[:ip].empty?
+          # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
+          options[:type] = 'dhcp'
+        else
+          options[:auto_config] = !(vm_network['auto_config'] == false)
+        end
+      when 'public_network'
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? or vm_network['ip'].strip().empty?
+        options[:bridge] = vm_network['bridge'] unless vm_network['bridge'].nil? or vm_network['bridge'].empty?
+      end
+
+      config.vm.network vm_network['mode'], options
+
+    end
   end
+
+
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -125,36 +160,47 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  data_hash['vm_synced_folders'].each do |x|
+  data_hash['vm_synced_folders'].each do |item|
+    options = {}
+    host_os = Vagrant::Util::Platform.platform
+    host_os_type = ''
 
-    hostOS = Vagrant::Util::Platform.platform
-    hostOSType = ''
-
-    case hostOS
+    case host_os
     when /^(mswin|mingw).*/
-      hostOSType = 'windows'
+      host_os_type = 'windows'
     when /^(linux|cygwin).*/
-      hostOSType = 'linux'
+      host_os_type = 'linux'
     when /^(mac|darwin).*/
-      hostOSType = 'mac'
+      host_os_type = 'mac'
     end
 
-    if x["supports"].nil?
-      if x["mount_options"].nil?
-        config.vm.synced_folder x["host"], x["guest"]
-      else
-        config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
-      end
-    else
-      if x["supports"].include?(hostOSType)
-        if x["mount_options"].nil?
-          config.vm.synced_folder x["host"], x["guest"]
-        else
-          config.vm.synced_folder x["host"], x["guest"], :mount_options => x["mount_options"]
-        end
-      end
+    # options from http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
+    options[:create] = item['create'] unless item['create'].nil?
+    options[:disabled] = item['disabled'] unless item['disabled'].nil?
+    options[:owner] = item['owner'] unless item['owner'].nil?
+    options[:group] = item['group'] unless item['group'].nil?
+    options[:mount_options] = item['mount_options'] unless item['mount_options'].nil?
+    options[:type] = item['type'] unless item['type'].nil? or item['type'] == 'virtual_box'
+
+    case item['type']
+    when 'nfs'
+      options[:nfs_export] = item['nfs_export'] if !!item['nfs_export'] == item['nfs_export']
+      options[:nfs_udp] = item['nfs_udp'] if !!item['nfs_udp'] == item['nfs_udp']
+      options[:nfs_version] = item['nfs_version'] unless item['nfs_version'].nil?
+    when 'rsync'
+      options[:rsync__args] = item['rsync__args'] unless item['rsync__args'].nil? or item['rsync__args'].strip().empty?
+      options[:rsync__auto] = item['rsync__auto'] if !!item['rsync__auto'] == item['rsync__auto']
+      options[:rsync__chown] = item['rsync__chown'] if !!item['rsync__chown'] == item['rsync__chown']
+      options[:rsync__exclude] = item['rsync__exclude'] unless item['rsync__exclude'].nil? or item['rsync__exclude'].empty?
+    when 'smb'
+      options[:smb_host] = item['smb_host'] unless item['smb_host'].nil? or item['smb_host'].empty?
+      options[:smb_password] = item['smb_password'] unless item['smb_password'].nil? or item['smb_password'].empty?
+      options[:smb_username] = item['smb_username'] unless item['smb_password'].nil? or item['smb_password'].empty?
     end
 
+    if item['supports'].nil? or item['supports'].include?(host_os_type)
+      config.vm.synced_folder item['host'], item['guest'], options
+    end
   end
 
   # ssh configuration
