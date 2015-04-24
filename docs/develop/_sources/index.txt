@@ -17,6 +17,7 @@ Contents:
    built_in_ide
    style_standards
    workflow
+   teracy_dev_development
    git_training
    most_used_git_commands
    firefox_addon_dev_guide
