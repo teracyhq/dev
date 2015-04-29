@@ -76,9 +76,9 @@ if node['teracy-dev']['python']['enabled']
                 if !pkg['version'].nil? and !pkg['version'].strip().empty?
                     version pkg['version']
                 end
-                only_if { !pkg['supported_python_versions'].nil? and
-                          (pkg['supported_python_versions'].empty? or
-                            pkg['supported_python_versions'].include?(version))
+                only_if { pkg['supported_python_versions'].nil? or
+                          pkg['supported_python_versions'].empty? or
+                          pkg['supported_python_versions'].include?(version)
                         }
             end
         end
