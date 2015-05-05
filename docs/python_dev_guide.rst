@@ -125,7 +125,7 @@ Follow the steps below to get started.
 
         $ pip install Django
 
-#. Create a `Django` application
+#.  Create a `Django` application
 
     ..  code-block:: bash
 
