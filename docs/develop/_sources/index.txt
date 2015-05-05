@@ -25,6 +25,7 @@ Contents:
    document_writer_training
    databases_guide
    c_c++_training
+   python_dev_guide
    python_training
    django_training
    ruby_dev_guide
