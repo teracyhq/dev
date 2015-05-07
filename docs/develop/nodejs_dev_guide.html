@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Node.js Development Guide &mdash; teracy-dev 0.4.0-@ documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4.0-@',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.4.0-@ documentation" href="index.html" />
+    <link rel="next" title="C/C++ Training" href="c_c++_training.html" />
+    <link rel="prev" title="Databases Guide" href="databases_guide.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="c_c++_training.html" title="C/C++ Training"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="databases_guide.html" title="Databases Guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="node-js-development-guide">
+<h1>Node.js Development Guide<a class="headerlink" href="#node-js-development-guide" title="Permalink to this headline">¶</a></h1>
+<p>By default, Node.js is already installed on the <cite>teracy-dev</cite> VM with the following configuration:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;nodejs&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;0.10.28&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="s2">&quot;abddc6441e0f208f6ed8a045e0293f713ea7f6dfb2d6a9a2024bf8b1b4617710&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;npm&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.4.3&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;globals&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;grunt-cli&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;gulp&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;bower&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;yo&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+         <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;phantomjs&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Make sure you have the teracy-dev VM running (<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>) by following the
+<a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
+<div class="section" id="verify-node-js">
+<h2>Verify Node.js<a class="headerlink" href="#verify-node-js" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> and check:</p>
+<ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">node</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>node --version
+v0.10.28
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">npm</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>npm --version
+1.4.3
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="hello-world">
+<h2>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re going to follow the example from <a class="reference external" href="https://nodejs.org/">https://nodejs.org/</a> to create a <cite>Hello World</cite> web server.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>mkdir node-hello
+<span class="nv">$ </span><span class="nb">cd </span>node-hello
+</pre></div>
+</div>
+<p>Let&#8217;s use <cite>vim</cite> to create a file named <cite>example.js</cite> under the <cite>node-hello</cite> directory with the following
+content:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">});</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello World\n&#39;</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server running at http://0.0.0.0:3000/&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Run it with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>node example.js
+Server running at http://0.0.0.0:3000/
+</pre></div>
+</div>
+<p>And then open the browser at <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> and we should see the <cite>Hello World</cite> displayed.</p>
+<p>We can start digging <cite>Node.js</cite> now at: <a class="reference external" href="https://nodejs.org/documentation/">https://nodejs.org/documentation/</a></p>
+</div>
+<div class="section" id="express-framework">
+<h2>Express Framework<a class="headerlink" href="#express-framework" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re going to follow <cite>Getting started</cite> section from <a class="reference external" href="http://expressjs.com/starter/hello-world.html">http://expressjs.com/starter/hello-world.html</a>
+to create a <cite>Hello World</cite> web application.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>mkdir myapp
+<span class="nv">$ </span><span class="nb">cd </span>myapp
+<span class="nv">$ </span>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> ~/tmp/
+<span class="nv">$ </span>npm init
+<span class="nv">$ </span>npm install express --save
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">`whoami`</span> <span class="pre">~/tmp/</span></code> is required to make sure we don&#8217;t get any permission error,
+something like:</p>
+<div class="last highlight-bash"><div class="highlight"><pre>npm ERR! Error: EACCES, mkdir <span class="s1">&#39;/home/vagrant/tmp/npm-19210-ZLDRmRUG&#39;</span>
+npm ERR!  <span class="o">{</span> <span class="o">[</span>Error: EACCES, mkdir <span class="s1">&#39;/home/vagrant/tmp/npm-19210-ZLDRmRUG&#39;</span><span class="o">]</span>
+npm ERR!   errno: 3,
+npm ERR!   code: <span class="s1">&#39;EACCES&#39;</span>,
+npm ERR!   path: <span class="s1">&#39;/home/vagrant/tmp/npm-19210-ZLDRmRUG&#39;</span>,
+npm ERR!   parent: <span class="s1">&#39;myapp&#39;</span> <span class="o">}</span>
+npm ERR!
+npm ERR! Please try running this <span class="nb">command </span>again as root/Administrator.
+
+npm ERR! System Linux 3.13.0-49-generic
+npm ERR! <span class="nb">command</span> <span class="s2">&quot;/usr/local/bin/node&quot;</span> <span class="s2">&quot;/usr/local/bin/npm&quot;</span> <span class="s2">&quot;install&quot;</span> <span class="s2">&quot;express&quot;</span> <span class="s2">&quot;--save&quot;</span>
+npm ERR! cwd /home/vagrant/workspace/personal/myapp
+npm ERR! node -v v0.10.28
+npm ERR! npm -v 1.4.9
+npm ERR! path /home/vagrant/tmp/npm-19210-ZLDRmRUG
+npm ERR! code EACCES
+npm ERR! errno 3
+npm ERR! stack Error: EACCES, mkdir <span class="s1">&#39;/home/vagrant/tmp/npm-19210-ZLDRmRUG&#39;</span>
+npm ERR!
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/vagrant/workspace/personal/myapp/npm-debug.log
+npm ERR! not ok code 0
+</pre></div>
+</div>
+</div>
+<p>Let&#8217;s use <cite>vim</cite> to create <cite>app.js</cite> file under <cite>myapp</cite> directory with the following content:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">address</span><span class="p">().</span><span class="nx">address</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">address</span><span class="p">().</span><span class="nx">port</span><span class="p">;</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Example app listening at http://%s:%s&#39;</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Run it with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>node app.js
+Example app listening at http://0.0.0.0:3000
+</pre></div>
+</div>
+<p>And then open the browser at <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> and we should see the <cite>Hello World!</cite> displayed.</p>
+<p>We can start digging <cite>Express</cite> now at: <a class="reference external" href="http://expressjs.com/">http://expressjs.com/</a></p>
+</div>
+<div class="section" id="mean-stack">
+<h2>MEAN Stack<a class="headerlink" href="#mean-stack" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re going to follow <a class="reference external" href="http://learn.mean.io/">http://learn.mean.io/</a> to get started.</p>
+<p><code class="docutils literal"><span class="pre">MEAN</span></code> requires <code class="docutils literal"><span class="pre">mongodb</span></code> running, we need to follow <a class="reference internal" href="databases_guide.html#databases-guide-mongodb"><span>MongoDB Guide</span></a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>sudo npm install -g mean-cli
+<span class="nv">$ </span>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> ~/.npm
+<span class="nv">$ </span>mean init mean-app
+<span class="nv">$ </span><span class="nb">cd </span>mean-app
+<span class="nv">$ </span>npm install
+<span class="nv">$ </span>bower install
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first"><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">`whoami`</span> <span class="pre">~/.npm</span></code> is required to make sure we don&#8217;t get any permission error,
+something like:</p>
+<div class="highlight-bash"><div class="highlight"><pre>There are <span class="m">56</span> files in your ~/.npm owned by root
+Please change the permissions by running - chown -R <span class="sb">`</span>whoami<span class="sb">`</span> ~/.npm
+
+/usr/local/lib/node_modules/mean-cli/lib/install.js:43
+       <span class="k">if</span> <span class="o">(</span>err<span class="o">)</span> throw err<span class="p">;</span>
+                      ^
+ROOT PERMISSIONS IN NPM
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span></code> could possibly not finish with this step:
+<cite>node tools/scripts/postinstall.js</cite> and that&#8217;s ok.</p>
+</li>
+</ul>
+</div>
+<p>Run it with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>gulp
+</pre></div>
+</div>
+<p>And then open the browser at <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> and we should see the <cite>MEAN</cite> web app displayed.</p>
+<p>We can start digging <cite>MEAN</cite> now at: <a class="reference external" href="http://learn.mean.io/">http://learn.mean.io/</a></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://nodejs.org/">https://nodejs.org/</a></li>
+<li><a class="reference external" href="https://iojs.org/en/index.html">https://iojs.org/en/index.html</a></li>
+<li><a class="reference external" href="http://expressjs.com">http://expressjs.com</a></li>
+<li><a class="reference external" href="http://mean.io/">http://mean.io/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Node.js Development Guide</a><ul>
+<li><a class="reference internal" href="#verify-node-js">Verify Node.js</a></li>
+<li><a class="reference internal" href="#hello-world">Hello World</a></li>
+<li><a class="reference internal" href="#express-framework">Express Framework</a></li>
+<li><a class="reference internal" href="#mean-stack">MEAN Stack</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="databases_guide.html"
+                        title="previous chapter">Databases Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="c_c++_training.html"
+                        title="next chapter">C/C++ Training</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nodejs_dev_guide.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="c_c++_training.html" title="C/C++ Training"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="databases_guide.html" title="Databases Guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
