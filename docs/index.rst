@@ -24,6 +24,7 @@ Contents:
    docs_guide
    document_writer_training
    databases_guide
+   nodejs_dev_guide
    c_c++_training
    python_dev_guide
    python_training

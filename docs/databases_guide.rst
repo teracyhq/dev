@@ -200,6 +200,9 @@ PostgreSQL
 From now on we can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
 
 
+
+.. _databases-guide-mongodb:
+
 MongoDB
 -------
 
@@ -245,7 +248,7 @@ MongoDB
 
     And we should the the following output:
 
-    ..  code-block: bash
+    ..  code-block:: bash
 
         MongoDB shell version: 2.6.9
         connecting to: test
