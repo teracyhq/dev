@@ -372,7 +372,7 @@ We'll follow https://docs.joomla.org/J3.x:Installing_Joomla to get started with 
 We can start digging ``Joomla!`` CMS now: https://docs.joomla.org/J3.x:Getting_Started_with_Joomla!
 
 
-``Wordpress`` CMS
+``WordPress`` CMS
 -----------------
 
 We'll follow http://codex.wordpress.org/Installing_WordPress to get started with ``Wordpress``.
