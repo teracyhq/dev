@@ -111,8 +111,40 @@ to create a `Hello World` web application.
     $ cd personal
     $ mkdir myapp
     $ cd myapp
+    $ sudo chown -R `whoami` ~/tmp/
     $ npm init
     $ npm install express --save
+
+..  note::
+
+    ``sudo chown -R `whoami` ~/tmp/`` is required to make sure we don't get any permission error,
+    something like:
+
+    ..  code-block:: bash
+
+        npm ERR! Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG'
+        npm ERR!  { [Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG']
+        npm ERR!   errno: 3,
+        npm ERR!   code: 'EACCES',
+        npm ERR!   path: '/home/vagrant/tmp/npm-19210-ZLDRmRUG',
+        npm ERR!   parent: 'myapp' }
+        npm ERR!
+        npm ERR! Please try running this command again as root/Administrator.
+
+        npm ERR! System Linux 3.13.0-49-generic
+        npm ERR! command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "express" "--save"
+        npm ERR! cwd /home/vagrant/workspace/personal/myapp
+        npm ERR! node -v v0.10.28
+        npm ERR! npm -v 1.4.9
+        npm ERR! path /home/vagrant/tmp/npm-19210-ZLDRmRUG
+        npm ERR! code EACCES
+        npm ERR! errno 3
+        npm ERR! stack Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG'
+        npm ERR!
+        npm ERR! Additional logging details can be found in:
+        npm ERR!     /home/vagrant/workspace/personal/myapp/npm-debug.log
+        npm ERR! not ok code 0
+
 
 Let's use `vim` to create `app.js` file under `myapp` directory with the following content:
 
