@@ -4,7 +4,7 @@ teracy-dev Development
 We use ``teracy-dev`` to develop ``teracy-dev`` itself.
 
 ``teracy-dev`` requires about `2048MB` of VM memory, so you need to override 1024 with
-2048 here: https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92 on
+2048 here: https://github.com/teracyhq/dev/blob/v0.4.0/vagrant_config.json#L92 on
 the `vagrant_config_override.json` file.
 
 
