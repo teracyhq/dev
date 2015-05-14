@@ -9,7 +9,7 @@ rules. What's the fun with a game without rules :-D?
 
 
 Initializing Working Repositories
---------------------------------------
+---------------------------------
 
 To work on a repository project, ``fork`` it first to your git account.
 Your working repositories MUST be cloned from your git account and stored under
@@ -137,11 +137,11 @@ new updates:
 
 
 Working with Git
-----------------------
+----------------
 
--------------------------------
+---------------------
 1. Workflow in Teracy
--------------------------------
+---------------------
 
 .. image:: _static/workflow/workflow-with-git.png
 
@@ -271,9 +271,9 @@ Let's get in more detais:
     `Git Branch Cleaning Up`_ to clean up your local and get ready for the next issue.
 
 
--------------------------------
+------------
 2. Git Rules
--------------------------------
+------------
 
 To prevent chaos happening, you should follow some rules below in the workflow:
 

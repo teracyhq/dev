@@ -54,7 +54,7 @@ By convention, there are two most used remote repositories:
 - ``upstream``: is the official repository that you need to keep track of it.
 
 With DVCS (Distributed version control system) like git, you are encouraged to collaborate with
-other collaborators' remote repositories. 
+other collaborators' remote repositories.
 
 For example, I am working on the issue #3 with the title: "django prod deployment on prod virtual
 machine" (feature) which depends on an issue that phuonglm is working on: the issue #2 with
@@ -91,7 +91,7 @@ repository (for example, https://github.com/phuonglm/teracy-django-boilerplate.g
 #. remote delete
 
     Don't want to keep track of a remote repository, then remove (``rm``) it:
-    
+
     ::
 
         $ git rm <remote_name>
@@ -105,7 +105,7 @@ Branch
 When there is an issue that you are going to work, the first thing you need to do is to create a new
 working branch to make any changes on it.
 
-For example, I am going to work on the issue #1 with the title: "Cleaning up the project" of the 
+For example, I am going to work on the issue #1 with the title: "Cleaning up the project" of the
 ``enhancement`` type:
 ::
 
@@ -172,7 +172,7 @@ Diff
 
 - To see the differences before and after your changes:
     ::
-    
+
         $ git diff
 
 - If your changed files/folders are already added to the committed list, it means you have used the ``git add`` command, use the command below:
@@ -212,7 +212,7 @@ then ``:wq`` to write changes and quit).
 You can add your commit message directly to your commit without the ``vim`` editor by using the
 command below instead of ``git commit -a``:
 ::
-    
+
     $git commit -m "<issue_key>|git commit message"
 
 There are cases when you missed something and you want to add more changes into the latest commit:
@@ -238,7 +238,7 @@ Log
     - To see the list of commit messages only, use:
         ::
 
-            $ git log --online           
+            $ git log --online
 
     - Press [Enter] to scroll the list till the end or press ``q`` to quit.
 
@@ -336,7 +336,7 @@ This is useful to view all the changes from some commits of your collaborators f
 
     -  To set the
         current working branch to a specific commit and discard all the changes, use one of two following commands:
-        :: 
+        ::
 
             $ git reset --hard HEAD~<index>
 
@@ -392,7 +392,7 @@ Stash
 
 **5. drop it**
 
-    To drop a specific stash: 
+    To drop a specific stash:
     ::
 
         $ git stash drop stash@{<index>}
@@ -425,7 +425,7 @@ Teraciers, for work and practice.
 
     $ git --help
 
-    $ git <command> --help 
+    $ git <command> --help
 
     $ man git-<command>
 

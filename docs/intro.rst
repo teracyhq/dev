@@ -12,7 +12,7 @@ And this ``teracy-dev`` repository was created for that purpose, to make sure wo
 ease and fun. We are using ``virtualbox`` for running isolated virtual machines, ``chef`` and
 ``vagrant`` for installing and configuring any necessary packages automatically.
 
-We work intensively on this documentation so that anyone, who wants to join us, have to pass the
+We work intensively on this documentation so that anyone, who wants to join us, has to pass the
 training program by following the documentation instructions. The documentation will guide you steps
 by steps to set up working environment, to learn our toolchain, workflow, and our development
 culture.
@@ -117,8 +117,8 @@ and qualification, please contact us to see if we are meant to work together wit
   share and leverage community's strengths.
 
 
-Joining And Working With Us?
-----------------------------
+Join And Work With Us?
+----------------------
 
 We are starting up and have tons of interesting projects waiting for you. We need you - young
 developers having passion to learn and to work with us in a smart way. What you need to

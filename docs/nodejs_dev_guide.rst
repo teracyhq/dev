@@ -93,7 +93,7 @@ Run it with:
     $ node example.js
     Server running at http://0.0.0.0:3000/
 
-And then open the browser at http://localhost:3000 and we should see the `Hello World` displayed.
+And then open the browser at http://localhost:3000 and you should see the `Hello World` displayed.
 
 We can start digging `Node.js` now at: https://nodejs.org/documentation/
 
@@ -117,7 +117,7 @@ to create a `Hello World` web application.
 
 ..  note::
 
-    ``sudo chown -R `whoami` ~/tmp/`` is required to make sure we don't get any permission error,
+    ``sudo chown -R `whoami` ~/tmp/`` is required to make sure you don't get any permission error,
     something like:
 
     ..  code-block:: bash
@@ -174,7 +174,7 @@ Run it with:
     Example app listening at http://0.0.0.0:3000
 
 
-And then open the browser at http://localhost:3000 and we should see the `Hello World!` displayed.
+And then open the browser at http://localhost:3000 and you should see the `Hello World!` displayed.
 
 We can start digging `Express` now at: http://expressjs.com/
 
@@ -184,7 +184,7 @@ MEAN Stack
 
 We're going to follow http://learn.mean.io/ to get started.
 
-``MEAN`` requires ``mongodb`` running, we need to follow :ref:`MongoDB Guide <databases-guide-mongodb>`.
+``MEAN`` requires ``mongodb`` running, you need to follow :ref:`MongoDB Guide <databases-guide-mongodb>`.
 
 
 ..  code-block:: bash
@@ -201,7 +201,7 @@ We're going to follow http://learn.mean.io/ to get started.
 
 ..  note::
 
-    -  ``sudo chown -R `whoami` ~/.npm`` is required to make sure we don't get any permission error,
+    -  ``sudo chown -R `whoami` ~/.npm`` is required to make sure you don't get any permission error,
        something like:
 
        ..  code-block:: bash
@@ -224,9 +224,9 @@ Run it with:
     $ gulp
 
 
-And then open the browser at http://localhost:3000 and we should see the `MEAN` web app displayed.
+And then open the browser at http://localhost:3000 and you should see the `MEAN` web app displayed.
 
-We can start digging `MEAN` now at: http://learn.mean.io/
+You can start digging `MEAN` now at: http://learn.mean.io/
 
 
 References

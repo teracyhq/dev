@@ -67,7 +67,7 @@ Verify ``LAMP`` and ``LEMP``
 
         $ mysql -u root -pteracy;
 
-    And we should see the following output:
+    And you should see the following output:
 
     ..  code-block:: bash
 
@@ -122,7 +122,7 @@ Create *info.php* on the *workspace/personal/info* directory:
     $ echo "  phpinfo();" >> info.php
     $ echo "?>" >> info.php
 
-After the command lines above, we should have the *workspace/personal/info/info.php* file with the
+After the command lines above, you should have the *workspace/personal/info/info.php* file with the
 following content:
 
 ..  code-block:: php
@@ -131,13 +131,13 @@ following content:
       phpinfo();
     ?>
 
-Open http://localhost:9998/info/info.php we should see php info of the system like the screenshot
+Open http://localhost:9998/info/info.php you should see php info of the system like the screenshot
 below:
 
 ..  image:: _static/php-dev-guide/LEMP_info.png
     :align: center
 
-Open http://localhost:9999/info/info.php we should see php info of the system like the screenshot
+Open http://localhost:9999/info/info.php you should see php info of the system like the screenshot
 below:
 
 ..  image:: _static/php-dev-guide/LAMP_info.png
@@ -194,20 +194,20 @@ We'll follow http://www.codeigniter.com/userguide3/overview/index.html to get st
         $ wget https://github.com/bcit-ci/CodeIgniter/archive/2.2.1.zip
         $ unzip 2.2.1.zip
 
-    And we should see *CodeIgniter-2.2.1* directory after ``unzip``.
+    And you should see *CodeIgniter-2.2.1* directory after ``unzip``.
 
 #.  Verify
 
-    Open http://localhost:9999/CodeIgniter-2.2.1/index.php and we should see
+    Open http://localhost:9999/CodeIgniter-2.2.1/index.php and you should see
     "Welcome to CodeIgniter!" page.
 
-We can start digging ``CodeIgniter`` framework now: http://www.codeigniter.com/userguide3/tutorial/index.html
+You can start digging ``CodeIgniter`` framework now: http://www.codeigniter.com/userguide3/tutorial/index.html
 
 
 ``Laravel`` Framework
 ---------------------
 
-We'll follow http://laravel.com/docs/5.0/installation to get started with ``Laravel`` framework.
+You'll follow http://laravel.com/docs/5.0/installation to get started with ``Laravel`` framework.
 
 #.  Install
 
@@ -230,16 +230,16 @@ We'll follow http://laravel.com/docs/5.0/installation to get started with ``Lara
 
 #.  Verify
 
-    Open http://localhost:9999/blog/public/ and we should see "Laravel 5" page.
+    Open http://localhost:9999/blog/public/ and you should see "Laravel 5" page.
 
 
-We can start digging ``Laravel`` framework now: http://laravel.com/docs/5.0/routing
+You can start digging ``Laravel`` framework now: http://laravel.com/docs/5.0/routing
 
 
 ``Symfony`` Framework
 ---------------------
 
-We'll follow http://symfony.com/doc/current/quick_tour/the_big_picture.html to get started with
+You'll follow http://symfony.com/doc/current/quick_tour/the_big_picture.html to get started with
 ``Symfony`` framework.
 
 #.  Install
@@ -259,7 +259,7 @@ We'll follow http://symfony.com/doc/current/quick_tour/the_big_picture.html to g
         $ cd myproject
         $ php app/console server:run 0.0.0.0:8000
 
-    And we should see the output like:
+    And you should see the output like:
 
     ..  code-block:: bash
 
@@ -267,14 +267,14 @@ We'll follow http://symfony.com/doc/current/quick_tour/the_big_picture.html to g
 
         Quit the server with CONTROL-C.
 
-We can start digging ``Symfony`` framework now:
+You can start digging ``Symfony`` framework now:
 http://symfony.com/doc/current/quick_tour/the_big_picture.html
 
 
 ``Yii`` Framework
 -----------------
 
-We'll follow http://www.yiiframework.com/doc-2.0/guide-start-installation.html to get started
+You'll follow http://www.yiiframework.com/doc-2.0/guide-start-installation.html to get started
 with ``Yii`` framework.
 
 #.  Install
@@ -301,14 +301,14 @@ with ``Yii`` framework.
         http://localhost:9999/basic/web/index.php (Nginx) did not work out of the box yet.
 
 
-We can start digging ``Yii`` framework now: http://www.yiiframework.com/doc-2.0/guide-start-hello.html
+You can start digging ``Yii`` framework now: http://www.yiiframework.com/doc-2.0/guide-start-hello.html
 
 
 
 ``Drupal`` CMS
 --------------
 
-We'll follow https://www.drupal.org/documentation/install to get started with ``Drupal``.
+You'll follow https://www.drupal.org/documentation/install to get started with ``Drupal``.
 
 #.  Download and extract
 
@@ -321,13 +321,13 @@ We'll follow https://www.drupal.org/documentation/install to get started with ``
 
 #.  Create the database
 
-    We'll use ``MySQL`` for database.
+    You'll use ``MySQL`` for database.
 
     ..  code-block:: bash
 
         $ mysql -u root -pteracy -e "CREATE DATABASE drupal CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
-    We'll use *drupal* as database with *root* as username and *teracy* as password by default.
+    You'll use *drupal* as database with *root* as username and *teracy* as password by default.
 
     ..  note::
         All the default username, password of the teracy-dev is for development only. Don't use all
@@ -338,13 +338,13 @@ We'll follow https://www.drupal.org/documentation/install to get started with ``
     Open http://localhost:9999/drupal-7.35 and follow installation wizard.
 
 
-We can start digging ``Drupal`` CMS now: https://www.drupal.org/documentation
+You can start digging ``Drupal`` CMS now: https://www.drupal.org/documentation
 
 
 ``Joomla!`` CMS
 ---------------
 
-We'll follow https://docs.joomla.org/J3.x:Installing_Joomla to get started with ``Joomla!``.
+You'll follow https://docs.joomla.org/J3.x:Installing_Joomla to get started with ``Joomla!``.
 
 #.  Download and extract
 
@@ -357,25 +357,25 @@ We'll follow https://docs.joomla.org/J3.x:Installing_Joomla to get started with 
 
 #.  Create the database
 
-    We'll use ``MySQL`` for database.
+    You'll use ``MySQL`` for database.
 
     ..  code-block:: bash
 
         $ mysql -u root -pteracy -e "CREATE DATABASE joomla CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
-    We'll use *joomla* as database with *root* as username and *teracy* as password by default.
+    You'll use *joomla* as database with *root* as username and *teracy* as password by default.
 
 #.  Setup
 
     Open http://localhost:9999/joomla and follow installation wizard.
 
-We can start digging ``Joomla!`` CMS now: https://docs.joomla.org/J3.x:Getting_Started_with_Joomla!
+You can start digging ``Joomla!`` CMS now: https://docs.joomla.org/J3.x:Getting_Started_with_Joomla!
 
 
 ``WordPress`` CMS
 -----------------
 
-We'll follow http://codex.wordpress.org/Installing_WordPress to get started with ``Wordpress``.
+You'll follow http://codex.wordpress.org/Installing_WordPress to get started with ``Wordpress``.
 
 
 #.  Download and extract
@@ -389,20 +389,20 @@ We'll follow http://codex.wordpress.org/Installing_WordPress to get started with
 
 #.  Create the database
 
-    We'll use ``MySQL`` for database.
+    You'll use ``MySQL`` for database.
 
     ..  code-block:: bash
 
         $ mysql -u root -pteracy -e "CREATE DATABASE wordpress CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
-    We'll use *wordpress* as database with *root* as username and *teracy* as password by default.
+    You'll use *wordpress* as database with *root* as username and *teracy* as password by default.
 
 #.  Setup
 
     Open http://localhost:9999/wordpress and follow installation wizard.
 
 
-We can start digging ``Wordpress`` CMS now: http://codex.wordpress.org/Getting_Started_with_WordPress
+You can start digging ``Wordpress`` CMS now: http://codex.wordpress.org/Getting_Started_with_WordPress
 
 References
 ----------
