@@ -5,7 +5,7 @@ Python_ is a very powerful language that we use for many different projects at T
 guide, we're going to explore the Python language and some Python web frameworks.
 
 
-``Python`` should be available by default on the ``teracy-dev`` VM, so make sure we have the
+``Python`` should be available by default on the ``teracy-dev`` VM, so make sure you have the
 ``teracy-dev`` VM running by following the :doc:`getting_started` guide.
 
 ..  note::
@@ -55,7 +55,7 @@ those. We should learn from easy to harder levels.
 Flask Framework
 ---------------
 
-After learning ``Python``, we should know how to use Flask_ for web application development.
+After learning ``Python``, you should know how to use Flask_ for web application development.
 
 Follow the steps below to get started.
 
@@ -107,7 +107,7 @@ Follow the steps below to get started.
 Django Framework
 ----------------
 
-After learning ``Python``, we should know how to use Django_ for web application development.
+After learning ``Python``, you should know how to use Django_ for web application development.
 
 Follow the steps below to get started.
 

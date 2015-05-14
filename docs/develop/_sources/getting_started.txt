@@ -41,7 +41,7 @@ On Windows (Windows 7 & Windows 8), follow these steps:
 
 4. Open it by double-clicking on ``setup_vagrant_and_virtualbox.bat``.
 
-Now you have ``vagrant`` and ``virtualbox`` installed on your system.
+Now you should have ``vagrant`` and ``virtualbox`` installed on your system.
 
 
 Manual Installation
@@ -55,19 +55,21 @@ Manual Installation
 3. Install ``vagrant`` with the exact version of **1.7.1** at
    https://www.vagrantup.com/download-archive/v1.7.1.html.
 
-**Notice**:
+..  note::
 
-- The 64-bit architecture is used and run every day, however, the 32-bit archirecture is expected to work, too.
+    - The 64-bit architecture is used and run every day by us, however, the 32-bit archirecture is
+      expected to work, too.
 
-- The virtualbox has an installation issue which is reported `here
-  <https://www.virtualbox.org/ticket/4140>`_. If you `$ vagrant up` but can not start the virtual box,
-  please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and re-install it to fix the issue.
+    - The virtualbox has an installation issue which is reported `here
+      <https://www.virtualbox.org/ticket/4140>`_. If you `$ vagrant up` but can not start the
+      virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and
+      re-install it to fix the issue.
 
 Adding SSH Key
 ---------------
 Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username & password
-each time when working with Git like ``pull, push, rebase, etc`` on the Vagrant box. So, After having installed
-Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.
+each time when working with Git like ``pull, push, rebase, etc`` on the Vagrant box. So, after
+having installed Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.
 
 Do the following guides to get it work:
 
@@ -81,10 +83,10 @@ Do the following guides to get it work:
 
 .. note::
 
-  You need to use the **ssh-agent** tool that provides a secure way of storing and using your SSH keys. Also, it
-  allows you to use git commands on the virtual machine. See
-  https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit to
-  automatically run when opening the terminal window.
+  You need to use the **ssh-agent** tool that provides a secure way of storing and using your SSH
+  keys. Also, it allows you to use git commands on the virtual machine. See
+  https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit
+  to automatically run when opening the terminal window.
 
 Environment Up
 --------------
@@ -97,32 +99,33 @@ Environment Up
       $ cd teracy-dev
       $ vagrant up
 
-**Notice**
+..  note::
 
-- The home directory on ``Git Bash`` normally should point to your user's directory on windows.
-  For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
-  ``teracy-dev`` directory to import projects into your text editor later for coding.
+    - The home directory on ``Git Bash`` normally should point to your user's directory on windows.
+      For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
+      ``teracy-dev`` directory to import projects into your text editor later for coding.
 
-- You may see the error:
-    ::
+    - You may see the error:
 
-      Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
-      on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH
-      environmental variable.
+      ..  code-block:: bash
 
-To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+        Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be
+        available on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and
+        add it to the PATH environmental variable.
 
-For example: In Windows, add this "C:\Program Files\Oracle\VirtualBox".
+      To fix this error, add the path of the **VirtualBox** folder to your environment variable.
 
-If the error still occur, you have to unistall and re-install VirtualBox, then Vagrant to fix
-this error.
+      For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
 
-You should see the following similar messages at the end of ``$ vagrant up``:
-::
+      If the error still occurs, you have to unistall and re-install VirtualBox, then Vagrant to fix
+      this error.
 
-    [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
-    [2013-07-01T09:57:11+00:00] INFO: Running report handlers
-    [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+      You should see the following similar messages after ``$ vagrant up`` finishes running:
+      ::
+
+          [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
+          [2013-07-01T09:57:11+00:00] INFO: Running report handlers
+          [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:

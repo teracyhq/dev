@@ -3,7 +3,7 @@ teracy-dev Development
 
 We use ``teracy-dev`` to develop ``teracy-dev`` itself.
 
-``teracy-dev`` requires about `2048MB` of VM memory, so we need to override 1024 with
+``teracy-dev`` requires about `2048MB` of VM memory, so you need to override 1024 with
 2048 here: https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92 on
 the `vagrant_config_override.json` file.
 
@@ -24,7 +24,7 @@ For example, this is my forked repo: https://github.com/hoatle/teracy-dev/
     $ cd teracy-dev
     $ git submodule update --init --recursive
 
-Notice that we use ``teracy-dev`` directory for the project name.
+Notice that you use ``teracy-dev`` directory for the project name.
 
 
 Install gems with `bundle`:
@@ -55,7 +55,7 @@ We're going to use Bento_ to build base boxes.
 
 #.  `Virtualbox` Installation:
 
-    We could install any versions of Virtualbox. As for teracy-dev v0.4.0, we use virtualbox v4.3.20.
+    You could install any versions of Virtualbox. As for teracy-dev v0.4.0, we use virtualbox v4.3.20.
 
     ..  code-block:: bash
 
@@ -113,7 +113,7 @@ We're going to use Bento_ to build base boxes.
 
     We're going to build `ubuntu-12.04-amd64.json` base box as an example.
 
-    We're working on a headless VM so we need to add ``headless`` option to the json file by
+    We're working on a headless VM so you need to add ``headless`` option to the json file by
     openning any .json files and append ``"headless":true,`` before ``"boot_wait: "10s",`` line.
 
     and then:
@@ -131,8 +131,8 @@ We're going to use Bento_ to build base boxes.
     We should store and share iso files somewhere to save time from downloading iso files then
     put it under `~/workspace/readonly/bento/isos/`.
 
-    For example, we put `ubuntu-12.04.5-server-amd64.iso` file under `~/workspace/readonly/bento/isos/ubuntu/12.04`
-    and we can use the mirror like:
+    For example, you put `ubuntu-12.04.5-server-amd64.iso` file under `~/workspace/readonly/bento/isos/ubuntu/12.04`
+    and you can use the mirror like:
 
     ..  code-block:: bash
 

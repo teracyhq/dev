@@ -94,7 +94,7 @@ need to move to the next alternative instruction by installing required packages
 <li>Select the option <code class="docutils literal"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">type:</span> <span class="pre">Text</span> <span class="pre">document</span></code>, with the name &#8220;setup_vagrant_and_virtualbox.bat&#8221; (notice the double quote).</li>
 <li>Open it by double-clicking on <code class="docutils literal"><span class="pre">setup_vagrant_and_virtualbox.bat</span></code>.</li>
 </ol>
-<p>Now you have <code class="docutils literal"><span class="pre">vagrant</span></code> and <code class="docutils literal"><span class="pre">virtualbox</span></code> installed on your system.</p>
+<p>Now you should have <code class="docutils literal"><span class="pre">vagrant</span></code> and <code class="docutils literal"><span class="pre">virtualbox</span></code> installed on your system.</p>
 </div>
 <div class="section" id="manual-installation">
 <h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
@@ -105,18 +105,22 @@ need to move to the next alternative instruction by installing required packages
 <li>Install <code class="docutils literal"><span class="pre">vagrant</span></code> with the exact version of <strong>1.7.1</strong> at
 <a class="reference external" href="https://www.vagrantup.com/download-archive/v1.7.1.html">https://www.vagrantup.com/download-archive/v1.7.1.html</a>.</li>
 </ol>
-<p><strong>Notice</strong>:</p>
-<ul class="simple">
-<li>The 64-bit architecture is used and run every day, however, the 32-bit archirecture is expected to work, too.</li>
-<li>The virtualbox has an installation issue which is reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a>. If you <cite>$ vagrant up</cite> but can not start the virtual box,
-please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and re-install it to fix the issue.</li>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>The 64-bit architecture is used and run every day by us, however, the 32-bit archirecture is
+expected to work, too.</li>
+<li>The virtualbox has an installation issue which is reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a>. If you <cite>$ vagrant up</cite> but can not start the
+virtual box, please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and
+re-install it to fix the issue.</li>
 </ul>
+</div>
 </div>
 <div class="section" id="adding-ssh-key">
 <h2>Adding SSH Key<a class="headerlink" href="#adding-ssh-key" title="Permalink to this headline">¶</a></h2>
 <p>Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username &amp; password
-each time when working with Git like <code class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></code> on the Vagrant box. So, After having installed
-Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.</p>
+each time when working with Git like <code class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></code> on the Vagrant box. So, after
+having installed Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.</p>
 <p>Do the following guides to get it work:</p>
 <ul class="simple">
 <li>Mac: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys#platform-mac">https://help.github.com/articles/generating-ssh-keys#platform-mac</a></li>
@@ -126,10 +130,10 @@ Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.</p
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You need to use the <strong>ssh-agent</strong> tool that provides a secure way of storing and using your SSH keys. Also, it
-allows you to use git commands on the virtual machine. See
-<a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit">https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit</a> to
-automatically run when opening the terminal window.</p>
+<p class="last">You need to use the <strong>ssh-agent</strong> tool that provides a secure way of storing and using your SSH
+keys. Also, it allows you to use git commands on the virtual machine. See
+<a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit">https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit</a>
+to automatically run when opening the terminal window.</p>
 </div>
 </div>
 <div class="section" id="environment-up">
@@ -147,32 +151,31 @@ $ vagrant up
 </dl>
 </li>
 </ol>
-<p><strong>Notice</strong></p>
-<ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
 <li><p class="first">The home directory on <code class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></code> normally should point to your user&#8217;s directory on windows.
 For example: <code class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></code>, this is the place you will find
 <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory to import projects into your text editor later for coding.</p>
 </li>
-<li><dl class="first docutils">
-<dt>You may see the error:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be available
-on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and add it to the PATH
-environmental variable.
+<li><p class="first">You may see the error:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Vagrant uses the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary that ships with VirtualBox, and requires this to be
+available on the PATH. If VirtualBox is installed, please find the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary and
+add it to the PATH environmental variable.
 </pre></div>
 </div>
-</dd>
-</dl>
-</li>
-</ul>
 <p>To fix this error, add the path of the <strong>VirtualBox</strong> folder to your environment variable.</p>
-<p>For example: In Windows, add this &#8220;C:Program FilesOracleVirtualBox&#8221;.</p>
-<p>If the error still occur, you have to unistall and re-install VirtualBox, then Vagrant to fix
+<p>For example: In Windows, add this <code class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files\Oracle\VirtualBox</span></code>.</p>
+<p>If the error still occurs, you have to unistall and re-install VirtualBox, then Vagrant to fix
 this error.</p>
-<p>You should see the following similar messages at the end of <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>:</p>
+<p>You should see the following similar messages after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> finishes running:</p>
 <div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
 [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 </pre></div>
+</div>
+</li>
+</ul>
 </div>
 <p>2. Use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> command to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>

@@ -64,7 +64,7 @@
   <div class="section" id="teracy-dev-development">
 <h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
 <p>We use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code> itself.</p>
-<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> requires about <cite>2048MB</cite> of VM memory, so we need to override 1024 with
+<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> requires about <cite>2048MB</cite> of VM memory, so you need to override 1024 with
 2048 here: <a class="reference external" href="https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92">https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92</a> on
 the <cite>vagrant_config_override.json</cite> file.</p>
 <div class="section" id="project-setup">
@@ -79,7 +79,7 @@ the <cite>vagrant_config_override.json</cite> file.</p>
 <span class="nv">$ </span>git submodule update --init --recursive
 </pre></div>
 </div>
-<p>Notice that we use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
+<p>Notice that you use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
 <p>Install gems with <cite>bundle</cite>:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -102,7 +102,7 @@ the <cite>vagrant_config_override.json</cite> file.</p>
 <p>We&#8217;re going to use <a class="reference external" href="http://chef.github.io/bento/">Bento</a> to build base boxes.</p>
 <ol class="arabic">
 <li><p class="first"><cite>Virtualbox</cite> Installation:</p>
-<p>We could install any versions of Virtualbox. As for teracy-dev v0.4.0, we use virtualbox v4.3.20.</p>
+<p>You could install any versions of Virtualbox. As for teracy-dev v0.4.0, we use virtualbox v4.3.20.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
 <span class="nv">$ </span>wget http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
 <span class="nv">$ </span>sudo dpkg -i virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
@@ -152,7 +152,7 @@ building base boxes from scratch.</p>
 <p class="last">Building from &#8220;headless&#8221; mode is not recommended, it should be used only for ci-system.</p>
 </div>
 <p>We&#8217;re going to build <cite>ubuntu-12.04-amd64.json</cite> base box as an example.</p>
-<p>We&#8217;re working on a headless VM so we need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
+<p>We&#8217;re working on a headless VM so you need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
 openning any .json files and append <code class="docutils literal"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
 <p>and then:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
@@ -164,8 +164,8 @@ openning any .json files and append <code class="docutils literal"><span class="
 us to use.</p>
 <p>We should store and share iso files somewhere to save time from downloading iso files then
 put it under <cite>~/workspace/readonly/bento/isos/</cite>.</p>
-<p>For example, we put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/readonly/bento/isos/ubuntu/12.04</cite>
-and we can use the mirror like:</p>
+<p>For example, you put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/readonly/bento/isos/ubuntu/12.04</cite>
+and you can use the mirror like:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/readonly/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
 </pre></div>
 </div>

@@ -47,14 +47,14 @@ For example, to install the **SublimeCondeIntel**, do as follows:
    the latest package list --> Type **SublimeCodeIntel**.
 
 Overring default settings
-`````````````````````````` 
+``````````````````````````
 You must always enable white space characters and set ruler to 100 characters by overriding the
 default settings.
 
 1. Open the Sublime Text editor.
 
 2. Click **Preferences** --> **Settings - Users** --> Copy and paste the content below into the settings:
-  
+
   ::
 
     {
@@ -86,7 +86,7 @@ Creating connection
 
 1. Open Jira Client and select **Connection** --> **New Jira Connection** to open the **New Jira Connection**
 form.
- 
+
   .. image:: _static/Toolchain/new-jira-connection.png
      :align: center
 
@@ -172,33 +172,33 @@ Jira Client measures the exact time you've spent on the issue.
 - **Starting tracking time**
 
   Select your issue you are working on and click the **Start** button to begin tracking time.
- 
+
   .. image:: _static/Toolchain/start-button.png
      :align: center
 
 - **Stopping tracking time**
-  
+
   When you pause to work or finish your issue, you can stop tracking time by clicking the **Stop** button.
- 
+
   .. image:: _static/Toolchain/stop-button.png
      :align: center
 
 - **Switching to another issue**
- 
+
   When switching to another issue and you want to record time spent on the issue, open issue and click the
   **Record** button.
- 
+
   .. image:: _static/Toolchain/starting-tracking-time.png
      :align: center
 
 - **Adjusting time and duration**
 
   You can also adjust time and duration by clicking the time recorded on the Time Tracker.
-  
-  .. image::  _static/Toolchain/edit-time.png
-     :align: center 
 
-Later, you can review the time sheet, make corrections and publish tracked time to JIRA as work logs. 
+  .. image::  _static/Toolchain/edit-time.png
+     :align: center
+
+Later, you can review the time sheet, make corrections and publish tracked time to JIRA as work logs.
 
 .. note::
   You can see further usage of Jira Client at http://almworks.com/jiraclient/features.html.
