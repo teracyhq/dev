@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Built-in IDE (codebox) &mdash; teracy-dev 0.4.0-@ documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4.0-@',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.4.0-@ documentation" href="index.html" />
+    <link rel="next" title="Style Standards" href="style_standards.html" />
+    <link rel="prev" title="Toolchain" href="tool_chain.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="style_standards.html" title="Style Standards"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="built-in-ide-codebox">
+<h1>Built-in IDE (codebox)<a class="headerlink" href="#built-in-ide-codebox" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes we want to work remote on the vagrant machine from a different machine or to use
+a text editor on browsers, such the built-in editor is very helpful.</p>
+<p>That&#8217;s why we support a built-in editor for vagrant box, however, it&#8217;s disabled by default. We&#8217;ll
+need to enable it to use.</p>
+<p>The built-in editor we support is <a class="reference external" href="https://github.com/CodeboxIDE/codebox">Codebox</a> - it&#8217;s more than an editor, it&#8217;s an IDE.</p>
+<img alt="_images/teracy_codebox_screenshot.png" class="align-center" src="_images/teracy_codebox_screenshot.png" />
+<div class="section" id="default-configuration">
+<h2>Default Configuration<a class="headerlink" href="#default-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This is the default configuration of the IDE:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;codebox&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="mi">30000</span><span class="p">,</span>
+      <span class="nt">&quot;sync_dir&quot;</span><span class="p">:</span><span class="s2">&quot;/home/vagrant/workspace&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-enable">
+<h2>How to Enable<a class="headerlink" href="#how-to-enable" title="Permalink to this headline">¶</a></h2>
+<p>To enable the built-in IDE, add the following configuration to <em>vagrant_config_override.json</em> file
+as follows:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;chef_json&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;codebox&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code> and we&#8217;re done.</p>
+</div>
+<div class="section" id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>Open <a class="reference external" href="http://localhost:30000">http://localhost:30000</a> and check out: <a class="reference external" href="http://help.codebox.io/">http://help.codebox.io/</a></p>
+</div>
+<div class="section" id="how-to-customize">
+<h2>How to Customize<a class="headerlink" href="#how-to-customize" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">port:3000</span></code> and <code class="docutils literal"><span class="pre">sync_dir:&quot;/home/vagrant/workspace&quot;</span></code> are configured by default.</p>
+<p>We could customize them by changing its configuration, like:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;chef_json&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;codebox&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="mi">31000</span><span class="p">,</span>
+        <span class="nt">&quot;sync_dir&quot;</span><span class="p">:</span><span class="s2">&quot;/home/vagrant/workspace/personal&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code> and we&#8217;re done.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that the new port has the corresponding forwared port to the host machine.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.codebox.io/">https://www.codebox.io/</a></li>
+<li><a class="reference external" href="https://github.com/CodeboxIDE/codebox">https://github.com/CodeboxIDE/codebox</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Built-in IDE (codebox)</a><ul>
+<li><a class="reference internal" href="#default-configuration">Default Configuration</a></li>
+<li><a class="reference internal" href="#how-to-enable">How to Enable</a></li>
+<li><a class="reference internal" href="#how-to-use">How to Use</a></li>
+<li><a class="reference internal" href="#how-to-customize">How to Customize</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tool_chain.html"
+                        title="previous chapter">Toolchain</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="style_standards.html"
+                        title="next chapter">Style Standards</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/built_in_ide.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="style_standards.html" title="Style Standards"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
