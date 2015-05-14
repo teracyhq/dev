@@ -22,7 +22,7 @@ as password by default.
         $ vagrant ssh
         $ mysql -u root -pteracy
 
-    And we should see the following output:
+    And you should see the following output:
 
     ..  code-block:: bash
 
@@ -46,10 +46,10 @@ as password by default.
 #.  Remote access
 
     For easier development, ``MySQL`` on the teracy-dev has binding address of ``0.0.0.0``, this
-    means that we could remote access it.
+    means that you could remote access it.
 
     The teracy-dev VM by default forwards the port `3306` of ``MySQL`` to `6603` of the host
-    machine. So we're going to remote access with the following credentials information by default:
+    machine. So you're going to remote access with the following credentials information by default:
 
     - host: the guest machine's IP address or ``127.0.0.1`` to access from the guest machine
     - port: ``6603``
@@ -73,12 +73,12 @@ as password by default.
 
 #.  phpMyAdmin
 
-    Open http://localhost:9997 and type *root* as username, *teracy* as password and we're done.
+    Open http://localhost:9997 and type *root* as username, *teracy* as password and you're done.
 
     ..  image:: _static/databases-guide/phpMyAdmin.png
         :align: center
 
-From now on we can start digging ``MySQL`` database at: http://dev.mysql.com/doc/
+From now on you can start digging ``MySQL`` database at: http://dev.mysql.com/doc/
 
 
 PostgreSQL
@@ -100,7 +100,7 @@ PostgreSQL
 
 #.  Enable
 
-    To enable, we need to override the default configuration by appending *postgresql* attribute within
+    To enable, you need to override the default configuration by appending *postgresql* attribute within
     *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
 
     ..  code-block:: json
@@ -132,7 +132,7 @@ PostgreSQL
 
     Type *teracy* when being prompted for the password: ``Password for user postgres:``
 
-    And we should see the following output:
+    And you should see the following output:
 
     ..  code-block:: bash
 
@@ -160,7 +160,7 @@ PostgreSQL
 
     Type ``y`` and hit enter when asked “Shall the new role be a superuser?”
 
-    Now we can exit the *su* subshell to go back to the vagrant user SSH session:
+    Now you can exit the *su* subshell to go back to the vagrant user SSH session:
 
     ..  code-block:: bash
 
@@ -175,13 +175,13 @@ PostgreSQL
 
 #.  Local access
 
-    When *vagrant* super user and *vagrant* database is created, we just need to type:
+    When *vagrant* super user and *vagrant* database is created, you just need to type:
 
     ..  code-block:: bash
 
         $ psql
 
-    And we should the the following output:
+    And you should see the the following output:
 
     ..  code-block:: bash
 
@@ -197,7 +197,7 @@ PostgreSQL
     ..  todo::
         We need to support this by https://issues.teracy.org/browse/DEV-221
 
-From now on we can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
+From now on you can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
 
 
 
@@ -220,7 +220,7 @@ MongoDB
 
 #.  Enable
 
-    To enable, we need to override the default configuration by appending *mongodb* attribute within
+    To enable, you need to override the default configuration by appending *mongodb* attribute within
     *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
 
     ..  code-block:: json
@@ -246,7 +246,7 @@ MongoDB
         $ vagrant ssh
         $ mongo
 
-    And we should the the following output:
+    And you should the the following output:
 
     ..  code-block:: bash
 
@@ -258,12 +258,12 @@ MongoDB
 
 #.  Local access
 
-    Just type ``mongo`` and we're done.
+    Just type ``mongo`` and you're done.
 
 
 #.  Remote access
 
-    By default, the default port *27017* is forwarded to the guest machine, to remote access it, we
+    By default, the default port *27017* is forwarded to the guest machine, to remote access it, you
     only need to specify the host ip address when required:
 
     - host: the guest machine's IP address or *127.0.0.1* or *localhost* or none to access from the
@@ -294,7 +294,7 @@ MongoDB
         For easier development, by default the ``MongoDB`` instance does not require username and
         password.
 
-From now on we can start digging ``MongoDB`` database at: http://docs.mongodb.org/manual/
+From now on you can start digging ``MongoDB`` database at: http://docs.mongodb.org/manual/
 
 References
 ----------

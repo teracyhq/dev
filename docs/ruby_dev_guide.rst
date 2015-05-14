@@ -26,7 +26,7 @@ Ruby on Rails (RoR) Development
 
 This guide is based on: http://rubyonrails.org/download/
 
-As ``Ruby`` is already installed along with ``rbenv``, we could start using ``Ruby`` right away.
+As ``Ruby`` is already installed along with ``rbenv``, you could start using ``Ruby`` right away.
 
 #.  Install ``Rails``
 
@@ -60,7 +60,7 @@ As ``Ruby`` is already installed along with ``rbenv``, we could start using ``Ru
         ``-b 0.0.0.0`` here is to make ``Rails`` app accept requests from any ip addresses. Required
         for Vagrant box with forward ports.
 
-    And we should see the output like:
+    And you should see the output like:
 
     ..  code-block:: bash
 
@@ -73,7 +73,7 @@ As ``Ruby`` is already installed along with ``rbenv``, we could start using ``Ru
         [2015-03-20 09:14:58] INFO  ruby 1.9.3 (2012-04-20) [x86_64-linux]
         [2015-03-20 09:14:58] INFO  WEBrick::HTTPServer#start: pid=15258 port=3000
 
-    Open the browser at http://localhost:3000 and we should see `Welcome aboard` default page.
+    Open the browser at http://localhost:3000 and you should see `Welcome aboard` default page.
     We're ready for RoR development by following http://rubyonrails.org/documentation/
 
 #.  Use Ruby 2.2.1 instead of default Ruby 1.9.3

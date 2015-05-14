@@ -1,7 +1,7 @@
 Style Standards
 ===============
 
-Consistence is one of our goals for development and that is the reason why we need standards. Common
+Consistency is one of our goals for development and that is the reason why we need standards. Common
 standards must be applied to all other more specific standards if any rule is not overridden.
 Following these rules, there will be automatic checking tool to report any rule violations.
 

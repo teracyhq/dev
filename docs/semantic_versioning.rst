@@ -20,7 +20,7 @@ latest version: http://semver.org/spec/v2.0.0.html.
    - Take into account the way http://nvie.com/posts/a-successful-git-branching-model/ works to see
       how semantic version should be applied to production services like.
 
-  
+
 See related link: http://datasift.github.io/gitflow/Versioning.html.
 
 Base
@@ -122,7 +122,7 @@ d. Continuous build metadata
       version ::= major'.'minor'.'patch('-'prerelese)?'-dev-'YYYYMMDD.hhmmss('-'buildnumber)?
       buildnumber ::= digit+
 
-- Precedence: ``0.1.0-dev0 < 0.1.0-dev-20150826 < 0.1.0-dev-20150826.101010 
+- Precedence: ``0.1.0-dev0 < 0.1.0-dev-20150826 < 0.1.0-dev-20150826.101010
   < 0.1.0-dev-20150826.101010-5 < 0.1.0-a-dev < 0.1.0-a-dev-20150926.101010``
 
 .. note::
@@ -138,7 +138,7 @@ e. Jenkins rules
 
  For example:  ``0.1.0-dev-20130914.101010-15``.
 
-- Staging build when there is no ``-dev0`` affix, add ``-YYYYMMDD.hhmmss-buildnumber``. 
+- Staging build when there is no ``-dev0`` affix, add ``-YYYYMMDD.hhmmss-buildnumber``.
 
 For example: ``0.1.0-20130915-102030-2``
 
