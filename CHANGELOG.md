@@ -1,6 +1,104 @@
 Change Log
 ==========
 
+[0.4.0][] (2015-05-15)
+----------------------
+
+The next milestone release includes:
+
+- add .bat automatic installation script
+- multiple python versions
+- LAMP, LEMP stack support
+- Ruby on Rails stack support
+- Built-in IDE (codebox) support
+- Improve Vagrant configuration
+- Support optional sync methods along with default sharing folder method
+- Documentation improvements
+- Bug fixes and improvements
+
+
+Details:
+
+- Sub-task
+    + [DEV-126] - Fix foodcritic violations when upgrade
+    + [DEV-201] - update php dev guide
+    + [DEV-214] - update databases guide
+    + [DEV-216] - update nodejs dev guide
+    + [DEV-217] - update python dev guide
+
+
+- Bug
+    + [DEV-93] - virtualenvwrapper not work
+    + [DEV-101] - nosetests does not work well on vagrantbox
+    + [DEV-109] - permission denied of .virtualenvs on windows
+    + [DEV-121] - No "source" of install_method for mongodb recipe
+    + [DEV-134] - don't reinstall php when $ vagrant reload --provision
+    + [DEV-136] - fix Could not find mixlib-shellout-1.6.0 in any of the sources error on travis-ci
+    + [DEV-151] - git installer did not work properly
+    + [DEV-161] - problems related to virtualbox guest addition for v0.4.0
+    + [DEV-162] - auto generated key pair by vagrant 1.7.1 did not work with `$ vagrant ssh`
+    + [DEV-168] - fix apache2 cache bug
+    + [DEV-171] - .htaccess not working
+    + [DEV-193] - Failed to install `amo-validator` via pip globals config
+    + [DEV-210] - Need to set default date.timezone = UTC for php.ini
+
+
+- Improvement
+    + [DEV-76] - Adding loading indicator bar to .bat installation script
+    + [DEV-83] - Support python.version config
+    + [DEV-97] - Improve Getting Started
+    + [DEV-99] - Reduce the provision time of base box v0.3.0 on v0.3.0
+    + [DEV-111] - improve java, maven cookbook
+    + [DEV-118] - Support Linux, Apache, MySQL, PHP (LAMP) stack to deploy PHP applications
+    + [DEV-120] - [DOC] Improve the section Ruby training
+    + [DEV-143] - add support to use nginx instead of default apache server
+    + [DEV-157] - Add all options for Vagrantfile config.vm settings
+    + [DEV-169] - remove "git" from vagrant_config.json's chef_recipes
+    + [DEV-176] - Don't force apt-get update by default on mysql recipe
+    + [DEV-177] - Avoid using vagrant 1.7.2 for now, use 1.7.1 instead
+    + [DEV-188] - Support for Ruby on Rails, Sinatra development
+    + [DEV-189] - make sure to support provisioning from a clean ubuntu base box
+    + [DEV-190] - Enable ruby by default
+    + [DEV-195] - By default use fmode=755 instead of fmode=644 for workspace directory
+    + [DEV-198] - Support optional sync methods along with default sharing folder method
+    + [DEV-222] - support remote access for MongoDB
+    + [DEV-223] - Support for Rails development with PostgreSQL's hstore extension
+    + [DEV-225] - make sure apt-get-update-periodic should work
+
+- New Feature
+    + [DEV-9] - multiple python versions on python_dev VM
+    + [DEV-23] - Use tox for testing
+    + [DEV-139] - Add support to install phpMyAdmin
+    + [DEV-146] - IDE running with vagrant
+    + [DEV-155] - Add option to specify preferred ubuntu repository mirrors
+
+
+- Task
+    + [DEV-11] - useful sublimetext plugins and preferences configuration
+    + [DEV-92] - Config support for VM customize
+    + [DEV-96] - write docs how to use jira client on toolchain section
+    + [DEV-98] - update workflow: git branching off section
+    + [DEV-103] - update manual installation for dev
+    + [DEV-119] - upgrade Gemfile and Berksfile
+    + [DEV-124] - Update Workflow
+    + [DEV-127] - Add "gulp" as global npm to install by default
+    + [DEV-132] - add more vm_forwarded_ports config
+    + [DEV-137] - Install some PHP applications to teracy-dev to make sure it works (wordpress, drupal, etc)
+    + [DEV-138] - Fix violations foodcritic of apache recipe
+    + [DEV-141] - update docs for v0.4.0
+    + [DEV-142] - Upgrade and define the supported vagrant, virtualbox versions for v0.4.0
+    + [DEV-144] - Write documentation how to develop chrome extenstion, firefox add-on with teracy-dev
+    + [DEV-150] - upgrade default git from v2.0.0 to v2.2.1
+    + [DEV-152] - Add `compass`, `foreman` to default global gems
+    + [DEV-158] - upgrade cookbooks to latest stable versions
+    + [DEV-170] - update automatic installation scripts
+    + [DEV-172] - use default memory setting of vagrant instead of current 2048
+    + [DEV-175] - Set default VM memory is 512MB instead of default 318MB
+    + [DEV-180] - update the docs copyright year on the footer
+    + [DEV-194] - update documentation how to use restview for .rst writing
+    + [DEV-227] - release teracy-dev v0.4.0
+
+
 
 [0.3.0][] (2014-07-24)
 ----------------------
@@ -106,3 +204,5 @@ Release the first milestone
 [0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10002
 
 [0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
+
+[0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
