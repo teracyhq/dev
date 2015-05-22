@@ -1,6 +1,12 @@
 Release Steps
 =============
 
+vagrant_config.json
+-------------------
+
+- set "vm_box_version" limit on the new release when neccessary
+
+
 README.rst
 ----------
 
