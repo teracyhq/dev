@@ -38,8 +38,8 @@ steps:
         $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
         $ git fetch djbp
         $ git merge djbp/master
-        $ pip install -r requirements/project/dev.txt
-        $ ./manage.py syncdb
+        $ pip install -r requirements/dev.txt
+        $ python manage.py syncdb
 
     When ``syncdb``, you should create a super account to access the admin page later.
 
@@ -49,7 +49,7 @@ steps:
 #. Run the server now:
     ::
 
-        $ ./manage.py runserver 0.0.0.0:8000
+        $ python manage.py runserver 0.0.0.0:8000
 
 
     You should see the following similar messages:
@@ -84,7 +84,7 @@ World!`` message when accessing http://localhost:8000.
 
 #. Open ``Sublime Text``, add ``workspace/personal/tutorial`` project by clicking **Project** ->
    **Add  Folder to Project**.
-   
+
    The ``tutorial`` project should be opened and you can start coding now.
 
 #. Open two terminal windows:
@@ -110,7 +110,7 @@ World!`` message when accessing http://localhost:8000.
     - Install it:
       ::
 
-        pip install -r requirements/project/dev.txt
+        pip install -r requirements/dev.txt
 
     You should see something like this:
     ::
@@ -124,23 +124,23 @@ World!`` message when accessing http://localhost:8000.
             Successfully installed teracy-django-html5-boilerplate
             Cleaning up...
 
-#. Install the ``teracy-html5boilerplate`` application to ``settings/project/dev.py``: 
+#. Install the ``teracy-html5boilerplate`` application to ``settings/project/dev.py``:
     ::
 
        INSTALLED_APPS += (
         'teracy.html5boilerplate',
-         )  
-#. Create  the ``hello`` application  
+         )
+#. Create  the ``hello`` application
 
     .. note::
          A specific Django application should be put under ``apps`` directory.
-    
+
     ::
 
         $ ws
         $ workon tutorial
         $ cd personal/tutorial/apps
-        $ ../manage.py startapp hello
+        $ python manage.py startapp hello
 
 #. Add the ``hello`` application to ``INSTALLED_APPS`` on ``settings/project/dev.py`` by appending
    the following configuration:
@@ -154,7 +154,7 @@ World!`` message when accessing http://localhost:8000.
 
 #. Create the ``home.html`` template under the ``apps/hello/templates/hello`` directory with the
    following content:
-   
+
     ::
 
         {% extends 'html5boilerplate/base.html' %}
@@ -197,8 +197,8 @@ World!`` message when accessing http://localhost:8000.
     During development, the server could be stopped by some errors and it is normal.
     The server should be started without any error with the command:
     ::
-    
-        $ ./manage.py runserver 0.0.0.0:8000
+
+        $ python manage.py runserver 0.0.0.0:8000
 
 Congratulations, you have just created a Django application and make it work even though it does
 nothing other than "Hello World!" page. You should now learn Django by developing many more

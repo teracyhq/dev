@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Workflow &mdash; teracy-dev 0.3.5 documentation</title>
+    <title>Workflow &mdash; teracy-dev 0.4.0 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.3.5',
+        VERSION:     '0.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.3.5 documentation" href="index.html" />
-    <link rel="next" title="Git Training" href="git_training.html" />
+    <link rel="top" title="teracy-dev 0.4.0 documentation" href="index.html" />
+    <link rel="next" title="teracy-dev Development" href="teracy_dev_development.html" />
     <link rel="prev" title="Style Standards" href="style_standards.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,27 +39,27 @@
     </script>
 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="git_training.html" title="Git Training"
+          <a href="teracy_dev_development.html" title="teracy-dev Development"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="style_standards.html" title="Style Standards"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.5 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="workflow">
 <h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h1>
@@ -69,28 +69,28 @@ less time with higher quality of work.</p>
 rules. What&#8217;s the fun with a game without rules :-D?</p>
 <div class="section" id="initializing-working-repositories">
 <h2>Initializing Working Repositories<a class="headerlink" href="#initializing-working-repositories" title="Permalink to this headline">¶</a></h2>
-<p>To work on a repository project, <tt class="docutils literal"><span class="pre">fork</span></tt> it first to your git account.
+<p>To work on a repository project, <code class="docutils literal"><span class="pre">fork</span></code> it first to your git account.
 Your working repositories MUST be cloned from your git account and stored under
-the <tt class="docutils literal"><span class="pre">workspace/personal</span></tt> directory.</p>
+the <code class="docutils literal"><span class="pre">workspace/personal</span></code> directory.</p>
 <p>For example, you are going to work on the
 <a class="reference external" href="https://code.teracy.org/projects/PILOT/repos/pixelate/browse">https://code.teracy.org/projects/PILOT/repos/pixelate/browse</a> project, follow the steps below:</p>
 <ol class="arabic">
-<li><p class="first"><tt class="docutils literal"><span class="pre">Fork</span></tt> the official repository to your developer account.</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">Fork</span></code> the official repository to your developer account.</p>
 <blockquote>
-<div><p><strong>Step 1</strong>: Click <tt class="docutils literal"><span class="pre">Fork</span></tt>.</p>
+<div><p><strong>Step 1</strong>: Click <code class="docutils literal"><span class="pre">Fork</span></code>.</p>
 <img alt="_images/fork-1.png" src="_images/fork-1.png" />
-<p><strong>Step 2</strong>: Click <tt class="docutils literal"><span class="pre">Fork</span> <span class="pre">repository</span></tt>.</p>
+<p><strong>Step 2</strong>: Click <code class="docutils literal"><span class="pre">Fork</span> <span class="pre">repository</span></code>.</p>
 <a class="reference internal image-reference" href="_images/fork-2.png"><img alt="_images/fork-2.png" src="_images/fork-2.png" style="width: 500px;" /></a>
 <p>Forking successfully with the URL like this:</p>
 <img alt="_images/fork-3.png" src="_images/fork-3.png" />
 </div></blockquote>
 </li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">Clone</span></tt> it to   workspace.</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">Clone</span></code> it to   workspace.</p>
 <blockquote>
-<div><p><strong>Step 1</strong>: Click <tt class="docutils literal"><span class="pre">Clone</span></tt> to get the <tt class="docutils literal"><span class="pre">.git</span></tt> repository clone URL.</p>
-<p><strong>Step 2</strong>: Copy the URL <tt class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/~hoavt/pixelate.git</span></tt> in the
-<tt class="docutils literal"><span class="pre">SSH</span></tt> field.</p>
-<p><strong>Step 3</strong>: Open the terminal window and type the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span></tt> command as below:</p>
+<div><p><strong>Step 1</strong>: Click <code class="docutils literal"><span class="pre">Clone</span></code> to get the <code class="docutils literal"><span class="pre">.git</span></code> repository clone URL.</p>
+<p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/~hoavt/pixelate.git</span></code> in the
+<code class="docutils literal"><span class="pre">SSH</span></code> field.</p>
+<p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> command as below:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
         ============== &quot;Forked&quot; repo URL ===================
 </pre></div>
@@ -98,11 +98,11 @@ the <tt class="docutils literal"><span class="pre">workspace/personal</span></tt
 <img alt="_images/clone-fork-url.png" src="_images/clone-fork-url.png" />
 </div></blockquote>
 </li>
-<li><p class="first">Add <tt class="docutils literal"><span class="pre">upstream</span></tt> repository which is the official repository.</p>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">upstream</span></code> repository which is the official repository.</p>
 <blockquote>
-<div><p><strong>Step 1</strong>: Browse the repository <tt class="docutils literal"><span class="pre">https://code.teracy.org/projects/PILOT/repos/pixelate/browse</span></tt>, and click <tt class="docutils literal"><span class="pre">Clone</span></tt> to get the <tt class="docutils literal"><span class="pre">.git</span></tt> clone URL.</p>
-<p><strong>Step 2</strong>: Copy the URL <tt class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/pilot/pixelate.git</span></tt> in the <strong>SSH</strong> field.</p>
-<p><strong>Step 3</strong>: Open the terminal window and type the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span></tt> command as below:</p>
+<div><p><strong>Step 1</strong>: Browse the repository <code class="docutils literal"><span class="pre">https://code.teracy.org/projects/PILOT/repos/pixelate/browse</span></code>, and click <code class="docutils literal"><span class="pre">Clone</span></code> to get the <code class="docutils literal"><span class="pre">.git</span></code> clone URL.</p>
+<p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/pilot/pixelate.git</span></code> in the <strong>SSH</strong> field.</p>
+<p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span></code> command as below:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
     ================= Official repo URL ==================
 </pre></div>
@@ -110,7 +110,7 @@ the <tt class="docutils literal"><span class="pre">workspace/personal</span></tt
 <img alt="_images/clone-official-url.png" src="_images/clone-official-url.png" />
 </div></blockquote>
 </li>
-<li><p class="first">Recheck to verify your clone by using the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></tt> command.</p>
+<li><p class="first">Recheck to verify your clone by using the <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> command.</p>
 <blockquote>
 <div><img alt="_images/git-remote-info.png" src="_images/git-remote-info.png" />
 </div></blockquote>
@@ -119,8 +119,8 @@ the <tt class="docutils literal"><span class="pre">workspace/personal</span></tt
 <p>The successful start is when you have both these remotes on your local development:</p>
 <blockquote>
 <div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">origin</span></tt> (remote from your repo)</li>
-<li><tt class="docutils literal"><span class="pre">upstream</span></tt> (remote from official repo)</li>
+<li><code class="docutils literal"><span class="pre">origin</span></code> (remote from your repo)</li>
+<li><code class="docutils literal"><span class="pre">upstream</span></code> (remote from official repo)</li>
 </ul>
 </div></blockquote>
 <p>After initializing working repository successfully, switch to the next step: <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
@@ -138,7 +138,47 @@ then create another branch from that checkout.</p>
 </div>
 <p>Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
 Now branch-2 is on your local and ready for you to work on it.</p>
-<p>Git is a distributed version control system, so collaboration like this should be encouraged.</p>
+<p>This is a demonstration example. <code class="docutils literal"><span class="pre">phuonglm</span></code> is working on
+<code class="docutils literal"><span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></code>, and you are going to work on
+<code class="docutils literal"><span class="pre">features/DEV-2-fabric-deployment-remote-machine</span></code> which depends on
+<code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code>. On this case, you MUST indicate the branch name with <code class="docutils literal"><span class="pre">deps_&lt;issue-key&gt;</span></code>.</p>
+<p>(In case, you are working on a branch which depends on many different branches, the branch name should have
+<code class="docutils literal"><span class="pre">deps_&lt;issue-key[_issue-key]&gt;</span></code>. For example: <code class="docutils literal"><span class="pre">deps_DEV-1_DEV-2</span></code>.)</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
+$ git fetch phuonglm                                                                      (2)
+$ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
+  features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Details:</dt>
+<dd><ul class="first last simple">
+<li>(1) Adds the official repository from which you use source code for your issue.</li>
+<li>(2) Fetches to get the  new updates of the official repository.</li>
+<li>(3) Creates a new branch on your local device basing the remote branch.</li>
+<li>(4) Pushes your new branch to Git to wait for being reviewed and merged to the <code class="docutils literal"><span class="pre">features/DEV-1</span></code> branch.</li>
+</ul>
+</dd>
+</dl>
+<p>When the <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></code> has some updates, you need to fetch
+and rebase on that branch:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
+$ git rebase phuonglm/features/DEV-1-fabric-deployment-virtual-machine
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code> is merged into <code class="docutils literal"><span class="pre">upstream/develop</span></code>, you need to rebase on it to get these
+new updates:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+$ git rebase upstream/develop
+$ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Git is a distributed version control system, so collaboration like this should be encouraged.</p>
+</div>
 </div>
 <div class="section" id="working-with-git">
 <h2>Working with Git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
@@ -150,7 +190,7 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <li>Step 1: Branching-off based on issue</li>
 <li>Step 2: Developing with Code/ Commit/ Push</li>
 <li>Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.</li>
-<li>Step 4: Cleaning up branch`</li>
+<li>Step 4: Cleaning up branch</li>
 </ul>
 <p>Let&#8217;s get in more detais:</p>
 <p><strong>Step 1: Branching-off based on issue</strong></p>
@@ -158,26 +198,26 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <div><p>If you do not know what the meaning of &#8220;Branching-off&#8221; is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p><strong>Working on features</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b features/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin features/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b features/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin features/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on improvements</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin improvements/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on tasks or sub-tasks</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin tasks/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on bugs</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
-$ git checkout upstream/master -b bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
-$ git push origin bugs/&lt;issue_key&gt;-&lt;concise_title&gt;
+$ git checkout upstream/master -b bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
+$ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p>Above are the templates <cite>Branching off</cite> based on an issue&#8217;s types.</p>
@@ -221,7 +261,7 @@ $ git rebase --continue
 </ul>
 <p>After finishing your work, add changed files to commit and push your branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git add -a
-$ git commit -m &quot;&lt;issue_key&gt;|git commit message&quot;
+$ git commit -m &quot;&lt;issue-key&gt;|git commit message&quot;
 $ git push origin [your-branch-name]
 </pre></div>
 </div>
@@ -271,8 +311,8 @@ There are TWO steps in submitting a pull-request:</p>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">After a <tt class="docutils literal"><span class="pre">pull</span></tt> request, you will continue to work on your working branch as normal, just
-<tt class="docutils literal"><span class="pre">push</span></tt> it and the pull request will be updated with your new commits. Ping other Teraciers to
+<p class="last">After a <code class="docutils literal"><span class="pre">pull</span></code> request, you will continue to work on your working branch as normal, just
+<code class="docutils literal"><span class="pre">push</span></code> it and the pull request will be updated with your new commits. Ping other Teraciers to
 help reviewing, comments, suggestions, etc.</p>
 </div>
 <p>When you meet all these long strict requirements, your work will be more welcomed accepted.</p>
@@ -291,27 +331,27 @@ help reviewing, comments, suggestions, etc.</p>
 <p>When start working on a new issue, you always MUST to start a new branch for it and that branch&#8217;s name
 is based on each type of the issue, which means if the issue is:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">feature</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">features/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">improvement</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">improvements/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">tasks/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">bugs/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></tt> =&gt; Branch&#8217;s name is <tt class="docutils literal"><span class="pre">hot-fixes/&lt;issue_key&gt;-&lt;concise_title&gt;</span></tt></li>
+<li><code class="docutils literal"><span class="pre">feature</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">improvement</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">bug</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
 </ul>
 <p>In which:</p>
 <ul class="simple">
-<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx. The key
+<li><code class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></code> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx. The key
 prefix is based on the type of project.</li>
-<li><tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is the issue&#8217;s title which is rewritten in concise way and replacing <tt class="docutils literal"><span class="pre">space</span></tt> with <tt class="docutils literal"><span class="pre">-</span></tt>.</li>
-<li><tt class="docutils literal"><span class="pre">&lt;issue_key&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;concise_title&gt;</span></tt> is seperated by a <tt class="docutils literal"><span class="pre">-</span></tt> character.</li>
+<li><code class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></code> is the issue&#8217;s title which is rewritten in concise way and replacing <code class="docutils literal"><span class="pre">space</span></code> with <code class="docutils literal"><span class="pre">-</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></code> is seperated by a <code class="docutils literal"><span class="pre">-</span></code> character.</li>
 </ul>
-<p>For example, the issue <tt class="docutils literal"><span class="pre">CLT-183</span> <span class="pre">|</span> <span class="pre">Sharing</span> <span class="pre">Tutorial</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">firing</span> <span class="pre">email</span> <span class="pre">#652</span></tt>, its branch name can be <tt class="docutils literal"><span class="pre">bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652</span></tt>.</p>
+<p>For example, the issue <code class="docutils literal"><span class="pre">CLT-183</span> <span class="pre">|</span> <span class="pre">Sharing</span> <span class="pre">Tutorial</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">firing</span> <span class="pre">email</span> <span class="pre">#652</span></code>, its branch name can be <code class="docutils literal"><span class="pre">bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652</span></code>.</p>
 </div>
 <div class="section" id="quality-checklist">
 <h3>Quality Checklist<a class="headerlink" href="#quality-checklist" title="Permalink to this headline">¶</a></h3>
 <p>Quality of work must be strictly defined with rules and measurements, especially with software
 quality.</p>
 <p>Any work is accepted as good enough MUST meet the following (including but not limited) requirements
-of <tt class="docutils literal"><span class="pre">quality</span> <span class="pre">checklist</span></tt>:</p>
+of <code class="docutils literal"><span class="pre">quality</span> <span class="pre">checklist</span></code>:</p>
 <ul class="simple">
 <li>No tab character</li>
 <li>Length of the text/code line within 100 characters</li>
@@ -325,7 +365,7 @@ of <tt class="docutils literal"><span class="pre">quality</span> <span class="pr
 <h3>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
 <p>Git commit messages must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue_key&gt; | &lt;issue_title&gt;: &lt;changes description&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue-title&gt;: &lt;changes description&gt;
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
 </div>
@@ -363,7 +403,7 @@ $ git branch -d branch_name
 </div>
 <div class="section" id="git-force-push">
 <h3>Git Force Push<a class="headerlink" href="#git-force-push" title="Permalink to this headline">¶</a></h3>
-<p>Should not <tt class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">branch_name</span> <span class="pre">-f</span></tt> if your branch has another branch depending on.</p>
+<p>Should not <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">branch_name</span> <span class="pre">-f</span></code> if your branch has another branch depending on.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">NEVER force push the <em>official</em> repositories.</p>
@@ -406,7 +446,7 @@ $ git push upstream develop
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -433,14 +473,16 @@ $ git push upstream develop
   <p class="topless"><a href="style_standards.html"
                         title="previous chapter">Style Standards</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="git_training.html"
-                        title="next chapter">Git Training</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/workflow.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <p class="topless"><a href="teracy_dev_development.html"
+                        title="next chapter">teracy-dev Development</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/workflow.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -457,24 +499,24 @@ $ git push upstream develop
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="git_training.html" title="Git Training"
+          <a href="teracy_dev_development.html" title="teracy-dev Development"
              >next</a> |</li>
         <li class="right" >
           <a href="style_standards.html" title="Style Standards"
              >previous</a> |</li>
-        <li><a href="index.html">teracy-dev 0.3.5 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2013 - 2014, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

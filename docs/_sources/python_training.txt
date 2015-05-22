@@ -1,7 +1,6 @@
 Python Training
 ===============
 
-Setup
------
-
-Follow :doc:`getting_started` guide.
+.. warning::
+  This document is moved to :doc:`python_dev_guide`.
+  This document will be deleted soon!!!
