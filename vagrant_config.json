@@ -15,7 +15,7 @@
         },
         {
           "guest":3306, //mysql
-          "host":6605
+          "host":6603
         },
         {
           "guest":4000, //octopress
