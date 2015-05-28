@@ -97,5 +97,14 @@ if node['teracy-dev']['php']['enabled']
       user 'root'
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
     end
+
+    bash "update php mysql_socket_path for php #{conf_type}" do
+      code <<-EOF
+        sed -i 's/^mysql.default_socket =$/mysql.default_socket = \\/var\\/run\\/mysqld\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
+      EOF
+      user 'root'
+      only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
+    end
   end
+
 end
