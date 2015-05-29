@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Databases Guide &mdash; teracy-dev 0.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.4.1 documentation" href="index.html" />
+    <link rel="next" title="Node.js Development Guide" href="nodejs_dev_guide.html" />
+    <link rel="prev" title="Document Writer Training" href="document_writer_training.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nodejs_dev_guide.html" title="Node.js Development Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="document_writer_training.html" title="Document Writer Training"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="databases-guide">
+<h1>Databases Guide<a class="headerlink" href="#databases-guide" title="Permalink to this headline">¶</a></h1>
+<p>Databases are very important and crucial part of any systems, they provide an efficient way to
+store, retrieve and analyze data.</p>
+<p>The teracy-dev VM provides some of the most popular databases such as: <code class="docutils literal"><span class="pre">MySQL</span></code>, <code class="docutils literal"><span class="pre">PostgreSQL</span></code>
+and <code class="docutils literal"><span class="pre">MongoDB</span></code>. This guide will help us to enable and use these databases.</p>
+<div class="section" id="mysql">
+<h2>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">MySQL</span></code> is installed by default on the teracy-dev VM with <strong>root</strong> as username and <strong>teracy</strong>
+as password by default.</p>
+<ol class="arabic">
+<li><p class="first">Local access</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
+<span class="nv">$ </span>mysql -u root -pteracy
+</pre></div>
+</div>
+<p>And you should see the following output:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is 5
+Server version: 5.5.41-0ubuntu0.12.04.1 <span class="o">(</span>Ubuntu<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt;
+</pre></div>
+</div>
+<p>Type <code class="docutils literal"><span class="pre">$</span> <span class="pre">exit</span></code> to exit the <code class="docutils literal"><span class="pre">MySQL</span></code> shell above.</p>
+</li>
+<li><p class="first">Remote access</p>
+<p>For easier development, <code class="docutils literal"><span class="pre">MySQL</span></code> on the teracy-dev has binding address of <code class="docutils literal"><span class="pre">0.0.0.0</span></code>, this
+means that you could remote access it.</p>
+<p>The teracy-dev VM by default forwards the port <cite>3306</cite> of <code class="docutils literal"><span class="pre">MySQL</span></code> to <cite>6603</cite> of the host
+machine. So you&#8217;re going to remote access with the following credentials information by default:</p>
+<ul class="simple">
+<li>host: the guest machine&#8217;s IP address or <code class="docutils literal"><span class="pre">127.0.0.1</span></code> to access from the guest machine</li>
+<li>port: <code class="docutils literal"><span class="pre">6603</span></code></li>
+<li>username: <code class="docutils literal"><span class="pre">root</span></code></li>
+<li>password: <code class="docutils literal"><span class="pre">teracy</span></code></li>
+</ul>
+<p>We need a <code class="docutils literal"><span class="pre">MySQL</span></code> client, such as <a class="reference external" href="http://dev.mysql.com/doc/refman/5.6/en/mysql.html">MySQL Command-Line Tool</a>, <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>, etc.</p>
+<ul>
+<li><p class="first">With <em>MySQL Command-Line Tool</em> to remote access from the guest machine:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -h 127.0.0.1 -P 6603
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">With <em>MySQL Workbench</em> to remote access from the guest machine:</p>
+<blockquote>
+<div><img alt="_images/mysql_workbench.png" class="align-center" src="_images/mysql_workbench.png" />
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">phpMyAdmin</p>
+<p>Open <a class="reference external" href="http://localhost:9997">http://localhost:9997</a> and type <em>root</em> as username, <em>teracy</em> as password and you&#8217;re done.</p>
+<img alt="_images/phpMyAdmin.png" class="align-center" src="_images/phpMyAdmin.png" />
+</li>
+</ol>
+<p>From now on you can start digging <code class="docutils literal"><span class="pre">MySQL</span></code> database at: <a class="reference external" href="http://dev.mysql.com/doc/">http://dev.mysql.com/doc/</a></p>
+</div>
+<div class="section" id="postgresql">
+<h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">PostgreSQL</span></code> is disabled by default on the teracy-dev VM:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;postgresql&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:{</span>
+      <span class="nt">&quot;postgres&quot;</span><span class="p">:</span><span class="s2">&quot;teracy&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;9.3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">Enable</p>
+<p>To enable, you need to override the default configuration by appending <em>postgresql</em> attribute within
+<em>teracy-dev</em> attribute to the <em>vagrant_config_override.json</em> file like the configuration below:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
+      <span class="nt">&quot;postgresql&quot;</span><span class="p">:{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Save the file and then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>, after that <code class="docutils literal"><span class="pre">PostgreSQL</span></code> should be installed.</p>
+<p>By default, we use <cite>postgres</cite> as username and <cite>teracy</cite> as password to access the enabled
+<code class="docutils literal"><span class="pre">PostgreSQL</span></code> database instance.</p>
+</li>
+<li><p class="first">Verify</p>
+<p>Within vagrant ssh session, by:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
+<span class="nv">$ </span>psql -U postgres -h localhost
+</pre></div>
+</div>
+<p>Type <em>teracy</em> when being prompted for the password: <code class="docutils literal"><span class="pre">Password</span> <span class="pre">for</span> <span class="pre">user</span> <span class="pre">postgres:</span></code></p>
+<p>And you should see the following output:</p>
+<div class="highlight-bash"><div class="highlight"><pre>psql <span class="o">(</span>9.1.14<span class="o">)</span>
+SSL connection <span class="o">(</span>cipher: DHE-RSA-AES256-SHA, bits: 256<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">postgres</span><span class="o">=</span><span class="c">#</span>
+</pre></div>
+</div>
+<p>To exit the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> shell:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">postgres</span><span class="o">=</span><span class="c"># \q</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Initialize the super user <em>vagrant</em> role and default <em>vagrant</em> database</p>
+<p>This step is required for the first time when the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> database is enabled and
+installed.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo su postgres
+<span class="nv">$ </span>createuser vagrant
+</pre></div>
+</div>
+<p>Type <code class="docutils literal"><span class="pre">y</span></code> and hit enter when asked “Shall the new role be a superuser?”</p>
+<p>Now you can exit the <em>su</em> subshell to go back to the vagrant user SSH session:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">exit</span>
+</pre></div>
+</div>
+<p>Now create <em>vagrant</em> database:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>createdb vagrant
+</pre></div>
+</div>
+</li>
+<li><p class="first">Local access</p>
+<p>When <em>vagrant</em> super user and <em>vagrant</em> database is created, you just need to type:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>psql
+</pre></div>
+</div>
+<p>And you should see the the following output:</p>
+<div class="highlight-bash"><div class="highlight"><pre>psql <span class="o">(</span>9.1.14<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">vagrant</span><span class="o">=</span><span class="c">#</span>
+</pre></div>
+</div>
+<p>Type <code class="docutils literal"><span class="pre">\q</span></code> to quit the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> shell.</p>
+</li>
+<li><p class="first">Remote access</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">We need to support this by <a class="reference external" href="https://issues.teracy.org/browse/DEV-221">https://issues.teracy.org/browse/DEV-221</a></p>
+</div>
+</li>
+</ol>
+<p>From now on you can start digging <code class="docutils literal"><span class="pre">PostgreSQL</span></code> database at: <a class="reference external" href="http://www.postgresql.org/docs/">http://www.postgresql.org/docs/</a></p>
+</div>
+<div class="section" id="mongodb">
+<span id="databases-guide-mongodb"></span><h2>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">MongoDB</span></code> is disabled by default on the teracy-dev VM:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;2.6.3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">Enable</p>
+<p>To enable, you need to override the default configuration by appending <em>mongodb</em> attribute within
+<em>teracy-dev</em> attribute to the <em>vagrant_config_override.json</em> file like the configuration below:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
+      <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Save the file and then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>, after that <code class="docutils literal"><span class="pre">MongoDB</span></code> should be installed.</p>
+</li>
+<li><p class="first">Verify</p>
+<p>Within vagrant ssh session, by:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
+<span class="nv">$ </span>mongo
+</pre></div>
+</div>
+<p>And you should the the following output:</p>
+<div class="highlight-bash"><div class="highlight"><pre>MongoDB shell version: 2.6.9
+connecting to: <span class="nb">test</span>
+&gt;
+</pre></div>
+</div>
+<p>Type <code class="docutils literal"><span class="pre">exit</span></code> to quit the <code class="docutils literal"><span class="pre">MongoDB</span></code> shell.</p>
+</li>
+<li><p class="first">Local access</p>
+<p>Just type <code class="docutils literal"><span class="pre">mongo</span></code> and you&#8217;re done.</p>
+</li>
+<li><p class="first">Remote access</p>
+<p>By default, the default port <em>27017</em> is forwarded to the guest machine, to remote access it, you
+only need to specify the host ip address when required:</p>
+<ul class="simple">
+<li>host: the guest machine&#8217;s IP address or <em>127.0.0.1</em> or <em>localhost</em> or none to access from the
+guest machine</li>
+</ul>
+<p>For example, from a guest machine:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo localhost
+</pre></div>
+</div>
+<p>We could replace <em>localhost</em> with <em>127.0.0.1</em>.</p>
+<p>or from a different machine to the machine running the teracy-dev VM with ip: <em>192.168.1.111</em></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo 192.168.1.111
+</pre></div>
+</div>
+</li>
+</ol>
+<p>From now on you can start digging <code class="docutils literal"><span class="pre">MongoDB</span></code> database at: <a class="reference external" href="http://docs.mongodb.org/manual/">http://docs.mongodb.org/manual/</a></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.mysql.com/">https://www.mysql.com/</a></li>
+<li><a class="reference external" href="http://www.postgresql.org/">http://www.postgresql.org/</a></li>
+<li><a class="reference external" href="https://www.mongodb.org/">https://www.mongodb.org/</a></li>
+<li><a class="reference external" href="http://www.phpmyadmin.net/home_page/index.php">http://www.phpmyadmin.net/home_page/index.php</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Databases Guide</a><ul>
+<li><a class="reference internal" href="#mysql">MySQL</a></li>
+<li><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
+<li><a class="reference internal" href="#mongodb">MongoDB</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="document_writer_training.html"
+                        title="previous chapter">Document Writer Training</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nodejs_dev_guide.html"
+                        title="next chapter">Node.js Development Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/databases_guide.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nodejs_dev_guide.html" title="Node.js Development Guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="document_writer_training.html" title="Document Writer Training"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

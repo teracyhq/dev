@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Development Guide &mdash; teracy-dev 0.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.4.1 documentation" href="index.html" />
+    <link rel="next" title="Python Training" href="python_training.html" />
+    <link rel="prev" title="C/C++ Training" href="c_c++_training.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="python_training.html" title="Python Training"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="c_c++_training.html" title="C/C++ Training"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-development-guide">
+<h1>Python Development Guide<a class="headerlink" href="#python-development-guide" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.python.org/">Python</a> is a very powerful language that we use for many different projects at Teracy. In this
+guide, we&#8217;re going to explore the Python language and some Python web frameworks.</p>
+<p><code class="docutils literal"><span class="pre">Python</span></code> should be available by default on the <code class="docutils literal"><span class="pre">teracy-dev</span></code> VM, so make sure you have the
+<code class="docutils literal"><span class="pre">teracy-dev</span></code> VM running by following the <a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference external" href="https://github.com/yyuu/pyenv">pyenv</a>, <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtualenv</a> and <a class="reference external" href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> are already installed and available to use.</p>
+</div>
+<div class="section" id="verify-that-python-works">
+<h2>Verify that <code class="docutils literal"><span class="pre">Python</span></code> Works<a class="headerlink" href="#verify-that-python-works" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
+<span class="nv">$ </span>python --version
+</pre></div>
+</div>
+<p>And you should see something like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Python 2.7.6
+</pre></div>
+</div>
+<p>Congratulations, you can do all <code class="docutils literal"><span class="pre">Python</span></code> related stuff now!</p>
+</div>
+<div class="section" id="learn">
+<h2>Learn<a class="headerlink" href="#learn" title="Permalink to this headline">¶</a></h2>
+<p>There are many free resources for learning Python and those listed ones below are just some of
+those. We should learn from easy to harder levels.</p>
+<ol class="arabic">
+<li><p class="first">Python tutorial</p>
+<p>Introduction about Python: <a class="reference external" href="https://docs.python.org/2/tutorial/index.html">https://docs.python.org/2/tutorial/index.html</a></p>
+</li>
+<li><p class="first">Python Course</p>
+<p>Very easy to follow: <a class="reference external" href="http://www.codecademy.com/tracks/python">http://www.codecademy.com/tracks/python</a></p>
+</li>
+<li><p class="first">Dive into Python</p>
+<p>Useful for middle level: <a class="reference external" href="http://www.diveintopython.net/toc/index.html">http://www.diveintopython.net/toc/index.html</a></p>
+</li>
+<li><p class="first">Learn Python the hard way</p>
+<p>Required to work: <a class="reference external" href="http://learnpythonthehardway.org/book/">http://learnpythonthehardway.org/book/</a></p>
+</li>
+</ol>
+</div>
+<div class="section" id="flask-framework">
+<h2>Flask Framework<a class="headerlink" href="#flask-framework" title="Permalink to this headline">¶</a></h2>
+<p>After learning <code class="docutils literal"><span class="pre">Python</span></code>, you should know how to use <a class="reference external" href="http://flask.pocoo.org/">Flask</a> for web application development.</p>
+<p>Follow the steps below to get started.</p>
+<ol class="arabic">
+<li><p class="first">Create a virtualenv</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>mkdir flask-app
+<span class="nv">$ </span><span class="nb">cd </span>flask-app
+<span class="nv">$ </span>mkvirtualenv flask-app
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install the <cite>Flask</cite> package</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create <cite>hello.py</cite> under <cite>flask-app</cite> directory with the following content:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;Hello World!&quot;</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the <code class="docutils literal"><span class="pre">Flask</span></code> web app</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python hello.py
+</pre></div>
+</div>
+<p>Now open <a class="reference external" href="http://localhost:5000">http://localhost:5000</a> on the browser to see the web app.</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Teracy introduces <a class="reference external" href="https://github.com/teracyhq/flask-boilerplate">flask-boilerplate</a> to speed up <cite>Flask</cite> development with best practices.</p>
+</div>
+</div>
+<div class="section" id="django-framework">
+<h2>Django Framework<a class="headerlink" href="#django-framework" title="Permalink to this headline">¶</a></h2>
+<p>After learning <code class="docutils literal"><span class="pre">Python</span></code>, you should know how to use <a class="reference external" href="https://www.djangoproject.com/">Django</a> for web application development.</p>
+<p>Follow the steps below to get started.</p>
+<ol class="arabic">
+<li><p class="first">Create a virtualenv</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>mkvirtualenv django-app
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install the <cite>Django</cite> package</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a <cite>Django</cite> application</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startproject django_app
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the <cite>Django</cite> application</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>django_app
+<span class="nv">$ </span>python manage.py migrate
+<span class="nv">$ </span>python manage.py runrver 0.0.0.0:8000
+</pre></div>
+</div>
+<p>Now open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> on your browser to see the web app.</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Teracy introduces <a class="reference external" href="https://github.com/teracyhq/django-boilerplate">django-boilerplate</a> to speed up <cite>Django</cite> development with best practices and
+we follow the <a class="reference internal" href="django_training.html"><em>Django Training</em></a> guide.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.python.org/">https://www.python.org/</a></li>
+<li><a class="reference external" href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></li>
+<li><a class="reference external" href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Python Development Guide</a><ul>
+<li><a class="reference internal" href="#verify-that-python-works">Verify that <code class="docutils literal"><span class="pre">Python</span></code> Works</a></li>
+<li><a class="reference internal" href="#learn">Learn</a></li>
+<li><a class="reference internal" href="#flask-framework">Flask Framework</a></li>
+<li><a class="reference internal" href="#django-framework">Django Framework</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="c_c++_training.html"
+                        title="previous chapter">C/C++ Training</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="python_training.html"
+                        title="next chapter">Python Training</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/python_dev_guide.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="python_training.html" title="Python Training"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="c_c++_training.html" title="C/C++ Training"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
