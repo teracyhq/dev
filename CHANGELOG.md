@@ -1,6 +1,22 @@
 Change Log
 ==========
 
+
+[0.4.1][] (2015-05-29)
+----------------------
+
+bug fixes for 0.4.0
+
+Details:
+
+- Bug
+    + [DEV-232] - mysql with php not work
+    + [DEV-233] - wrong default forwarded port for mysql
+
+- Task
+    + [DEV-234] - release teracy-dev v0.4.1, update blog post
+
+
 [0.4.0][] (2015-05-15)
 ----------------------
 
@@ -206,3 +222,5 @@ Release the first milestone
 [0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
 
 [0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
+
+[0.4.1]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=12200
