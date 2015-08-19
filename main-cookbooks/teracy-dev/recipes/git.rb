@@ -120,3 +120,9 @@ pc () {
         end
     end
 end
+
+bash 'update bash_profile owner' do
+    code <<-EOF
+        chown vagrant:vagrant /home/vagrant/.bash_profile
+    EOF
+end

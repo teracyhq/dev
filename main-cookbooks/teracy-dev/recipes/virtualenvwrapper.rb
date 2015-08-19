@@ -43,9 +43,10 @@ end
 
 bash 'download_pyenv_virtualenvwrapper' do
     code <<-EOF
-        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
+        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /home/vagrant/.pyenv/plugins/pyenv-virtualenvwrapper
     EOF
-    not_if 'ls -la /usr/local/pyenv/plugins/pyenv-virtualenvwrapper'
+    not_if 'ls -la /home/vagrant/.pyenv/plugins/pyenv-virtualenvwrapper'
+    user 'vagrant'
 end
 
 node['teracy-dev']['python']['versions'].each do |version|
@@ -54,7 +55,8 @@ node['teracy-dev']['python']['versions'].each do |version|
             source /etc/profile
             pyenv virtualenvwrapper
         EOF
-        environment 'PYENV_VERSION' => version
+        environment 'PYENV_VERSION'=>version, 'HOME'=>'/home/vagrant/'
+        user 'vagrant'
     end
 end
 
@@ -66,5 +68,7 @@ bash 'configure_virtualenvwrapper' do
         echo 'export PATH=$HOME/.bin/:$PATH' >> /home/vagrant/.bash_profile
         echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
     EOF
+    environment 'HOME'=>'/home/vagrant/'
     not_if 'grep -q pyenv /home/vagrant/.bash_profile'
+    user 'vagrant'
 end
