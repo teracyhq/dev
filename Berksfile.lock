@@ -15,7 +15,7 @@ DEPENDENCIES
   php (= 1.5.0)
   phpmyadmin
     git: git@github.com:priestjim/chef-phpmyadmin.git
-    revision: f8b24f720d24504a5bbd0871c8f90aa24d30f7be
+    revision: b48c0e3f5d082924d697385888e16d015be838f5
   postgresql (= 3.4.14)
   pyenv
     git: https://github.com/sds/chef-pyenv

@@ -17,14 +17,33 @@
 # limitations under the License.
 #
 
+require 'etc'
 require 'digest/sha1'
 
 # PHP Recipe includes we already know PHPMyAdmin needs
-#include_recipe 'php'
-#include_recipe 'php::module_mbstring'
-#include_recipe 'php::module_mcrypt'
-#include_recipe 'php::module_gd'
-#include_recipe 'php::module_mysql'
+if node['phpmyadmin']['stand_alone'] then
+	# include_recipe 'php'
+	# include_recipe 'php::module_mbstring'
+	# include_recipe 'php::module_mcrypt'
+	# include_recipe 'php::module_gd'
+	# include_recipe 'php::module_mysql'
+
+	directory node['phpmyadmin']['upload_dir'] do
+		owner 'root'
+		group 'root'
+		mode 01777
+		recursive true
+		action :create
+	end
+
+	directory node['phpmyadmin']['save_dir'] do
+		owner 'root'
+		group 'root'
+		mode 01777
+		recursive true
+		action :create
+	end
+end
 
 home = node['phpmyadmin']['home']
 user = node['phpmyadmin']['user']
@@ -42,28 +61,13 @@ user user do
 	home home
 	shell '/usr/sbin/nologin'
 	supports :manage_home => true
+	not_if { (! Etc.getpwnam(user).gecos.eql?('PHPMyAdmin User')) rescue false }
 end
 
 directory home do
 	owner user
 	group group
 	mode 00755
-	recursive true
-	action :create
-end
-
-directory node['phpmyadmin']['upload_dir'] do
-	owner 'root'
-	group 'root'
-	mode 01777
-	recursive true
-	action :create
-end
-
-directory node['phpmyadmin']['save_dir'] do
-	owner 'root'
-	group 'root'
-	mode 01777
 	recursive true
 	action :create
 end
@@ -108,9 +112,10 @@ unless Chef::Config[:solo] || node['phpmyadmin']['blowfish_secret']
 end
 
 template "#{home}/config.inc.php" do
-	source 'config.inc.php.erb'
+	source node['phpmyadmin']['config_template']
 	owner user
 	group group
+	cookbook node['phpmyadmin']['config_template_cookbook']
 	mode 00644
 end
 

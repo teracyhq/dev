@@ -96,6 +96,12 @@ $cfg['QueryHistoryDB'] = <%= node['phpmyadmin']['query_history'] %>;
  */
 $cfg['QueryHistoryMax'] = <%= node['phpmyadmin']['query_history_size'] %>;
 
+/**
+ * Whether to force using https while accessing phpMyAdmin. In a reverse proxy setup,
+ * setting this to true is not supported.
+*/
+$cfg['ForceSSL'] = <%= node['phpmyadmin']['force_ssl'] %>;
+
 /*
  * You can find more configuration options in Documentation.html
  * or here: http://wiki.phpmyadmin.net/pma/Config
