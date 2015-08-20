@@ -33,6 +33,7 @@
 #
 
 if node['teracy-dev']['python']['enabled']
+    node.default['pyenv']['git_ref'] = 'v20150719'
     node.default['pyenv']['user_installs'] = [
       { 'user' => 'vagrant', 
         'pythons' => node['teracy-dev']['python']['versions'],
@@ -78,8 +79,6 @@ if node['teracy-dev']['python']['enabled']
         end
 
         node['teracy-dev']['python']['pip']['globals'].each do |pkg|
-            Chef::Log.info("Pip info #{node['python']['prefix_dir']} #{node['python']['pip_location']}")
-
             python_pip "install #{pkg['name']}" do
                 package_name pkg['name']
                 if !pkg['version'].nil? and !pkg['version'].strip().empty?
