@@ -1,3 +1,4 @@
+sudo: false # use container-based infrastructure instead of legacy
 language: ruby
 before_install:
 - git submodule update --init --recursive
@@ -21,7 +22,7 @@ gemfile:
 - Gemfile
 env:
   global:
-  - GH_REPO="teracy-official/dev"
+  - GH_REPO="teracyhq/dev"
   - secure: Jt7QOiv7Q6/QTw3q9leGMfgGfGYO9+0KF9vCwgCdDsjqlj8Qtdt31E57OxYHquApyCReR7WHATL1eML4dRcrqX4QOGxzktfX6RD7Mqx2wwutyoP/vfb4SXuLVjofnGTsddHEZW4dfFnFh48QEWsuA4svRvAO4ILt/uTupTvSUBo=
 notifications:
   slack:
