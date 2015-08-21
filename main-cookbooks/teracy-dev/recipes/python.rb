@@ -33,9 +33,9 @@
 #
 
 if node['teracy-dev']['python']['enabled']
-    node.default['pyenv']['git_ref'] = 'v20150719'
+    node.default['pyenv']['git_ref'] = node['teracy-dev']['python']['pyenv']['git_ref']
     node.default['pyenv']['user_installs'] = [
-      { 'user' => 'vagrant', 
+      { 'user' => 'vagrant',
         'pythons' => node['teracy-dev']['python']['versions'],
         'global' => node['teracy-dev']['python']['global_version']
       }
