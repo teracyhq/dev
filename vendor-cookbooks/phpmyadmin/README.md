@@ -9,6 +9,11 @@ You can clone it and import it to Chef as
 	git clone git://github.com/priestjim/chef-phpmyadmin.git phpmyadmin
 	knife cookbook upload phpmyadmin
 
+You can also install the latest version of the cookbook using Berkshelf. Add
+the following to your Berksfile:
+
+    cookbook "phpmyadmin", github: "priestjim/chef-phpmyadmin"
+
 The latest and greatest revision of this cookbook will always be available
 at https://github.com/priestjim/chef-phpmyadmin
 
@@ -17,7 +22,7 @@ Requirements
 
 This cookbook requires the following cookbooks to be present and installed:
 
-* chef-php from https://github.com/priestjim/chef-php
+* [chef-php](https://github.com/priestjim/chef-php)
 
 It also suggests the following:
 
@@ -59,6 +64,7 @@ This cookbook supports the following attributes:
 * `default_display`: The default display of rows inside PMA
 * `query_history`: Enable or disable the Javascript query history
 * `query_history_size`: Set the maximum size of the Javascript query history
+* `force_ssl`: Enable or disable SSL force
 
 LWRP Methods
 ============

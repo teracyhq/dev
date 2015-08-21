@@ -33,9 +33,14 @@
 #
 
 if node['teracy-dev']['python']['enabled']
-    node.default['pyenv']['pythons'] = node['teracy-dev']['python']['versions']
-    node.default['pyenv']['global'] = node['teracy-dev']['python']['global_version']
-    include_recipe 'pyenv::system'
+    node.default['pyenv']['git_ref'] = node['teracy-dev']['python']['pyenv']['git_ref']
+    node.default['pyenv']['user_installs'] = [
+      { 'user' => 'vagrant',
+        'pythons' => node['teracy-dev']['python']['versions'],
+        'global' => node['teracy-dev']['python']['global_version']
+      }
+    ]
+    include_recipe 'pyenv::user'
 
 #    %w{libpq-dev python-dev}.each do |pkg|
 #        apt_package pkg do
@@ -58,14 +63,17 @@ if node['teracy-dev']['python']['enabled']
       user 'vagrant'
     end
 
-    node.default['python']['install_method'] = 'source'
-    node.default['python']['prefix_dir'] = '/usr/local'
 
     # install global packages
     node['teracy-dev']['python']['versions'].each do |version|
+
+        node.default['python']['install_method'] = 'source'
+        node.default['python']['prefix_dir'] = "/home/vagrant/.pyenv/versions/#{version}"
+        node.default['python']['pip_location'] = "#{node['python']['prefix_dir']}/bin/pip"
+
         bash 'change_default_python_version' do
             code <<-EOF
-                echo $PYENV_VERSION > /usr/local/pyenv/version
+                echo $PYENV_VERSION > /home/vagrant/.pyenv/version
             EOF
             environment 'PYENV_VERSION' => version
         end
@@ -85,7 +93,7 @@ if node['teracy-dev']['python']['enabled']
         # Link the the pyenv's to system path
         minor_version = version.split('.')[0,2].join('.')
         link "/home/vagrant/.bin/python#{minor_version}" do
-          to "/usr/local/pyenv/versions/#{version}/bin/python"
+          to "/home/vagrant/.pyenv/versions/#{version}/bin/python"
           user 'vagrant'
         end
     end
@@ -93,9 +101,10 @@ if node['teracy-dev']['python']['enabled']
     bash 'Restore default python version and update shims' do
         code <<-EOF
             source /etc/profile
-            echo $PYENV_VERSION > /usr/local/pyenv/version
+            echo $PYENV_VERSION > /home/vagrant/.pyenv/version
             pyenv rehash
         EOF
-        environment 'PYENV_VERSION' => node['teracy-dev']['python']['global_version']
+        environment 'PYENV_VERSION' => node['teracy-dev']['python']['global_version'], 'HOME'=>'/home/vagrant/'
     end
+    user 'vagrant'
 end
