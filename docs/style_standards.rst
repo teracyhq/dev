@@ -50,6 +50,7 @@ Python Coding Standards
     + http://courses.cms.caltech.edu/cs11/material/python/misc/python_style_guide.html
     + https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python
     + https://dev.launchpad.net/PythonStyleGuide
+    + http://www.pocoo.org/internal/styleguide/#styleguide
 
 
 Java Coding Standards
