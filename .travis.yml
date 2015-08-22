@@ -1,4 +1,4 @@
-sudo: false # use container-based infrastructure instead of legacy
+sudo: required # use container-based infrastructure instead of legacy
 language: ruby
 before_install:
 - git submodule update --init --recursive
@@ -11,7 +11,7 @@ before_script:
 script:
 - bundle exec rake build
 after_script:
-- pip install -r docs/requirements.txt --use-mirrors
+- sudo pip install -r docs/requirements.txt
 - cd docs
 - make setup_gh_pages
 - make generate
