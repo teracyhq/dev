@@ -11,7 +11,7 @@ before_script:
 script:
 - bundle exec rake build
 after_script:
-- sudo pip install -r docs/requirements.txt --use-mirrors
+- pip install -r docs/requirements.txt --use-mirrors
 - cd docs
 - make setup_gh_pages
 - make generate
