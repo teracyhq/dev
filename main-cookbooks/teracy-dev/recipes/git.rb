@@ -102,21 +102,9 @@ pc () {
     end
 end
 
-ruby_block 'insert_line' do
-  block do
-        if not node['teracy-dev']['git']['core']['filemode']
-            fileName = '/home/vagrant/.bash_profile'
-            if not File.exist?(fileName)
-                file = File.open(fileName, 'w')
-                file.puts('
-PROMPT_COMMAND=pc
-pc () {
-  [ -d .git -a ! -g .git/config ] || return
-  git config core.filemode false
-  chmod +s .git/config
-}')
-                file.close
-            end
-        end
-    end
+bash 'update bash_profile permission' do
+    code <<-EOF
+        chown vagrant:vagrant /home/vagrant/.bash_profile
+    EOF
+    only_if 'ls /home/vagrant/.bash_profile'
 end
