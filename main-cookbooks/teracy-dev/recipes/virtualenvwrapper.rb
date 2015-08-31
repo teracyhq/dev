@@ -66,5 +66,7 @@ bash 'configure_virtualenvwrapper' do
         echo 'export PATH=$HOME/.bin/:$PATH' >> /home/vagrant/.bash_profile
         echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
     EOF
+    environment 'HOME'=>'/home/vagrant/'
     not_if 'grep -q pyenv /home/vagrant/.bash_profile'
+    user 'vagrant'
 end
