@@ -52,4 +52,16 @@ if node['teracy-dev']['nodejs']['enabled']
         end
     end
 
+    bash 'clean up tmp dir if need' do
+        code <<-EOF
+            rm -rf /home/vagrant/tmp
+        EOF
+        only_if 'ls /home/vagrant/tmp'
+    end
+    bash 'clean up ~/.npm if need' do
+        code <<-EOF
+            rm -rf /home/vagrant/.npm
+        EOF
+        only_if 'ls /home/vagrant/.npm'
+    end
 end
