@@ -106,5 +106,4 @@ if node['teracy-dev']['php']['enabled']
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
     end
   end
-
 end
