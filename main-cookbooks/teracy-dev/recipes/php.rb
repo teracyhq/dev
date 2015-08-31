@@ -106,13 +106,4 @@ if node['teracy-dev']['php']['enabled']
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
     end
   end
-
-  bash 'add_laravel_executable_to_path' do
-      code <<-EOF
-        echo 'export PATH=~/.composer/vendor/bin/:$PATH' | tee --append ~/.bash_profile
-      EOF
-      environment 'HOME'=>'/home/vagrant/'
-      not_if 'grep -q ".composer" /home/vagrant/.bash_profile'
-      user 'vagrant'
-  end
 end
