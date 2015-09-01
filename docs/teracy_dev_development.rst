@@ -4,7 +4,7 @@ teracy-dev Development
 We use ``teracy-dev`` to develop ``teracy-dev`` itself.
 
 ``teracy-dev`` requires about `2048MB` of VM memory, so you need to override 1024 with
-2048 here: https://github.com/teracyhq/dev/blob/v0.4.1/vagrant_config.json#L92 on
+2048 here: https://github.com/teracyhq/dev/blob/v0.4.2/vagrant_config.json#L92 on
 the `vagrant_config_override.json` file.
 
 
@@ -55,7 +55,7 @@ We're going to use Bento_ to build base boxes.
 
 #.  `Virtualbox` Installation:
 
-    You could install any versions of Virtualbox. As for teracy-dev v0.4.1, we use virtualbox v4.3.20.
+    You could install any versions of Virtualbox. As for teracy-dev v0.4.2, we use virtualbox v4.3.20.
 
     ..  code-block:: bash
 

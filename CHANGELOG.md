@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+[0.4.2][] (2015-09-01)
+----------------------
+
+bug fixes for 0.4.1
+
+Details:
+
+- Bug
+    + [DEV-209] - Fix ~/.bash_profile permission and on other locations
+
+- Task
+    + [DEV-244] - release teracy-dev v0.4.2
+
 
 [0.4.1][] (2015-05-29)
 ----------------------
@@ -224,3 +237,5 @@ Release the first milestone
 [0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
 
 [0.4.1]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=12200
+
+[0.4.2]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=12201

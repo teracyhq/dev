@@ -37,7 +37,7 @@ echo ...........................................................
 echo Prepare and downloading resources
 copy /y NUL c:\dp.ps1 >NUL
 
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/v0.4.1/scripts/Download-File.ps1', 'c:\dp.ps1')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/v0.4.2/scripts/Download-File.ps1', 'c:\dp.ps1')"
 
 echo Prepare completed
 
