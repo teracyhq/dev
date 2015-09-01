@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; teracy-dev 0.4.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
+    <link rel="next" title="Toolchain" href="tool_chain.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>To get started, you must follow the instruction steps below to set up the development environment.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>At Teracy, you need to install the tools below:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">virtualbox</span></code></li>
+<li><code class="docutils literal"><span class="pre">vagrant</span></code></li>
+<li><code class="docutils literal"><span class="pre">git</span></code></li>
+</ul>
+<p><strong>Windows Notes</strong>:</p>
+<ul class="simple">
+<li>You MUST install <code class="docutils literal"><span class="pre">git</span></code> to use <code class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></code>, from now on, it is called <code class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></code>.</li>
+<li>You MUST ALWAYS run <code class="docutils literal"><span class="pre">virtualbox</span></code> and <code class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></code> as <strong>administrator</strong> to make symlinks
+(of virtualenv) work as expected.</li>
+</ul>
+</div>
+<div class="section" id="automatic-installation">
+<h2>Automatic Installation<a class="headerlink" href="#automatic-installation" title="Permalink to this headline">¶</a></h2>
+<p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04 and newer. If not, you
+need to move to the next alternative instruction by installing required packages manually.</p>
+<p>Installing <code class="docutils literal"><span class="pre">git</span></code>, <code class="docutils literal"><span class="pre">virtualbox</span></code>, <code class="docutils literal"><span class="pre">vagrant</span></code> with the provided bash script below:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /tmp &amp;&amp; wget -qO- https://raw.github.com/teracy-official/dev/v0.4.2/scripts/setup_working_env_chef.sh | bash
+</pre></div>
+</div>
+<p>On Windows (Windows 7 &amp; Windows 8), follow these steps:</p>
+<ol class="arabic simple">
+<li>Open: <a class="reference external" href="https://raw.github.com/teracy-official/dev/v0.4.2/scripts/setup_vagrant_and_virtualbox.bat">https://raw.github.com/teracy-official/dev/v0.4.2/scripts/setup_vagrant_and_virtualbox.bat</a> on Chrome or Firefox.</li>
+<li>Press <code class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">S</span></code>.</li>
+<li>Select the option <code class="docutils literal"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">type:</span> <span class="pre">Text</span> <span class="pre">document</span></code>, with the name &#8220;setup_vagrant_and_virtualbox.bat&#8221; (notice the double quote).</li>
+<li>Open it by double-clicking on <code class="docutils literal"><span class="pre">setup_vagrant_and_virtualbox.bat</span></code>.</li>
+</ol>
+<p>Now you should have <code class="docutils literal"><span class="pre">vagrant</span></code> and <code class="docutils literal"><span class="pre">virtualbox</span></code> installed on your system.</p>
+</div>
+<div class="section" id="manual-installation">
+<h2>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Install the latest <code class="docutils literal"><span class="pre">git</span></code> version at <a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a>.</li>
+<li>Install <code class="docutils literal"><span class="pre">virtualbox</span></code> with the exact version of <strong>4.3.20</strong> at
+<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>.</li>
+<li>Install <code class="docutils literal"><span class="pre">vagrant</span></code> with the exact version of <strong>1.7.1</strong> at
+<a class="reference external" href="https://www.vagrantup.com/download-archive/v1.7.1.html">https://www.vagrantup.com/download-archive/v1.7.1.html</a>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>The 64-bit architecture is used and run every day by us, however, the 32-bit archirecture is
+expected to work, too.</li>
+<li>The virtualbox has an installation issue which is reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a>. If you <cite>$ vagrant up</cite> but can not start the
+virtual box, please find &#8220;VBoxUSBMon.inf&#8221; &amp; &#8220;VBoxDrv.inf&#8221; in your installation directory and
+re-install it to fix the issue.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="adding-ssh-key">
+<h2>Adding SSH Key<a class="headerlink" href="#adding-ssh-key" title="Permalink to this headline">¶</a></h2>
+<p>Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username &amp; password
+each time when working with Git like <code class="docutils literal"><span class="pre">pull,</span> <span class="pre">push,</span> <span class="pre">rebase,</span> <span class="pre">etc</span></code> on the Vagrant box. So, after
+having installed Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.</p>
+<p>Do the following guides to get it work:</p>
+<ul class="simple">
+<li>Mac: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys#platform-mac">https://help.github.com/articles/generating-ssh-keys#platform-mac</a></li>
+<li>Linux: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys#platform-linux">https://help.github.com/articles/generating-ssh-keys#platform-linux</a></li>
+<li>Windows: <a class="reference external" href="https://help.github.com/articles/generating-ssh-keys">https://help.github.com/articles/generating-ssh-keys</a></li>
+<li>Clone GitHub repositories using SSH.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You need to use the <strong>ssh-agent</strong> tool that provides a secure way of storing and using your SSH
+keys. Also, it allows you to use git commands on the virtual machine. See
+<a class="reference external" href="https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit">https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit</a>
+to automatically run when opening the terminal window.</p>
+</div>
+</div>
+<div class="section" id="environment-up">
+<h2>Environment Up<a class="headerlink" href="#environment-up" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Open your terminal window and type:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre>$ cd ~/
+$ git clone https://github.com/teracy-official/dev.git teracy-dev
+$ cd teracy-dev
+$ vagrant up
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">The home directory on <code class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></code> normally should point to your user&#8217;s directory on windows.
+For example: <code class="docutils literal"><span class="pre">C:\Documents</span> <span class="pre">and</span> <span class="pre">Settings\&lt;user_name&gt;</span></code>, this is the place you will find
+<code class="docutils literal"><span class="pre">teracy-dev</span></code> directory to import projects into your text editor later for coding.</p>
+</li>
+<li><p class="first">You may see the error:</p>
+<div class="highlight-bash"><div class="highlight"><pre>Vagrant uses the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary that ships with VirtualBox, and requires this to be
+available on the PATH. If VirtualBox is installed, please find the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary and
+add it to the PATH environmental variable.
+</pre></div>
+</div>
+<p>To fix this error, add the path of the <strong>VirtualBox</strong> folder to your environment variable.</p>
+<p>For example: In Windows, add this <code class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files\Oracle\VirtualBox</span></code>.</p>
+<p>If the error still occurs, you have to unistall and re-install VirtualBox, then Vagrant to fix
+this error.</p>
+<p>You should see the following similar messages after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> finishes running:</p>
+<div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
+[2013-07-01T09:57:11+00:00] INFO: Running report handlers
+[2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<p>2. Use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> command to access the virtual machine you have just
+installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>
+<div class="highlight-python"><div class="highlight"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+
+37 packages can be updated.
+18 updates are security updates.
+
+Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
+</pre></div>
+</div>
+<p><em>Congratulations, you&#8217;ve all set now!</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#automatic-installation">Automatic Installation</a></li>
+<li><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
+<li><a class="reference internal" href="#adding-ssh-key">Adding SSH Key</a></li>
+<li><a class="reference internal" href="#environment-up">Environment Up</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tool_chain.html"
+                        title="next chapter">Toolchain</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/getting_started.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
