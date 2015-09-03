@@ -196,6 +196,10 @@
             },
             {
               "name":"restview"
+            },
+            {
+              "name":"fabric",
+              "supported_python_versions": ["2.7.10"]
             }
           ]
         }
