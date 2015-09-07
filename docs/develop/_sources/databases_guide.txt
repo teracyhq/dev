@@ -56,7 +56,7 @@ as password by default.
     - username: ``root``
     - password: ``teracy``
 
-    We need a ``MySQL`` client, such as `MySQL Command-Line Tool`_, `MySQL Workbench`_, etc.
+    You need a ``MySQL`` client, such as `MySQL Command-Line Tool`_, `MySQL Workbench`_, etc.
 
     - With *MySQL Command-Line Tool* to remote access from the guest machine:
 
@@ -194,8 +194,45 @@ PostgreSQL
 
 #.  Remote access
 
-    ..  todo::
-        We need to support this by https://issues.teracy.org/browse/DEV-221
+    By default, the default port *5432* is forwarded to the guest machine, to remote access it, you
+    only need to specify the host ip address when required:
+
+    - host: the guest machine's IP address or *127.0.0.1* or *localhost* to access from the
+      guest machine
+
+    For example, from a guest machine:
+
+    ..  code-block:: bash
+
+        $ psql -U postgres -h localhost
+
+    Type *teracy* as password when being prompted.
+
+    After that, you should see:
+
+    ..  code-block:: bash
+
+        psql (9.3.9, server 9.1.18)
+        SSL connection (cipher: DHE-RSA-AES256-GCM-SHA384, bits: 256)
+        Type "help" for help.
+
+        postgres=#
+
+
+    You could replace *localhost* with *127.0.0.1*.
+
+    or from a different machine to the machine running the teracy-dev VM having ip: *192.168.1.111*
+
+    ..  code-block:: bash
+
+        $ psql -U postgres -h 192.168.1.111
+
+    You could use terminal or any GUI clients to access the databases,
+    for example: http://www.pgadmin.org/ with the following screenshot:
+
+    ..  image:: _static/databases-guide/pgadmin.png
+        :align: center
+
 
 From now on you can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
 
@@ -283,7 +320,7 @@ MongoDB
 
     We could replace *localhost* with *127.0.0.1*.
 
-    or from a different machine to the machine running the teracy-dev VM with ip: *192.168.1.111*
+    or from a different machine to the machine running the teracy-dev VM having ip: *192.168.1.111*
 
     ..  code-block:: bash
 

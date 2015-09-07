@@ -106,7 +106,7 @@ machine. So you&#8217;re going to remote access with the following credentials i
 <li>username: <code class="docutils literal"><span class="pre">root</span></code></li>
 <li>password: <code class="docutils literal"><span class="pre">teracy</span></code></li>
 </ul>
-<p>We need a <code class="docutils literal"><span class="pre">MySQL</span></code> client, such as <a class="reference external" href="http://dev.mysql.com/doc/refman/5.6/en/mysql.html">MySQL Command-Line Tool</a>, <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>, etc.</p>
+<p>You need a <code class="docutils literal"><span class="pre">MySQL</span></code> client, such as <a class="reference external" href="http://dev.mysql.com/doc/refman/5.6/en/mysql.html">MySQL Command-Line Tool</a>, <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>, etc.</p>
 <ul>
 <li><p class="first">With <em>MySQL Command-Line Tool</em> to remote access from the guest machine:</p>
 <blockquote>
@@ -214,10 +214,33 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
 <p>Type <code class="docutils literal"><span class="pre">\q</span></code> to quit the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> shell.</p>
 </li>
 <li><p class="first">Remote access</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">We need to support this by <a class="reference external" href="https://issues.teracy.org/browse/DEV-221">https://issues.teracy.org/browse/DEV-221</a></p>
+<p>By default, the default port <em>5432</em> is forwarded to the guest machine, to remote access it, you
+only need to specify the host ip address when required:</p>
+<ul class="simple">
+<li>host: the guest machine&#8217;s IP address or <em>127.0.0.1</em> or <em>localhost</em> to access from the
+guest machine</li>
+</ul>
+<p>For example, from a guest machine:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>psql -U postgres -h localhost
+</pre></div>
 </div>
+<p>Type <em>teracy</em> as password when being prompted.</p>
+<p>After that, you should see:</p>
+<div class="highlight-bash"><div class="highlight"><pre>psql <span class="o">(</span>9.3.9, server 9.1.18<span class="o">)</span>
+SSL connection <span class="o">(</span>cipher: DHE-RSA-AES256-GCM-SHA384, bits: 256<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">postgres</span><span class="o">=</span><span class="c">#</span>
+</pre></div>
+</div>
+<p>You could replace <em>localhost</em> with <em>127.0.0.1</em>.</p>
+<p>or from a different machine to the machine running the teracy-dev VM having ip: <em>192.168.1.111</em></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>psql -U postgres -h 192.168.1.111
+</pre></div>
+</div>
+<p>You could use terminal or any GUI clients to access the databases,
+for example: <a class="reference external" href="http://www.pgadmin.org/">http://www.pgadmin.org/</a> with the following screenshot:</p>
+<img alt="_images/pgadmin.png" class="align-center" src="_images/pgadmin.png" />
 </li>
 </ol>
 <p>From now on you can start digging <code class="docutils literal"><span class="pre">PostgreSQL</span></code> database at: <a class="reference external" href="http://www.postgresql.org/docs/">http://www.postgresql.org/docs/</a></p>
@@ -283,7 +306,7 @@ guest machine</li>
 </pre></div>
 </div>
 <p>We could replace <em>localhost</em> with <em>127.0.0.1</em>.</p>
-<p>or from a different machine to the machine running the teracy-dev VM with ip: <em>192.168.1.111</em></p>
+<p>or from a different machine to the machine running the teracy-dev VM having ip: <em>192.168.1.111</em></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo 192.168.1.111
 </pre></div>
 </div>
