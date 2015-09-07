@@ -29,6 +29,10 @@
           "host":5000
         },
         {
+          "guest":5432, //postgreSQL
+          "host":5432
+        },
+        {
           "guest":8000, //django
           "host":8000
         },

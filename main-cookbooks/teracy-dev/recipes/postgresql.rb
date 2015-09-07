@@ -11,6 +11,15 @@ if node['teracy-dev']['postgresql']['enabled']
         node.override['postgresql']['version'] = node['teracy-dev']['postgresql']['version']
     end
 
+    node.override['postgresql']['config']['listen_addresses'] = '*'
+
+    node.override['postgresql']['pg_hba'] = [
+      {:type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'ident'},
+      {:type => 'local', :db => 'all', :user => 'all', :addr => nil, :method => 'ident'},
+      {:type => 'host', :db => 'all', :user => 'all', :addr => '0.0.0.0/0', :method => 'md5'},
+      {:type => 'host', :db => 'all', :user => 'all', :addr => '::1/128', :method => 'md5'}
+    ]
+
     node.override['postgresql']['password'] = node['teracy-dev']['postgresql']['password']
 
     include_recipe 'postgresql::default'
