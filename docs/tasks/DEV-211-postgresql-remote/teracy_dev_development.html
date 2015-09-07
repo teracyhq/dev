@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>teracy-dev Development &mdash; teracy-dev 0.5.0-@ documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.0-@',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="top" title="teracy-dev 0.5.0-@ documentation" href="index.html" />
+    <link rel="next" title="Git Training" href="git_training.html" />
+    <link rel="prev" title="Workflow" href="workflow.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="git_training.html" title="Git Training"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="workflow.html" title="Workflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="teracy-dev-development">
+<h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
+<p>We use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code> itself.</p>
+<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> requires about <cite>2048MB</cite> of VM memory, so you need to override 1024 with
+2048 here: <a class="reference external" href="https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92">https://github.com/teracyhq/dev/blob/develop/vagrant_config.json#L92</a> on
+the <cite>vagrant_config_override.json</cite> file.</p>
+<div class="section" id="project-setup">
+<h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
+<p>Fork and clone <code class="docutils literal"><span class="pre">teracy-dev</span></code> from <a class="reference external" href="https://github.com/teracyhq/dev/">https://github.com/teracyhq/dev/</a></p>
+<p>For example, this is my forked repo: <a class="reference external" href="https://github.com/hoatle/teracy-dev/">https://github.com/hoatle/teracy-dev/</a></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
+<span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd </span>personal
+<span class="nv">$ </span>git clone git@github.com:hoatle/teracy-dev.git teracy-dev
+<span class="nv">$ </span><span class="nb">cd </span>teracy-dev
+<span class="nv">$ </span>git submodule update --init --recursive
+</pre></div>
+</div>
+<p>Notice that you use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
+<p>Install gems with <cite>bundle</cite>:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This step took a white so please prepare with you a cup of coffee and be patient :).</p>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bundle install
+</pre></div>
+</div>
+</div>
+<div class="section" id="rake-tasks">
+<h2>Rake Tasks<a class="headerlink" href="#rake-tasks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span></code> or <code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">list</span></code> to list all <cite>Rake</cite> tasks.</li>
+<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
+<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
+</ul>
+</div>
+<div class="section" id="base-boxes">
+<h2>Base Boxes<a class="headerlink" href="#base-boxes" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re going to use <a class="reference external" href="http://chef.github.io/bento/">Bento</a> to build base boxes.</p>
+<ol class="arabic">
+<li><p class="first"><cite>Virtualbox</cite> Installation:</p>
+<p>You could install any versions of Virtualbox. As for teracy-dev v0.4.0, we use virtualbox v4.3.20.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
+<span class="nv">$ </span>wget http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
+<span class="nv">$ </span>sudo dpkg -i virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
+<span class="nv">$ </span>sudo apt-get install -f -y
+</pre></div>
+</div>
+<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">VBoxManage</span> <span class="pre">--version</span></code> should print out something like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>VBoxManage --version
+4.3.20r96996
+</pre></div>
+</div>
+</li>
+<li><p class="first"><cite>Packer</cite> Installation</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd readonly</span>
+<span class="nv">$ </span>mkdir packer
+<span class="nv">$ </span><span class="nb">cd </span>packer
+<span class="nv">$ </span>wget https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
+<span class="nv">$ </span>sudo apt-get install unzip -f -y
+<span class="nv">$ </span>unzip packer_0.7.5_linux_amd64.zip
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;export PATH=~/workspace/readonly/packer:$PATH&#39;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
+<span class="nv">$ </span><span class="nb">source</span> ~/.bash_profile
+</pre></div>
+</div>
+<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">packer</span> <span class="pre">version</span></code> should print out something like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>packer version
+Packer v0.7.5
+</pre></div>
+</div>
+</li>
+<li><p class="first"><cite>Bento</cite> Repository Clone</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd readonly</span>
+<span class="nv">$ </span>git clone git@github.com:chef/bento.git
+<span class="nv">$ </span><span class="nb">cd </span>bento
+</pre></div>
+</div>
+</li>
+<li><p class="first">Base Boxes Build</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This is for developers only. Users should just use provided base boxes instead of
+building base boxes from scratch.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Building from &#8220;headless&#8221; mode is not recommended, it should be used only for ci-system.</p>
+</div>
+<p>We&#8217;re going to build <cite>ubuntu-12.04-amd64.json</cite> base box as an example.</p>
+<p>We&#8217;re working on a headless VM so you need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
+openning any .json files and append <code class="docutils literal"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
+<p>and then:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
+<span class="nv">$ </span><span class="nb">cd readonly</span>/bento/packer
+<span class="nv">$ </span>packer build -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+</pre></div>
+</div>
+<p>After that <cite>Packer</cite> will download the Ubuntu iso files and install, package a vagrant base box for
+us to use.</p>
+<p>We should store and share iso files somewhere to save time from downloading iso files then
+put it under <cite>~/workspace/readonly/bento/isos/</cite>.</p>
+<p>For example, you put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/readonly/bento/isos/ubuntu/12.04</cite>
+and you can use the mirror like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/readonly/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+</pre></div>
+</div>
+<p>It will take a while for the base box to be completed. The base boxe should be available under
+<cite>~/workspace/readonly/bento/definitions</cite> path.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://bundler.io/">http://bundler.io/</a></li>
+<li><a class="reference external" href="https://www.chef.io/">https://www.chef.io/</a></li>
+<li><a class="reference external" href="http://berkshelf.com/">http://berkshelf.com/</a></li>
+<li><a class="reference external" href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></li>
+<li><a class="reference external" href="https://packer.io/">https://packer.io/</a></li>
+<li><a class="reference external" href="http://chef.github.io/bento/">http://chef.github.io/bento/</a></li>
+<li><a class="reference external" href="https://github.com/boxcutter">https://github.com/boxcutter</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">teracy-dev Development</a><ul>
+<li><a class="reference internal" href="#project-setup">Project Setup</a></li>
+<li><a class="reference internal" href="#rake-tasks">Rake Tasks</a></li>
+<li><a class="reference internal" href="#base-boxes">Base Boxes</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="workflow.html"
+                        title="previous chapter">Workflow</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="git_training.html"
+                        title="next chapter">Git Training</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/teracy_dev_development.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="git_training.html" title="Git Training"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="workflow.html" title="Workflow"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013 - 2015, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
