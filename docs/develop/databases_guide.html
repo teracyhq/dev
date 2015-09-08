@@ -131,44 +131,17 @@ machine. So you&#8217;re going to remote access with the following credentials i
 </div>
 <div class="section" id="postgresql">
 <h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">PostgreSQL</span></code> is disabled by default on the teracy-dev VM:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;postgresql&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
-    <span class="nt">&quot;password&quot;</span><span class="p">:{</span>
-      <span class="nt">&quot;postgres&quot;</span><span class="p">:</span><span class="s2">&quot;teracy&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;9.3&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<ol class="arabic">
-<li><p class="first">Enable</p>
-<p>To enable, you need to override the default configuration by appending <em>postgresql</em> attribute within
-<em>teracy-dev</em> attribute to the <em>vagrant_config_override.json</em> file like the configuration below:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
-      <span class="nt">&quot;postgresql&quot;</span><span class="p">:{</span>
-        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Save the file and then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>, after that <code class="docutils literal"><span class="pre">PostgreSQL</span></code> should be installed.</p>
+<p><code class="docutils literal"><span class="pre">PostgreSQL</span></code> is installed by default on the teracy-dev VM, so you just can use it right away.</p>
 <p>By default, we use <cite>postgres</cite> as username and <cite>teracy</cite> as password to access the enabled
 <code class="docutils literal"><span class="pre">PostgreSQL</span></code> database instance.</p>
-</li>
+<ol class="arabic">
 <li><p class="first">Verify</p>
-<p>Within vagrant ssh session, by:</p>
+<p>Within vagrant SSH session, by:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
 <span class="nv">$ </span>psql -U postgres -h localhost
 </pre></div>
 </div>
-<p>Type <em>teracy</em> when being prompted for the password: <code class="docutils literal"><span class="pre">Password</span> <span class="pre">for</span> <span class="pre">user</span> <span class="pre">postgres:</span></code></p>
+<p>Type <cite>teracy</cite> when being prompted for the password: <code class="docutils literal"><span class="pre">Password</span> <span class="pre">for</span> <span class="pre">user</span> <span class="pre">postgres:</span></code></p>
 <p>And you should see the following output:</p>
 <div class="highlight-bash"><div class="highlight"><pre>psql <span class="o">(</span>9.1.14<span class="o">)</span>
 SSL connection <span class="o">(</span>cipher: DHE-RSA-AES256-SHA, bits: 256<span class="o">)</span>
@@ -182,42 +155,11 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
 </pre></div>
 </div>
 </li>
-<li><p class="first">Initialize the super user <em>vagrant</em> role and default <em>vagrant</em> database</p>
-<p>This step is required for the first time when the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> database is enabled and
-installed.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo su postgres
-<span class="nv">$ </span>createuser vagrant
-</pre></div>
-</div>
-<p>Type <code class="docutils literal"><span class="pre">y</span></code> and hit enter when asked “Shall the new role be a superuser?”</p>
-<p>Now you can exit the <em>su</em> subshell to go back to the vagrant user SSH session:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">exit</span>
-</pre></div>
-</div>
-<p>Now create <em>vagrant</em> database:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>createdb vagrant
-</pre></div>
-</div>
-</li>
-<li><p class="first">Local access</p>
-<p>When <em>vagrant</em> super user and <em>vagrant</em> database is created, you just need to type:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>psql
-</pre></div>
-</div>
-<p>And you should see the the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre>psql <span class="o">(</span>9.1.14<span class="o">)</span>
-Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
-
-<span class="nv">vagrant</span><span class="o">=</span><span class="c">#</span>
-</pre></div>
-</div>
-<p>Type <code class="docutils literal"><span class="pre">\q</span></code> to quit the <code class="docutils literal"><span class="pre">PostgreSQL</span></code> shell.</p>
-</li>
 <li><p class="first">Remote access</p>
-<p>By default, the default port <em>5432</em> is forwarded to the guest machine, to remote access it, you
+<p>By default, the default port <cite>5432</cite> is forwarded to the guest machine, to remote access it, you
 only need to specify the host ip address when required:</p>
 <ul class="simple">
-<li>host: the guest machine&#8217;s IP address or <em>127.0.0.1</em> or <em>localhost</em> to access from the
+<li>host: the guest machine&#8217;s IP address or <cite>127.0.0.1</cite> or <cite>localhost</cite> to access from the
 guest machine</li>
 </ul>
 <p>For example, from a guest machine:</p>
@@ -233,13 +175,13 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
 <span class="nv">postgres</span><span class="o">=</span><span class="c">#</span>
 </pre></div>
 </div>
-<p>You could replace <em>localhost</em> with <em>127.0.0.1</em>.</p>
-<p>or from a different machine to the machine running the teracy-dev VM having ip: <em>192.168.1.111</em></p>
+<p>You could replace <cite>localhost</cite> with <cite>127.0.0.1</cite>.</p>
+<p>or from a different machine to the machine running the teracy-dev VM with ip: <cite>192.168.1.111</cite></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>psql -U postgres -h 192.168.1.111
 </pre></div>
 </div>
-<p>You could use terminal or any GUI clients to access the databases,
-for example: <a class="reference external" href="http://www.pgadmin.org/">http://www.pgadmin.org/</a> with the following screenshot:</p>
+<p>You could use terminal or any GUI client to access the databases,
+for example: <a class="reference external" href="http://www.pgadmin.org/">http://www.pgadmin.org/</a> as the following screenshot:</p>
 <img alt="_images/pgadmin.png" class="align-center" src="_images/pgadmin.png" />
 </li>
 </ol>
@@ -258,8 +200,8 @@ for example: <a class="reference external" href="http://www.pgadmin.org/">http:/
 </div>
 <ol class="arabic">
 <li><p class="first">Enable</p>
-<p>To enable, you need to override the default configuration by appending <em>mongodb</em> attribute within
-<em>teracy-dev</em> attribute to the <em>vagrant_config_override.json</em> file like the configuration below:</p>
+<p>To enable, you need to override the default configuration by appending <cite>mongodb</cite> attribute within
+<cite>teracy-dev</cite> attribute to the <cite>vagrant_config_override.json</cite> file like the configuration below:</p>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
     <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
@@ -291,10 +233,10 @@ connecting to: <span class="nb">test</span>
 <p>Just type <code class="docutils literal"><span class="pre">mongo</span></code> and you&#8217;re done.</p>
 </li>
 <li><p class="first">Remote access</p>
-<p>By default, the default port <em>27017</em> is forwarded to the guest machine, to remote access it, you
+<p>By default, the default port <cite>27017</cite> is forwarded to the guest machine, to remote access it, you
 only need to specify the host ip address when required:</p>
 <ul class="simple">
-<li>host: the guest machine&#8217;s IP address or <em>127.0.0.1</em> or <em>localhost</em> or none to access from the
+<li>host: the guest machine&#8217;s IP address or <cite>127.0.0.1</cite> or <cite>localhost</cite> or none to access from the
 guest machine</li>
 </ul>
 <p>For example, from a guest machine:</p>
@@ -305,8 +247,8 @@ guest machine</li>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo localhost
 </pre></div>
 </div>
-<p>We could replace <em>localhost</em> with <em>127.0.0.1</em>.</p>
-<p>or from a different machine to the machine running the teracy-dev VM having ip: <em>192.168.1.111</em></p>
+<p>We could replace <cite>localhost</cite> with <cite>127.0.0.1</cite>.</p>
+<p>or from a different machine to the machine running the teracy-dev VM with ip: <cite>192.168.1.111</cite></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mongo 192.168.1.111
 </pre></div>
 </div>
