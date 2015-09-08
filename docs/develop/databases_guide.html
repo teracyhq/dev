@@ -189,34 +189,10 @@ for example: <a class="reference external" href="http://www.pgadmin.org/">http:/
 </div>
 <div class="section" id="mongodb">
 <span id="databases-guide-mongodb"></span><h2>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">MongoDB</span></code> is disabled by default on the teracy-dev VM:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
-    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;2.6.3&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<p><code class="docutils literal"><span class="pre">MongoDB</span></code> is enabled by default on the teracy-dev VM:</p>
 <ol class="arabic">
-<li><p class="first">Enable</p>
-<p>To enable, you need to override the default configuration by appending <cite>mongodb</cite> attribute within
-<cite>teracy-dev</cite> attribute to the <cite>vagrant_config_override.json</cite> file like the configuration below:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
-      <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
-        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Save the file and then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>, after that <code class="docutils literal"><span class="pre">MongoDB</span></code> should be installed.</p>
-</li>
 <li><p class="first">Verify</p>
-<p>Within vagrant ssh session, by:</p>
+<p>Within vagrant SSH session, by:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
 <span class="nv">$ </span>mongo
 </pre></div>

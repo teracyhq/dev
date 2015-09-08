@@ -168,40 +168,11 @@ From now on you can start digging ``PostgreSQL`` database at: http://www.postgre
 MongoDB
 -------
 
-``MongoDB`` is disabled by default on the teracy-dev VM:
-
-..  code-block:: json
-
-    {
-      "mongodb":{
-        "enabled":false,
-        "version":"2.6.3"
-      }
-    }
-
-
-#.  Enable
-
-    To enable, you need to override the default configuration by appending `mongodb` attribute within
-    `teracy-dev` attribute to the `vagrant_config_override.json` file like the configuration below:
-
-    ..  code-block:: json
-
-        {
-          "chef_json":{
-            "teracy-dev":{
-              "mongodb":{
-                "enabled":true
-              }
-            }
-          }
-        }
-
-    Save the file and then ``$ vagrant provision``, after that ``MongoDB`` should be installed.
+``MongoDB`` is enabled by default on the teracy-dev VM:
 
 #.  Verify
 
-    Within vagrant ssh session, by:
+    Within vagrant SSH session, by:
 
     ..  code-block:: bash
 
