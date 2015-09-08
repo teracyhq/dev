@@ -245,7 +245,7 @@
         "password":"teracy"
       },
       "mongodb":{
-        "enabled":false,
+        "enabled":true,
         "version":"2.6.3"
       },
       "postgresql":{
