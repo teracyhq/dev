@@ -84,53 +84,22 @@ From now on you can start digging ``MySQL`` database at: http://dev.mysql.com/do
 PostgreSQL
 ----------
 
-``PostgreSQL`` is disabled by default on the teracy-dev VM:
+``PostgreSQL`` is installed by default on the teracy-dev VM, so you just can use it right away.
 
-..  code-block:: json
-
-    {
-      "postgresql":{
-        "enabled":false,
-        "password":{
-          "postgres":"teracy"
-        },
-        "version":"9.3"
-      }
-    }
-
-#.  Enable
-
-    To enable, you need to override the default configuration by appending *postgresql* attribute within
-    *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
-
-    ..  code-block:: json
-
-        {
-          "chef_json":{
-            "teracy-dev":{
-              "postgresql":{
-                "enabled":true
-              }
-            }
-          }
-        }
-
-    Save the file and then ``$ vagrant provision``, after that ``PostgreSQL`` should be installed.
-
-    By default, we use `postgres` as username and `teracy` as password to access the enabled
-    ``PostgreSQL`` database instance.
+By default, we use `postgres` as username and `teracy` as password to access the enabled
+``PostgreSQL`` database instance.
 
 
 #.  Verify
 
-    Within vagrant ssh session, by:
+    Within vagrant SSH session, by:
 
     ..  code-block:: bash
 
         $ vagrant ssh
         $ psql -U postgres -h localhost
 
-    Type *teracy* when being prompted for the password: ``Password for user postgres:``
+    Type `teracy` when being prompted for the password: ``Password for user postgres:``
 
     And you should see the following output:
 
@@ -148,56 +117,13 @@ PostgreSQL
 
         postgres=# \q
 
-#.  Initialize the super user *vagrant* role and default *vagrant* database
-
-    This step is required for the first time when the ``PostgreSQL`` database is enabled and
-    installed.
-
-    ..  code-block:: bash
-
-        $ sudo su postgres
-        $ createuser vagrant
-
-    Type ``y`` and hit enter when asked “Shall the new role be a superuser?”
-
-    Now you can exit the *su* subshell to go back to the vagrant user SSH session:
-
-    ..  code-block:: bash
-
-        $ exit
-
-    Now create *vagrant* database:
-
-    ..  code-block:: bash
-
-        $ createdb vagrant
-
-
-#.  Local access
-
-    When *vagrant* super user and *vagrant* database is created, you just need to type:
-
-    ..  code-block:: bash
-
-        $ psql
-
-    And you should see the the following output:
-
-    ..  code-block:: bash
-
-        psql (9.1.14)
-        Type "help" for help.
-
-        vagrant=#
-
-    Type ``\q`` to quit the ``PostgreSQL`` shell.
 
 #.  Remote access
 
-    By default, the default port *5432* is forwarded to the guest machine, to remote access it, you
+    By default, the default port `5432` is forwarded to the guest machine, to remote access it, you
     only need to specify the host ip address when required:
 
-    - host: the guest machine's IP address or *127.0.0.1* or *localhost* to access from the
+    - host: the guest machine's IP address or `127.0.0.1` or `localhost` to access from the
       guest machine
 
     For example, from a guest machine:
@@ -219,23 +145,22 @@ PostgreSQL
         postgres=#
 
 
-    You could replace *localhost* with *127.0.0.1*.
+    You could replace `localhost` with `127.0.0.1`.
 
-    or from a different machine to the machine running the teracy-dev VM having ip: *192.168.1.111*
+    or from a different machine to the machine running the teracy-dev VM with ip: `192.168.1.111`
 
     ..  code-block:: bash
 
         $ psql -U postgres -h 192.168.1.111
 
-    You could use terminal or any GUI clients to access the databases,
-    for example: http://www.pgadmin.org/ with the following screenshot:
+    You could use terminal or any GUI client to access the databases,
+    for example: http://www.pgadmin.org/ as the following screenshot:
 
     ..  image:: _static/databases-guide/pgadmin.png
         :align: center
 
 
 From now on you can start digging ``PostgreSQL`` database at: http://www.postgresql.org/docs/
-
 
 
 .. _databases-guide-mongodb:
@@ -257,8 +182,8 @@ MongoDB
 
 #.  Enable
 
-    To enable, you need to override the default configuration by appending *mongodb* attribute within
-    *teracy-dev* attribute to the *vagrant_config_override.json* file like the configuration below:
+    To enable, you need to override the default configuration by appending `mongodb` attribute within
+    `teracy-dev` attribute to the `vagrant_config_override.json` file like the configuration below:
 
     ..  code-block:: json
 
@@ -300,10 +225,10 @@ MongoDB
 
 #.  Remote access
 
-    By default, the default port *27017* is forwarded to the guest machine, to remote access it, you
+    By default, the default port `27017` is forwarded to the guest machine, to remote access it, you
     only need to specify the host ip address when required:
 
-    - host: the guest machine's IP address or *127.0.0.1* or *localhost* or none to access from the
+    - host: the guest machine's IP address or `127.0.0.1` or `localhost` or none to access from the
       guest machine
 
     For example, from a guest machine:
@@ -318,9 +243,9 @@ MongoDB
 
         $ mongo localhost
 
-    We could replace *localhost* with *127.0.0.1*.
+    We could replace `localhost` with `127.0.0.1`.
 
-    or from a different machine to the machine running the teracy-dev VM having ip: *192.168.1.111*
+    or from a different machine to the machine running the teracy-dev VM with ip: `192.168.1.111`
 
     ..  code-block:: bash
 

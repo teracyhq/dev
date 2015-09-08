@@ -249,7 +249,7 @@
         "version":"2.6.3"
       },
       "postgresql":{
-        "enabled":false,
+        "enabled":true,
         "password":{
           "postgres":"teracy"
         },
