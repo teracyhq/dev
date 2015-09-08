@@ -48,11 +48,11 @@ as password by default.
     For easier development, ``MySQL`` on the teracy-dev has binding address of ``0.0.0.0``, this
     means that you could remote access it.
 
-    The teracy-dev VM by default forwards the port `3306` of ``MySQL`` to `6603` of the host
+    The teracy-dev VM by default forwards the port `3306` of ``MySQL`` to `3306` of the host
     machine. So you're going to remote access with the following credentials information by default:
 
     - host: the guest machine's IP address or ``127.0.0.1`` to access from the guest machine
-    - port: ``6603``
+    - port: ``3306``
     - username: ``root``
     - password: ``teracy``
 
@@ -62,7 +62,7 @@ as password by default.
 
         ..  code-block:: bash
 
-            $ mysql -u root -pteracy -h 127.0.0.1 -P 6603
+            $ mysql -u root -pteracy -h 127.0.0.1 -P 3306
 
 
     - With *MySQL Workbench* to remote access from the guest machine:
