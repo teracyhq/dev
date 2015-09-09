@@ -98,11 +98,11 @@ mysql&gt;
 <li><p class="first">Remote access</p>
 <p>For easier development, <code class="docutils literal"><span class="pre">MySQL</span></code> on the teracy-dev has binding address of <code class="docutils literal"><span class="pre">0.0.0.0</span></code>, this
 means that you could remote access it.</p>
-<p>The teracy-dev VM by default forwards the port <cite>3306</cite> of <code class="docutils literal"><span class="pre">MySQL</span></code> to <cite>6603</cite> of the host
+<p>The teracy-dev VM by default forwards the port <cite>3306</cite> of <code class="docutils literal"><span class="pre">MySQL</span></code> to <cite>3306</cite> of the host
 machine. So you&#8217;re going to remote access with the following credentials information by default:</p>
 <ul class="simple">
 <li>host: the guest machine&#8217;s IP address or <code class="docutils literal"><span class="pre">127.0.0.1</span></code> to access from the guest machine</li>
-<li>port: <code class="docutils literal"><span class="pre">6603</span></code></li>
+<li>port: <code class="docutils literal"><span class="pre">3306</span></code></li>
 <li>username: <code class="docutils literal"><span class="pre">root</span></code></li>
 <li>password: <code class="docutils literal"><span class="pre">teracy</span></code></li>
 </ul>
@@ -110,7 +110,7 @@ machine. So you&#8217;re going to remote access with the following credentials i
 <ul>
 <li><p class="first">With <em>MySQL Command-Line Tool</em> to remote access from the guest machine:</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -h 127.0.0.1 -P 6603
+<div><div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -h 127.0.0.1 -P 3306
 </pre></div>
 </div>
 </div></blockquote>
@@ -189,34 +189,10 @@ for example: <a class="reference external" href="http://www.pgadmin.org/">http:/
 </div>
 <div class="section" id="mongodb">
 <span id="databases-guide-mongodb"></span><h2>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">MongoDB</span></code> is disabled by default on the teracy-dev VM:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
-    <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;2.6.3&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<p><code class="docutils literal"><span class="pre">MongoDB</span></code> is enabled by default on the teracy-dev VM:</p>
 <ol class="arabic">
-<li><p class="first">Enable</p>
-<p>To enable, you need to override the default configuration by appending <cite>mongodb</cite> attribute within
-<cite>teracy-dev</cite> attribute to the <cite>vagrant_config_override.json</cite> file like the configuration below:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;teracy-dev&quot;</span><span class="p">:{</span>
-      <span class="nt">&quot;mongodb&quot;</span><span class="p">:{</span>
-        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="kc">true</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Save the file and then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>, after that <code class="docutils literal"><span class="pre">MongoDB</span></code> should be installed.</p>
-</li>
 <li><p class="first">Verify</p>
-<p>Within vagrant ssh session, by:</p>
+<p>Within vagrant SSH session, by:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
 <span class="nv">$ </span>mongo
 </pre></div>
