@@ -106,4 +106,21 @@ if node['teracy-dev']['php']['enabled']
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
     end
   end
+
+  bash 'Install composer to system path' do
+    code <<-EOF
+      curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer
+    EOF
+    not_if 'which composer'
+    user 'root'
+  end
+
+  bash 'add composer executable to path' do
+      code <<-EOF
+        echo 'export PATH=~/.composer/vendor/bin/:$PATH' | tee --append ~/.bash_profile
+      EOF
+      environment 'HOME'=>'/home/vagrant/'
+      not_if 'grep -q ".composer" /home/vagrant/.bash_profile'
+      user 'vagrant'
+  end
 end
