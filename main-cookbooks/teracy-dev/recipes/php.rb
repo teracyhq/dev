@@ -107,13 +107,7 @@ if node['teracy-dev']['php']['enabled']
     end
   end
 
-  bash 'Install composer to system path' do
-    code <<-EOF
-      curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer
-    EOF
-    not_if 'which composer'
-    user 'root'
-  end
+  include_recipe 'composer'
 
   bash 'add composer executable to path' do
       code <<-EOF

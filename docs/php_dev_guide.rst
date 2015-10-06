@@ -156,9 +156,7 @@ Basing on https://getcomposer.org/doc/00-intro.md#globally:
     $ sudo mv composer.phar /usr/local/bin/composer
 
 ..  note::
-    We have to install ``Composer`` manually util https://issues.teracy.org/browse/DEV-207 is
-    done.
-
+    As version 0.5.x above we don't need to install composer manually, the binary install at /usr/local/bin/composer.
 
 ``CakePHP`` Framework
 ---------------------
@@ -216,8 +214,6 @@ You'll follow http://laravel.com/docs/5.0/installation to get started with ``Lar
         $ ws
         $ cd personal
         $ composer global require "laravel/installer=~1.1"
-        $ echo "export PATH=~/.composer/vendor/bin/:\$PATH" | sudo tee --append ~/.bash_profile
-        $ source ~/.bash_profile
 
 #.  ``laravel new blog``
 
