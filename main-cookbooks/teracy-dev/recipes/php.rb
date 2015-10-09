@@ -14,6 +14,14 @@ if node['teracy-dev']['php']['enabled']
         only_if {node['teracy-dev']['apache']['enabled']}
       end
 
+      apt_package 'libgmp-dev' do
+        action :install
+      end
+
+      link '/usr/include/gmp.h' do
+        to '/usr/include/x86_64-linux-gnu/gmp.h'
+      end
+
       bash 'remove php version if need' do
         code <<-EOF
           php_binary=$(which php);
@@ -46,6 +54,7 @@ if node['teracy-dev']['php']['enabled']
           code <<-EOF
             mv /usr/lib/apache2/modules/libphp5.so /usr/lib/apache2/modules/mod_php5.so
             echo 'LoadModule php5_module        /usr/lib/apache2/modules/mod_php5.so' > /etc/apache2/mods-available/php5.load
+            sed -i 's/#AddType application\\/x-gzip .tgz/AddType application\\/x-httpd-php .php\\n  AddType application\\/x-httpd-php-source .phps\\n/' /etc/apache2/mods-available/mime.conf
           EOF
           user 'root'
           only_if 'ls -la /usr/lib/apache2/modules/libphp5.so'
@@ -67,6 +76,8 @@ if node['teracy-dev']['php']['enabled']
   bash 'clean up apache mess' do
       code <<-EOF
           a2enmod php5 || true;
+          a2dismod mpm_event || true
+          a2enmod mpm_prefork || true
           service apache2 restart;
       EOF
       user 'root'
@@ -83,9 +94,10 @@ if node['teracy-dev']['php']['enabled']
         rm -rf /etc/php5/*/conf.d/pdo.ini
         sed -i 's/NAME=php5-fpm/NAME=php-fpm/' /etc/init.d/php5-fpm
         sed -i 's/DAEMON=\\/usr\\/sbin/DAEMON=\\/usr\\/local\\/sbin/' /etc/init.d/php5-fpm
+        sed -i 's/;listen.mode = 0660/listen.mode = 0666/' /etc/php5/fpm/pool.d/www.conf
         killall php5-fpm
         killall php-fpm
-        /etc/init.d/php5-fpm start
+        /etc/init.d/php5-fpm start || true
       EOF
     end
   end

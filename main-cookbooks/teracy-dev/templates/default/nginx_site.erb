@@ -25,7 +25,7 @@ server {
         try_files $uri =404;
         proxy_buffering off;
         gzip off;
-        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
 
         fastcgi_index  index.php;
         fastcgi_param  QUERY_STRING       $query_string;
@@ -96,7 +96,7 @@ server {
         try_files $uri =404;
         proxy_buffering off;
         gzip off;
-        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
 
         fastcgi_index  index.php;
         fastcgi_param  QUERY_STRING       $query_string;
