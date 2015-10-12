@@ -180,18 +180,8 @@ below:</p>
 </div>
 <div class="section" id="composer-installation">
 <h2><code class="docutils literal"><span class="pre">Composer</span></code> Installation<a class="headerlink" href="#composer-installation" title="Permalink to this headline">¶</a></h2>
-<p>Basing on <a class="reference external" href="https://getcomposer.org/doc/00-intro.md#globally">https://getcomposer.org/doc/00-intro.md#globally</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>curl -sS https://getcomposer.org/installer <span class="p">|</span> php
-<span class="nv">$ </span>sudo mv composer.phar /usr/local/bin/composer
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We have to install <code class="docutils literal"><span class="pre">Composer</span></code> manually util <a class="reference external" href="https://issues.teracy.org/browse/DEV-207">https://issues.teracy.org/browse/DEV-207</a> is
-done.</p>
-</div>
+<p>As <code class="docutils literal"><span class="pre">teracy-dev</span></code> version 0.5.x and above we don&#8217;t need to install <code class="docutils literal"><span class="pre">composer</span></code> manually, the
+binary is installed at <code class="docutils literal"><span class="pre">/usr/local/bin/composer</span></code>.</p>
 </div>
 <div class="section" id="cakephp-framework">
 <h2><code class="docutils literal"><span class="pre">CakePHP</span></code> Framework<a class="headerlink" href="#cakephp-framework" title="Permalink to this headline">¶</a></h2>
@@ -241,8 +231,6 @@ above by <a class="reference external" href="https://issues.teracy.org/browse/DE
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
 <span class="nv">$ </span><span class="nb">cd </span>personal
 <span class="nv">$ </span>composer global require <span class="s2">&quot;laravel/installer=~1.1&quot;</span>
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;export PATH=~/.composer/vendor/bin/:\$PATH&quot;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
-<span class="nv">$ </span><span class="nb">source</span> ~/.bash_profile
 </pre></div>
 </div>
 </li>
