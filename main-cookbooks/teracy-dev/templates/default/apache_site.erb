@@ -51,7 +51,7 @@ UseCanonicalName Off
 
 <VirtualHost *:<%= node['teracy-dev']['apache']['listen_port']%>>
   ServerAdmin <%= node['apache']['contact'] %>
-  ServerName *.local.teracy.net
+  ServerName local.teracy.net
   ServerAlias *.local.teracy.net
 
   VirtualDocumentRoot <%= node['apache']['docroot_dir'] %>/%-4+
