@@ -146,17 +146,9 @@ below:
 
 ``Composer`` Installation
 -------------------------
-Basing on https://getcomposer.org/doc/00-intro.md#globally:
 
-..  code-block:: bash
-
-    $ ws
-    $ cd personal
-    $ curl -sS https://getcomposer.org/installer | php
-    $ sudo mv composer.phar /usr/local/bin/composer
-
-..  note::
-    As version 0.5.x above we don't need to install composer manually, the binary install at /usr/local/bin/composer.
+As ``teracy-dev`` version 0.5.x and above we don't need to install ``composer`` manually, the
+binary is installed at ``/usr/local/bin/composer``.
 
 ``CakePHP`` Framework
 ---------------------
