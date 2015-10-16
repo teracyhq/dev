@@ -17,6 +17,7 @@ DEPENDENCIES
   phpmyadmin
     git: git@github.com:priestjim/chef-phpmyadmin.git
     revision: b48c0e3f5d082924d697385888e16d015be838f5
+  postgis (~> 0.3.0)
   postgresql (= 3.4.14)
   pyenv
     git: https://github.com/sds/chef-pyenv
@@ -99,6 +100,10 @@ GRAPH
     apache2 (>= 0.0.0)
     nginx (>= 0.0.0)
     php (>= 0.0.0)
+  postgis (0.3.0)
+    apt (>= 0.0.0)
+    postgresql (>= 0.0.0)
+    yum (>= 0.0.0)
   postgresql (3.4.14)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)

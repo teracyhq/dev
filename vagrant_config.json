@@ -250,6 +250,7 @@
       },
       "postgresql":{
         "enabled":true,
+        "install_postgis": false, //enabled this will locked postgresql to version 9.3
         "password":{
           "postgres":"teracy"
         },

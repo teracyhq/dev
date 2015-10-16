@@ -22,6 +22,12 @@ if node['teracy-dev']['postgresql']['enabled']
 
     node.override['postgresql']['password'] = node['teracy-dev']['postgresql']['password']
 
-    include_recipe 'postgresql::default'
-    include_recipe 'postgresql::server'
+    if node['teracy-dev']['postgresql']['install_postgis']
+      include_recipe 'postgresql::default'
+      include_recipe 'postgresql::server'
+      include_recipe 'postgis::default'
+    else
+      include_recipe 'postgresql::default'
+      include_recipe 'postgresql::server'
+    end
 end

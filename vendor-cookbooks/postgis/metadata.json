@@ -1,0 +1,36 @@
+{
+  "name": "postgis",
+  "description": "Installs/Configures postgis Postgresql extension",
+  "long_description": "# Description\n\n[![Build Status](https://secure.travis-ci.org/realityforge/chef-postgis.png?branch=master)](http://travis-ci.org/realityforge/chef-postgis)\n\nThe postgis cookbook installs and configures the Postgis Postgresql extension and creates a GIS enabled database template.\n\n# Requirements\n\n## Platform:\n\n* Ubuntu\n* Fedora\n* Centos\n* Rhel\n\n## Cookbooks:\n\n* apt\n* yum\n* postgresql\n\n# Attributes\n\n* `node['postgis']['template_name']` - Postgis Template Database: The name of the gis database template. Set to nil to disable the creation of the template. Defaults to `template_postgis`.\n* `node['postgis']['locale']` - Postgis Template locale: The locale of the database. Defaults to `en_US.utf8`.\n\n# Recipes\n\n* [postgis::default](#postgisdefault) - Install the Postgis binaries and create the template.\n\n## postgis::default\n\nInstall the Postgis binaries and create the template.\n\nNote: this includes the postgresql::server after installing the postgis binaries.\n\n### Locale\n\nIt should be noted that it is best setup the locale so that\nthe encoding is the desired database encoding prior to including\nthe recipe. Typically this is set via a snippet such as;\n\n    node.override['locale']['lang'] = 'en_AU.UTF-8'\n    include_recipe 'locale::default'\n\n    include_recipe 'postgis::default'\n\n\n# License and Maintainer\n\nMaintainer:: Peter Donald (<peter@realityforge.org>)\n\nLicense:: Apache 2.0\n",
+  "maintainer": "Peter Donald",
+  "maintainer_email": "peter@realityforge.org",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "rhel": ">= 0.0.0"
+  },
+  "dependencies": {
+    "apt": ">= 0.0.0",
+    "yum": ">= 0.0.0",
+    "postgresql": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.3.0"
+}
