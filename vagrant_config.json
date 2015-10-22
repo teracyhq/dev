@@ -119,6 +119,9 @@
     "teracy-dev"
   ],
   "chef_json":{
+    "postgresql": {
+      "version":"9.3"
+    },
     "teracy-dev":{
       "workspace":[
         "/vagrant/workspace/readonly",
@@ -250,10 +253,10 @@
       },
       "postgresql":{
         "enabled":true,
+        "postgis_enabled":true,
         "password":{
           "postgres":"teracy"
-        },
-        "version":"9.3"
+        }
       },
       "java":{
         "enabled":false,
@@ -289,9 +292,6 @@
         "packages":[
           {
             "name":"tree"
-          },
-          {
-            "name":"postgresql-contrib" // for rails
           }
         ]
       },

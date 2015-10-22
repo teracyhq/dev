@@ -7,9 +7,6 @@
 #
 
 if node['teracy-dev']['postgresql']['enabled']
-    if !node['teracy-dev']['postgresql']['version'].strip().empty?
-        node.override['postgresql']['version'] = node['teracy-dev']['postgresql']['version']
-    end
 
     node.override['postgresql']['config']['listen_addresses'] = '*'
 
@@ -22,6 +19,15 @@ if node['teracy-dev']['postgresql']['enabled']
 
     node.override['postgresql']['password'] = node['teracy-dev']['postgresql']['password']
 
-    include_recipe 'postgresql::default'
-    include_recipe 'postgresql::server'
+    if node['teracy-dev']['postgresql']['postgis_enabled']
+      if node['postgresql']['version'].to_f > 9.3
+        # currently assume postgis-2.1 for postgresql version > 9.3
+        node.override['postgis']['package'] = "postgresql-#{node['postgresql']['version']}-postgis-2.1"
+      end
+      include_recipe 'postgresql::default'
+      include_recipe 'postgis::default'
+    else
+      include_recipe 'postgresql::default'
+      include_recipe 'postgresql::server'
+    end
 end
