@@ -150,6 +150,7 @@ below:
 As ``teracy-dev`` version 0.5.x and above we don't need to install ``composer`` manually, the
 binary is installed at ``/usr/local/bin/composer``.
 
+
 ``CakePHP`` Framework
 ---------------------
 
@@ -163,10 +164,27 @@ framework.
         $ ws
         $ cd personal
         $ composer create-project --prefer-dist cakephp/app bookmarker
+        $ cd bookmarker
+        $ bin/cake server -H 0.0.0.0 -p 8000
 
-..  todo::
-    ``CakePHP`` did not work out of the box, we need to fix the errors raised from ``composer``
-    above by https://issues.teracy.org/browse/DEV-208
+    And you should see the output like:
+
+    ..  code-block:: bash
+
+        Welcome to CakePHP v3.1.3 Console
+        ---------------------------------------------------------------
+        App : src
+        Path: /home/vagrant/workspace/personal/bookmarker/src/
+        DocumentRoot: /home/vagrant/workspace/personal/bookmarker/webroot
+        ---------------------------------------------------------------
+        built-in server is running in http://0.0.0.0:8000/
+        You can exit with `CTRL-C`
+
+#.  Verify
+
+    Open http://localhost:8000 and you should see "CakePHP - Get the Ovens Ready" page.
+
+You can start digging ``CakePHP`` framework now: http://book.cakephp.org/3.0/en/quickstart.html
 
 
 ``CodeIgniter`` Framework
