@@ -255,6 +255,10 @@ You'll follow http://symfony.com/doc/current/quick_tour/the_big_picture.html to 
 
         Quit the server with CONTROL-C.
 
+#.  Verify
+
+    Open http://localhost:8000 and you should see "Welcome to Symfony" page.
+
 You can start digging ``Symfony`` framework now:
 http://symfony.com/doc/current/quick_tour/the_big_picture.html
 
@@ -271,7 +275,7 @@ with ``Yii`` framework.
 
         $ ws
         $ cd personal
-        $ composer global require "fxp/composer-asset-plugin:1.0.0"
+        $ composer global require "fxp/composer-asset-plugin:~1.0.3"
         $ composer create-project --prefer-dist yiisoft/yii2-app-basic basic
 
     ..  note::
