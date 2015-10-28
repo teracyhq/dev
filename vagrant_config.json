@@ -292,6 +292,9 @@
         "packages":[
           {
             "name":"tree"
+          },
+          {
+            "name":"unzip"
           }
         ]
       },
