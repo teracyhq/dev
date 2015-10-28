@@ -17,7 +17,9 @@ if node['teracy-dev']['php']['enabled']
       apt_package 'libgmp-dev' do
         action :install
       end
-
+      apt_package 'libicu-dev' do
+        action :install
+      end
       link '/usr/include/gmp.h' do
         to '/usr/include/x86_64-linux-gnu/gmp.h'
       end
@@ -44,7 +46,7 @@ if node['teracy-dev']['php']['enabled']
       node.override['php']['install_method'] = 'source'
 
       if node['teracy-dev']['apache']['enabled']
-        node.override['php']['configure_options'] = ['--with-apxs2=/usr/bin/apxs2'] + node['php']['configure_options']
+        node.override['php']['configure_options'] = ['--enable-intl'] + ['--with-apxs2=/usr/bin/apxs2'] + node['php']['configure_options']
       end
 
      	include_recipe 'php'
@@ -70,6 +72,9 @@ if node['teracy-dev']['php']['enabled']
   	include_recipe 'php'
     if  node['teracy-dev']['mysql']['enabled']
 		  include_recipe 'php::module_mysql'
+    end
+    apt_package 'php5-intl' do
+      action :install
     end
   end
 
