@@ -94,7 +94,9 @@ if node['teracy-dev']['php']['enabled']
         rm -rf /etc/php5/*/conf.d/pdo.ini
         sed -i 's/NAME=php5-fpm/NAME=php-fpm/' /etc/init.d/php5-fpm
         sed -i 's/DAEMON=\\/usr\\/sbin/DAEMON=\\/usr\\/local\\/sbin/' /etc/init.d/php5-fpm
+        sed -i 's/exec \\/usr\\/sbin\\/php5-fpm/exec \\/usr\\/local\\/sbin\\/php-fpm/' /etc/init/php5-fpm.conf
         sed -i 's/;listen.mode = 0660/listen.mode = 0666/' /etc/php5/fpm/pool.d/www.conf
+        service stop php5-fpm
         killall php5-fpm
         killall php-fpm
         /etc/init.d/php5-fpm start || true

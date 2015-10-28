@@ -239,8 +239,8 @@
       },
       "php":{
         "enabled":true,
-        "version":"5.4.29", //empty string: default ubuntu distribution; http://php.net/downloads.php
-        "checksum":"9fa51d3e44783802ea51b910719ad524a8994524f7cf7307f683fe89191bc401"
+        "version":"5.5.30", //empty string: default ubuntu distribution; http://php.net/downloads.php
+        "checksum":"8ad57f4317391354e66c83d26752f67515b2e923277eb97b2b420dfeff3c1007" // tar.gz type
       },
       "mysql":{
         "enabled":true,
