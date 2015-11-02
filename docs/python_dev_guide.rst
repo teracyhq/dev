@@ -147,6 +147,23 @@ Follow the steps below to get started.
     Teracy introduces django-boilerplate_ to speed up `Django` development with best practices and
     we follow the :doc:`django_training` guide.
 
+
+Debugging
+---------
+
+- Learn from this: https://docs.python.org/2/library/pdb.html
+- Learn from this: https://pypi.python.org/pypi/ipdb
+- Learn from this: https://www.jetbrains.com/pycharm/help/debugging.html
+
+- Follow the tutorial below to setup remote debugging with IntelliJ (Python plugin installed). The example is
+  for flask-app example, but it could be used for any other Python projects.
+
+    ..  raw:: html
+
+        <iframe src="https://www.iorad.com/4558/12802/python-remote-debugging-with-IntelliJ" width="1px" scrolling="no" height="500px" style="border:0px;min-width:100%;" allowfullscreen="true"></iframe>
+
+
+
 References
 ----------
 
