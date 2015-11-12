@@ -68,14 +68,16 @@ if node['teracy-dev']['python']['enabled']
     node['teracy-dev']['python']['versions'].each do |version|
 
         node.default['python']['install_method'] = 'source'
-        node.default['python']['prefix_dir'] = "/home/vagrant/.pyenv/versions/#{version}"
-        node.default['python']['pip_location'] = "#{node['python']['prefix_dir']}/bin/pip"
+        node.default['python']['prefix_dir'] = "home/vagrant/.pyenv/versions/#{version}"
+        node.default['python']['binary'] = '/home/vagrant/.pyenv/shims/python'
+        node.default['python']['pip_location'] = '/home/vagrant/.pyenv/shims/pip'
 
         bash 'change_default_python_version' do
             code <<-EOF
                 echo $PYENV_VERSION > /home/vagrant/.pyenv/version
             EOF
             environment 'PYENV_VERSION' => version
+            user 'vagrant'
         end
 
         node['teracy-dev']['python']['pip']['globals'].each do |pkg|
@@ -88,6 +90,8 @@ if node['teracy-dev']['python']['enabled']
                           pkg['supported_python_versions'].empty? or
                           pkg['supported_python_versions'].include?(version)
                         }
+                user 'vagrant'
+                environment 'PYENV_VERSION' => version
             end
         end
         # Link the the pyenv's to system path

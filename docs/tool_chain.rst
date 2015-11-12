@@ -57,18 +57,17 @@ default settings.
 
   ::
 
-    {
-    "color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
-    "draw_white_space": "all",
-    "font_size": 9,
-    "rulers":
-    [
-        100
-    ],
-    "tab_size": 4,
-    "translate_tabs_to_spaces": true,
-    "trailing_spaces_trim_on_save": true
-    }
+   {
+       "color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
+       "draw_white_space": "all",
+       "font_size": 12,
+       "rulers": [
+           100
+       ],
+       "tab_size": 4,
+       "translate_tabs_to_spaces": true,
+       "trailing_spaces_trim_on_save": true
+   }
 
 
 
