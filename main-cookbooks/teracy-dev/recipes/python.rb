@@ -51,7 +51,7 @@ if node['teracy-dev']['python']['enabled']
 
     # => git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
 
-    include_recipe 'teracy-dev::virtualenvwrapper'
+    include_recipe 'teracy-dev::virtualenv'
     include_recipe 'teracy-dev::pip_config'
 
 

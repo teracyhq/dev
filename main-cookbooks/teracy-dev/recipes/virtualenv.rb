@@ -1,9 +1,9 @@
 #
-# Author:: Hoat Le <hoatlevan@gmail.com>
+# Author:: PhuongLM <phuonglm@teracy.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: virtualenvwrapper
+# Recipe:: virtualenv
 #
-# Copyright 2013, Teracy, Inc.
+# Copyright 2015, Teracy, Inc.
 #
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
@@ -31,44 +31,26 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-# python_pip 'virtualenvwrapper' do
+# python_pip 'virtualenv' do
 #     action :install
 # end
 
-# backward compatible with teracy/dev v0.3.4 base box
-directory '/home/vagrant/.virtualenvs' do
-    action :delete
-    not_if do ::File.exists?('/home/vagrant/.virtualenvs/premkproject') end
-end
-
-bash 'download_pyenv_virtualenvwrapper' do
+bash 'download_pyenv_virtualenv' do
     code <<-EOF
-        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /home/vagrant/.pyenv/plugins/pyenv-virtualenvwrapper
+        git clone https://github.com/yyuu/pyenv-virtualenv.git /home/vagrant/.pyenv/plugins/pyenv-virtualenv
     EOF
-    not_if 'ls -la /home/vagrant/.pyenv/plugins/pyenv-virtualenvwrapper'
+    not_if 'ls -la /home/vagrant/.pyenv/plugins/pyenv-virtualenv'
     user 'vagrant'
 end
 
-node['teracy-dev']['python']['versions'].each do |version|
-    bash 'active_virtualenvwrapper' do
-        code <<-EOF
-            source /etc/profile
-            pyenv virtualenvwrapper
-        EOF
-        environment 'PYENV_VERSION'=>version, 'HOME'=>'/home/vagrant/'
-        user 'vagrant'
-    end
-end
-
-
-bash 'configure_virtualenvwrapper' do
+bash 'configure_virtualenv' do
     code <<-EOF
         source /etc/profile
         echo 'export PROJECT_HOME=/vagrant/workspace/personal' >> /home/vagrant/.bash_profile
         echo 'export PATH=$HOME/.bin/:$PATH' >> /home/vagrant/.bash_profile
-        echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
+        echo 'eval "$(pyenv virtualenv-init -)"' >> /home/vagrant/.bash_profile && source /home/vagrant/.bash_profile
     EOF
     environment 'HOME'=>'/home/vagrant/'
-    not_if 'grep -q pyenv /home/vagrant/.bash_profile'
+    not_if 'grep -q virtualenv /home/vagrant/.bash_profile'
     user 'vagrant'
 end
