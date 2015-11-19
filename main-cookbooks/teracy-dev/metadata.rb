@@ -13,7 +13,7 @@ end
 recipe 'teracy::alias', "Installs useful alias for teracy's project development."
 recipe 'teracy-dev::apt', "Installs required packages for teracy' project development."
 recipe 'teracy-dev::workspace', 'Creates workspace directory for teraciers.'
-recipe 'teracy-dev::virtualenv', 'Installs virtualenvwrapper using the python_pip resource and configure it.'
+recipe 'teracy-dev::virtualenv', 'Installs pyenv-virtualenv and configure it.'
 recipe 'teracy-dev::env', 'Configures environment.'
 recipe 'teracy-dev::git', 'Configures and installs global git.'
 recipe 'teracy-dev::pip_config', 'Configures global pip.'
