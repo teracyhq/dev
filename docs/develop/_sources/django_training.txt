@@ -14,28 +14,33 @@ steps:
 
 #. Run the project under a virtual Python environment.
     ::
-
-        $ mkvirtualenv tutorial
+        $ ws
+        $ cd personal
+        $ pyenv virtualenv tutorial
+        $ pyenv activate tutorial
 
     You should see the following similar messages:
     ::
 
-        New python executable in tutorial/bin/python
-        Installing setuptools............done.
-        Installing pip...............done.
+        New python executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python2.7
+        Also creating executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python
+        Installing setuptools, pip, wheel...done.
+        Ignoring indexes: https://pypi.python.org/simple
+        Requirement already satisfied (use --upgrade to upgrade): setuptools in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
+        Requirement already satisfied (use --upgrade to upgrade): pip in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
 
-    You are now under the ``tutorial`` virtual Python environment. Use ``$ deactive`` to escape it or
-    ``$ workon tutorial`` to be under the ``tutorial`` virtual Python environment.
+
+    You are now under the ``tutorial`` virtual Python environment. Use ``$ pyenv deactive``
+    to escape it or ``$ pyenv activate --force tutorial`` to be under the ``tutorial`` virtual
+    Python environment again.
 
 #. Set up the ``tutorial`` project:
     ::
 
-        $ ws
-        $ cd personal
         $ mkdir tutorial
         $ cd tutorial
         $ git init
-        $ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
+        $ git remote add djbp https://github.com/teracyhq/django-boilerplate.git
         $ git fetch djbp
         $ git merge djbp/master
         $ pip install -r requirements/dev.txt
@@ -43,7 +48,7 @@ steps:
 
     When ``syncdb``, you should create a super account to access the admin page later.
 
-    The project https://github.com/teracy-official/django-boilerplate will help you get
+    The project https://github.com/teracyhq/django-boilerplate will help you get
     project development booted with a Django project template (boilerplate) of the best practices.
 
 #. Run the server now:
@@ -79,7 +84,7 @@ World!`` message when accessing http://localhost:8000.
 
 #. Install an editor for coding. If you have had it, skip this step.
 
-   At Teracy, you are suggested to use `Sublime Text <http://www.sublimetext.com/>`_. Download and
+   At Teracy, it's recommended to use `Sublime Text <http://www.sublimetext.com/>`_. Download and
    install it on your computer.
 
 #. Open ``Sublime Text``, add ``workspace/personal/tutorial`` project by clicking **Project** ->
@@ -89,15 +94,14 @@ World!`` message when accessing http://localhost:8000.
 
 #. Open two terminal windows:
 
-   Usually, you need two terminal windows:
+   Usually, you need to open two terminal windows:
 
-   - One is used for running the Django project. Open a new terminal window, change the
-     directory to ``teracy-dev``, then ``$ vagrant ssh``.
+   - One is used for running the Django project.
 
    - The other one is used for normal commands.
 
 #. Install ``teracy-django-html5-boilerplate`` to your project
-   `teracy-django-html5-boilerplate <https://github.com/teracy-official/django-html5-boilerplate>`_
+   `teracy-django-html5-boilerplate <https://github.com/teracyhq/django-html5-boilerplate>`_
    is a Django wrapper application that includes ``html5-boilerplate`` assets and provides
    ``base.html``for starting any web application with ``html5-boilerplate``, so you need to install
    it on your project.

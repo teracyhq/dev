@@ -74,28 +74,35 @@ steps:</p>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>Run the project under a virtual Python environment.</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ mkvirtualenv tutorial
-</pre></div>
-</div>
+<dd><dl class="first docutils">
+<dt>::</dt>
+<dd><p class="first last">$ ws
+$ cd personal
+$ pyenv virtualenv tutorial
+$ pyenv activate tutorial</p>
+</dd>
+</dl>
 <p>You should see the following similar messages:</p>
-<div class="highlight-python"><div class="highlight"><pre>New python executable in tutorial/bin/python
-Installing setuptools............done.
-Installing pip...............done.
+<div class="highlight-python"><div class="highlight"><pre>New python executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python2.7
+Also creating executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python
+Installing setuptools, pip, wheel...done.
+Ignoring indexes: https://pypi.python.org/simple
+Requirement already satisfied (use --upgrade to upgrade): setuptools in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
+Requirement already satisfied (use --upgrade to upgrade): pip in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
 </pre></div>
 </div>
-<p class="last">You are now under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment. Use <code class="docutils literal"><span class="pre">$</span> <span class="pre">deactive</span></code> to escape it or
-<code class="docutils literal"><span class="pre">$</span> <span class="pre">workon</span> <span class="pre">tutorial</span></code> to be under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment.</p>
+<p class="last">You are now under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment. Use <code class="docutils literal"><span class="pre">$</span> <span class="pre">pyenv</span> <span class="pre">deactive</span></code>
+to escape it or <code class="docutils literal"><span class="pre">$</span> <span class="pre">pyenv</span> <span class="pre">activate</span> <span class="pre">--force</span> <span class="pre">tutorial</span></code> to be under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual
+Python environment again.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Set up the <code class="docutils literal"><span class="pre">tutorial</span></code> project:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ ws
-$ cd personal
-$ mkdir tutorial
+<dd><div class="first highlight-python"><div class="highlight"><pre>$ mkdir tutorial
 $ cd tutorial
 $ git init
-$ git remote add djbp https://github.com/teracy-official/django-boilerplate.git
+$ git remote add djbp https://github.com/teracyhq/django-boilerplate.git
 $ git fetch djbp
 $ git merge djbp/master
 $ pip install -r requirements/dev.txt
@@ -103,7 +110,7 @@ $ python manage.py syncdb
 </pre></div>
 </div>
 <p>When <code class="docutils literal"><span class="pre">syncdb</span></code>, you should create a super account to access the admin page later.</p>
-<p class="last">The project <a class="reference external" href="https://github.com/teracy-official/django-boilerplate">https://github.com/teracy-official/django-boilerplate</a> will help you get
+<p class="last">The project <a class="reference external" href="https://github.com/teracyhq/django-boilerplate">https://github.com/teracyhq/django-boilerplate</a> will help you get
 project development booted with a Django project template (boilerplate) of the best practices.</p>
 </dd>
 </dl>
@@ -141,7 +148,7 @@ create Django applications for it.</p>
 <p>You will see a 404 error and it is normal.</p>
 </li>
 <li><p class="first">Install an editor for coding. If you have had it, skip this step.</p>
-<p>At Teracy, you are suggested to use <a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a>. Download and
+<p>At Teracy, it&#8217;s recommended to use <a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a>. Download and
 install it on your computer.</p>
 </li>
 <li><p class="first">Open <code class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></code>, add <code class="docutils literal"><span class="pre">workspace/personal/tutorial</span></code> project by clicking <strong>Project</strong> -&gt;
@@ -149,15 +156,14 @@ install it on your computer.</p>
 <p>The <code class="docutils literal"><span class="pre">tutorial</span></code> project should be opened and you can start coding now.</p>
 </li>
 <li><p class="first">Open two terminal windows:</p>
-<p>Usually, you need two terminal windows:</p>
+<p>Usually, you need to open two terminal windows:</p>
 <ul class="simple">
-<li>One is used for running the Django project. Open a new terminal window, change the
-directory to <code class="docutils literal"><span class="pre">teracy-dev</span></code>, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>.</li>
+<li>One is used for running the Django project.</li>
 <li>The other one is used for normal commands.</li>
 </ul>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">teracy-django-html5-boilerplate</span></code> to your project
-<a class="reference external" href="https://github.com/teracy-official/django-html5-boilerplate">teracy-django-html5-boilerplate</a>
+<a class="reference external" href="https://github.com/teracyhq/django-html5-boilerplate">teracy-django-html5-boilerplate</a>
 is a Django wrapper application that includes <code class="docutils literal"><span class="pre">html5-boilerplate</span></code> assets and provides
 <code class="docutils literal"><span class="pre">base.html``for</span> <span class="pre">starting</span> <span class="pre">any</span> <span class="pre">web</span> <span class="pre">application</span> <span class="pre">with</span> <span class="pre">``html5-boilerplate</span></code>, so you need to install
 it on your project.</p>

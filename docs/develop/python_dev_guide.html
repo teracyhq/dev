@@ -69,7 +69,7 @@ guide, we&#8217;re going to explore the Python language and some Python web fram
 <code class="docutils literal"><span class="pre">teracy-dev</span></code> VM running by following the <a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><a class="reference external" href="https://github.com/yyuu/pyenv">pyenv</a>, <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtualenv</a> and <a class="reference external" href="https://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> are already installed and available to use.</p>
+<p class="last"><a class="reference external" href="https://github.com/yyuu/pyenv">pyenv</a> and <a class="reference external" href="https://github.com/yyuu/pyenv-virtualenv">pyenv-virtualenv</a> are already installed and available to use.</p>
 </div>
 <div class="section" id="verify-that-python-works">
 <h2>Verify that <code class="docutils literal"><span class="pre">Python</span></code> Works<a class="headerlink" href="#verify-that-python-works" title="Permalink to this headline">¶</a></h2>
@@ -112,7 +112,8 @@ those. We should learn from easy to harder levels.</p>
 <span class="nv">$ </span><span class="nb">cd </span>personal
 <span class="nv">$ </span>mkdir flask-app
 <span class="nv">$ </span><span class="nb">cd </span>flask-app
-<span class="nv">$ </span>mkvirtualenv flask-app
+<span class="nv">$ </span>pyenv virtualenv flask-app
+<span class="nv">$ </span>pyenv activate flask-app
 </pre></div>
 </div>
 </li>
@@ -151,10 +152,12 @@ those. We should learn from easy to harder levels.</p>
 <p>After learning <code class="docutils literal"><span class="pre">Python</span></code>, you should know how to use <a class="reference external" href="https://www.djangoproject.com/">Django</a> for web application development.</p>
 <p>Follow the steps below to get started.</p>
 <ol class="arabic">
-<li><p class="first">Create a virtualenv</p>
+<li><p class="first">Create a new virtualenv</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
 <span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>mkvirtualenv django-app
+<span class="nv">$ </span>pyenv deactivate
+<span class="nv">$ </span>pyenv virtualenv django-app
+<span class="nv">$ </span>pyenv activate django-app
 </pre></div>
 </div>
 </li>
@@ -171,7 +174,7 @@ those. We should learn from easy to harder levels.</p>
 <li><p class="first">Run the <cite>Django</cite> application</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>django_app
 <span class="nv">$ </span>python manage.py migrate
-<span class="nv">$ </span>python manage.py runrver 0.0.0.0:8000
+<span class="nv">$ </span>python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 <p>Now open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> on your browser to see the web app.</p>
@@ -180,7 +183,7 @@ those. We should learn from easy to harder levels.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Teracy introduces <a class="reference external" href="https://github.com/teracyhq/django-boilerplate">django-boilerplate</a> to speed up <cite>Django</cite> development with best practices and
-we follow the <a class="reference internal" href="django_training.html"><em>Django Training</em></a> guide.</p>
+we should follow the <a class="reference internal" href="django_training.html"><em>Django Training</em></a> guide.</p>
 </div>
 </div>
 <div class="section" id="debugging">

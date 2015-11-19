@@ -54,7 +54,7 @@ Now you will continue to work on it with git and push it to github.
 
 #. Setting up project layout
 
-    - Add the remote repository https://github.com/teracy-official/django-boilerplate.git into
+    - Add the remote repository https://github.com/teracyhq/django-boilerplate.git into
       your repository with the ``djbp`` name.
 
     - Fetch and merge the ``djbp/master`` branch.

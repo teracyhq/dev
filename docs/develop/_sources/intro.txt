@@ -143,7 +143,7 @@ do is to simply ``impress us``.
 
     + Google group: https://groups.google.com/forum/#!forum/teracy
 
-- Contribute to our open source projects at: https://github.com/teracy-official
+- Contribute to our open source projects at: https://github.com/teracyhq
 
 When you impress us enough, wherever you are, we will find you and offer you the job you desire!
 

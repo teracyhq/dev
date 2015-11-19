@@ -9,7 +9,7 @@ guide, we're going to explore the Python language and some Python web frameworks
 ``teracy-dev`` VM running by following the :doc:`getting_started` guide.
 
 ..  note::
-    pyenv_, virtualenv_ and virtualenvwrapper_ are already installed and available to use.
+    pyenv_ and pyenv-virtualenv_ are already installed and available to use.
 
 
 Verify that ``Python`` Works
@@ -67,7 +67,8 @@ Follow the steps below to get started.
         $ cd personal
         $ mkdir flask-app
         $ cd flask-app
-        $ mkvirtualenv flask-app
+        $ pyenv virtualenv flask-app
+        $ pyenv activate flask-app
 
 #.  Install the `Flask` package
 
@@ -111,13 +112,15 @@ After learning ``Python``, you should know how to use Django_ for web applicatio
 
 Follow the steps below to get started.
 
-#.  Create a virtualenv
+#.  Create a new virtualenv
 
     .. code-block:: bash
 
         $ ws
         $ cd personal
-        $ mkvirtualenv django-app
+        $ pyenv deactivate
+        $ pyenv virtualenv django-app
+        $ pyenv activate django-app
 
 #.  Install the `Django` package
 
@@ -138,14 +141,14 @@ Follow the steps below to get started.
 
         $ cd django_app
         $ python manage.py migrate
-        $ python manage.py runrver 0.0.0.0:8000
+        $ python manage.py runserver 0.0.0.0:8000
 
     Now open http://localhost:8000 on your browser to see the web app.
 
 ..  tip::
 
     Teracy introduces django-boilerplate_ to speed up `Django` development with best practices and
-    we follow the :doc:`django_training` guide.
+    we should follow the :doc:`django_training` guide.
 
 
 Debugging
@@ -174,7 +177,7 @@ References
 ..  _Python: https://www.python.org/
 ..  _pyenv: https://github.com/yyuu/pyenv
 ..  _virtualenv: http://docs.python-guide.org/en/latest/dev/virtualenvs/
-..  _virtualenvwrapper: https://virtualenvwrapper.readthedocs.org/en/latest/
+..  _pyenv-virtualenv: https://github.com/yyuu/pyenv-virtualenv
 ..  _Flask: http://flask.pocoo.org/
 ..  _Django: https://www.djangoproject.com/
 ..  _flask-boilerplate: https://github.com/teracyhq/flask-boilerplate
