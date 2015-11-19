@@ -25,7 +25,7 @@ Clone
 Cloning means that you copy a remote repository into the local hard drive and track it. You usually
 clone your forked repository into your local hard drive to work on it.
 
-For example, I fork the official repository at https://github.com/teracy-official/teracy-django-boilerplate.
+For example, I fork the official repository at https://github.com/teracyhq/teracy-django-boilerplate.
 I will have the same repository with full permission at https://github.com/hoatle/teracy-django-boilerplate
 with the ``git@github.com:hoatle/teracy-django-boilerplate.git`` git address. To clone it, I use the following
 commands:
@@ -34,7 +34,7 @@ commands:
     $ ws
     $ cd personal
     $ git clone git@github.com:hoatle/teracy-django-boilerplate.git
-    $ git remote add upstream https://github.com/teracy-official/teracy-django-boilerplate.git
+    $ git remote add upstream https://github.com/teracyhq/teracy-django-boilerplate.git
     $ git fetch upstream
 
 By convention, your full permission repository has ``origin`` remote name, ``upstream`` remote name

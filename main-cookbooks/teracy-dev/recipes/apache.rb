@@ -3,7 +3,7 @@
 # Cookbook Name:: dev
 # Recipe:: apache
 #
-# Copyright 2014, Teracy, Inc.
+# Copyright 2013 - current, Teracy, Inc.
 #
 
 if node['teracy-dev']['apache']['enabled']

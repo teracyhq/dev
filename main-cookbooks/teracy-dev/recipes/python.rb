@@ -4,7 +4,7 @@
 # Recipe:: python
 # Description: Installs Python platform
 #
-# Copyright 2013, Teracy, Inc.
+# Copyright 2013 - current, Teracy, Inc.
 #
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
@@ -51,7 +51,7 @@ if node['teracy-dev']['python']['enabled']
 
     # => git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git /usr/local/pyenv/plugins/pyenv-virtualenvwrapper
 
-    include_recipe 'teracy-dev::virtualenvwrapper'
+    include_recipe 'teracy-dev::virtualenv'
     include_recipe 'teracy-dev::pip_config'
 
 
