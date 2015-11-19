@@ -29,11 +29,11 @@ need to move to the next alternative instruction by installing required packages
 Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
 ::
 
-    $ cd /tmp && wget -qO- https://raw.github.com/teracy-official/dev/develop/scripts/setup_working_env_chef.sh | bash
+    $ cd /tmp && wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
 
 On Windows (Windows 7 & Windows 8), follow these steps:
 
-1. Open: https://raw.github.com/teracy-official/dev/develop/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
+1. Open: https://raw.github.com/teracyhq/dev/develop/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
 
 2. Press ``Ctrl + S``.
 
@@ -95,7 +95,7 @@ Environment Up
     ::
 
       $ cd ~/
-      $ git clone https://github.com/teracy-official/dev.git teracy-dev
+      $ git clone https://github.com/teracyhq/dev.git teracy-dev
       $ cd teracy-dev
       $ vagrant up
 

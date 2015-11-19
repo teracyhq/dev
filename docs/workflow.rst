@@ -384,7 +384,7 @@ https://github.com/hoatle/django-boilerplate.
     $ cd personal
     $ git clone git@github.com/hoatle/django-boilerplate.git
     $ cd django-boilerplate
-    $ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
+    $ git remote add upstream git@github.com/teracyhq/django-boilerplate.git
     $ git checkout develop
     $ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
     $ git fetch phuonglm

@@ -82,7 +82,7 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-# REPO_URL       = git@github.com:teracy-official/sphinx-deployment.git
+# REPO_URL       = git@github.com:teracyhq/sphinx-deployment.git
 endif
 
 ## end deployment configuration, don't edit anything below this line ##

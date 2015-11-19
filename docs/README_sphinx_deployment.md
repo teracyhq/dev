@@ -49,14 +49,14 @@ You need to specify the `<docs_path>` to your sphinx docs directory:
 
 ``` bash
 $ cd <your_project>
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
+$ wget https://raw.github.com/teracyhq/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p <docs_path>
 ```
 
 For example:
 
 ``` bash
 $ cd my_project
-$ wget https://raw.github.com/teracy-official/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
+$ wget https://raw.github.com/teracyhq/sphinx-deployment/master/scripts/spxd.sh && chmod +x ./spxd.sh && ./spxd.sh -p ./docs
 ```
 
 **2. Manual**
@@ -152,7 +152,7 @@ endif
 #if REPO_URL was NOT defined by travis-ci
 ifndef REPO_URL
 # Configure your right project repo
-# REPO_URL       = git@github.com:teracy-official/sphinx-deployment.git
+# REPO_URL       = git@github.com:teracyhq/sphinx-deployment.git
 endif
 
 ## end deployment configuration, don't edit anything below this line ##
