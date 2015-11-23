@@ -1,0 +1,5 @@
+<% if @user_install %>
+  [ -f ${HOME}/.nvm/nvm.sh ] && . ${HOME}/.nvm/nvm.sh
+<% else %>
+[ -f /usr/local/src/nvm/nvm.sh ] && . /usr/local/src/nvm/nvm.sh
+<% end %>

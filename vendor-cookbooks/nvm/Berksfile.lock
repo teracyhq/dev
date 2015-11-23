@@ -1,0 +1,30 @@
+DEPENDENCIES
+  apt
+  minitest-handler (~> 0.2.1)
+  nvm
+    path: .
+    metadata: true
+  nvm_test
+    path: test/cookbooks/nvm_test
+
+GRAPH
+  apt (2.7.0)
+  build-essential (2.2.3)
+  chef_handler (1.2.0)
+  dmg (2.2.2)
+  git (4.3.0)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    windows (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  minitest-handler (0.2.1)
+    chef_handler (>= 0.0.0)
+  nvm (0.1.6)
+    git (>= 2.1.0)
+  nvm_test (0.1.0)
+    nvm (>= 0.0.0)
+  windows (1.37.0)
+    chef_handler (>= 0.0.0)
+  yum (3.6.3)
+  yum-epel (0.6.2)
+    yum (~> 3.2)
