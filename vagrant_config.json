@@ -159,10 +159,9 @@
       },
       "nodejs":{
         "enabled":true,
-        "version":"0.10.28",
-        "checksum":"abddc6441e0f208f6ed8a045e0293f713ea7f6dfb2d6a9a2024bf8b1b4617710",
+        "versions": ["4.2.2", "0.12.8"],
+        "global_version": "4.2.2",
         "npm": {
-          "version":"1.4.3",
           "globals": [
             {
               "name":"grunt-cli",

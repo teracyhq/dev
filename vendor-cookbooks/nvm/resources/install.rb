@@ -1,10 +1,8 @@
 #
-# Cookbook Name:: nodejs
-# Resource:: npm
+# Cookbook Name:: nvm
+# Resource:: nvm_install
 #
-# Author:: Sergey Balbeko <sergey@balbeko.com>
-#
-# Copyright 2012, Sergey Balbeko
+# Copyright 2013, HipSnip Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,15 +17,14 @@
 # limitations under the License.
 #
 
-actions :install, :uninstall
-default_action :install
+actions :create
+default_action :create
 
-attribute :package, :name_attribute => true
-attribute :version, :kind_of => String
-attribute :path, :kind_of => String
-attribute :url, :kind_of => String
-attribute :json, :kind_of => [String, TrueClass]
-attribute :options, :kind_of => Array, :default => []
-
+attribute :from_source, :kind_of => [TrueClass, FalseClass], :default => false
+attribute :alias_as_default, :kind_of => [TrueClass, FalseClass], :default => false
 attribute :user, :kind_of => String
 attribute :group, :kind_of => String
+attribute :user_install, :kind_of => [TrueClass, FalseClass], :default => false
+attribute :version, :kind_of => String, :name_attribute => true
+attribute :nvm_directory, :kind_of => String, :default => node['nvm']['directory']
+attribute :user_home, :kind_of => String

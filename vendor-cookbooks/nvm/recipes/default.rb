@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: npm
+# Cookbook Name:: nvm
+# Recipe:: default
 #
-# Author:: Sergey Balbeko <sergey@balbeko.com>
-#
-# Copyright 2012, Sergey Balbeko
+# Copyright 2013, HipSnip Limited
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,5 +17,24 @@
 # limitations under the License.
 #
 
-default['npm']['version'] = '1.1.0-3'
-#default['npm'][''] = ''
+include_recipe 'git'
+
+############################################################################
+# Install dependencies
+
+package 'libcurl3' do
+  action :install
+end
+
+package 'curl' do
+  action :install
+end
+
+if node['nvm']['install_deps_to_build_from_source']
+  package 'build-essential' do
+    action :install
+  end
+  package 'libssl-dev' do
+    action :install
+  end
+end

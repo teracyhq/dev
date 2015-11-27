@@ -8,10 +8,9 @@ By default, Node.js is already installed on the `teracy-dev` VM with the followi
     {
       "nodejs":{
         "enabled":true,
-        "version":"0.10.28",
-        "checksum":"abddc6441e0f208f6ed8a045e0293f713ea7f6dfb2d6a9a2024bf8b1b4617710",
+        "versions": ["4.2.2", "0.12.8"],
+        "global_version": "4.2.2",
         "npm": {
-          "version":"1.4.3",
           "globals": [
             {
               "name":"grunt-cli",
@@ -42,6 +41,16 @@ Make sure you have the teracy-dev VM running (``$ vagrant up``) by following the
 :doc:`getting_started` guide.
 
 
+Verify `nvm`
+------------
+nvm_ is already installed and available to work on different versions of nodejs, to verify:
+
+..  code-block:: bash
+
+    $ nvm --version
+    0.29.0
+
+
 Verify Node.js
 --------------
 
@@ -52,14 +61,14 @@ Verify Node.js
     ..  code-block:: bash
 
         $ node --version
-        v0.10.28
+        v4.2.2
 
 #.  ``npm``
 
     ..  code-block:: bash
 
         $ npm --version
-        1.4.3
+        2.14.7
 
 
 Hello World
@@ -111,40 +120,8 @@ to create a `Hello World` web application.
     $ cd personal
     $ mkdir myapp
     $ cd myapp
-    $ sudo chown -R `whoami` ~/tmp/
     $ npm init
     $ npm install express --save
-
-..  note::
-
-    ``sudo chown -R `whoami` ~/tmp/`` is required to make sure you don't get any permission error,
-    something like:
-
-    ..  code-block:: bash
-
-        npm ERR! Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG'
-        npm ERR!  { [Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG']
-        npm ERR!   errno: 3,
-        npm ERR!   code: 'EACCES',
-        npm ERR!   path: '/home/vagrant/tmp/npm-19210-ZLDRmRUG',
-        npm ERR!   parent: 'myapp' }
-        npm ERR!
-        npm ERR! Please try running this command again as root/Administrator.
-
-        npm ERR! System Linux 3.13.0-49-generic
-        npm ERR! command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "express" "--save"
-        npm ERR! cwd /home/vagrant/workspace/personal/myapp
-        npm ERR! node -v v0.10.28
-        npm ERR! npm -v 1.4.9
-        npm ERR! path /home/vagrant/tmp/npm-19210-ZLDRmRUG
-        npm ERR! code EACCES
-        npm ERR! errno 3
-        npm ERR! stack Error: EACCES, mkdir '/home/vagrant/tmp/npm-19210-ZLDRmRUG'
-        npm ERR!
-        npm ERR! Additional logging details can be found in:
-        npm ERR!     /home/vagrant/workspace/personal/myapp/npm-debug.log
-        npm ERR! not ok code 0
-
 
 Let's use `vim` to create `app.js` file under `myapp` directory with the following content:
 
@@ -179,8 +156,8 @@ And then open the browser at http://localhost:3000 and you should see the `Hello
 We can start digging `Express` now at: http://expressjs.com/
 
 
-MEAN Stack
-----------
+MEAN.IO Stack
+-------------
 
 We're going to follow http://learn.mean.io/ to get started.
 
@@ -191,31 +168,10 @@ We're going to follow http://learn.mean.io/ to get started.
 
     $ ws
     $ cd personal
-    $ sudo npm install -g mean-cli
-    $ sudo chown -R `whoami` ~/.npm
+    $ npm install -g mean-cli
     $ mean init mean-app
     $ cd mean-app
     $ npm install
-    $ bower install
-
-
-..  note::
-
-    -  ``sudo chown -R `whoami` ~/.npm`` is required to make sure you don't get any permission error,
-       something like:
-
-       ..  code-block:: bash
-
-           There are 56 files in your ~/.npm owned by root
-           Please change the permissions by running - chown -R `whoami` ~/.npm
-
-           /usr/local/lib/node_modules/mean-cli/lib/install.js:43
-                  if (err) throw err;
-                                 ^
-           ROOT PERMISSIONS IN NPM
-
-    -  ``$ npm install`` could possibly not finish with this step:
-       `node tools/scripts/postinstall.js` and that's ok.
 
 Run it with:
 
@@ -235,3 +191,5 @@ References
 - https://iojs.org/en/index.html
 - http://expressjs.com
 - http://mean.io/
+
+..  _nvm: https://github.com/creationix/nvm
