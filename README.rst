@@ -88,7 +88,7 @@ Learn more
 
 - Teracy's projects
 
-    + https://github.com/teracy-official
+    + https://github.com/teracyhq
 
 - Vagrant
 
