@@ -14,6 +14,7 @@ steps:
 
 #. Run the project under a virtual Python environment.
     ::
+
         $ ws
         $ cd personal
         $ pyenv virtualenv tutorial
