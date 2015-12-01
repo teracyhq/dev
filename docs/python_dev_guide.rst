@@ -159,7 +159,8 @@ Debugging
 - Learn from this: https://www.jetbrains.com/pycharm/help/debugging.html
 
 - Follow the tutorial below to setup remote debugging with IntelliJ (Python plugin installed). The example is
-  for flask-app example, but it could be used for any other Python projects.
+  for flask-app example, but it could be used for any other Python projects (don't forget to view the tutorial
+  in full screen mode).
 
     ..  raw:: html
 
