@@ -122,6 +122,11 @@
     "postgresql": {
       "version":"9.3"
     },
+    "rbenv":{
+      "user": "vagrant",
+      "group": "vagrant",
+      "user_home": "/home/vagrant"
+    },
     "teracy-dev":{
       "workspace":[
         "/vagrant/workspace/readonly",
@@ -208,7 +213,9 @@
       },
       "ruby":{
         "enabled":true,
-        "version": "1.9.3-p194",
+        "versions": ["1.9.3-p551", "2.2.3"],
+        "global_version": "2.2.3",
+
         "globals":[
           {
             "name":"bundler",

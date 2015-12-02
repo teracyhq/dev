@@ -32,48 +32,38 @@
 #
 
 if node['teracy-dev']['ruby']['enabled']
-
-    node.default['rbenv']['user']           = 'vagrant'
-    node.default['rbenv']['group']          = 'vagrant'
-    node.default['rbenv']['user_home']      = '/home/vagrant'
-
     include_recipe 'rbenv::default'
     include_recipe 'rbenv::ruby_build'
+    ruby_versions = [] + node['teracy-dev']['ruby']['versions']
+    if ruby_versions.empty? 
+        if not node['teracy-dev']['ruby']['global_version'].empty?
+            ruby_versions.push(node['teracy-dev']['ruby']['global_version'])
+        end 
+    end
 
-    node_version = node['teracy-dev']['ruby']['version']
+    if ruby_versions.any? 
+        ruby_versions.each do |ruby_version|
+            if not ruby_version.empty? 
+                rbenv_ruby ruby_version.strip() do
+                    global true
+                end
 
-    if node_version.strip().empty?
-        begin
-            versions = []
-            list_versions = Mixlib::ShellOut.new('rbenv install -l').run_command.stdout
-
-            list_versions.each_line.each do |line|
-                if !line.include? 'dev'
-                    versions.push(line.strip())
+                node['teracy-dev']['ruby']['globals'].each do |pkg|
+                    rbenv_gem pkg['name'] do
+                        if !pkg['version'].strip().empty?
+                            version pkg['version']
+                        end
+                    end
                 end
             end
-
-            node_version = versions.max {
-                |a,b| a.split('.').map { |e| e.to_i } <=> b.split('.').map { |e| e.to_i }
-            }
-        rescue
-            node_version = '2.1.2'
+        end
+        bash 'update ruby version to default' do
+            code <<-EOF
+                rbenv global #{node['teracy-dev']['ruby']['global_version']}
+            EOF
+            environment 'HOME'=> node['rbenv']['user_home'], 'USER'=> node['rbenv']['user'] , 'RBENV_ROOT'=>'/opt/rbenv'
+            user node['rbenv']['user']
+            group node['rbenv']['group']
         end
     end
-
-
-
-    rbenv_ruby node_version.strip() do
-        global true
-        only_if { !node_version.strip().empty? }
-    end
-
-    node['teracy-dev']['ruby']['globals'].each do |pkg|
-        rbenv_gem pkg['name'] do
-        	if !pkg['version'].strip().empty?
-                version pkg['version']
-            end
-        end
-    end
-
 end
