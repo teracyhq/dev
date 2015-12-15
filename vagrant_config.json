@@ -213,9 +213,8 @@
       },
       "ruby":{
         "enabled":true,
-        "versions": ["1.9.3-p551", "2.2.3"],
+        "versions": ["2.2.3"],
         "global_version": "2.2.3",
-
         "globals":[
           {
             "name":"bundler",

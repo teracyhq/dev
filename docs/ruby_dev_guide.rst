@@ -3,6 +3,8 @@ Ruby Development Guide
 
 By default, ``teracy-dev`` already has Ruby installed for the default base box.
 
+..  note::
+    rbenv_ is already installed and available to use.
 
 Verify that ``ruby`` works
 --------------------------
@@ -32,7 +34,6 @@ As ``Ruby`` is already installed along with ``rbenv``, you could start using ``R
 
     ..  code-block:: bash
 
-        $ vagrant ssh
         $ gem install rails
         $ rbenv rehash
 
@@ -44,7 +45,7 @@ As ``Ruby`` is already installed along with ``rbenv``, you could start using ``R
     ..  code-block:: bash
 
         $ rails --version
-        Rails 4.2.1
+        Rails 4.2.5
 
 #.  Create a new RoR app
 
@@ -134,4 +135,4 @@ References
 - https://devcenter.heroku.com/articles/getting-started-with-rails4
 - http://www.sinatrarb.com/
 
-
+..  _rbenv: https://github.com/sstephenson/rbenv
