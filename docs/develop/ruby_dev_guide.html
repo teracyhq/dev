@@ -64,6 +64,10 @@
   <div class="section" id="ruby-development-guide">
 <h1>Ruby Development Guide<a class="headerlink" href="#ruby-development-guide" title="Permalink to this headline">¶</a></h1>
 <p>By default, <code class="docutils literal"><span class="pre">teracy-dev</span></code> already has Ruby installed for the default base box.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference external" href="https://github.com/sstephenson/rbenv">rbenv</a> is already installed and available to use.</p>
+</div>
 <div class="section" id="verify-that-ruby-works">
 <h2>Verify that <code class="docutils literal"><span class="pre">ruby</span></code> works<a class="headerlink" href="#verify-that-ruby-works" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
@@ -71,7 +75,7 @@
 </pre></div>
 </div>
 <p>And you should see something like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre>ruby 1.9.3p194 <span class="o">(</span>2012-04-20 revision 35410<span class="o">)</span> <span class="o">[</span>x86_64-linux<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre>ruby 2.2.3p173 <span class="o">(</span>2015-08-18 revision 51636<span class="o">)</span> <span class="o">[</span>x86_64-linux<span class="o">]</span>
 </pre></div>
 </div>
 <p>Congratulations, you can do all <code class="docutils literal"><span class="pre">Ruby</span></code> related stuff now!</p>
@@ -82,8 +86,7 @@
 <p>As <code class="docutils literal"><span class="pre">Ruby</span></code> is already installed along with <code class="docutils literal"><span class="pre">rbenv</span></code>, you could start using <code class="docutils literal"><span class="pre">Ruby</span></code> right away.</p>
 <ol class="arabic">
 <li><p class="first">Install <code class="docutils literal"><span class="pre">Rails</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
-<span class="nv">$ </span>gem install rails
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>gem install rails
 <span class="nv">$ </span>rbenv rehash
 </pre></div>
 </div>
@@ -94,7 +97,7 @@
 </li>
 <li><p class="first">Verify <code class="docutils literal"><span class="pre">Rails</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>rails --version
-Rails 4.2.1
+Rails 4.2.5
 </pre></div>
 </div>
 </li>
@@ -112,52 +115,26 @@ Rails 4.2.1
 for Vagrant box with forward ports.</p>
 </div>
 <p>And you should see the output like:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Warning: You&#39;re using Rubygems 1.8.23 with Spring. Upgrade to at least Rubygems 2.1.0 and run `gem pristine --all` for better startup performance.
-=&gt; Booting WEBrick
-=&gt; Rails 4.2.1 application starting in development on http://0.0.0.0:3000
-=&gt; Run `rails server -h` for more startup options
-=&gt; Ctrl-C to shutdown server
-[2015-03-20 09:14:58] INFO  WEBrick 1.3.1
-[2015-03-20 09:14:58] INFO  ruby 1.9.3 (2012-04-20) [x86_64-linux]
-[2015-03-20 09:14:58] INFO  WEBrick::HTTPServer#start: pid=15258 port=3000
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">=</span>&gt; Booting <span class="nv">WEBrick</span>
+<span class="o">=</span>&gt; Rails 4.2.5 application starting in development on http://0.0.0.0:3000
+<span class="o">=</span>&gt; Run <span class="sb">`</span>rails server -h<span class="sb">`</span> <span class="k">for</span> more startup <span class="nv">options</span>
+<span class="o">=</span>&gt; Ctrl-C to shutdown server
+<span class="o">[</span>2015-12-14 08:54:53<span class="o">]</span> INFO  WEBrick 1.3.1
+<span class="o">[</span>2015-12-14 08:54:53<span class="o">]</span> INFO  ruby 2.2.3 <span class="o">(</span>2015-08-18<span class="o">)</span> <span class="o">[</span>x86_64-linux<span class="o">]</span>
+<span class="o">[</span>2015-12-14 08:54:53<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span><span class="m">10837</span> <span class="nv">port</span><span class="o">=</span>3000
 </pre></div>
 </div>
 <p>Open the browser at <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> and you should see <cite>Welcome aboard</cite> default page.
 We&#8217;re ready for RoR development by following <a class="reference external" href="http://rubyonrails.org/documentation/">http://rubyonrails.org/documentation/</a></p>
 </li>
-<li><p class="first">Use Ruby 2.2.1 instead of default Ruby 1.9.3</p>
-<p>By default, Ruby 1.9.3 is used, however, it&#8217;s very easy to use different versions of Ruby thanks
-to <code class="docutils literal"><span class="pre">rbenv</span></code>. We&#8217;re going to use Ruby 2.2.1 for RoR development.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>rbenv install 2.2.1
-<span class="nv">$ </span>rbenv <span class="nb">local </span>2.2.1
-<span class="nv">$ </span>gem install rails
-<span class="nv">$ </span>rbenv rehash
-<span class="nv">$ </span>rails new rails-app2
-<span class="nv">$ </span><span class="nb">cd </span>rails-app2
-<span class="nv">$ </span>rails server -b 0.0.0.0
-</pre></div>
-</div>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Create <cite>.ruby-version</cite> file with content <cite>2.2.1</cite> within <cite>rails-app2</cite> directory to use the
-right ruby version when <cite>cd</cite> to that directory.</p>
-</div>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">We&#8217;ll support multiple Ruby versions via config by this
-issue: <a class="reference external" href="https://issues.teracy.org/browse/DEV-199">https://issues.teracy.org/browse/DEV-199</a></p>
-</div>
-</li>
 <li><p class="first">Databases</p>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">We need to update this section</p>
 </div>
 </li>
 <li><p class="first">RoR with Heroku</p>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">We need to update this section</p>
 </div>
@@ -276,7 +253,7 @@ addresses. Required for Vagrant box with forward ports.</p>
     </div>
     <div class="footer" role="contentinfo">
         &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>
