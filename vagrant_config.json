@@ -49,6 +49,10 @@
           "host":9997
         },
         {
+          "guest":27017, //mongodb
+          "host":27017
+        },
+        {
           "guest":35729, //livereload
           "host":35729
         },
