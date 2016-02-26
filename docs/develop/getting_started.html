@@ -84,7 +84,7 @@
 <p>To install required packages automatically, you need run <strong>Ubuntu</strong> 12.04 and newer. If not, you
 need to move to the next alternative instruction by installing required packages manually.</p>
 <p>Installing <code class="docutils literal"><span class="pre">git</span></code>, <code class="docutils literal"><span class="pre">virtualbox</span></code>, <code class="docutils literal"><span class="pre">vagrant</span></code> with the provided bash script below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /tmp &amp;&amp; wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ cd /tmp &amp;&amp; wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
 </pre></div>
 </div>
 <p>On Windows (Windows 7 &amp; Windows 8), follow these steps:</p>
@@ -141,7 +141,7 @@ to automatically run when opening the terminal window.</p>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>Open your terminal window and type:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ cd ~/
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span>$ cd ~/
 $ git clone https://github.com/teracyhq/dev.git teracy-dev
 $ cd teracy-dev
 $ vagrant up
@@ -159,7 +159,7 @@ For example: <code class="docutils literal"><span class="pre">C:\Documents</span
 <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory to import projects into your text editor later for coding.</p>
 </li>
 <li><p class="first">You may see the error:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Vagrant uses the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary that ships with VirtualBox, and requires this to be
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Vagrant uses the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary that ships with VirtualBox, and requires this to be
 available on the PATH. If VirtualBox is installed, please find the <span class="sb">`</span>VBoxManage<span class="sb">`</span> binary and
 add it to the PATH environmental variable.
 </pre></div>
@@ -169,7 +169,7 @@ add it to the PATH environmental variable.
 <p>If the error still occurs, you have to unistall and re-install VirtualBox, then Vagrant to fix
 this error.</p>
 <p>You should see the following similar messages after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> finishes running:</p>
-<div class="highlight-python"><div class="highlight"><pre>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
+<div class="highlight-python"><div class="highlight"><pre><span></span>[2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
 [2013-07-01T09:57:11+00:00] INFO: Running report handlers
 [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
 </pre></div>
@@ -179,7 +179,7 @@ this error.</p>
 </div>
 <p>2. Use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> command to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:</p>
-<div class="highlight-python"><div class="highlight"><pre>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
+<div class="highlight-python"><div class="highlight"><pre><span></span>Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
 
  * Documentation:  https://help.ubuntu.com/
 
@@ -257,8 +257,8 @@ Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &copy; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>

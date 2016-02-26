@@ -65,7 +65,7 @@
 <h1>PHP Development Guide<a class="headerlink" href="#php-development-guide" title="Permalink to this headline">¶</a></h1>
 <p>By default, <code class="docutils literal"><span class="pre">LAMP</span></code> (Linux - Apache - MySQL - PHP) stack and <code class="docutils literal"><span class="pre">LEMP</span></code> (Linux - Ngix - MySQL - PHP)
 stack are both installed on the teracy-dev VM with the following configuration:</p>
-<div class="highlight-json"><div class="highlight"><pre>{
+<div class="highlight-json"><div class="highlight"><pre><span></span>{
   &quot;nginx&quot;: {
     &quot;enabled&quot;:true,
     &quot;default_root&quot;: &quot;/home/vagrant/workspace/personal&quot;,
@@ -97,30 +97,30 @@ stack are both installed on the teracy-dev VM with the following configuration:<
 <p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> and check:</p>
 <ol class="arabic">
 <li><p class="first">Linux</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>uname -a
-Linux vagrant 3.5.0-45-generic <span class="c">#68~precise1-Ubuntu SMP Wed Dec 4 16:18:46 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ uname -a
+Linux vagrant 3.5.0-45-generic <span class="c1">#68~precise1-Ubuntu SMP Wed Dec 4 16:18:46 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Apache</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>apache2 -v
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ apache2 -v
 Server version: Apache/2.2.22 <span class="o">(</span>Ubuntu<span class="o">)</span>
 Server built:   Jul <span class="m">22</span> <span class="m">2014</span> 14:35:32
 </pre></div>
 </div>
 </li>
 <li><p class="first">Nginx</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>/opt/nginx/sbin/nginx -v
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ /opt/nginx/sbin/nginx -v
 nginx version: nginx/1.7.8
 </pre></div>
 </div>
 </li>
 <li><p class="first">MySQL</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy<span class="p">;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -pteracy<span class="p">;</span>
 </pre></div>
 </div>
 <p>And you should see the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
 Your MySQL connection id is 37
 Server version: 5.5.38-0ubuntu0.12.04.1 <span class="o">(</span>Ubuntu<span class="o">)</span>
 
@@ -136,12 +136,12 @@ mysql&gt;
 </pre></div>
 </div>
 <p>Type <code class="docutils literal"><span class="pre">exit</span></code> to exit <code class="docutils literal"><span class="pre">mysql</span></code> shell:</p>
-<div class="highlight-bash"><div class="highlight"><pre>mysql&gt; <span class="nb">exit</span><span class="p">;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mysql&gt; exit<span class="p">;</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">PHP</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>php --version
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ php --version
 PHP 5.4.29 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Mar <span class="m">10</span> <span class="m">2015</span> 12:20:28<span class="o">)</span>
 Copyright <span class="o">(</span>c<span class="o">)</span> 1997-2014 The PHP Group
 Zend Engine v2.4.0, Copyright <span class="o">(</span>c<span class="o">)</span> 1998-2014 Zend Technologies
@@ -155,18 +155,18 @@ Zend Engine v2.4.0, Copyright <span class="o">(</span>c<span class="o">)</span> 
 <div class="section" id="info-php-page">
 <h2><code class="docutils literal"><span class="pre">info.php</span></code> Page<a class="headerlink" href="#info-php-page" title="Permalink to this headline">¶</a></h2>
 <p>Create <em>info.php</em> on the <em>workspace/personal/info</em> directory:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>mkdir info
-<span class="nv">$ </span><span class="nb">cd </span>info
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;&lt;?php&quot;</span> &gt; info.php
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;  phpinfo();&quot;</span> &gt;&gt; info.php
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;?&gt;&quot;</span> &gt;&gt; info.php
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ mkdir info
+$ <span class="nb">cd</span> info
+$ <span class="nb">echo</span> <span class="s2">&quot;&lt;?php&quot;</span> &gt; info.php
+$ <span class="nb">echo</span> <span class="s2">&quot;  phpinfo();&quot;</span> &gt;&gt; info.php
+$ <span class="nb">echo</span> <span class="s2">&quot;?&gt;&quot;</span> &gt;&gt; info.php
 </pre></div>
 </div>
 <p>After the command lines above, you should have the <em>workspace/personal/info/info.php</em> file with the
 following content:</p>
-<div class="highlight-php"><div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
   <span class="nb">phpinfo</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
@@ -189,22 +189,22 @@ binary is installed at <code class="docutils literal"><span class="pre">/usr/loc
 framework.</p>
 <ol class="arabic">
 <li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer create-project --prefer-dist cakephp/app bookmarker
-<span class="nv">$ </span><span class="nb">cd </span>bookmarker
-<span class="nv">$ </span>bin/cake server -H 0.0.0.0 -p 8000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ composer create-project --prefer-dist cakephp/app bookmarker
+$ <span class="nb">cd</span> bookmarker
+$ bin/cake server -H 0.0.0.0 -p 8000
 </pre></div>
 </div>
 <p>And you should see the output like:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Welcome to CakePHP v3.1.3 Console
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to CakePHP v3.1.3 Console
 ---------------------------------------------------------------
 App : src
 Path: /home/vagrant/workspace/personal/bookmarker/src/
 DocumentRoot: /home/vagrant/workspace/personal/bookmarker/webroot
 ---------------------------------------------------------------
 built-in server is running in http://0.0.0.0:8000/
-You can <span class="nb">exit </span>with <span class="sb">`</span>CTRL-C<span class="sb">`</span>
+You can <span class="nb">exit</span> with <span class="sb">`</span>CTRL-C<span class="sb">`</span>
 </pre></div>
 </div>
 </li>
@@ -220,10 +220,10 @@ You can <span class="nb">exit </span>with <span class="sb">`</span>CTRL-C<span c
 <code class="docutils literal"><span class="pre">CodeIgniter</span></code> framework.</p>
 <ol class="arabic">
 <li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://github.com/bcit-ci/CodeIgniter/archive/2.2.1.zip
-<span class="nv">$ </span>unzip 2.2.1.zip
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ wget https://github.com/bcit-ci/CodeIgniter/archive/2.2.1.zip
+$ unzip 2.2.1.zip
 </pre></div>
 </div>
 <p>And you should see <em>CodeIgniter-2.2.1</em> directory after <code class="docutils literal"><span class="pre">unzip</span></code>.</p>
@@ -240,15 +240,15 @@ You can <span class="nb">exit </span>with <span class="sb">`</span>CTRL-C<span c
 <p>You&#8217;ll follow <a class="reference external" href="http://laravel.com/docs/5.0/installation">http://laravel.com/docs/5.0/installation</a> to get started with <code class="docutils literal"><span class="pre">Laravel</span></code> framework.</p>
 <ol class="arabic">
 <li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer global require <span class="s2">&quot;laravel/installer=~1.1&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ composer global require <span class="s2">&quot;laravel/installer=~1.1&quot;</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">laravel</span> <span class="pre">new</span> <span class="pre">blog</span></code></p>
 <p>From installation step above, <code class="docutils literal"><span class="pre">laravel</span></code> should be avaiable executable.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>laravel new blog
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ laravel new blog
 </pre></div>
 </div>
 </li>
@@ -264,21 +264,21 @@ You can <span class="nb">exit </span>with <span class="sb">`</span>CTRL-C<span c
 <code class="docutils literal"><span class="pre">Symfony</span></code> framework.</p>
 <ol class="arabic">
 <li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>curl -LsS http://symfony.com/installer &gt; symfony.phar
-<span class="nv">$ </span>sudo mv symfony.phar /usr/local/bin/symfony
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ curl -LsS http://symfony.com/installer &gt; symfony.phar
+$ sudo mv symfony.phar /usr/local/bin/symfony
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create a <code class="docutils literal"><span class="pre">Symfony</span></code> project</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>symfony new myproject
-<span class="nv">$ </span><span class="nb">cd </span>myproject
-<span class="nv">$ </span>php app/console server:run 0.0.0.0:8000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ symfony new myproject
+$ <span class="nb">cd</span> myproject
+$ php app/console server:run 0.0.0.0:8000
 </pre></div>
 </div>
 <p>And you should see the output like:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Server running on http://0.0.0.0:8000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Server running on http://0.0.0.0:8000
 
 Quit the server with CONTROL-C.
 </pre></div>
@@ -297,10 +297,10 @@ Quit the server with CONTROL-C.
 with <code class="docutils literal"><span class="pre">Yii</span></code> framework.</p>
 <ol class="arabic">
 <li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer global require <span class="s2">&quot;fxp/composer-asset-plugin:~1.0.3&quot;</span>
-<span class="nv">$ </span>composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ composer global require <span class="s2">&quot;fxp/composer-asset-plugin:~1.0.3&quot;</span>
+$ composer create-project --prefer-dist yiisoft/yii2-app-basic basic
 </pre></div>
 </div>
 <div class="admonition note">
@@ -326,16 +326,16 @@ information from Github.</p>
 <p>You&#8217;ll follow <a class="reference external" href="https://www.drupal.org/documentation/install">https://www.drupal.org/documentation/install</a> to get started with <code class="docutils literal"><span class="pre">Drupal</span></code>.</p>
 <ol class="arabic">
 <li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget http://ftp.drupal.org/files/projects/drupal-7.35.tar.gz
-<span class="nv">$ </span>tar -xzvf drupal-7.35.tar.gz
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ wget http://ftp.drupal.org/files/projects/drupal-7.35.tar.gz
+$ tar -xzvf drupal-7.35.tar.gz
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create the database</p>
 <p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE drupal CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE drupal CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
 </pre></div>
 </div>
 <p>You&#8217;ll use <em>drupal</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
@@ -356,16 +356,16 @@ the default like this on production servers.</p>
 <p>You&#8217;ll follow <a class="reference external" href="https://docs.joomla.org/J3.x:Installing_Joomla">https://docs.joomla.org/J3.x:Installing_Joomla</a> to get started with <code class="docutils literal"><span class="pre">Joomla!</span></code>.</p>
 <ol class="arabic">
 <li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://github.com/joomla/joomla-cms/releases/download/3.4.1/Joomla_3.4.1-Stable-Full_Package.zip
-<span class="nv">$ </span>unzip Joomla_3.4.1-Stable-Full_Package.zip -d joomla
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ wget https://github.com/joomla/joomla-cms/releases/download/3.4.1/Joomla_3.4.1-Stable-Full_Package.zip
+$ unzip Joomla_3.4.1-Stable-Full_Package.zip -d joomla
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create the database</p>
 <p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE joomla CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE joomla CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
 </pre></div>
 </div>
 <p>You&#8217;ll use <em>joomla</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
@@ -381,16 +381,16 @@ the default like this on production servers.</p>
 <p>You&#8217;ll follow <a class="reference external" href="http://codex.wordpress.org/Installing_WordPress">http://codex.wordpress.org/Installing_WordPress</a> to get started with <code class="docutils literal"><span class="pre">Wordpress</span></code>.</p>
 <ol class="arabic">
 <li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://wordpress.org/latest.tar.gz
-<span class="nv">$ </span>tar -xzvf latest.tar.gz
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ wget https://wordpress.org/latest.tar.gz
+$ tar -xzvf latest.tar.gz
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create the database</p>
 <p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE wordpress CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE wordpress CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
 </pre></div>
 </div>
 <p>You&#8217;ll use <em>wordpress</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
@@ -489,8 +489,8 @@ the default like this on production servers.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &copy; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>

@@ -95,7 +95,7 @@ About Teracy
 
 - Inspiring
 
-**7. What we are working on?**
+**7. What are we working on?**
 
 We are working on both outsourcing and startup projects. We need a wide range of developers
 (C/C++, Python, Java, PHP, HTML/CSS, JS...), designers (art, web...), QA engineers, sales,

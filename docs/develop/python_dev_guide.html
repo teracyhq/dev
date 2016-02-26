@@ -73,12 +73,12 @@ guide, we&#8217;re going to explore the Python language and some Python web fram
 </div>
 <div class="section" id="verify-that-python-works">
 <h2>Verify that <code class="docutils literal"><span class="pre">Python</span></code> Works<a class="headerlink" href="#verify-that-python-works" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
-<span class="nv">$ </span>python --version
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+$ python --version
 </pre></div>
 </div>
 <p>And you should see something like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Python 2.7.6
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Python 2.7.6
 </pre></div>
 </div>
 <p>Congratulations, you can do all <code class="docutils literal"><span class="pre">Python</span></code> related stuff now!</p>
@@ -108,35 +108,35 @@ those. We should learn from easy to harder levels.</p>
 <p>Follow the steps below to get started.</p>
 <ol class="arabic">
 <li><p class="first">Create a virtualenv</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>mkdir flask-app
-<span class="nv">$ </span><span class="nb">cd </span>flask-app
-<span class="nv">$ </span>pyenv virtualenv flask-app
-<span class="nv">$ </span>pyenv activate flask-app
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ mkdir flask-app
+$ <span class="nb">cd</span> flask-app
+$ pyenv virtualenv flask-app
+$ pyenv activate flask-app
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install the <cite>Flask</cite> package</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install Flask
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create <cite>hello.py</cite> under <cite>flask-app</cite> directory with the following content:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s">&quot;Hello World!&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World!&quot;</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Run the <code class="docutils literal"><span class="pre">Flask</span></code> web app</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python hello.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python hello.py
 </pre></div>
 </div>
 <p>Now open <a class="reference external" href="http://localhost:5000">http://localhost:5000</a> on the browser to see the web app.</p>
@@ -153,28 +153,28 @@ those. We should learn from easy to harder levels.</p>
 <p>Follow the steps below to get started.</p>
 <ol class="arabic">
 <li><p class="first">Create a new virtualenv</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>pyenv deactivate
-<span class="nv">$ </span>pyenv virtualenv django-app
-<span class="nv">$ </span>pyenv activate django-app
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> personal
+$ pyenv deactivate
+$ pyenv virtualenv django-app
+$ pyenv activate django-app
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install the <cite>Django</cite> package</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install Django
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create a <cite>Django</cite> application</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startproject django_app
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ django-admin startproject django_app
 </pre></div>
 </div>
 </li>
 <li><p class="first">Run the <cite>Django</cite> application</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>django_app
-<span class="nv">$ </span>python manage.py migrate
-<span class="nv">$ </span>python manage.py runserver 0.0.0.0:8000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> django_app
+$ python manage.py migrate
+$ python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 <p>Now open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> on your browser to see the web app.</p>
@@ -278,8 +278,8 @@ in full screen mode).</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &copy; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>

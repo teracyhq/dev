@@ -91,7 +91,7 @@ the <code class="docutils literal"><span class="pre">workspace/personal</span></
 <p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/~hoavt/pixelate.git</span></code> in the
 <code class="docutils literal"><span class="pre">SSH</span></code> field.</p>
 <p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> command as below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
         ============== &quot;Forked&quot; repo URL ===================
 </pre></div>
 </div>
@@ -103,7 +103,7 @@ the <code class="docutils literal"><span class="pre">workspace/personal</span></
 <div><p><strong>Step 1</strong>: Browse the repository <code class="docutils literal"><span class="pre">https://code.teracy.org/projects/PILOT/repos/pixelate/browse</span></code>, and click <code class="docutils literal"><span class="pre">Clone</span></code> to get the <code class="docutils literal"><span class="pre">.git</span></code> clone URL.</p>
 <p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/pilot/pixelate.git</span></code> in the <strong>SSH</strong> field.</p>
 <p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span></code> command as below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
     ================= Official repo URL ==================
 </pre></div>
 </div>
@@ -133,7 +133,7 @@ which are not applied:
 Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.</p>
 <p>Firstly, you must know what the meaning of “Branching Off” is . In a shorthand, it means you checkout from a branch,
 then create another branch from that checkout.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git checkout branch-1 -b branch-2
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git checkout branch-1 -b branch-2
 </pre></div>
 </div>
 <p>Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
@@ -144,7 +144,7 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code>. On this case, you MUST indicate the branch name with <code class="docutils literal"><span class="pre">deps_&lt;issue-key&gt;</span></code>.</p>
 <p>(In case, you are working on a branch which depends on many different branches, the branch name should have
 <code class="docutils literal"><span class="pre">deps_&lt;issue-key[_issue-key]&gt;</span></code>. For example: <code class="docutils literal"><span class="pre">deps_DEV-1_DEV-2</span></code>.)</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
 $ git fetch phuonglm                                                                      (2)
 $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
   features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
@@ -163,14 +163,14 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1    
 </dl>
 <p>When the <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></code> has some updates, you need to fetch
 and rebase on that branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch phuonglm
 $ git rebase phuonglm/features/DEV-1-fabric-deployment-virtual-machine
 $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 </pre></div>
 </div>
 <p>When <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code> is merged into <code class="docutils literal"><span class="pre">upstream/develop</span></code>, you need to rebase on it to get these
 new updates:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git rebase upstream/develop
 $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 </pre></div>
@@ -197,25 +197,25 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 <blockquote>
 <div><p>If you do not know what the meaning of &#8220;Branching-off&#8221; is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p><strong>Working on features</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b features/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin features/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on improvements</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on tasks or sub-tasks</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on bugs</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
@@ -233,7 +233,7 @@ $ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </div></blockquote>
 <p>If there are some changes from the remote branch (for example, <em>upstream/master</em>) that you need,
 you have to rebase your branch with these updates. It could be done by these commands:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git rebase upstream/master
 </pre></div>
 </div>
@@ -251,7 +251,7 @@ If it has any conflicts, you have to resolve them by:</p>
 </li>
 <li><dl class="first docutils">
 <dt>Adding conflict-resolved-file in git, then continuing to rebase.</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git add path/to/conflict-resolved-file
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span>$ git add path/to/conflict-resolved-file
 $ git rebase --continue
 </pre></div>
 </div>
@@ -260,7 +260,7 @@ $ git rebase --continue
 </li>
 </ul>
 <p>After finishing your work, add changed files to commit and push your branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git add -a
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ git add -a
 $ git commit -m &quot;&lt;issue-key&gt;|git commit message&quot;
 $ git push origin [your-branch-name]
 </pre></div>
@@ -365,12 +365,12 @@ of <code class="docutils literal"><span class="pre">quality</span> <span class="
 <h3>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
 <p>Git commit messages must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue-title&gt;: &lt;changes description&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;issue-key&gt; | &lt;issue-title&gt;: &lt;changes description&gt;
 &lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
 </pre></div>
 </div>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>DEV-1 | Auto deployment with Fabric
+<div class="highlight-python"><div class="highlight"><pre><span></span>DEV-1 | Auto deployment with Fabric
 
 Fabric deployment should be very easy to deploy on both local and remote machine.
 This is the work on local part.
@@ -384,7 +384,7 @@ working branches.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Deleting remote branch:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git push origin :branch_name
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span>$ git push origin :branch_name
 </pre></div>
 </div>
 </dd>
@@ -392,7 +392,7 @@ working branches.</p>
 </li>
 <li><dl class="first docutils">
 <dt>Deleting local branch:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git checkout master
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span>$ git checkout master
 $ git branch -d branch_name
 </pre></div>
 </div>
@@ -417,7 +417,7 @@ model as mentioned in the topics above.</p>
 the <cite>upstream</cite> repository.</p>
 <p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
 <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ ws
 $ cd personal
 $ git clone git@github.com/hoatle/django-boilerplate.git
 $ cd django-boilerplate
@@ -515,8 +515,8 @@ $ git push upstream develop
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &copy; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>

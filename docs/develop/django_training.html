@@ -74,14 +74,14 @@ steps:</p>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>Run the project under a virtual Python environment.</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ ws
+<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ ws
 $ cd personal
 $ pyenv virtualenv tutorial
 $ pyenv activate tutorial
 </pre></div>
 </div>
 <p>You should see the following similar messages:</p>
-<div class="highlight-python"><div class="highlight"><pre>New python executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python2.7
+<div class="highlight-python"><div class="highlight"><pre><span></span>New python executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python2.7
 Also creating executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python
 Installing setuptools, pip, wheel...done.
 Ignoring indexes: https://pypi.python.org/simple
@@ -97,7 +97,7 @@ Python environment again.</p>
 </li>
 <li><dl class="first docutils">
 <dt>Set up the <code class="docutils literal"><span class="pre">tutorial</span></code> project:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ mkdir tutorial
+<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ mkdir tutorial
 $ cd tutorial
 $ git init
 $ git remote add djbp https://github.com/teracyhq/django-boilerplate.git
@@ -115,11 +115,11 @@ project development booted with a Django project template (boilerplate) of the b
 </li>
 <li><dl class="first docutils">
 <dt>Run the server now:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre>$ python manage.py runserver 0.0.0.0:8000
+<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 <p>You should see the following similar messages:</p>
-<div class="last highlight-python"><div class="highlight"><pre>Validating models...
+<div class="last highlight-python"><div class="highlight"><pre><span></span>Validating models...
 
 0 errors found
 July 01, 2013 - 10:44:01
@@ -168,18 +168,18 @@ it on your project.</p>
 <blockquote>
 <div><ul>
 <li><p class="first">Add the following dependency to <code class="docutils literal"><span class="pre">requirements/project/dev.txt</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>teracy-django-html5-boilerplate==0.3.0
+<div class="highlight-python"><div class="highlight"><pre><span></span>teracy-django-html5-boilerplate==0.3.0
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install it:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install -r requirements/dev.txt
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install -r requirements/dev.txt
 </pre></div>
 </div>
 </li>
 </ul>
 <p>You should see something like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>Installing collected packages: teracy-django-html5-boilerplate
+<div class="highlight-python"><div class="highlight"><pre><span></span>Installing collected packages: teracy-django-html5-boilerplate
 Running setup.py install for teracy-django-html5-boilerplate
 
     Skipping installation of /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy/__init__.py (namespace package)
@@ -193,8 +193,8 @@ Running setup.py install for teracy-django-html5-boilerplate
 </li>
 <li><dl class="first docutils">
 <dt>Install the <code class="docutils literal"><span class="pre">teracy-html5boilerplate</span></code> application to <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code>:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
- <span class="s">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
+ <span class="s1">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
   <span class="p">)</span>
 </pre></div>
 </div>
@@ -207,7 +207,7 @@ Running setup.py install for teracy-django-html5-boilerplate
 <p class="first admonition-title">Note</p>
 <p class="last">A specific Django application should be put under <code class="docutils literal"><span class="pre">apps</span></code> directory.</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ ws
 $ workon tutorial
 $ cd personal/tutorial/apps
 $ python manage.py startapp hello
@@ -218,9 +218,9 @@ $ python manage.py startapp hello
 <li><p class="first">Add the <code class="docutils literal"><span class="pre">hello</span></code> application to <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> on <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code> by appending
 the following configuration:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="s">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
-    <span class="s">&#39;apps.hello&#39;</span><span class="p">,</span>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="s1">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;apps.hello&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -229,7 +229,7 @@ the following configuration:</p>
 <li><p class="first">Create the <code class="docutils literal"><span class="pre">home.html</span></code> template under the <code class="docutils literal"><span class="pre">apps/hello/templates/hello</span></code> directory with the
 following content:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>{% extends &#39;html5boilerplate/base.html&#39; %}
+<div><div class="highlight-python"><div class="highlight"><pre><span></span>{% extends &#39;html5boilerplate/base.html&#39; %}
 
 {% block body_content %}
     &lt;h1&gt;Hello World!&lt;/h1&gt;
@@ -241,10 +241,10 @@ following content:</p>
 </li>
 <li><dl class="first docutils">
 <dt>Add <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> to <code class="docutils literal"><span class="pre">apps/hello/views.py</span></code>:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
 
 <span class="k">class</span> <span class="nc">HomeTemplateView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&#39;hello/home.html&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;hello/home.html&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -252,14 +252,14 @@ following content:</p>
 </li>
 <li><dl class="first docutils">
 <dt>Create <code class="docutils literal"><span class="pre">apps/hello/urls.py</span></code> and configure <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> with following content:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">patterns</span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">patterns</span>
 
 <span class="kn">from</span> <span class="nn">apps.hello.views</span> <span class="kn">import</span> <span class="n">HomeTemplateView</span>
 
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
-    <span class="s">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">HomeTemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;hello_home&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">HomeTemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello_home&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -268,8 +268,8 @@ following content:</p>
 </li>
 <li><dl class="first docutils">
 <dt>Configure the root URL on <code class="docutils literal"><span class="pre">urls/project/dev.py</span></code> by adding the following content:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">&#39;apps.hello.urls&#39;</span><span class="p">)),</span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="p">(</span>
+    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;apps.hello.urls&#39;</span><span class="p">)),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -284,7 +284,7 @@ of the 404 error page.</p>
 <p class="first admonition-title">Note</p>
 <p>During development, the server could be stopped by some errors and it is normal.
 The server should be started without any error with the command:</p>
-<div class="last highlight-python"><div class="highlight"><pre>$ python manage.py runserver 0.0.0.0:8000
+<div class="last highlight-python"><div class="highlight"><pre><span></span>$ python manage.py runserver 0.0.0.0:8000
 </pre></div>
 </div>
 </div>
@@ -357,8 +357,8 @@ applications for this <code class="docutils literal"><span class="pre">tutorial<
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &copy; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>
