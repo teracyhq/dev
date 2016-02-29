@@ -4,7 +4,7 @@
 #
 # Author:: Alex Dergachev (<alex@evolvingweb.ca>)
 #
-# Copyright 2013, Opscode, Inc.
+# Copyright 2013, Chef Software, Inc.
 # Copyright 2012, Susan Potter
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,9 +20,12 @@
 # limitations under the License.
 #
 
-node.default['nginx']['passenger']['version'] = '3.0.19'
+node.default['nginx']['passenger']['version'] = '4.0.57'
 
-if node['languages'].attribute?('ruby')
+if node['nginx']['repo_source'] == 'passenger'
+  node.default['nginx']['passenger']['root'] = '/usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini'
+  node.default['nginx']['passenger']['ruby'] = '/usr/bin/ruby'
+elsif node['languages'].attribute?('ruby')
   node.default['nginx']['passenger']['root'] = "#{node['languages']['ruby']['gems_dir']}/gems/passenger-#{node['nginx']['passenger']['version']}"
   node.default['nginx']['passenger']['ruby'] = node['languages']['ruby']['ruby_bin']
 else
@@ -33,9 +36,15 @@ else
   node.default['nginx']['passenger']['ruby'] = '/usr/bin/ruby'
 end
 
-node.default['nginx']['passenger']['packages']['rhel'] = %w(ruby-devel curl-devel)
+if platform_family?('rhel') && node['platform_version'].to_i >= 6
+  node.default['nginx']['passenger']['packages']['rhel'] = %w(ruby-devel libcurl-devel)
+else
+  node.default['nginx']['passenger']['packages']['rhel'] = %w(ruby-devel curl-devel)
+end
+node.default['nginx']['passenger']['packages']['fedora'] = %w(ruby-devel libcurl-devel)
 node.default['nginx']['passenger']['packages']['debian'] = %w(ruby-dev libcurl4-gnutls-dev)
 
+node.default['nginx']['passenger']['install_rake'] = true
 node.default['nginx']['passenger']['spawn_method'] = 'smart-lv2'
 node.default['nginx']['passenger']['buffer_response'] = 'on'
 node.default['nginx']['passenger']['max_pool_size'] = 6
@@ -44,3 +53,6 @@ node.default['nginx']['passenger']['max_instances_per_app'] = 0
 node.default['nginx']['passenger']['pool_idle_time'] = 300
 node.default['nginx']['passenger']['max_requests'] = 0
 node.default['nginx']['passenger']['gem_binary'] = nil
+
+# NodeJs disable by default
+node.default['nginx']['passenger']['nodejs'] = nil

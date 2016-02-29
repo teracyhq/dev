@@ -1,6 +1,43 @@
 apt Cookbook CHANGELOG
 ======================
 
+v2.9.2
+-------------------
+- #168 Adding guard to package resource.
+
+v2.9.1
+-------------------
+- Adding package apt-transport-https to default.rb
+
+v2.9.0
+-------------------
+- Add `sensitive` flag for apt\_repositories
+- Enable installation of recommended or suggested packages
+- Tidy up `apt-get update` logic
+- Fixing not_if guard on ruby_block[validate-key #{key}]
+
+v2.8.2 (2015-08-24)
+-------------------
+- Fix removal of apt\_preferences
+
+v2.8.1 (2015-08-18)
+-------------------
+- Handle keyservers as URLs and bare hostnames
+
+v2.8.0 (2015-08-18)
+-------------------
+- Access keyservers on port 80
+- Adds key\_proxy as LWRP attribute for apt\_repository
+- Fix wildcard glob preferences files
+- Fix text output verification for non en\_US locales
+- Quote repo URLs to deal with spaces
+
+v2.7.0 (2015-03-23)
+-------------------
+- Support Debian 8.0
+- Filename verification for LWRPs
+- Support SSL enabled apt repositories
+
 v2.6.1 (2014-12-29)
 -------------------
 - Remove old preference files without .pref extension from previous versions
@@ -16,7 +53,7 @@ v2.5.3 (2014-08-14)
 
 v2.5.2 (2014-08-14)
 -------------------
-- Fully restore fully restore 2.3.10 behaviour
+- Fully restore 2.3.10 behaviour
 
 v2.5.1 (2014-08-14)
 -------------------
@@ -43,7 +80,7 @@ v2.3.10 (2014-04-23)
 v2.3.8 (2014-02-14)
 -------------------
 ### Bug
-- **[COOK-4287](https://tickets.opscode.com/browse/COOK-4287)** - Cleanup the Kitchen
+- **[COOK-4287](https://tickets.chef.io/browse/COOK-4287)** - Cleanup the Kitchen
 
 
 v2.3.6
@@ -73,32 +110,32 @@ v2.3.2
 v2.3.0
 ------
 ### Bug
-- **[COOK-3812](https://tickets.opscode.com/browse/COOK-3812)** - Add a way to bypass the apt existence check
+- **[COOK-3812](https://tickets.chef.io/browse/COOK-3812)** - Add a way to bypass the apt existence check
 
 ### Improvement
-- **[COOK-3567](https://tickets.opscode.com/browse/COOK-3567)** - Allow users to bypass apt-cache via attributes
+- **[COOK-3567](https://tickets.chef.io/browse/COOK-3567)** - Allow users to bypass apt-cache via attributes
 
 
 v2.2.1
 ------
 ### Improvement
-- **[COOK-664](https://tickets.opscode.com/browse/COOK-664)** - Check platform before running apt-specific commands
+- **[COOK-664](https://tickets.chef.io/browse/COOK-664)** - Check platform before running apt-specific commands
 
 
 v2.2.0
 ------
 ### Bug
-- **[COOK-3707](https://tickets.opscode.com/browse/COOK-3707)** - multiple nics confuse apt::cacher-client
+- **[COOK-3707](https://tickets.chef.io/browse/COOK-3707)** - multiple nics confuse apt::cacher-client
 
 v2.1.2
 ------
 ### Improvement
-- **[COOK-3551](https://tickets.opscode.com/browse/COOK-3551)** - Allow user to set up a trusted APT repository
+- **[COOK-3551](https://tickets.chef.io/browse/COOK-3551)** - Allow user to set up a trusted APT repository
 
 v2.1.1
 ------
 ### Bug
-- **[COOK-1856](https://tickets.opscode.com/browse/COOK-1856)** - Match GPG keys without case sensitivity
+- **[COOK-1856](https://tickets.chef.io/browse/COOK-1856)** - Match GPG keys without case sensitivity
 
 v2.1.0
 ------

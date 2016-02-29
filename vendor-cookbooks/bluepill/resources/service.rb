@@ -2,7 +2,7 @@
 # Cookbook Name:: bluepill
 # Resource:: service
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@
 actions :start, :stop, :enable, :disable, :load, :restart, :reload
 default_action :start
 
-attribute :service_name, :name_attribute => true
-attribute :enabled, :default => false
-attribute :running, :default => false
-attribute :variables, :kind_of => Hash
-attribute :supports, :default => { :restart => true, :status => true }
+attribute :service_name, name_attribute: true
+attribute :enabled, default: false
+attribute :running, default: false
+attribute :variables, kind_of: Hash
+attribute :supports, default: { restart: true, status: true }

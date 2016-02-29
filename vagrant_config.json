@@ -106,7 +106,7 @@
   "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
     //"name":"teracy-dev",
-    "memory":1024,
+    "memory":2024,
     //"cpus":1,
     "description":"teracy-dev vagrant box"
   },
@@ -130,6 +130,9 @@
       "user": "vagrant",
       "group": "vagrant",
       "user_home": "/home/vagrant"
+    },
+    "mongodb":{
+      "install_method": "mongodb-org"
     },
     "teracy-dev":{
       "workspace":[
@@ -253,7 +256,7 @@
       },
       "mysql":{
         "enabled":true,
-        "version":"5.3.6",
+        "version":"5.6", // https://github.com/chef-cookbooks/mysql check support version here
         "password":"teracy"
       },
       "mongodb":{

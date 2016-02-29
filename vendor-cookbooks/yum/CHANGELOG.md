@@ -2,6 +2,56 @@ yum Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum cookbook.
 
+v3.8.2 (2015-10-28)
+-------------------
+- #141 - Replace clean_headers with clean_metadata
+
+v3.8.1 (2015-10-28)
+-------------------
+- Fixing up Chef13 deprecation warnings
+
+v3.8.0 (2015-10-13)
+-------------------
+- adding clean_headers boolean property to yum_resource
+- restoring Chef 10 backwards compat for the sake of ChefSpec
+  (unique resource names needed to avoid cloning)
+- Fixing localpkg_gpgcheck values
+
+v3.7.1 (2015-09-08)
+-------------------
+- #135 - reverting "yum clean headers" as it breaks dnf compat
+
+v3.7.0 (2015-09-05)
+-------------------
+- Adding deltarpm toggle
+- Cleaning 'headers' rather than 'all'
+
+v3.6.3 (2015-07-13)
+-------------------
+- Normalizing sslverify option rendering behavior
+- Setting default value on the resource to nil
+- Explictly setting string to render in template if value is supplied
+- Behavior should default to "True", per man page
+
+v3.6.2 (2015-07-13)
+-------------------
+- Adding -y to makecache, to import key when repo_gpgcheck = true.
+- Accepting Integer value for max_retries
+
+v3.6.1 (2015-06-04)
+-------------------
+- Executing yum clean before makecache
+- Adding repo_gpgcheck
+
+v3.6.0 (2015-04-23)
+-------------------
+- Adding "yum clean" before "yum makecache" in yum_repository :create
+- Adding why_run support to yum_globalconfig
+
+v3.5.4 (2015-04-07)
+-------------------
+- Changing tolerant config line to stringified integer
+
 v3.5.3 (2015-01-16)
 -------------------
 - Adding reposdir to globalconfig template
@@ -51,19 +101,17 @@ v3.3.0 (2014-09-03)
 
 v3.2.4 (2014-08-20)
 -------------------
-#82 - Adding a makecache parameter
+- #82 - Adding a makecache parameter
 
 v3.2.2 (2014-06-11)
 -------------------
-#77 - Parameter default to be Trueclass instead of "1"
-#78 - add releasever parameter
-
+- #77 - Parameter default to be Trueclass instead of "1"
+- #78 - add releasever parameter
 
 v3.2.0 (2014-04-09)
 -------------------
 - [COOK-4510] - Adding username and password parameters to node attributes
 - [COOK-4518] - Fix Scientific Linux distroverpkg
-
 
 v3.1.6 (2014-03-27)
 -------------------
@@ -75,13 +123,11 @@ v3.1.4 (2014-03-12)
 -------------------
 - [COOK-4417] Expand test harness to encompass 32-bit boxes
 
-
 v3.1.2 (2014-02-23)
 -------------------
 Fixing bugs around :delete action and cache clean
 Fixing specs to cover :remove and :delete aliasing properly
 Adding Travis-ci build matrix bits
-
 
 v3.1.0 (2014-02-13)
 -------------------
@@ -94,27 +140,22 @@ v3.1.0 (2014-02-13)
 - Adding full spec coverage
 - Adding support for custom source template to yum_repository
 
-
 v3.0.8 (2014-01-27)
 -------------------
 Fixing typo in default.rb. yum_globalconfig now passes proxy attribute correctly.
-
 
 v3.0.6 (2014-01-27)
 -------------------
 Updating default.rb to consume node['yum']['main']['proxy']
 
-
 v3.0.4 (2013-12-29)
 -------------------
 ### Bug
-- **[COOK-4156](https://tickets.opscode.com/browse/COOK-4156)** - yum cookbook creates a yum.conf with "cachefir" directive
-
+- **[COOK-4156](https://tickets.chef.io/browse/COOK-4156)** - yum cookbook creates a yum.conf with "cachefir" directive
 
 v3.0.2
 ------
 Updating globalconfig provider for Chef 10 compatability
-
 
 v3.0.0
 ------
@@ -128,35 +169,30 @@ yum_repository actions have been reduced to :create and :delete
 chefspec test coverage
 gpgcheck is set to 'true' by default and must be explicitly disabled
 
-
 v2.4.4
 ------
 Reverting to Ruby 1.8 hash syntax.
-
 
 v2.4.2
 ------
 [COOK-3275] LWRP repository.rb :add method fails to create yum repo in
 some cases which causes :update to fail Amazon rhel
 
-
 v2.4.0
 ------
 ### Improvement
 - [COOK-3025] - Allow per-repo proxy definitions
 
-
 v2.3.4
 ------
 ### Improvement
-- **[COOK-3689](https://tickets.opscode.com/browse/COOK-3689)** - Fix warnings about resource cloning
-- **[COOK-3574](https://tickets.opscode.com/browse/COOK-3574)** - Add missing "description" field in metadata
-
+- **[COOK-3689](https://tickets.chef.io/browse/COOK-3689)** - Fix warnings about resource cloning
+- **[COOK-3574](https://tickets.chef.io/browse/COOK-3574)** - Add missing "description" field in metadata
 
 v2.3.2
 ------
 ### Bug
-- **[COOK-3145](https://tickets.opscode.com/browse/COOK-3145)** - Use correct download URL for epel `key_url`
+- **[COOK-3145](https://tickets.chef.io/browse/COOK-3145)** - Use correct download URL for epel `key_url`
 
 v2.3.0
 ------

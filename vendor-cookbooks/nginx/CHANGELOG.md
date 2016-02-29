@@ -2,6 +2,65 @@ nginx Cookbook CHANGELOG
 ========================
 This file is used to list changes made in each version of the nginx cookbook.
 
+v2.7.6 / 2015-03-17
+==================
+
+  * Bugfix sites do not need a .conf suffix anymore, [#338][] [@runningman84][]
+
+v2.7.5 (2015-03-17)
+-------------------
+**NOTE** As of this release, this cookbook in its current format is deprecated,
+and only critical bugs and fixes will be added.
+A complete rewrite is in progress, so we appreciate your patience while we sort things out.
+The amount of change included here
+
+* Fix nginx 1.4.4 archive checksum to prevent redownload, [#305][] [@irontoby][]
+* Allow setting an empty string to prevent additional repos, [#243][] [@miketheman][]
+* Use correct `mime.types` for javascript, [#259][] [@dwradcliffe][]
+* Fix `headers_more` module for source installs, [#279][], [@josh-padnick][] & [@miketheman][]
+* Remove `libtool` from `geoip` and update download paths & checksums, [@miketheman][]
+* Fix unquoted URL with params failing geoip module build (and tests!), [#294][] [@karsten-bruckmann][] & [@miketheman][]
+* Fix typo in `source.rb`, [#205][] [@gregkare][]
+* Test updates: ChefSpec, test-kitchen. Lots of help by [@jujugrrr][]
+* Toolchain updates for testing
+* Adds support for `tcp_nopush`, `tcp_nodelay` [@shtouff][]
+
+After merging a ton of pull requests, here's a brief changelog. Click each to read more.
+
+* Merge pull request [#335][] from [@stevenolen][]
+* Merge pull request [#332][] from [@monsterstrike][]
+* Merge pull request [#331][] from [@jalberto][]
+* Merge pull request [#327][] from [@nkadel-skyhook][]
+* Merge pull request [#326][] from [@bchrobot][]
+* Merge pull request [#325][] from [@CanOfSpam3bug324][]
+* Merge pull request [#321][] from [@jalberto][]
+* Merge pull request [#318][] from [@evertrue][]
+* Merge pull request [#314][] from [@bkw][]
+* Merge pull request [#312][] from [@thomasmeeus][]
+* Merge pull request [#310][] from [@morr][]
+* Merge pull request [#305][] from [@irontoby][]
+* Merge pull request [#302][] from [@auth0][]
+* Merge pull request [#298][] from [@Mytho][]
+* Merge pull request [#269][] from [@yveslaroche][]
+* Merge pull request [#259][] from [@dwradcliffe][]
+* Merge pull request [#254][] from [@evertrue][]
+* Merge pull request [#252][] from [@gkra][]
+* Merge pull request [#249][] from [@whatcould][]
+* Merge pull request [#240][] from [@jcoleman][]
+* Merge pull request [#236][] from [@adepue][]
+* Merge pull request [#230][] from [@n1koo][]
+* Merge pull request [#225][] from [@thommay][]
+* Merge pull request [#223][] from [@firmhouse][]
+* Merge pull request [#220][] from [@evertrue][]
+* Merge pull request [#219][] from [@evertrue][]
+* Merge pull request [#204][] from [@usertesting][]
+* Merge pull request [#200][] from [@ffuenf][]
+* Merge pull request [#188][] from [@larkin][]
+* Merge pull request [#184][] from [@tvdinner][]
+* Merge pull request [#183][] from [@jenssegers][]
+* Merge pull request [#174][] from [@9minutesnooze][]
+
+https://github.com/miketheman/nginx/compare/v2.7.4...v2.7.5
 
 v2.7.4 (2014-06-06)
 -------------------
@@ -11,7 +70,7 @@ v2.7.4 (2014-06-06)
 v2.7.2 (2014-05-27)
 -------------------
 
-- [COOK-4658] - Nginx::socketproxy if the context is blank or nonexistant, the location in the config file has a double slash at the beginning
+- [COOK-4658] - Nginx::socketproxy if the context is blank or nonexistent, the location in the config file has a double slash at the beginning
 - [COOK-4644] - add support to nginx::repo for Amazon Linux
 - Allow .kitchen.cloud.yml to use an environment variable for the EC2 Availability Zone
 
@@ -61,7 +120,7 @@ v2.4.0 (2014-02-27)
 
 v2.3.0 (2014-02-25)
 -------------------
-- **[COOK-4293](https://tickets.opscode.com/browse/COOK-4293)** - Update testing Gems in nginx and fix a rubocop warnings
+- **[COOK-4293](https://tickets.chef.io/browse/COOK-4293)** - Update testing Gems in nginx and fix a rubocop warnings
 - **[COOK-4237] - Nginx version incorrectly parsed on Ubuntu 13
 - **[COOK-3866] - Nginx default site folder
 
@@ -98,60 +157,60 @@ Locking yum dependency to '< 3'
 v2.0.4
 ------
 ### Bug
-- **[COOK-3808](https://tickets.opscode.com/browse/COOK-3808)** - nginx::passenger run fails because of broken installation of package dependencies
-- **[COOK-3779](https://tickets.opscode.com/browse/COOK-3779)** - Build in master fails due to rubocop error
+- **[COOK-3808](https://tickets.chef.io/browse/COOK-3808)** - nginx::passenger run fails because of broken installation of package dependencies
+- **[COOK-3779](https://tickets.chef.io/browse/COOK-3779)** - Build in master fails due to rubocop error
 
 
 v2.0.2
 ------
 ### Bug
-- **[COOK-3808](https://tickets.opscode.com/browse/COOK-3808)** - nginx::passenger run fails because of broken installation of package dependencies
-- **[COOK-3779](https://tickets.opscode.com/browse/COOK-3779)** - Build in master fails due to rubocop error
+- **[COOK-3808](https://tickets.chef.io/browse/COOK-3808)** - nginx::passenger run fails because of broken installation of package dependencies
+- **[COOK-3779](https://tickets.chef.io/browse/COOK-3779)** - Build in master fails due to rubocop error
 
 
 v2.0.0
 ------
 ### Improvement
-- **[COOK-3733](https://tickets.opscode.com/browse/COOK-3733)** - Add RPM key names and GPG checking
-- **[COOK-3687](https://tickets.opscode.com/browse/COOK-3687)** - Add support for `http_perl`
-- **[COOK-3603](https://tickets.opscode.com/browse/COOK-3603)** - Add a recipe for using custom openssl
-- **[COOK-3602](https://tickets.opscode.com/browse/COOK-3602)** - Use an attribute for the status module port
-- **[COOK-3549](https://tickets.opscode.com/browse/COOK-3549)** - Refactor custom modules support
-- **[COOK-3521](https://tickets.opscode.com/browse/COOK-3521)** - Add support for `http_auth_request`
-- **[COOK-3520](https://tickets.opscode.com/browse/COOK-3520)** - Add support for `spdy`
-- **[COOK-3185](https://tickets.opscode.com/browse/COOK-3185)** - Add `gzip_*` attributes
-- **[COOK-2712](https://tickets.opscode.com/browse/COOK-2712)** - Update `upload_progress` version to 0.9.0
+- **[COOK-3733](https://tickets.chef.io/browse/COOK-3733)** - Add RPM key names and GPG checking
+- **[COOK-3687](https://tickets.chef.io/browse/COOK-3687)** - Add support for `http_perl`
+- **[COOK-3603](https://tickets.chef.io/browse/COOK-3603)** - Add a recipe for using custom openssl
+- **[COOK-3602](https://tickets.chef.io/browse/COOK-3602)** - Use an attribute for the status module port
+- **[COOK-3549](https://tickets.chef.io/browse/COOK-3549)** - Refactor custom modules support
+- **[COOK-3521](https://tickets.chef.io/browse/COOK-3521)** - Add support for `http_auth_request`
+- **[COOK-3520](https://tickets.chef.io/browse/COOK-3520)** - Add support for `spdy`
+- **[COOK-3185](https://tickets.chef.io/browse/COOK-3185)** - Add `gzip_*` attributes
+- **[COOK-2712](https://tickets.chef.io/browse/COOK-2712)** - Update `upload_progress` version to 0.9.0
 
 ### Bug
-- **[COOK-3686](https://tickets.opscode.com/browse/COOK-3686)** - Remove deprecated 'passenger_use_global_queue' directive
-- **[COOK-3626](https://tickets.opscode.com/browse/COOK-3626)** - Parameterize hardcoded path to helper scripts
-- **[COOK-3571](https://tickets.opscode.com/browse/COOK-3571)** - Reloda ohai plugin after installation
-- **[COOK-3428](https://tickets.opscode.com/browse/COOK-3428)** - Fix an issue where access logs are not disabled when the `disable_access_log` attribute is set to `true`
-- **[COOK-3322](https://tickets.opscode.com/browse/COOK-3322)** - Fix an issue where `nginx::ohai_plugin` fails when using source recipe
-- **[COOK-3241](https://tickets.opscode.com/browse/COOK-3241)** - Fix an issue where`nginx::ohai_plugin` fails unless using source recipe
+- **[COOK-3686](https://tickets.chef.io/browse/COOK-3686)** - Remove deprecated 'passenger_use_global_queue' directive
+- **[COOK-3626](https://tickets.chef.io/browse/COOK-3626)** - Parameterize hardcoded path to helper scripts
+- **[COOK-3571](https://tickets.chef.io/browse/COOK-3571)** - Reloda ohai plugin after installation
+- **[COOK-3428](https://tickets.chef.io/browse/COOK-3428)** - Fix an issue where access logs are not disabled when the `disable_access_log` attribute is set to `true`
+- **[COOK-3322](https://tickets.chef.io/browse/COOK-3322)** - Fix an issue where `nginx::ohai_plugin` fails when using source recipe
+- **[COOK-3241](https://tickets.chef.io/browse/COOK-3241)** - Fix an issue where`nginx::ohai_plugin` fails unless using source recipe
 
 ### New Feature
-- **[COOK-3605](https://tickets.opscode.com/browse/COOK-3605)** - Add Lua module
+- **[COOK-3605](https://tickets.chef.io/browse/COOK-3605)** - Add Lua module
 
 
 v1.8.0
 ------
 ### Bug
-- **[COOK-3397](https://tickets.opscode.com/browse/COOK-3397)** - Fix user from nginx package on Gentoo
-- **[COOK-2968](https://tickets.opscode.com/browse/COOK-2968)** - Fix foodcritic failure
-- **[COOK-2723](https://tickets.opscode.com/browse/COOK-2723)** - Remove duplicate  passenger `max_pool_size`
+- **[COOK-3397](https://tickets.chef.io/browse/COOK-3397)** - Fix user from nginx package on Gentoo
+- **[COOK-2968](https://tickets.chef.io/browse/COOK-2968)** - Fix foodcritic failure
+- **[COOK-2723](https://tickets.chef.io/browse/COOK-2723)** - Remove duplicate  passenger `max_pool_size`
 
 ### Improvement
-- **[COOK-3186](https://tickets.opscode.com/browse/COOK-3186)** - Add `client_body_buffer_size` and `server_tokens attributes`
-- **[COOK-3080](https://tickets.opscode.com/browse/COOK-3080)** - Add rate-limiting support
-- **[COOK-2927](https://tickets.opscode.com/browse/COOK-2927)** - Add support for `real_ip_recursive` directive
-- **[COOK-2925](https://tickets.opscode.com/browse/COOK-2925)** - Fix ChefSpec converge
-- **[COOK-2724](https://tickets.opscode.com/browse/COOK-2724)** - Automatically create directory for PID file
-- **[COOK-2472](https://tickets.opscode.com/browse/COOK-2472)** - Bump nginx version to 1.2.9
-- **[COOK-2312](https://tickets.opscode.com/browse/COOK-2312)** - Add additional `mine_types` to the `gzip_types` value
+- **[COOK-3186](https://tickets.chef.io/browse/COOK-3186)** - Add `client_body_buffer_size` and `server_tokens attributes`
+- **[COOK-3080](https://tickets.chef.io/browse/COOK-3080)** - Add rate-limiting support
+- **[COOK-2927](https://tickets.chef.io/browse/COOK-2927)** - Add support for `real_ip_recursive` directive
+- **[COOK-2925](https://tickets.chef.io/browse/COOK-2925)** - Fix ChefSpec converge
+- **[COOK-2724](https://tickets.chef.io/browse/COOK-2724)** - Automatically create directory for PID file
+- **[COOK-2472](https://tickets.chef.io/browse/COOK-2472)** - Bump nginx version to 1.2.9
+- **[COOK-2312](https://tickets.chef.io/browse/COOK-2312)** - Add additional `mine_types` to the `gzip_types` value
 
 ### New Feature
-- **[COOK-3183](https://tickets.opscode.com/browse/COOK-3183)** - Allow inclusion in extra-cookbook modules
+- **[COOK-3183](https://tickets.chef.io/browse/COOK-3183)** - Allow inclusion in extra-cookbook modules
 
 v1.7.0
 ------
@@ -300,3 +359,77 @@ v0.99.2
 -------
 - [COOK-809] - attribute to disable access logging
 - [COOK-772] - update nginx download source location
+
+<!--- The following link definition list is generated by PimpMyChangelog --->
+[#174]: https://github.com/miketheman/nginx/issues/174
+[#183]: https://github.com/miketheman/nginx/issues/183
+[#184]: https://github.com/miketheman/nginx/issues/184
+[#188]: https://github.com/miketheman/nginx/issues/188
+[#200]: https://github.com/miketheman/nginx/issues/200
+[#204]: https://github.com/miketheman/nginx/issues/204
+[#205]: https://github.com/miketheman/nginx/issues/205
+[#219]: https://github.com/miketheman/nginx/issues/219
+[#220]: https://github.com/miketheman/nginx/issues/220
+[#223]: https://github.com/miketheman/nginx/issues/223
+[#225]: https://github.com/miketheman/nginx/issues/225
+[#230]: https://github.com/miketheman/nginx/issues/230
+[#236]: https://github.com/miketheman/nginx/issues/236
+[#240]: https://github.com/miketheman/nginx/issues/240
+[#243]: https://github.com/miketheman/nginx/issues/243
+[#249]: https://github.com/miketheman/nginx/issues/249
+[#252]: https://github.com/miketheman/nginx/issues/252
+[#254]: https://github.com/miketheman/nginx/issues/254
+[#259]: https://github.com/miketheman/nginx/issues/259
+[#269]: https://github.com/miketheman/nginx/issues/269
+[#279]: https://github.com/miketheman/nginx/issues/279
+[#294]: https://github.com/miketheman/nginx/issues/294
+[#298]: https://github.com/miketheman/nginx/issues/298
+[#302]: https://github.com/miketheman/nginx/issues/302
+[#305]: https://github.com/miketheman/nginx/issues/305
+[#310]: https://github.com/miketheman/nginx/issues/310
+[#312]: https://github.com/miketheman/nginx/issues/312
+[#314]: https://github.com/miketheman/nginx/issues/314
+[#318]: https://github.com/miketheman/nginx/issues/318
+[#321]: https://github.com/miketheman/nginx/issues/321
+[#325]: https://github.com/miketheman/nginx/issues/325
+[#326]: https://github.com/miketheman/nginx/issues/326
+[#327]: https://github.com/miketheman/nginx/issues/327
+[#331]: https://github.com/miketheman/nginx/issues/331
+[#332]: https://github.com/miketheman/nginx/issues/332
+[#335]: https://github.com/miketheman/nginx/issues/335
+[#338]: https://github.com/miketheman/nginx/issues/338
+[@9minutesnooze]: https://github.com/9minutesnooze
+[@CanOfSpam3bug324]: https://github.com/CanOfSpam3bug324
+[@Mytho]: https://github.com/Mytho
+[@adepue]: https://github.com/adepue
+[@auth0]: https://github.com/auth0
+[@bchrobot]: https://github.com/bchrobot
+[@bkw]: https://github.com/bkw
+[@dwradcliffe]: https://github.com/dwradcliffe
+[@evertrue]: https://github.com/evertrue
+[@ffuenf]: https://github.com/ffuenf
+[@firmhouse]: https://github.com/firmhouse
+[@gkra]: https://github.com/gkra
+[@gregkare]: https://github.com/gregkare
+[@irontoby]: https://github.com/irontoby
+[@jalberto]: https://github.com/jalberto
+[@jcoleman]: https://github.com/jcoleman
+[@jenssegers]: https://github.com/jenssegers
+[@josh-padnick]: https://github.com/josh-padnick
+[@jujugrrr]: https://github.com/jujugrrr
+[@karsten-bruckmann]: https://github.com/karsten-bruckmann
+[@larkin]: https://github.com/larkin
+[@miketheman]: https://github.com/miketheman
+[@monsterstrike]: https://github.com/monsterstrike
+[@morr]: https://github.com/morr
+[@n1koo]: https://github.com/n1koo
+[@nkadel-skyhook]: https://github.com/nkadel-skyhook
+[@runningman84]: https://github.com/runningman84
+[@shtouff]: https://github.com/shtouff
+[@stevenolen]: https://github.com/stevenolen
+[@thomasmeeus]: https://github.com/thomasmeeus
+[@thommay]: https://github.com/thommay
+[@tvdinner]: https://github.com/tvdinner
+[@usertesting]: https://github.com/usertesting
+[@whatcould]: https://github.com/whatcould
+[@yveslaroche]: https://github.com/yveslaroche

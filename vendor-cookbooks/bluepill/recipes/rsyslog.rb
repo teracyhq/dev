@@ -2,7 +2,7 @@
 # Cookbook Name:: bluepill
 # Recipe:: rsyslog
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe "rsyslog"
+include_recipe 'rsyslog::default'
 
-template "/etc/rsyslog.d/bluepill.conf" do
-  owner  "root"
-  group  "root"
-  mode   0644
-  source "bluepill_rsyslog.conf.erb"
-  notifies :restart, "service[rsyslog]"
+template '/etc/rsyslog.d/bluepill.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  source 'bluepill_rsyslog.conf.erb'
+  notifies :restart, "service[#{node['rsyslog']['service_name']}]"
 end

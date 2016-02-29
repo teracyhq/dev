@@ -1,11 +1,22 @@
 bluepill Cookbook
 =================
-Installs bluepill RubyGem and configures it to manage services. Also includes a LWRP.
+
+[![Build Status](https://travis-ci.org/chef-cookbooks/bluepill.svg?branch=master)](https://travis-ci.org/chef-cookbooks/bluepill)
+[![Cookbook Version](https://img.shields.io/cookbook/v/bluepill.svg)](https://supermarket.chef.io/cookbooks/bluepill)
+
+Installs bluepill Ruby Gem and configures it to manage services. Also includes a LWRP.
 
 
 Requirements
 ------------
+#### Platforms
 Bluepill is a pure Ruby service management tool/library, so this cookbook should work on any system. The attributes do set up paths based on FHS locations, see below.
+
+#### Chef
+- Chef 11+
+
+#### Cookbooks
+- none
 
 
 Attributes
@@ -68,11 +79,12 @@ See bluepill's documentation for more information on creating pill templates.
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@opscode.com>)
 
-```text
-Copyright 2010-2013, Opscode, Inc.
+**Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
 
+**Copyright:** 2010-2015, Chef Software, Inc.
+
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

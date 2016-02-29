@@ -7,7 +7,7 @@ directory node['nginx']['socketproxy']['root'] do
   action :create
 end
 
-context_names = node['nginx']['socketproxy']['apps'].map do |app, app_conf|
+context_names = node['nginx']['socketproxy']['apps'].map do |_app, app_conf|
   app_conf['context_name']
 end
 
@@ -18,7 +18,7 @@ template node['nginx']['dir'] + '/sites-available/socketproxy.conf' do
   owner 'root'
   group 'root'
   mode 00644
-  notifies :reload, 'service[nginx]'
+  notifies :reload, 'service[nginx]', :delayed
 end
 
 link node['nginx']['dir'] + '/sites-enabled/socketproxy.conf' do

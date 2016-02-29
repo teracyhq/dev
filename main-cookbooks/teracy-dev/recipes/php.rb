@@ -120,8 +120,9 @@ if node['teracy-dev']['php']['enabled']
     end
     bash 'add php fpm' do
       code <<-EOF
-        rm -rf /etc/php5/conf.d/pdo.ini
-        rm -rf /etc/php5/*/conf.d/pdo.ini
+        rm -rf /etc/php5/conf.d/*-pdo.ini /etc/php5/conf.d/*-json.ini /etc/php5/conf.d/*-opcache.ini
+        rm -rf /etc/php5/*/conf.d/*-pdo.ini /etc/php5/*/conf.d/*-json.ini /etc/php5/*/conf.d/*-opcache.ini
+        rm -rf /etc/php5/mods-available
         sed -i 's/NAME=php5-fpm/NAME=php-fpm/' /etc/init.d/php5-fpm
         sed -i 's/DAEMON=\\/usr\\/sbin/DAEMON=\\/usr\\/local\\/sbin/' /etc/init.d/php5-fpm
         sed -i 's/exec \\/usr\\/sbin\\/php5-fpm/exec \\/usr\\/local\\/sbin\\/php-fpm/' /etc/init/php5-fpm.conf
@@ -144,7 +145,9 @@ if node['teracy-dev']['php']['enabled']
 
     bash "update php mysql_socket_path for php #{conf_type}" do
       code <<-EOF
-        sed -i 's/^mysql.default_socket =$/mysql.default_socket = \\/var\\/run\\/mysqld\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
+        sed -i 's/^mysql.default_socket =$/mysql.default_socket=\\/run\\/mysql-default\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
+        sed -i 's/^pdo_mysql.default_socket=$/pdo_mysql.default_socket=\\/run\\/mysql-default\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
+        sed -i 's/^mysqli.default_socket =$/mysqli.default_socket=\\/run\\/mysql-default\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
       EOF
       user 'root'
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
@@ -158,7 +161,7 @@ if node['teracy-dev']['php']['enabled']
         echo 'export PATH=~/.composer/vendor/bin/:$PATH' | tee --append ~/.bash_profile
       EOF
       environment 'HOME'=>'/home/vagrant/'
-      not_if 'grep -q ".composer" /home/vagrant/.bash_profile'
+      only_if 'grep -q ".composer" /home/vagrant/.bash_profile'
       user 'vagrant'
   end
 end

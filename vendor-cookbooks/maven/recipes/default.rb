@@ -2,10 +2,10 @@
 # Cookbook Name:: maven
 # Recipe:: default
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Bryan W. Berry (<bryan.berry@gmail.com>)
 #
-# Copyright:: 2010-2012, Opscode, Inc.
+# Copyright:: 2010-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,20 +20,31 @@
 # limitations under the License.
 #
 
-include_recipe 'java::default' if node['maven']['install_java']
 include_recipe 'ark::default'
 
-mvn_version = node['maven']['version'].to_s
-
+# install maven via ark
 ark 'maven' do
-  url      node['maven'][mvn_version]['url']
-  checksum node['maven'][mvn_version]['checksum']
+  version node['maven']['version']
+  url node['maven']['url']
+  checksum node['maven']['checksum']
   home_dir node['maven']['m2_home']
-  version  node['maven'][mvn_version]['version']
+  win_install_dir node['maven']['m2_home']
   append_env_path true
 end
 
-template '/etc/mavenrc' do
-  source 'mavenrc.erb'
-  mode   '0755'
+# setup environmental variables
+if node['platform_family'] == 'windows'
+  env 'M2_HOME' do
+    value node['maven']['m2_home']
+    action :create
+  end
+  env 'MAVEN_OPTS' do
+    value node['maven']['mavenrc']['opts']
+    action :create
+  end
+else
+  template '/etc/mavenrc' do
+    source 'mavenrc.erb'
+    mode   '0755'
+  end
 end

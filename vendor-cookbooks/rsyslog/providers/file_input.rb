@@ -1,7 +1,7 @@
 # Cookbook Name:: rsyslog
 # Provider:: file_input
 #
-# Copyright 2012, Joseph Holsten
+# Copyright 2012-2015, Joseph Holsten
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +15,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# support whyrun
+def whyrun_supported?
+  true
+end
 
 use_inline_resources
 

@@ -56,7 +56,23 @@ if node['teracy-dev']['mysql']['enabled']
         not_if { mysql_installed? }
     end.run_action(:run)
 
-    include_recipe 'mysql::server'
-    include_recipe 'mysql::client'
+    mysql_service 'default' do
+      version node['teracy-dev']['mysql']['version']
+      bind_address '0.0.0.0'
+      port '3306'
+      initial_root_password node['teracy-dev']['mysql']['password']
+      action [:create, :start]
+    end
 
+    bash 'update mysql_socket_path for mysql cli command' do
+      code <<-EOF
+        sed -i 's/^socket\\s*=\\s*.*$/socket = \\/run\\/mysql-default\\/mysqld.sock/' /etc/mysql/debian.cnf
+        sed -i 's/^user\\s*=\\s*.*$/user = root'/ /etc/mysql/debian.cnf
+        sed -i 's/^password\\s*=\\s*.*$/password = #{node['teracy-dev']['mysql']['password']}/' /etc/mysql/debian.cnf
+        cp /etc/mysql/debian.cnf /etc/mysql/my.cnf
+        chmod 644 /etc/mysql/my.cnf
+        mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '#{node['teracy-dev']['mysql']['password']}';"
+      EOF
+      user 'root'
+    end
 end

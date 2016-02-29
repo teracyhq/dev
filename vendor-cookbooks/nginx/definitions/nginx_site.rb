@@ -4,7 +4,7 @@
 #
 # Author:: AJ Christensen <aj@junglist.gen.nz>
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2008-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,6 +21,14 @@
 
 define :nginx_site, :enable => true, :timing => :delayed do
   if params[:enable]
+
+    if params[:template]
+      template "#{node['nginx']['dir']}/sites-available/#{params[:name]}" do
+        source params[:template]
+        variables(params[:variables])
+      end
+    end
+
     execute "nxensite #{params[:name]}" do
       command "#{node['nginx']['script_dir']}/nxensite #{params[:name]}"
       notifies :reload, 'service[nginx]', params[:timing]

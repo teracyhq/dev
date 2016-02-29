@@ -8,8 +8,8 @@
 
     listen <%= node['nginx']['port'] %> default;
 
-    access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.access.log main;
-    error_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.error.log debug;
+    access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.access.log<% if node['nginx']['access_log_options'] %> <%= node['nginx']['access_log_options'] %><% end %>;
+    error_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.error.log <%= node['nginx']['socketproxy']['log_level'] %>;
 
     <% if node['nginx']['server_name'] -%>
     server_name ~^<%= node['nginx']['server_name'] %>\..*$;
@@ -29,7 +29,7 @@
       return 405;
     }
 
-    <% node['nginx']['socketproxy']['apps'].each do |app,app_conf|
+    <% node['nginx']['socketproxy']['apps'].each do |app, app_conf|
       if app_conf['context_name']
         base_loc = "/#{app_conf['context_name'].gsub(/^\/+/,'').gsub(/\/+$/,'')}"
       else
@@ -45,7 +45,7 @@
 
     location ^~ /<%= app_conf['context_name'] %> {
 
-      alias $app_home/<%= app %>/<%= app_conf['subdir'] %>/public;
+      alias $app_home/<%= app %>/<%= app_conf['subdir'] %>/public/;
 
       try_files $uri/index.html $uri.html $uri @app_<%= app %>;
       error_page 404              /404.html;

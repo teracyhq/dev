@@ -18,7 +18,7 @@ else
 end
 
 default['yum']['main']['alwaysprompt'] = nil # [TrueClass, FalseClass]
-default['yum']['main']['assumeyes'] = nil  # [TrueClass, FalseClass]
+default['yum']['main']['assumeyes'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['bandwidth'] = nil # /^\d+$/
 default['yum']['main']['bugtracker_url'] = nil # /.*/
 default['yum']['main']['clean_requirements_on_remove'] = nil # [TrueClass, FalseClass]
@@ -36,6 +36,7 @@ default['yum']['main']['color_update_installed'] = nil #  /.*/
 default['yum']['main']['color_update_local'] = nil #  /.*/
 default['yum']['main']['color_update_remote'] = nil #  /.*/
 default['yum']['main']['commands'] = nil #  /.*/
+default['yum']['main']['deltarpm'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['debuglevel'] = nil # /^\d+$/
 default['yum']['main']['diskspacecheck'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['enable_group_conditionals'] = nil # [TrueClass, FalseClass]
@@ -55,14 +56,14 @@ default['yum']['main']['installroot'] = nil # /.*/
 default['yum']['main']['keepalive'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['keepcache'] = false # [TrueClass, FalseClass]
 default['yum']['main']['kernelpkgnames'] = nil # /.*/
-default['yum']['main']['localpkg_gpgcheck'] = nil # [TrueClass,# FalseClass]
+default['yum']['main']['localpkg_gpgcheck'] = false # [TrueClass,# FalseClass]
 default['yum']['main']['logfile'] = '/var/log/yum.log' # /.*/
 default['yum']['main']['max_retries'] = nil # /^\d+$/
 default['yum']['main']['mdpolicy'] = nil # %w{ packages all none }
 default['yum']['main']['metadata_expire'] = nil # /^\d+$/
 default['yum']['main']['mirrorlist_expire'] = nil # /^\d+$/
 default['yum']['main']['multilib_policy'] = nil # %w{ all best }
-default['yum']['main']['obsoletes'] = nil  # [TrueClass, FalseClass]
+default['yum']['main']['obsoletes'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['overwrite_groups'] = nil # [TrueClass, FalseClass]
 default['yum']['main']['password'] = nil #  /.*/
 default['yum']['main']['path'] = '/etc/yum.conf' #  /.*/

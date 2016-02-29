@@ -4,10 +4,11 @@ types {
     text/xml                              xml;
     image/gif                             gif;
     image/jpeg                            jpeg jpg;
-    application/x-javascript              js;
+    application/javascript                js;
     application/json                      json;
     application/atom+xml                  atom;
     application/rss+xml                   rss;
+    text/cache.manifest                   manifest;
     text/mathml                           mml;
     text/plain                            txt;
     text/vnd.sun.j2me.app-descriptor      jad;
@@ -52,9 +53,12 @@ types {
     application/octet-stream              bin exe dll;
     application/octet-stream              deb;
     application/octet-stream              dmg;
-    application/octet-stream              eot;
     application/octet-stream              iso img;
     application/octet-stream              msi msp msm;
+    font/ttf                              ttf;
+    font/opentype                         otf;
+    application/x-font-woff               woff;
+    application/vnd.ms-fontobject         eot;
     audio/midi                            mid midi kar;
     audio/mpeg                            mp3;
     audio/ogg                             ogg;

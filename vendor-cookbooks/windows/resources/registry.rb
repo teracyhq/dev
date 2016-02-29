@@ -5,7 +5,7 @@
 # Resource:: registry
 #
 # Copyright:: 2010, VMware, Inc.
-# Copyright:: 2011, Chef Software, Inc.
+# Copyright:: 2011-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,13 +22,17 @@
 
 actions :create, :modify, :force_modify, :remove
 
-attribute :key_name, :kind_of => String, :name_attribute => true
-attribute :values, :kind_of => Hash
-attribute :type, :kind_of => Symbol, :default => nil, :equal_to => [:binary, :string, :multi_string, :expand_string, :dword, :dword_big_endian, :qword]
+attribute :key_name, kind_of: String, name_attribute: true
+attribute :values, kind_of: Hash
+attribute :type, kind_of: Symbol, default: nil, equal_to: [:binary, :string, :multi_string, :expand_string, :dword, :dword_big_endian, :qword]
 
-def initialize(name, run_context=nil)
+def initialize(name, run_context = nil)
   super
   @action = :modify
   @key_name = name
-  Chef::Log.warn("Please use the registry_key resource in Chef Client 11. The windows_registry LWRP is still supported for Chef Client 10, but is deprecated in future versions.")
+  Chef::Log.warn <<-EOF
+Please use the registry_key resource in Chef Client 11 and 12.
+windows_registry will be removed in the next major version release
+of the Windows cookbook.
+EOF
 end

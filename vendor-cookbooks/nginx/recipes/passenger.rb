@@ -2,7 +2,7 @@
 # Cookbook Name:: nginx
 # Recipe:: Passenger
 #
-# Copyright 2013, Opscode, Inc.
+# Copyright 2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@
 
 packages = value_for_platform_family(
   %w(rhel)   => node['nginx']['passenger']['packages']['rhel'],
+  %w(fedora)   => node['nginx']['passenger']['packages']['fedora'],
   %w(debian) => node['nginx']['passenger']['packages']['debian']
 )
 
@@ -28,21 +29,28 @@ unless packages.empty?
   end
 end
 
-gem_package 'rake'
+gem_package 'rake' if node['nginx']['passenger']['install_rake']
 
-gem_package 'passenger' do
-  action     :install
-  version    node['nginx']['passenger']['version']
-  gem_binary node['nginx']['passenger']['gem_binary'] if node['nginx']['passenger']['gem_binary']
+if node['nginx']['passenger']['install_method'] == 'package'
+  package node['nginx']['package_name']
+  package 'passenger'
+elsif node['nginx']['passenger']['install_method'] == 'source'
+
+  gem_package 'passenger' do
+    action     :install
+    version    node['nginx']['passenger']['version']
+    gem_binary node['nginx']['passenger']['gem_binary'] if node['nginx']['passenger']['gem_binary']
+  end
+
+  node.run_state['nginx_configure_flags'] =
+    node.run_state['nginx_configure_flags'] | ["--add-module=#{node['nginx']['passenger']['root']}/ext/nginx"]
+
 end
 
-template "#{node["nginx"]["dir"]}/conf.d/passenger.conf" do
+template "#{node['nginx']['dir']}/conf.d/passenger.conf" do
   source 'modules/passenger.conf.erb'
   owner  'root'
   group  node['root_group']
   mode   '0644'
-  notifies :reload, 'service[nginx]'
+  notifies :reload, 'service[nginx]', :delayed
 end
-
-node.run_state['nginx_configure_flags'] =
-  node.run_state['nginx_configure_flags'] | ["--add-module=#{node["nginx"]["passenger"]["root"]}/ext/nginx"]

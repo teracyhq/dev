@@ -1,8 +1,24 @@
 nginx Cookbook
 ==============
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/nginx.png?branch=master)](http://travis-ci.org/opscode-cookbooks/nginx)
+[![Cookbook](http://img.shields.io/cookbook/v/nginx.svg)](https://github.com/miketheman/nginx)
+[![Build Status](https://travis-ci.org/miketheman/nginx.svg?branch=master)](https://travis-ci.org/miketheman/nginx)
+[![Gitter chat](https://img.shields.io/badge/Gitter-miketheman%2Fnginx-brightgreen.svg)](https://gitter.im/miketheman/nginx)
 
 Installs nginx from package OR source code and sets up configuration handling similar to Debian's Apache2 scripts.
+
+# READ THIS FIRST
+
+After having struggled with the cookbook format and the interfaces being brittle, the maintainers have decided to begin rewriting the core implmenetation of the nginx cookbook from the ground up, to allow for better flexibility, testability and maintianability.
+
+To this end, we request that you not open new issues for the existing codebase.
+
+Pull requests for bugs will be merged, any obvious optimizations and clarifications will be merged, and a 2.7.5 release will be shipped, and we will focus on writing the 3.0.0 version.
+
+Thank you for your help on this front!
+
+-- The Maintainers
+
+---
 
 
 Requirements
@@ -37,9 +53,13 @@ Node attributes for this cookbook are logically separated into different files. 
 Generally used attributes. Some have platform specific values. See `attributes/default.rb`. "The Config" refers to "nginx.conf" the main config file.
 
 - `node['nginx']['dir']` - Location for Nginx configuration.
+- `node['nginx']['conf_template']` - The `source` template to use when creating the `nginx.conf`.
+- `node['nginx']['conf_cookbook']` - The cookbook where `node['nginx']['conf_template']` resides.
 - `node['nginx']['log_dir']` - Location for Nginx logs.
+- `node['nginx']['log_dir_perm']` - Permissions for Nginx logs folder.
 - `node['nginx']['user']` - User that Nginx will run as.
 - `node['nginx']['group]` - Group for Nginx.
+- `node['nginx']['port']` - Port for nginx to listen on.
 - `node['nginx']['binary']` - Path to the Nginx binary.
 - `node['nginx']['init_style']` - How to run Nginx as a service when
   using `nginx::source`. Values can be "runit", "upstart", "init" or
@@ -63,6 +83,8 @@ Generally used attributes. Some have platform specific values. See `attributes/d
 - `node['nginx']['pid']` - Location of the PID file.
 - `node['nginx']['keepalive']` - Whether to use `keepalive_timeout`,
   any value besides "on" will leave that option out of the config.
+- `node['nginx']['keepalive_requests']` - used for config value of
+  `keepalive_requests`.
 - `node['nginx']['keepalive_timeout']` - used for config value of
   `keepalive_timeout`.
 - `node['nginx']['worker_processes']` - used for config value of
@@ -79,6 +101,8 @@ Generally used attributes. Some have platform specific values. See `attributes/d
 - `node['nginx']['event']` - used for config value of `events { use
   }`. Set the event-model. By default nginx looks for the most
   suitable method for your OS.
+- `node['nginx']['accept_mutex_delay']` - used for config value of
+  `accept_mutex_delay`
 - `node['nginx']['server_tokens']` - used for config value of
   `server_tokens`.
 - `node['nginx']['server_names_hash_bucket_size']` - used for config
@@ -91,6 +115,8 @@ Generally used attributes. Some have platform specific values. See `attributes/d
   to be appended to the error log directive
 - `node['nginx']['default_site_enabled']` - enable the default site
 - `node['nginx']['sendfile']` - Whether to use `sendfile`. Defaults to "on".
+- `node['nginx']['tcp_nopush']` - Whether to use `tcp_nopush`. Defaults to "on".
+- `node['nginx']['tcp_nodelay']` - Whether to use `tcp_nodelay`. Defaults to "on".
 - `node['nginx']['install_method']` - Whether nginx is installed from
   packages or from source.
 - `node['nginx']['types_hash_max_size']` - Used for the
@@ -106,7 +132,7 @@ Generally used attributes. Some have platform specific values. See `attributes/d
 - `node['nginx']['repo_source']` - when installed from a package this attribute affects
   which yum repositories, if any, will be added before installing the nginx package. The
   default value of 'epel' will use the `yum::epel` recipe, 'nginx' will use the
-  `nginx::repo` recipe, and setting no value will not add any additional repositories.
+  `nginx::repo` recipe, 'passenger' will use the 'nginx::repo_passenger' recipe, and setting no value will not add any additional repositories.
 * `node['nginx']['sts_max_age']` - Enable Strict Transport Security for all apps (See: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security).  This attribute adds the following header:
 
   Strict-Transport-Security max-age=SECONDS
@@ -115,6 +141,10 @@ to all incoming requests and takes an integer (in seconds) as its argument.
 * `node['nginx']['default']['modules']` - Array specifying which
 modules to enable via the conf-enabled config include function.
 Currently the only valid value is "socketproxy".
+
+Other configurations
+
+- `node['nginx']['extra_configs']` - a Hash of key/values to nginx configuration.
 
 Rate Limiting
 
@@ -138,7 +168,7 @@ Rate Limiting
 - `node['nginx']['gzip_types']` - used for config value of `gzip_types` - must be an Array.
 - `node['nginx']['gzip_min_length']` - used for config value of `gzip_min_length`.
 - `node['nginx']['gzip_disable']` - used for config value of `gzip_disable`.
-
+- `node['nginx']['gzip_static']` - used for config value of `gzip_static` (`http_gzip_static_module` must be enabled)
 ### Attributes set in recipes
 
 #### nginx::source
@@ -169,7 +199,7 @@ for default values.
 
 - `node['nginx']['source']['url']` - (versioned) URL for the Nginx
   source code. By default this will use the version specified as
-  `node['nginx']['version'].
+  `node['nginx']['version']`.
 - `node['nginx']['source']['prefix']` - (versioned) prefix for
   installing nginx from source
 - `node['nginx']['source']['conf_path']` - location of the main config
@@ -236,6 +266,7 @@ These attributes are used in the `nginx::passenger` recipe.
 
 - `node['nginx']['passenger']['version']` - passenger gem version
 - `node['nginx']['passenger']['root']` - passenger gem root path
+- `node['nginx']['passenger']['install_rake']` - set to false if rake already present on system
 - `node['nginx']['passenger']['max_pool_size']` - maximum passenger
   pool size (default=10)
 - `node['nginx']['passenger']['ruby']` - Ruby path for Passenger to
@@ -254,6 +285,13 @@ These attributes are used in the `nginx::passenger` recipe.
   time (default=`300`)
 - `node['nginx']['passenger']['max_requests']` - maximum requests
   (default=`0`)
+- `node['nginx']['passenger']['nodejs']` - Nodejs path for Passenger to
+  use (default=nil)
+
+Basic configuration to use the official Phusion Passenger repositories:
+- `node['nginx']['repo_source']` - 'passenger'
+- `node['nginx']['package_name']` - 'nginx-extras'
+- `node['nginx']['passenger']['install_method']` - 'package'
 
 ### echo
 These attributes are used in the `nginx::http_echo_module` recipe.
@@ -268,6 +306,14 @@ These attributes are used in the `nginx::http_stub_status_module` recipe.
 
 - `node['nginx']['status']['port']` - The port on which nginx will
   serve the status info (default: 8090)
+
+### syslog
+These attributes are used in the `nginx::syslog_module` recipe.
+
+- `node['nginx']['syslog']['git_repo']` - The git repository url to use
+  for the syslog patches.
+- `node['nginx']['syslog']['git_revision']` - The revision on the git
+  repository to checkout.
 
 ### openssl_source
 These attributes are used in the `nginx::openssl_source` recipe.
@@ -320,6 +366,7 @@ include this recipe directly.  Instead, add it to the
 `node['nginx']['default']['modules']` array (see below).
 
 ### ohai_plugin
+
 This recipe provides an Ohai plugin as a template. It is included by
 both the `default` and `source` recipes.
 
@@ -362,7 +409,7 @@ attribute `node['nginx']['source']['modules']`.
   enables it as a module when compiling nginx.
 - `http_geoip_module.rb` - installs the GeoIP libraries and data files
   and enables the module for compilation.
-- `http_gzip_static_module.rb` - enables the module for compilation.
+- `http_gzip_static_module.rb` - enables the module for compilation. Be sure to set `node['nginx']['gzip_static'] = 'yes'`.
 - `http_perl_module.rb` - enables embedded Perl for compilation.
 - `http_realip_module.rb` - enables the module for compilation and
   creates the configuration.
@@ -373,10 +420,31 @@ attribute `node['nginx']['source']['modules']`.
   firewall for nginx.
 - `passenger` - builds the passenger gem and configuration for
   "`mod_passenger`".
+- `syslog` - enables syslog support for nginx.  This only works with
+  source builds.  See https://github.com/yaoweibin/nginx_syslog_patch
 - `upload_progress_module.rb` - builds the `upload_progress` module
   and enables it as a module when compiling nginx.
 - `openssl_source.rb` - downloads and uses custom OpenSSL source
   when compiling nginx
+
+Definitions
+-----------
+
+The cookbook provides a new definition. At some point in the future this definition may be refactored into a lightweight resource and provider as suggested by [foodcritic rule FC015](http://acrmp.github.com/foodcritic/#FC015).
+
+### nginx\_site
+
+Enable or disable a Server Block in
+`#{node['nginx']['dir']}/sites-available` by calling nxensite or
+nxdissite (introduced by this cookbook) to manage the symbolic link in
+`#{node['nginx']['dir']}/sites-enabled`.
+
+The template for the site must be managed as a separate resource.
+
+### Parameters:
+
+* `name` - Name of the site.
+* `enable` - Default true, which uses `nxensite` to enable the site. If false, the site will be disabled with `nxdissite`.
 
 
 Adding New Modules
@@ -430,13 +498,14 @@ recipes, default or source.
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (<joshua@opscode.com>)
-- Author:: Adam Jacob (<adam@opscode.com>)
-- Author:: AJ Christensen (<aj@opscode.com>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
+- Author:: Adam Jacob (<adam@chef.io>)
+- Author:: AJ Christensen (<aj@chef.io>)
 - Author:: Jamie Winsor (<jamie@vialstudios.com>)
+- Author:: Mike Fiedler (<miketheman@gmail.com>)
 
 ```text
-Copyright 2008-2013, Opscode, Inc
+Copyright 2008-2014, Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

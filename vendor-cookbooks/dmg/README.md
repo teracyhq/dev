@@ -1,12 +1,22 @@
 dmg Cookbook
 ============
+
+[![Build Status](https://travis-ci.org/chef-cookbooks/dmg.svg?branch=master)](https://travis-ci.org/chef-cookbooks/dmg)
+[![Cookbook Version](https://img.shields.io/cookbook/v/dmg.svg)](https://supermarket.chef.io/cookbooks/dmg)
+
 Lightweight resource and provider to install OS X applications (.app) from dmg files.
 
 
 Requirements
 ------------
-### Platform
+#### Platforms
 - Mac OS X
+
+#### Chef
+- Chef 11+
+
+#### Cookbooks
+- none
 
 
 Resources/Providers
@@ -36,6 +46,7 @@ Optionally, the LWRP can install an "mpkg" or "pkg" package using installer(8).
 - `dmg_name` - Specify the name of the dmg if it is not the same as `app`, or if the name has spaces.
 - `dmg_passphrase` - Specify a passphrase to use to unencrypt the dmg while mounting.
 - `accept_eula` - Specify whether to accept the EULA.  Certain dmgs require acceptance of EULA before mounting.  Can be true or false, defaults to false.
+- `headers` - Allows custom HTTP headers (like cookies) to be set on the remote_file resource.
 
 #### Examples
 Install `/Applications/Tunnelblick.app` from the primary download site.
@@ -100,16 +111,6 @@ dmg_package 'pgAdmin3' do
 end
 ```
 
-Install Pivotal Tracker to `/Applications` using a password-protected dmg:
-
-```ruby
-dmg_package 'Pivotal Tracker' do
-  volumes_dir    'tracker'
-  source         'http://cheffiles.pivotallabs.com/fluid_tracker.dmg'
-  dmg_passphrase 'xyz'
-end
-```
-
 Install Silverlight, with idempotence check based on pkgutil:
 
 ```ruby
@@ -124,11 +125,11 @@ end
 
 License & Authors
 -----------------
-- Author:: Joshua Timberman (joshua@opscode.com)
 
-```text
-Copyright 2011, Joshua Timberman <cookbooks@housepub.org>
+**Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
 
+**Copyright:** 2011-2015, Chef Software, Inc.
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

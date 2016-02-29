@@ -78,7 +78,8 @@ def download_direct_from_oracle(tarball_name, new_resource)
     converge_by(description) do
        Chef::Log.debug "downloading oracle tarball straight from the source"
        cmd = shell_out!(
-                                  %Q[ curl --create-dirs -L --retry #{new_resource.retries} --retry-delay #{new_resource.retry_delay} --cookie "#{cookie}" #{new_resource.url} -o #{download_path} --connect-timeout #{new_resource.connect_timeout} ]
+                                  %Q[ curl --create-dirs -L --retry #{new_resource.retries} --retry-delay #{new_resource.retry_delay} --cookie "#{cookie}" #{new_resource.url} -o #{download_path} --connect-timeout #{new_resource.connect_timeout} ],
+                                  :timeout => new_resource.download_timeout
                                )
     end
   else
@@ -96,7 +97,7 @@ action :install do
     app_group = new_resource.owner
   end
 
-  unless new_resource.default
+  if !new_resource.default and new_resource.use_alt_suffix
     Chef::Log.debug("processing alternate jdk")
     app_dir = app_dir  + "_alt"
     app_home = new_resource.app_home + "_alt"
@@ -111,7 +112,7 @@ action :install do
     unless ::File.exists?(app_root)
       description = "create dir #{app_root} and change owner to #{new_resource.owner}:#{app_group}"
       converge_by(description) do
-          FileUtils.mkdir app_root, :mode => new_resource.app_home_mode
+          FileUtils.mkdir_p app_root, :mode => new_resource.app_home_mode
           FileUtils.chown new_resource.owner, app_group, app_root
       end
     end
@@ -221,6 +222,7 @@ action :install do
     bin_cmds new_resource.bin_cmds
     priority new_resource.alternatives_priority
     default new_resource.default
+    reset_alternatives new_resource.reset_alternatives
     action :set
   end
 end

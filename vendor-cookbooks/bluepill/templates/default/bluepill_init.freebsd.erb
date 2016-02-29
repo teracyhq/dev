@@ -24,6 +24,7 @@ status_cmd="${command} ${name} status"
 stop_cmd="${command} ${name} stop"
 stop_postcmd="${command} ${name} quit"
 
+[ -r <%= node['bluepill']['defaults_dir'] %>/$name ] && . <%= node['bluepill']['defaults_dir'] %>/$name
 load_rc_config ${name}
 
 PATH="${PATH}:/usr/local/bin"

@@ -34,9 +34,15 @@
 if node['teracy-dev']['mongodb']['enabled']
     if !node['teracy-dev']['mongodb']['version'].strip().empty?
         node.override['mongodb']['version'] = node['teracy-dev']['mongodb']['version']
-        node.override['mongodb']['install_method'] = 'mongodb-org'
     end
 
     include_recipe 'mongodb::default'
-
+    bash 'clean up startup job create by mongodb-org install' do
+      code <<-EOF
+            stop mongod
+            echo manual | tee /etc/init/mongod.override
+      EOF
+      user 'root'
+      not_if 'ls -la /etc/init/mongod.override'
+    end
 end
