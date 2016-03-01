@@ -2,7 +2,7 @@
 # Cookbook Name:: vim
 # Recipe:: default
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,10 +20,5 @@
 begin
   include_recipe "vim::#{node['vim']['install_method']}"
 rescue Chef::Exceptions::RecipeNotFound
-  Chef::Log.warn "A build-essential recipe does not exist for the platform_family: #{node['platform_family']}"
+  Chef::Log.warn "A vim recipe does not exist for the install method specified: #{node['vim']['install_method']}"
 end
-
-if node['vim']['use_custom_settings']
-  include_recipe 'vim::settings'
-end
-

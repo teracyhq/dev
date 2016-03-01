@@ -1,8 +1,8 @@
 yum Cookbook
 ============
-
-[![Cookbook Version](https://img.shields.io/cookbook/v/yum.svg)](https://supermarket.getchef.com/cookbooks/yum)
-[![Travis status](http://img.shields.io/travis/opscode-cookbooks/yum.svg)](https://travis-ci.org/opscode-cookbooks/yum)
+[![Build Status](https://travis-ci.org/chef-cookbooks/yum.svg?branch=master)](http://travis-ci.org/chef-cookbooks/yum)
+[![Cookbook Version](https://img.shields.io/cookbook/v/yum.svg)](https://supermarket.chef.io/cookbooks/yum)
+[![Code Climate](https://codeclimate.com/github/chef-cookbooks/yum/badges/gpa.svg)](https://codeclimate.com/github/chef-cookbooks/yum)
 
 The Yum cookbook exposes the `yum_globalconfig` and `yum_repository`
 resources that allows a user to both control global behavior and make
@@ -22,9 +22,15 @@ until all dependent cookbooks have been ported.
 
 Requirements
 ------------
-* Chef 11 or higher
-* Ruby 1.9 (preferably from the Chef full-stack installer)
-* RHEL5, RHEL6, or other platforms within the family
+#### Platforms
+* RHEL/CentOS and derivatives
+* Fedora
+
+#### Chef
+* Chef 11+
+
+#### Cookbooks
+* none
 
 Resources/Providers
 -------------------
@@ -72,6 +78,8 @@ end
 * `cost` - relative cost of accessing this repository. Useful for
   weighing one repo's packages as greater/less than any other.
   defaults to 1000
+* `clean_metadata` - Run "yum clean metadata <reponame>" during
+  repository creation. defaults to true.
 * `description` - Maps to the 'name' parameter in a repository .conf.
   Descriptive name for the repository channel. This directive must be
   specified.
@@ -256,13 +264,13 @@ yum_repository resource.
 License & Authors
 -----------------
 - Author:: Eric G. Wolfe
-- Author:: Matt Ray (<matt@getchef.com>)
-- Author:: Joshua Timberman (<joshua@getchef.com>)
-- Author:: Sean OMeara (<someara@getchef.com>)
+- Author:: Matt Ray (<matt@chef.io>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
+- Author:: Sean OMeara (<someara@chef.io>)
 
 ```text
 Copyright:: 2011 Eric G. Wolfe
-Copyright:: 2013 Chef
+Copyright:: 2013-2014 Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

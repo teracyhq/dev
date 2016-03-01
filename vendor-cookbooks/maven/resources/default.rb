@@ -3,7 +3,7 @@
 # Resource:: default
 #
 # Author:: Bryan W. Berry <bryan.berry@gmail.com>
-# Copyright 2012, Opscode Inc.
+# Copyright 2012-2015, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,19 +20,20 @@
 
 actions :install, :put
 
-attribute :artifact_id,  :kind_of => String
-attribute :group_id,     :kind_of => String, :required => true
-attribute :dest,         :kind_of => String
-attribute :version,      :kind_of => String, :required => true
-attribute :packaging,    :kind_of => String, :default => 'jar'
-attribute :classifier,   :kind_of => String
-attribute :owner,        :kind_of => String, :default => 'root'
-attribute :mode,         :kind_of => [Integer, String], :default => '0644'
-attribute :repositories, :kind_of => Array
-attribute :transitive,   :kind_of => [TrueClass, FalseClass], :default => false
+attribute :artifact_id,  kind_of: String
+attribute :group_id,     kind_of: String, required: true
+attribute :dest,         kind_of: String
+attribute :version,      kind_of: String, required: true
+attribute :packaging,    kind_of: String, default: 'jar'
+attribute :classifier,   kind_of: String
+attribute :owner,        kind_of: String, default: 'root'
+attribute :group,        kind_of: String, default: node['root_group']
+attribute :mode,         kind_of: [Integer, String], default: '0644'
+attribute :repositories, kind_of: Array
+attribute :transitive,   kind_of: [TrueClass, FalseClass], default: false
 
-alias_method :artifactId, :artifact_id # rubocop:disable SymbolName
-alias_method :groupId, :group_id # rubocop:disable SymbolName
+alias_method :artifactId, :artifact_id
+alias_method :groupId, :group_id
 
 def initialize(*args)
   super

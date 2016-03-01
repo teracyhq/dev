@@ -2,7 +2,7 @@
 # Cookbook Name:: nginx
 # Recipe:: default
 #
-# Copyright 2013, Opscode, Inc.
+# Copyright 2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ bash 'extract_luajit' do
     export LUAJIT_INC="/usr/local/include/luajit-2.0"
     export LUAJIT_LIB="usr/local/lib"
   EOH
-  not_if { ::File.exists?(luajit_extract_path) }
+  not_if { ::File.exist?(luajit_extract_path) }
 end
 
 package 'lua-devel' do

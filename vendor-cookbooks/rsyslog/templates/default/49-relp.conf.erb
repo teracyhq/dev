@@ -4,7 +4,7 @@ $ActionQueueType LinkedList # use asynchronous processing
 $ActionQueueFileName srvrfwd # set file name, also enables disk mode
 $ActionResumeRetryCount -1 # infinite retries on insert failure
 $ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
-<% @servers.each do |server| -%> 
-*.* :omrelp:<%= "#{server}:#{node['rsyslog']['relp_port']}" %>
-<% end -%> 
 
+<% @servers.each do |server| -%>
+<%= node['rsyslog']['logs_to_forward'] %> :omrelp:<%= "#{server}:#{node['rsyslog']['relp_port']}" %><%= node['rsyslog']['default_remote_template'] ? ';' + node['rsyslog']['default_remote_template'] : nil %>
+<% end -%>

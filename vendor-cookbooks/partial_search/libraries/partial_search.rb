@@ -1,7 +1,7 @@
 #
-# Author:: Adam Jacob (<adam@opscode.com>)
-# Author:: John Keiser (<jkeiser@opscode.com>)
-# Copyright:: Copyright (c) 2012 Opscode, Inc.
+# Author:: Adam Jacob (<adam@chef.io>)
+# Author:: John Keiser (<jkeiser@chef.io>)
+# Copyright:: Copyright (c) 2012 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,17 +29,16 @@ require 'chef/data_bag_item'
 
 class Chef
   class PartialSearch
-
     attr_accessor :rest
 
-    def initialize(url=nil)
+    def initialize(url = nil)
       @rest = ::Chef::REST.new(url || ::Chef::Config[:chef_server_url])
     end
 
     # Search Solr for objects of a given type, for a given query. If you give
     # it a block, it will handle the paging for you dynamically.
-    def search(type, query='*:*', args={}, &block)
-      raise ArgumentError, "Type must be a string or a symbol!" unless (type.kind_of?(String) || type.kind_of?(Symbol))
+    def search(type, query = '*:*', args = {}, &block)
+      fail ArgumentError, 'Type must be a string or a symbol!' unless type.is_a?(String) || type.is_a?(Symbol)
 
       sort = args.include?(:sort) ? args[:sort] : 'X_CHEF_id_CHEF_X asc'
       start = args.include?(:start) ? args[:start] : 0
@@ -53,31 +52,32 @@ class Chef
         response_rows = response['rows']
       end
       if block
-        response_rows.each { |o| block.call(o) unless o.nil?}
-        unless (response["start"] + response_rows.length) >= response["total"]
-          nstart = response["start"] + rows
+        response_rows.each { |o| block.call(o) unless o.nil? }
+        unless (response['start'] + response_rows.length) >= response['total']
+          nstart = response['start'] + rows
           args_hash = {
-            :keys => args[:keys],
-            :sort => sort,
-            :start => nstart,
-            :rows => rows
+            keys: args[:keys],
+            sort: sort,
+            start: nstart,
+            rows: rows
           }
           search(type, query, args_hash, &block)
         end
         true
       else
-        [ response_rows, response["start"], response["total"] ]
+        [response_rows, response['start'], response['total']]
       end
     end
 
     def list_indexes
-      response = @rest.get_rest("search")
+      @rest.get_rest('search')
     end
 
     private
-      def escape(s)
-        s && URI.escape(s.to_s)
-      end
+
+    def escape(s)
+      s && URI.escape(s.to_s)
+    end
   end
 end
 
@@ -123,7 +123,7 @@ end
 #       puts "#{node[:name]}: #{node[:ip]}"
 #     end
 #
-def partial_search(type, query='*:*', *args, &block)
+def partial_search(type, query = '*:*', *args, &block)
   # Support both the old (positional args) and new (hash args) styles of calling
   if args.length == 1 && args[0].is_a?(Hash)
     args_hash = args[0]
@@ -138,7 +138,7 @@ def partial_search(type, query='*:*', *args, &block)
     Chef::PartialSearch.new.search(type, query, args_hash, &block)
   # Otherwise, do the iteration for the end user
   else
-    results = Array.new
+    results = []
     Chef::PartialSearch.new.search(type, query, args_hash) do |o|
       results << o
     end

@@ -2,7 +2,7 @@
 # Cookbook Name:: apt
 # Library:: helpers
 #
-# Copyright 2013 Opscode, Inc.
+# Copyright 2013 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,11 +27,23 @@ module Apt
       !which('apt-get').nil?
     end
 
+    # Determines whether we need to run `apt-get update`
+    #
+    # @return [Boolean]
+    def apt_up_to_date?
+      if ::File.exist?('/var/lib/apt/periodic/update-success-stamp') &&
+         ::File.mtime('/var/lib/apt/periodic/update-success-stamp') > Time.now - node['apt']['periodic_update_min_delay']
+        true
+      else
+        false
+      end
+    end
+
     # Finds a command in $PATH
     #
     # @return [String, nil]
     def which(cmd)
-      ENV["PATH"] = "" if ENV["PATH"].nil?
+      ENV['PATH'] = '' if ENV['PATH'].nil?
       paths = (ENV['PATH'].split(::File::PATH_SEPARATOR) + %w(/bin /usr/bin /sbin /usr/sbin))
 
       paths.each do |path|

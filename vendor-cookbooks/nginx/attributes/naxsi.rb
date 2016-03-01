@@ -19,6 +19,6 @@
 # limitations under the License.
 #
 
-default['nginx']['naxsi']['version']  = '0.49'
-default['nginx']['naxsi']['url']      = "http://naxsi.googlecode.com/files/naxsi-core-#{node['nginx']['naxsi']['version']}.tgz"
-default['nginx']['naxsi']['checksum'] = 'bb0b63713d5a9446401d5acd1ef0882b9c2a0fc506502bbd88bc4663d273e9c7'
+default['nginx']['naxsi']['version'] = '0.53-2'
+default['nginx']['naxsi']['url'] = "https://github.com/nbs-system/naxsi/archive/#{node['nginx']['naxsi']['version']}.tar.gz"
+default['nginx']['naxsi']['checksum'] = '3eadff1d91995beae41b92733ade28091c2075a24ae37058f4d6aa90b0f4b660'

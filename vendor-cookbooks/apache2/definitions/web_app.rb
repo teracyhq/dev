@@ -2,7 +2,7 @@
 # Cookbook Name:: apache2
 # Definition:: web_app
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2008-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 #
 
 define :web_app, :template => 'web_app.conf.erb', :local => false, :enable => true do
-
   application_name = params[:name]
 
   include_recipe 'apache2::default'

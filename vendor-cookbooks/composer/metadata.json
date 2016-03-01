@@ -45,7 +45,7 @@
     "composer::self_update": "Installs (if applicable) and self-updates composer.",
     "composer::global_configs": "Sets up global config options via `composer config --global`"
   },
-  "version": "2.2.0",
+  "version": "2.2.1",
   "source_url": "",
   "issues_url": ""
 }

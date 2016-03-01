@@ -17,10 +17,11 @@
 # limitations under the License.
 #
 
-apache_module('mpm_itk') { enable false }
+# apache_module('mpm_itk') { enable false }
 apache_module('mpm_event') { enable false }
 apache_module('mpm_prefork') { enable false }
 
 apache_module 'mpm_worker' do
   conf true
+  restart true
 end

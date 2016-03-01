@@ -24,7 +24,7 @@ cookbook_file "#{node['nginx']['dir']}/naxsi_core.rules" do
   owner  'root'
   group  node['root_group']
   mode   '0644'
-  notifies :reload, 'service[nginx]'
+  notifies :reload, 'service[nginx]', :delayed
 end
 
 naxsi_src_filename = ::File.basename(node['nginx']['naxsi']['url'])
@@ -45,8 +45,8 @@ bash 'extract_naxsi_module' do
     mkdir -p #{naxsi_extract_path}
     tar xzf #{naxsi_src_filename} -C #{naxsi_extract_path}
   EOH
-  not_if { ::File.exists?(naxsi_extract_path) }
+  not_if { ::File.exist?(naxsi_extract_path) }
 end
 
 node.run_state['nginx_configure_flags'] =
-  node.run_state['nginx_configure_flags'] | ["--add-module=#{naxsi_extract_path}/naxsi-core-#{node['nginx']['naxsi']['version']}/naxsi_src"]
+  node.run_state['nginx_configure_flags'] | ["--add-module=#{naxsi_extract_path}/naxsi-#{node['nginx']['naxsi']['version']}/naxsi_src"]

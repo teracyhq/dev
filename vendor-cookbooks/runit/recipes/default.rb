@@ -2,7 +2,7 @@
 # Cookbook Name:: runit
 # Recipe:: default
 #
-# Copyright 2008-2010, Opscode, Inc.
+# Copyright 2008-2010, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the 'License');
 # you may not use this file except in compliance with the License.
@@ -37,45 +37,14 @@ execute 'runit-hup-init' do
 end
 
 case node['platform_family']
-when 'rhel'
+when 'rhel', 'fedora'
 
-  if node['runit']['use_package_from_yum']
-    package 'runit'
-  else
-    include_recipe 'build-essential'
-    # `rpmdevtools` is in EPEL repo in EL <= 5
-    include_recipe 'yum-epel' if node['platform_version'].to_i == 5
+  packagecloud_repo 'imeyer/runit' unless node['runit']['prefer_local_yum']
+  package 'runit'
 
-    packages = %w{rpm-build rpmdevtools tar gzip}
-    packages.each do |p|
-      package p
-    end
-
-    if node['platform_version'].to_i >= 6
-      package 'glibc-static'
-    else
-      package 'buildsys-macros'
-    end
-
-    rpm_installed = "rpm -qa | grep -q '^runit'"
-    cookbook_file "#{Chef::Config[:file_cache_path]}/runit-2.1.1.tar.gz" do
-      source 'runit-2.1.1.tar.gz'
-      not_if rpm_installed
-      notifies :run, 'bash[rhel_build_install]', :immediately
-    end
-
-    bash 'rhel_build_install' do
-      user 'root'
-      cwd Chef::Config[:file_cache_path]
-      code <<-EOH
-        tar xzf runit-2.1.1.tar.gz
-        cd runit-2.1.1
-        ./build.sh
-        rpm_root_dir=`rpm --eval '%{_rpmdir}'`
-        rpm -ivh "${rpm_root_dir}/runit-2.1.1.rpm"
-      EOH
-      action :run
-      not_if rpm_installed
+  if node['platform_version'].to_i == 7
+    service 'runsvdir-start' do
+      action [:start, :enable]
     end
   end
 
@@ -96,7 +65,7 @@ when 'debian', 'gentoo'
     action :install
     response_file 'runit.seed' if platform?('ubuntu', 'debian')
     notifies value_for_platform(
-      'debian' => { '4.0' => :run, 'default' => :nothing  },
+      'debian' => { '4.0' => :run, 'default' => :nothing },
       'ubuntu' => {
         'default' => :nothing,
         '9.04' => :run,

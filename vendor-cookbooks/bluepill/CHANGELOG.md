@@ -2,17 +2,45 @@ bluepill Cookbook CHANGELOG
 ===========================
 This file is used to list changes made in each version of the bluepill cookbook.
 
+2.4.1 (11-10-2015)
+------
+- Require rsyslog ~> 2.0.0 to preserve Chef 11 compatibility
+- Fix rsyslog restarting on RHEL
+- Use platform_family when setting platform specific node attributes and fix bad syntax. This should improve RHEL support
+
+v2.4.0 (09-17-2015)
+------
+- Updated the LSB Required-Start and Required-Stop comments of the LSB init script template to be valid
+- Added name to the bluepill_test cookbook metadata for Chef 12
+- If a defaults file on RHEL or Debian based systems exist for the service source that within the init scripts.  Example if /etc/default/bar exists on debian for the bar service then source that
+- Added .kitchen.yml file with vagrant based testing for local testing and moved the cloud based kitchen to .kitchen.cloud.yml
+- Add Travis CI config
+- Added rubocop config
+- Updated Berksfile to 3.X format and removed yum cookbook that wasn't used
+- Updated contributing.md and added testing.md documentation
+- Updated development and testing dependencies in the Gemfile
+- Added maintainers.md and .toml and added Rake task for generating the MD file
+- Opscode -> Chef Software everywhere
+- Added Travis and cookbook version badges to the readme
+- Add rake file to easy testing
+- Resolved all Rubocop warnings
+- Added a chefignore file and added additional files to the gitignore
+- Added source_url and issues_url metadata for Supermarket
+
+v2.3.2
+------
+- Never actually released
 
 v2.3.1
 ------
 ### New Feature
-- **[COOK-3705](https://tickets.opscode.com/browse/COOK-3705)** - Add init.d script with LSB style
+- **[COOK-3705](https://tickets.chef.io/browse/COOK-3705)** - Add init.d script with LSB style
 
 
 v2.3.0
 ------
 ### Improvement
-- **[COOK-3503](https://tickets.opscode.com/browse/COOK-3503)** - Add why-run support
+- **[COOK-3503](https://tickets.chef.io/browse/COOK-3503)** - Add why-run support
 
 v2.2.2
 ------

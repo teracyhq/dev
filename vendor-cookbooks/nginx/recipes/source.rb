@@ -2,11 +2,11 @@
 # Cookbook Name:: nginx
 # Recipe:: source
 #
-# Author:: Adam Jacob (<adam@opscode.com>)
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Adam Jacob (<adam@chef.io>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 # Author:: Jamie Winsor (<jamie@vialstudios.com>)
 #
-# Copyright 2009-2013, Opscode, Inc.
+# Copyright 2009-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 node.load_attribute_by_short_filename('source', 'nginx') if node.respond_to?(:load_attribute_by_short_filename)
 
 nginx_url = node['nginx']['source']['url'] ||
-  "http://nginx.org/download/nginx-#{node['nginx']['source']['version']}.tar.gz"
+            "http://nginx.org/download/nginx-#{node['nginx']['source']['version']}.tar.gz"
 
 node.set['nginx']['binary']          = node['nginx']['source']['sbin_path']
 node.set['nginx']['daemon_disable']  = true
@@ -46,7 +46,7 @@ include_recipe 'build-essential::default'
 
 src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/nginx-#{node['nginx']['source']['version']}.tar.gz"
 packages = value_for_platform_family(
-  %w(rhel fedora) => %w(pcre-devel openssl-devel),
+  %w(rhel fedora suse) => %w(pcre-devel openssl-devel),
   %w(gentoo)      => [],
   %w(default)     => %w(libpcre3 libpcre3-dev libssl-dev)
 )
@@ -73,8 +73,11 @@ cookbook_file "#{node['nginx']['dir']}/mime.types" do
   owner  'root'
   group  node['root_group']
   mode   '0644'
-  notifies :reload, 'service[nginx]'
+  notifies :reload, 'service[nginx]', :delayed
 end
+
+# source install depends on the existence of the `tar` package
+package 'tar'
 
 # Unpack downloaded source so we could apply nginx patches
 # in custom modules - example http://yaoweibin.github.io/nginx_tcp_proxy_module/
@@ -165,14 +168,14 @@ else
 
   case node['platform']
   when 'gentoo'
-    genrate_template = false
+    generate_template = false
   when 'debian', 'ubuntu'
-    genrate_template = true
+    generate_template = true
     defaults_path    = '/etc/default/nginx'
   when 'freebsd'
     generate_init    = false
   else
-    genrate_template = true
+    generate_template = true
     defaults_path    = '/etc/sysconfig/nginx'
   end
 
@@ -183,7 +186,7 @@ else
     mode   '0755'
   end if generate_init
 
-  if genrate_template
+  if generate_template
     template defaults_path do
       source 'nginx.sysconfig.erb'
       owner  'root'

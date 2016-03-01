@@ -1,13 +1,31 @@
 ========================
 Chef-MongoDB Cookbook Changelog
-Last-Update: Mon Apr 28 01:27:52 PDT 2014
+Last-Update: Tue Nov  4 11:48:54 PST 2014
 ========================
 
-Pending Version 0.16.1
+Pending 0.16.3 Changes
+--------------------------
+
+
+Version 0.16.2 Release Tue Nov  4 11:48:54 PST 2014
+--------------------------
+* start doing even patches = release, odd = dev.
+* removed unmaintained freebsd support file
+* pass `--force-yes` to apt to bypass issue with package/config conflict #305
+* bumped mms_agent version for `monitoring` and `backup` #312
+* added user management/auth support, and patches #313, #317
+* fix patches on logpath #310
+* allow changing mongos service name #319
+* update upstart config for debian #323
+* added fixes for installation prereqs, sasl
+* fix systemd usecase for redhat (#352, #350)
+
+
+Version 0.16.1
 --------------------------
 * remove old `mms_agent.rb` and `mms-agent.rb` in favor of new mms_*_agent.rb
 * Update mms_*_agent.rb to use template instead of ruby-block, nothing, but call restart
-* DEPRECATE '10gen_repo' for 'mongodb_org_repo' #287 (dropping in 0.16.2)
+* DEPRECATE '10gen_repo' for 'mongodb_org_repo' #287
 * node['mongodb']['install_method'] can now be '10gen' (DEPRECATE) or 'mongodb_org'
 * allow `node['mongodb']['config']['logpath'] to be nil for syslog #288
 

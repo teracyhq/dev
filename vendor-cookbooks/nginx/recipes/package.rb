@@ -3,7 +3,7 @@
 # Recipe:: package
 # Author:: AJ Christensen <aj@junglist.gen.nz>
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2008-2013, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ if platform_family?('rhel')
   elsif node['nginx']['repo_source'] == 'nginx'
     include_recipe 'nginx::repo'
     package_install_opts = '--disablerepo=* --enablerepo=nginx'
-  elsif node['nginx']['repo_source'].nil?
+  elsif node['nginx']['repo_source'].to_s.empty?
     log "node['nginx']['repo_source'] was not set, no additional yum repositories will be installed." do
       level :debug
     end
@@ -34,7 +34,8 @@ if platform_family?('rhel')
     fail ArgumentError, "Unknown value '#{node['nginx']['repo_source']}' was passed to the nginx cookbook."
   end
 elsif platform_family?('debian')
-  include_recipe 'nginx::repo' if node['nginx']['repo_source'] == 'nginx'
+  include_recipe 'nginx::repo_passenger' if node['nginx']['repo_source'] == 'passenger'
+  include_recipe 'nginx::repo'           if node['nginx']['repo_source'] == 'nginx'
 end
 
 package node['nginx']['package_name'] do

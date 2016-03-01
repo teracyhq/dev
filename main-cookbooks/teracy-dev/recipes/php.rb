@@ -120,8 +120,9 @@ if node['teracy-dev']['php']['enabled']
     end
     bash 'add php fpm' do
       code <<-EOF
-        rm -rf /etc/php5/conf.d/pdo.ini
-        rm -rf /etc/php5/*/conf.d/pdo.ini
+        rm -rf /etc/php5/conf.d/*-pdo.ini /etc/php5/conf.d/*-json.ini /etc/php5/conf.d/*-opcache.ini
+        rm -rf /etc/php5/*/conf.d/*-pdo.ini /etc/php5/*/conf.d/*-json.ini /etc/php5/*/conf.d/*-opcache.ini
+        rm -rf /etc/php5/mods-available
         sed -i 's/NAME=php5-fpm/NAME=php-fpm/' /etc/init.d/php5-fpm
         sed -i 's/DAEMON=\\/usr\\/sbin/DAEMON=\\/usr\\/local\\/sbin/' /etc/init.d/php5-fpm
         sed -i 's/exec \\/usr\\/sbin\\/php5-fpm/exec \\/usr\\/local\\/sbin\\/php-fpm/' /etc/init/php5-fpm.conf
@@ -129,10 +130,19 @@ if node['teracy-dev']['php']['enabled']
         service stop php5-fpm
         killall php5-fpm
         killall php-fpm
-        /etc/init.d/php5-fpm start || true
+        /etc/init.d/php5-fpm start || service php5-fpm restart ||true
       EOF
     end
   end
+
+  bash 'install xdebug' do
+    code <<-EOF
+      pecl install -f xdebug
+    EOF
+    not_if 'pecl list | grep -q "xdebug"'
+    user 'root'
+  end
+
   %w(cli fpm).each do |conf_type|
     bash "update php timezone for php #{conf_type}" do
       code <<-EOF
@@ -144,10 +154,20 @@ if node['teracy-dev']['php']['enabled']
 
     bash "update php mysql_socket_path for php #{conf_type}" do
       code <<-EOF
-        sed -i 's/^mysql.default_socket =$/mysql.default_socket = \\/var\\/run\\/mysqld\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
+        sed -i 's/^mysql.default_socket =$/mysql.default_socket = \\/run\\/mysql-default\\/mysqld.sock/' /etc/php5/#{conf_type}/php.ini
       EOF
       user 'root'
       only_if {File.exist?("/etc/php5/#{conf_type}/php.ini")}
+    end
+
+    bash 'enable xdebug for php #{conf_type}' do
+      code <<-EOF
+        echo 'zend_extension="xdebug.so"' >> /etc/php5/#{conf_type}/php.ini
+        echo 'xdebug.remote_connect_back=true' >> /etc/php5/#{conf_type}/php.ini
+        echo 'xdebug.remote_enable=true' >> /etc/php5/#{conf_type}/php.ini
+      EOF
+      not_if 'grep -q "xdebug.so" /etc/php5/{conf_type}/php.ini'
+      user 'root'
     end
   end
 
@@ -161,4 +181,5 @@ if node['teracy-dev']['php']['enabled']
       not_if 'grep -q ".composer" /home/vagrant/.bash_profile'
       user 'vagrant'
   end
+
 end

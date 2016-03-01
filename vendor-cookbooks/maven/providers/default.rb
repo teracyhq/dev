@@ -3,7 +3,7 @@
 # Provider:: default
 #
 # Author:: Bryan W. Berry <bryan.berry@gmail.com>
-# Copyright 2011-2013, Opscode Inc.
+# Copyright 2011-2015, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ def create_command_string(artifact_file, new_resource)
   plugin_version = '2.4'
   plugin = "org.apache.maven.plugins:maven-dependency-plugin:#{plugin_version}:get"
   transitive = '-Dtransitive=' + new_resource.transitive.to_s
-  %Q{mvn #{plugin} #{group_id} #{artifact_id} #{version} #{packaging} #{classifier} #{dest} #{repos} #{transitive}}
+  %(mvn #{plugin} #{group_id} #{artifact_id} #{version} #{packaging} #{classifier} #{dest} #{repos} #{transitive})
 end
 
 def get_mvn_artifact(action, new_resource)
@@ -55,17 +55,17 @@ def get_mvn_artifact(action, new_resource)
     shell_out!(create_command_string(tmp_file, new_resource))
     dest_file = ::File.join(new_resource.dest, artifact_file_name)
 
-    unless ::File.exists?(dest_file) && checksum(tmp_file) == checksum(dest_file)
+    unless ::File.exist?(dest_file) && checksum(tmp_file) == checksum(dest_file)
       directory new_resource.dest do
         recursive true
         mode '0755'
       end.run_action(:create)
 
-      FileUtils.cp(tmp_file, dest_file, :preserve => true)
+      FileUtils.cp(tmp_file, dest_file, preserve: true)
 
       file dest_file do
         owner new_resource.owner
-        group new_resource.owner
+        group new_resource.group
         mode new_resource.mode
       end.run_action(:create)
 

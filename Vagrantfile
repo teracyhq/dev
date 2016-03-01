@@ -232,11 +232,12 @@ Vagrant.configure("2") do |config|
       'cpuexecutioncap', 'pae', 'longmode', 'synthcpu', 'hpet', 'hwvirtex', 'triplefaultreset',
       'nestedpaging', 'largepages', 'vtxvpid', 'vtxux', 'accelerate3d', 'bioslogofadein',
       'bioslogodisplaytime', 'bioslogoimagepath', 'biosbootmenu', 'snapshotfolder', 'firmware',
-      'guestmemoryballoon', 'defaultfrontend'
+      'guestmemoryballoon', 'defaultfrontend', 'nataliasmode'
     ]
 
     vb_hash.each do |key, val|
-      if general_settings_keys.include?(key) and !vb_hash[key].nil?
+      main_key = key.gsub(/\d*$/,"")
+      if general_settings_keys.include?(main_key) and !vb_hash[key].nil?
         val = val.to_s.strip()
         if !val.empty?
           vb.customize ["modifyvm", :id, "--" + key, val]

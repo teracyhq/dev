@@ -19,10 +19,10 @@
 actions :create
 default_action :create
 
-attribute :name, :kind_of => String, :name_attribute => true, :required => true
-attribute :file, :kind_of => String, :required => true
-attribute :priority, :kind_of => Integer, :default => 99
-attribute :severity, :kind_of => String
-attribute :facility, :kind_of => String
-attribute :cookbook, :kind_of => String, :default => 'rsyslog'
-attribute :source, :kind_of => String, :default => 'file-input.conf.erb'
+attribute :name, kind_of: String, name_attribute: true, required: true
+attribute :file, kind_of: String, required: true
+attribute :priority, kind_of: Integer, default: 99
+attribute :severity, kind_of: String
+attribute :facility, kind_of: String
+attribute :cookbook, kind_of: String, default: 'rsyslog'
+attribute :source, kind_of: String, default: 'file-input.conf.erb'

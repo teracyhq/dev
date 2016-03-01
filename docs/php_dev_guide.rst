@@ -144,6 +144,21 @@ below:
     :align: center
 
 
+``XDebug`` With your favorite IDE
+---------------------------------
+By default our PHP install having xdebug module enabled. All you need to is:
+
++ Browser plugin to emmbed debug request along with page request. Install this `plugin <https://addons.mozilla.org/en-US/firefox/addon/the-easiest-xdebug/>`_ for Firefox or this `plugin <https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc>`_ for Chrome.
++ An IDE with ability to receive XDebug callback from server.
+
+Basic step would be (Note: Details steps would be difference depend on your browser and IDE):
+
++ Settings XDebug handler in IDE list on port 9999 with all network interface. 
++ Use browser plugin to embed XDebug request along with HTTP request header.
++ PHP on server will call back to client IP on port 9999 and debug session start.
+
+Read http://xdebug.org/docs/remote for more information about remote debug with XDebug.
+
 ``Composer`` Installation
 -------------------------
 

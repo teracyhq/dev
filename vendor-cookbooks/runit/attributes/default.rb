@@ -2,7 +2,7 @@
 # Cookbook Name:: runit
 # Attribute File:: sv_bin
 #
-# Copyright 2008-2009, Opscode, Inc.
+# Copyright 2008-2009, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the 'License');
 # you may not use this file except in compliance with the License.
@@ -36,14 +36,14 @@ when 'debian'
     default['runit']['reload'] = 'reload runsvdir'
   end
 
-when 'rhel'
+when 'rhel', 'fedora'
   default['runit']['sv_bin'] = '/sbin/sv'
   default['runit']['chpst_bin'] = '/sbin/chpst'
   default['runit']['service_dir'] = '/etc/service'
   default['runit']['sv_dir'] = '/etc/sv'
   default['runit']['lsb_init_dir'] = '/etc/init.d'
   default['runit']['executable'] = '/sbin/runit'
-  default['runit']['use_package_from_yum'] = false
+  default['runit']['prefer_local_yum'] = node['runit']['use_package_from_yum'] || false
   default['runit']['start'] = '/etc/init.d/runit-start start'
   default['runit']['stop'] = '/etc/init.d/runit-start stop'
   default['runit']['reload'] = '/etc/init.d/runit-start reload'

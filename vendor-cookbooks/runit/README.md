@@ -8,6 +8,11 @@ For more information about runit:
 
 - http://smarden.org/runit/
 
+#### A note regarding versions 1.7.0 and 1.7.2
+
+With the benefit of hindsight we can say that the changes contained version 1.7.0 merited a major version number change, and that version 1.7.2 contains some still unresolved regressions compared to 1.6.0. Please be sure to test this new version for compatibility with your systems before upgrading to version 1.7.
+
+See [issue #144](https://github.com/hw-cookbooks/runit/issues/144) for some notes on how these versions behaved unexpectedly in one user's environment.
 
 Requirements
 ------------
@@ -16,6 +21,8 @@ Requirements
 - Gentoo
 - RHEL
 
+### Cookbooks
+- packagecloud (for RHEL)
 
 Attributes
 ----------
@@ -32,22 +39,18 @@ See `attributes/default.rb` for defaults generated per platform.
 
 ### Optional Attributes for RHEL systems
 
-- `node['runit']['use_package_from_yum']` - If `true`, attempts to install
-  runit without building an RPM first. This is for users who already have
-  the package in their own Yum repository.
-
+- `node['runit']['prefer_local_yum']` - If `true`, assumes that a `runit` package is available on an already configured local yum repository. By default, the recipe installs the `runit` package from a Package Cloud repository (see below). This is set to the value of `node['runit']['use_package_from_yum']` for backwards compatibility, but otherwise defaults to `false`.
 
 Recipes
 -------
 ### default
 The default recipe installs runit and starts `runsvdir` to supervise the services in runit's service directory (e.g., `/etc/service`).
 
-On RHEL family systems, it will build the runit RPM using [Ian Meyer's runit RPM SPEC](https://github.com/imeyer/runit-rpm) unless the attribute `node['runit']['use_package_from_yum']` is set to `true`. In which case it will try and install runit through the normal package installation mechanism.
+On RHEL-family systems, it will install the runit RPM using [Ian Meyer's Package Cloud repository](https://packagecloud.io/imeyer/runit) for runit. This replaces the previous functionality where the RPM was build using his [runit RPM SPEC](https://github.com/imeyer/runit-rpm). However, if the attribute `node['runit']['prefer_local_yum']` is set to `true`, the packagecloud repository creation will be skipped and it is assumed that a `runit` package is available on an otherwise configured (outside this cookbook) local repository.
 
 On Debian family systems, the runit packages are maintained by the runit author, Gerrit Pape, and the recipe will use that for installation.
 
 On Gentoo, the runit ebuild package is installed.
-
 
 Resource/Provider
 -----------------
@@ -111,13 +114,18 @@ Many of these parameters are only used in the `:enable` action.
    compatibility with legacy runit service definition. Default is an
    empty hash.
 - **env** - A hash of environment variables with their values as content
-   used in the service's `env` directory. Default is an empty hash.
+  used in the service's `env` directory. Default is an empty hash. When
+  this hash is non-empty, the contents of the runit service's `env`
+  directory will be managed by Chef in order to conform to the declared
+  state.
 - **log** - Whether to start the service's logger with svlogd, requires
    a template `sv-service_name-log-run.erb` to configure the log's run
    script. Default is true.
 - **default_logger** - Whether a default `log/run` script should be set
    up. If true, the default content of the run script will use
    `svlogd` to write logs to `/var/log/service_name`. Default is false.
+- **log_dir** - The directory where the `svlogd` log service will run.
+  Used when `default_logger` is `true`.  Default is `/var/log/service_name`
 - **log_size** - The maximum size a log file can grow to before it is
   automatically rotated.  See svlogd(8) for the default value.
 - **log_num** - The maximum number of log files that will be retained
@@ -170,6 +178,9 @@ Many of these parameters are only used in the `:enable` action.
 - **restart_on_update** - Whether the service should be restarted when
     the run script is updated. Defaults to `true`. Set to `false` if
     the service shouldn't be restarted when the run script is updated.
+- **start_down** - Set the default state of the runit service to 'down' by creating
+    `<sv_dir>/down` file
+- **delete_downfile** - Delete previously created `<sv_dir>/down` file
 
 Unlike previous versions of the cookbook using the `runit_service` definition, the `runit_service` resource can be notified. See __Usage__ examples below.
 
@@ -187,7 +198,7 @@ exec svlogd -tt /var/log/service_name
 ```
 
 ### Examples
-These are example use cases of the `runit_service` resource described above. There are others in the `runit_test` cookbook that is included in the [git repository](https://github.com/opscode-cookbooks/runit).
+These are example use cases of the `runit_service` resource described above. There are others in the `runit_test` cookbook that is included in the [git repository](https://github.com/hw-cookbooks/runit).
 
 **Default Example**
 
@@ -352,8 +363,8 @@ runit_service "memcached" do
   options({
     :memory => node[:memcached][:memory],
     :port => node[:memcached][:port],
-    :user => node[:memcached][:user]}.merge(params)
-  })
+    :user => node[:memcached][:user]
+  }.merge(params))
 end
 ```
 
@@ -398,16 +409,17 @@ end
 
 **More Examples**
 
-For more examples, see the `runit_test` cookbook's `service` recipe in the [git repository](https://github.com/opscode-cookbooks/runit).
+For more examples, see the `runit_test` cookbook's `service` recipe in the [git repository](https://github.com/hw-cookbooks/runit).
 
 
 License & Authors
 -----------------
-- Author:: Adam Jacob <adam@opscode.com>
-- Author:: Joshua Timberman <joshua@opscode.com>
+- Author:: Adam Jacob <adam@chef.io>
+- Author:: Joshua Timberman <joshua@chef.io>
+- Author:: Sean OMeara <sean@chef.io>
 
 ```text
-Copyright:: 2008-2013, Opscode, Inc
+Copyright:: 2008-2016, Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,7 +1,10 @@
 Partial Search Cookbook
 =======================
-[Partial Search](http://docs.opscode.com/essentials_search.html#partial-search)
-is a search API available on Chef Server. (see Notes below for version compatibility)  
+[![Build Status](https://travis-ci.org/chef-cookbooks/partial_search.svg?branch=master)](http://travis-ci.org/chef-cookbooks/partial_search)
+[![Cookbook Version](https://img.shields.io/cookbook/v/partial_search.svg)](https://supermarket.chef.io/cookbooks/partial_search)
+
+[Partial Search](http://docs.chef.io/essentials_search.html#partial-search)
+is a search API available on Chef Server. (see Notes below for version compatibility)
 It can be used to reduce the network bandwidth and the memory used by
 chef-client to process search results.
 
@@ -9,14 +12,13 @@ This cookbook provides an experimental interface to the partial search
 API by providing a `partial_search` method that can be used instead of
 the `search` method in your recipes.
 
-Since Chef Client 11.10.0 the partial_search capability has been built-in
-so it does not require this cookbook.
-
 The `partial_search` method allows you to retrieve just the attributes
 of interest. For example, you can execute a search to return just the
 name and IP addresses of the nodes in your infrastructure rather than
 receiving an array of complete node objects and post-processing them.
 
+NOTE: Since Chef Client 12.0 the partial_search capability has been built-in
+so it does not require this cookbook.
 
 Install
 -------
@@ -62,11 +64,11 @@ Notes
 
 License & Authors
 -----------------
-- Author:: Adam Jacob (<adam@opscode.com>)
-- Author:: John Keiser (<jkeiser@opscode.com>)
+- Author:: Adam Jacob (<adam@chef.io>)
+- Author:: John Keiser (<jkeiser@chef.io>)
 
 ```text
-Copyright:: 2012-2013, Opscode, Inc.
+Copyright:: 2012-2015, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

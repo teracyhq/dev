@@ -2,7 +2,7 @@
 # Cookbook Name:: vim
 # Recipe:: package
 #
-# Copyright 2013, Opscode, Inc.
+# Copyright 2013-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,16 +20,12 @@
 # * vim-minimal gives you /bin/vi
 # * vim-enhanced gives you /usr/bin/vim
 #
-vim_base_pkgs = value_for_platform(
-  ["ubuntu", "debian", "arch"] => {"default" => ["vim"]},
-  ["redhat", "centos", "fedora", "scientific"] => {"default" => ["vim-minimal","vim-enhanced"]},
-  "default" => ["vim"]
+vim_base_pkgs = value_for_platform_family(
+  %w(debian arch) => ['vim'],
+  %w(rhel fedora) => ['vim-minimal', 'vim-enhanced'],
+  'default' => ['vim']
 )
 
-vim_base_pkgs.each do |vim_base_pkg|
-  package vim_base_pkg
-end
+package vim_base_pkgs
 
-node['vim']['extra_packages'].each do |vimpkg|
-  package vimpkg
-end
+package node['vim']['extra_packages']

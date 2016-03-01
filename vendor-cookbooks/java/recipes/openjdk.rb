@@ -1,11 +1,11 @@
 # Author:: Bryan W. Berry (<bryan.berry@gmail.com>)
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Joshua Timberman (<joshua@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Joshua Timberman (<joshua@chef.io>)
 #
 # Cookbook Name:: java
 # Recipe:: openjdk
 #
-# Copyright 2010-2013, Opscode, Inc.
+# Copyright 2010-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,6 +42,14 @@ if platform_requires_license_acceptance?
   end
 end
 
+if node['platform'] == 'ubuntu'
+  include_recipe 'apt'
+  apt_repository 'openjdk-r-ppa' do
+    uri 'ppa:openjdk-r'
+    distribution node['lsb']['codename']
+  end
+end
+
 node['java']['openjdk_packages'].each do |pkg|
   package pkg do
     version node['java']['openjdk_version'] if node['java']['openjdk_version']
@@ -58,6 +66,8 @@ if platform_family?('debian', 'rhel', 'fedora')
       bin_cmds node['java']['jdk']['6']['bin_cmds']
     when "7"
       bin_cmds node['java']['jdk']['7']['bin_cmds']
+    when "8"
+      bin_cmds node['java']['jdk']['8']['bin_cmds']
     end
     action :set
   end

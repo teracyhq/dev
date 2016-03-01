@@ -2,7 +2,7 @@
 # Cookbook Name:: rsyslog
 # Recipe:: server
 #
-# Copyright 2009-2014, Chef Software, Inc.
+# Copyright 2009-2015, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ node.set['rsyslog']['server'] = true
 include_recipe 'rsyslog::default'
 
 directory node['rsyslog']['log_dir'] do
-  owner    'root'
-  group    'root'
+  owner    node['rsyslog']['user']
+  group    node['rsyslog']['group']
   mode     '0755'
   recursive true
 end

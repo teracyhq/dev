@@ -3,6 +3,7 @@
 # Library:: helper
 #
 # Author:: Julian C. Dunn <jdunn@chef.io>
+# Author:: Justin Schuhmann <jmschu02@gmail.com>
 #
 # Copyright 2013, Chef Software, Inc.
 #
@@ -21,12 +22,19 @@
 
 module Opscode
   module IIS
+    # Contains functions that are used throughout this cookbook
     module Helper
+      @iis_version = nil
+
       if RUBY_PLATFORM =~ /mswin|mingw32|windows/
         require 'chef/win32/version'
+        require 'win32/registry'
       end
 
       require 'rexml/document'
+      require 'chef/mixin/shell_out'
+
+      include Chef::Mixin::ShellOut
       include REXML
       include Windows::Helper
 
@@ -34,12 +42,12 @@ module Opscode
         if RUBY_PLATFORM =~ /mswin|mingw32|windows/
           win_version = Chef::ReservedNames::Win32::Version.new
           win_version.windows_server_2008? ||
-          win_version.windows_vista? ||
-          win_version.windows_server_2003_r2? ||
-          win_version.windows_home_server? ||
-          win_version.windows_server_2003? ||
-          win_version.windows_xp? ||
-          win_version.windows_2000?
+            win_version.windows_vista? ||
+            win_version.windows_server_2003_r2? ||
+            win_version.windows_home_server? ||
+            win_version.windows_server_2003? ||
+            win_version.windows_xp? ||
+            win_version.windows_2000?
         end
       end
 
@@ -47,38 +55,48 @@ module Opscode
         if RUBY_PLATFORM =~ /mswin|mingw32|windows/
           win_version = Chef::ReservedNames::Win32::Version.new
           win_version.windows_7? ||
-          win_version.windows_server_2008_r2? ||
-          win_version.windows_server_2008? ||
-          win_version.windows_vista? ||
-          win_version.windows_server_2003_r2? ||
-          win_version.windows_home_server? ||
-          win_version.windows_server_2003? ||
-          win_version.windows_xp? ||
-          win_version.windows_2000?
+            win_version.windows_server_2008_r2? ||
+            win_version.windows_server_2008? ||
+            win_version.windows_vista? ||
+            win_version.windows_server_2003_r2? ||
+            win_version.windows_home_server? ||
+            win_version.windows_server_2003? ||
+            win_version.windows_xp? ||
+            win_version.windows_2000?
         end
       end
-
 
       def windows_cleanpath(path)
-        if(defined?(Chef::Util::PathHelper.cleanpath) != nil)
-          return Chef::Util::PathHelper.cleanpath(path)
+        if !defined?(Chef::Util::PathHelper.cleanpath).nil?
+          path = Chef::Util::PathHelper.cleanpath(path)
         else
-          return win_friendly_path(path)
+          path = win_friendly_path(path)
         end
+        # Remove any trailing slashes to prevent them from accidentally escaping any quotes.
+        path.chomp('/').chomp('\\')
       end
 
-      def is_new_value?(document, xpath, value_to_check)
-        return XPath.first(document, xpath).to_s == value_to_check ? false : true
+      def new_value?(document, xpath, value_to_check)
+        XPath.first(document, xpath).to_s != value_to_check.to_s
       end
 
-      def is_new_or_empty_value?(document, xpath, value_to_check)
-        return !is_new_value?(document, xpath, value_to_check) || value_to_check == '' ? false : true
+      def new_or_empty_value?(document, xpath, value_to_check)
+        value_to_check.to_s != '' && new_value?(document, xpath, value_to_check)
       end
 
       def appcmd(node)
         @appcmd ||= begin
           "#{node['iis']['home']}\\appcmd.exe"
         end
+      end
+
+      def iis_version
+        if @iis_version.nil?
+          version_string = Win32::Registry::HKEY_LOCAL_MACHINE.open('SOFTWARE\Microsoft\InetStp').read('VersionString')[1]
+          version_string.slice! 'Version '
+          @iis_version = version_string
+        end
+        @iis_version
       end
     end
   end
