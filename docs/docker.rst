@@ -6,12 +6,6 @@ We're using Docker for teracy-dev.
 When ``$ vagrant up``, it's expected that ``docker`` and `docker-compose` should be installed within
 the VM and ready to use:
 
-//TODO(hoatle): install `docker-compose` automatically
-
-//TODO(hoatle): add vagrant to docker group to avoid having to use `sudo docker`
-
-//TODO(hoatle): add auto-completion for `docker` and `docker-compose`
-
 ..  code-block:: bash
 
     vagrant@teracy-dev:~$ docker version
@@ -30,6 +24,29 @@ the VM and ready to use:
      Git commit:   5604cbe
      Built:        Tue Apr 26 23:30:23 2016
      OS/Arch:      linux/amd64
+
+
+Before we have auto provision ``docker-compose`` and the ``bash-completion``, follow these commands:
+
+..  code-block:: bash
+
+    $ vagrant ssh
+    $ sudo -i
+    # curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    # chmod +x /usr/local/bin/docker-compose
+    # curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+    # curl -L https://raw.githubusercontent.com/docker/docker/v1.11.1/contrib/completion/bash/docker > /etc/bash_completion.d/docker
+    # exit
+    $ exit
+    $ vagrant ssh
+
+and we should have docker-compose, docker, and bash auto-completion for these two.
+
+..  todo::
+
+    //TODO(hoatle): install `docker-compose` automatically
+    //TODO(hoatle): add vagrant to docker group to avoid having to use `sudo docker`
+    //TODO(hoatle): add auto-completion for `docker` and `docker-compose`
 
 docker-machine
 --------------
