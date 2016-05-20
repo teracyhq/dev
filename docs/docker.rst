@@ -104,6 +104,17 @@ from the host machine then it should be synced to the VM.
 To sync files from the VM back to the host workspace, make changes to `/vagrant/workspace` directory
 from within the VM machine.
 
+Debugging
+---------
+
+#. Node.js
+
+- node-inspector at: http://192.168.99.101:8080/?port=5858
+- remote js debug with IntelliJ: http://stackoverflow.com/a/23947664/1122198
+    ..  code-block:: bash
+
+        vagrant ssh -- -L 5858:127.0.0.1:5858
+
 
 Related Resources
 -----------------
