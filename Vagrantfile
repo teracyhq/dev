@@ -261,7 +261,7 @@ Vagrant.configure("2") do |config|
   #
   if data_hash['chef']['enabled']
     #TODO(hoatle): move all chef config within `chef:{}`
-    config.vm.provision "chef_zero" do |chef|
+    config.vm.provision "chef_solo" do |chef|
       chef.log_level = data_hash['chef_log_level']
       chef.cookbooks_path = data_hash['chef_cookbooks']
       chef.roles_path = data_hash['chef_role']

@@ -32,6 +32,12 @@
 #
 
 docker_installation 'default' do
-  repo 'main'
-  action :create
+    repo 'main'
+    action :create
+end
+
+group 'docker' do
+    action :modify
+    members 'vagrant'
+    append true
 end
