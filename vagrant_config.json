@@ -6,80 +6,36 @@
   "vm_forward_agent":true,
   "vm_networks": [
     { // see: http://docs.vagrantup.com/v2/networking/index.html
-      "mode":"forwarded_port", // one of "forwarded_port", "private_network" or "public_network"
-      "forwarded_ports": [ //for forwarded_port mode //TODO(hoatle): support more http://docs.vagrantup.com/v2/networking/forwarded_ports.html
-        {
-          "guest":3000, //node apps, RoR
-          "host":3000
-        },
-        {
-          "guest":3306, //mysql
-          "host":3306
-        },
-        {
-          "guest":4000, //octopress
-          "host":4000
-        },
-        {
-          "guest":4567, //sinatra
-          "host":4567
-        },
-        {
-          "guest":5000, //flask
-          "host":5000
-        },
-        {
-          "guest":5432, //postgreSQL
-          "host":5432
-        },
-        {
-          "guest":8000, //django
-          "host":8000
-        },
-        {
-          "guest":9999, //apache2
-          "host":9999
-        },
-        {
-          "guest":9998, //nginx
-          "host":9998
-        },
-        {
-          "guest":9997, //phpmyadmin
-          "host":9997
-        },
-        {
-          "guest":27017, //mongodb
-          "host":27017
-        },
-        {
-          "guest":35729, //livereload
-          "host":35729
-        },
-        {
-          "guest":30000, //codebox
-          "host":30000
-        }
-      ]
-      //"ip":"192.168.3.14", // for private_network, public_network mode
+      "mode":"private_network", // one of "forwarded_port", "private_network" or "public_network"
+      //by default, 192.168.99.100 is used for Boot2Docker
+      // for convention, use 192.168.99.101 for teracy-dev, 192.168.99.102 for teracy-staging, etc.
+      "ip": "192.168.99.101" // for private_network, public_network mode
       //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
       //"auto_config":true, // for private_network mode + ip
       //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
     }
   ],
   "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
+    // {
+    //   "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed,
+    //                         // ssh to vm and install cifs-utils allow vm mount smb directory
+    //                         // mount.cifs needs to be used with dir_mode file_mode instead of dmode fmode
+    //                         // Windows 7 needs powershell 3.0 to create smb share on windows
+    //                         // http://www.microsoft.com/en-us/download/details.aspx?id=34595
+    //   "host":"./docker",
+    //   "guest":"/var/lib/docker/",
+    //   "mount_options":[
+    //     "dmode=775",
+    //     "fmode=755"
+    //   ]
+    // },
+    //TODO: how to keep and reused existing Docker images after destroying the VM?
+    // or even attaching the existing data into it, so that developers should share the Docker images
     {
-      "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed,
-                            // ssh to vm and install cifs-utils allow vm mount smb directory
-                            // mount.cifs needs to be used with dir_mode file_mode instead of dmode fmode
-                            // Windows 7 needs powershell 3.0 to create smb share on windows
-                            // http://www.microsoft.com/en-us/download/details.aspx?id=34595
+      "type":"rsync",
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
-      "mount_options":[
-        "dmode=775",
-        "fmode=755"
-      ]
+      "rsync__exclude": [".git/", ".idea/", "node_modules/", "bower_components/", ".npm/"]
     }
     //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
     //to enable this, configure vm_sync_folders on vagrant_config_override.json
@@ -105,10 +61,13 @@
   ],
   "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
-    //"name":"teracy-dev",
-    "memory":1024,
+    "name":"teracy-dev",
+    "memory":2048,
     //"cpus":1,
     "description":"teracy-dev vagrant box"
+  },
+  "chef": {
+    "enabled":true
   },
   "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[
@@ -116,9 +75,9 @@
     "main-cookbooks"
   ],
   "chef_role":"roles",
+  "chef_nodes":"nodes",
   "chef_bags_path":"data_bags",
   "chef_recipes":[
-    "teracy-dev::apt",
     "vim",
     "teracy-dev"
   ],
@@ -134,7 +93,8 @@
     "teracy-dev":{
       "workspace":[
         "/vagrant/workspace/readonly",
-        "/vagrant/workspace/personal"
+        "/vagrant/workspace/personal",
+        "/vagrant/workspace/"
       ],
       "ssh_known_hosts": [
         "github.com",
@@ -143,8 +103,8 @@
       "git":{
         // 2.2.1: 367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589
         // 2.0.0: c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68
-        "version":"2.2.1", //more at https://www.kernel.org/pub/software/scm/git/
-        "checksum": "367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589",
+        "version":"2.8.3", //more at https://www.kernel.org/pub/software/scm/git/
+        "checksum": "2dad50c758339d6f5235309db620e51249e0000ff34aa2f2acbcb84c2123ed09",
         "user":{
           "name":"Teracy Dev",
           "email":"teracy-dev@teracy.com"

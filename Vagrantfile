@@ -200,6 +200,15 @@ Vagrant.configure("2") do |config|
 
     if item['supports'].nil? or item['supports'].include?(host_os_type)
       config.vm.synced_folder item['host'], item['guest'], options
+
+      # Configure the window for gatling to coalesce writes.
+      if Vagrant.has_plugin?("vagrant-gatling-rsync")
+        config.gatling.latency = 1.5
+        config.gatling.time_format = "%H:%M:%S"
+        # Automatically sync when machines with rsync folders come up.
+        config.gatling.rsync_on_startup = true
+      end
+
     end
   end
 
@@ -250,17 +259,23 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  config.vm.provision :chef_solo do |chef|
-    chef.log_level = data_hash['chef_log_level']
-    chef.cookbooks_path = data_hash['chef_cookbooks']
-    chef.roles_path = data_hash['chef_role']
-    chef.data_bags_path = data_hash['chef_bags_path']
+  if data_hash['chef']['enabled']
+    #TODO(hoatle): move all chef config within `chef:{}`
+    config.vm.provision "chef_zero" do |chef|
+      chef.log_level = data_hash['chef_log_level']
+      chef.cookbooks_path = data_hash['chef_cookbooks']
+      chef.roles_path = data_hash['chef_role']
+      chef.nodes_path = data_hash['chef_nodes']
+      chef.data_bags_path = data_hash['chef_bags_path']
 
-    data_hash['chef_recipes'].each do |x|
-      chef.add_recipe x
+      data_hash['chef_recipes'].each do |x|
+        chef.add_recipe x
+      end
+      #TODO(hoatle): add roles
+      # chef.add_role "web"
+      # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
+      chef.json = data_hash['chef_json']
     end
-  # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-    chef.json = data_hash['chef_json']
   end
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
