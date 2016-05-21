@@ -3,7 +3,7 @@ Docker
 
 We're using Docker for teracy-dev.
 
-When ``$ vagrant up``, it's expected that ``docker`` and `docker-compose` should be installed within
+When ``$ vagrant up``, it's expected that ``docker`` and ``docker-compose`` should be installed within
 the VM and ready to use:
 
 ..  code-block:: bash
@@ -40,7 +40,7 @@ Before we have auto provision ``docker-compose`` and the ``bash-completion``, fo
     $ exit
     $ vagrant ssh
 
-and we should have docker-compose, docker, and bash auto-completion for these two.
+and we should have ``docker-compose``, ``docker``, and bash auto-completion for these two.
 
 ..  todo::
 
@@ -98,7 +98,7 @@ We use https://github.com/smerrill/vagrant-gatling-rsync for syncing from host t
     $ vagrant plugin install vagrant-gatling-rsync
 
 
-Note that this is only 1 way to sync from host to the VM only, make changes to `workspace` directory
+Note that this is only 1 way sync from host to the VM only, make changes to `workspace` directory
 from the host machine then it should be synced to the VM.
 
 To sync files from the VM back to the host workspace, make changes to `/vagrant/workspace` directory
