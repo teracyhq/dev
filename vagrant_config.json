@@ -35,7 +35,7 @@
       "type":"rsync",
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
-      "rsync__exclude": [".idea/", "node_modules/", "bower_components/", ".npm/"]
+      "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
     }
     //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
     //to enable this, configure vm_sync_folders on vagrant_config_override.json
