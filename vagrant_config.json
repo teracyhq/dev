@@ -61,7 +61,7 @@
   ],
   "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
-    "name":"teracy-dev",
+    //"name":"teracy-dev",
     "memory":2048,
     //"cpus":1,
     "description":"teracy-dev vagrant box"

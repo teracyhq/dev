@@ -26,7 +26,7 @@ the VM and ready to use:
      OS/Arch:      linux/amd64
 
 
-Before we have auto provision ``docker-compose`` and the ``bash-completion``, follow these commands:
+Before we get ``docker-compose`` and the ``bash-completion`` provision automated, follow these commands:
 
 ..  code-block:: bash
 
