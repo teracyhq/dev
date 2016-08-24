@@ -8,21 +8,22 @@ the VM and ready to use:
 
 ..  code-block:: bash
 
-    vagrant@teracy-dev:~$ docker version
+    $ vagrant ssh
+    vagrant@vagrant-ubuntu-trusty-64:~$ docker version
     Client:
-     Version:      1.11.1
-     API version:  1.23
-     Go version:   go1.5.4
-     Git commit:   5604cbe
-     Built:        Tue Apr 26 23:30:23 2016
+     Version:      1.12.1
+     API version:  1.24
+     Go version:   go1.6.3
+     Git commit:   23cf638
+     Built:        Thu Aug 18 05:22:43 2016
      OS/Arch:      linux/amd64
 
     Server:
-     Version:      1.11.1
-     API version:  1.23
-     Go version:   go1.5.4
-     Git commit:   5604cbe
-     Built:        Tue Apr 26 23:30:23 2016
+     Version:      1.12.1
+     API version:  1.24
+     Go version:   go1.6.3
+     Git commit:   23cf638
+     Built:        Thu Aug 18 05:22:43 2016
      OS/Arch:      linux/amd64
 
 
@@ -30,12 +31,11 @@ Before we get ``docker-compose`` and the ``bash-completion`` provision automated
 
 ..  code-block:: bash
 
-    $ vagrant ssh
     $ sudo -i
-    # curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    # curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     # chmod +x /usr/local/bin/docker-compose
     # curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
-    # curl -L https://raw.githubusercontent.com/docker/docker/v1.11.1/contrib/completion/bash/docker > /etc/bash_completion.d/docker
+    # curl -L https://raw.githubusercontent.com/docker/docker/v1.12.1/contrib/completion/bash/docker > /etc/bash_completion.d/docker
     # exit
     $ exit
     $ vagrant ssh
