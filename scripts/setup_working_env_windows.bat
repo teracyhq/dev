@@ -37,7 +37,7 @@ echo ...........................................................
 echo Prepare and downloading resources
 copy /y NUL c:\dp.ps1 >NUL
 
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracy-official/dev/develop/scripts/Download-File.ps1', 'c:\dp.ps1')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/teracyhq/dev/develop/scripts/Download-File.ps1', 'c:\dp.ps1')"
 
 echo Prepare completed
 
@@ -119,7 +119,7 @@ echo --- DOWNLOAD and INSTALL VIRTUAL BOX ---
 echo.
 
 copy /y NUL c:\vbox.exe >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe" "c:\vbox.exe"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe" "c:\vbox.exe"
 
 
 echo Virtual Box is installing
@@ -137,7 +137,7 @@ echo --- DOWNLOAD and INSTALL VAGRANT ---
 echo.
 
 copy /y NUL c:\vgrant.msi >NUL
-powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi" "c:\vgrant.msi"
+powershell -ExecutionPolicy RemoteSigned -File "c:\dp.ps1" "https://releases.hashicorp.com/vagrant/1.8.7/vagrant_1.8.7.msi" "c:\vgrant.msi"
 
 echo Vagrant is installing
 start /wait /b C:\vgrant.msi

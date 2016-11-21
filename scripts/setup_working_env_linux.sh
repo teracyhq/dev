@@ -19,7 +19,7 @@ if [[ "$distributor_id" != *Ubuntu* ]]; then
 fi
 
 code_name=$(lsb_release -a 2>&1 | grep Codename | awk '{print $2}')
-vagrant_version="1.7.1"
+vagrant_version="1.7.8"
 
 if [ "$code_name" == "trusty" ] || [ "$code_name" == "saucy" ] || [ "$code_name" == "utopic" ]; then
     vbox_download_code_name="raring"
@@ -28,7 +28,7 @@ else
 fi
 
 is_32_bit=true
-virtualbox_link="http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~${vbox_download_code_name}_i386.deb"
+virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374~Ubuntu~${vbox_download_code_name}_i386.deb"
 vagrant_link="https://dl.bintray.com/mitchellh/vagrant/vagrant_${vagrant_version}_i686.deb"
 
 function determine_32_64_bit() {
@@ -42,7 +42,7 @@ determine_32_64_bit
 
 if ! $is_32_bit ; then
     echo "installing packages of 64-bit virtualbox and vagrant..."
-    virtualbox_link="http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~${vbox_download_code_name}_amd64.deb"
+    virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374~Ubuntu~${vbox_download_code_name}_amd64.deb"
     vagrant_link="https://dl.bintray.com/mitchellh/vagrant/vagrant_${vagrant_version}_x86_64.deb"
 fi
 
