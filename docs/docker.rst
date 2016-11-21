@@ -102,7 +102,7 @@ Note that this is only 1 way sync from host to the VM only, make changes to `wor
 from the host machine then it should be synced to the VM.
 
 To sync files from the VM back to the host workspace, make changes to `/vagrant/workspace` directory
-from within the VM machine.
+from within the VM machine. 
 
 Debugging
 ---------

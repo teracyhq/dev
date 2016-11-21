@@ -64,7 +64,7 @@
     //"name":"teracy-dev",
     "memory":2048,
     //"cpus":1,
-    "description":"teracy-dev vagrant box"
+    "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
   "chef": {
     "enabled":true
