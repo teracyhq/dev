@@ -4,7 +4,6 @@ services:
   dev:
     volumes:
       - teracy-dev-sync:/opt/app:rw
-
 volumes:
   teracy-dev-sync:
     external: true

@@ -7,7 +7,5 @@ services:
       dockerfile: Dockerfile-dev
     image: teracy/dev:dev_develop
     command: bash -c "rake build && rake berks_install"
-    ports:
-      - "4000:4000"
     volumes:
       - .:/opt/app
