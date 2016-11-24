@@ -19,7 +19,7 @@ if [[ "$distributor_id" != *Ubuntu* ]]; then
 fi
 
 code_name=$(lsb_release -a 2>&1 | grep Codename | awk '{print $2}')
-vagrant_version="1.7.8"
+vagrant_version="1.8.5"
 
 if [ "$code_name" == "trusty" ] || [ "$code_name" == "saucy" ] || [ "$code_name" == "utopic" ]; then
     vbox_download_code_name="raring"
