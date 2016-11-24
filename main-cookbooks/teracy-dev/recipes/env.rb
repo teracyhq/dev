@@ -32,10 +32,10 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 node['teracy-dev']['env'].each do |env|
-  action = :add
-  action = env['action'].to_sym unless env['action'].nil? or env['action'].strip().empty?
+  act = :add
+  act = env['action'].to_sym unless env['action'].nil? or env['action'].strip().empty?
   magic_shell_environment env['key'] do
     value env['value']
-    action action
+    action act
   end
 end

@@ -66,6 +66,10 @@
     //"cpus":1,
     "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
+  "rsync": {
+    // auto rsync watch when up/ reload done
+    "auto": false
+  },
   "chef": {
     "enabled":true
   },
@@ -108,7 +112,18 @@
           "action": "add" // one of add, remove. Default: add.
           // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
         }
-      ]
+      ],
+      "docker": {
+        "enabled": true,
+        "installation": {
+          "repo": "main", // one of main, test, experimental
+          "members": ["vagrant"],
+          "action": "create" // one of create, delete. Default: create
+        }
+      },
+      "docker_compose": {
+        "enabled": true
+      }
     }
   }
   //,

@@ -31,13 +31,44 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-docker_installation 'default' do
-    repo 'main'
-    action :create
+docker_conf = node['teracy-dev']['docker']
+
+def get_docker_compose_autocomplete_url
+    release = node['docker_compose']['release']
+    "https://raw.githubusercontent.com/docker/compose/#{release}/contrib/completion/bash/docker-compose"
 end
 
-group 'docker' do
-    action :modify
-    members 'vagrant'
-    append true
+if docker_conf['enabled'] == true
+
+    installation_conf = docker_conf['installation']
+
+    act = :create
+    if installation_conf['action'] == 'delete'
+        act = :delete 
+    end
+
+    docker_installation 'default' do
+        repo installation_conf['repo']
+        action act
+    end
+    group 'docker' do
+        action :modify
+        members installation_conf['members']
+        append true
+    end
+
+    if node['teracy-dev']['docker_compose']['enabled'] == true
+        include_recipe 'docker_compose::installation'
+
+        # install docker-compose auto complete
+        autocomplete_url = get_docker_compose_autocomplete_url
+
+        execute 'install docker-compose autocomplete' do
+            action :run
+            command "curl -L #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+            user 'root'
+            group 'docker'
+        end
+    end
 end
+

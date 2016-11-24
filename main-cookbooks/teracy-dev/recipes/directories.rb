@@ -33,13 +33,13 @@
 
 node['teracy-dev']['directories'].each do |dir|
     mode = 0775
-    action = :create
-    mode = dir['mode'] unless dir['mode'].nil? or dir['mode'].strip().empty?
-    action = dir['action'].to_sym unless dir['action'].nil? or dir['action'].strip().empty?
+    act = :create
+    mod = dir['mode'] unless dir['mode'].nil? or dir['mode'].strip().empty?
+    act = dir['action'].to_sym unless dir['action'].nil? or dir['action'].strip().empty?
     directory dir['path'] do
         owner dir['owner']
         group dir['group']
-        mode mode
-        action action
+        mode mod
+        action act
     end
 end

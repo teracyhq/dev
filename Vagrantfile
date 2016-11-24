@@ -200,16 +200,15 @@ Vagrant.configure("2") do |config|
 
     if item['supports'].nil? or item['supports'].include?(host_os_type)
       config.vm.synced_folder item['host'], item['guest'], options
-
-      # Configure the window for gatling to coalesce writes.
-      if Vagrant.has_plugin?("vagrant-gatling-rsync")
-        config.gatling.latency = 1.0
-        config.gatling.time_format = "%H:%M:%S"
-        # Automatically sync when machines with rsync folders come up.
-        # config.gatling.rsync_on_startup = false
-      end
-
     end
+  end
+
+  # Configure the window for gatling to coalesce writes.
+  if Vagrant.has_plugin?('vagrant-gatling-rsync')
+    config.gatling.latency = 1.0
+    config.gatling.time_format = "%H:%M:%S"
+    # Automatically sync when machines with rsync folders come up.
+    config.gatling.rsync_on_startup = data_hash['rsync']['auto']
   end
 
   # ssh configuration

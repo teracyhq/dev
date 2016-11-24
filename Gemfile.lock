@@ -243,12 +243,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  berkshelf (~> 5.2.0)
-  chef (~> 12.16.0)
-  chefspec (~> 5.3.0)
-  foodcritic (~> 8.1.0)
-  knife-spork (~> 1.6.2)
-  rake (~> 11.3.0)
+  berkshelf (~> 5.2)
+  chef (~> 12.16)
+  chefspec (~> 5.3)
+  foodcritic (~> 8.1)
+  knife-spork (~> 1.6)
+  rake (~> 11.3)
 
 RUBY VERSION
    ruby 2.2.6p396

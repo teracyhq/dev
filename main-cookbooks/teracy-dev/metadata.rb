@@ -8,11 +8,11 @@ version          '0.3.0'
 issues_url 'https://github.com/teracyhq/issues'
 source_url 'https://github.com/teracyhq/issues'
 
-%w{ magic_shell docker }.each do |dep|
+%w{ magic_shell docker docker_compose }.each do |dep|
     depends dep
 end
 
 recipe 'teracy::alias', "Installs useful alias for teracy's project development."
 recipe 'teracy-dev::directories', 'Manage directories.'
 recipe 'teracy-dev::env', 'Configures environment variables.'
-recipe 'teracy-dev::docker', 'Installs Docker.'
+recipe 'teracy-dev::docker', 'Installs Docker, docker_compose'

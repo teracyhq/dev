@@ -1,0 +1,56 @@
+{
+  "name": "docker_compose",
+  "description": "Installs docker_compose and provides the docker_compose_application resource.",
+  "long_description": "Installs docker_compose and provides the docker_compose_application resource.",
+  "maintainer": "Sebastian Boschert",
+  "maintainer_email": "sebastian@2007.org",
+  "license": "Apache v2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "centos": ">= 0.0.0"
+  },
+  "dependencies": {
+
+  },
+  "recommendations": {
+
+  },
+  "suggestions": {
+
+  },
+  "conflicting": {
+
+  },
+  "providing": {
+
+  },
+  "replacing": {
+
+  },
+  "attributes": {
+
+  },
+  "groupings": {
+
+  },
+  "recipes": {
+
+  },
+  "version": "0.1.1",
+  "source_url": "https://github.com/sboschert/chef-cookbook-docker_compose",
+  "issues_url": "https://github.com/sboschert/chef-cookbook-docker_compose/issues",
+  "privacy": false,
+  "chef_versions": [
+    [
+      ">= 12"
+    ]
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}
