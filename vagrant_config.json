@@ -66,9 +66,10 @@
     //"cpus":1,
     "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
-  "rsync": {
+  "gatling-rsync": {
     // auto rsync watch when up/ reload done
-    "auto": false
+    "latency": 1, //1s
+    "rsync_on_startup": true
   },
   "chef": {
     "enabled":true

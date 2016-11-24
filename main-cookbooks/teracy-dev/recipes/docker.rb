@@ -66,6 +66,7 @@ if docker_conf['enabled'] == true
         execute 'install docker-compose autocomplete' do
             action :run
             command "curl -L #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+            creates '/etc/bash_completion.d/docker-compose'
             user 'root'
             group 'docker'
         end

@@ -205,10 +205,13 @@ Vagrant.configure("2") do |config|
 
   # Configure the window for gatling to coalesce writes.
   if Vagrant.has_plugin?('vagrant-gatling-rsync')
-    config.gatling.latency = 1.0
+    config.gatling.latency = data_hash['gatling-rsync']['latency']
     config.gatling.time_format = "%H:%M:%S"
     # Automatically sync when machines with rsync folders come up.
-    config.gatling.rsync_on_startup = data_hash['rsync']['auto']
+    config.gatling.rsync_on_startup = data_hash['gatling-rsync']['rsync_on_startup']
+  else
+    puts red("required: '$ vagrant plugin install vagrant-gatling-rsync'")
+    exit!
   end
 
   # ssh configuration
