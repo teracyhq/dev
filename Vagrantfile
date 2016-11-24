@@ -126,7 +126,7 @@ Vagrant.configure("2") do |config|
       options = {}
       case vm_network['mode']
       when 'private_network'
-        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? and ip.strip().empty?
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? or vm_network['ip'].strip().empty?
         if options[:ip].nil? or options[:ip].empty?
           # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
           options[:type] = 'dhcp'
@@ -203,10 +203,10 @@ Vagrant.configure("2") do |config|
 
       # Configure the window for gatling to coalesce writes.
       if Vagrant.has_plugin?("vagrant-gatling-rsync")
-        config.gatling.latency = 0.7
+        config.gatling.latency = 1.0
         config.gatling.time_format = "%H:%M:%S"
         # Automatically sync when machines with rsync folders come up.
-        config.gatling.rsync_on_startup = false
+        # config.gatling.rsync_on_startup = false
       end
 
     end

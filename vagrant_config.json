@@ -6,10 +6,10 @@
   "vm_forward_agent":true,
   "vm_networks": [
     { // see: http://docs.vagrantup.com/v2/networking/index.html
-      "mode":"private_network", // one of "forwarded_port", "private_network" or "public_network"
+      "mode":"public_network" // one of "forwarded_port", "private_network" or "public_network"
       //by default, 192.168.99.100 is used for Boot2Docker
       // for convention, use 192.168.99.101 for teracy-dev, 192.168.99.102 for teracy-staging, etc.
-      "ip": "192.168.99.101" // for private_network, public_network mode
+      //"ip": "" // for private_network, public_network mode
       //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
       //"auto_config":true, // for private_network mode + ip
       //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
@@ -92,9 +92,7 @@
     },
     "teracy-dev":{
       "workspace":[
-        "/vagrant/workspace/readonly",
-        "/vagrant/workspace/personal",
-        "/vagrant/workspace/"
+        "/home/vagrant/workspace/"
       ],
       "ssh_known_hosts": [
         "github.com",
