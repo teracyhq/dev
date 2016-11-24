@@ -31,6 +31,10 @@ module DockerCookbook
         '/usr/bin/docker'
       end
 
+      def dockerd_bin
+        '/usr/bin/dockerd'
+      end
+
       def docker_name
         return 'docker' if name == 'default'
         "docker-#{name}"
@@ -119,16 +123,26 @@ module DockerCookbook
         ray.push.join('.')
       end
 
+      def docker_daemon
+        if Gem::Version.new(docker_major_version) < Gem::Version.new('1.12')
+          docker_bin
+        else
+          dockerd_bin
+        end
+      end
+
       def docker_daemon_arg
         if Gem::Version.new(docker_major_version) < Gem::Version.new('1.8')
           '-d'
-        else
+        elsif Gem::Version.new(docker_major_version) < Gem::Version.new('1.12')
           'daemon'
+        else
+          ''
         end
       end
 
       def docker_daemon_cmd
-        [docker_bin, docker_daemon_arg, docker_daemon_opts].join(' ')
+        [docker_daemon, docker_daemon_arg, docker_daemon_opts].join(' ')
       end
 
       def docker_cmd
@@ -145,6 +159,12 @@ module DockerCookbook
           opts << "--tlscert=#{tls_client_cert}" if tls_client_cert
           opts << "--tlskey=#{tls_client_key}" if tls_client_key
         end
+        opts
+      end
+
+      def systemd_args
+        opts = ''
+        systemd_opts.each { |systemd_opt| opts << "#{systemd_opt}\n" } if systemd_opts
         opts
       end
 
@@ -177,7 +197,7 @@ module DockerCookbook
         opts << "--log-level=#{log_level}" if log_level
         labels.each { |l| opts << "--label=#{l}" } if labels
         opts << "--log-driver=#{log_driver}" if log_driver
-        log_opts.each { |log_opt| opts << "--log-opt=#{log_opt}" } if log_opts
+        log_opts.each { |log_opt| opts << "--log-opt #{log_opt}" } if log_opts
         opts << "--mtu=#{mtu}" if mtu
         opts << "--pidfile=#{pidfile}" if pidfile
         opts << "--registry-mirror=#{registry_mirror}" if registry_mirror
@@ -191,6 +211,8 @@ module DockerCookbook
         opts << "--tlskey=#{tls_server_key}" if tls_server_key
         opts << "--userland-proxy=#{userland_proxy}" unless userland_proxy.nil?
         opts << "--disable-legacy-registry=#{disable_legacy_registry}" unless disable_legacy_registry.nil?
+        opts << "--userns-remap=#{userns_remap}" if userns_remap
+        opts << misc_opts if misc_opts
         opts
       end
 

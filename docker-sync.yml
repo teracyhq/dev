@@ -1,0 +1,10 @@
+options:
+  compose-dev-file-path: 'docker-compose-mac.yml'
+
+syncs:
+  teracy-dev-sync:
+    src: '.'
+    dest: '/opt/app'
+    sync_strategy: 'unison'
+    sync_excludes: ['.chef', '.idea', '.vagrant']
+    sync_host_port: 10873

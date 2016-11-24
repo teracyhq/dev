@@ -1,7 +1,7 @@
+require "chef/version"
+
 if Gem::Requirement.new(">= 12.0").satisfied_by?(Gem::Version.new(Chef::VERSION))
 
-  require 'compat_resource/version'
-  require 'compat_resource/gemspec'
   require 'chef_compat/resource'
   require 'chef_compat/property'
   require 'chef_compat/mixin/properties'

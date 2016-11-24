@@ -20,23 +20,23 @@ This cookbook is concerned with the [Docker](http://docker.io) container engine 
 The following platforms have been tested with Test Kitchen: You may be able to get it working on other platforms, with appropriate configuration of cgroups and storage back ends.
 
 ```
-|--------------+-------+-------+-------|--------|--------|
-|              | 1.7.1 | 1.8.3 | 1.9.1 | 1.10.3 | 1.11.1 |
-|--------------+-------+-------+-------|--------|--------|
-| debian-7     | X     | X     | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| debian-8     | X     | X     | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| centos-7     | X     | X     | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| fedora-23    |       |       | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| ubuntu-12.04 | X     | X     | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| ubuntu-14.04 | X     | X     | X     | X      | X      |
-|--------------+-------+-------+-------|--------|--------|
-| ubuntu-16.04 |       |       |       |        | X      |
-|--------------+-------+-------+-------|--------|--------|
+|--------------+-------+-------+-------|--------|--------|--------|
+|              | 1.7.1 | 1.8.3 | 1.9.1 | 1.10.3 | 1.11.1 | 1.12.3 |
+|--------------+-------+-------+-------|--------|--------|--------|
+| debian-7     | X     | X     | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| debian-8     | X     | X     | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| centos-7     | X     | X     | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| fedora       |       |       | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| ubuntu-12.04 | X     | X     | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| ubuntu-14.04 | X     | X     | X     | X      | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
+| ubuntu-16.04 |       |       |       |        | X      | X      |
+|--------------+-------+-------+-------|--------|--------|--------|
 ```
 
 ## Cookbook Dependencies
@@ -57,7 +57,7 @@ docker_image 'busybox' do
   action :pull
 end
 
-docker_container 'an echo server' do
+docker_container 'an-echo-server' do
   repo 'busybox'
   port '1234:1234'
   command "nc -ll -p 1234 -e /bin/cat"
@@ -90,35 +90,37 @@ Configuration of the backing storage driver, including kernel module loading, is
 
 ## Resources Overview
 
-- `docker_service`: composite resource that uses docker_installation and docker_service_manager
-- `docker_installation`: automatically select an installation method
-- `docker_service_manager`: automatically selects a service manager
+- [docker_service](#docker_service): composite resource that uses docker_installation and docker_service_manager
 
-- `docker_installation_binary`: copies a pre-compiled docker binary onto disk
+- [docker_installation](#docker_installation): automatically select an installation method
 
-- `docker_installation_script`: curl | bash
+- [docker_service_manager](#docker_service_manager): automatically selects a service manager
 
-- `docker_installation_package`: package 'docker-engine'
+- [docker_installation_binary](#docker_installation_binary): copies a pre-compiled docker binary onto disk
 
-- `docker_service_manager_execute`: manage docker daemon with Chef
+- [docker_installation_script](#docker_installation_script): curl | bash
 
-- `docker_service_manager_sysvinit`: manage docker daemon with a sysvinit script
+- [docker_installation_package](#docker_installation_package): package 'docker-engine'
 
-- `docker_service_manager_upstart`: manage docker daemon with upstart script
+- [docker_service_manager_execute](#docker_service_manager_execute): manage docker daemon with Chef
 
-- `docker_service_manager_systemd`: manage docker daemon with systemd unit files
+- [docker_service_manager_sysvinit](#docker_service_manager_sysvinit): manage docker daemon with a sysvinit script
 
-- `docker_image`: image/repository operations
+- [docker_service_manager_upstart](#docker_service_manager_upstart): manage docker daemon with upstart script
 
-- `docker_container`: container operations
+- [docker_service_manager_systemd](#docker_service_manager_systemd): manage docker daemon with systemd unit files
 
-- `docker_tag`: image tagging operations
+- [docker_image](#docker_image): image/repository operations
 
-- `docker_registry`: registry operations
+- [docker_ainer](#docker_container): container operations
 
-- `docker_network`: network operations
+- [docker_tag](#docker_tag): image tagging operations
 
-- `docker_volume`: volume operations
+- [docker_registry](#docker_registry): registry operations
+
+- [docker_network](#docker_network): network operations
+
+- [docker_volume](#docker_volume): volume operations
 
 ## Getting Started
 
@@ -234,6 +236,27 @@ end
 - `source` - Path to network accessible Docker binary. Ignores version
 - `checksum` - SHA-256
 
+## docker_installation_tarball
+
+The `docker_installation_tarball` resource copies the precompiled Go binary tarball onto the disk. It exists to help run newer Docker versions from 1.11.0 onwards. It should not be used in production, especially with devicemapper.
+
+### Example
+
+```ruby
+docker_installation_tarball 'default' do
+  version '1.11.0'
+  source 'https://my.computers.biz/dist/docker.tgz'
+  checksum '97a3f5924b0b831a310efa8bf0a4c91956cd6387c4a8667d27e2b2dd3da67e4d'
+  action :create
+end
+```
+
+### Properties
+
+- `version` - The desired version of docker. Used to calculate source.
+- `source` - Path to network accessible Docker binary tarball. Ignores version
+- `checksum` - SHA-256
+
 ## docker_installation_script
 
 The `docker_installation_script` resource runs the script hosted by Docker, Inc at <http://get.docker.com>. It configures package repositories and installs a dynamically compiled binary.
@@ -333,6 +356,7 @@ docker_service_manager_systemd 'default' do
   tls_server_key "/path/to/server-key.pem"
   tls_client_cert "/path/to/cert.pem"
   tls_client_key "/path/to/key.pem"
+  systemd_ops ["TasksMax=infinity","MountFlags=private"]
   action :start
 end
 ```
@@ -423,6 +447,16 @@ The `docker_service` resource property list mostly corresponds to the options fo
 - `logfile` - Location of Docker daemon log file
 - `userland_proxy`- Enables or disables docker-proxy
 - `disable_legacy_registry` - Do not contact legacy registries
+- `userns_remap` - Enable user namespace remapping options - `default`, `uid`, `uid:gid`, `username`, `username:groupname` (see: [Docker User Namespaces](see: https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-user-namespace-options))
+- `mount_flags` - Set the systemd mount propagation flag. Defaults to slave.
+
+#### Miscellaneous Options
+
+- `misc_opts` - Pass the docker daemon any other options bypassing flag validation, supplied as `--flag=value`
+
+#### Systemd-specific Options
+
+- `systemd_opts` - An array of strings that will be included as individual lines in the systemd service unit for Docker.  *Note*: This option is only relevant for systems where systemd is the default service manager or where systemd is specified explicitly as the service manager.   
 
 ### Actions
 
@@ -564,12 +598,10 @@ end
 
 The `docker_image` resource properties mostly corresponds to the [Docker Remote API](https://docs.docker.com/reference/api/docker_remote_api_v1.20/#2-2-images) as driven by the [Swipley docker-api Ruby gem](https://github.com/swipely/docker-api)
 
-A `docker_image`'s full identifier is a string in the form "\
+A `docker_image`'s full identifier is a string in the form "\<repo\>:\<tag\>". There is some nuance around naming using the public
+registry vs a private one.
 
-<repo\>:\<tag\>". There is some nuance around naming using the public
-registry vs a private one.</tag\></repo\>
-
-- `repo` - aka `image_name` - The first half of a Docker image's identity. This is a string in the form: `registry:port/owner/image_name`. If the `registry:port` portion is left off, Docker will implicitly use the Docker public registry. "Official Images" omit the owner part. This means a repo id can look as short as `busybox`, `alpine`, or `centos`, to refer to official images on the public registry, and as long as `my.computers.biz:5043:/what/ever` to refer to custom images on an private registry. Often you'll see something like `someara/chef` to refer to private images on the public registry. - Defaults to resource name.
+- `repo` - aka `image_name` - The first half of a Docker image's identity. This is a string in the form: `registry:port/owner/image_name`. If the `registry:port` portion is left off, Docker will implicitly use the Docker public registry. "Official Images" omit the owner part. This means a repo id can look as short as `busybox`, `alpine`, or `centos`, to refer to official images on the public registry, and as long as `my.computers.biz:5043/what/ever` to refer to custom images on an private registry. Often you'll see something like `someara/chef` to refer to private images on the public registry. - Defaults to resource name.
 - `tag` - The second half of a Docker image's identity. - Defaults to `latest`
 - `source` - Path to input for the `:import`, `:build` and `:build_if_missing` actions. For building, this can be a Dockerfile, a tarball containing a Dockerfile in its root, or a directory containing a Dockerfile. For import, this should be a tarball containing Docker formatted image, as generated with `:save`.
 - `destination` - Path for output from the `:save` action.
@@ -653,14 +685,14 @@ docker_container 'busybox_ls' do
 end
 ```
 
-- The :run_if_missing action will only run once. It is the default action.
+- The :run action contains both :create and :start the container in one action. Redeploys the container on resource change. It is the default action.
 
 ```ruby
 docker_container 'alpine_ls' do
   repo 'alpine'
   tag '3.1'
   command 'ls -la /'
-  action :run_if_missing
+  action :run
 end
 ```
 
@@ -671,7 +703,7 @@ docker_container 'env' do
   repo 'debian'
   env ['PATH=/usr/bin', 'FOO=bar']
   command 'env'
-  action :run_if_missing
+  action :run
 end
 ```
 
@@ -1033,7 +1065,7 @@ Most `docker_container` properties are the `snake_case` version of the `CamelCas
 - `dns` - An array of DNS servers the container will use for name resolution.
 - `dns_search` - An array of domains the container will search for name resolution.
 - `domain_name` - Set's the container's dnsdomainname as returned by the `dnsdomainname` command.
-- `entry_point` - Set the entry point for the container as a string or an array of strings.
+- `entrypoint` - Set the entry point for the container as a string or an array of strings.
 - `env` - Set environment variables in the container in the form `['FOO=bar', 'BIZ=baz']`
 - `extra_hosts` - An array of hosts to add to the container's `/etc/hosts` in the form `['host_a:10.9.8.7', 'host_b:10.9.8.6']`
 - `force` - A boolean to use in container operations that support a `force` option. Defaults to `false`
@@ -1056,6 +1088,7 @@ Most `docker_container` properties are the `snake_case` version of the `CamelCas
 - `remove_volumes` - A boolean to clean up "dangling" volumes when removing the last container with a reference to it. Default to `false` to match the Docker CLI behavior.
 - `restart_policy` - One of `no`, `on-failure`, `unless-stopped`, or `always`. Use `always` if you want a service container to survive a Dockerhost reboot. Defaults to `no`.
 - `restart_maximum_retry_count` - Maximum number of restarts to try when `restart_policy` is `on-failure`. Defaults to an ever increasing delay (double the previous delay, starting at 100mS), to prevent flooding the server.
+- `running_wait_time` - Amount of seconds `docker_container` wait to determine if a process is running.`
 - `security_opts` - A list of string values to customize labels for MLS systems, such as SELinux.
 - `signal` - The signal to send when using the `:kill` action. Defaults to `SIGTERM`.
 - `tty` - Boolean value to allocate a pseudo-TTY. Defaults to `false`.
@@ -1072,6 +1105,11 @@ Most `docker_container` properties are the `snake_case` version of the `CamelCas
 - `tls_ca_cert` - Trust certs signed only by this CA. Defaults to ENV['DOCKER_CERT_PATH'] if set
 - `tls_client_cert` - Path to TLS certificate file for docker cli. Defaults to ENV['DOCKER_CERT_PATH'] if set
 - `tls_client_key` - Path to TLS key file for docker cli. Defaults to ENV['DOCKER_CERT_PATH'] if set
+- `userns_mode` - Modify the user namespace mode - Defaults to `nil`, example option: `host`
+- `pid_mode` - Set the PID (Process) Namespace mode for the container. `host`: use the host's PID namespace inside the container.
+- `ipc_mode` - Set the IPC mode for the container - Defaults to `nil`, example option: `host`
+- `uts_mode` - Set the UTS namespace mode for the container. The UTS namespace is for setting the hostname and the domain that is visible to running processes in that namespace. By default, all containers, including those with `--network=host`, have their own UTS namespace. The host setting will result in the container using the same UTS namespace as the host. Note that --hostname is invalid in host UTS mode.
+- `ro_rootfs` - Mount the container's root filesystem as read only. Defaults to `false`
 
 ### Actions
 
@@ -1144,6 +1182,7 @@ end
 - `gateway` - Specify the gateway(s) for the network. Ex: `192.168.0.1`
 - `ip_range` - Specify a range of IPs to allocate for containers. Ex: `192.168.1.0/24`
 - `aux_address` - Auxillary addresses for the network. Ex: `['a=192.168.1.5', 'b=192.168.1.6']`
+- `container` - Container-id/name to be connected/disconnected to/from the network. Used only by `:connect` and `:disconnect` actions
 
 ### Example
 
@@ -1157,10 +1196,38 @@ docker_network 'network_g' do
 end
 ```
 
+Connect to multiple networks
+
+```ruby
+docker_network 'network_h1' do
+  action :create
+end
+
+docker_network 'network_h2' do
+  action :create
+end
+
+docker_container 'echo-base-networks_h' do
+  repo 'alpine'
+  tag '3.1'
+  command 'nc -ll -p 1337 -e /bin/cat'
+  port '1337'
+  network_mode 'network_h1'
+  action :run
+end
+
+docker_network 'network_h2' do
+  container 'echo-base-networks_h'
+  action :connect
+end
+```
+
 ### Actions
 
 - `:create` - create a network
 - `:delete` - create a network
+- `:connect` - connect a container to a network
+- `:disconnect` - disconnect a container from a network
 
 ## docker_volume
 

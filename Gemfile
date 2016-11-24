@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.2.6'
 
-gem 'rake', '10.4.2'
+gem 'rake', '~> 11.3.0'
 
 group:development do
-  gem 'chef', '11.16.4'
-  gem 'chefspec', '4.2.0'
-  gem 'foodcritic', '4.0.0'
-  gem 'knife-spork', '~> 1.4.2'
-  gem 'berkshelf', '3.2.2'
+  gem 'chef', '~> 12.16.0'
+  gem 'chefspec', '~> 5.3.0'
+  gem 'foodcritic', '~> 8.1.0'
+  gem 'knife-spork', '~> 1.6.2'
+  gem 'berkshelf', '~> 5.2.0'
 end

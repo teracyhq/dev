@@ -10,7 +10,7 @@ class Chef
         chef_gem_path = File.expand_path("../..",::Chef::Resource.instance_method(:initialize).source_location[0])
         caller(0..10).each do |c|
           if !c.start_with?(chef_gem_path) && !c.start_with?(chef_compat_gem_path)
-            new_location = c
+            location = c
             break
           end
         end

@@ -277,6 +277,13 @@ Vagrant.configure("2") do |config|
       chef.json = data_hash['chef_json']
     end
   end
+
+  $display_ip_address = <<IP_ADDRESS
+ipaddress=`hostname -I | cut -d' ' -f2`
+echo "ip address: $ipaddress"
+IP_ADDRESS
+
+  config.vm.provision "shell", inline: $display_ip_address
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
   #
@@ -305,6 +312,5 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-
 
 end

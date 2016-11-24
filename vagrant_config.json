@@ -12,7 +12,7 @@
       //"ip": "" // for private_network, public_network mode
       //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
       //"auto_config":true, // for private_network mode + ip
-      //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
+      //"bridge": "en0: Wi-Fi (AirPort)" // for public_network mode
     }
   ],
   "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
@@ -82,199 +82,33 @@
     "teracy-dev"
   ],
   "chef_json":{
-    "postgresql": {
-      "version":"9.3"
-    },
-    "rbenv":{
-      "user": "vagrant",
-      "group": "vagrant",
-      "user_home": "/home/vagrant"
-    },
     "teracy-dev":{
-      "workspace":[
-        "/home/vagrant/workspace/"
+      "directories":[
+        {
+          "path": "/home/vagrant/workspace",
+          "owner": "vagrant",
+          "group": "vagrant",
+          "mode": "0775",
+          "action": "create" // one of create, delete, nothing. Default: create.
+          // See more: https://docs.chef.io/resource_directory.html
+        }
       ],
-      "ssh_known_hosts": [
-        "github.com",
-        "code.teracy.org"
+      "alias": [
+        {
+          "name": "ws",
+          "command": "cd ~/workspace",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
+        }
       ],
-      "git":{
-        // 2.2.1: 367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589
-        // 2.0.0: c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68
-        "version":"2.8.3", //more at https://www.kernel.org/pub/software/scm/git/
-        "checksum": "2dad50c758339d6f5235309db620e51249e0000ff34aa2f2acbcb84c2123ed09",
-        "user":{
-          "name":"Teracy Dev",
-          "email":"teracy-dev@teracy.com"
-        },
-        "color":true,
-        "commit":{
-          "template":true
-        },
-        "core":{
-          "filemode":false
-        },
-        "diff":{
-          "tool":"vimdiff"
-        },
-        "merge":{
-          "tool":"vimdiff"
-        },
-        "difftool":{
-          "prompt":false
+      "env": [
+        {
+          "key": "EDITOR",
+          "value": "vim",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
         }
-      },
-      "nodejs":{
-        "enabled":true,
-        "versions": ["4.2.2", "0.12.8"],
-        "global_version": "4.2.2",
-        "npm": {
-          "globals": [
-            {
-              "name":"grunt-cli",
-              "version":""
-            },
-            {
-              "name":"gulp",
-              "version":""
-            },
-            {
-              "name":"bower",
-              "version":""
-            },
-            {
-              "name":"yo",
-              "version":""
-            },
-            {
-             "name":"phantomjs",
-             "version":""
-            }
-          ]
-        }
-      },
-      "python":{
-        "enabled":true,
-        "versions":["2.7.10", "3.3.6"],
-        "global_version": "2.7.10",
-        "pyenv": {
-          "git_ref":"v20150719"
-        },
-        "pip":{
-          "globals":[
-            {
-              "name":"Sphinx"
-              //"version":"" //means latest
-              //"supported_python_versions": [] //means all
-            },
-            {
-              "name":"restview"
-            }
-          ]
-        }
-      },
-      "ruby":{
-        "enabled":true,
-        "versions": ["2.2.3"],
-        "global_version": "2.2.3",
-        "globals":[
-          {
-            "name":"bundler",
-            "version":""
-          },
-          {
-            "name":"compass",
-            "version":""
-          },
-          {
-            "name":"foreman",
-            "version":""
-          }
-        ]
-      },
-      "nginx": {
-        "enabled":true,
-        "default_root": "/home/vagrant/workspace/personal",
-        "listen_port":9998,
-        "version": "1.7.8",
-        "checksum": "12f75ec302d3d3b841408e59bbf5116d38527b8c679abfcba7ceb866be60e8e5"
-      },
-      "apache":{
-        "enabled":true,
-        "default_root": "/home/vagrant/workspace/personal",
-        "listen_port":9999
-      },
-      "php":{
-        "enabled":true,
-        "version":"5.5.30", //empty string: default ubuntu distribution; http://php.net/downloads.php
-        "checksum":"8ad57f4317391354e66c83d26752f67515b2e923277eb97b2b420dfeff3c1007" // tar.gz type
-      },
-      "mysql":{
-        "enabled":true,
-        "version":"5.3.6",
-        "password":"teracy"
-      },
-      "mongodb":{
-        "enabled":true,
-        "version":"2.6.3"
-      },
-      "postgresql":{
-        "enabled":true,
-        "postgis_enabled":true,
-        "password":{
-          "postgres":"teracy"
-        }
-      },
-      "java":{
-        "enabled":false,
-        "version":"7",
-        "flavor":"oracle", //one of "openjdk", "oracle" or "ibm". Default: "oracle"
-        "maven":{
-          "enabled":false, //works only when java is enabled
-          "version":"3.2.5", //we're supporting both 2.x.x and 3.x.x
-          "checksum":"8c190264bdf591ff9f1268dc0ad940a2726f9e958e367716a09b8aaa7e74a755" //sha256
-          //"mirror":"http://mirrors.viethosting.vn/apache/"
-        }
-      },
-      "apt":{
-        //the mirror to use instead of the default one on /etc/apt/sources.list
-        // ref: http://mirrors.ubuntu.com/mirrors.txt
-        // ref: http://askubuntu.com/questions/39922/how-do-you-select-the-fastest-mirror-from-the-command-line/
-        // use http://mirrors.digipower.vn/ubuntu/archive/ if you're in Vietnam
-        //"mirror":"http://mirrors.digipower.vn/ubuntu/archive/",
-        "mirror":"",
-        //add more repositories
-        "repositories":[
-          // {
-          //   "name":"vagrant_precise",
-          //   "attributes":{
-          //     "uri":"http://mirrors.digipower.vn/ubuntu/archive/",
-          //     "components":["main","restricted","universe","multiverse"],
-          //     "distribution":"precise",
-          //     "deb_src":true
-          //   },
-          //   "action":"add"
-          //
-        ],
-        "packages":[
-          {
-            "name":"tree"
-          },
-          {
-            "name":"unzip"
-          }
-        ]
-      },
-      "codebox": {
-        "enabled":false,
-        "port":30000,
-        "sync_dir":"/home/vagrant/workspace"
-      },
-      "phpmyadmin": {
-        "enabled":true,
-        "listen_port": 9997,
-        "install_dir": "/opt/phpmyadmin"
-      }
+      ]
     }
   }
   //,

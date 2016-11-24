@@ -30,7 +30,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-magic_shell_alias 'ws' do
-    command 'cd ~/workspace'
+node['teracy-dev']['alias'].each do |ali|
+  action = :create
+  action = ali['action'].to_sym unless ali['action'].nil? or ali['action'].strip().empty?
+  magic_shell_alias ali['name'] do
+      command ali['command']
+      action action
+  end
 end

@@ -1,5 +1,69 @@
 # Docker Cookbook Changelog
 
+This file is used to list changes made in each version of the docker cookbook.
+
+## 2.11.0 (2016-11-23)
+- make systemd MountFlags configurable
+- make running wait time configurable
+
+## 2.10.0 (2016-11-23)
+- Implement network connect/disconnect
+- Fixed dns options mutual exclusion
+- Misc test harness cleanup
+
+## 2.9.10 (2016-11-14)
+-renaming systemd_conf to systemd_args due to a conflict with systemd cookbook
+
+## 2.9.9 (2016-11-14)
+-Fixing resource idempotence in labels property
+-Fix regression introduced by #741, breaking Debian installation
+-Added ro_rootfs => ReadonlyRootfs special cases mapping
+-Enable systemd options as a docker_service attribute
+
+## 2.9.8 (2016-11-08)
+- Fixed a typo in an error message 
+- Enable tarball install through docker_service
+- option log_opt is defined as --log-opt value1 --log-opt value2 instead of --log-opt=value1 --log-opt=value2
+- Depend on a working compat_resource cookbook
+
+## 2.9.7 (2016-10-14)
+- Require the most recent compat_resource
+- Get foodcritic passing
+- Update the Rakefile and use cookstyle
+- Use cookstyle in Travis
+- Add matchers for docker_installation_tarball
+
+## v2.9.6
+- entrypoint not entry_point README
+- dockerd binary on 1.12+ for upstart
+- fix docker.socket for systemd
+
+## v2.9.5
+- bumping docker-api gem
+
+## v2.9.4
+- Switch to the dockerd binary on 1.12+
+- Add links to resources overview list
+
+## v2.9.3
+- add uts_mode support for docker_container provider (#730)
+
+## v2.9.2
+- adding feature ReadonlyRootfs
+- bumping docker version to 1.11.2
+- removing etcd, fails tests for xenial and swarm will have it builtin in 1.12
+
+## v2.9.1
+- implement userns_mode for containers
+
+## v2.9.0
+- Feature - docker_installation_tarball resource
+- Patch - Adding missing http_proxy support to rhel/sysvinit
+- Patch #705 - Avoid installing docker-api gem in ChefSpec
+
+## v2.8.0
+- Feature - User namespace configuration capability for docker_service
+
 ## v2.7.1
 
 - Updated test matrix in the readme to reflect reality
