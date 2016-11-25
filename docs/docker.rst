@@ -27,27 +27,6 @@ the VM and ready to use:
      OS/Arch:      linux/amd64
 
 
-Before we get ``docker-compose`` and the ``bash-completion`` provision automated, follow these commands:
-
-..  code-block:: bash
-
-    $ sudo -i
-    # curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-    # chmod +x /usr/local/bin/docker-compose
-    # curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
-    # curl -L https://raw.githubusercontent.com/docker/docker/v1.12.1/contrib/completion/bash/docker > /etc/bash_completion.d/docker
-    # exit
-    $ exit
-    $ vagrant ssh
-
-and we should have ``docker-compose``, ``docker``, and bash auto-completion for these two.
-
-..  todo::
-
-    //TODO(hoatle): install `docker-compose` automatically
-    //TODO(hoatle): add vagrant to docker group to avoid having to use `sudo docker`
-    //TODO(hoatle): add auto-completion for `docker` and `docker-compose`
-
 docker-machine
 --------------
 
