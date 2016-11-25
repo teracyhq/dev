@@ -3,8 +3,8 @@
 # Setup initial working environment for host machines. This initial script only serves Ubuntu.
 #
 # install git
-# install virtualbox-4.3.20
-# install vagrant 1.7.1
+# install virtualbox-5.1.8
+# install vagrant 1.8.7
 
 function command_exists() {
     type "$1" &> /dev/null;
@@ -19,7 +19,7 @@ if [[ "$distributor_id" != *Ubuntu* ]]; then
 fi
 
 code_name=$(lsb_release -a 2>&1 | grep Codename | awk '{print $2}')
-vagrant_version="1.8.5"
+vagrant_version="1.8.7"
 
 if [ "$code_name" == "trusty" ] || [ "$code_name" == "saucy" ] || [ "$code_name" == "utopic" ]; then
     vbox_download_code_name="raring"
@@ -28,8 +28,8 @@ else
 fi
 
 is_32_bit=true
-virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374~Ubuntu~${vbox_download_code_name}_i386.deb"
-vagrant_link="https://dl.bintray.com/mitchellh/vagrant/vagrant_${vagrant_version}_i686.deb"
+virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/virtualbox-5.1_5.1.8-111374~Ubuntu~${vbox_download_code_name}_i386.deb"
+vagrant_link="https://releases.hashicorp.com/vagrant/${vagrant_version}/vagrant_${vagrant_version}_i686.deb"
 
 function determine_32_64_bit() {
     local machine=$(uname -m)
@@ -42,8 +42,8 @@ determine_32_64_bit
 
 if ! $is_32_bit ; then
     echo "installing packages of 64-bit virtualbox and vagrant..."
-    virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374~Ubuntu~${vbox_download_code_name}_amd64.deb"
-    vagrant_link="https://dl.bintray.com/mitchellh/vagrant/vagrant_${vagrant_version}_x86_64.deb"
+    virtualbox_link="http://download.virtualbox.org/virtualbox/5.1.8/virtualbox-5.1_5.1.8-111374~Ubuntu~${vbox_download_code_name}_amd64.deb"
+    vagrant_link="https://releases.hashicorp.com/vagrant/${vagrant_version}/vagrant_${vagrant_version}_x86_64.deb"
 fi
 
 
@@ -88,5 +88,5 @@ function install_docker() {
 sudo apt-get update
 install_git
 install_virtualbox
-install_vagrant
+install_vagrantcl
 #install_docker
