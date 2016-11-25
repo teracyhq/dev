@@ -204,6 +204,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Configure the window for gatling to coalesce writes.
+  # $ vagrant gatling-rsync-auto
   if Vagrant.has_plugin?('vagrant-gatling-rsync')
     config.gatling.latency = data_hash['gatling-rsync']['latency']
     config.gatling.time_format = "%H:%M:%S"
@@ -211,6 +212,13 @@ Vagrant.configure("2") do |config|
     config.gatling.rsync_on_startup = data_hash['gatling-rsync']['rsync_on_startup']
   else
     puts red("required: '$ vagrant plugin install vagrant-gatling-rsync'")
+    exit!
+  end
+
+  # use this to rsync back from guest to host
+  # $ vagrant rsync-back
+  unless Vagrant.has_plugin?('vagrant-rsync-back')
+    puts red("required: '$ vagrant plugin install vagrant-rsyn-back'")
     exit!
   end
 
