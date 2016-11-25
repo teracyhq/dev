@@ -49,6 +49,7 @@ Rake Tasks
 - ``$ rake build`` to check code style and run tests.
 
 ..  code-block:: bash
+
     $ docker-compose run --rm dev rake build
     bundle exec knife cookbook test -a -c test/knife.rb
     WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
@@ -67,6 +68,7 @@ Rake Tasks
 - ``$ rake berks_install`` to install vendor cookbooks with Berkshelf_.
 
 ..  code-block:: bash
+
     $ docker-compose run --rm dev rake berks_install
     bundle exec berks vendor vendor-cookbooks
     Resolving cookbook dependencies...

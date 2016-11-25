@@ -103,9 +103,41 @@ Tasks:
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
 </ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake build
+bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
+WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
+Running syntax check on teracy-dev
+Validating ruby files
+Validating templates
+bundle <span class="nb">exec</span> foodcritic -I test/foodcritic/* -f any main-cookbooks
+
+bundle <span class="nb">exec</span> rspec main-cookbooks
+No examples found.
+
+
+Finished in 0.00089 seconds <span class="o">(</span>files took 0.10198 seconds to load<span class="o">)</span>
+<span class="m">0</span> examples, <span class="m">0</span> failures
+</pre></div>
+</div>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
 </ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake berks_install
+bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
+Resolving cookbook dependencies...
+Fetching cookbook index from https://supermarket.chef.io...
+Installing compat_resource <span class="o">(</span>12.16.2<span class="o">)</span>
+Installing docker <span class="o">(</span>2.11.0<span class="o">)</span>
+Installing docker_compose <span class="o">(</span>0.1.1<span class="o">)</span>
+Installing magic_shell <span class="o">(</span>1.0.0<span class="o">)</span>
+Installing vim <span class="o">(</span>2.0.2<span class="o">)</span>
+Vendoring compat_resource <span class="o">(</span>12.16.2<span class="o">)</span> to vendor-cookbooks/compat_resource
+Vendoring docker <span class="o">(</span>2.11.0<span class="o">)</span> to vendor-cookbooks/docker
+Vendoring docker_compose <span class="o">(</span>0.1.1<span class="o">)</span> to vendor-cookbooks/docker_compose
+Vendoring magic_shell <span class="o">(</span>1.0.0<span class="o">)</span> to vendor-cookbooks/magic_shell
+Vendoring vim <span class="o">(</span>2.0.2<span class="o">)</span> to vendor-cookbooks/vim
+</pre></div>
+</div>
 </div>
 <div class="section" id="build-teracy-dev-docker-image">
 <h2>Build teracy/dev Docker image<a class="headerlink" href="#build-teracy-dev-docker-image" title="Permalink to this headline">¶</a></h2>
