@@ -31,7 +31,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-magic_shell_environment 'EDITOR' do
-    value 'vim'
+node['teracy-dev']['env'].each do |env|
+  act = :add
+  act = env['action'].to_sym unless env['action'].nil? or env['action'].strip().empty?
+  magic_shell_environment env['key'] do
+    value env['value']
+    action act
+  end
 end

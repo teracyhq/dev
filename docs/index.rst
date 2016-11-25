@@ -22,17 +22,13 @@ Contents:
    most_used_git_commands
    firefox_addon_dev_guide
    docs_guide
-   document_writer_training
    databases_guide
    nodejs_dev_guide
    c_c++_training
    python_dev_guide
-   python_training
    django_training
    ruby_dev_guide
-   ruby_training
    php_dev_guide
-   php_training
    html_css_training
    js_training
    java_training

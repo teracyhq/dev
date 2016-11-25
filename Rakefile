@@ -125,7 +125,6 @@ end
 desc "Installs Berkshelf cookbooks to vendor-cookbooks directory"
 task :berks_install do
   sh "bundle exec berks vendor vendor-cookbooks"
-  sh "patch -p1 < patches/001_phpmyadmin_recipes.patch"
 end
 
 desc "Uploads Berkshelf cookbooks to our chef server."

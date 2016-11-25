@@ -126,7 +126,7 @@ Vagrant.configure("2") do |config|
       options = {}
       case vm_network['mode']
       when 'private_network'
-        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? and ip.strip().empty?
+        options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? or vm_network['ip'].strip().empty?
         if options[:ip].nil? or options[:ip].empty?
           # make `type: 'dhcp'` default when `ip` is not defined (nil or empty)
           options[:type] = 'dhcp'
@@ -203,6 +203,17 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # Configure the window for gatling to coalesce writes.
+  if Vagrant.has_plugin?('vagrant-gatling-rsync')
+    config.gatling.latency = data_hash['gatling-rsync']['latency']
+    config.gatling.time_format = "%H:%M:%S"
+    # Automatically sync when machines with rsync folders come up.
+    config.gatling.rsync_on_startup = data_hash['gatling-rsync']['rsync_on_startup']
+  else
+    puts red("required: '$ vagrant plugin install vagrant-gatling-rsync'")
+    exit!
+  end
+
   # ssh configuration
   config.ssh.forward_agent = data_hash['vm_forward_agent']
 
@@ -250,18 +261,31 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  config.vm.provision :chef_solo do |chef|
-    chef.log_level = data_hash['chef_log_level']
-    chef.cookbooks_path = data_hash['chef_cookbooks']
-    chef.roles_path = data_hash['chef_role']
-    chef.data_bags_path = data_hash['chef_bags_path']
+  if data_hash['chef']['enabled']
+    #TODO(hoatle): move all chef config within `chef:{}`
+    config.vm.provision "chef_solo" do |chef|
+      chef.log_level = data_hash['chef_log_level']
+      chef.cookbooks_path = data_hash['chef_cookbooks']
+      chef.roles_path = data_hash['chef_role']
+      chef.nodes_path = data_hash['chef_nodes']
+      chef.data_bags_path = data_hash['chef_bags_path']
 
-    data_hash['chef_recipes'].each do |x|
-      chef.add_recipe x
+      data_hash['chef_recipes'].each do |x|
+        chef.add_recipe x
+      end
+      #TODO(hoatle): add roles
+      # chef.add_role "web"
+      # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
+      chef.json = data_hash['chef_json']
     end
-  # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-    chef.json = data_hash['chef_json']
   end
+
+  $display_ip_address = <<IP_ADDRESS
+ipaddress=`hostname -I | cut -d' ' -f2`
+echo "ip address: $ipaddress"
+IP_ADDRESS
+
+  config.vm.provision "shell", inline: $display_ip_address
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
   #
@@ -290,6 +314,5 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-
 
 end

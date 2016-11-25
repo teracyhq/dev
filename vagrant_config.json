@@ -6,80 +6,39 @@
   "vm_forward_agent":true,
   "vm_networks": [
     { // see: http://docs.vagrantup.com/v2/networking/index.html
-      "mode":"forwarded_port", // one of "forwarded_port", "private_network" or "public_network"
-      "forwarded_ports": [ //for forwarded_port mode //TODO(hoatle): support more http://docs.vagrantup.com/v2/networking/forwarded_ports.html
-        {
-          "guest":3000, //node apps, RoR
-          "host":3000
-        },
-        {
-          "guest":3306, //mysql
-          "host":3306
-        },
-        {
-          "guest":4000, //octopress
-          "host":4000
-        },
-        {
-          "guest":4567, //sinatra
-          "host":4567
-        },
-        {
-          "guest":5000, //flask
-          "host":5000
-        },
-        {
-          "guest":5432, //postgreSQL
-          "host":5432
-        },
-        {
-          "guest":8000, //django
-          "host":8000
-        },
-        {
-          "guest":9999, //apache2
-          "host":9999
-        },
-        {
-          "guest":9998, //nginx
-          "host":9998
-        },
-        {
-          "guest":9997, //phpmyadmin
-          "host":9997
-        },
-        {
-          "guest":27017, //mongodb
-          "host":27017
-        },
-        {
-          "guest":35729, //livereload
-          "host":35729
-        },
-        {
-          "guest":30000, //codebox
-          "host":30000
-        }
-      ]
-      //"ip":"192.168.3.14", // for private_network, public_network mode
+      "mode":"public_network", // one of "forwarded_port", "private_network" or "public_network"
+      //by default, 192.168.99.100 is used for Boot2Docker
+      // for convention, use 192.168.99.101 for teracy-dev, 192.168.99.102 for teracy-staging, etc.
+      //"ip": "" // for private_network, public_network mode
       //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
       //"auto_config":true, // for private_network mode + ip
-      //"bridge": "en1: Wi-Fi (AirPort)" // for public_network mode
+      "bridge": [
+        "en0: Wi-Fi (AirPort)", // mac
+        "wlan0" // linux
+      ] // for public_network mode
     }
   ],
   "vm_synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
+    // {
+    //   "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed,
+    //                         // ssh to vm and install cifs-utils allow vm mount smb directory
+    //                         // mount.cifs needs to be used with dir_mode file_mode instead of dmode fmode
+    //                         // Windows 7 needs powershell 3.0 to create smb share on windows
+    //                         // http://www.microsoft.com/en-us/download/details.aspx?id=34595
+    //   "host":"./docker",
+    //   "guest":"/var/lib/docker/",
+    //   "mount_options":[
+    //     "dmode=775",
+    //     "fmode=755"
+    //   ]
+    // },
+    //TODO: how to keep and reused existing Docker images after destroying the VM?
+    // or even attaching the existing data into it, so that developers should share the Docker images
     {
-      "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed,
-                            // ssh to vm and install cifs-utils allow vm mount smb directory
-                            // mount.cifs needs to be used with dir_mode file_mode instead of dmode fmode
-                            // Windows 7 needs powershell 3.0 to create smb share on windows
-                            // http://www.microsoft.com/en-us/download/details.aspx?id=34595
+      "type":"rsync",
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
-      "mount_options":[
-        "dmode=775",
-        "fmode=755"
-      ]
+      "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
     }
     //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
     //to enable this, configure vm_sync_folders on vagrant_config_override.json
@@ -106,9 +65,17 @@
   "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
     //"name":"teracy-dev",
-    "memory":1024,
+    "memory":2048,
     //"cpus":1,
-    "description":"teracy-dev vagrant box"
+    "description":"teracy-dev #{Time.now.getutc.to_i}"
+  },
+  "gatling-rsync": {
+    // auto rsync watch when up/ reload done
+    "latency": 1, //1s
+    "rsync_on_startup": true
+  },
+  "chef": {
+    "enabled":true
   },
   "chef_log_level":"info", //one of debug, info, warn, error, fatal. Default: info
   "chef_cookbooks":[
@@ -116,206 +83,50 @@
     "main-cookbooks"
   ],
   "chef_role":"roles",
+  "chef_nodes":"nodes",
   "chef_bags_path":"data_bags",
   "chef_recipes":[
-    "teracy-dev::apt",
     "vim",
     "teracy-dev"
   ],
   "chef_json":{
-    "postgresql": {
-      "version":"9.3"
-    },
-    "rbenv":{
-      "user": "vagrant",
-      "group": "vagrant",
-      "user_home": "/home/vagrant"
-    },
     "teracy-dev":{
-      "workspace":[
-        "/vagrant/workspace/readonly",
-        "/vagrant/workspace/personal"
+      "directories":[
+        {
+          "path": "/home/vagrant/workspace",
+          "owner": "vagrant",
+          "group": "vagrant",
+          "mode": "0775",
+          "action": "create" // one of create, delete, nothing. Default: create.
+          // See more: https://docs.chef.io/resource_directory.html
+        }
       ],
-      "ssh_known_hosts": [
-        "github.com",
-        "code.teracy.org"
+      "alias": [
+        {
+          "name": "ws",
+          "command": "cd ~/workspace",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
+        }
       ],
-      "git":{
-        // 2.2.1: 367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589
-        // 2.0.0: c6a370e95326701037dfe32f8e66f39cdd28557ca84ffdb282d6042c37a98b68
-        "version":"2.2.1", //more at https://www.kernel.org/pub/software/scm/git/
-        "checksum": "367a77d0b10a5070b02a0fb0e942f26f25af61793128e0ddfd5c5c474de93589",
-        "user":{
-          "name":"Teracy Dev",
-          "email":"teracy-dev@teracy.com"
-        },
-        "color":true,
-        "commit":{
-          "template":true
-        },
-        "core":{
-          "filemode":false
-        },
-        "diff":{
-          "tool":"vimdiff"
-        },
-        "merge":{
-          "tool":"vimdiff"
-        },
-        "difftool":{
-          "prompt":false
+      "env": [
+        {
+          "key": "EDITOR",
+          "value": "vim",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
+        }
+      ],
+      "docker": {
+        "enabled": true,
+        "installation": {
+          "repo": "main", // one of main, test, experimental
+          "members": ["vagrant"],
+          "action": "create" // one of create, delete. Default: create
         }
       },
-      "nodejs":{
-        "enabled":true,
-        "versions": ["4.2.2", "0.12.8"],
-        "global_version": "4.2.2",
-        "npm": {
-          "globals": [
-            {
-              "name":"grunt-cli",
-              "version":""
-            },
-            {
-              "name":"gulp",
-              "version":""
-            },
-            {
-              "name":"bower",
-              "version":""
-            },
-            {
-              "name":"yo",
-              "version":""
-            },
-            {
-             "name":"phantomjs",
-             "version":""
-            }
-          ]
-        }
-      },
-      "python":{
-        "enabled":true,
-        "versions":["2.7.10", "3.3.6"],
-        "global_version": "2.7.10",
-        "pyenv": {
-          "git_ref":"v20150719"
-        },
-        "pip":{
-          "globals":[
-            {
-              "name":"Sphinx"
-              //"version":"" //means latest
-              //"supported_python_versions": [] //means all
-            },
-            {
-              "name":"restview"
-            }
-          ]
-        }
-      },
-      "ruby":{
-        "enabled":true,
-        "versions": ["2.2.3"],
-        "global_version": "2.2.3",
-        "globals":[
-          {
-            "name":"bundler",
-            "version":""
-          },
-          {
-            "name":"compass",
-            "version":""
-          },
-          {
-            "name":"foreman",
-            "version":""
-          }
-        ]
-      },
-      "nginx": {
-        "enabled":true,
-        "default_root": "/home/vagrant/workspace/personal",
-        "listen_port":9998,
-        "version": "1.7.8",
-        "checksum": "12f75ec302d3d3b841408e59bbf5116d38527b8c679abfcba7ceb866be60e8e5"
-      },
-      "apache":{
-        "enabled":true,
-        "default_root": "/home/vagrant/workspace/personal",
-        "listen_port":9999
-      },
-      "php":{
-        "enabled":true,
-        "version":"5.5.30", //empty string: default ubuntu distribution; http://php.net/downloads.php
-        "checksum":"8ad57f4317391354e66c83d26752f67515b2e923277eb97b2b420dfeff3c1007" // tar.gz type
-      },
-      "mysql":{
-        "enabled":true,
-        "version":"5.3.6",
-        "password":"teracy"
-      },
-      "mongodb":{
-        "enabled":true,
-        "version":"2.6.3"
-      },
-      "postgresql":{
-        "enabled":true,
-        "postgis_enabled":true,
-        "password":{
-          "postgres":"teracy"
-        }
-      },
-      "java":{
-        "enabled":false,
-        "version":"7",
-        "flavor":"oracle", //one of "openjdk", "oracle" or "ibm". Default: "oracle"
-        "maven":{
-          "enabled":false, //works only when java is enabled
-          "version":"3.2.5", //we're supporting both 2.x.x and 3.x.x
-          "checksum":"8c190264bdf591ff9f1268dc0ad940a2726f9e958e367716a09b8aaa7e74a755" //sha256
-          //"mirror":"http://mirrors.viethosting.vn/apache/"
-        }
-      },
-      "apt":{
-        //the mirror to use instead of the default one on /etc/apt/sources.list
-        // ref: http://mirrors.ubuntu.com/mirrors.txt
-        // ref: http://askubuntu.com/questions/39922/how-do-you-select-the-fastest-mirror-from-the-command-line/
-        // use http://mirrors.digipower.vn/ubuntu/archive/ if you're in Vietnam
-        //"mirror":"http://mirrors.digipower.vn/ubuntu/archive/",
-        "mirror":"",
-        //add more repositories
-        "repositories":[
-          // {
-          //   "name":"vagrant_precise",
-          //   "attributes":{
-          //     "uri":"http://mirrors.digipower.vn/ubuntu/archive/",
-          //     "components":["main","restricted","universe","multiverse"],
-          //     "distribution":"precise",
-          //     "deb_src":true
-          //   },
-          //   "action":"add"
-          //
-        ],
-        "packages":[
-          {
-            "name":"tree"
-          },
-          {
-            "name":"unzip"
-          }
-        ]
-      },
-      "codebox": {
-        "enabled":false,
-        "port":30000,
-        "sync_dir":"/home/vagrant/workspace"
-      },
-      "phpmyadmin": {
-        "enabled":true,
-        "listen_port": 9997,
-        "install_dir": "/opt/phpmyadmin"
+      "docker_compose": {
+        "enabled": true
       }
     }
   }
