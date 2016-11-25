@@ -91,6 +91,7 @@ When we update the development runtime (for example, change Gemfile or Dockerfil
 build the image with:
 
 ..  code-block:: bash
+
     $ docker-compose build
 
 
