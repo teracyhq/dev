@@ -12,13 +12,23 @@ At Teracy, you need to install the tools below:
 - ``virtualbox``
 - ``vagrant``
 - ``git``
+- ``rsync``
 
-**Windows Notes**:
 
-- You MUST install ``git`` to use ``Git Bash``, from now on, it is called ``terminal window``.
+on Mac
+------
+//TODO(hoatle)
 
-- You MUST ALWAYS run ``virtualbox`` and ``Git Bash`` as **administrator** to make symlinks
-  (of virtualenv) work as expected.
+on Linux
+--------
+//TODO(hoatle)
+
+on Windows
+----------
+//TODO(hoatle)
+
+- You MUST install ``cygwin`` to use ``git``, ``rsync``, from now on, it is called ``terminal window``.
+
 
 Automatic Installation
 ----------------------
@@ -27,11 +37,12 @@ To install required packages automatically, you need run **Ubuntu** 12.04 and ne
 need to move to the next alternative instruction by installing required packages manually.
 
 Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
+
 ::
 
-    $ cd /tmp && wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
+  $ cd /tmp && wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
 
-On Windows (Windows 7 & Windows 8), follow these steps:
+On Windows (Windows 7, Windows 8 & Windows 10), follow these steps:
 
 1. Open: https://raw.github.com/teracyhq/dev/develop/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
 
@@ -47,13 +58,20 @@ Now you should have ``vagrant`` and ``virtualbox`` installed on your system.
 Manual Installation
 -------------------
 
-1. Install the latest ``git`` version at http://git-scm.com/.
+1. Install the latest ``cygwin`` version at https://www.cygwin.com/ and choose to install the
+   following packages:
 
-2. Install ``virtualbox`` with the exact version of **4.3.20** at
+   - bash
+   - bash-completion
+   - git
+   - openssh
+   - rsync
+
+2. Install ``virtualbox`` with the exact version of **5.1.8** (or newer) at
    https://www.virtualbox.org/wiki/Downloads.
 
-3. Install ``vagrant`` with the exact version of **1.7.1** at
-   https://www.vagrantup.com/download-archive/v1.7.1.html.
+3. Install ``vagrant`` with the exact version of **1.8.7** (or newer) at
+   https://releases.hashicorp.com/vagrant/1.8.7/.
 
 ..  note::
 
@@ -65,28 +83,13 @@ Manual Installation
       virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and
       re-install it to fix the issue.
 
-Adding SSH Key
----------------
-Teracy supports SSH Agent Forwarding by default. It means you do not have to submit username & password
-each time when working with Git like ``pull, push, rebase, etc`` on the Vagrant box. So, after
-having installed Git, Vagrant, and Virtualbox, you need to add SSH key for Git and Virtualbox.
+Git Setup
+---------
 
-Do the following guides to get it work:
+Complete the following guides to get it work:
 
-- Mac: https://help.github.com/articles/generating-ssh-keys#platform-mac
+- https://help.github.com/categories/ssh/
 
-- Linux: https://help.github.com/articles/generating-ssh-keys#platform-linux
-
-- Windows: https://help.github.com/articles/generating-ssh-keys
-
-- Clone GitHub repositories using SSH.
-
-.. note::
-
-  You need to use the **ssh-agent** tool that provides a secure way of storing and using your SSH
-  keys. Also, it allows you to use git commands on the virtual machine. See
-  https://help.github.com/articles/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-msysgit
-  to automatically run when opening the terminal window.
 
 Environment Up
 --------------
@@ -123,21 +126,35 @@ Environment Up
       You should see the following similar messages after ``$ vagrant up`` finishes running:
       ::
 
-          [2013-07-01T09:57:11+00:00] INFO: Chef Run complete in 160.951322714 seconds
-          [2013-07-01T09:57:11+00:00] INFO: Running report handlers
-          [2013-07-01T09:57:11+00:00] INFO: Report handlers complete
+      ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
+      ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
+      ==> default: Running provisioner: shell...
+      ==> default: Running: inline script
+      ==> default: stdin: is not a tty
+      ==> default: ip address: 192.168.0.105
+      ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
+      ==> default: Doing an initial rsync...
+      ==> default: Rsyncing folder: /Users/hoatle/teracy-dev-docker/workspace/teracy-dev/workspace/ => /home/vagrant/workspace
+      ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just
 installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
 ::
 
-    Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic i686)
+  Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-101-generic x86_64)
 
-     * Documentation:  https://help.ubuntu.com/
+  * Documentation:  https://help.ubuntu.com/
 
-    37 packages can be updated.
-    18 updates are security updates.
+  System information as of Fri Nov 25 06:02:18 UTC 2016
 
-    Last login: Wed Apr 24 07:43:49 2013 from 10.0.2.2
+  System load:  0.79              Users logged in:        0
+  Usage of /:   5.6% of 39.34GB   IP address for eth0:    10.0.2.15
+  Memory usage: 10%               IP address for eth1:    192.168.0.105
+  Swap usage:   0%                IP address for docker0: 172.17.0.1
+  Processes:    89
 
-*Congratulations, you've all set now!*
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud

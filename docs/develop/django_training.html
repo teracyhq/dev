@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Django Training &mdash; teracy-dev 0.5.0-@ documentation</title>
+    <title>Django Training &#8212; teracy-dev 0.5.0-@ documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,9 +24,11 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="teracy-dev 0.5.0-@ documentation" href="index.html" />
     <link rel="next" title="Ruby Development Guide" href="ruby_dev_guide.html" />
-    <link rel="prev" title="Python Training" href="python_training.html" />
+    <link rel="prev" title="Python Development Guide" href="python_dev_guide.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,9 +52,9 @@
           <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="python_training.html" title="Python Training"
+          <a href="python_dev_guide.html" title="Python Development Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -63,236 +65,8 @@
             
   <div class="section" id="django-training">
 <h1>Django Training<a class="headerlink" href="#django-training" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>Follow <a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
-</div>
-<div class="section" id="starting-a-django-project">
-<h2>Starting A Django Project<a class="headerlink" href="#starting-a-django-project" title="Permalink to this headline">¶</a></h2>
-<p>In this section, you will know how to create a <code class="docutils literal"><span class="pre">tutorial</span></code> Django project via some following simple
-steps:</p>
-<ol class="arabic">
-<li><dl class="first docutils">
-<dt>Run the project under a virtual Python environment.</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ ws
-$ cd personal
-$ pyenv virtualenv tutorial
-$ pyenv activate tutorial
-</pre></div>
-</div>
-<p>You should see the following similar messages:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>New python executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python2.7
-Also creating executable in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/bin/python
-Installing setuptools, pip, wheel...done.
-Ignoring indexes: https://pypi.python.org/simple
-Requirement already satisfied (use --upgrade to upgrade): setuptools in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
-Requirement already satisfied (use --upgrade to upgrade): pip in /home/vagrant/.pyenv/versions/2.7.10/envs/tutorial/lib/python2.7/site-packages
-</pre></div>
-</div>
-<p class="last">You are now under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual Python environment. Use <code class="docutils literal"><span class="pre">$</span> <span class="pre">pyenv</span> <span class="pre">deactive</span></code>
-to escape it or <code class="docutils literal"><span class="pre">$</span> <span class="pre">pyenv</span> <span class="pre">activate</span> <span class="pre">--force</span> <span class="pre">tutorial</span></code> to be under the <code class="docutils literal"><span class="pre">tutorial</span></code> virtual
-Python environment again.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Set up the <code class="docutils literal"><span class="pre">tutorial</span></code> project:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ mkdir tutorial
-$ cd tutorial
-$ git init
-$ git remote add djbp https://github.com/teracyhq/django-boilerplate.git
-$ git fetch djbp
-$ git merge djbp/master
-$ pip install -r requirements/dev.txt
-$ python manage.py syncdb
-</pre></div>
-</div>
-<p>When <code class="docutils literal"><span class="pre">syncdb</span></code>, you should create a super account to access the admin page later.</p>
-<p class="last">The project <a class="reference external" href="https://github.com/teracyhq/django-boilerplate">https://github.com/teracyhq/django-boilerplate</a> will help you get
-project development booted with a Django project template (boilerplate) of the best practices.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Run the server now:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre><span></span>$ python manage.py runserver 0.0.0.0:8000
-</pre></div>
-</div>
-<p>You should see the following similar messages:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>Validating models...
-
-0 errors found
-July 01, 2013 - 10:44:01
-Django version 1.5.1, using settings &#39;settings.dev&#39;
-Development server is running at http://0.0.0.0:8000/
-Quit the server with CONTROL-C.
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><p class="first">Open your browser at <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> and login with your created super account.</p>
-</li>
-</ol>
-<p>Sweet, everything is cool now! However, the project does not do anything much yet. You need to
-create Django applications for it.</p>
-</div>
-<div class="section" id="starting-a-django-application">
-<h2>Starting A Django Application<a class="headerlink" href="#starting-a-django-application" title="Permalink to this headline">¶</a></h2>
-<p>This section shows you how to create a Django application named <code class="docutils literal"><span class="pre">hello</span></code> to display the <code class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">World!</span></code> message when accessing <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
-<ol class="arabic">
-<li><p class="first">Open the browser at <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
-<p>You will see a 404 error and it is normal.</p>
-</li>
-<li><p class="first">Install an editor for coding. If you have had it, skip this step.</p>
-<p>At Teracy, it&#8217;s recommended to use <a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a>. Download and
-install it on your computer.</p>
-</li>
-<li><p class="first">Open <code class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></code>, add <code class="docutils literal"><span class="pre">workspace/personal/tutorial</span></code> project by clicking <strong>Project</strong> -&gt;
-<strong>Add  Folder to Project</strong>.</p>
-<p>The <code class="docutils literal"><span class="pre">tutorial</span></code> project should be opened and you can start coding now.</p>
-</li>
-<li><p class="first">Open two terminal windows:</p>
-<p>Usually, you need to open two terminal windows:</p>
-<ul class="simple">
-<li>One is used for running the Django project.</li>
-<li>The other one is used for normal commands.</li>
-</ul>
-</li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">teracy-django-html5-boilerplate</span></code> to your project
-<a class="reference external" href="https://github.com/teracyhq/django-html5-boilerplate">teracy-django-html5-boilerplate</a>
-is a Django wrapper application that includes <code class="docutils literal"><span class="pre">html5-boilerplate</span></code> assets and provides
-<code class="docutils literal"><span class="pre">base.html``for</span> <span class="pre">starting</span> <span class="pre">any</span> <span class="pre">web</span> <span class="pre">application</span> <span class="pre">with</span> <span class="pre">``html5-boilerplate</span></code>, so you need to install
-it on your project.</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Add the following dependency to <code class="docutils literal"><span class="pre">requirements/project/dev.txt</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>teracy-django-html5-boilerplate==0.3.0
-</pre></div>
-</div>
-</li>
-<li><p class="first">Install it:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>pip install -r requirements/dev.txt
-</pre></div>
-</div>
-</li>
-</ul>
-<p>You should see something like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>Installing collected packages: teracy-django-html5-boilerplate
-Running setup.py install for teracy-django-html5-boilerplate
-
-    Skipping installation of /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy/__init__.py (namespace package)
-    Skipping installation of /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy/__init__.pyc (namespace package)
-    Installing /home/vagrant/.virtualenvs/tutorial-new/lib/python2.7/site-packages/teracy_django_html5_boilerplate-0.1.0-py2.7-nspkg.pth
-    Successfully installed teracy-django-html5-boilerplate
-    Cleaning up...
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><dl class="first docutils">
-<dt>Install the <code class="docutils literal"><span class="pre">teracy-html5boilerplate</span></code> application to <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code>:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
- <span class="s1">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
-  <span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><p class="first">Create  the <code class="docutils literal"><span class="pre">hello</span></code> application</p>
-<blockquote>
-<div><div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">A specific Django application should be put under <code class="docutils literal"><span class="pre">apps</span></code> directory.</p>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>$ ws
-$ workon tutorial
-$ cd personal/tutorial/apps
-$ python manage.py startapp hello
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p class="first">Add the <code class="docutils literal"><span class="pre">hello</span></code> application to <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> on <code class="docutils literal"><span class="pre">settings/project/dev.py</span></code> by appending
-the following configuration:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="s1">&#39;teracy.html5boilerplate&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;apps.hello&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p class="first">Create the <code class="docutils literal"><span class="pre">home.html</span></code> template under the <code class="docutils literal"><span class="pre">apps/hello/templates/hello</span></code> directory with the
-following content:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span>{% extends &#39;html5boilerplate/base.html&#39; %}
-
-{% block body_content %}
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;h2&gt;Welcome to &lt;strong&gt;teracy-dev&lt;/strong&gt; - get development fun!&lt;/h2&gt;
-{% endblock %}
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><dl class="first docutils">
-<dt>Add <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> to <code class="docutils literal"><span class="pre">apps/hello/views.py</span></code>:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
-
-<span class="k">class</span> <span class="nc">HomeTemplateView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;hello/home.html&#39;</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Create <code class="docutils literal"><span class="pre">apps/hello/urls.py</span></code> and configure <code class="docutils literal"><span class="pre">HomeTemplateView</span></code> with following content:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">patterns</span>
-
-<span class="kn">from</span> <span class="nn">apps.hello.views</span> <span class="kn">import</span> <span class="n">HomeTemplateView</span>
-
-
-<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
-    <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">HomeTemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hello_home&#39;</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Configure the root URL on <code class="docutils literal"><span class="pre">urls/project/dev.py</span></code> by adding the following content:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="n">url</span><span class="p">(</span><span class="s1">r&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;apps.hello.urls&#39;</span><span class="p">)),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-<li><p class="first">Refresh your browser opening <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> and you should see <code class="docutils literal"><span class="pre">Hello</span> <span class="pre">World!</span></code> page instead
-of the 404 error page.</p>
-</li>
-</ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>During development, the server could be stopped by some errors and it is normal.
-The server should be started without any error with the command:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span></span>$ python manage.py runserver 0.0.0.0:8000
-</pre></div>
-</div>
-</div>
-<p>Congratulations, you have just created a Django application and make it work even though it does
-nothing other than &#8220;Hello World!&#8221; page. You should now learn Django by developing many more
-applications for this <code class="docutils literal"><span class="pre">tutorial</span></code> project by adapting Django tutorials at
-<a class="reference external" href="https://docs.djangoproject.com/en/1.5/">https://docs.djangoproject.com/en/1.5/</a>.</p>
-</div>
+<p>We&#8217;re leveraging Docker workflow since v0.5.0 and this feature is not available.</p>
+<p>This feature is available at <a class="reference external" href="http://dev.teracy.org/docs/0.4.2/django_training.html">http://dev.teracy.org/docs/0.4.2/django_training.html</a></p>
 </div>
 
 
@@ -301,19 +75,9 @@ applications for this <code class="docutils literal"><span class="pre">tutorial<
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Django Training</a><ul>
-<li><a class="reference internal" href="#setup">Setup</a></li>
-<li><a class="reference internal" href="#starting-a-django-project">Starting A Django Project</a></li>
-<li><a class="reference internal" href="#starting-a-django-application">Starting A Django Application</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="python_training.html"
-                        title="previous chapter">Python Training</a></p>
+  <p class="topless"><a href="python_dev_guide.html"
+                        title="previous chapter">Python Development Guide</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="ruby_dev_guide.html"
                         title="next chapter">Ruby Development Guide</a></p>
@@ -327,14 +91,11 @@ applications for this <code class="docutils literal"><span class="pre">tutorial<
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -351,14 +112,14 @@ applications for this <code class="docutils literal"><span class="pre">tutorial<
           <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              >next</a> |</li>
         <li class="right" >
-          <a href="python_training.html" title="Python Training"
+          <a href="python_dev_guide.html" title="Python Development Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2016, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+        &#169; Copyright 2013 - 2016, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9.
     </div>
   </body>
 </html>
