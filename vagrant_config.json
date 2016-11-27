@@ -1,7 +1,5 @@
 {
-  //"vm_box":"teracy/dev",
-  "vm_box": "ubuntu/trusty64",
-  //"vm_box_url":"http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box",
+  "vm_box": "bento/ubuntu-16.04", // more: https://github.com/chef/bento
   "vm_box_version": "",
   "vm_forward_agent":true,
   "vm_networks": [
