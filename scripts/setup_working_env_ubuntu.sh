@@ -88,5 +88,5 @@ function install_docker() {
 sudo apt-get update
 install_git
 install_virtualbox
-install_vagrantcl
+install_vagrant
 #install_docker
