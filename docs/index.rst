@@ -13,6 +13,8 @@ Contents:
 
    intro
    getting_started
+   basic_usage
+   advanced_usage
    tool_chain
    built_in_ide
    style_standards
