@@ -1,130 +1,227 @@
 Getting Started
 ===============
 
-To get started, you must follow the instruction steps below to set up the development environment.
+``teracy-dev`` is created to set up a universal development platform which has the same development
+workflow on Mac, Linux and Windows with good developer experience and productivity in mind. 
 
 
-Prerequisites
--------------
+Please follow the installation instruction below, after that, the instruction step for teracy-dev
+`git clone` and `vagrant up` is the same on all the platforms.
 
-At Teracy, you need to install the tools below:
-
-- ``virtualbox``
-- ``vagrant``
-- ``git``
-- ``rsync``
-
-
-on Mac
-------
-//TODO(hoatle)
-
-on Linux
---------
-//TODO(hoatle)
-
-on Windows
-----------
-//TODO(hoatle)
-
-- You MUST install ``cygwin`` to use ``git``, ``rsync``, from now on, it is called ``terminal window``.
-
-
-Automatic Installation
-----------------------
-
-To install required packages automatically, you need run **Ubuntu** 12.04 and newer. If not, you
-need to move to the next alternative instruction by installing required packages manually.
-
-Installing ``git``, ``virtualbox``, ``vagrant`` with the provided bash script below:
-
-::
-
-  $ cd /tmp && wget -qO- https://raw.github.com/teracyhq/dev/develop/scripts/setup_working_env_chef.sh | bash
-
-On Windows (Windows 7, Windows 8 & Windows 10), follow these steps:
-
-1. Open: https://raw.github.com/teracyhq/dev/develop/scripts/setup_vagrant_and_virtualbox.bat on Chrome or Firefox.
-
-2. Press ``Ctrl + S``.
-
-3. Select the option ``Save as type: Text document``, with the name "setup_vagrant_and_virtualbox.bat" (notice the double quote).
-
-4. Open it by double-clicking on ``setup_vagrant_and_virtualbox.bat``.
-
-Now you should have ``vagrant`` and ``virtualbox`` installed on your system.
-
-
-Manual Installation
--------------------
-
-1. Install the latest ``cygwin`` version at https://www.cygwin.com/ and choose to install the
-   following packages:
-
-   - bash
-   - bash-completion
-   - git
-   - openssh
-   - rsync
-
-2. Install ``virtualbox`` with the exact version of **5.1.8** (or newer) at
-   https://www.virtualbox.org/wiki/Downloads.
-
-3. Install ``vagrant`` with the exact version of **1.8.7** (or newer) at
-   https://releases.hashicorp.com/vagrant/1.8.7/.
 
 ..  note::
 
-    - The 64-bit architecture is used and run every day by us, however, the 32-bit archirecture is
+    - The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
       expected to work, too.
 
-    - The virtualbox has an installation issue which is reported `here
-      <https://www.virtualbox.org/ticket/4140>`_. If you `$ vagrant up` but can not start the
-      virtual box, please find "VBoxUSBMon.inf" & "VBoxDrv.inf" in your installation directory and
-      re-install it to fix the issue.
+    - We recommend the following tested and supported platforms:
 
-Git Setup
----------
+      + macOS Sierra
+      + Ubuntu 16.04
+      + Windows 10, Windows 8, Windows 7
 
-Complete the following guides to get it work:
-
-- https://help.github.com/categories/ssh/
+      Other platforms are expected to work, but we haven't fully tested them yet.
 
 
-Environment Up
---------------
+Automatic Installation on macOS
+-------------------------------
+
+// TODO(hoatle): https://github.com/teracyhq/dev/issues/162
+
+
+Manual Installation on macOS
+----------------------------
+
+Check out the video and follow step by step instructions below:
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
+
+Open the terminal window:
+
+1. Install ``Homebrew`` and ``Homebrew Cask``
+
+   - http://brew.sh/
+   - https://caskroom.github.io/
+
+2. Install ``virtualbox`` and ``vagrant``
+
+   - Install ``virtualbox`` (>=5.1):
+
+     .. code-block:: bash
+
+        $ brew cask install virtualbox
+
+   - Install ``vagrant`` (>=1.8, <1.9):
+
+     .. code-block:: bash
+
+        $ brew cask install vagrant
+
+     ..  note::
+     
+        - If the above command installs ``vagrant`` >=1.9, make sure to install the right version by
+          downloading the installation file manually from https://releases.hashicorp.com/vagrant/
+
+        - // FIXME(hoatle): https://github.com/teracyhq/dev/issues/175
+
+
+Automatic Installation on Linux (Ubuntu)
+----------------------------------------
+
+// TODO(hoatle): https://github.com/teracyhq/dev/issues/162
+
+
+Manual Installation on Linux (Ubuntu)
+-------------------------------------
+
+Check out the video and follow step by step instructions below:
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
+
+Open the terminal window:
+
+1. Install ``git``
+
+   ..  code-block:: bash
+
+      $ sudo apt-get update
+      $ sudo apt-get install -y git
+
+2. Install ``virtualbox`` (>=5.1):
+
+   Find the right installation version file at https://www.virtualbox.org/wiki/Linux_Downloads or
+   https://www.virtualbox.org/wiki/Download_Old_Builds
+
+   ..  code-block:: bash
+
+      $ cd /tmp/
+      $ wget <download_link>
+      $ sudo dpkg -i <downloaded_file>
+      $ sudo apt-get install -r -y
+
+3. Install ``vagrant`` (>=1.8, <1.9):
+
+   Find the right installation version file at https://releases.hashicorp.com/vagrant/ or
+   https://www.vagrantup.com/downloads.html
+
+   ..  code-block:: bash
+
+      $ cd /tmp/
+      $ wget <download_link>
+      $ sudo dpkg -i <downloaded_file>
+
+
+Automatic Installation on Windows
+---------------------------------
+
+// TODO(hoatle): add this
+
+
+Manual Installation on Windows
+------------------------------
+
+This should be the same on Windows 10, Windows 8 and Windows 7.
+
+Check out the video and follow step by step instructions below:
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
+
+
+1. Install ``chocolatey``
+
+   Run ``Command Prompt`` as administrator and paste the Cmd.exe command copied from
+   https://chocolatey.org/install
+
+2. Install ``cyg-get``
+   
+   Type the command below on the opened ``Command Prompt``:
+
+   ..  code-block:: bash
+
+       > choco install cyg-get -y
+
+3. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``
+
+   Run ``Cygwin Terminal`` as administrator with the following commands:
+
+   - Install ``bash-completion``:
+
+     .. code-block:: bash
+
+        $ cyg-get.bat bash-completion
+
+   - Install ``git``:
+
+     .. code-block:: bash
+
+        $ cyg-get.bat git
+
+   - Install ``virtualbox``:
+
+     .. code-block:: bash
+
+        $ choco install virtualbox -y
+
+   - Install ``vagrant``:
+
+     .. code-block:: bash
+
+        $ choco install vagrant -y
+
+
+..  note::
+
+    - If you encounter the following error:
+
+      ..  code-block:: bash
+
+          C:\ProgramData\chocolatey\lib\cyg-get\tools\cyg-get.ps1 : Please ensure you have Cygwin installed.
+          To install please call 'choco install cygwin' (optionally add -y to autoconfirm).
+          ERROR: This command cannot be run due to the error: The system cannot find the file specified.
+          At line:1 char:1
+
+      then fix it with https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458
+
+    - If you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
+      "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The
+      VirtualBox has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
+
+
+teracy-dev Git Clone and Vagrant Up
+-----------------------------------
 
 1. Open your terminal window and type:
-    ::
+
+    ..  code-block:: bash
 
       $ cd ~/
       $ git clone https://github.com/teracyhq/dev.git teracy-dev
       $ cd teracy-dev
+      $ git checkout develop
       $ vagrant up
 
-..  note::
+    ..  note::
 
-    - The home directory on ``Git Bash`` normally should point to your user's directory on windows.
-      For example: ``C:\Documents and Settings\<user_name>``, this is the place you will find
-      ``teracy-dev`` directory to import projects into your text editor later for coding.
+          We check out the `develop` branch here to use the latest development version of teracy-dev.
+          When it is released, we will use the `master` branch - the latest stable version instead.
 
-    - You may see the error:
+    You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
+    plugins are required, so install them:
 
-      ..  code-block:: bash
+    ..  code-block:: bash
 
-        Vagrant uses the `VBoxManage` binary that ships with VirtualBox, and requires this to be
-        available on the PATH. If VirtualBox is installed, please find the `VBoxManage` binary and
-        add it to the PATH environmental variable.
+        $ vagrant plugin install vagrant-gatling-rsync
+        $ vagrant plugin install vagrant-rsync-back
 
-      To fix this error, add the path of the **VirtualBox** folder to your environment variable.
 
-      For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
-
-      If the error still occurs, you have to unistall and re-install VirtualBox, then Vagrant to fix
-      this error.
-
-      You should see the following similar messages after ``$ vagrant up`` finishes running:
-      ::
+    You should see the following similar messages after ``$ vagrant up`` finishes running:
+    ::
 
       ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
       ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
@@ -134,27 +231,47 @@ Environment Up
       ==> default: ip address: 192.168.0.105
       ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
       ==> default: Doing an initial rsync...
-      ==> default: Rsyncing folder: /Users/hoatle/teracy-dev-docker/workspace/teracy-dev/workspace/ => /home/vagrant/workspace
+      ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
       ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
 
+
+    ..  note::
+
+        - You may see the error:
+          ::
+
+            vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
+            available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
+            add it to the PATH environmental variable.
+
+          To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+
+          For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
+
+          If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
+          ``vagrant`` to fix this error.
+
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just
-installed which runs Ubuntu 12.04 with ssh. You should see the following similar messages:
-::
+   provisioned. You should see the following similar messages:
 
-  Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-101-generic x86_64)
+   .. code-block:: bash
 
-  * Documentation:  https://help.ubuntu.com/
+      Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-51-generic x86_64)
 
-  System information as of Fri Nov 25 06:02:18 UTC 2016
+        * Documentation:  https://help.ubuntu.com
+        * Management:     https://landscape.canonical.com
+        * Support:        https://ubuntu.com/advantage
 
-  System load:  0.79              Users logged in:        0
-  Usage of /:   5.6% of 39.34GB   IP address for eth0:    10.0.2.15
-  Memory usage: 10%               IP address for eth1:    192.168.0.105
-  Swap usage:   0%                IP address for docker0: 172.17.0.1
-  Processes:    89
+      1 package can be updated.
+      1 update is a security update.
 
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
 
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
+      Last login: Tue Dec  6 14:19:56 2016 from 10.0.2.2
+
+Git Setup
+---------
+
+To work with ``git``, complete the following guides to set up ssh keys:
+https://help.github.com/categories/ssh/
+
+*Congratulations, you’ve all set now!*

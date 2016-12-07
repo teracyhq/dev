@@ -1,29 +1,29 @@
 Docker
 ======
 
-We're using Docker for teracy-dev.
+We leverage Docker for our software development.
 
 When ``$ vagrant up``, it's expected that ``docker`` and ``docker-compose`` should be installed within
-the VM and ready to use:
+the VM and ready to be used:
 
 ..  code-block:: bash
 
     $ vagrant ssh
-    vagrant@vagrant-ubuntu-trusty-64:~$ docker version
+    vagrant@vagrant:~$ docker version
     Client:
-     Version:      1.12.1
+     Version:      1.12.3
      API version:  1.24
      Go version:   go1.6.3
-     Git commit:   23cf638
-     Built:        Thu Aug 18 05:22:43 2016
+     Git commit:   6b644ec
+     Built:        Wed Oct 26 22:01:48 2016
      OS/Arch:      linux/amd64
 
     Server:
-     Version:      1.12.1
+     Version:      1.12.3
      API version:  1.24
      Go version:   go1.6.3
-     Git commit:   23cf638
-     Built:        Thu Aug 18 05:22:43 2016
+     Git commit:   6b644ec
+     Built:        Wed Oct 26 22:01:48 2016
      OS/Arch:      linux/amd64
 
 
@@ -34,11 +34,11 @@ Sometimes, we want to control the Docker VM with `docker-machine` from our host 
 
 ..  code-block:: bash
 
-    $ cd teracy-dev
+    $ cd ~/teracy-dev
     $ docker-machine create -d generic \
     --generic-ssh-user vagrant \
     --generic-ssh-key .vagrant/machines/default/virtualbox/private_key \
-    --generic-ip-address 192.168.99.101 teracy-dev
+    --generic-ip-address <vm_ip_address> teracy-dev
 
 And then you should see something like:
 
@@ -67,29 +67,15 @@ And then you should see something like:
     # Run this command to configure your shell:
     # eval $(docker-machine env teracy-dev)
 
-Data Sync
----------
-
-We use https://github.com/smerrill/vagrant-gatling-rsync for syncing from host to the VM, so make sure:
-
-..  code-block:: bash
-
-    $ vagrant plugin install vagrant-gatling-rsync
-
-
-Note that this is only 1 way sync from host to the VM only, make changes to `workspace` directory
-from the host machine then it should be synced to the VM.
-
-To sync files from the VM back to the host workspace, make changes to `/vagrant/workspace` directory
-from within the VM machine. 
 
 Debugging
 ---------
 
 #. Node.js
 
-- node-inspector at: http://192.168.99.101:8080/?port=5858
+- node-inspector at: http://<vm_ip_address>:8080/?port=5858
 - remote js debug with IntelliJ: http://stackoverflow.com/a/23947664/1122198
+
     ..  code-block:: bash
 
         vagrant ssh -- -L 5858:127.0.0.1:5858
