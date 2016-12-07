@@ -22,9 +22,7 @@ before_script:
 script:
 - . ./.travis/build.sh
 after_success:
-- . ./.travis/deploy_docs.sh
-- docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
-- docker push $CONTAINER_IMAGE
+- . ./.travis/deploy.sh
 notifications:
   slack:
     on_success: :change
