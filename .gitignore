@@ -133,6 +133,7 @@ Session.vim
 !.gitkeep
 !.gitmodules
 !.chef
+!.travis
 
 # docs
 _build
