@@ -11,7 +11,7 @@ Please follow the installation instruction below, after that, the instruction st
 
 ..  note::
 
-    - The 64-bit architecture is used and run every day by us, however, the 32-bit archirecture is
+    - The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
       expected to work, too.
 
     - We recommend the following tested and supported platforms:
@@ -38,7 +38,7 @@ Check out the video and follow step by step instructions below:
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
 
-Open terminal window to:
+Open the terminal window:
 
 1. Install ``Homebrew`` and ``Homebrew Cask``
 
@@ -82,7 +82,7 @@ Check out the video and follow step by step instructions below:
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
 
-Open terminal window to:
+Open the terminal window:
 
 1. Install ``git``
 
@@ -135,7 +135,7 @@ Check out the video and follow step by step instructions below:
 
 1. Install ``chocolatey``
 
-   Run ``Command Prompt`` as administrator and paste the Cmd.exe command from
+   Run ``Command Prompt`` as administrator and paste the Cmd.exe command copied from
    https://chocolatey.org/install
 
 2. Install ``cyg-get``
@@ -186,12 +186,11 @@ Check out the video and follow step by step instructions below:
           ERROR: This command cannot be run due to the error: The system cannot find the file specified.
           At line:1 char:1
 
-      then fix it with: https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458
+      then fix it with https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458
 
-    - If you ``$ vagrant up`` but can not start the VirtualBox, please find "VBoxUSBMon.inf" and
+    - If you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
       "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The
       VirtualBox has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
-
 
 
 teracy-dev Git Clone and Vagrant Up
@@ -209,7 +208,7 @@ teracy-dev Git Clone and Vagrant Up
 
     ..  note::
 
-          We checkout the `develop` branch here to use the latest development version of teracy-dev.
+          We check out the `develop` branch here to use the latest development version of teracy-dev.
           When it is released, we will use the `master` branch - the latest stable version instead.
 
     You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
@@ -241,7 +240,7 @@ teracy-dev Git Clone and Vagrant Up
         - You may see the error:
           ::
 
-            vagrant uses the VBoxManage binary that ships with VirtualBox, and requires this to be
+            vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
             available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
             add it to the PATH environmental variable.
 
@@ -249,7 +248,7 @@ teracy-dev Git Clone and Vagrant Up
 
           For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
 
-          If the error still occurs, you have to unistall and re-install ``virtualbox``, then
+          If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
           ``vagrant`` to fix this error.
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just

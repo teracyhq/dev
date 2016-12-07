@@ -18,7 +18,7 @@ Vagrant
 
 4. ``vagrant halt``
 
-   Use this command to shutdown the VM.
+   Use this command to shut down the VM.
 
 5. ``vagrant destroy``
 
@@ -30,7 +30,7 @@ For more, please check out: https://www.vagrantup.com/docs/getting-started/
 IP Address
 ----------
 
-By default, the VM use public dynamic ip address, so we need to know its ip address to access.
+By default, the VM uses a public dynamic IP address, so we need to know its IP address to access.
 
 When provisioning, we could see it on the console output like:
 
@@ -45,7 +45,7 @@ When provisioning, we could see it on the console output like:
     ==> default: ip address: 192.168.0.116
 
 
-When we want to display the ip address of the VM anytime, follow the commands below:
+When we want to display the IP address of the VM anytime, follow the commands below:
 
 ..  code-block:: bash
 
@@ -53,7 +53,7 @@ When we want to display the ip address of the VM anytime, follow the commands be
     $ vagrant provision --provision-with shell
 
 
-And it should display the output of the ip address.
+And it should display the output of the IP address.
 
 
 
@@ -62,7 +62,7 @@ File Sync
 
 We use ``rsync`` for syncing files between the host machine and the VM (the guest machine).
 
-For easier and high performance sync, we use additional vagrant plugins:
+For easier and high-performance sync, we use additional vagrant plugins:
 
 - `vagrant-gatling-rsync <https://github.com/smerrill/vagrant-gatling-rsync/>`_
 

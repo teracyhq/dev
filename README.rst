@@ -27,7 +27,7 @@ More commands: http://docs.vagrantup.com/v2/cli/index.html
 Installation
 ------------
 
-Follow the guide at: http://dev.teracy.org/docs/develop/getting_started.html
+Follow the guide at http://dev.teracy.org/docs/develop/getting_started.html
 
 
 License
