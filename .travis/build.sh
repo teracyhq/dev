@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 . ./.travis/common.sh
 
 if [[ $BUILD_TYPE == "dev" ]]; then

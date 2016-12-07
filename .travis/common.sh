@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 function docker_build {
     docker build -f $DOCKER_FILE \
             --build-arg CI_BUILD_ID=$TRAVIS_BUILD_ID \
