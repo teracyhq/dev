@@ -155,6 +155,9 @@ workspace/*
 home/.virtualenvs/*
 !home/.virtualenvs/.gitkeep
 
+home/.docker/*
+!home/.docker/.gitkeep
+
 nodes/*.json
 
 vagrant_config_override.json

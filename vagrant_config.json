@@ -37,6 +37,16 @@
       "host":"./workspace",
       "guest":"/home/vagrant/workspace",
       "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
+    },
+    // should persist docker auth token after login success #170
+    {
+      "type":"virtual_box",
+      "host":"./home/.docker",
+      "guest":"/home/vagrant/.docker",
+      "mount_options":[
+        "dmode=775",
+        "fmode=755"
+      ]
     }
     //disable .virtualenvs mapping due to this: https://issues.teracy.org/browse/DEV-116
     //to enable this, configure vm_sync_folders on vagrant_config_override.json
