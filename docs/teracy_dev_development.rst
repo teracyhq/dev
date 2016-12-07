@@ -24,9 +24,25 @@ For example, this is my forked repo: https://github.com/hoatle/teracy-dev/
 Notice that you use ``teracy-dev`` directory for the project name.
 
 
+CI Setup
+--------
+
+After forking the project, you should set up the CI system on travis-ci.org:
+
+- register an account at travis-ci.org
+- register an account at hub.docker.com
+- enable `teracy-dev` repository on travis-ci.org
+- add travis-ci settings with these variables:
+    + ``DOCKER_USERNAME``: Fill with your Docker username account
+    + ``DOCKER_PASSWORD``: Fill with your Docker password account
+    + ``DEV_DOCKER_IMAGE``: Fill with `<your_docker_username>/teracy-dev`
+    + ``DOCS_DOCKER_IMAGE``: Fill with `<your_docker_username>/teracy-dev-docs`
+    + ``GH_REPO``: Fill with `<your_github_username>/teracy-dev>` to git push on your repo
+    + ``GH_TOKEN``: Fill with `<your_github_personal_access_token>` to git push on your repo
+
+
 Rake Tasks
 ----------
-
 
 - ``$ rake`` or ``$ rake list`` to list all `Rake` tasks.
 
