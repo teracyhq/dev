@@ -1,18 +1,19 @@
-sudo: required # use container-based infrastructure instead of legacy
-language: python
 services:
 - docker
 env:
+  matrix:
+  - BUILD_TYPE=dev CI_REGISTRY_IMAGE=$DEV_DOCKER_IMAGE
+  - BUILD_TYPE=docs CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE
   global:
   - DOCKER_FILE=Dockerfile-dev
   - IMAGE_TAG_PREFIX=dev_
   - CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-  - CI_REGISTRY_IMAGE=$DOCKER_IMAGE
-  - GH_REPO="teracyhq/dev"
-  - secure: Jt7QOiv7Q6/QTw3q9leGMfgGfGYO9+0KF9vCwgCdDsjqlj8Qtdt31E57OxYHquApyCReR7WHATL1eML4dRcrqX4QOGxzktfX6RD7Mqx2wwutyoP/vfb4SXuLVjofnGTsddHEZW4dfFnFh48QEWsuA4svRvAO4ILt/uTupTvSUBo=
 before_install:
 - git submodule update --init --recursive
+install: true
 before_script:
+- chmod ugo+x ./.travis/build.sh
+- chmod ugo+x ./.travis/deploy.sh
 - git config --global user.name "Teracy Bot"
 - git config --global user.email "teracy.com@gmail.com"
 - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
@@ -21,19 +22,9 @@ before_script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g'; fi`
 - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$IMAGE_TAG_PREFIX$TAG
 script:
-- docker build -f $DOCKER_FILE --build-arg CI_BUILD_ID=$TRAVIS_BUILD_ID --build-arg
-  CI_BUILD_REF=$TRAVIS_COMMIT --build-arg CI_BUILD_REF_NAME=$TRAVIS_BRANCH --build-arg
-  CI_BUILD_TIME=$CI_BUILD_TIME --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE --build-arg
-  CI_PROJECT_NAME=$TRAVIS_REPO_SLUG --pull -t $CONTAINER_IMAGE .
-- docker run -v $(pwd):/opt/app $CONTAINER_IMAGE rake build
+- ./.travis/build.sh
 after_success:
-- sudo pip install -r docs/requirements.txt
-- cd docs
-- make setup_gh_pages
-- make generate
-- make deploy
-- docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
-- docker push $CONTAINER_IMAGE
+- ./.travis/deploy.sh
 notifications:
   slack:
     on_success: :change
