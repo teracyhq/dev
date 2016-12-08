@@ -36,7 +36,7 @@ Check out the video and follow step by step instructions below:
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="630" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
 
 Open the terminal window:
 
@@ -80,7 +80,7 @@ Check out the video and follow step by step instructions below:
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="630" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
 
 Open the terminal window:
 
@@ -130,7 +130,7 @@ Check out the video and follow step by step instructions below:
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="630" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
 
 
 1. Install ``chocolatey``
