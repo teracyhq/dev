@@ -1,8 +1,8 @@
 teracy-dev Development
 ======================
 
-We use Docker to develop teracy-dev. We use `teracy/dev:dev_develop` Docker image with all
-development runtime to execute Rake tasks.
+We use Docker (or better ``teracy-dev``) to develop ``teracy-dev``.
+We use `teracy/dev:dev_develop` Docker image with all development runtime to execute Rake tasks.
 
 
 Project Setup

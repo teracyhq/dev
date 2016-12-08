@@ -20,9 +20,9 @@ before_script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g'; fi`
 - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$IMAGE_TAG_PREFIX$TAG
 script:
-- . ./.travis/build.sh
+- ./.travis/build.sh
 after_success:
-- . ./.travis/deploy.sh
+- ./.travis/deploy.sh
 notifications:
   slack:
     on_success: :change
