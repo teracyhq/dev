@@ -17,7 +17,8 @@
         VERSION:     '0.5.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +27,6 @@
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="teracy-dev 0.5.0-@ documentation" href="#" />
     <link rel="next" title="Introduction" href="intro.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -72,14 +72,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#on-mac">on Mac</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#on-linux">on Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#on-windows">on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#automatic-installation">Automatic Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#manual-installation">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#automatic-installation-on-macos">Automatic Installation on macOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#manual-installation-on-macos">Manual Installation on macOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#automatic-installation-on-linux-ubuntu">Automatic Installation on Linux (Ubuntu)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#manual-installation-on-linux-ubuntu">Manual Installation on Linux (Ubuntu)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#automatic-installation-on-windows">Automatic Installation on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#manual-installation-on-windows">Manual Installation on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#teracy-dev-git-clone-and-vagrant-up">teracy-dev Git Clone and Vagrant Up</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#git-setup">Git Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#environment-up">Environment Up</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#vagrant">Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#ip-address">IP Address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#file-sync">File Sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced_usage.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced_usage.html#upgrading">Upgrading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-machine">docker-machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#debugging">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#related-resources">Related Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tool_chain.html">Toolchain</a><ul>
@@ -113,6 +131,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="teracy_dev_development.html">teracy-dev Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="teracy_dev_development.html#project-setup">Project Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teracy_dev_development.html#ci-setup">CI Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teracy_dev_development.html#rake-tasks">Rake Tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teracy_dev_development.html#build-teracy-dev-docker-image">Build teracy/dev Docker image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teracy_dev_development.html#base-boxes">Base Boxes</a></li>
@@ -208,7 +227,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.txt"
+      <li><a href="_sources/index.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -240,7 +259,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2016, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.
     </div>
   </body>
 </html>

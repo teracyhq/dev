@@ -17,7 +17,8 @@
         VERSION:     '0.5.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +27,6 @@
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="teracy-dev 0.5.0-@ documentation" href="index.html" />
     <link rel="next" title="Git Training" href="git_training.html" />
     <link rel="prev" title="Workflow" href="workflow.html" />
     <script>
@@ -65,8 +65,8 @@
             
   <div class="section" id="teracy-dev-development">
 <h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
-<p>We use Docker to develop teracy-dev. We use <cite>teracy/dev:dev_develop</cite> Docker image with all
-development runtime to execute Rake tasks.</p>
+<p>We use Docker (or better <code class="docutils literal"><span class="pre">teracy-dev</span></code>) to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code>.
+We use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
 <div class="section" id="project-setup">
 <h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
 <p>Fork and clone <code class="docutils literal"><span class="pre">teracy-dev</span></code> from <a class="reference external" href="https://github.com/teracyhq/dev/">https://github.com/teracyhq/dev/</a></p>
@@ -80,6 +80,31 @@ $ docker-compose pull
 </pre></div>
 </div>
 <p>Notice that you use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
+</div>
+<div class="section" id="ci-setup">
+<h2>CI Setup<a class="headerlink" href="#ci-setup" title="Permalink to this headline">¶</a></h2>
+<p>After forking the project, you should set up the CI system on travis-ci.org:</p>
+<ul>
+<li><p class="first">register an account at travis-ci.org</p>
+</li>
+<li><p class="first">register an account at hub.docker.com</p>
+</li>
+<li><p class="first">enable <cite>teracy-dev</cite> repository on travis-ci.org</p>
+</li>
+<li><dl class="first docutils">
+<dt>add travis-ci settings with these variables:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">DOCKER_USERNAME</span></code>: Fill with your Docker username account</li>
+<li><code class="docutils literal"><span class="pre">DOCKER_PASSWORD</span></code>: Fill with your Docker password account</li>
+<li><code class="docutils literal"><span class="pre">DEV_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev</cite></li>
+<li><code class="docutils literal"><span class="pre">DOCS_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev-docs</cite></li>
+<li><code class="docutils literal"><span class="pre">GH_REPO</span></code>: Fill with <cite>&lt;your_github_username&gt;/teracy-dev&gt;</cite> to git push on your repo</li>
+<li><code class="docutils literal"><span class="pre">GH_TOKEN</span></code>: Fill with <cite>&lt;your_github_personal_access_token&gt;</cite> to git push on your repo</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="rake-tasks">
 <h2>Rake Tasks<a class="headerlink" href="#rake-tasks" title="Permalink to this headline">¶</a></h2>
@@ -246,6 +271,7 @@ and you can use the mirror like:</p>
   <ul>
 <li><a class="reference internal" href="#">teracy-dev Development</a><ul>
 <li><a class="reference internal" href="#project-setup">Project Setup</a></li>
+<li><a class="reference internal" href="#ci-setup">CI Setup</a></li>
 <li><a class="reference internal" href="#rake-tasks">Rake Tasks</a></li>
 <li><a class="reference internal" href="#build-teracy-dev-docker-image">Build teracy/dev Docker image</a></li>
 <li><a class="reference internal" href="#base-boxes">Base Boxes</a></li>
@@ -263,7 +289,7 @@ and you can use the mirror like:</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/teracy_dev_development.txt"
+      <li><a href="_sources/teracy_dev_development.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -298,7 +324,7 @@ and you can use the mirror like:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2016, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.
     </div>
   </body>
 </html>

@@ -17,7 +17,8 @@
         VERSION:     '0.5.0-@',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +27,8 @@
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="teracy-dev 0.5.0-@ documentation" href="index.html" />
+    <link rel="next" title="Toolchain" href="tool_chain.html" />
+    <link rel="prev" title="Advanced Usage" href="advanced_usage.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -46,6 +48,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &#187;</li> 
       </ul>
     </div>  
@@ -57,36 +65,36 @@
             
   <div class="section" id="docker">
 <h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
-<p>We&#8217;re using Docker for teracy-dev.</p>
+<p>We leverage Docker for our software development.</p>
 <p>When <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>, it&#8217;s expected that <code class="docutils literal"><span class="pre">docker</span></code> and <code class="docutils literal"><span class="pre">docker-compose</span></code> should be installed within
-the VM and ready to use:</p>
+the VM and ready to be used:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
-vagrant@vagrant-ubuntu-trusty-64:~$ docker version
+vagrant@vagrant:~$ docker version
 Client:
- Version:      1.12.1
+ Version:      1.12.3
  API version:  1.24
  Go version:   go1.6.3
- Git commit:   23cf638
- Built:        Thu Aug <span class="m">18</span> 05:22:43 2016
+ Git commit:   6b644ec
+ Built:        Wed Oct <span class="m">26</span> 22:01:48 2016
  OS/Arch:      linux/amd64
 
 Server:
- Version:      1.12.1
+ Version:      1.12.3
  API version:  1.24
  Go version:   go1.6.3
- Git commit:   23cf638
- Built:        Thu Aug <span class="m">18</span> 05:22:43 2016
+ Git commit:   6b644ec
+ Built:        Wed Oct <span class="m">26</span> 22:01:48 2016
  OS/Arch:      linux/amd64
 </pre></div>
 </div>
 <div class="section" id="docker-machine">
 <h2>docker-machine<a class="headerlink" href="#docker-machine" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, we want to control the Docker VM with <cite>docker-machine</cite> from our host machine. Then do this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> teracy-dev
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
 $ docker-machine create -d generic <span class="se">\</span>
 --generic-ssh-user vagrant <span class="se">\</span>
 --generic-ssh-key .vagrant/machines/default/virtualbox/private_key <span class="se">\</span>
---generic-ip-address 192.168.99.101 teracy-dev
+--generic-ip-address &lt;vm_ip_address&gt; teracy-dev
 </pre></div>
 </div>
 <p>And then you should see something like:</p>
@@ -115,32 +123,20 @@ hoatle-mbp:teracy-dev hoatle$ docker-machine env teracy-dev
 </pre></div>
 </div>
 </div>
-<div class="section" id="data-sync">
-<h2>Data Sync<a class="headerlink" href="#data-sync" title="Permalink to this headline">¶</a></h2>
-<p>We use <a class="reference external" href="https://github.com/smerrill/vagrant-gatling-rsync">https://github.com/smerrill/vagrant-gatling-rsync</a> for syncing from host to the VM, so make sure:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant plugin install vagrant-gatling-rsync
-</pre></div>
-</div>
-<p>Note that this is only 1 way sync from host to the VM only, make changes to <cite>workspace</cite> directory
-from the host machine then it should be synced to the VM.</p>
-<p>To sync files from the VM back to the host workspace, make changes to <cite>/vagrant/workspace</cite> directory
-from within the VM machine.</p>
-</div>
 <div class="section" id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Node.js</li>
 </ol>
 <ul>
-<li><p class="first">node-inspector at: <a class="reference external" href="http://192.168.99.101:8080/?port=5858">http://192.168.99.101:8080/?port=5858</a></p>
+<li><p class="first">node-inspector at: <a class="reference external" href="http:/">http:/</a>/&lt;vm_ip_address&gt;:8080/?port=5858</p>
 </li>
-<li><dl class="first docutils">
-<dt>remote js debug with IntelliJ: <a class="reference external" href="http://stackoverflow.com/a/23947664/1122198">http://stackoverflow.com/a/23947664/1122198</a></dt>
-<dd><div class="first last highlight-bash"><div class="highlight"><pre><span></span>vagrant ssh -- -L 5858:127.0.0.1:5858
+<li><p class="first">remote js debug with IntelliJ: <a class="reference external" href="http://stackoverflow.com/a/23947664/1122198">http://stackoverflow.com/a/23947664/1122198</a></p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>vagrant ssh -- -L 5858:127.0.0.1:5858
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div>
@@ -166,17 +162,22 @@ from within the VM machine.</p>
   <ul>
 <li><a class="reference internal" href="#">Docker</a><ul>
 <li><a class="reference internal" href="#docker-machine">docker-machine</a></li>
-<li><a class="reference internal" href="#data-sync">Data Sync</a></li>
 <li><a class="reference internal" href="#debugging">Debugging</a></li>
 <li><a class="reference internal" href="#related-resources">Related Resources</a></li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="advanced_usage.html"
+                        title="previous chapter">Advanced Usage</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tool_chain.html"
+                        title="next chapter">Toolchain</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/docker.txt"
+      <li><a href="_sources/docker.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -200,12 +201,18 @@ from within the VM machine.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-@ documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2016, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.
     </div>
   </body>
 </html>
