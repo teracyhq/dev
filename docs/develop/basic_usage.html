@@ -108,7 +108,10 @@ $ vagrant provision --provision-with shell
 </div>
 <div class="section" id="file-sync">
 <h2>File Sync<a class="headerlink" href="#file-sync" title="Permalink to this headline">¶</a></h2>
-<p>We use <code class="docutils literal"><span class="pre">rsync</span></code> for syncing files between the host machine and the VM (the guest machine).</p>
+<p>We use <code class="docutils literal"><span class="pre">rsync</span></code> for syncing files between the host machine and the VM (the guest machine) under
+the <cite>~/teracy-dev/workspace</cite> directory by default. So put your project files there, it will be
+synced back and forth with with <cite>/home/vagrant/workspace</cite> directory on the VM guest machine.
+This is default setting and you can configure the sync directories and mechanism whatever you want.</p>
 <p>For easier and high-performance sync, we use additional vagrant plugins:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/smerrill/vagrant-gatling-rsync/">vagrant-gatling-rsync</a></li>

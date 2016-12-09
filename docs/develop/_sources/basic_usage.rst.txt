@@ -60,7 +60,10 @@ And it should display the output of the IP address.
 File Sync
 ---------
 
-We use ``rsync`` for syncing files between the host machine and the VM (the guest machine).
+We use ``rsync`` for syncing files between the host machine and the VM (the guest machine) under
+the `~/teracy-dev/workspace` directory by default. So put your project files there, it will be 
+synced back and forth with with `/home/vagrant/workspace` directory on the VM guest machine.
+This is default setting and you can configure the sync directories and mechanism whatever you want.
 
 For easier and high-performance sync, we use additional vagrant plugins:
 
