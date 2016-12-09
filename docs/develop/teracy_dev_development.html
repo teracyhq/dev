@@ -84,16 +84,13 @@ $ docker-compose pull
 <div class="section" id="ci-setup">
 <h2>CI Setup<a class="headerlink" href="#ci-setup" title="Permalink to this headline">¶</a></h2>
 <p>After forking the project, you should set up the CI system on travis-ci.org:</p>
-<ul>
-<li><p class="first">register an account at travis-ci.org</p>
-</li>
-<li><p class="first">register an account at hub.docker.com</p>
-</li>
-<li><p class="first">enable <cite>teracy-dev</cite> repository on travis-ci.org</p>
-</li>
+<ul class="simple">
+<li>register an account at travis-ci.org</li>
+<li>register an account at hub.docker.com</li>
+<li>enable <cite>teracy-dev</cite> repository on travis-ci.org</li>
 <li><dl class="first docutils">
 <dt>add travis-ci settings with these variables:</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li><code class="docutils literal"><span class="pre">DOCKER_USERNAME</span></code>: Fill with your Docker username account</li>
 <li><code class="docutils literal"><span class="pre">DOCKER_PASSWORD</span></code>: Fill with your Docker password account</li>
 <li><code class="docutils literal"><span class="pre">DEV_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev</cite></li>
