@@ -32,6 +32,13 @@
     // },
     //TODO: how to keep and reused existing Docker images after destroying the VM?
     // or even attaching the existing data into it, so that developers should share the Docker images
+    // remove /vagrant default file sync on the VM guest machine #184
+    {
+      "type": "virtual_box",
+      "host": ".",
+      "guest": "/vagrant",
+      "disabled": true
+    },
     {
       "type":"rsync",
       "host":"./workspace",
