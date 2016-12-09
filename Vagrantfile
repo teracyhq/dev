@@ -31,92 +31,85 @@ Vagrant.configure("2") do |config|
 
   end
 
-  # detect old configuration, puts an error to help users to migrate to new changes of configuration
-  if !data_hash['vm_forwarded_ports'].nil?
-    message = 'ERROR: vagrant_config_override.json has old configuration of vm_forwarded_ports. '
-    message << "Use vm_network['forwarded_ports'] instead. "
-    message << 'Details: https://issues.teracy.org/browse/DEV-198'
-    puts red(message)
-    exit!
-  end
+  vm_hash = data_hash["vm"]
 
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = data_hash["vm_box"]
+  config.vm.box = vm_hash["box"]
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = data_hash['vm_box_url']
+  config.vm.box_url = vm_hash['box_url']
 
   # Other configs: https://docs.vagrantup.com/v2/vagrantfile/machine_settings.html
 
-  if !data_hash["vm_box_version"].nil? and !data_hash["vm_box_version"].strip().empty?
-    config.vm.box_version = data_hash['vm_box_version']
+  if !vm_hash["box_version"].nil? and !vm_hash["box_version"].strip().empty?
+    config.vm.box_version = vm_hash['box_version']
   end
 
-  if !data_hash["vm_boot_timeout"].nil?
-    config.vm.boot_timeout = data_hash['vm_boot_timeout']
+  if !vm_hash["boot_timeout"].nil?
+    config.vm.boot_timeout = vm_hash['boot_timeout']
   end
 
-  if !data_hash["vm_box_check_update"].nil?
-    config.vm.box_check_update = data_hash['vm_box_check_update']
+  if !vm_hash["box_check_update"].nil?
+    config.vm.box_check_update = vm_hash['box_check_update']
   end
 
-  if !data_hash["vm_box_download_checksum"].nil? and !data_hash["vm_box_download_checksum"].strip().empty?
-    config.vm.box_download_checksum = data_hash['vm_box_download_checksum']
+  if !vm_hash["box_download_checksum"].nil? and !vm_hash["box_download_checksum"].strip().empty?
+    config.vm.box_download_checksum = vm_hash['box_download_checksum']
 
     # box_download_checksum_type must be specified if box_download_checksum is specified
-    config.vm.box_download_checksum_type = data_hash['vm_box_download_checksum_type']
+    config.vm.box_download_checksum_type = vm_hash['box_download_checksum_type']
   end
 
-  if !data_hash["vm_box_download_client_cert"].nil? and !data_hash["vm_box_download_client_cert"].strip().empty?
-    config.vm.box_download_client_cert = data_hash['vm_box_download_client_cert']
+  if !vm_hash["box_download_client_cert"].nil? and !vm_hash["box_download_client_cert"].strip().empty?
+    config.vm.box_download_client_cert = vm_hash['box_download_client_cert']
   end
 
-  if !data_hash["vm_box_download_ca_cert"].nil? and !data_hash["vm_box_download_ca_cert"].strip().empty?
-    config.vm.box_download_ca_cert = data_hash['vm_box_download_ca_cert']
+  if !vm_hash["box_download_ca_cert"].nil? and !vm_hash["box_download_ca_cert"].strip().empty?
+    config.vm.box_download_ca_cert = vm_hash['box_download_ca_cert']
   end
 
-  if !data_hash["vm_box_download_ca_path"].nil? and !data_hash["vm_box_download_ca_path"].strip().empty?
-    config.vm.box_download_ca_path = data_hash['vm_box_download_ca_path']
+  if !vm_hash["box_download_ca_path"].nil? and !vm_hash["box_download_ca_path"].strip().empty?
+    config.vm.box_download_ca_path = vm_hash['box_download_ca_path']
   end
 
-  if !data_hash["vm_box_download_insecure"].nil?
-    config.vm.box_download_insecure = data_hash['vm_box_download_insecure']
+  if !vm_hash["box_download_insecure"].nil?
+    config.vm.box_download_insecure = vm_hash['box_download_insecure']
   end
 
-  if !data_hash["vm_communicator"].nil? and !data_hash["vm_communicator"].strip().empty?
-    config.vm.communicator = :data_hash['vm_communicator']
+  if !vm_hash["communicator"].nil? and !vm_hash["communicator"].strip().empty?
+    config.vm.communicator = vm_hash['communicator']
   end
 
-  if !data_hash["vm_graceful_halt_timeout"].nil?
-    config.vm.graceful_halt_timeout = data_hash['vm_graceful_halt_timeout']
+  if !vm_hash["graceful_halt_timeout"].nil?
+    config.vm.graceful_halt_timeout = vm_hash['graceful_halt_timeout']
   end
 
-  if !data_hash["vm_guest"].nil? and !data_hash["vm_guest"].strip().empty?
-    config.vm.guest = :data_hash['vm_guest']
+  if !vm_hash["guest"].nil? and !vm_hash["guest"].strip().empty?
+    config.vm.guest = vm_hash['guest']
   end
 
-  if !data_hash["vm_guest"].nil? and !data_hash["vm_hostname"].strip().empty?
-    config.vm.hostname = data_hash['vm_hostname']
+  if !vm_hash["hostname"].nil? and !vm_hash["hostname"].strip().empty?
+    config.vm.hostname = vm_hash['hostname']
   end
 
-  if !data_hash["vm_post_up_message"].nil? and !data_hash["vm_post_up_message"].strip().empty?
-    config.vm.post_up_message = data_hash['vm_post_up_message']
+  if !vm_hash["post_up_message"].nil? and !vm_hash["post_up_message"].strip().empty?
+    config.vm.post_up_message = vm_hash['post_up_message']
   end
 
-  if !data_hash["vm_usable_port_range"].nil? and !data_hash["vm_usable_port_range"].strip().empty?
-    ranges = data_hash['vm_usable_port_range'].split('..').map{|d| Integer(d)}
+  if !vm_hash["usable_port_range"].nil? and !vm_hash["usable_port_range"].strip().empty?
+    ranges = vm_hash['usable_port_range'].split('..').map{|d| Integer(d)}
     config.vm.usable_port_range = ranges[0]..ranges[1]
   end
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  vm_networks = data_hash['vm_networks']
+  vm_networks = vm_hash['networks']
   vm_networks.each do |vm_network|
     if vm_network['mode'] == 'forwarded_port'
       vm_network['forwarded_ports'].each do |item|
@@ -144,7 +137,6 @@ Vagrant.configure("2") do |config|
   end
 
 
-
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -160,7 +152,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  data_hash['vm_synced_folders'].each do |item|
+  vm_hash['synced_folders'].each do |item|
     options = {}
     host_os = Vagrant::Util::Platform.platform
     host_os_type = ''
@@ -223,7 +215,7 @@ Vagrant.configure("2") do |config|
   end
 
   # ssh configuration
-  config.ssh.forward_agent = data_hash['vm_forward_agent']
+  config.ssh.forward_agent = vm_hash['forward_agent']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -269,22 +261,34 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  if data_hash['chef']['enabled']
-    #TODO(hoatle): move all chef config within `chef:{}`
-    config.vm.provision "chef_solo" do |chef|
-      chef.log_level = data_hash['chef_log_level']
-      chef.cookbooks_path = data_hash['chef_cookbooks']
-      chef.roles_path = data_hash['chef_role']
-      chef.nodes_path = data_hash['chef_nodes']
-      chef.data_bags_path = data_hash['chef_bags_path']
+  # see: https://www.vagrantup.com/docs/provisioning/chef_solo.html
+  chef_hash = data_hash['chef']
 
-      data_hash['chef_recipes'].each do |x|
-        chef.add_recipe x
+  if !chef_hash.nil? and chef_hash['enabled']
+    config.vm.provision "chef_solo" do |chef|
+      chef.log_level = chef_hash['log_level']
+      chef.cookbooks_path = chef_hash['cookbooks_path']
+      chef.data_bags_path = chef_hash['data_bags_path']
+      chef.environments_path = chef_hash['environments_path']
+      chef.environment = chef_hash['environment']
+      chef.nodes_path = chef_hash['nodes_path']
+      chef.recipe_url = chef_hash['recipe_url']
+      chef.roles_path = chef_hash['roles_path']
+      chef.synced_folder_type = chef_hash['synced_folder_type']
+
+      unless chef_hash['roles'].nil?
+        chef_hash['roles'].each do |role|
+          chef.add_role role
+        end
       end
-      #TODO(hoatle): add roles
-      # chef.add_role "web"
-      # custom JSON attributes for chef-solo, see more at http://docs.vagrantup.com/v2/provisioning/chef_solo.html
-      chef.json = data_hash['chef_json']
+
+      unless chef_hash['recipes'].nil?
+        chef_hash['recipes'].each do |recipe|
+          chef.add_recipe recipe
+        end
+      end
+
+      chef.json = chef_hash['json']
     end
   end
 
