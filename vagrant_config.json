@@ -81,12 +81,6 @@
     //"cpus":1,
     "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
-  "gatling-rsync": {
-    // auto rsync watch when up/ reload done
-    // should try to reduce rsync latency to 0.5s instead of 1s #173
-    "latency": 0.5, //0.5s
-    "rsync_on_startup": true
-  },
   "chef": {
     "enabled": true,
     "log_level": "info", //one of debug, info, warn, error, fatal. Default: info
@@ -140,7 +134,20 @@
         "docker_compose": {
           "enabled": true // "docker" must be enabled to get this
         }
-      }      
+      }
+    }
+  },
+  "plugins": {
+    "vagrant-gatling-rsync": {
+      "config_key": "gatling",
+      "required": true,
+      // auto rsync watch when up/ reload done
+      // should try to reduce rsync latency to 0.5s instead of 1s #173
+      "latency": 0.5, //0.5s
+      "rsync_on_startup": true
+    },
+    "vagrant-rsync-back": {
+      "required": true
     }
   }
 }
