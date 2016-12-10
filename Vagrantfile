@@ -198,8 +198,6 @@ Vagrant.configure("2") do |config|
   # plugins config
   plugins_hash = data_hash['plugins']
 
-  puts config.methods(true)
-
   plugins_hash.each do |plugin_name, plugin_value|
     if plugin_value['required'] == true
       unless Vagrant.has_plugin?(plugin_name)
@@ -208,23 +206,31 @@ Vagrant.configure("2") do |config|
       end
     end
 
+    # this is current fixed config, not dynamic plugins config
+    # FIXME(hoatle): #186 should fix this
+
     if plugin_value.key?('config_key')
       config_key = plugin_value['config_key']
-      if Vagrant.has_plugin?(plugin_name) and !config_key.nil? and !config_key.empty?
-        puts red(config[config_key.to_sym])
-        # TODO(hoatle): remove config_key and required keys?
-        #config.instance_variable_set("@#{config_key}", plugin_value)
-        # new_config = Vagrant::Config::V2::Root.new({
-        #   config_key => plugin_value
-        # })
-        # config.merge(config, new_config)
-        config.gatling.rsync_on_startup = false
-
-        puts red(config.instance_variable_get(:@gatling))
-
-        puts config.inspect
+      if 'gatling' == config_key
+        config.gatling.latency = plugin_value['latency']
+        config.gatling.time_format = plugin_value['time_format']
+        # Automatically sync when machines with rsync folders come up.
+        config.gatling.rsync_on_startup = plugin_value['rsync_on_startup']
       end
     end
+
+    # if plugin_value.key?('config_key')
+    #   config_key = plugin_value['config_key']
+    #   if Vagrant.has_plugin?(plugin_name) and !config_key.nil? and !config_key.empty?
+    #     puts red(config[config_key.to_sym])
+    #     # TODO(hoatle): remove config_key and required keys?
+    #     #config.instance_variable_set("@#{config_key}", plugin_value)
+    #     # new_config = Vagrant::Config::V2::Root.new({
+    #     #   config_key => plugin_value
+    #     # })
+    #     # config.merge(config, new_config)
+    #   end
+    # end
   end
 
   # ssh configuration
