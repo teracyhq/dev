@@ -144,6 +144,7 @@
       // auto rsync watch when up/ reload done
       // should try to reduce rsync latency to 0.5s instead of 1s #173
       "latency": 0.5, //0.5s
+      "time_format": "%H:%M:%S",
       "rsync_on_startup": true
     },
     "vagrant-rsync-back": {
