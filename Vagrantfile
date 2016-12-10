@@ -212,14 +212,27 @@ Vagrant.configure("2") do |config|
     if Vagrant.has_plugin?(plugin_name) and plugin_value.key?('config_key')
       config_key = plugin_value['config_key']
       if 'gatling' == config_key
-        config.gatling.latency = plugin_value['latency']
-        config.gatling.time_format = plugin_value['time_format']
-        # Automatically sync when machines with rsync folders come up.
-        config.gatling.rsync_on_startup = plugin_value['rsync_on_startup']
+
+        unless plugin_value['latency'].nil?
+          config.gatling.latency = plugin_value['latency']
+        end
+
+        unless plugin_value['time_format'].nil? or plugin_value['time_format'].empty?
+          config.gatling.time_format = plugin_value['time_format']
+        end
+
+        unless plugin_value['rsync_on_startup'].nil?
+          config.gatling.rsync_on_startup = plugin_value['rsync_on_startup']
+        end
 
       elsif 'hostsupdater' == config_key
-        config.hostsupdater.aliases = plugin_value['aliases']
-        config.hostsupdater.remove_on_suspend = plugin_value['remove_on_suspend']
+        unless plugin_value['aliases'].nil? or plugin_value['aliases'].empty?
+          config.hostsupdater.aliases = plugin_value['aliases']
+        end
+
+        unless plugin_value['remove_on_suspend'].nil? or plugin_value['remove_on_suspend'].empty?
+          config.hostsupdater.remove_on_suspend = plugin_value['remove_on_suspend']
+        end
       end
     end
 
