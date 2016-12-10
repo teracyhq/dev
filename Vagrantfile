@@ -195,23 +195,42 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # Configure the window for gatling to coalesce writes.
-  # $ vagrant gatling-rsync-auto
-  if Vagrant.has_plugin?('vagrant-gatling-rsync')
-    config.gatling.latency = data_hash['gatling-rsync']['latency']
-    config.gatling.time_format = "%H:%M:%S"
-    # Automatically sync when machines with rsync folders come up.
-    config.gatling.rsync_on_startup = data_hash['gatling-rsync']['rsync_on_startup']
-  else
-    puts red("required: '$ vagrant plugin install vagrant-gatling-rsync'")
-    exit!
-  end
+  # plugins config
+  plugins_hash = data_hash['plugins']
 
-  # use this to rsync back from guest to host
-  # $ vagrant rsync-back
-  unless Vagrant.has_plugin?('vagrant-rsync-back')
-    puts red("required: '$ vagrant plugin install vagrant-rsyn-back'")
-    exit!
+  plugins_hash.each do |plugin_name, plugin_value|
+    if plugin_value['required'] == true
+      unless Vagrant.has_plugin?(plugin_name)
+        puts red("required: '$ vagrant plugin install #{plugin_name}'")
+        exit!
+      end
+    end
+
+    # this is current fixed config, not dynamic plugins config
+    # FIXME(hoatle): #186 should fix this
+
+    if plugin_value.key?('config_key')
+      config_key = plugin_value['config_key']
+      if 'gatling' == config_key
+        config.gatling.latency = plugin_value['latency']
+        config.gatling.time_format = plugin_value['time_format']
+        # Automatically sync when machines with rsync folders come up.
+        config.gatling.rsync_on_startup = plugin_value['rsync_on_startup']
+      end
+    end
+
+    # if plugin_value.key?('config_key')
+    #   config_key = plugin_value['config_key']
+    #   if Vagrant.has_plugin?(plugin_name) and !config_key.nil? and !config_key.empty?
+    #     puts red(config[config_key.to_sym])
+    #     # TODO(hoatle): remove config_key and required keys?
+    #     #config.instance_variable_set("@#{config_key}", plugin_value)
+    #     # new_config = Vagrant::Config::V2::Root.new({
+    #     #   config_key => plugin_value
+    #     # })
+    #     # config.merge(config, new_config)
+    #   end
+    # end
   end
 
   # ssh configuration
