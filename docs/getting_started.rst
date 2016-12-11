@@ -135,7 +135,7 @@ Check out the video and follow step by step instructions below:
 
 1. Install ``chocolatey``
 
-   Run ``Command Prompt`` as administrator and paste the Cmd.exe command copied from
+   Run ``Command Prompt`` **as administrator** and paste the Cmd.exe command copied from
    https://chocolatey.org/install
 
 2. Install ``cyg-get``
@@ -148,7 +148,7 @@ Check out the video and follow step by step instructions below:
 
 3. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``
 
-   Run ``Cygwin Terminal`` as administrator with the following commands:
+   Run ``Cygwin Terminal`` **as administrator** with the following commands:
 
    - Install ``bash-completion``:
 
