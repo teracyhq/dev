@@ -15,4 +15,5 @@ end
 recipe 'teracy::alias', "Installs useful alias for teracy's project development."
 recipe 'teracy-dev::directories', 'Manage directories.'
 recipe 'teracy-dev::env', 'Configures environment variables.'
-recipe 'teracy-dev::docker', 'Installs Docker, docker_compose'
+recipe 'teracy-dev::docker', 'Installs Docker, docker-compose'
+recipe 'teracy-dev::docker_machine', 'Installs docker-machine'

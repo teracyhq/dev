@@ -31,7 +31,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-docker_conf = node['teracy-dev']['docker']
+docker_conf = node['docker']
 
 def get_docker_compose_autocomplete_url
     release = node['docker_compose']['release']
@@ -51,24 +51,28 @@ if docker_conf['enabled'] == true
         repo installation_conf['repo']
         action act
     end
+
     group 'docker' do
         action :modify
         members installation_conf['members']
         append true
     end
 
-    if node['teracy-dev']['docker_compose']['enabled'] == true
+
+    if node['docker_compose']['enabled'] == true
         include_recipe 'docker_compose::installation'
 
         # install docker-compose auto complete
-        autocomplete_url = get_docker_compose_autocomplete_url
+        if node['platform'] == 'ubuntu'
+            autocomplete_url = get_docker_compose_autocomplete_url
 
-        execute 'install docker-compose autocomplete' do
-            action :run
-            command "curl -L #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
-            creates '/etc/bash_completion.d/docker-compose'
-            user 'root'
-            group 'docker'
+            execute 'install docker-compose autocomplete' do
+                action :run
+                command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+                creates '/etc/bash_completion.d/docker-compose'
+                user 'root'
+                group 'docker'
+            end
         end
     end
 end
