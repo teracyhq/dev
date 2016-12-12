@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatle@teracy.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: docker
+# Recipe:: docker_machine
 #
 # Copyright 2013 - current, Teracy, Inc.
 #
