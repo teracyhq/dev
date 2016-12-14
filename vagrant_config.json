@@ -1,9 +1,8 @@
 {
   "vm": {
+    "hostname": "dev.local",
     "box": "bento/ubuntu-16.04",
     "box_version": "",
-    "vm_box": "bento/ubuntu-16.04", // more: https://github.com/chef/bento
-    "vm_box_version": "",
     "networks": [
       { // see: http://docs.vagrantup.com/v2/networking/index.html
         "mode":"public_network", // one of "forwarded_port", "private_network" or "public_network"
