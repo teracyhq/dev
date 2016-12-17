@@ -66,6 +66,7 @@ Open the terminal window:
 
         - // FIXME(hoatle): https://github.com/teracyhq/dev/issues/175
 
+Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Linux (Ubuntu)
 ----------------------------------------
@@ -114,6 +115,7 @@ Open the terminal window:
       $ wget <download_link>
       $ sudo dpkg -i <downloaded_file>
 
+Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Windows
 ---------------------------------
@@ -192,6 +194,9 @@ Check out the video and follow step by step instructions below:
       "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The
       VirtualBox has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
 
+Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+
+.. _teracy-dev-git-clone-and-vagrant-up:
 
 teracy-dev Git Clone and Vagrant Up
 -----------------------------------
