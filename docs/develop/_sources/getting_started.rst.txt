@@ -22,12 +22,22 @@ Please follow the installation instruction below, after that, the instruction st
 
       Other platforms are expected to work, but we haven't fully tested them yet.
 
+- If you're using a macOS machine,
+  :ref:`click here to jump to macOS installation <manual-installation-on-macos>`.
+
+- If you're using a Linux (Ubuntu) machine,
+  :ref:`click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu>`.
+
+- If you're using a Windows machine,
+  :ref:`click here to jump to Windows installation <manual-installation-on-windows>`.
+
 
 Automatic Installation on macOS
 -------------------------------
 
 // TODO(hoatle): https://github.com/teracyhq/dev/issues/162
 
+.. _manual-installation-on-macos:
 
 Manual Installation on macOS
 ----------------------------
@@ -73,6 +83,8 @@ Automatic Installation on Linux (Ubuntu)
 
 // TODO(hoatle): https://github.com/teracyhq/dev/issues/162
 
+
+.. _manual-installation-on-linux-ubuntu:
 
 Manual Installation on Linux (Ubuntu)
 -------------------------------------
@@ -122,6 +134,7 @@ Automatic Installation on Windows
 
 // TODO(hoatle): add this
 
+.. _manual-installation-on-windows:
 
 Manual Installation on Windows
 ------------------------------
