@@ -48,7 +48,7 @@ if node['platform'] == 'ubuntu'
 
   # this must run after settings
   execute 'sudo sysctl -p' do
-      command "sudo sysctl -p"
+      command 'sudo sysctl -p'
   end
 
 end
