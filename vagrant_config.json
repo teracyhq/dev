@@ -141,7 +141,7 @@
           }
         ],
         "inotify": {
-          "max_user_watches": 524288 // see: https://github.com/teracyhq/dev/issues/208
+          "max_user_watches": 524288 // see: https://github.com/teracyhq/dev/issues/208, set value = 0 to unset this setting
         }
       }
     }

@@ -43,5 +43,6 @@ if node['platform'] == 'ubuntu'
 
   execute 'add new fs.inotify.max_user_watches config' do
       command "echo fs.inotify.max_user_watches=#{max_user_watches} | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+      not_if { max_user_watches < 1 }
   end
 end
