@@ -139,7 +139,10 @@
             "action": "add" // one of add, remove. Default: add.
             // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
           }
-        ]
+        ],
+        "inotify": {
+          "max_user_watches": 524288 // see: https://github.com/teracyhq/dev/issues/208, set value = 0 to unset this setting
+        }
       }
     }
   },
