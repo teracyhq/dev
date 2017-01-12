@@ -12,7 +12,8 @@
         //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
         //"auto_config":true, // for private_network mode + ip
         "bridge": [
-          "en0: Wi-Fi (AirPort)", // mac
+          "en0: Wi-Fi (AirPort)", // macOS 10.12
+          "en1: Wi-Fi (AirPort)", // macOS 10.11
           "wlan0" // linux
         ] // for public_network mode
       }
