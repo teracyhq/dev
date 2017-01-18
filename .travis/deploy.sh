@@ -8,7 +8,7 @@ function deploy_docs {
     cd docs
     make setup_gh_pages
     make deploy
-    cd ..  
+    cd ..
 }
 
 function deploy_docker_img {
@@ -18,7 +18,6 @@ function deploy_docker_img {
 deploy_docker_img
 
 if [[ $BUILD_TYPE == "docs" ]]; then
-    deploy_docs
 
     # build teracy-dev-docs distributed Docker image
     cd docs
@@ -28,4 +27,6 @@ if [[ $BUILD_TYPE == "docs" ]]; then
     docker_build
     deploy_docker_img
     cd ..
+    # allow this to be failed
+    deploy_docs
 fi
