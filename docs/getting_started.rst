@@ -114,7 +114,7 @@ Open the terminal window:
       $ cd /tmp/
       $ wget <download_link>
       $ sudo dpkg -i <downloaded_file>
-      $ sudo apt-get install -r -y
+      $ sudo apt-get install -f -y
 
 3. Install ``vagrant`` (>=1.8, <1.9):
 
@@ -126,6 +126,7 @@ Open the terminal window:
       $ cd /tmp/
       $ wget <download_link>
       $ sudo dpkg -i <downloaded_file>
+      $ sudo apt-get install -f -y
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
