@@ -34,6 +34,7 @@ module DockerCookbook
       end
 
       create_docker_wait_ready
+
       execute 'docker-wait-ready' do
         command "#{libexec_dir}/#{docker_name}-wait-ready"
       end
@@ -41,7 +42,8 @@ module DockerCookbook
 
     action :stop do
       execute "stop docker #{name}" do
-        command "kill `cat #{pidfile}`"
+        command "kill `cat #{pidfile}` && while [ -e #{pidfile} ]; do sleep 1; done"
+        timeout 10
         only_if "#{docker_cmd} ps | head -n 1 | grep ^CONTAINER"
       end
     end

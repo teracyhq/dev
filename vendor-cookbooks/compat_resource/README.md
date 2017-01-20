@@ -40,7 +40,8 @@ Curious about how to use custom resources?
 
 ## License & Authors
 
- - Author:: John Keiser ([jkeiser@chef.io](mailto:jkeiser@chef.io))
+- Author:: Lamont Granquist ([lamont@chef.io](mailto:lamont@chef.io))
+- Author:: John Keiser ([jkeiser@chef.io](mailto:jkeiser@chef.io))
 
 ```text
 Copyright:: 2015-2016 Chef Software, Inc.

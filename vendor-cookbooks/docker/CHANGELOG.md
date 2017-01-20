@@ -2,6 +2,53 @@
 
 This file is used to list changes made in each version of the docker cookbook.
 
+## 2.13.10 (2017-01-13)
+- #800 - fixing ubuntu startup script
+- #802 - using chef_version methong only in 12.6.0 and higher
+
+## 2.13.9 (2016-12-29)
+- 793 - Removing service restarts due to chef-client behavior changes.
+
+## 2.13.8 (2016-12-28)
+- #794 - network mode bridge
+- removing emacs package in upstart provider
+- Adding dokken / travis test matrix
+
+## 2.13.7 (2016-12-24)
+- adding additional logging drivers
+- adding action :reload
+
+## 2.13.6 (2016-12-22)
+- adding ip_address support for docker_containers
+- adding volume_driver support
+
+## 2.13.5 (2016-12-21)
+- Temporary work around for broke upstart provider in chef-client
+- Fixing package name for ubuntu version later than 1.12.3
+
+## 2.13.4 (2016-12-20)
+- Fixing comparison operator docker daemon args for versions < 1.12
+
+## 2.13.3 (2016-12-20)
+- 792 - Reverting 791 fix
+
+## 2.13.2 (2016-12-20)
+- 791 - Fix logic bug in docker_service daemon args calculation
+
+## 2.13.1 (2016-12-19)
+- #786 - Adding options hash to docker_volume connection
+- #787 - Adding wait loop to docker_service_manager_execute :stop
+
+## 2.13.0 (2016-11-25)
+- Adding sysctl property to docker_container resource
+
+## 2.12.0 (2016-11-25)
+- Updating compat_resource dep to 12.16.2
+- Updating docker-api gem dep 1.32.1
+
+## 2.11.1 (2016-11-24)
+- Fix for #701 - Revert commit that caused restart loops in systemd provider
+
 ## 2.11.0 (2016-11-23)
 - make systemd MountFlags configurable
 - make running wait time configurable
@@ -21,7 +68,7 @@ This file is used to list changes made in each version of the docker cookbook.
 -Enable systemd options as a docker_service attribute
 
 ## 2.9.8 (2016-11-08)
-- Fixed a typo in an error message 
+- Fixed a typo in an error message
 - Enable tarball install through docker_service
 - option log_opt is defined as --log-opt value1 --log-opt value2 instead of --log-opt=value1 --log-opt=value2
 - Depend on a working compat_resource cookbook
