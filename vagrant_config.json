@@ -77,7 +77,7 @@
   "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
     //"name":"teracy-dev",
-    "memory":2048,
+    "memory":1024,
     //"cpus":1,
     "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
