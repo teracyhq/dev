@@ -30,22 +30,39 @@ module DockerCookbook
           docker_daemon_opts: docker_daemon_opts.join(' ')
         )
         cookbook 'docker'
-        notifies :restart, new_resource, :immediately
         action :create
       end
 
-      service docker_name do
-        provider Chef::Provider::Service::Upstart
-        supports status: true
-        action :start
+      # Upstart broken in 12.17.44
+      # https://github.com/chef/chef/issues/2819 ish..
+      #
+      # hack around this until it gets fixed in Chef proper
+      #
+      # service docker_name do
+      #   provider Chef::Provider::Service::Upstart
+      #   supports status: true
+      #   action :start
+      # end
+
+      execute '/sbin/initctl start docker' do
+        only_if '/sbin/status docker | grep "stop/waiting"'
       end
     end
 
     action :stop do
-      service docker_name do
-        provider Chef::Provider::Service::Upstart
-        supports status: true
-        action :stop
+      # Upstart broken in 12.17.44
+      # https://github.com/chef/chef/issues/2819 ish..
+      #
+      # hack around this until it gets fixed in Chef proper
+      #
+      # service docker_name do
+      #   provider Chef::Provider::Service::Upstart
+      #   supports status: true
+      #   action :stop
+      # end
+
+      execute '/sbin/initctl stop docker' do
+        not_if '/sbin/status docker | grep "stop/waiting"'
       end
     end
 
