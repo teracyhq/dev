@@ -107,7 +107,7 @@
         }
       },
       "docker_compose": {
-        "release": "1.9.0", // more: https://github.com/docker/compose/releases/
+        "release": "1.10.0", // more: https://github.com/docker/compose/releases/
         "enabled": true // "docker" must be enabled to get this
       },
       "docker_machine": {
