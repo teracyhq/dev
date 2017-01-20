@@ -16,15 +16,23 @@ This is the guide on how to work with teracy-dev-docs project.
   $ cd teracy-dev
   $ git remote add upstream git@github.com:teracyhq/dev.git
   ```
-Note: You need to fetch the latest changes of `teracy-dev` before going to the next step.
-Please see the details at http://dev.teracy.org/docs/develop/workflow.html.
 
+- You need to fetch the latest changes of `teracy-dev` before going to the next step.
+  Please see the details at http://dev.teracy.org/docs/develop/workflow.html.
+
+  For example:
+
+  ```bash
+  $ git fetch upstream
+  $ git checkout upstream/develop -b tasks/my-work
+  ```
 
 ## How to work in dev mode
 
 - Start:
 
-  Open the first terminal window and remember to let the file watching keep running:
+  If you haven't `$ vagrant up` yet, open the first terminal window and remember to let the file
+  watching keep running:
 
   ```bash
   $ cd ~/teracy-dev
