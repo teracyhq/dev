@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile-dev
     image: teracy/dev-docs:dev_develop
-    command: bash -c "restview . -l *:8000"
+    command: bash -c "make livehtml"
     ports:
       - "8000:8000"
     volumes:
