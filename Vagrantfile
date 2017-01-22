@@ -329,6 +329,14 @@ Vagrant.configure("2") do |config|
   provisioners = data_hash['provisioners']
 
   # TODO(hoatle): should loop over and set the key dynamically
+
+  # https://www.vagrantup.com/docs/provisioning/file.html
+  def file_settings(file, provisioner)
+    file.source = provisioner['source']
+    file.destination = provisioner['destination']
+  end
+
+  # https://www.vagrantup.com/docs/provisioning/shell.html
   def shell_settings(shell, provisioner)
     shell.inline = provisioner['inline']
     shell.path = provisioner['path']
@@ -362,26 +370,38 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  provisioners.each do |provisioner|
-    type = provisioner['type']
+
+  def provisioner_settings(type, provision, provisioner)
+    # puts provisioner
     case type
-      when "shell"
-        run = 'once'
-        if !provisioner['run'].nil?
-          run = provisioner['run'] # one of: once, always, or never
-        end
-        if provisioner['name'].nil?
-          config.vm.provision "#{type}", run: run do |s|
-            shell_settings(s, provisioner)
-          end
-        else 
-          config.vm.provision provisioner['name'], type: type, run: run do |s|
-            shell_settings(s, provisioner)
-          end
-        end
-      else
-        puts yellow("no matching provisioner type for: #{type}")
+    when "file"
+      file_settings(provision, provisioner)
+    when "shell"
+      shell_settings(provision, provisioner)
+    else
+      puts red("no matching provisioner type for: #{type}")
     end
   end
 
+  provisioners.each do |provisioner|
+    type = provisioner['type']
+    run = 'once'
+    preserve_order = false
+    if !provisioner['run'].nil?
+      run = provisioner['run'] # one of: once, always, or never
+    end
+    if provisioner['preserve_order'] == true
+      preserve_order = true
+    end
+
+    if provisioner['name'].nil?
+      config.vm.provision "#{type}", run: run, preserve_order: preserve_order do |provision|
+        provisioner_settings(type, provision, provisioner)
+      end
+    else
+      config.vm.provision provisioner['name'], type: type, run: run, preserve_order: preserve_order do |provision|
+        provisioner_settings(type, provision, provisioner)
+      end
+    end
+  end
 end
