@@ -293,14 +293,11 @@ Vagrant.configure("2") do |config|
 
   end
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
-  # see: https://www.vagrantup.com/docs/provisioning/chef_solo.html
   chef_hash = data_hash['chef']
 
   if !chef_hash.nil? and chef_hash['enabled']
+    puts red("You're using deprecated setting for chef, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
+
     config.vm.provision "chef_solo" do |chef|
       chef.log_level = chef_hash['log_level']
       chef.cookbooks_path = chef_hash['cookbooks_path']
@@ -328,39 +325,63 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  $display_ip_address = <<IP_ADDRESS
-ipaddress=`hostname -I | cut -d' ' -f2`
-echo "ip address: $ipaddress"
-IP_ADDRESS
+  # provisoners settings
+  provisioners = data_hash['provisioners']
 
-  config.vm.provision "shell", inline: $display_ip_address
-  # Enable provisioning with chef server, specifying the chef server URL,
-  # and the path to the validation key (relative to this Vagrantfile).
-  #
-  # The Opscode Platform uses HTTPS. Substitute your organization for
-  # ORGNAME in the URL and validation key.
-  #
-  # If you have your own Chef Server, use the appropriate URL, which may be
-  # HTTP instead of HTTPS depending on your configuration. Also change the
-  # validation key to validation.pem.
-  #
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = ENV['KNIFE_CHEF_SERVER']
-  #   chef.validation_key_path = "#{ENV['KNIFE_VALIDATION_KEY_FOLDER']}/#{ENV['OPSCODE_ORGNAME']}-validator.pem"
-  #   chef.validation_client_name = "#{ENV['OPSCODE_ORGNAME']}-validator"
-  #   chef.node_name = "#{ENV['OPSCODE_USER']}-vagrant"
-  #   chef.run_list = [
-  #     'motd',
-  #     'minitest-handler'
-  #   ]
-  # end
-  #
-  # If you're using the Opscode platform, your validator client is
-  # ORGNAME-validator, replacing ORGNAME with your organization name.
-  #
-  # If you have your own Chef Server, the default validation client name is
-  # chef-validator, unless you changed the configuration.
-  #
-  #   chef.validation_client_name = "ORGNAME-validator"
+  # TODO(hoatle): should loop over and set the key dynamically
+  def shell_settings(shell, provisioner)
+    shell.inline = provisioner['inline']
+    shell.path = provisioner['path']
+    shell.args = provisioner['args']
+    unless provisioner['env'].nil?
+      shell.env = provisioner['env']
+    end
+    unless provisioner['binary'].nil?
+      shell.binary = provisioner['binary']
+    end
+    unless provisioner['privileged'].nil?
+      shell.privileged = provisioner['privileged']
+    end
+    unless provisioner['upload_path'].nil?
+      #shell.upload_path = provisioner['upload_path']
+    end
+    unless provisioner['keep_color'].nil?
+      shell.keep_color = provisioner['keep_color']
+    end
+    unless provisioner['powershell_args'].nil?
+      shell.powershell_args = provisioner['powershell_args']
+    end
+    unless provisioner['powershell_elevated_interactive'].nil?
+      shell.powershell_elevated_interactive = provisioner['powershell_elevated_interactive']
+    end
+    unless provisioner['md5'].nil?
+      shell.md5 = provisioner['md5']
+    end
+    unless provisioner['sha1'].nil?
+      shell.sha1 = provisioner['sha1']
+    end
+  end
+
+  provisioners.each do |provisioner|
+    type = provisioner['type']
+    case type
+      when "shell"
+        run = 'once'
+        if !provisioner['run'].nil?
+          run = provisioner['run'] # one of: once, always, or never
+        end
+        if provisioner['name'].nil?
+          config.vm.provision "#{type}", run: run do |s|
+            shell_settings(s, provisioner)
+          end
+        else 
+          config.vm.provision provisioner['name'], type: type, run: run do |s|
+            shell_settings(s, provisioner)
+          end
+        end
+      else
+        puts yellow("no matching provisioner type for: #{type}")
+    end
+  end
 
 end

@@ -147,6 +147,12 @@
       }
     }
   },
+  "provisioners": [{
+    "type": "shell",
+    "name": "ip",
+    "path": "provisioners/shells/ip.sh",
+    "run": "always"
+  }],
   "plugins": {
     "vagrant-gatling-rsync": {
       "config_key": "gatling",
