@@ -332,7 +332,7 @@ Vagrant.configure("2") do |config|
   # provisoners settings
   provisioners = data_hash['provisioners']
 
-  # always append ip shell as the last item to always display the ip address
+  # append ip shell as the last item to always display the ip address
   provisioners << {
     "type" => "shell",
     "name" => "ip",
