@@ -103,27 +103,19 @@ Open the terminal window:
 
 2. Install ``virtualbox`` (>=5.1):
 
-   Find the right installation version file at https://www.virtualbox.org/wiki/Linux_Downloads or
-   https://www.virtualbox.org/wiki/Download_Old_Builds
-
    ..  code-block:: bash
 
-      $ cd /tmp/
-      $ wget <download_link>
-      $ sudo dpkg -i <downloaded_file>
-      $ sudo apt-get install -f -y
+      $ sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list" \
+      && wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add - \
+      && sudo apt-get update && sudo apt-get install virtualbox-5.1 -y
 
 3. Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
-   Find the right installation version file at https://releases.hashicorp.com/vagrant/ or
-   https://www.vagrantup.com/downloads.html
-
    ..  code-block:: bash
 
-      $ cd /tmp/
-      $ wget <download_link>
-      $ sudo dpkg -i <downloaded_file>
-      $ sudo apt-get install -f -y
+      $ version=1.9.1 && cd /tmp \
+      && wget $(if [ `uname -m` == "x86_64" ]; then echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_x86_64.deb"; else echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_i686.deb"; fi;) \
+      && sudo dpkg -i vagrant_${version}* && rm vagrant_${version}* && cd --
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
