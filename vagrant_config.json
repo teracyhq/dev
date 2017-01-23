@@ -81,8 +81,8 @@
     //"cpus":1,
     "description":"teracy-dev #{Time.now.getutc.to_i}"
   },
-  "chef": {
-    "enabled": true,
+  "provisioners": [{
+    "type": "chef_solo",
     "log_level": "info", //one of debug, info, warn, error, fatal. Default: info
     "cookbooks_path": [
       "vendor-cookbooks",
@@ -91,7 +91,7 @@
     "roles_path": "roles",
     "nodes_path": "nodes",
     "data_bags_path": "data_bags",
-    "recipes": [
+    "run_list": [
       "vim",
       "teracy-dev"
     ],
@@ -146,12 +146,6 @@
         }
       }
     }
-  },
-  "provisioners": [{
-    "type": "shell",
-    "name": "ip",
-    "path": "provisioners/shells/ip.sh",
-    "run": "always"
   }],
   "plugins": {
     "vagrant-gatling-rsync": {

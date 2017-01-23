@@ -297,7 +297,7 @@ Vagrant.configure("2") do |config|
   chef_hash = data_hash['chef']
 
   if !chef_hash.nil? and chef_hash['enabled']
-    puts red("You're using deprecated setting for chef, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
+    puts red("You're using deprecated setting for chef, will be removed by v0.5.0-b2, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
 
     config.vm.provision "chef_solo" do |chef|
       chef.log_level = chef_hash['log_level']
@@ -323,11 +323,22 @@ Vagrant.configure("2") do |config|
       end
 
       chef.json = chef_hash['json']
+
+      # empty provisioners to work as backward compatible
+      data_hash['provisioners'] = []
     end
   end
 
   # provisoners settings
   provisioners = data_hash['provisioners']
+
+  # always append ip shell as the last item to always display the ip address
+  provisioners << {
+    "type" => "shell",
+    "name" => "ip",
+    "path" => "provisioners/shells/ip.sh",
+    "run" => "always"
+  }
 
   provisioners.each do |provisioner|
     type = provisioner['type']
@@ -342,11 +353,11 @@ Vagrant.configure("2") do |config|
 
     if provisioner['name'].nil?
       config.vm.provision "#{type}", run: run, preserve_order: preserve_order do |provision|
-        provisioner_settings(type, provision, provisioner)
+        provision_settings(type, provision, provisioner)
       end
     else
       config.vm.provision provisioner['name'], type: type, run: run, preserve_order: preserve_order do |provision|
-        provisioner_settings(type, provision, provisioner)
+        provision_settings(type, provision, provisioner)
       end
     end
   end
