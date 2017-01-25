@@ -46,16 +46,13 @@ This is the guide on how to work with teracy-dev-docs project.
   $ vagrant ssh
   $ ws
   $ cd teracy-dev/docs
-  $ docker-compose pull && docker-compose up -d
+  $ docker-compose pull && docker-compose up -d && docker-compose logs -f
   ```
 
-  Open the third terminal window to identity the \<vm_ip_address>, follow: http://dev.teracy.org/docs/develop/basic_usage.html#ip-address
+  Open the third terminal window to identify the \<vm_ip_address>, follow: http://dev.teracy.org/docs/develop/basic_usage.html#ip-address
 
-  Open \<vm_ip_address>:8000 to preview on local. This is fast and live reload preview, however, it's
-  not really close to the real generated docs, some problems could happen. Make sure to check on production
-  mode later to make sure the generated docs are good enough.
+  Open \<vm_ip_address>:8000 to view the generated docs on local dev.
 
-  //TODO(hoatle): make sure dev mode should render the same content as prod mode with auto reload.
 
 - Update new changes:
 
@@ -63,60 +60,9 @@ This is the guide on how to work with teracy-dev-docs project.
   the updated files.
 
 
-- View the actual generated docs:
-
-  To view the actual generated docs, you need to do this every time you want to see the actual result,
-  this is useful when you're going to create a pull request for docs, make sure that this should be
-  the final check:
-
-  ```bash
-  $ ws
-  $ cd teracy-dev/docs
-  $ docker-compose exec dev make generate
-  ```
-
-  You should see the similar output:
-
-  ```bash
-  sphinx-build -b html -d _build/doctrees   . _build/html
-  Running Sphinx v1.5.1
-  loading pickled environment... done
-  building [mo]: targets for 0 po files that are out of date
-  building [html]: targets for 1 source files that are out of date
-  updating environment: 0 added, 1 changed, 0 removed
-  reading sources... [100%] getting_started                                                                           
-  looking for now-outdated files... none found
-  pickling environment... done
-  checking consistency... /opt/app/release.rst:: WARNING: document isn't included in any toctree
-  done
-  preparing documents... WARNING: html_favicon is not an .ico file
-  done
-  writing output... [100%] index                                                                                      
-  generating indices... genindex
-  writing additional pages... search
-  copying static files... WARNING: favicon file 'favicon.png' does not exist
-  done
-  copying extra files... done
-  dumping search index in English (code: en) ... done
-  dumping object inventory... done
-  build succeeded, 3 warnings.
-
-  Build finished. The HTML pages are in _build/html.
-  ```
-
-  Open a new terminal window and sync back the generated docs from the VM to the host machine:
-
-
-  ```bash
-  $ cd ~/teracy-dev
-  $ vagrant rsync-back
-  ```
-
-  Open `~/teracy-dev/workspace/teracy-dev/docs/_build/html/index.html` on your browser to view the
-  actual generated docs.
-
-
 - Stop working:
+
+  Press `Ctrl + c` to stop following the logs and then:
 
   ```bash
   $ docker-compose stop
@@ -134,7 +80,7 @@ $ docker run --rm -p 8888:80 hoatle/teracy-dev-docs:improvements-176-teracy-dev-
 
 And open \<vm_ip_address>:8888 to review the changes on local host
 
-Press Ctrl + c to stop reviewing (stop docker run)
+Press `Ctrl + c` to stop reviewing (stop docker run)
 
 
 ## How to run in prod mode
