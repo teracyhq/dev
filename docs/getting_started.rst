@@ -230,62 +230,62 @@ teracy-dev Git Clone and Vagrant Up
 
 1. Open your terminal window and type:
 
-    ..  code-block:: bash
+   ..  code-block:: bash
 
-      $ cd ~/
-      $ git clone https://github.com/teracyhq/dev.git teracy-dev
-      $ cd teracy-dev
-      $ git checkout develop
-      $ vagrant up
+       $ cd ~/
+       $ git clone https://github.com/teracyhq/dev.git teracy-dev
+       $ cd teracy-dev
+       $ git checkout develop
+       $ vagrant up
 
-    ..  note::
+   ..  note::
 
-        We check out the `develop` branch here to use the latest development version of teracy-dev.
-        When it is released, we will use the `master` branch - the latest stable version instead.
+       - We check out the `develop` branch here to use the latest development version of teracy-dev.
+         When it is released, we will use the `master` branch - the latest stable version instead.
 
-    You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
-    plugins are required, so install them:
+   You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
+   plugins are required, so install them:
 
-    ..  code-block:: bash
+   ..  code-block:: bash
 
-        $ vagrant plugin install vagrant-gatling-rsync
-        $ vagrant plugin install vagrant-rsync-back
-
-
-    You should see the following similar messages after ``$ vagrant up`` finishes running:
-    ::
-
-      ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
-      ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
-      ==> default: Running provisioner: shell...
-      ==> default: Running: inline script
-      ==> default: stdin: is not a tty
-      ==> default: ip address: 192.168.0.105
-      ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
-      ==> default: Doing an initial rsync...
-      ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
-      ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
+       $ vagrant plugin install vagrant-gatling-rsync
+       $ vagrant plugin install vagrant-rsync-back
 
 
-    ..  note::
+   You should see the following similar messages after ``$ vagrant up`` finishes running:
+   ::
 
-        - You may see the error on Windows:
-          ::
+     ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
+     ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
+     ==> default: Running provisioner: shell...
+     ==> default: Running: inline script
+     ==> default: stdin: is not a tty
+     ==> default: ip address: 192.168.0.105
+     ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
+     ==> default: Doing an initial rsync...
+     ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
+     ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
 
-            vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
-            available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
-            add it to the PATH environmental variable.
 
-          To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+   ..  note::
 
-          For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
+       - You may see the error on Windows:
+         ::
 
-          If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
-          ``vagrant`` to fix this error.
+           vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
+           available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
+           add it to the PATH environmental variable.
 
-        - On Windows, if you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
-          "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
-          has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
+         To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+
+         For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
+
+         If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
+         ``vagrant`` to fix this error.
+
+       - On Windows, if you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
+         "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
+         has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
 
 2. Keep the first terminal window running, open a new terminal window and use the ``$ vagrant ssh``
    command to access the virtual machine you have just provisioned.
