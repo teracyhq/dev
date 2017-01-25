@@ -187,6 +187,8 @@ Check out the video and follow step by step instructions below:
 
      ..  note::
 
+         - From now on, we'll call ``Cygwin Terminal`` as ``terminal window`` on Windows.
+
          - If you encounter the following error:
 
            ..  code-block:: bash
