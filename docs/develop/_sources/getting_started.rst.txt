@@ -175,7 +175,7 @@ Check out the video and follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox`` (>=5.1)::
+   - Install ``virtualbox`` (>=5.1):
 
      .. code-block:: bash
 
