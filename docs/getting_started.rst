@@ -63,18 +63,15 @@ Open the terminal window:
 
         $ brew cask install virtualbox
 
-   - Install ``vagrant`` (>=1.8, <1.9):
+   - Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
      .. code-block:: bash
 
         $ brew cask install vagrant
 
      ..  note::
-     
-        - If the above command installs ``vagrant`` >=1.9, make sure to install the right version by
-          downloading the installation file manually from https://releases.hashicorp.com/vagrant/
-
-        - // FIXME(hoatle): https://github.com/teracyhq/dev/issues/175
+        - // FIXME(hoavt): https://github.com/teracyhq/dev/issues/196
+        - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
@@ -116,7 +113,7 @@ Open the terminal window:
       $ sudo dpkg -i <downloaded_file>
       $ sudo apt-get install -f -y
 
-3. Install ``vagrant`` (>=1.8, <1.9):
+3. Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
    Find the right installation version file at https://releases.hashicorp.com/vagrant/ or
    https://www.vagrantup.com/downloads.html
@@ -178,13 +175,13 @@ Check out the video and follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox``:
+   - Install ``virtualbox`` (>=5.1)::
 
      .. code-block:: bash
 
         $ choco install virtualbox -y
 
-   - Install ``vagrant``:
+   - Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
      .. code-block:: bash
 
