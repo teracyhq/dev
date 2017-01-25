@@ -149,7 +149,13 @@ Check out the video and follow step by step instructions below:
 1. Install ``chocolatey``
 
    Run ``Command Prompt`` **as administrator** and paste the Cmd.exe command copied from
-   https://chocolatey.org/install
+   https://chocolatey.org/install in the **More Options** section.
+
+   It should look similar to the following command:
+
+   ..  code-block:: bash
+
+       > @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 2. Install ``cyg-get``
    
@@ -158,6 +164,16 @@ Check out the video and follow step by step instructions below:
    ..  code-block:: bash
 
        > choco install cyg-get -y
+
+   ..  note::
+
+       - If you cannot install the ``cyg-get`` due to the checksums error, reinstall it with the
+         following command instead:
+
+         ..  code-block:: bash
+
+             > choco install cyg-get -y --ignore-checksums --force
+
 
 3. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``
 
@@ -168,6 +184,23 @@ Check out the video and follow step by step instructions below:
      .. code-block:: bash
 
         $ cyg-get.bat bash-completion
+
+     ..  note::
+
+         - From now on, we'll call ``Cygwin Terminal`` as ``terminal window`` on Windows.
+
+         - If you encounter the following error:
+
+           ..  code-block:: bash
+
+              C:\ProgramData\chocolatey\lib\cyg-get\tools\cyg-get.ps1 : Please ensure you have Cygwin installed.
+              To install please call 'choco install cygwin' (optionally add -y to autoconfirm).
+              ERROR: This command cannot be run due to the error: The system cannot find the file specified.
+              At line:1 char:1
+
+           then fix it by going to http://cygwin.com/install.html and save the *setup-x86_64.exe*
+           file with the new name *cygwinsetup.exe* into the *cygwin* folder (Details at
+           https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458.)
 
    - Install ``git``:
 
@@ -187,23 +220,8 @@ Check out the video and follow step by step instructions below:
 
         $ choco install vagrant -y
 
+   After finishing the vagrant installation, you are recommended to restart your machine.
 
-..  note::
-
-    - If you encounter the following error:
-
-      ..  code-block:: bash
-
-          C:\ProgramData\chocolatey\lib\cyg-get\tools\cyg-get.ps1 : Please ensure you have Cygwin installed.
-          To install please call 'choco install cygwin' (optionally add -y to autoconfirm).
-          ERROR: This command cannot be run due to the error: The system cannot find the file specified.
-          At line:1 char:1
-
-      then fix it with https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458
-
-    - If you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
-      "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The
-      VirtualBox has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
@@ -214,61 +232,72 @@ teracy-dev Git Clone and Vagrant Up
 
 1. Open your terminal window and type:
 
-    ..  code-block:: bash
+   ..  code-block:: bash
 
-      $ cd ~/
-      $ git clone https://github.com/teracyhq/dev.git teracy-dev
-      $ cd teracy-dev
-      $ git checkout develop
-      $ vagrant up
+       $ cd ~/
+       $ git clone https://github.com/teracyhq/dev.git teracy-dev
+       $ cd teracy-dev
+       $ git checkout develop
+       $ vagrant up
 
-    ..  note::
+   ..  note::
 
-          We check out the `develop` branch here to use the latest development version of teracy-dev.
-          When it is released, we will use the `master` branch - the latest stable version instead.
+       - We check out the `develop` branch here to use the latest development version of teracy-dev.
+         When it is released, we will use the `master` branch - the latest stable version instead.
 
-    You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
-    plugins are required, so install them:
+   You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
+   plugins are required, so install them:
 
-    ..  code-block:: bash
+   ..  code-block:: bash
 
-        $ vagrant plugin install vagrant-gatling-rsync
-        $ vagrant plugin install vagrant-rsync-back
-
-
-    You should see the following similar messages after ``$ vagrant up`` finishes running:
-    ::
-
-      ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
-      ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
-      ==> default: Running provisioner: shell...
-      ==> default: Running: inline script
-      ==> default: stdin: is not a tty
-      ==> default: ip address: 192.168.0.105
-      ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
-      ==> default: Doing an initial rsync...
-      ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
-      ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
+       $ vagrant plugin install vagrant-gatling-rsync
+       $ vagrant plugin install vagrant-rsync-back
 
 
-    ..  note::
+   You should see the following similar messages after ``$ vagrant up`` finishes running:
+   ::
 
-        - You may see the error:
-          ::
+     ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
+     ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
+     ==> default: Running provisioner: shell...
+     ==> default: Running: inline script
+     ==> default: stdin: is not a tty
+     ==> default: ip address: 192.168.0.105
+     ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
+     ==> default: Doing an initial rsync...
+     ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
+     ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
 
-            vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
-            available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
-            add it to the PATH environmental variable.
 
-          To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+   ..  note::
 
-          For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
+       - You may see the error on Windows:
+         ::
 
-          If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
-          ``vagrant`` to fix this error.
+           vagrant uses the VBoxManage binary that ships with VirtualBox and requires this to be
+           available on the PATH. If VirtualBox is installed, please find the VBoxManage binary and
+           add it to the PATH environmental variable.
 
-2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just
-   provisioned. You should see the following similar messages:
+         To fix this error, add the path of the **VirtualBox** folder to your environment variable.
+
+         For example: In Windows, add this ``C:\Program Files\Oracle\VirtualBox``.
+
+         If the error still occurs, you have to uninstall and re-install ``virtualbox``, then
+         ``vagrant`` to fix this error.
+
+       - On Windows, if you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
+         "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
+         has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
+
+2. Keep the first terminal window running, open a new terminal window and use the ``$ vagrant ssh``
+   command to access the virtual machine you have just provisioned.
+
+   ..  code-block:: bash
+
+       $ cd ~/teracy-dev
+       $ vagrant ssh
+
+   You should see the following similar messages:
 
    .. code-block:: bash
 
@@ -283,6 +312,20 @@ teracy-dev Git Clone and Vagrant Up
 
 
       Last login: Tue Dec  6 14:19:56 2016 from 10.0.2.2
+
+3. Check if `docker` and `docker-compose` are already installed
+
+   After ``$ vagrant ssh``, use the following commands:
+
+   ..  code-block:: bash
+
+       $ docker --version
+       $ docker-compose --version
+
+   .. note::
+
+      In case the `docker` command is not found, you should ``$ vagrant destroy``, then
+      ``$ vagrant up`` again or ``$ vagrant reload --provision``.
 
 Git Setup
 ---------

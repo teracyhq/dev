@@ -181,12 +181,27 @@ $ sudo apt-get install -f -y
 <iframe width="100%" height="630" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe><ol class="arabic">
 <li><p class="first">Install <code class="docutils literal"><span class="pre">chocolatey</span></code></p>
 <p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and paste the Cmd.exe command copied from
-<a class="reference external" href="https://chocolatey.org/install">https://chocolatey.org/install</a></p>
+<a class="reference external" href="https://chocolatey.org/install">https://chocolatey.org/install</a> in the <strong>More Options</strong> section.</p>
+<p>It should look similar to the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; @powershell -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
+</pre></div>
+</div>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">cyg-get</span></code></p>
 <p>Type the command below on the opened <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get -y
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">If you cannot install the <code class="docutils literal"><span class="pre">cyg-get</span></code> due to the checksums error, reinstall it with the
+following command instead:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get -y --ignore-checksums --force
+</pre></div>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">bash-completion</span></code>, <code class="docutils literal"><span class="pre">git</span></code>, <code class="docutils literal"><span class="pre">virtualbox</span></code> and <code class="docutils literal"><span class="pre">vagrant</span></code></p>
@@ -195,6 +210,24 @@ $ sudo apt-get install -f -y
 <li><p class="first">Install <code class="docutils literal"><span class="pre">bash-completion</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyg-get.bat bash-completion
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">From now on, we&#8217;ll call <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> as <code class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></code> on Windows.</p>
+</li>
+<li><p class="first">If you encounter the following error:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>C:<span class="se">\P</span>rogramData<span class="se">\c</span>hocolatey<span class="se">\l</span>ib<span class="se">\c</span>yg-get<span class="se">\t</span>ools<span class="se">\c</span>yg-get.ps1 : Please ensure you have Cygwin installed.
+To install please call <span class="s1">&#39;choco install cygwin&#39;</span> <span class="o">(</span>optionally add -y to autoconfirm<span class="o">)</span>.
+ERROR: This <span class="nb">command</span> cannot be run due to the error: The system cannot find the file specified.
+At line:1 char:1
+</pre></div>
+</div>
+<p>then fix it by going to <a class="reference external" href="http://cygwin.com/install.html">http://cygwin.com/install.html</a> and save the <em>setup-x86_64.exe</em>
+file with the new name <em>cygwinsetup.exe</em> into the <em>cygwin</em> folder (Details at
+<a class="reference external" href="https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458">https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458</a>.)</p>
+</li>
+</ul>
 </div>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">git</span></code>:</p>
@@ -213,34 +246,16 @@ $ sudo apt-get install -f -y
 </div>
 </li>
 </ul>
+<p>After finishing the vagrant installation, you are recommended to restart your machine.</p>
 </li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last">
-<li><p class="first">If you encounter the following error:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>C:<span class="se">\P</span>rogramData<span class="se">\c</span>hocolatey<span class="se">\l</span>ib<span class="se">\c</span>yg-get<span class="se">\t</span>ools<span class="se">\c</span>yg-get.ps1 : Please ensure you have Cygwin installed.
-To install please call <span class="s1">&#39;choco install cygwin&#39;</span> <span class="o">(</span>optionally add -y to autoconfirm<span class="o">)</span>.
-ERROR: This <span class="nb">command</span> cannot be run due to the error: The system cannot find the file specified.
-At line:1 char:1
-</pre></div>
-</div>
-<p>then fix it with <a class="reference external" href="https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458">https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458</a></p>
-</li>
-<li><p class="first">If you <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find &#8220;VBoxUSBMon.inf&#8221; and
-&#8220;VBoxDrv.inf&#8221; in your installation directory then re-install it to fix the issue. The
-VirtualBox has an installation issue which was reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a></p>
-</li>
-</ul>
-</div>
 <p>Next: <a class="reference internal" href="#teracy-dev-git-clone-and-vagrant-up"><span class="std std-ref">teracy-dev Git Clone and Vagrant Up</span></a></p>
 </div>
 <div class="section" id="teracy-dev-git-clone-and-vagrant-up">
 <span id="id4"></span><h2>teracy-dev Git Clone and Vagrant Up<a class="headerlink" href="#teracy-dev-git-clone-and-vagrant-up" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Open your terminal window and type:</p>
-<blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/
 $ git clone https://github.com/teracyhq/dev.git teracy-dev
 $ <span class="nb">cd</span> teracy-dev
 $ git checkout develop
@@ -249,8 +264,10 @@ $ vagrant up
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We check out the <cite>develop</cite> branch here to use the latest development version of teracy-dev.
-When it is released, we will use the <cite>master</cite> branch - the latest stable version instead.</p>
+<ul class="last simple">
+<li>We check out the <cite>develop</cite> branch here to use the latest development version of teracy-dev.
+When it is released, we will use the <cite>master</cite> branch - the latest stable version instead.</li>
+</ul>
 </div>
 <p>You could see the error message saying that <cite>vagrant-gatling-rsync</cite> and <cite>vagrant-rsync-back</cite>
 plugins are required, so install them:</p>
@@ -274,7 +291,7 @@ $ vagrant plugin install vagrant-rsync-back
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">You may see the error:</p>
+<li><p class="first">You may see the error on Windows:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">VBoxManage</span> <span class="n">binary</span> <span class="n">that</span> <span class="n">ships</span> <span class="k">with</span> <span class="n">VirtualBox</span> <span class="ow">and</span> <span class="n">requires</span> <span class="n">this</span> <span class="n">to</span> <span class="n">be</span>
 <span class="n">available</span> <span class="n">on</span> <span class="n">the</span> <span class="n">PATH</span><span class="o">.</span> <span class="n">If</span> <span class="n">VirtualBox</span> <span class="ow">is</span> <span class="n">installed</span><span class="p">,</span> <span class="n">please</span> <span class="n">find</span> <span class="n">the</span> <span class="n">VBoxManage</span> <span class="n">binary</span> <span class="ow">and</span>
 <span class="n">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="n">PATH</span> <span class="n">environmental</span> <span class="n">variable</span><span class="o">.</span>
@@ -285,12 +302,20 @@ $ vagrant plugin install vagrant-rsync-back
 <p>If the error still occurs, you have to uninstall and re-install <code class="docutils literal"><span class="pre">virtualbox</span></code>, then
 <code class="docutils literal"><span class="pre">vagrant</span></code> to fix this error.</p>
 </li>
+<li><p class="first">On Windows, if you <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find &#8220;VBoxUSBMon.inf&#8221; and
+&#8220;VBoxDrv.inf&#8221; in your installation directory then re-install it to fix the issue. The VirtualBox
+has an installation issue which was reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a></p>
+</li>
 </ul>
 </div>
-</div></blockquote>
 </li>
-<li><p class="first">Use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> command to access the virtual machine you have just
-provisioned. You should see the following similar messages:</p>
+<li><p class="first">Keep the first terminal window running, open a new terminal window and use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>
+command to access the virtual machine you have just provisioned.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ vagrant ssh
+</pre></div>
+</div>
+<p>You should see the following similar messages:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to Ubuntu <span class="m">16</span>.04.1 LTS <span class="o">(</span>GNU/Linux <span class="m">4</span>.4.0-51-generic x86_64<span class="o">)</span>
 
   * Documentation:  https://help.ubuntu.com
@@ -303,6 +328,18 @@ provisioned. You should see the following similar messages:</p>
 
 Last login: Tue Dec  <span class="m">6</span> <span class="m">14</span>:19:56 <span class="m">2016</span> from <span class="m">10</span>.0.2.2
 </pre></div>
+</div>
+</li>
+<li><p class="first">Check if <cite>docker</cite> and <cite>docker-compose</cite> are already installed</p>
+<p>After <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>, use the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker --version
+$ docker-compose --version
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In case the <cite>docker</cite> command is not found, you should <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code>, then
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> again or <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>.</p>
 </div>
 </li>
 </ol>
