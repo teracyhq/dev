@@ -175,13 +175,13 @@ Check out the video and follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox``:
+   - Install ``virtualbox`` (>=5.1)::
 
      .. code-block:: bash
 
         $ choco install virtualbox -y
 
-   - Install ``vagrant``:
+   - Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
      .. code-block:: bash
 
