@@ -115,16 +115,15 @@ expected to work, too.</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8, &lt;1.9):</p>
+<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ brew cask install vagrant
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li>If the above command installs <code class="docutils literal"><span class="pre">vagrant</span></code> &gt;=1.9, make sure to install the right version by
-downloading the installation file manually from <a class="reference external" href="https://releases.hashicorp.com/vagrant/">https://releases.hashicorp.com/vagrant/</a></li>
-<li>// FIXME(hoatle): <a class="reference external" href="https://github.com/teracyhq/dev/issues/175">https://github.com/teracyhq/dev/issues/175</a></li>
+<li>// FIXME(hoavt): <a class="reference external" href="https://github.com/teracyhq/dev/issues/196">https://github.com/teracyhq/dev/issues/196</a></li>
+<li>// TODO(hoatle): <a class="reference external" href="https://github.com/teracyhq/dev/issues/175">https://github.com/teracyhq/dev/issues/175</a></li>
 </ul>
 </div>
 </li>
@@ -158,7 +157,7 @@ $ sudo apt-get install -f -y
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8, &lt;1.9):</p>
+<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
 <p>Find the right installation version file at <a class="reference external" href="https://releases.hashicorp.com/vagrant/">https://releases.hashicorp.com/vagrant/</a> or
 <a class="reference external" href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a></p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp/
@@ -203,12 +202,15 @@ $ sudo apt-get install -f -y
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ choco install virtualbox -y
+<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">bash</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>$ choco install virtualbox -y</p>
+</div></blockquote>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code>:</p>
+<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ choco install vagrant -y
 </pre></div>
 </div>
@@ -292,7 +294,7 @@ $ vagrant plugin install vagrant-rsync-back
 </li>
 <li><p class="first">Use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> command to access the virtual machine you have just
 provisioned. You should see the following similar messages:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to Ubuntu 16.04.1 LTS <span class="o">(</span>GNU/Linux 4.4.0-51-generic x86_64<span class="o">)</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to Ubuntu <span class="m">16</span>.04.1 LTS <span class="o">(</span>GNU/Linux <span class="m">4</span>.4.0-51-generic x86_64<span class="o">)</span>
 
   * Documentation:  https://help.ubuntu.com
   * Management:     https://landscape.canonical.com
@@ -302,7 +304,7 @@ provisioned. You should see the following similar messages:</p>
 <span class="m">1</span> update is a security update.
 
 
-Last login: Tue Dec  <span class="m">6</span> 14:19:56 <span class="m">2016</span> from 10.0.2.2
+Last login: Tue Dec  <span class="m">6</span> <span class="m">14</span>:19:56 <span class="m">2016</span> from <span class="m">10</span>.0.2.2
 </pre></div>
 </div>
 </li>
@@ -381,7 +383,7 @@ Last login: Tue Dec  <span class="m">6</span> 14:19:56 <span class="m">2016</spa
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>
