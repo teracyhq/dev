@@ -17,37 +17,8 @@ Style Guide
 reStructuredText Writing
 ------------------------
 
-For easier .rst writing, we use restview_.
-
-As ``restview`` is installed on the teracy-dev VM by default, we can use it immediately without any
-installation steps. Make sure you have the teracy-dev VM running (``$ vagrant up``) by following the
-:doc:`getting_started` guide.
-
-To use ``restview``, just specify the watching directory and specify the listening port.
-
-For example:
-
-..  code-block:: bash
-
-    $ vagrant ssh
-    $ ws
-    $ cd personal
-    $ mkdir restview-test
-    $ cd restview-test
-    $ touch test.rst
-    $ restview . -l *:8000
-
-And you should see the output like:
-
-..  code-block:: bash
-
-    Listening on http://vagrant:8000/
-
-Open http://localhost:8000, you should see `test.rst` file, click on it to see the result.
-
-..  tip::
-    ``restview`` supports instant update without refreshing the brower, just update .rst files and
-    we can see the result instantly.
+..  todo::
+    Need to have docs guide here
 
 
 Markdown Writing
