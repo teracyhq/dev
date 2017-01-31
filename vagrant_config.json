@@ -100,11 +100,12 @@
       // separated as we did before, this is for advanded users only
       "docker": {
         "enabled": true,
-        "installation": {
-          "repo": "main", // one of main, test, experimental
-          "members": ["vagrant"],
-          "action": "create" // one of create, delete. Default: create
-        }
+        "version": "", // use this to install a specific docker version, default: ""
+        // used along with the version key, this is default for Ubuntu
+        "package_options": "--force-yes -o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-all'",
+        "repo": "main", // one of main, test, experimental, default: "main"
+        "members": ["vagrant"], // to append this member to "docker" group
+        "action": "create" // one of create, delete. Default: create
       },
       "docker_compose": {
         "release": "1.10.0", // more: https://github.com/docker/compose/releases/

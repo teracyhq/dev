@@ -38,28 +38,50 @@ def get_docker_compose_autocomplete_url
     "https://raw.githubusercontent.com/docker/compose/#{release}/contrib/completion/bash/docker-compose"
 end
 
+
 if docker_conf['enabled'] == true
 
-    installation_conf = docker_conf['installation']
-
     act = :create
-    if installation_conf['action'] == 'delete'
+    if docker_conf['action'] == 'delete'
         act = :delete 
     end
 
-    docker_installation 'default' do
-        repo installation_conf['repo']
-        action act
+    if !docker_conf['version'].empty?
+        docker_installation_package 'default' do
+            version docker_conf['version']
+            action act
+            package_options docker_conf['package_options']
+        end
+    else
+        docker_installation 'default' do
+            repo docker_conf['repo']
+            action act
+        end
     end
 
     group 'docker' do
         action :modify
-        members installation_conf['members']
+        members docker_conf['members']
         append true
     end
 
 
     if node['docker_compose']['enabled'] == true
+
+        bash 'clean up the mismatched docker-compose version' do
+            # docker-compose version 1.10.0, build 4bd6f1a => docker_compose_version: 1.10.0
+            code <<-EOF
+                docker_compose_binary=$(which docker-compose);
+                docker_compose_version=$(docker-compose -v | awk '{print $3}');
+                docker_compose_version=${docker_compose_version::-1}
+                if [ "$docker_compose_version" != "$node['docker_compose']['release']" ]; then
+                    rm -rf $docker_compose_binary || true
+                fi
+            EOF
+            only_if 'which docker-compose'
+            user 'root'
+        end
+
         include_recipe 'docker_compose::installation'
 
         # install docker-compose auto complete
