@@ -187,7 +187,7 @@ Check out the video and follow step by step instructions below:
 
      ..  note::
 
-         - From now on, we'll call ``Cygwin Terminal`` as ``terminal window`` on Windows.
+         - From now on, let's call ``Cygwin Terminal`` ``terminal window`` on Windows.
 
          - If you encounter the following error:
 
