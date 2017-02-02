@@ -101,10 +101,15 @@
 </div>
 <p>When we want to display the IP address of the VM anytime, follow the commands below:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
-$ vagrant provision --provision-with shell
+$ vagrant up
 </pre></div>
 </div>
-<p>And it should display the output of the IP address.</p>
+<p>Or:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ vagrant provision --provision-with ip
+</pre></div>
+</div>
+<p>And it should display the IP address output of the VM.</p>
 </div>
 <div class="section" id="file-sync">
 <h2>File Sync<a class="headerlink" href="#file-sync" title="Permalink to this headline">¶</a></h2>

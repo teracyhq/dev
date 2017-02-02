@@ -50,11 +50,17 @@ When we want to display the IP address of the VM anytime, follow the commands be
 ..  code-block:: bash
 
     $ cd ~/teracy-dev
-    $ vagrant provision --provision-with shell
+    $ vagrant up
+
+Or:
+
+..  code-block:: bash
+
+    $ cd ~/teracy-dev
+    $ vagrant provision --provision-with ip
 
 
-And it should display the output of the IP address.
-
+And it should display the IP address output of the VM.
 
 
 File Sync
