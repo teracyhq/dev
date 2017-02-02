@@ -294,10 +294,19 @@ Vagrant.configure("2") do |config|
 
   end
 
+  # provisoners settings
+  provisioners = data_hash['provisioners']
   chef_hash = data_hash['chef']
 
   if !chef_hash.nil? and chef_hash['enabled']
     puts red("You're using deprecated setting for chef, will be removed by v0.5.0-b2, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
+
+    # chef_hash should override the default provisioner chef_solo
+    provisioners.each do |provisioner|
+      if provisioner['type'] == 'chef_solo'
+        chef_hash = overrides(provisioner, chef_hash)
+      end
+    end
 
     config.vm.provision "chef_solo" do |chef|
       chef.log_level = chef_hash['log_level']
@@ -325,12 +334,9 @@ Vagrant.configure("2") do |config|
       chef.json = chef_hash['json']
 
       # empty provisioners to work as backward compatible
-      data_hash['provisioners'] = []
+      provisioners = []
     end
   end
-
-  # provisoners settings
-  provisioners = data_hash['provisioners']
 
   # append ip shell as the last item to always display the ip address
   provisioners << {
