@@ -164,22 +164,16 @@ $ sudo apt-get install -y git
 </div>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
-<p>Find the right installation version file at <a class="reference external" href="https://www.virtualbox.org/wiki/Linux_Downloads">https://www.virtualbox.org/wiki/Linux_Downloads</a> or
-<a class="reference external" href="https://www.virtualbox.org/wiki/Download_Old_Builds">https://www.virtualbox.org/wiki/Download_Old_Builds</a></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp/
-$ wget &lt;download_link&gt;
-$ sudo dpkg -i &lt;downloaded_file&gt;
-$ sudo apt-get install -f -y
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib non-free&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span> <span class="se">\</span>
+<span class="o">&amp;&amp;</span> wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
+<span class="o">&amp;&amp;</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install virtualbox-5.1 -y
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
-<p>Find the right installation version file at <a class="reference external" href="https://releases.hashicorp.com/vagrant/">https://releases.hashicorp.com/vagrant/</a> or
-<a class="reference external" href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp/
-$ wget &lt;download_link&gt;
-$ sudo dpkg -i &lt;downloaded_file&gt;
-$ sudo apt-get install -f -y
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nv">version</span><span class="o">=</span><span class="m">1</span>.9.1 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /tmp <span class="se">\</span>
+<span class="o">&amp;&amp;</span> wget <span class="k">$(if</span> <span class="o">[</span> <span class="sb">`</span>uname -m<span class="sb">`</span> <span class="o">==</span> <span class="s2">&quot;x86_64&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;https://releases.hashicorp.com/vagrant/</span><span class="nv">$version</span><span class="s2">/vagrant_</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">_x86_64.deb&quot;</span><span class="p">;</span> <span class="k">else</span> <span class="nb">echo</span> <span class="s2">&quot;https://releases.hashicorp.com/vagrant/</span><span class="nv">$version</span><span class="s2">/vagrant_</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">_i686.deb&quot;</span><span class="p">;</span> <span class="k">fi</span><span class="p">;</span><span class="k">)</span> <span class="se">\</span>
+<span class="o">&amp;&amp;</span> sudo dpkg -i vagrant_<span class="si">${</span><span class="nv">version</span><span class="si">}</span>* <span class="o">&amp;&amp;</span> rm vagrant_<span class="si">${</span><span class="nv">version</span><span class="si">}</span>* <span class="o">&amp;&amp;</span> <span class="nb">cd</span> --
 </pre></div>
 </div>
 </li>
