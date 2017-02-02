@@ -121,9 +121,25 @@ expected to work, too.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>// FIXME(hoavt): <a class="reference external" href="https://github.com/teracyhq/dev/issues/196">https://github.com/teracyhq/dev/issues/196</a></li>
-<li>// TODO(hoatle): <a class="reference external" href="https://github.com/teracyhq/dev/issues/175">https://github.com/teracyhq/dev/issues/175</a></li>
+<ul class="last">
+<li><p class="first">If you encounter the following similar error:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">==</span>&gt; default: Box <span class="s1">&#39;bento/ubuntu-16.04&#39;</span> could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: &gt;<span class="o">=</span> <span class="m">0</span>
+The box <span class="s1">&#39;bento/ubuntu-16.04&#39;</span> could not be found or
+could not be accessed in the remote catalog. If this is a private
+box on HashiCorp<span class="s1">&#39;s Atlas, please verify you&#39;</span>re logged in via
+<span class="sb">`</span>vagrant login<span class="sb">`</span>. Also, please double-check the name. The expanded
+URL and error message are shown below:
+
+URL: <span class="o">[</span><span class="s2">&quot;https://atlas.hashicorp.com/bento/ubuntu-16.04&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>then fix it with <code class="docutils literal"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/opt/vagrant/embedded/bin/curl</span></code> (Details at
+<a class="reference external" href="https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970">https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970</a>)</p>
+</li>
+<li><p class="first">// TODO(hoatle): <a class="reference external" href="https://github.com/teracyhq/dev/issues/175">https://github.com/teracyhq/dev/issues/175</a></p>
+</li>
 </ul>
 </div>
 </li>
