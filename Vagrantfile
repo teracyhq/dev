@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
 
   require 'json'
   load File.dirname(__FILE__) + '/lib/utility.rb'
+  load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
@@ -293,14 +294,11 @@ Vagrant.configure("2") do |config|
 
   end
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
-  # see: https://www.vagrantup.com/docs/provisioning/chef_solo.html
   chef_hash = data_hash['chef']
 
   if !chef_hash.nil? and chef_hash['enabled']
+    puts red("You're using deprecated setting for chef, will be removed by v0.5.0-b2, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
+
     config.vm.provision "chef_solo" do |chef|
       chef.log_level = chef_hash['log_level']
       chef.cookbooks_path = chef_hash['cookbooks_path']
@@ -325,42 +323,42 @@ Vagrant.configure("2") do |config|
       end
 
       chef.json = chef_hash['json']
+
+      # empty provisioners to work as backward compatible
+      data_hash['provisioners'] = []
     end
   end
 
-  $display_ip_address = <<IP_ADDRESS
-ipaddress=`hostname -I | cut -d' ' -f2`
-echo "ip address: $ipaddress"
-IP_ADDRESS
+  # provisoners settings
+  provisioners = data_hash['provisioners']
 
-  config.vm.provision "shell", inline: $display_ip_address
-  # Enable provisioning with chef server, specifying the chef server URL,
-  # and the path to the validation key (relative to this Vagrantfile).
-  #
-  # The Opscode Platform uses HTTPS. Substitute your organization for
-  # ORGNAME in the URL and validation key.
-  #
-  # If you have your own Chef Server, use the appropriate URL, which may be
-  # HTTP instead of HTTPS depending on your configuration. Also change the
-  # validation key to validation.pem.
-  #
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = ENV['KNIFE_CHEF_SERVER']
-  #   chef.validation_key_path = "#{ENV['KNIFE_VALIDATION_KEY_FOLDER']}/#{ENV['OPSCODE_ORGNAME']}-validator.pem"
-  #   chef.validation_client_name = "#{ENV['OPSCODE_ORGNAME']}-validator"
-  #   chef.node_name = "#{ENV['OPSCODE_USER']}-vagrant"
-  #   chef.run_list = [
-  #     'motd',
-  #     'minitest-handler'
-  #   ]
-  # end
-  #
-  # If you're using the Opscode platform, your validator client is
-  # ORGNAME-validator, replacing ORGNAME with your organization name.
-  #
-  # If you have your own Chef Server, the default validation client name is
-  # chef-validator, unless you changed the configuration.
-  #
-  #   chef.validation_client_name = "ORGNAME-validator"
+  # append ip shell as the last item to always display the ip address
+  provisioners << {
+    "type" => "shell",
+    "name" => "ip",
+    "path" => "provisioners/shells/ip.sh",
+    "run" => "always"
+  }
 
+  provisioners.each do |provisioner|
+    type = provisioner['type']
+    run = 'once'
+    preserve_order = false
+    if !provisioner['run'].nil?
+      run = provisioner['run'] # one of: once, always, or never
+    end
+    if provisioner['preserve_order'] == true
+      preserve_order = true
+    end
+
+    if provisioner['name'].nil?
+      config.vm.provision "#{type}", run: run, preserve_order: preserve_order do |provision|
+        provision_settings(type, provision, provisioner)
+      end
+    else
+      config.vm.provision provisioner['name'], type: type, run: run, preserve_order: preserve_order do |provision|
+        provision_settings(type, provision, provisioner)
+      end
+    end
+  end
 end
