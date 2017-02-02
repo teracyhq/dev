@@ -70,8 +70,26 @@ Open the terminal window:
         $ brew cask install vagrant
 
      ..  note::
-        - // FIXME(hoavt): https://github.com/teracyhq/dev/issues/196
-        - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
+
+         - If you encounter the following similar error:
+
+           ..  code-block:: bash
+
+              ==> default: Box 'bento/ubuntu-16.04' could not be found. Attempting to find and install...
+                  default: Box Provider: virtualbox
+                  default: Box Version: >= 0
+              The box 'bento/ubuntu-16.04' could not be found or
+              could not be accessed in the remote catalog. If this is a private
+              box on HashiCorp's Atlas, please verify you're logged in via
+              `vagrant login`. Also, please double-check the name. The expanded
+              URL and error message are shown below:
+
+              URL: ["https://atlas.hashicorp.com/bento/ubuntu-16.04"]
+
+           then fix it with ``$ sudo rm -rf /opt/vagrant/embedded/bin/curl`` (Details at
+           https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970)
+
+         - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
