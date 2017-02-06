@@ -307,7 +307,8 @@ Vagrant.configure("2") do |config|
         chef_hash = overrides(provisioner, chef_hash)
       end
     end
-    if chef_hash['enabled']
+
+    if chef_hash['enabled'].nil? or chef_hash['enabled'] == true
       config.vm.provision "chef_solo" do |chef|
         chef.log_level = chef_hash['log_level']
         chef.cookbooks_path = chef_hash['cookbooks_path']
