@@ -298,7 +298,7 @@ Vagrant.configure("2") do |config|
   provisioners = data_hash['provisioners']
   chef_hash = data_hash['chef']
 
-  if !chef_hash.nil? and chef_hash['enabled']
+  if !chef_hash.nil?
     puts red("You're using deprecated setting for chef, will be removed by v0.5.0-b2, please update it now, see more: https://github.com/teracyhq/dev/issues/166")
 
     # chef_hash should override the default provisioner chef_solo
@@ -307,32 +307,32 @@ Vagrant.configure("2") do |config|
         chef_hash = overrides(provisioner, chef_hash)
       end
     end
+    if chef_hash['enabled']
+      config.vm.provision "chef_solo" do |chef|
+        chef.log_level = chef_hash['log_level']
+        chef.cookbooks_path = chef_hash['cookbooks_path']
+        chef.data_bags_path = chef_hash['data_bags_path']
+        chef.environments_path = chef_hash['environments_path']
+        chef.environment = chef_hash['environment']
+        chef.nodes_path = chef_hash['nodes_path']
+        chef.recipe_url = chef_hash['recipe_url']
+        chef.roles_path = chef_hash['roles_path']
+        chef.synced_folder_type = chef_hash['synced_folder_type']
 
-    config.vm.provision "chef_solo" do |chef|
-      chef.log_level = chef_hash['log_level']
-      chef.cookbooks_path = chef_hash['cookbooks_path']
-      chef.data_bags_path = chef_hash['data_bags_path']
-      chef.environments_path = chef_hash['environments_path']
-      chef.environment = chef_hash['environment']
-      chef.nodes_path = chef_hash['nodes_path']
-      chef.recipe_url = chef_hash['recipe_url']
-      chef.roles_path = chef_hash['roles_path']
-      chef.synced_folder_type = chef_hash['synced_folder_type']
-
-      unless chef_hash['roles'].nil?
-        chef_hash['roles'].each do |role|
-          chef.add_role role
+        unless chef_hash['roles'].nil?
+          chef_hash['roles'].each do |role|
+            chef.add_role role
+          end
         end
-      end
 
-      unless chef_hash['recipes'].nil?
-        chef_hash['recipes'].each do |recipe|
-          chef.add_recipe recipe
+        unless chef_hash['recipes'].nil?
+          chef_hash['recipes'].each do |recipe|
+            chef.add_recipe recipe
+          end
         end
+
+        chef.json = chef_hash['json']
       end
-
-      chef.json = chef_hash['json']
-
       # empty provisioners to work as backward compatible
       provisioners = []
     end
