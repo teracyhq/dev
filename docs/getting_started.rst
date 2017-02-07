@@ -222,15 +222,15 @@ Check out the video and follow step by step instructions below:
 
      .. code-block:: bash
 
-        $ choco install virtualbox -y
+        $ choco install virtualbox --version 5.1.14 -y
 
    - Install ``vagrant`` (>=1.8.7, >=1.9.1):
 
      .. code-block:: bash
 
-        $ choco install vagrant -y
+        $ choco install vagrant --version 1.9.1 -y
 
-   After finishing the vagrant installation, you are recommended to restart your machine.
+   After finishing the ``vagrant`` installation, you are recommended to restart your machine.
 
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
