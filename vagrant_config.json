@@ -3,23 +3,38 @@
     "hostname": "teracy.dev",
     "box": "bento/ubuntu-16.04",
     "box_version": "",
-    "networks": [
-      { // see: http://docs.vagrantup.com/v2/networking/index.html
-        "mode":"public_network", // one of "forwarded_port", "private_network" or "public_network"
-        //by default, 192.168.99.100 is used for Boot2Docker
-        // for convention, use 192.168.99.101 for teracy-dev, 192.168.99.102 for teracy-staging, etc.
-        //"ip": "" // for private_network, public_network mode
-        //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
-        //"auto_config":true, // for private_network mode + ip
-        "bridge": [
-          "eth0", //wired LAN, the first priority
-          "en0: Wi-Fi (AirPort)", // macOS 10.12
-          "en1: Wi-Fi (AirPort)", // macOS 10.11
-          "wlan0" // linux
-        ] // for public_network mode
-      }
-    ],
-    "synced_folders":[ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
+    "networks": [{ // see: http://docs.vagrantup.com/v2/networking/index.html
+      "mode": "public_network", // one of "forwarded_port", "private_network" or "public_network"
+      //by default, 192.168.99.100 is used for Boot2Docker
+      // for convention, use 192.168.99.101 for teracy-dev, 192.168.99.102 for teracy-staging, etc.
+      //"ip": "" // for private_network, public_network mode
+      //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
+      //"auto_config":true, // for private_network mode + ip
+      "bridge": [
+        "eth0", //wired LAN, the first priority
+        "en0: Wi-Fi (AirPort)", // macOS 10.12
+        "en1: Wi-Fi (AirPort)", // macOS 10.11
+        "wlan0" // linux
+      ] // for public_network mode
+    }],
+    "synced_folders":[{ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
+      "type": "virtual_box",
+      "host": ".",
+      "guest": "/vagrant",
+      "disabled": true
+    }, {
+      "type": "rsync",
+      "host": "./workspace",
+      "guest": "/home/vagrant/workspace",
+      "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
+    }, { // should persist docker auth token after login success #170
+      "type": "virtual_box",
+      "host": "./home/.docker",
+      "guest": "/home/vagrant/.docker",
+      "mount_options": [
+        "dmode=775",
+        "fmode=755"
+      ]
       // {
       //   "type":"virtual_box", // virtual_box, "nfs", "rsync" or "smb", incase smb mount failed,
       //                         // ssh to vm and install cifs-utils allow vm mount smb directory
@@ -36,29 +51,7 @@
       //TODO: how to keep and reused existing Docker images after destroying the VM?
       // or even attaching the existing data into it, so that developers should share the Docker images
       // remove /vagrant default file sync on the VM guest machine #184
-      {
-        "type": "virtual_box",
-        "host": ".",
-        "guest": "/vagrant",
-        "disabled": true
-      },
-      {
-        "type":"rsync",
-        "host":"./workspace",
-        "guest":"/home/vagrant/workspace",
-        "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
-      },
-      // should persist docker auth token after login success #170
-      {
-        "type":"virtual_box",
-        "host":"./home/.docker",
-        "guest":"/home/vagrant/.docker",
-        "mount_options":[
-          "dmode=775",
-          "fmode=755"
-        ]
-      }
-    ]
+    }]
     // Other configs
     // "boot_timeout": 300,
     // "box_check_update": true,
@@ -75,12 +68,12 @@
     // "post_up_message": "",
     // "usable_port_range": "2200..2250" // 2200..2250
   },
-  "vb":{ //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
+  "vb": { //virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
     //"gui":true,
     //"name":"teracy-dev",
-    "memory":1024,
+    "memory": 1024,
     //"cpus":1,
-    "description":"teracy-dev #{Time.now.getutc.to_i}"
+    "description": "teracy-dev #{Time.now.getutc.to_i}"
   },
   "provisioners": [{
     "type": "chef_solo",
@@ -116,51 +109,44 @@
         "enabled": false,
         "release": "v0.8.2" // more: https://github.com/docker/machine/releases/
       },
-      "teracy-dev":{
-        "directories":[
-          {
-            "path": "/home/vagrant/workspace",
-            "owner": "vagrant",
-            "group": "vagrant",
-            "mode": "0775",
-            "action": "create" // one of create, delete, nothing. Default: create.
-            // See more: https://docs.chef.io/resource_directory.html
-          }
-        ],
-        "alias": [
-          {
-            "name": "ws",
-            "command": "cd ~/workspace",
-            "action": "add" // one of add, remove. Default: add.
-            // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
-          }
-        ],
-        "env": [
-          {
-            "key": "EDITOR",
-            "value": "vim",
-            "action": "add" // one of add, remove. Default: add.
-            // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
-          }
-        ],
+      "teracy-dev": {
+        "directories": [{
+          "path": "/home/vagrant/workspace",
+          "owner": "vagrant",
+          "group": "vagrant",
+          "mode": "0775",
+          "action": "create" // one of create, delete, nothing. Default: create.
+          // See more: https://docs.chef.io/resource_directory.html
+        }],
+        "alias": [{
+          "name": "ws",
+          "command": "cd ~/workspace",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
+        }],
+        "env": [{
+          "key": "EDITOR",
+          "value": "vim",
+          "action": "add" // one of add, remove. Default: add.
+          // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/environment.rb
+        }],
         "inotify": {
           "max_user_watches": 524288 // see: https://github.com/teracyhq/dev/issues/208, set value = 0 to unset this setting
         }
       }
     }
   }],
-  "plugins": {
-    "vagrant-gatling-rsync": {
-      "config_key": "gatling",
-      "required": true,
-      // auto rsync watch when up/ reload done
-      // should try to reduce rsync latency to 0.5s instead of 1s #173
-      "latency": 0.5, //0.5s
-      "time_format": "%H:%M:%S",
-      "rsync_on_startup": true
-    },
-    "vagrant-rsync-back": {
-      "required": true
-    }
-  }
+  "plugins": [{
+    "name": "vagrant-gatling-rsync",
+    "config_key": "gatling",
+    "required": true,
+    // auto rsync watch when up/ reload done
+    // should try to reduce rsync latency to 0.5s instead of 1s #173
+    "latency": 0.5, //0.5s
+    "time_format": "%H:%M:%S",
+    "rsync_on_startup": true
+  }, {
+    "name": "vagrant-rsync-back",
+    "required": true
+  }]
 }
