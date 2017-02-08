@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     rescue Exception => msg
       puts red(msg)
       puts red('from vagrant_config_override.json')
-      ans = prompt yellow("some errors have occured and 'vagrant_config_override.json' file will not be used, do you want to continue? [y/n]: ")
+      ans = prompt yellow("some errors have occured and 'vagrant_config_override.json' file will not be used, do you want to continue? [y/N]: ")
       if ans.downcase != 'y'
         exit!
       end
