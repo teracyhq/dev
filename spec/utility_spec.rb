@@ -239,7 +239,7 @@ describe "utility" do
     end
 
     context "given a simple obj2 to replace existing array" do
-      it "returns the new overriden obj", :current do
+      it "returns the new overriden obj" do
         obj1 = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
         obj2 = {
           "_r_plugins" => [{
@@ -254,5 +254,23 @@ describe "utility" do
       end
     end
 
+    context "given a simple obj2 to replace existing text array" do
+      it "returns the new overriden obj" do
+        obj1 = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "run_list" => [
+              "my",
+              "new",
+              "run-list"
+            ]
+          }]
+        }
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        # puts new_provisioners
+        expect(new_provisioners[0]['run_list']).to eql(obj2['provisioners'][0]['run_list'])
+      end
+    end
   end
 end

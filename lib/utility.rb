@@ -55,6 +55,8 @@ def overrides(obj1, obj2)
             elsif val['_op'] == 'd'
               obj1_value.delete_if {|val4| val4['_id'] == val['_id'] }
             end
+          else
+            obj1_value = value
           end
           val
         end
