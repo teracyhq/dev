@@ -273,7 +273,7 @@ describe "utility" do
       end
     end
 
-    context "given a simple obj2 to replace existing text array with an empty array", :current do
+    context "given a simple obj2 to replace existing text array with an empty array" do
       it "returns the new overriden obj" do
         obj1 = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
         obj2 = {
