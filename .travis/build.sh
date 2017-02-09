@@ -6,7 +6,8 @@ set -e
 
 if [[ $BUILD_TYPE == "dev" ]]; then
     docker_build
-    docker run -v $(pwd):/opt/app $CONTAINER_IMAGE rake build
+    docker run --rm -v $(pwd):/opt/app $CONTAINER_IMAGE rake build
+    docker run --rm -v $(pwd):/opt/app $CONTAINER_IMAGE bundle exec rspec
 elif [[ $BUILD_TYPE == "docs" ]]; then
     cd docs
     docker_build

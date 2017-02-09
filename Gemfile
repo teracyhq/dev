@@ -10,4 +10,5 @@ group:development do
   gem 'foodcritic', '~> 8.1'
   gem 'knife-spork', '~> 1.6'
   gem 'berkshelf', '~> 5.2'
+  gem "rspec"
 end
