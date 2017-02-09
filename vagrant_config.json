@@ -155,14 +155,29 @@
     "name": "vagrant-gatling-rsync",
     "config_key": "gatling",
     "required": true,
-    // auto rsync watch when up/ reload done
-    // should try to reduce rsync latency to 0.5s instead of 1s #173
-    "latency": 0.5, //0.5s
-    "time_format": "%H:%M:%S",
-    "rsync_on_startup": true
+    "enabled": true,
+    "options": {
+      // auto rsync watch when up/ reload done
+      // should try to reduce rsync latency to 0.5s instead of 1s #173
+      "latency": 0.5, //0.5s
+      "time_format": "%H:%M:%S",
+      "rsync_on_startup": true
+    }
   }, {
     "_id": "1",
     "name": "vagrant-rsync-back",
-    "required": true
+    "required": true,
+    "enabled": true
+  }, {
+    "_id" : "2",
+    "name" : "vagrant-hostmanager",
+    "config_key" : "hostmanager",
+    "required" : true,
+    "enabled" : true,
+    "options" : {
+      "enabled" : true,
+      "manage_host" : true,
+      "manage_guest" : true
+    }
   }]
 }

@@ -206,30 +206,56 @@ Vagrant.configure("2") do |config|
 
     # this is current fixed config, not dynamic plugins config
     # FIXME(hoatle): #186 should fix this
-
-    if Vagrant.has_plugin?(plugin_name) and plugin.key?('config_key')
+    if Vagrant.has_plugin?(plugin_name) and plugin['enabled'] == true and plugin.key?('config_key')
       config_key = plugin['config_key']
+      options = plugin['options']
       if 'gatling' == config_key
 
-        unless plugin['latency'].nil?
-          config.gatling.latency = plugin['latency']
+        unless options['latency'].nil?
+          config.gatling.latency = options['latency']
         end
 
-        unless plugin['time_format'].nil? or plugin['time_format'].empty?
-          config.gatling.time_format = plugin['time_format']
+        unless options['time_format'].nil? or options['time_format'].empty?
+          config.gatling.time_format = options['time_format']
         end
 
-        unless plugin['rsync_on_startup'].nil?
-          config.gatling.rsync_on_startup = plugin['rsync_on_startup']
+        unless options['rsync_on_startup'].nil?
+          config.gatling.rsync_on_startup = options['rsync_on_startup']
         end
 
-      elsif 'hostsupdater' == config_key
-        unless plugin['aliases'].nil? or plugin['aliases'].empty?
-          config.hostsupdater.aliases = plugin['aliases']
+      elsif 'hostmanager' == config_key
+        if Vagrant.has_plugin?('vagrant-hostsupdater')
+          puts red('recommended: $ vagrant plugin uninstall vagrant-hostsupdater')
         end
 
-        unless plugin['remove_on_suspend'].nil? or plugin['remove_on_suspend'].empty?
-          config.hostsupdater.remove_on_suspend = plugin['remove_on_suspend']
+        unless options['enabled'].nil?
+          config.hostmanager.enabled = options['enabled']
+        end
+
+        unless options['manage_host'].nil?
+          config.hostmanager.manage_host = options['manage_host']
+        end
+
+        unless options['manage_guest'].nil?
+          config.hostmanager.manage_guest = options['manage_guest']
+        end
+
+        unless options['ignore_private_ip'].nil?
+          config.hostmanager.ignore_private_ip = options['ignore_private_ip']
+        end
+
+        unless options['include_offline'].nil?
+          config.hostmanager.include_offline = options['include_offline']
+        end
+
+        unless options['aliases'].nil?
+          config.hostmanager.aliases = options['aliases']
+        end
+
+        # workaround for :public_network
+        # maybe this will not work with :private_network
+        config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+          read_ip_address(vm)
         end
       end
     end
