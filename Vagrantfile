@@ -1,15 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'json'
+load File.dirname(__FILE__) + '/lib/utility.rb'
+load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
 Vagrant.configure("2") do |config|
-
-
-  # TODO(hoatle): support this json configuration
-  # config.omnibus.chef_version = :latest
-
-  require 'json'
-  load File.dirname(__FILE__) + '/lib/utility.rb'
-  load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
   # Load default setting
   file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
@@ -369,4 +364,13 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+end
+
+begin
+  ext_file_path = File.dirname(__FILE__) + '/Vagrantfile-ext.rb'
+  if File.file?(ext_file_path)
+    load ext_file_path
+  end
+rescue Exception => msg
+  puts red(msg)
 end

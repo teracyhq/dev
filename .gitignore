@@ -161,4 +161,6 @@ home/.docker/*
 
 nodes/*.json
 
+# https://github.com/teracyhq/dev/issues/246
 vagrant_config_override.json
+Vagrantfile-ext.rb
