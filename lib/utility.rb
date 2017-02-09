@@ -1,5 +1,3 @@
-$logger = Log4r::Logger.new('lib/utility')
-
 # Utility functions
 def overrides(obj1, obj2)
   obj2.each do |key, value|
@@ -98,17 +96,17 @@ def read_ip_address(machine)
   command = "LANG=en ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'"
   result  = ""
 
-  $logger.info "Processing #{ machine.name } ... "
+  # $logger.info "Processing #{ machine.name } ... "
 
   begin
     # sudo is needed for ifconfig
     machine.communicate.sudo(command) do |type, data|
       result << data if type == :stdout
     end
-    $logger.info "Processing #{ machine.name } ... success"
+    # $logger.info "Processing #{ machine.name } ... success"
   rescue
     result = "# NOT-UP"
-    $logger.info "Processing #{ machine.name } ... not running"
+    # $logger.info "Processing #{ machine.name } ... not running"
   end
 
   # the second inet is more accurate
