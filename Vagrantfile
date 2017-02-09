@@ -4,28 +4,29 @@ require 'json'
 load File.dirname(__FILE__) + '/lib/utility.rb'
 load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
-Vagrant.configure("2") do |config|
+# Load default setting
+file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
+data_hash = JSON.parse(file)
+override_hash = nil
 
-  # Load default setting
-  file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
-  data_hash = JSON.parse(file)
+# Check and override if exist any match JSON object from vagrant_config_override.json
+if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
+  override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
-  # Check and override if exist any match JSON object from vagrant_config_override.json
-  if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
-    override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
-
-    begin
-      data_hash = overrides(data_hash, JSON.parse(override_file))
-    rescue Exception => msg
-      puts red(msg)
-      puts red('from vagrant_config_override.json')
-      ans = prompt yellow("some errors have occured and 'vagrant_config_override.json' file will not be used, do you want to continue? [y/N]: ")
-      if ans.downcase != 'y'
-        exit!
-      end
+  begin
+    override_hash = JSON.parse(override_file)
+    data_hash = overrides(data_hash, override_hash)
+  rescue Exception => msg
+    puts red(msg)
+    puts red('from vagrant_config_override.json')
+    ans = prompt yellow("some errors have occured and 'vagrant_config_override.json' file will not be used, do you want to continue? [y/N]: ")
+    if ans.downcase != 'y'
+      exit!
     end
-
   end
+end
+
+Vagrant.configure("2") do |config|
 
   vm_hash = data_hash["vm"]
 
@@ -367,9 +368,17 @@ Vagrant.configure("2") do |config|
 end
 
 begin
-  ext_file_path = File.dirname(__FILE__) + '/Vagrantfile-ext.rb'
-  if File.file?(ext_file_path)
-    load ext_file_path
+  extension_paths = data_hash['vagrant']['extension_paths']
+  extension_paths.each do |path|
+    ext_file_path = File.dirname(__FILE__) + '/' + path
+    if File.file?(ext_file_path)
+      load ext_file_path
+    else
+      # warnings if override vagrant:extension_paths
+      if !override_hash.nil? and !override_hash['vagrant'].nil? and !override_hash['vagrant']['extension_paths'].nil?
+        puts red(ext_file_path + ' is missing!')
+      end
+    end
   end
 rescue Exception => msg
   puts red(msg)
