@@ -13,7 +13,7 @@ def overrides(obj1, obj2)
         obj1[key] = overrides(obj1[key], obj2[key])
       elsif value.class.name == 'Array'
         obj1_value = obj1[key].clone
-        if value[0].class.name == 'String'
+        if value[0].class.name != 'Hash'
           obj1_value = value
         else
           value.map! do |val|
