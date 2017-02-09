@@ -21,31 +21,44 @@ culture.
 About Teracy
 ------------
 
-**1. Teracy vision**
+**1. Teracy's vision**
 
-    In the (very near) future, there will be many connected-devices and we will make the integration of those devices as much seamless as possible.
+    Technology revolutionize our lives, our society and human beings. Leveraging technology to empower
+    human beings is now and future of Teracy's development path.
 
-**2. Teracy mission**
+**2. Teracy's mission**
 
-    Create an open ecosystem for Internet of Things (IoT) with seamless integration.
+    Create an open company where everyone is free and secured with health, education, and prosperity
+    to collaborate, innovate and create values for the company and human beings with technology.
 
-**3. Teracy motto**
+**3. Teracy's motto**
 
-    Get things connected!
+    Open and Free
 
-**4. Teracy values**
+**4. Teracy's values**
 
-- Security
+- Open
 
-- Openness
+- Free
 
-- Seamless integration
+- Simple
+
+- Secured
+
+- Be Yourself
+
+- Transparent
 
 - Productivity
 
+- Innovation
+
+- Collaboration
+
 - Balance
 
-**5. Teracy development philosophy**
+
+**5. Teracy's development philosophy**
 
 - Passion
 
@@ -79,7 +92,8 @@ About Teracy
 
 - Agile
 
-**6. Teracy tone of voice**
+
+**6. Teracy's tone of voice**
 
 - Confident
 
@@ -95,12 +109,15 @@ About Teracy
 
 - Inspiring
 
+
 **7. What are we working on?**
 
 We are working on both outsourcing and startup projects. We need a wide range of developers
 (C/C++, Python, Java, PHP, HTML/CSS, JS...), designers (art, web...), QA engineers, sales,
 marketers, and more to build a world-class team. If these above positions do not match your interest
 and qualification, please contact us to see if we are meant to work together with other positions.
+
+- We leverage technology to empower human beings.
 
 - We conduct specific R&D to connect, integrate smart devices with user-centric development
   philosophy.
@@ -120,7 +137,7 @@ and qualification, please contact us to see if we are meant to work together wit
 Join And Work With Us?
 ----------------------
 
-We are starting up and have tons of interesting projects waiting for you. We need you - young
+We are starting up and have tons of interesting projects waiting for you. We need you - smart
 developers having passion to learn and to work with us in a smart way. What you need to
 do is to simply ``impress us``.
 
@@ -179,10 +196,10 @@ Everyone will know:
 Why ``teracy`` name?
 --------------------
 
-tera- + racy = teracy /ˈtɛrəsɪ/. That's how I came up with this name.
+tera- + racy = teracy /ˈtɛrəsɪ/. That's how we came up with this name.
 
 The name could be understood as: "1,000,000,000,000 times of vigorous, lively, energetic,
 entertaining, etc."
 
-However, the actual meaning of this name will depend on all Teraciers to add and contribute
+However, the actual meaning of this name will depend on all Teraciers to add and shape
 meanings to the name.
