@@ -124,7 +124,7 @@
           "action": "create" // one of create, delete, nothing. Default: create.
           // See more: https://docs.chef.io/resource_directory.html
         }],
-        "alias": [{
+        "aliases": [{
           "_id": "0",
           "name": "ws",
           "command": "cd ~/workspace",

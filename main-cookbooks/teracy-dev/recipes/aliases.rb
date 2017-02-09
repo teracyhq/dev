@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: alias
+# Recipe:: aliases
 #
 # Copyright 2013 - current, Teracy, Inc.
 #
@@ -30,7 +30,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-node['teracy-dev']['alias'].each do |ali|
+node['teracy-dev']['aliases'].each do |ali|
   act = :create
   act = ali['action'].to_sym unless ali['action'].nil? or ali['action'].strip().empty?
   magic_shell_alias ali['name'] do
