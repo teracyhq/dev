@@ -137,7 +137,7 @@
           "action": "add" // one of add, remove. Default: add.
           // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
         }],
-        "env": [{
+        "env_vars": [{
           "_id": "0",
           "key": "EDITOR",
           "value": "vim",

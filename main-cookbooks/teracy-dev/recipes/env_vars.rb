@@ -1,7 +1,7 @@
 #
 # Author:: Hoat Le <hoatlevan@gmail.com>
 # Cookbook Name:: teracy-dev
-# Recipe:: env
+# Recipe:: env_vars
 # Description: Configures environment
 #
 # Copyright 2013 - current, Teracy, Inc.
@@ -31,7 +31,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-node['teracy-dev']['env'].each do |env|
+node['teracy-dev']['env_vars'].each do |env|
   act = :add
   act = env['action'].to_sym unless env['action'].nil? or env['action'].strip().empty?
   magic_shell_environment env['key'] do
