@@ -17,15 +17,16 @@ We do not have to install tons of development stuff on the host machine **manual
 Features
 --------
 
-- fully automated managed servers on your local machine (by leveraging ``vagrant` + `chef``
-  provisioner). This saves you a lot of money to work on many virtual private servers (VPS) on
-  your local machine before deploying on the production servers.
-- works universally the same on Windows, Linux and Mac
+- fully automated managed servers on your local machine (by leveraging ``vagrant`` + ``chef``
+  provisioner). This saves you a lot of time and money to work on many virtual private servers (VPS)
+  on your local machine before deploying applications on the production servers.
+- the universally same workflow on Windows, Linux and Mac
 - higher performance and productivity gain than default vagrant settings
-- support different configuration management tools as provisioners
-- default set up with easy customization without any limitation
-- personalized configuration
-- seamless upgrade to next updates of teracy-dev
+- support different configuration management tools (provisioners)
+- default set up with easy personalized configuration settings without any limitation
+- seamless upgrading to the next updated versions of teracy-dev
+- best practices to develop and deploy applications
+- a full-stack developer workstation
 - many more features that you will discover yourselves when using this
 
 Installation and Usage
