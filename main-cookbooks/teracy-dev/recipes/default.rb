@@ -33,7 +33,7 @@
 
 include_recipe 'teracy-dev::directories'
 include_recipe 'teracy-dev::aliases'
-include_recipe 'teracy-dev::env'
+include_recipe 'teracy-dev::env_vars'
 include_recipe 'teracy-dev::docker'
 include_recipe 'teracy-dev::docker_machine'
 include_recipe 'teracy-dev::inotify'
