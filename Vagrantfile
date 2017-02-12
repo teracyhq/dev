@@ -198,6 +198,9 @@ Vagrant.configure("2") do |config|
   plugins_hash.each do |plugin|
     plugin_name = plugin['name']
     if plugin['required'] == true
+
+      exec "vagrant plugin install #{plugin_name};vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin?(plugin_name) || ARGV[0] == 'plugin'
+
       unless Vagrant.has_plugin?(plugin_name)
         puts red("required: '$ vagrant plugin install #{plugin_name}'")
         exit!
