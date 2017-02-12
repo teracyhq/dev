@@ -146,6 +146,24 @@
         }],
         "inotify": {
           "max_user_watches": 524288 // see: https://github.com/teracyhq/dev/issues/208, set value = 0 to unset this setting
+        },
+        "proxy": {
+          "enabled": true,
+          "container": {
+            "name": "nginx-proxy",
+            "repo": "jwilder/nginx-proxy",
+            "tag": "latest",
+            "volumes": ["/var/run/docker.sock:/tmp/docker.sock:ro", "/etc/nginx/certs:/etc/nginx/certs"],
+            "restart_policy": "always",
+            "port": ["80:80", "443:443"]
+          },
+          "certs": {
+            "sources": ["nginx/certs/default.crt", "nginx/certs/default.key"],
+            "destination": "/etc/nginx/certs",
+            "owner": "vagrant",
+            "group": "vagrant",
+            "mode": "0644"
+          }
         }
       }
     }

@@ -12,8 +12,10 @@ source_url 'https://github.com/teracyhq/issues'
     depends dep
 end
 
-recipe 'teracy::alias', "Installs useful alias for teracy's project development."
+recipe 'teracy::aliases', "Installs useful aliases for teracy's project development."
 recipe 'teracy-dev::directories', 'Manage directories.'
-recipe 'teracy-dev::env', 'Configures environment variables.'
+recipe 'teracy-dev::env_vars', 'Configures environment variables.'
 recipe 'teracy-dev::docker', 'Installs Docker, docker-compose'
 recipe 'teracy-dev::docker_machine', 'Installs docker-machine'
+recipe 'teracy-dev::inotify', 'Modify inotify, useful for development watching a lot of files'
+recipe 'teracy-dev::proxy', 'Create a reverse proxy with nginx'
