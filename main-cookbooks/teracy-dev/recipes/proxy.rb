@@ -53,8 +53,9 @@ if proxy_conf['enabled'] == true
     # then copy files
     sources.each do |source|
         source_path = "default/#{source}"
-        file_name = source.split('/')[2]
-        destination_path = "#{destination}/#{file_name}"
+        file_ext_splits = source.split('.')
+        file_ext = file_ext_splits[file_ext_splits.length-1]
+        destination_path = "#{destination}/#{node.name}.#{file_ext}"
 
         cookbook_file destination_path do
             source source_path
