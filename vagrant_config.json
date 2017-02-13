@@ -149,20 +149,22 @@
         },
         "proxy": {
           "enabled": true,
+          "certs": {
+            "enabled": true,
+            "sources": ["nginx/certs/default.crt", "nginx/certs/default.key"],
+            "destination": "/etc/nginx/certs",
+            "owner": "vagrant",
+            "group": "vagrant",
+            "mode": "0644"
+          },
           "container": {
+            "enabled": false,
             "name": "nginx-proxy",
             "repo": "jwilder/nginx-proxy",
             "tag": "latest",
             "volumes": ["/var/run/docker.sock:/tmp/docker.sock:ro", "/etc/nginx/certs:/etc/nginx/certs"],
             "restart_policy": "always",
             "port": ["80:80", "443:443"]
-          },
-          "certs": {
-            "sources": ["nginx/certs/default.crt", "nginx/certs/default.key"],
-            "destination": "/etc/nginx/certs",
-            "owner": "vagrant",
-            "group": "vagrant",
-            "mode": "0644"
           }
         }
       }

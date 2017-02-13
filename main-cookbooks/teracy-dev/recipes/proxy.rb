@@ -35,41 +35,45 @@ proxy_conf = node['teracy-dev']['proxy']
 
 if proxy_conf['enabled'] == true
     certs_conf = node['teracy-dev']['proxy']['certs']
-    owner = certs_conf['owner']
-    group = certs_conf['group']
-    mode = certs_conf['mode']
-    sources = certs_conf['sources']
-    destination = certs_conf['destination']
 
-    # create the destination directory first
-    directory destination do
-        owner owner
-        group group
-        mode '0755'
-        action :create
-        recursive true
-    end
+    if certs_conf['enabled'] == true
 
-    # then copy files
-    sources.each do |source|
-        source_path = "default/#{source}"
-        file_ext_splits = source.split('.')
-        file_ext = file_ext_splits[file_ext_splits.length-1]
-        destination_path = "#{destination}/#{node.name}.#{file_ext}"
+        owner = certs_conf['owner']
+        group = certs_conf['group']
+        mode = certs_conf['mode']
+        sources = certs_conf['sources']
+        destination = certs_conf['destination']
 
-        cookbook_file destination_path do
-            source source_path
+        # create the destination directory first
+        directory destination do
             owner owner
             group group
-            mode mode
+            mode '0755'
             action :create
+            recursive true
+        end
+
+        # then copy files
+        sources.each do |source|
+            source_path = "default/#{source}"
+            file_ext_splits = source.split('.')
+            file_ext = file_ext_splits[file_ext_splits.length-1]
+            destination_path = "#{destination}/#{node.name}.#{file_ext}"
+
+            cookbook_file destination_path do
+                source source_path
+                owner owner
+                group group
+                mode mode
+                action :create
+            end
         end
     end
 
     # start docker nginx-proxy
-    # this require that docker must be available
-    if node['docker']['enabled'] == true
-        container_conf = node['teracy-dev']['proxy']['container']
+    # this require that docker must be available implicitly (error will happen if no docker installed)
+    container_conf = node['teracy-dev']['proxy']['container']
+    if container_conf['enabled'] == true
 
         docker_image container_conf['repo'] do
             tag container_conf['tag']
