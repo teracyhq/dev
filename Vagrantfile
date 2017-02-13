@@ -364,7 +364,7 @@ Vagrant.configure("2") do |config|
 
   # fix hosts file on the guest machine
   # see: https://github.com/devopsgroup-io/vagrant-hostmanager/issues/203
-  fix_hosts_command = "sed -i \"s/\\(127.0.0.1.*\\)#{config.vm.hostname}\\(.*\\)/\\1\\2/\" /etc/hosts"
+  fix_hosts_command = "sed -i \"s/\\(127.0.0.1\\)\\(.*\\)#{config.vm.hostname}\\(.*\\)/\\1\\3/\" /etc/hosts"
 
   provisioners.unshift({
     "type" => "shell",
