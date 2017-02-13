@@ -365,6 +365,16 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # fix hosts file on the guest machine
+  # see: https://github.com/devopsgroup-io/vagrant-hostmanager/issues/203
+  fix_hosts_command = "sed -i \"s/\\(127.0.0.1\\)\\(.*\\)#{config.vm.hostname}\\(.*\\)/\\1\\3/\" /etc/hosts"
+
+  provisioners.unshift({
+    "type" => "shell",
+    "name" => "fix-hosts",
+    "inline" => fix_hosts_command
+  })
+
   # append ip shell as the last item to always display the ip address
   provisioners << {
     "type" => "shell",
