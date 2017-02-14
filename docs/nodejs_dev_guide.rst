@@ -5,12 +5,12 @@ Follow this guide to create https://github.com/teracyhq/hello-world-nodejs from 
 
 Make sure that you have ``teracy-dev`` running, if not, follow the :doc:`getting_started` guide first.
 
-Make sure that you master the :doc:`basic_usage` guide first.
+Make sure that you master the :doc:`basic_usage` guide, too.
 
-Video
------
+Demo
+----
 
-Check out the video and follow step by step instructions below:
+Check out the video demo and follow step by step instructions below:
 
 .. raw:: html
 
@@ -18,7 +18,7 @@ Check out the video and follow step by step instructions below:
 
 ..  note::
 
-    The video is not really up to date with current teracy-dev v0.5.0, you will understand the
+    The video is not really up to date with current teracy-dev v0.5.0, you will see the
     similar worlflow and the result, though.
 
 
@@ -26,11 +26,11 @@ Enable proxy and add aliases domains
 ------------------------------------
 
 To access your nodejs web app with the domain ``hello-d.teracy.dev`` (dev mode) and ``hello.teracy.dev``
-(prod mode), we need to enable the proxy container and domain aliases so that everything should be
+(prod mode), you need to enable the proxy container and domain aliases so that everything should be
 set up automatically under the hood for you.
 
-- Create ``vagrant_config_override.json`` file under ``~/teracy-dev`` directory with the following
-  content:
+- Create ``vagrant_config_override.json`` file under the ``~/teracy-dev`` directory with the
+  following content:
 
   ..  code-block:: json
 
@@ -55,7 +55,7 @@ set up automatically under the hood for you.
         }]
       }
 
-- Reload the VM:
+- Reload the VM to get new configuration updated to the VM:
 
   ..  code-block:: bash
 
@@ -77,18 +77,18 @@ set up automatically under the hood for you.
 
       nginx/1.11.9
 
-  so it works.
+  so reverse proxy works.
 
 
 Init the project
 ----------------
 
-You're going to create `hello-world-nodejs` application, so let's create the app directory and init
-the app with `$ npm init`.
+You're going to create `hello-world-nodejs` application, so you need to create the app directory
+and init the app with `$ npm init`.
 
 
-- Create the ``hello-world-nodejs`` directory under ``~/teracy-dev/workspace`` by opening a host
-  terminal window and execute the following commands:
+- Create the ``hello-world-nodejs`` directory under the ``~/teracy-dev/workspace`` directory by
+  opening a host terminal window and execute the following commands:
 
   ..  code-block:: bash
 
@@ -96,7 +96,7 @@ the app with `$ npm init`.
       $ mkdir hello-world-nodejs
 
 - Use the `node:6.9` Docker image to run ``$ npm init`` by ``ssh`` into the VM and execute the
-  following commands:
+  commands as following:
 
   ..  code-block:: bash
 
@@ -153,7 +153,7 @@ the app with `$ npm init`.
       npm info ok
       root@85fe561:/opt/hello-world-nodejs#
 
-- You need to sync the generated files from the VM machine to the host machine by opening a host
+- You need to sync the generated files from the VM machine back to the host machine by opening a host
   terminal window and type:
 
   ..  code-block:: bash
@@ -175,15 +175,15 @@ Install dependencies
 We're going to use ``express`` for the web app construction and ``nodemon`` for development
 convenience.
 
-- Continue run the following commands within the container session:
+- Continue running the following commands within the container bash session:
 
   ..  code-block:: bash
 
       root@85fe561:/opt/hello-world-nodejs# npm install express --save
       root@85fe561:/opt/hello-world-nodejs# npm install nodemon --save-dev
 
-- And similarly, you need to sync the generated files from the VM machine to the host machine by
-  opening a host terminal window and type:
+- And similarly, you need to sync the generated files from the VM machine back to the host machine
+  by opening a host terminal window and type:
 
   ..  code-block:: bash
 
@@ -199,7 +199,7 @@ https://github.com/teracyhq/hello-world-nodejs/commit/82f357675e426f4af076a4608c
 Add app.js and update package.json's scripts
 --------------------------------------------
 
-- Create ``app.js`` file within ``hello-world-nodejs`` directory with the following content:
+- Create ``app.js`` file within the ``hello-world-nodejs`` directory with the following content:
 
   ..  code-block:: javascript
 
@@ -234,10 +234,11 @@ Add Docker files
 
 We need to add:
   - ``Dockerfile-dev`` and ``docker-compose.yml`` files for dev mode
-  - ``Dockerfile`` and ``docker-compose.prod.yml`` for prod mode
+  - ``Dockerfile`` and ``docker-compose.prod.yml`` files for prod mode
 
 
-- Create ``Dockerfile-dev`` file within ``hello-world-nodejs`` directory with the following content:
+- Create ``Dockerfile-dev`` file within the ``hello-world-nodejs`` directory with the following
+  content:
 
   ..  code-block:: docker
 
@@ -255,7 +256,7 @@ We need to add:
 
       VOLUME $APP/node_modules
 
-- Create ``docker-compose.yml`` file within ``hello-world-nodejs`` directory with the following
+- Create ``docker-compose.yml`` file within the ``hello-world-nodejs`` directory with the following
   content:
 
   ..  code-block:: yaml
@@ -281,7 +282,7 @@ We need to add:
           # related: https://github.com/jwilder/nginx-proxy/issues/305
           network_mode: bridge
 
-- Create ``Dockerfile`` file within ``hello-world-nodejs`` directory with the following content:
+- Create ``Dockerfile`` file within the ``hello-world-nodejs`` directory with the following content:
 
   ..  code-block:: docker
 
@@ -299,8 +300,8 @@ We need to add:
 
       CMD npm run start
 
-- Create ``docker-compose.prod.yml`` file within ``hello-world-nodejs`` directory with the following
-  content:
+- Create ``docker-compose.prod.yml`` file within the ``hello-world-nodejs`` directory with the
+  following content:
 
   ..  code-block:: yaml
 
@@ -330,7 +331,7 @@ https://github.com/teracyhq/hello-world-nodejs/commit/e1d708c0e0192ca1dad8ba4225
 Run on dev mode
 ---------------
 
-Open a new terminal window, `ssh` into the teracy-dev VM to execute the following commands:
+Open a new terminal window, `ssh` into the ``teracy-dev`` VM to execute the following commands:
 
 ..  code-block:: bash
 
@@ -345,7 +346,7 @@ After that, open hello-d.teracy.dev on your browser to see the app on the dev mo
 Run on prod mode
 ----------------
 
-Open a new terminal window,, `ssh` into the teracy-dev VM to execute the following commands:
+Open a new terminal window,, `ssh` into the ``teracy-dev`` VM to execute the following commands:
 
 ..  code-block:: bash
 
@@ -357,5 +358,5 @@ Open a new terminal window,, `ssh` into the teracy-dev VM to execute the followi
 
 After that, open hello.teracy.dev on your browser to see the app on the prod mode.
 
-Congratulations, you've created a basic hello world nodejs app with Docker workflow running
-on ``teracy-dev``.
+Congratulations, you've created a basic hello world Node.js app with Docker workflow running
+on the ``teracy-dev``.
