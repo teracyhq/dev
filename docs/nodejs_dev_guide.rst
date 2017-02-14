@@ -60,7 +60,7 @@ set up automatically under the hood for you.
   ..  code-block:: bash
 
       $ cd ~/teracy-dev
-      $ vagrant reload
+      $ vagrant reload --provision
 
 - Update the ``/etc/hosts`` file automatically with the following commands:
 
