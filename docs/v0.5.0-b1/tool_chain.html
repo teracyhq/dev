@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Toolchain &#8212; teracy-dev 0.5.0-b1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.0-b1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Built-in IDE (codebox)" href="built_in_ide.html" />
+    <link rel="prev" title="Docker" href="docker.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="built_in_ide.html" title="Built-in IDE (codebox)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="docker.html" title="Docker"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="toolchain">
+<h1>Toolchain<a class="headerlink" href="#toolchain" title="Permalink to this headline">¶</a></h1>
+<p>These are the sets of tools that are used by Teraciers to create products. All Teraciers must master
+these tools.</p>
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="vim">
+<h2>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="sublime-text">
+<h2>Sublime Text<a class="headerlink" href="#sublime-text" title="Permalink to this headline">¶</a></h2>
+<p>At Teracy, you are recommended to use the Sublime Text editor for writing codes, markup and
+documents. You can download and install it at <a class="reference external" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a>.</p>
+<div class="section" id="installing-useful-plugins">
+<h3>Installing useful plugins<a class="headerlink" href="#installing-useful-plugins" title="Permalink to this headline">¶</a></h3>
+<p>After having installed Sublime Text, you should install some plugins below:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Package Control</strong>: Go to <a class="reference external" href="https://sublime.wbond.net/">https://sublime.wbond.net/</a> &#8211;&gt; Click <strong>Install Now</strong>.</dt>
+<dd><div class="first last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You need to have Package Control installed and restart the Sublime Text before installing the
+following plugins.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/SublimeCodeIntel/SublimeCodeIntel">SublimeCodeIntel</a>: supports all the
+languages Komodo Editor supports for Code Intelligence.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/sokolovstas/SublimeWebInspector">Web Inspector</a>: works on the top of
+WebInspectorProtocol. All information is displayed in console and text files.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://shashikantjagtap.net/speed-up-your-bdd-with-sublime-text-2/">BDD Tools</a>: highlights syntax
+of .feature files.
+You should install some packages, including: <strong>Behat</strong>, <strong>Cucumber</strong>, and <strong>Gherkin/Cucumber
+Format</strong>.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/vishr/local-history">Local History</a>: maintains the local history of a file.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://github.com/SublimeText/TrailingSpaces">Trailing Spaces</a>: Allows highlighting trailing
+spaces and delete them in a flash.</p>
+</li>
+</ul>
+<p>For example, to install the <strong>SublimeCondeIntel</strong>, do as follows:</p>
+<ol class="arabic simple">
+<li>Open the Sublime Text editor.</li>
+<li>Press <strong>Command + Shift + P</strong> (on  OS X) / <strong>Ctrl + Shift + P</strong> (on Windows/Linux);
+Or click <strong>Tool &#8211;&gt; Command Pallette...</strong> &#8211;&gt; Type <strong>Install</strong> into the Command Pallette &#8211;&gt; select
+<strong>Install Packages</strong> from the list &#8211;&gt; hit Enter and wait while  the  Package Control fetches
+the latest package list &#8211;&gt; Type <strong>SublimeCodeIntel</strong>.</li>
+</ol>
+</div>
+<div class="section" id="overring-default-settings">
+<h3>Overring default settings<a class="headerlink" href="#overring-default-settings" title="Permalink to this headline">¶</a></h3>
+<p>You must always enable white space characters and set ruler to 100 characters by overriding the
+default settings.</p>
+<ol class="arabic simple">
+<li>Open the Sublime Text editor.</li>
+<li>Click <strong>Preferences</strong> &#8211;&gt; <strong>Settings - Users</strong> &#8211;&gt; Copy and paste the content below into the settings:</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;color_scheme&quot;</span><span class="p">:</span> <span class="s2">&quot;Packages/Color Scheme - Default/Solarized (Light).tmTheme&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;draw_white_space&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;font_size&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s2">&quot;rulers&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">100</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;tab_size&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;translate_tabs_to_spaces&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;trailing_spaces_trim_on_save&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="jira-client">
+<h2>Jira Client<a class="headerlink" href="#jira-client" title="Permalink to this headline">¶</a></h2>
+<p>This section shows you how to use Jira Client to manage your Teracy issues.</p>
+<div class="section" id="downloading-and-installation">
+<h3>Downloading and Installation<a class="headerlink" href="#downloading-and-installation" title="Permalink to this headline">¶</a></h3>
+<p>Download Jira Client installer for Mac, Linux, Win at <a class="reference external" href="http://almworks.com/jiraclient/download.html">http://almworks.com/jiraclient/download.html</a>
+and install on your local device.</p>
+</div>
+<div class="section" id="creating-connection">
+<h3>Creating connection<a class="headerlink" href="#creating-connection" title="Permalink to this headline">¶</a></h3>
+<p>1. Open Jira Client and select <strong>Connection</strong> &#8211;&gt; <strong>New Jira Connection</strong> to open the <strong>New Jira Connection</strong>
+form.</p>
+<blockquote>
+<div><img alt="_images/new-jira-connection.png" class="align-center" src="_images/new-jira-connection.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Input the Jira URL of Teracy <code class="docutils literal"><span class="pre">https://issues.teracy.org</span></code> into the <strong>URL</strong> field.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/new-jira-connection-form.png" class="align-center" src="_images/new-jira-connection-form.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Input your username and password used to log in Jira.</li>
+<li>Click <strong>Next</strong> to verify your login and select projects you work with.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/select-projects.png" class="align-center" src="_images/select-projects.png" />
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Click <strong>Next</strong> to name your connection and click <strong>Finish</strong> to complete creating your Jira connection.</li>
+</ol>
+</div>
+<div class="section" id="creating-queries">
+<h3>Creating queries<a class="headerlink" href="#creating-queries" title="Permalink to this headline">¶</a></h3>
+<p>You need to create some queries to manage your issues easily. At Teracy, you are recommended to create queries with
+the hiearachy as the example follows:</p>
+<blockquote>
+<div><img alt="_images/structure-of-queries.png" class="align-center" src="_images/structure-of-queries.png" />
+</div></blockquote>
+<p><strong>1. Creating new query by Sprint</strong></p>
+<p>Right-click your connection name &#8211;&gt; Select <strong>New Query</strong> &#8211;&gt; Select <strong>Sprint</strong> in the
+<strong>Field</strong> column and select your desired sprint in the  <strong>Sprint</strong> column &#8211;&gt; click <strong>OK</strong>.</p>
+<img alt="_images/query-by-sprint.png" class="align-center" src="_images/query-by-sprint.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For each sprint, you should create a query for it.</p>
+</div>
+<p><strong>2. Creating new query by status</strong></p>
+<p>You need to create three queries by status for each sprint: <strong>Open/Reopened</strong>, <strong>In-progress</strong> and <strong>Resolved</strong>.</p>
+<ul>
+<li><p class="first"><strong>Open, Re-opened</strong></p>
+<p>Right-click a query by sprint &#8211;&gt; Select <strong>New Query</strong> &#8211;&gt; Select <strong>Status</strong> in the <strong>Field</strong> column
+&#8211;&gt; Select <strong>Open</strong> and <strong>Re-open</strong> &#8211;&gt; Click <strong>OK</strong>.</p>
+</li>
+<li><p class="first"><strong>In-progess</strong>: Do the same as <strong>Open, Re-opened</strong>.</p>
+</li>
+<li><p class="first"><strong>Resolved</strong>: Do the same as <strong>Open, Re-opened</strong>.</p>
+</li>
+</ul>
+<p><strong>3.  Creating new query by assignee</strong></p>
+<p>For each status, you will create a query by assignee as follows:</p>
+<ul class="simple">
+<li>Right-click a status &#8211;&gt; <strong>New Query</strong> &#8211;&gt; Select <strong>Assignee</strong> in the <strong>Field</strong> column
+&#8211;&gt; Select a assignee in the <strong>Assignee</strong> column &#8211;&gt; Click <strong>OK</strong>.</li>
+</ul>
+<img alt="_images/query-by-assignee.png" class="align-center" src="_images/query-by-assignee.png" />
+</div>
+<div class="section" id="editing-and-removing-queries">
+<h3>Editing and Removing queries<a class="headerlink" href="#editing-and-removing-queries" title="Permalink to this headline">¶</a></h3>
+<p>You can easily edit or delete a query by right-clicking the query and select <strong>Edit Query</strong> or <strong>Remove</strong> in the
+context menu respectively.</p>
+<img alt="_images/edit-remove-query.png" class="align-center" src="_images/edit-remove-query.png" />
+</div>
+<div class="section" id="reloading-query-from-server">
+<h3>Reloading query from server<a class="headerlink" href="#reloading-query-from-server" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, you need to  reload all issues for a query by
+right-clicking the query and selecting <strong>Reload Query from Server</strong> from the context menu.</p>
+</div>
+<div class="section" id="tracking-time">
+<h3>Tracking time<a class="headerlink" href="#tracking-time" title="Permalink to this headline">¶</a></h3>
+<p>At Teracy, you are recommended to use the Jira Client to track off your working time for each issue every day.
+Jira Client measures the exact time you&#8217;ve spent on the issue.</p>
+<ul>
+<li><p class="first"><strong>Starting tracking time</strong></p>
+<p>Select your issue you are working on and click the <strong>Start</strong> button to begin tracking time.</p>
+<img alt="_images/start-button.png" class="align-center" src="_images/start-button.png" />
+</li>
+<li><p class="first"><strong>Stopping tracking time</strong></p>
+<p>When you pause to work or finish your issue, you can stop tracking time by clicking the <strong>Stop</strong> button.</p>
+<img alt="_images/stop-button.png" class="align-center" src="_images/stop-button.png" />
+</li>
+<li><p class="first"><strong>Switching to another issue</strong></p>
+<p>When switching to another issue and you want to record time spent on the issue, open issue and click the
+<strong>Record</strong> button.</p>
+<img alt="_images/starting-tracking-time.png" class="align-center" src="_images/starting-tracking-time.png" />
+</li>
+<li><p class="first"><strong>Adjusting time and duration</strong></p>
+<p>You can also adjust time and duration by clicking the time recorded on the Time Tracker.</p>
+<img alt="_images/edit-time.png" class="align-center" src="_images/edit-time.png" />
+</li>
+</ul>
+<p>Later, you can review the time sheet, make corrections and publish tracked time to JIRA as work logs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can see further usage of Jira Client at <a class="reference external" href="http://almworks.com/jiraclient/features.html">http://almworks.com/jiraclient/features.html</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Toolchain</a><ul>
+<li><a class="reference internal" href="#git">Git</a></li>
+<li><a class="reference internal" href="#vim">Vim</a></li>
+<li><a class="reference internal" href="#sublime-text">Sublime Text</a><ul>
+<li><a class="reference internal" href="#installing-useful-plugins">Installing useful plugins</a></li>
+<li><a class="reference internal" href="#overring-default-settings">Overring default settings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jira-client">Jira Client</a><ul>
+<li><a class="reference internal" href="#downloading-and-installation">Downloading and Installation</a></li>
+<li><a class="reference internal" href="#creating-connection">Creating connection</a></li>
+<li><a class="reference internal" href="#creating-queries">Creating queries</a></li>
+<li><a class="reference internal" href="#editing-and-removing-queries">Editing and Removing queries</a></li>
+<li><a class="reference internal" href="#reloading-query-from-server">Reloading query from server</a></li>
+<li><a class="reference internal" href="#tracking-time">Tracking time</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="docker.html"
+                        title="previous chapter">Docker</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="built_in_ide.html"
+                        title="next chapter">Built-in IDE (codebox)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tool_chain.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="built_in_ide.html" title="Built-in IDE (codebox)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="docker.html" title="Docker"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
