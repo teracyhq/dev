@@ -255,14 +255,6 @@ teracy-dev Git Clone and Vagrant Up
        - We check out the `develop` branch here to use the latest development version of teracy-dev.
          When it is released, we will use the `master` branch - the latest stable version instead.
 
-   You could see the error message saying that `vagrant-gatling-rsync` and `vagrant-rsync-back`
-   plugins are required, so install them:
-
-   ..  code-block:: bash
-
-       $ vagrant plugin install vagrant-gatling-rsync
-       $ vagrant plugin install vagrant-rsync-back
-
 
    You should see the following similar messages after ``$ vagrant up`` finishes running:
    ::
