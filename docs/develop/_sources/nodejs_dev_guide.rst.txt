@@ -18,8 +18,8 @@ Check out the video demo and follow step by step instructions below:
 
 ..  note::
 
-    The video is not really up to date with current teracy-dev v0.5.0, you will see the
-    similar worlflow and the result, though.
+    The video is not really up to date with current teracy-dev v0.5.0, however, you will see the
+    similar workflow and result.
 
 
 Enable proxy and add aliases domains
