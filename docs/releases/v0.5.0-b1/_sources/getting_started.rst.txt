@@ -247,13 +247,13 @@ teracy-dev Git Clone and Vagrant Up
        $ cd ~/
        $ git clone https://github.com/teracyhq/dev.git teracy-dev
        $ cd teracy-dev
-       $ git checkout develop
+       $ git checkout v0.5.0-b1
        $ vagrant up
 
    ..  note::
 
-       - We check out the `develop` branch here to use the latest development version of teracy-dev.
-         When it is released, we will use the `master` branch - the latest stable version instead.
+       - Check out the `develop` branch to use the latest development version of teracy-dev.
+       - Check out the `master` branch to use the latest stable version of teracy-dev.
 
 
    You should see the following similar messages after ``$ vagrant up`` finishes running:
