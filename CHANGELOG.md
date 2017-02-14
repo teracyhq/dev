@@ -1,7 +1,29 @@
 Change Log
 ==========
 
-[0.4.0][] (2015-05-15)
+[v0.5.0-b1][] (2017-02-14)
+-------------------------
+
+The next milestone release includes:
+
+- lots of features and improvements
+- project clean up
+- higher performance on Windows, especially file syncing
+- Docker workflow out of the box, can use any versions of docker, docker-compose
+- support all type of provisioners configurations
+- use public_network by default
+- config override the object within array
+- Vagrantfile-ext support
+- use rsync as the default sync mechanism (with the support from vagrant-gatling-rsync and
+  vagrant-rsync-back plugins)
+- reverse proxy support with /etc/hosts update for auto domain management
+- auto vagrant plugins installation support
+
+
+Details: https://github.com/teracyhq/dev/milestone/1?closed=1
+
+
+[v0.4.0][] (2015-05-15)
 ----------------------
 
 The next milestone release includes:
@@ -100,7 +122,7 @@ Details:
 
 
 
-[0.3.0][] (2014-07-24)
+[v0.3.0][] (2014-07-24)
 ----------------------
 
 The next milestone release includes:
@@ -157,7 +179,7 @@ Details:
     + [DEV-73] - remove system-python recipe
 
 
-[0.2.0][] (2013-11-20)
+[v0.2.0][] (2013-11-20)
 ----------------------
 
 The next milestone release: extend CHEF, better support for python platform development
@@ -191,7 +213,7 @@ The next milestone release: extend CHEF, better support for python platform deve
     + [DEV-35] - upgrade to sphinx-deployment v0.2.0
 
 
-[0.1.0][] (2013-08-17)
+[v0.1.0][] (2013-08-17)
 ----------------------
 
 Release the first milestone
@@ -199,10 +221,12 @@ Release the first milestone
 - Sub-task
     + [DEV-2] - release current deprecated teracy-dev to be 0.1.0
 
-[0.1.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10000
+[v0.1.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10000
 
-[0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10002
+[v0.2.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10002
 
-[0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
+[v0.3.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=10702
 
-[0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
+[v0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
+
+[v0.5.0-b1]: https://github.com/teracyhq/dev/milestone/1?closed=1
