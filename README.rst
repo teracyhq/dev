@@ -32,7 +32,7 @@ Features
 Installation and Usage
 ----------------------
 
-Follow the guide at http://dev.teracy.org/docs/develop/getting_started.html
+Follow the guide at http://dev.teracy.org/docs/0.5.0-b1/getting_started.html
 
 
 License
