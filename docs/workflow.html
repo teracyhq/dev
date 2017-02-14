@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Workflow &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>Workflow &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,17 +14,19 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="teracy-dev Development" href="teracy_dev_development.html" />
     <link rel="prev" title="Style Standards" href="style_standards.html" />
     <script>
@@ -52,7 +54,7 @@
         <li class="right" >
           <a href="style_standards.html" title="Style Standards"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -91,7 +93,7 @@ the <code class="docutils literal"><span class="pre">workspace/personal</span></
 <p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/~hoavt/pixelate.git</span></code> in the
 <code class="docutils literal"><span class="pre">SSH</span></code> field.</p>
 <p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span></code> command as below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
         ============== &quot;Forked&quot; repo URL ===================
 </pre></div>
 </div>
@@ -103,7 +105,7 @@ the <code class="docutils literal"><span class="pre">workspace/personal</span></
 <div><p><strong>Step 1</strong>: Browse the repository <code class="docutils literal"><span class="pre">https://code.teracy.org/projects/PILOT/repos/pixelate/browse</span></code>, and click <code class="docutils literal"><span class="pre">Clone</span></code> to get the <code class="docutils literal"><span class="pre">.git</span></code> clone URL.</p>
 <p><strong>Step 2</strong>: Copy the URL <code class="docutils literal"><span class="pre">ssh://git&#64;code.teracy.org/pilot/pixelate.git</span></code> in the <strong>SSH</strong> field.</p>
 <p><strong>Step 3</strong>: Open the terminal window and type the <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span></code> command as below:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
     ================= Official repo URL ==================
 </pre></div>
 </div>
@@ -133,7 +135,7 @@ which are not applied:
 Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.</p>
 <p>Firstly, you must know what the meaning of “Branching Off” is . In a shorthand, it means you checkout from a branch,
 then create another branch from that checkout.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git checkout branch-1 -b branch-2
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git checkout branch-1 -b branch-2
 </pre></div>
 </div>
 <p>Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
@@ -144,7 +146,7 @@ Now branch-2 is on your local and ready for you to work on it.</p>
 <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code>. On this case, you MUST indicate the branch name with <code class="docutils literal"><span class="pre">deps_&lt;issue-key&gt;</span></code>.</p>
 <p>(In case, you are working on a branch which depends on many different branches, the branch name should have
 <code class="docutils literal"><span class="pre">deps_&lt;issue-key[_issue-key]&gt;</span></code>. For example: <code class="docutils literal"><span class="pre">deps_DEV-1_DEV-2</span></code>.)</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
 $ git fetch phuonglm                                                                      (2)
 $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
   features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
@@ -163,14 +165,14 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1    
 </dl>
 <p>When the <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1-fabric-deployment-virtual-machine</span></code> has some updates, you need to fetch
 and rebase on that branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch phuonglm
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch phuonglm
 $ git rebase phuonglm/features/DEV-1-fabric-deployment-virtual-machine
 $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 </pre></div>
 </div>
 <p>When <code class="docutils literal"><span class="pre">phuonglm’s</span> <span class="pre">features/DEV-1</span></code> is merged into <code class="docutils literal"><span class="pre">upstream/develop</span></code>, you need to rebase on it to get these
 new updates:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git rebase upstream/develop
 $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 </pre></div>
@@ -197,25 +199,25 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 <blockquote>
 <div><p>If you do not know what the meaning of &#8220;Branching-off&#8221; is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p><strong>Working on features</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b features/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin features/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on improvements</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin improvements/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on tasks or sub-tasks</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin tasks/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
 <p><strong>Working on bugs</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
@@ -233,7 +235,7 @@ $ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </div></blockquote>
 <p>If there are some changes from the remote branch (for example, <em>upstream/master</em>) that you need,
 you have to rebase your branch with these updates. It could be done by these commands:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git fetch upstream
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git rebase upstream/master
 </pre></div>
 </div>
@@ -251,7 +253,7 @@ If it has any conflicts, you have to resolve them by:</p>
 </li>
 <li><dl class="first docutils">
 <dt>Adding conflict-resolved-file in git, then continuing to rebase.</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git add path/to/conflict-resolved-file
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git add path/to/conflict-resolved-file
 $ git rebase --continue
 </pre></div>
 </div>
@@ -260,7 +262,7 @@ $ git rebase --continue
 </li>
 </ul>
 <p>After finishing your work, add changed files to commit and push your branch:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git add -a
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git add -a
 $ git commit -m &quot;&lt;issue-key&gt;|git commit message&quot;
 $ git push origin [your-branch-name]
 </pre></div>
@@ -365,15 +367,15 @@ of <code class="docutils literal"><span class="pre">quality</span> <span class="
 <h3>Git Commit Messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
 <p>Git commit messages must convey the actual change/ work of that commit. Usually, the commit message
 should follow the convention pattern:</p>
-<div class="highlight-python"><div class="highlight"><pre>&lt;issue-key&gt; | &lt;issue-title&gt;: &lt;changes description&gt;
-&lt;Multi-line description for detail changes, notices, solutions, etc.&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">issue</span><span class="o">-</span><span class="n">key</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">issue</span><span class="o">-</span><span class="n">title</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">changes</span> <span class="n">description</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">Multi</span><span class="o">-</span><span class="n">line</span> <span class="n">description</span> <span class="k">for</span> <span class="n">detail</span> <span class="n">changes</span><span class="p">,</span> <span class="n">notices</span><span class="p">,</span> <span class="n">solutions</span><span class="p">,</span> <span class="n">etc</span><span class="o">.&gt;</span>
 </pre></div>
 </div>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>DEV-1 | Auto deployment with Fabric
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DEV</span><span class="o">-</span><span class="mi">1</span> <span class="o">|</span> <span class="n">Auto</span> <span class="n">deployment</span> <span class="k">with</span> <span class="n">Fabric</span>
 
-Fabric deployment should be very easy to deploy on both local and remote machine.
-This is the work on local part.
+<span class="n">Fabric</span> <span class="n">deployment</span> <span class="n">should</span> <span class="n">be</span> <span class="n">very</span> <span class="n">easy</span> <span class="n">to</span> <span class="n">deploy</span> <span class="n">on</span> <span class="n">both</span> <span class="n">local</span> <span class="ow">and</span> <span class="n">remote</span> <span class="n">machine</span><span class="o">.</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">work</span> <span class="n">on</span> <span class="n">local</span> <span class="n">part</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -384,7 +386,7 @@ working branches.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Deleting remote branch:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git push origin :branch_name
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git push origin :branch_name
 </pre></div>
 </div>
 </dd>
@@ -392,7 +394,7 @@ working branches.</p>
 </li>
 <li><dl class="first docutils">
 <dt>Deleting local branch:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre>$ git checkout master
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git checkout master
 $ git branch -d branch_name
 </pre></div>
 </div>
@@ -417,11 +419,11 @@ model as mentioned in the topics above.</p>
 the <cite>upstream</cite> repository.</p>
 <p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
 <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ ws
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ws
 $ cd personal
 $ git clone git@github.com/hoatle/django-boilerplate.git
 $ cd django-boilerplate
-$ git remote add upstream git@github.com/teracy-official/django-boilerplate.git
+$ git remote add upstream git@github.com/teracyhq/django-boilerplate.git
 $ git checkout develop
 $ git remote add phuonglm https://github.com/phuonglm/django-boilerplate.git
 $ git fetch phuonglm
@@ -478,21 +480,18 @@ $ git push upstream develop
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/workflow.txt"
+      <li><a href="_sources/workflow.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -511,12 +510,12 @@ $ git push upstream develop
         <li class="right" >
           <a href="style_standards.html" title="Style Standards"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

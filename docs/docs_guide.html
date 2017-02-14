@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Document Guide &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>Document Guide &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,18 +14,20 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
-    <link rel="next" title="Document Writer Training" href="document_writer_training.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Databases Guide" href="databases_guide.html" />
     <link rel="prev" title="Firefox Add-ons Development Guide" href="firefox_addon_dev_guide.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -47,12 +49,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="document_writer_training.html" title="Document Writer Training"
+          <a href="databases_guide.html" title="Databases Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="firefox_addon_dev_guide.html" title="Firefox Add-ons Development Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -76,35 +78,14 @@ below.</p>
 </div>
 <div class="section" id="restructuredtext-writing">
 <h2>reStructuredText Writing<a class="headerlink" href="#restructuredtext-writing" title="Permalink to this headline">¶</a></h2>
-<p>For easier .rst writing, we use <a class="reference external" href="https://mg.pov.lt/restview/">restview</a>.</p>
-<p>As <code class="docutils literal"><span class="pre">restview</span></code> is installed on the teracy-dev VM by default, we can use it immediately without any
-installation steps. Make sure you have the teracy-dev VM running (<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>) by following the
-<a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
-<p>To use <code class="docutils literal"><span class="pre">restview</span></code>, just specify the watching directory and specify the listening port.</p>
-<p>For example:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
-<span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>mkdir restview-test
-<span class="nv">$ </span><span class="nb">cd </span>restview-test
-<span class="nv">$ </span>touch test.rst
-<span class="nv">$ </span>restview . -l *:8000
-</pre></div>
-</div>
-<p>And you should see the output like:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Listening on http://vagrant:8000/
-</pre></div>
-</div>
-<p>Open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>, you should see <cite>test.rst</cite> file, click on it to see the result.</p>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last"><code class="docutils literal"><span class="pre">restview</span></code> supports instant update without refreshing the brower, just update .rst files and
-we can see the result instantly.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Need to have docs guide here</p>
 </div>
 </div>
 <div class="section" id="markdown-writing">
 <h2>Markdown Writing<a class="headerlink" href="#markdown-writing" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p>find good live markdown libs, for example:</p>
 <ul class="last simple">
@@ -145,26 +126,23 @@ we can see the result instantly.</p>
   <p class="topless"><a href="firefox_addon_dev_guide.html"
                         title="previous chapter">Firefox Add-ons Development Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="document_writer_training.html"
-                        title="next chapter">Document Writer Training</a></p>
+  <p class="topless"><a href="databases_guide.html"
+                        title="next chapter">Databases Guide</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/docs_guide.txt"
+      <li><a href="_sources/docs_guide.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -178,17 +156,17 @@ we can see the result instantly.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="document_writer_training.html" title="Document Writer Training"
+          <a href="databases_guide.html" title="Databases Guide"
              >next</a> |</li>
         <li class="right" >
           <a href="firefox_addon_dev_guide.html" title="Firefox Add-ons Development Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

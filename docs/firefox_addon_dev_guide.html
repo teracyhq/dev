@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Firefox Add-ons Development Guide &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>Firefox Add-ons Development Guide &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,17 +14,19 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Document Guide" href="docs_guide.html" />
     <link rel="prev" title="Most Used Git Commands" href="most_used_git_commands.html" />
     <script>
@@ -52,7 +54,7 @@
         <li class="right" >
           <a href="most_used_git_commands.html" title="Most Used Git Commands"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -63,133 +65,12 @@
             
   <div class="section" id="firefox-add-ons-development-guide">
 <h1>Firefox Add-ons Development Guide<a class="headerlink" href="#firefox-add-ons-development-guide" title="Permalink to this headline">¶</a></h1>
-<p>To develop add-on for Firefox, you need to install the SDK and optional <code class="docutils literal"><span class="pre">amo-validator</span></code>. In this
-guide, you&#8217;re going to install both on the teracy-dev VM.</p>
-<p>At the time of writing this guide, you&#8217;re going to install the latest SDK (v1.17) and latest
-<code class="docutils literal"><span class="pre">amo-validator</span></code> (v1.6.0). It&#8217;s expected that this guide should work with the latest SDK and
-<code class="docutils literal"><span class="pre">amo-validator</span></code>.</p>
-<p>At the time of writing this guide, <a class="reference external" href="https://www.npmjs.com/package/jpm">native JavaScript SDK</a> is
-not ready for prime time yet. In the future, we will add the instruction here. However, as it&#8217;s
-a <code class="docutils literal"><span class="pre">nodejs</span></code> module, it&#8217;s very easy to install on the teracy-dev VM as <code class="docutils literal"><span class="pre">nodejs</span></code> is available by
-default.</p>
-<p>First of all, make sure that the teracy-dev VM is running, if not yet, please follow the guide here
-at: <a class="reference internal" href="getting_started.html"><em>Getting Started</em></a></p>
-<div class="section" id="firefox-add-ons-sdk-installation">
-<h2>Firefox Add-ons SDK Installation<a class="headerlink" href="#firefox-add-ons-sdk-installation" title="Permalink to this headline">¶</a></h2>
-<p>This installation guide is based on <a class="reference external" href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation">https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation</a></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Within the teracy-dev VM with default configuration:</p>
-<ul class="last simple">
-<li>Python 2.7 is already available by default</li>
-<li>Firefox is not available, so you cannot use the commands involving Firefox, for example:
-<code class="docutils literal"><span class="pre">$</span> <span class="pre">cfx</span> <span class="pre">run</span></code> or <code class="docutils literal"><span class="pre">$</span> <span class="pre">cfx</span> <span class="pre">test</span></code></li>
-</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This page will be cleaned up by the next version of teracy-dev: v0.6.0</p>
 </div>
-<p>To install the SDK, the following steps need accomplishing:</p>
-<ol class="arabic">
-<li><p class="first"><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> if you are not <code class="docutils literal"><span class="pre">ssh-ing</span></code> the teracy-dev VM yet.</p>
-</li>
-<li><p class="first">Download the SDK</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/workspace/readonly
-<span class="nv">$ </span>wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
-<span class="nv">$ </span>tar -xf jetpack-sdk-latest.tar.gz
-</pre></div>
-</div>
-<p>After extracting, it&#8217;s expected that the SDK is available at <code class="docutils literal"><span class="pre">~/workspace/readonly/addon-sdk-1.17</span></code></p>
-</li>
-<li><p class="first">Make <code class="docutils literal"><span class="pre">activate</span></code> permanent</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo ln -s ~/workspace/readonly/add-on-sdk-1.17/bin/cfx /usr/local/bin/cfx
-</pre></div>
-</div>
-</li>
-</ol>
-<p>And from now on you can use <code class="docutils literal"><span class="pre">$</span> <span class="pre">cfx</span></code> anywhere. To verify, try the command below:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>cfx --version
-</pre></div>
-</div>
-<p>And you should see the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Add-on SDK 1.17 <span class="o">(</span>12f7d53e8b5fc015a15fa4a30fa588e81e9e9b2e<span class="o">)</span>
-</pre></div>
-</div>
-<p>You can start building Firefox Add-ons now by following the instruction at:
-<a class="reference external" href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started">https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_started</a></p>
-</div>
-<div class="section" id="addons-mozilla-org-validator-installation">
-<h2>addons.mozilla.org Validator Installation<a class="headerlink" href="#addons-mozilla-org-validator-installation" title="Permalink to this headline">¶</a></h2>
-<p>To publish the add-ons on AMO, it requires review process and <code class="docutils literal"><span class="pre">amo-validator</span></code> is provided to
-help you to spot some common problems as early as possible.</p>
-<p><code class="docutils literal"><span class="pre">amo-validator</span></code> is available as Python package at: <a class="reference external" href="https://pypi.python.org/pypi/amo-validator">https://pypi.python.org/pypi/amo-validator</a></p>
-<p>To install <code class="docutils literal"><span class="pre">amo-validator</span></code>, you need to add <code class="docutils literal"><span class="pre">amo-validator</span></code> and <code class="docutils literal"><span class="pre">fastchardet</span></code> to python global
-system packages.</p>
-<ol class="arabic">
-<li><p class="first">Open <code class="docutils literal"><span class="pre">vagrant_config_override.js</span></code> and override the default <code class="docutils literal"><span class="pre">python</span></code> configuration as follows:</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;chef_json&quot;</span><span class="p">:{</span>
-    <span class="nt">&quot;python&quot;</span><span class="p">:{</span>
-      <span class="nt">&quot;pip&quot;</span><span class="p">:{</span>
-        <span class="nt">&quot;globals&quot;</span><span class="p">:[</span>
-          <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Sphinx&quot;</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;restview&quot;</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;fastchardet&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;supported_python_versions&quot;</span><span class="p">:[</span><span class="s2">&quot;2.7.6&quot;</span><span class="p">]</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;amo-validator&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;supported_python_versions&quot;</span><span class="p">:[</span><span class="s2">&quot;2.7.6&quot;</span><span class="p">]</span>
-          <span class="p">}</span>
-        <span class="p">]</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">At the time of this writing, <cite>fastchardet</cite> is required by <cite>amo-validator</cite> but not included
-in <cite>setup.py</cite>, that&#8217;s the reason why you need to add it in the configuration above.</p>
-</div>
-</li>
-<li><p class="first">Provision the teracy-dev VM</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant provision
-</pre></div>
-</div>
-<p>After that, <code class="docutils literal"><span class="pre">addon-validator</span></code> should be available. Try the following commands to verify:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
-<span class="nv">$ </span>addon-validator
-</pre></div>
-</div>
-<p>And you should see the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre>usage: addon-validator <span class="o">[</span>-h<span class="o">]</span>
-                       <span class="o">[</span>-t <span class="o">{</span>theme,multi,dictionary,extension,webapp,search,any,languagepack<span class="o">}]</span>
-                       <span class="o">[</span>-o <span class="o">{</span>text,json<span class="o">}]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>--boring<span class="o">]</span> <span class="o">[</span>--determined<span class="o">]</span>
-                       <span class="o">[</span>--selfhosted<span class="o">]</span>
-                       <span class="o">[</span>--approved_applications APPROVED_APPLICATIONS<span class="o">]</span>
-                       <span class="o">[</span>--target-maxversion TARGET_MAXVERSION<span class="o">]</span>
-                       <span class="o">[</span>--target-minversion TARGET_MINVERSION<span class="o">]</span>
-                       <span class="o">[</span>--for-appversions FOR_APPVERSIONS<span class="o">]</span> <span class="o">[</span>--timeout TIMEOUT<span class="o">]</span>
-                       package
-addon-validator: error: too few arguments
-</pre></div>
-</div>
-</li>
-</ol>
-<p>From now on, you can use <code class="docutils literal"><span class="pre">addon-validator</span></code> anywhere to check for the Firefox add-ons before
-submitting to AMO. This will save us a lot of time when preparing for AMO publishing.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="https://developer.mozilla.org/en-US/Add-ons">https://developer.mozilla.org/en-US/Add-ons</a></li>
-<li><a class="reference external" href="https://blog.mozilla.org/addons/2014/06/05/how-to-develop-firefox-extension/">https://blog.mozilla.org/addons/2014/06/05/how-to-develop-firefox-extension/</a></li>
-</ul>
-</div>
+<p>We&#8217;re leveraging Docker workflow since v0.5.0 and this feature is not available.</p>
+<p>This feature is available at <a class="reference external" href="http://dev.teracy.org/docs/0.4.2/firefox_addon_dev_guide.html">http://dev.teracy.org/docs/0.4.2/firefox_addon_dev_guide.html</a></p>
 </div>
 
 
@@ -198,16 +79,6 @@ submitting to AMO. This will save us a lot of time when preparing for AMO publis
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Firefox Add-ons Development Guide</a><ul>
-<li><a class="reference internal" href="#firefox-add-ons-sdk-installation">Firefox Add-ons SDK Installation</a></li>
-<li><a class="reference internal" href="#addons-mozilla-org-validator-installation">addons.mozilla.org Validator Installation</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="most_used_git_commands.html"
                         title="previous chapter">Most Used Git Commands</a></p>
@@ -217,21 +88,18 @@ submitting to AMO. This will save us a lot of time when preparing for AMO publis
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/firefox_addon_dev_guide.txt"
+      <li><a href="_sources/firefox_addon_dev_guide.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -250,12 +118,12 @@ submitting to AMO. This will save us a lot of time when preparing for AMO publis
         <li class="right" >
           <a href="most_used_git_commands.html" title="Most Used Git Commands"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

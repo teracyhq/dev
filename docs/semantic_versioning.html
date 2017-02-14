@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Semantic Versioning &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>Semantic Versioning &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,17 +14,19 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release Process" href="release_process.html" />
     <link rel="prev" title="Android Training" href="android_training.html" />
     <script>
@@ -52,7 +54,7 @@
         <li class="right" >
           <a href="android_training.html" title="Android Training"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -74,13 +76,11 @@ At Teracy, the <code class="docutils literal"><span class="pre">Base</span></cod
 latest version: <a class="reference external" href="http://semver.org/spec/v2.0.0.html">http://semver.org/spec/v2.0.0.html</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<ul class="last">
-<li><p class="first">Never increase software version just for <code class="docutils literal"><span class="pre">marketing</span></code>, please be <strong>semantic</strong>!</p>
-</li>
+<ul class="last simple">
+<li>Never increase software version just for <code class="docutils literal"><span class="pre">marketing</span></code>, please be <strong>semantic</strong>!</li>
 <li><dl class="first docutils">
 <dt>Take into account the way <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a> works to see</dt>
-<dd><p class="first last">how semantic version should be applied to production services like.</p>
-</dd>
+<dd>how semantic version should be applied to production services like.</dd>
 </dl>
 </li>
 </ul>
@@ -98,7 +98,7 @@ latest version: <a class="reference external" href="http://semver.org/spec/v2.0.
 <li>Schema:</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;+&#39;metadata)?
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;+&#39;metadata)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
@@ -140,16 +140,13 @@ released unless there is a last minute bug found after test campaigns.</li>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p><strong>1. Requirements</strong></p>
-<ul>
-<li><p class="first">Must extends <code class="docutils literal"><span class="pre">Base</span></code></p>
-</li>
-<li><p class="first">Must be compatible with
-<a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version">https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version</a></p>
-</li>
+<ul class="simple">
+<li>Must extends <code class="docutils literal"><span class="pre">Base</span></code></li>
+<li>Must be compatible with
+<a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version">https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version</a></li>
 <li><dl class="first docutils">
 <dt>Future take note: <a class="reference external" href="http://www.python.org/dev/peps/pep-0440/">http://www.python.org/dev/peps/pep-0440/</a> and</dt>
-<dd><p class="first last"><a class="reference external" href="http://www.python.org/dev/peps/pep-0426/">http://www.python.org/dev/peps/pep-0426/</a></p>
-</dd>
+<dd><a class="reference external" href="http://www.python.org/dev/peps/pep-0426/">http://www.python.org/dev/peps/pep-0426/</a></dd>
 </dl>
 </li>
 </ul>
@@ -159,7 +156,7 @@ released unless there is a last minute bug found after test campaigns.</li>
 </ol>
 <blockquote>
 <div><p>Format:</p>
-<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;-&#39;postrelease)?
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;-&#39;postrelease)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
@@ -190,7 +187,7 @@ alpha ::= [a..zA..Z]
 </ol>
 <blockquote>
 <div><p>Format:</p>
-<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelese)?&#39;-dev-&#39;YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelese)?&#39;-dev-&#39;YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
 buildnumber ::= digit+
 </pre></div>
 </div>
@@ -261,7 +258,7 @@ install the latest staging version of a specified package name.</dd>
 <li>Schema</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;path(&#39;-&#39;prerelease)(&#39;-&#39;postrelease)?
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;path(&#39;-&#39;prerelease)(&#39;-&#39;postrelease)?
 major ::= digit+
 minor ::= digit+
 patch ::= digit+
@@ -290,7 +287,7 @@ alpha ::= [a..zA..Z]
 <li>Continuous build metadata</li>
 </ol>
 <p>Format:</p>
-<div class="highlight-python"><div class="highlight"><pre>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?-YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?-YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
 buildnumber ::= digit+
 </pre></div>
 </div>
@@ -338,21 +335,18 @@ buildnumber ::= digit+
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/semantic_versioning.txt"
+      <li><a href="_sources/semantic_versioning.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -371,12 +365,12 @@ buildnumber ::= digit+
         <li class="right" >
           <a href="android_training.html" title="Android Training"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

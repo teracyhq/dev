@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>PHP Development Guide &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>PHP Development Guide &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,19 +14,21 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
-    <link rel="next" title="PHP Training" href="php_training.html" />
-    <link rel="prev" title="Ruby Training" href="ruby_training.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HTML/CSS Training" href="html_css_training.html" />
+    <link rel="prev" title="Ruby Development Guide" href="ruby_dev_guide.html" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -47,12 +49,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="php_training.html" title="PHP Training"
+          <a href="html_css_training.html" title="HTML/CSS Training"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="ruby_training.html" title="Ruby Training"
+          <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -63,356 +65,12 @@
             
   <div class="section" id="php-development-guide">
 <h1>PHP Development Guide<a class="headerlink" href="#php-development-guide" title="Permalink to this headline">¶</a></h1>
-<p>By default, <code class="docutils literal"><span class="pre">LAMP</span></code> (Linux - Apache - MySQL - PHP) stack and <code class="docutils literal"><span class="pre">LEMP</span></code> (Linux - Ngix - MySQL - PHP)
-stack are both installed on the teracy-dev VM with the following configuration:</p>
-<div class="highlight-json"><div class="highlight"><pre>{
-  &quot;nginx&quot;: {
-    &quot;enabled&quot;:true,
-    &quot;default_root&quot;: &quot;/home/vagrant/workspace/personal&quot;,
-    &quot;listen_port&quot;:9998,
-    &quot;version&quot;: &quot;1.7.8&quot;
-  },
-  &quot;apache&quot;:{
-    &quot;enabled&quot;:true,
-    &quot;default_root&quot;: &quot;/home/vagrant/workspace/personal&quot;,
-    &quot;listen_port&quot;:9999
-  },
-  &quot;php&quot;:{
-    &quot;enabled&quot;:true,
-    &quot;version&quot;:&quot;5.4.29&quot;, //empty string: default ubuntu distribution; http://php.net/downloads.php
-    &quot;checksum&quot;:&quot;9caf973b19ba93bb2b78f78c61643d5d&quot;
-  },
-  &quot;mysql&quot;:{
-    &quot;enabled&quot;:true,
-    &quot;version&quot;:&quot;5.3.6&quot;,
-    &quot;password&quot;:&quot;teracy&quot;
-  }
-}
-</pre></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This page will be cleaned up by the next version of teracy-dev: v0.6.0</p>
 </div>
-<p>Make sure you have the teracy-dev VM running (<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>) by following the
-<a class="reference internal" href="getting_started.html"><em>Getting Started</em></a> guide.</p>
-<div class="section" id="verify-lamp-and-lemp">
-<h2>Verify <code class="docutils literal"><span class="pre">LAMP</span></code> and <code class="docutils literal"><span class="pre">LEMP</span></code><a class="headerlink" href="#verify-lamp-and-lemp" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> and check:</p>
-<ol class="arabic">
-<li><p class="first">Linux</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>uname -a
-Linux vagrant 3.5.0-45-generic <span class="c">#68~precise1-Ubuntu SMP Wed Dec 4 16:18:46 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Apache</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>apache2 -v
-Server version: Apache/2.2.22 <span class="o">(</span>Ubuntu<span class="o">)</span>
-Server built:   Jul <span class="m">22</span> <span class="m">2014</span> 14:35:32
-</pre></div>
-</div>
-</li>
-<li><p class="first">Nginx</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>/opt/nginx/sbin/nginx -v
-nginx version: nginx/1.7.8
-</pre></div>
-</div>
-</li>
-<li><p class="first">MySQL</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy<span class="p">;</span>
-</pre></div>
-</div>
-<p>And you should see the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
-Your MySQL connection id is 37
-Server version: 5.5.38-0ubuntu0.12.04.1 <span class="o">(</span>Ubuntu<span class="o">)</span>
-
-Copyright <span class="o">(</span>c<span class="o">)</span> 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
-
-mysql&gt;
-</pre></div>
-</div>
-<p>Type <code class="docutils literal"><span class="pre">exit</span></code> to exit <code class="docutils literal"><span class="pre">mysql</span></code> shell:</p>
-<div class="highlight-bash"><div class="highlight"><pre>mysql&gt; <span class="nb">exit</span><span class="p">;</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">PHP</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>php --version
-PHP 5.4.29 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Mar <span class="m">10</span> <span class="m">2015</span> 12:20:28<span class="o">)</span>
-Copyright <span class="o">(</span>c<span class="o">)</span> 1997-2014 The PHP Group
-Zend Engine v2.4.0, Copyright <span class="o">(</span>c<span class="o">)</span> 1998-2014 Zend Technologies
-</pre></div>
-</div>
-</li>
-</ol>
-<p>Open <a class="reference external" href="http://localhost:9998">http://localhost:9998</a> to see <code class="docutils literal"><span class="pre">Nginx</span></code> serving the <em>workspace/personal</em> directory by default.</p>
-<p>Open <a class="reference external" href="http://localhost:9999">http://localhost:9999</a> to see <code class="docutils literal"><span class="pre">Apache</span></code> serving the <em>workspace/personal</em> directory by default.</p>
-</div>
-<div class="section" id="info-php-page">
-<h2><code class="docutils literal"><span class="pre">info.php</span></code> Page<a class="headerlink" href="#info-php-page" title="Permalink to this headline">¶</a></h2>
-<p>Create <em>info.php</em> on the <em>workspace/personal/info</em> directory:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>mkdir info
-<span class="nv">$ </span><span class="nb">cd </span>info
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;&lt;?php&quot;</span> &gt; info.php
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;  phpinfo();&quot;</span> &gt;&gt; info.php
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;?&gt;&quot;</span> &gt;&gt; info.php
-</pre></div>
-</div>
-<p>After the command lines above, you should have the <em>workspace/personal/info/info.php</em> file with the
-following content:</p>
-<div class="highlight-php"><div class="highlight"><pre><span class="cp">&lt;?php</span>
-  <span class="nb">phpinfo</span><span class="p">();</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
-</div>
-<p>Open <a class="reference external" href="http://localhost:9998/info/info.php">http://localhost:9998/info/info.php</a> you should see php info of the system like the screenshot
-below:</p>
-<img alt="_images/LEMP_info.png" class="align-center" src="_images/LEMP_info.png" />
-<p>Open <a class="reference external" href="http://localhost:9999/info/info.php">http://localhost:9999/info/info.php</a> you should see php info of the system like the screenshot
-below:</p>
-<img alt="_images/LAMP_info.png" class="align-center" src="_images/LAMP_info.png" />
-</div>
-<div class="section" id="composer-installation">
-<h2><code class="docutils literal"><span class="pre">Composer</span></code> Installation<a class="headerlink" href="#composer-installation" title="Permalink to this headline">¶</a></h2>
-<p>Basing on <a class="reference external" href="https://getcomposer.org/doc/00-intro.md#globally">https://getcomposer.org/doc/00-intro.md#globally</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>curl -sS https://getcomposer.org/installer <span class="p">|</span> php
-<span class="nv">$ </span>sudo mv composer.phar /usr/local/bin/composer
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We have to install <code class="docutils literal"><span class="pre">Composer</span></code> manually util <a class="reference external" href="https://issues.teracy.org/browse/DEV-207">https://issues.teracy.org/browse/DEV-207</a> is
-done.</p>
-</div>
-</div>
-<div class="section" id="cakephp-framework">
-<h2><code class="docutils literal"><span class="pre">CakePHP</span></code> Framework<a class="headerlink" href="#cakephp-framework" title="Permalink to this headline">¶</a></h2>
-<p>We&#8217;ll follow <a class="reference external" href="http://book.cakephp.org/3.0/en/quickstart.html">http://book.cakephp.org/3.0/en/quickstart.html</a> to get started with <code class="docutils literal"><span class="pre">CakePHP</span></code>
-framework.</p>
-<ol class="arabic">
-<li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer create-project --prefer-dist cakephp/app bookmarker
-</pre></div>
-</div>
-</li>
-</ol>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last"><code class="docutils literal"><span class="pre">CakePHP</span></code> did not work out of the box, we need to fix the errors raised from <code class="docutils literal"><span class="pre">composer</span></code>
-above by <a class="reference external" href="https://issues.teracy.org/browse/DEV-208">https://issues.teracy.org/browse/DEV-208</a></p>
-</div>
-</div>
-<div class="section" id="codeigniter-framework">
-<h2><code class="docutils literal"><span class="pre">CodeIgniter</span></code> Framework<a class="headerlink" href="#codeigniter-framework" title="Permalink to this headline">¶</a></h2>
-<p>We&#8217;ll follow <a class="reference external" href="http://www.codeigniter.com/userguide3/overview/index.html">http://www.codeigniter.com/userguide3/overview/index.html</a> to get started with
-<code class="docutils literal"><span class="pre">CodeIgniter</span></code> framework.</p>
-<ol class="arabic">
-<li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://github.com/bcit-ci/CodeIgniter/archive/2.2.1.zip
-<span class="nv">$ </span>unzip 2.2.1.zip
-</pre></div>
-</div>
-<p>And you should see <em>CodeIgniter-2.2.1</em> directory after <code class="docutils literal"><span class="pre">unzip</span></code>.</p>
-</li>
-<li><p class="first">Verify</p>
-<p>Open <a class="reference external" href="http://localhost:9999/CodeIgniter-2.2.1/index.php">http://localhost:9999/CodeIgniter-2.2.1/index.php</a> and you should see
-&#8220;Welcome to CodeIgniter!&#8221; page.</p>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">CodeIgniter</span></code> framework now: <a class="reference external" href="http://www.codeigniter.com/userguide3/tutorial/index.html">http://www.codeigniter.com/userguide3/tutorial/index.html</a></p>
-</div>
-<div class="section" id="laravel-framework">
-<h2><code class="docutils literal"><span class="pre">Laravel</span></code> Framework<a class="headerlink" href="#laravel-framework" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="http://laravel.com/docs/5.0/installation">http://laravel.com/docs/5.0/installation</a> to get started with <code class="docutils literal"><span class="pre">Laravel</span></code> framework.</p>
-<ol class="arabic">
-<li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer global require <span class="s2">&quot;laravel/installer=~1.1&quot;</span>
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;export PATH=~/.composer/vendor/bin/:\$PATH&quot;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
-<span class="nv">$ </span><span class="nb">source</span> ~/.bash_profile
-</pre></div>
-</div>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">laravel</span> <span class="pre">new</span> <span class="pre">blog</span></code></p>
-<p>From installation step above, <code class="docutils literal"><span class="pre">laravel</span></code> should be avaiable executable.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>laravel new blog
-</pre></div>
-</div>
-</li>
-<li><p class="first">Verify</p>
-<p>Open <a class="reference external" href="http://localhost:9999/blog/public/">http://localhost:9999/blog/public/</a> and you should see &#8220;Laravel 5&#8221; page.</p>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Laravel</span></code> framework now: <a class="reference external" href="http://laravel.com/docs/5.0/routing">http://laravel.com/docs/5.0/routing</a></p>
-</div>
-<div class="section" id="symfony-framework">
-<h2><code class="docutils literal"><span class="pre">Symfony</span></code> Framework<a class="headerlink" href="#symfony-framework" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="http://symfony.com/doc/current/quick_tour/the_big_picture.html">http://symfony.com/doc/current/quick_tour/the_big_picture.html</a> to get started with
-<code class="docutils literal"><span class="pre">Symfony</span></code> framework.</p>
-<ol class="arabic">
-<li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>curl -LsS http://symfony.com/installer &gt; symfony.phar
-<span class="nv">$ </span>sudo mv symfony.phar /usr/local/bin/symfony
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create a <code class="docutils literal"><span class="pre">Symfony</span></code> project</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>symfony new myproject
-<span class="nv">$ </span><span class="nb">cd </span>myproject
-<span class="nv">$ </span>php app/console server:run 0.0.0.0:8000
-</pre></div>
-</div>
-<p>And you should see the output like:</p>
-<div class="highlight-bash"><div class="highlight"><pre>Server running on http://0.0.0.0:8000
-
-Quit the server with CONTROL-C.
-</pre></div>
-</div>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Symfony</span></code> framework now:
-<a class="reference external" href="http://symfony.com/doc/current/quick_tour/the_big_picture.html">http://symfony.com/doc/current/quick_tour/the_big_picture.html</a></p>
-</div>
-<div class="section" id="yii-framework">
-<h2><code class="docutils literal"><span class="pre">Yii</span></code> Framework<a class="headerlink" href="#yii-framework" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="http://www.yiiframework.com/doc-2.0/guide-start-installation.html">http://www.yiiframework.com/doc-2.0/guide-start-installation.html</a> to get started
-with <code class="docutils literal"><span class="pre">Yii</span></code> framework.</p>
-<ol class="arabic">
-<li><p class="first">Install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>composer global require <span class="s2">&quot;fxp/composer-asset-plugin:1.0.0&quot;</span>
-<span class="nv">$ </span>composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>During the installation Composer may ask for your Github login credentials. This is normal
-because <code class="docutils literal"><span class="pre">Composer</span></code> needs to get enough API rate-limit to retrieve the dependent package
-information from Github.</p>
-<p class="last">From <a class="reference external" href="http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer">http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer</a></p>
-</div>
-</li>
-<li><p class="first">Verify</p>
-<p>Verify the installation by opening <a class="reference external" href="http://localhost:9999/basic/web/index.php">http://localhost:9999/basic/web/index.php</a></p>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last"><a class="reference external" href="http://localhost:9999/basic/web/index.php">http://localhost:9999/basic/web/index.php</a> (Nginx) did not work out of the box yet.</p>
-</div>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Yii</span></code> framework now: <a class="reference external" href="http://www.yiiframework.com/doc-2.0/guide-start-hello.html">http://www.yiiframework.com/doc-2.0/guide-start-hello.html</a></p>
-</div>
-<div class="section" id="drupal-cms">
-<h2><code class="docutils literal"><span class="pre">Drupal</span></code> CMS<a class="headerlink" href="#drupal-cms" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="https://www.drupal.org/documentation/install">https://www.drupal.org/documentation/install</a> to get started with <code class="docutils literal"><span class="pre">Drupal</span></code>.</p>
-<ol class="arabic">
-<li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget http://ftp.drupal.org/files/projects/drupal-7.35.tar.gz
-<span class="nv">$ </span>tar -xzvf drupal-7.35.tar.gz
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create the database</p>
-<p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE drupal CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
-</pre></div>
-</div>
-<p>You&#8217;ll use <em>drupal</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">All the default username, password of the teracy-dev is for development only. Don&#8217;t use all
-the default like this on production servers.</p>
-</div>
-</li>
-<li><p class="first">Setup</p>
-<p>Open <a class="reference external" href="http://localhost:9999/drupal-7.35">http://localhost:9999/drupal-7.35</a> and follow installation wizard.</p>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Drupal</span></code> CMS now: <a class="reference external" href="https://www.drupal.org/documentation">https://www.drupal.org/documentation</a></p>
-</div>
-<div class="section" id="joomla-cms">
-<h2><code class="docutils literal"><span class="pre">Joomla!</span></code> CMS<a class="headerlink" href="#joomla-cms" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="https://docs.joomla.org/J3.x:Installing_Joomla">https://docs.joomla.org/J3.x:Installing_Joomla</a> to get started with <code class="docutils literal"><span class="pre">Joomla!</span></code>.</p>
-<ol class="arabic">
-<li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://github.com/joomla/joomla-cms/releases/download/3.4.1/Joomla_3.4.1-Stable-Full_Package.zip
-<span class="nv">$ </span>unzip Joomla_3.4.1-Stable-Full_Package.zip -d joomla
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create the database</p>
-<p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE joomla CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
-</pre></div>
-</div>
-<p>You&#8217;ll use <em>joomla</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
-</li>
-<li><p class="first">Setup</p>
-<p>Open <a class="reference external" href="http://localhost:9999/joomla">http://localhost:9999/joomla</a> and follow installation wizard.</p>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Joomla!</span></code> CMS now: <a class="reference external" href="https://docs.joomla.org/J3.x:Getting_Started_with_Joomla">https://docs.joomla.org/J3.x:Getting_Started_with_Joomla</a>!</p>
-</div>
-<div class="section" id="wordpress-cms">
-<h2><code class="docutils literal"><span class="pre">WordPress</span></code> CMS<a class="headerlink" href="#wordpress-cms" title="Permalink to this headline">¶</a></h2>
-<p>You&#8217;ll follow <a class="reference external" href="http://codex.wordpress.org/Installing_WordPress">http://codex.wordpress.org/Installing_WordPress</a> to get started with <code class="docutils literal"><span class="pre">Wordpress</span></code>.</p>
-<ol class="arabic">
-<li><p class="first">Download and extract</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>wget https://wordpress.org/latest.tar.gz
-<span class="nv">$ </span>tar -xzvf latest.tar.gz
-</pre></div>
-</div>
-</li>
-<li><p class="first">Create the database</p>
-<p>You&#8217;ll use <code class="docutils literal"><span class="pre">MySQL</span></code> for database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mysql -u root -pteracy -e <span class="s2">&quot;CREATE DATABASE wordpress CHARACTER SET utf8 COLLATE utf8_general_ci;&quot;</span>
-</pre></div>
-</div>
-<p>You&#8217;ll use <em>wordpress</em> as database with <em>root</em> as username and <em>teracy</em> as password by default.</p>
-</li>
-<li><p class="first">Setup</p>
-<p>Open <a class="reference external" href="http://localhost:9999/wordpress">http://localhost:9999/wordpress</a> and follow installation wizard.</p>
-</li>
-</ol>
-<p>You can start digging <code class="docutils literal"><span class="pre">Wordpress</span></code> CMS now: <a class="reference external" href="http://codex.wordpress.org/Getting_Started_with_WordPress">http://codex.wordpress.org/Getting_Started_with_WordPress</a></p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.phptherightway.com/">http://www.phptherightway.com/</a></li>
-<li><a class="reference external" href="https://getcomposer.org/">https://getcomposer.org/</a></li>
-<li><a class="reference external" href="http://cakephp.org/">http://cakephp.org/</a></li>
-<li><a class="reference external" href="http://www.codeigniter.com/">http://www.codeigniter.com/</a></li>
-<li><a class="reference external" href="http://laravel.com/">http://laravel.com/</a></li>
-<li><a class="reference external" href="http://symfony.com/">http://symfony.com/</a></li>
-<li><a class="reference external" href="http://www.yiiframework.com/">http://www.yiiframework.com/</a></li>
-<li><a class="reference external" href="https://www.drupal.org/">https://www.drupal.org/</a></li>
-<li><a class="reference external" href="https://joomla.org/">https://joomla.org/</a></li>
-<li><a class="reference external" href="http://wordpress.org/">http://wordpress.org/</a></li>
-</ul>
-</div>
+<p>We&#8217;re leveraging Docker workflow since v0.5.0 and this feature is not available.</p>
+<p>This feature is available at <a class="reference external" href="http://dev.teracy.org/docs/0.4.2/php_dev_guide.html">http://dev.teracy.org/docs/0.4.2/php_dev_guide.html</a></p>
 </div>
 
 
@@ -421,49 +79,27 @@ the default like this on production servers.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">PHP Development Guide</a><ul>
-<li><a class="reference internal" href="#verify-lamp-and-lemp">Verify <code class="docutils literal"><span class="pre">LAMP</span></code> and <code class="docutils literal"><span class="pre">LEMP</span></code></a></li>
-<li><a class="reference internal" href="#info-php-page"><code class="docutils literal"><span class="pre">info.php</span></code> Page</a></li>
-<li><a class="reference internal" href="#composer-installation"><code class="docutils literal"><span class="pre">Composer</span></code> Installation</a></li>
-<li><a class="reference internal" href="#cakephp-framework"><code class="docutils literal"><span class="pre">CakePHP</span></code> Framework</a></li>
-<li><a class="reference internal" href="#codeigniter-framework"><code class="docutils literal"><span class="pre">CodeIgniter</span></code> Framework</a></li>
-<li><a class="reference internal" href="#laravel-framework"><code class="docutils literal"><span class="pre">Laravel</span></code> Framework</a></li>
-<li><a class="reference internal" href="#symfony-framework"><code class="docutils literal"><span class="pre">Symfony</span></code> Framework</a></li>
-<li><a class="reference internal" href="#yii-framework"><code class="docutils literal"><span class="pre">Yii</span></code> Framework</a></li>
-<li><a class="reference internal" href="#drupal-cms"><code class="docutils literal"><span class="pre">Drupal</span></code> CMS</a></li>
-<li><a class="reference internal" href="#joomla-cms"><code class="docutils literal"><span class="pre">Joomla!</span></code> CMS</a></li>
-<li><a class="reference internal" href="#wordpress-cms"><code class="docutils literal"><span class="pre">WordPress</span></code> CMS</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="ruby_training.html"
-                        title="previous chapter">Ruby Training</a></p>
+  <p class="topless"><a href="ruby_dev_guide.html"
+                        title="previous chapter">Ruby Development Guide</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="php_training.html"
-                        title="next chapter">PHP Training</a></p>
+  <p class="topless"><a href="html_css_training.html"
+                        title="next chapter">HTML/CSS Training</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/php_dev_guide.txt"
+      <li><a href="_sources/php_dev_guide.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -477,17 +113,17 @@ the default like this on production servers.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="php_training.html" title="PHP Training"
+          <a href="html_css_training.html" title="HTML/CSS Training"
              >next</a> |</li>
         <li class="right" >
-          <a href="ruby_training.html" title="Ruby Training"
+          <a href="ruby_dev_guide.html" title="Ruby Development Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

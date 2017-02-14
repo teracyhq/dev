@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>teracy-dev Development &mdash; teracy-dev 0.4.2 documentation</title>
+    <title>teracy-dev Development &#8212; teracy-dev 0.5.0-b1 documentation</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,17 +14,19 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.4.2',
+        VERSION:     '0.5.0-b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="top" title="teracy-dev 0.4.2 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Git Training" href="git_training.html" />
     <link rel="prev" title="Workflow" href="workflow.html" />
     <script>
@@ -52,7 +54,7 @@
         <li class="right" >
           <a href="workflow.html" title="Workflow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -63,81 +65,149 @@
             
   <div class="section" id="teracy-dev-development">
 <h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
-<p>We use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code> itself.</p>
-<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> requires about <cite>2048MB</cite> of VM memory, so you need to override 1024 with
-2048 here: <a class="reference external" href="https://github.com/teracyhq/dev/blob/v0.4.2/vagrant_config.json#L92">https://github.com/teracyhq/dev/blob/v0.4.2/vagrant_config.json#L92</a> on
-the <cite>vagrant_config_override.json</cite> file.</p>
+<p>We use Docker (or better <code class="docutils literal"><span class="pre">teracy-dev</span></code>) to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code>.
+We use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
 <div class="section" id="project-setup">
 <h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
 <p>Fork and clone <code class="docutils literal"><span class="pre">teracy-dev</span></code> from <a class="reference external" href="https://github.com/teracyhq/dev/">https://github.com/teracyhq/dev/</a></p>
 <p>For example, this is my forked repo: <a class="reference external" href="https://github.com/hoatle/teracy-dev/">https://github.com/hoatle/teracy-dev/</a></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>vagrant ssh
-<span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd </span>personal
-<span class="nv">$ </span>git clone git@github.com:hoatle/teracy-dev.git teracy-dev
-<span class="nv">$ </span><span class="nb">cd </span>teracy-dev
-<span class="nv">$ </span>git submodule update --init --recursive
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p ~/teracy-dev/workspace
+$ <span class="nb">cd</span> ~/teracy-dev/workspace
+$ git clone git@github.com:hoatle/teracy-dev.git teracy-dev
+$ <span class="nb">cd</span> teracy-dev
+$ git submodule update --init --recursive
+$ docker-compose pull
 </pre></div>
 </div>
 <p>Notice that you use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
-<p>Install gems with <cite>bundle</cite>:</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This step took a white so please prepare with you a cup of coffee and be patient :).</p>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bundle install
-</pre></div>
-</div>
+<div class="section" id="ci-setup">
+<h2>CI Setup<a class="headerlink" href="#ci-setup" title="Permalink to this headline">¶</a></h2>
+<p>After forking the project, you should set up the CI system on travis-ci.org:</p>
+<ul class="simple">
+<li>register an account at travis-ci.org</li>
+<li>register an account at hub.docker.com</li>
+<li>enable <cite>teracy-dev</cite> repository on travis-ci.org</li>
+<li><dl class="first docutils">
+<dt>add travis-ci settings with these variables:</dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">DOCKER_USERNAME</span></code>: Fill with your Docker username account</li>
+<li><code class="docutils literal"><span class="pre">DOCKER_PASSWORD</span></code>: Fill with your Docker password account</li>
+<li><code class="docutils literal"><span class="pre">DEV_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev</cite></li>
+<li><code class="docutils literal"><span class="pre">DOCS_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev-docs</cite></li>
+<li><code class="docutils literal"><span class="pre">GH_REPO</span></code>: Fill with <cite>&lt;your_github_username&gt;/teracy-dev&gt;</cite> to git push on your repo</li>
+<li><code class="docutils literal"><span class="pre">GH_TOKEN</span></code>: Fill with <cite>&lt;your_github_personal_access_token&gt;</cite> to git push on your repo</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="rake-tasks">
 <h2>Rake Tasks<a class="headerlink" href="#rake-tasks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span></code> or <code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">list</span></code> to list all <cite>Rake</cite> tasks.</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake list
+Tasks:
+- berks_install
+- berks_upload
+- build
+- check
+- chefspec
+- default
+- foodcritic
+- knife_test
+- list
+- new_cookbook
+</pre></div>
+</div>
+<ul class="simple">
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake build
+bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
+WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
+Running syntax check on teracy-dev
+Validating ruby files
+Validating templates
+bundle <span class="nb">exec</span> foodcritic -I test/foodcritic/* -f any main-cookbooks
+
+bundle <span class="nb">exec</span> rspec main-cookbooks
+No examples found.
+
+
+Finished in <span class="m">0</span>.00089 seconds <span class="o">(</span>files took <span class="m">0</span>.10198 seconds to load<span class="o">)</span>
+<span class="m">0</span> examples, <span class="m">0</span> failures
+</pre></div>
+</div>
+<ul class="simple">
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
 </ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake berks_install
+bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
+Resolving cookbook dependencies...
+Fetching cookbook index from https://supermarket.chef.io...
+Installing compat_resource <span class="o">(</span><span class="m">12</span>.16.2<span class="o">)</span>
+Installing docker <span class="o">(</span><span class="m">2</span>.11.0<span class="o">)</span>
+Installing docker_compose <span class="o">(</span><span class="m">0</span>.1.1<span class="o">)</span>
+Installing magic_shell <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span>
+Installing vim <span class="o">(</span><span class="m">2</span>.0.2<span class="o">)</span>
+Vendoring compat_resource <span class="o">(</span><span class="m">12</span>.16.2<span class="o">)</span> to vendor-cookbooks/compat_resource
+Vendoring docker <span class="o">(</span><span class="m">2</span>.11.0<span class="o">)</span> to vendor-cookbooks/docker
+Vendoring docker_compose <span class="o">(</span><span class="m">0</span>.1.1<span class="o">)</span> to vendor-cookbooks/docker_compose
+Vendoring magic_shell <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span> to vendor-cookbooks/magic_shell
+Vendoring vim <span class="o">(</span><span class="m">2</span>.0.2<span class="o">)</span> to vendor-cookbooks/vim
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-teracy-dev-docker-image">
+<h2>Build teracy/dev Docker image<a class="headerlink" href="#build-teracy-dev-docker-image" title="Permalink to this headline">¶</a></h2>
+<p>When we update the development runtime (for example, change Gemfile or Dockerfile-dev), we need to
+build the image with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose build
+</pre></div>
+</div>
 </div>
 <div class="section" id="base-boxes">
 <h2>Base Boxes<a class="headerlink" href="#base-boxes" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;re going to use <a class="reference external" href="http://chef.github.io/bento/">Bento</a> to build base boxes.</p>
 <ol class="arabic">
 <li><p class="first"><cite>Virtualbox</cite> Installation:</p>
-<p>You could install any versions of Virtualbox. As for teracy-dev v0.4.2, we use virtualbox v4.3.20.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /tmp
-<span class="nv">$ </span>wget http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
-<span class="nv">$ </span>sudo dpkg -i virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
-<span class="nv">$ </span>sudo apt-get install -f -y
+<p>You could install any versions of Virtualbox that matched the host machine.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp
+$ wget http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
+$ sudo dpkg -i virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
+$ sudo apt-get install -f -y
 </pre></div>
 </div>
 <p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">VBoxManage</span> <span class="pre">--version</span></code> should print out something like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>VBoxManage --version
-4.3.20r96996
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ VBoxManage --version
+<span class="m">4</span>.3.20r96996
 </pre></div>
 </div>
 </li>
 <li><p class="first"><cite>Packer</cite> Installation</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd readonly</span>
-<span class="nv">$ </span>mkdir packer
-<span class="nv">$ </span><span class="nb">cd </span>packer
-<span class="nv">$ </span>wget https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
-<span class="nv">$ </span>sudo apt-get install unzip -f -y
-<span class="nv">$ </span>unzip packer_0.7.5_linux_amd64.zip
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;export PATH=~/workspace/readonly/packer:$PATH&#39;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
-<span class="nv">$ </span><span class="nb">source</span> ~/.bash_profile
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ mkdir packer
+$ <span class="nb">cd</span> packer
+$ wget https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
+$ sudo apt-get install unzip -f -y
+$ unzip packer_0.7.5_linux_amd64.zip
+$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=~/workspace/packer:$PATH&#39;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
+$ <span class="nb">source</span> ~/.bash_profile
 </pre></div>
 </div>
 <p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">packer</span> <span class="pre">version</span></code> should print out something like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>packer version
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer version
 Packer v0.7.5
 </pre></div>
 </div>
 </li>
 <li><p class="first"><cite>Bento</cite> Repository Clone</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd readonly</span>
-<span class="nv">$ </span>git clone git@github.com:chef/bento.git
-<span class="nv">$ </span><span class="nb">cd </span>bento
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ git clone git@github.com:chef/bento.git
+$ <span class="nb">cd</span> bento
 </pre></div>
 </div>
 </li>
@@ -155,22 +225,22 @@ building base boxes from scratch.</p>
 <p>We&#8217;re working on a headless VM so you need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
 openning any .json files and append <code class="docutils literal"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
 <p>and then:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ws
-<span class="nv">$ </span><span class="nb">cd readonly</span>/bento/packer
-<span class="nv">$ </span>packer build -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> bento/packer
+$ packer build -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
 </pre></div>
 </div>
 <p>After that <cite>Packer</cite> will download the Ubuntu iso files and install, package a vagrant base box for
 us to use.</p>
 <p>We should store and share iso files somewhere to save time from downloading iso files then
-put it under <cite>~/workspace/readonly/bento/isos/</cite>.</p>
-<p>For example, you put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/readonly/bento/isos/ubuntu/12.04</cite>
+put it under <cite>~/workspace/bento/isos/</cite>.</p>
+<p>For example, you put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/bento/isos/ubuntu/12.04</cite>
 and you can use the mirror like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/readonly/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
 </pre></div>
 </div>
 <p>It will take a while for the base box to be completed. The base boxe should be available under
-<cite>~/workspace/readonly/bento/definitions</cite> path.</p>
+<cite>~/workspace/bento/definitions</cite> path.</p>
 </li>
 </ol>
 </div>
@@ -198,7 +268,9 @@ and you can use the mirror like:</p>
   <ul>
 <li><a class="reference internal" href="#">teracy-dev Development</a><ul>
 <li><a class="reference internal" href="#project-setup">Project Setup</a></li>
+<li><a class="reference internal" href="#ci-setup">CI Setup</a></li>
 <li><a class="reference internal" href="#rake-tasks">Rake Tasks</a></li>
+<li><a class="reference internal" href="#build-teracy-dev-docker-image">Build teracy/dev Docker image</a></li>
 <li><a class="reference internal" href="#base-boxes">Base Boxes</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -214,21 +286,18 @@ and you can use the mirror like:</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/teracy_dev_development.txt"
+      <li><a href="_sources/teracy_dev_development.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -247,12 +316,12 @@ and you can use the mirror like:</p>
         <li class="right" >
           <a href="workflow.html" title="Workflow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.4.2 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev 0.5.0-b1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2013 - 2015, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>
