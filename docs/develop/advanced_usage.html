@@ -99,7 +99,7 @@ The configuration settings are then applied to the <cite>Vagrantfile</cite> file
 <h2>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h2>
 <p>To upgrade teracy-dev, just pull the latest changes from the git repo and you&#8217;re set:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
-$ git pull
+$ git fetch origin <span class="o">&amp;&amp;</span> git reset --hard origin/master
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> is used for improvements and bug fixes change upgrading.</p>
