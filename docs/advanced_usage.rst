@@ -51,7 +51,7 @@ To upgrade teracy-dev, just pull the latest changes from the git repo and you're
 .. code-block:: bash
 
    $ cd ~/teracy-dev
-   $ git pull
+   $ git fetch origin && git reset --hard origin/master
 
 ``$ vagrant reload --provision`` is used for improvements and bug fixes change upgrading.
 
