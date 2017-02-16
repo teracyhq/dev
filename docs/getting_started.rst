@@ -92,6 +92,10 @@ Please check out the instruction video below for more details:
 
         <iframe width="100%" height="630" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
 
+    ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
+
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Linux (Ubuntu)
@@ -134,9 +138,13 @@ Open the terminal window:
 
 Please check out the instruction video below for more details:
 
-.. raw:: html
+  .. raw:: html
 
     <iframe width="100%" height="630" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
+
+  ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
@@ -237,6 +245,9 @@ Please check out the instruction video below for more details:
 
     <iframe width="100%" height="630" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
 
+  ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
