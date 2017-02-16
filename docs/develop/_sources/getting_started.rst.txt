@@ -42,12 +42,6 @@ Automatic Installation on macOS
 Manual Installation on macOS
 ----------------------------
 
-Check out the video and follow step by step instructions below:
-
-.. raw:: html
-
-    <iframe width="100%" height="630" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
-
 Open the terminal window:
 
 1. Install ``Homebrew`` and ``Homebrew Cask``
@@ -91,6 +85,17 @@ Open the terminal window:
 
          - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
+
+Please check out the instruction video below for more details:
+
+    .. raw:: html
+
+        <iframe width="100%" height="630" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
+
+    ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
+
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Linux (Ubuntu)
@@ -104,11 +109,6 @@ Automatic Installation on Linux (Ubuntu)
 Manual Installation on Linux (Ubuntu)
 -------------------------------------
 
-Check out the video and follow step by step instructions below:
-
-.. raw:: html
-
-    <iframe width="100%" height="630" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
 
 Open the terminal window:
 
@@ -135,6 +135,17 @@ Open the terminal window:
       && wget $(if [ `uname -m` == "x86_64" ]; then echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_x86_64.deb"; else echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_i686.deb"; fi;) \
       && sudo dpkg -i vagrant_${version}* && rm vagrant_${version}* && cd --
 
+
+Please check out the instruction video below for more details:
+
+  .. raw:: html
+
+    <iframe width="100%" height="630" src="https://www.youtube.com/embed/MteK5c1r6B8" frameborder="0" allowfullscreen></iframe>
+
+  ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
+
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Windows
@@ -149,11 +160,7 @@ Manual Installation on Windows
 
 This should be the same on Windows 10, Windows 8 and Windows 7.
 
-Check out the video and follow step by step instructions below:
-
-.. raw:: html
-
-    <iframe width="100%" height="630" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
+Follow step by step instructions below:
 
 
 1. Install ``chocolatey``
@@ -232,6 +239,15 @@ Check out the video and follow step by step instructions below:
 
    After finishing the ``vagrant`` installation, you are recommended to restart your machine.
 
+Please check out the instruction video below for more details:
+
+   .. raw:: html
+
+    <iframe width="100%" height="630" src="https://www.youtube.com/embed/SBOoUIVI3Jw" frameborder="0" allowfullscreen></iframe>
+
+  ..  note::
+
+      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
 
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
