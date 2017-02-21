@@ -15,7 +15,7 @@ Please follow the installation instruction below, after that, the instruction st
       expected to work, too.
 
     - By default, we're using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
-      Remember to reboot your host PC after making BIOS changes.
+      Remember to reboot your host PC after making BIOS changes. Please refer to https://forums.virtualbox.org/viewtopic.php?f=1&t=62339 for more details.
 
     - We recommend the following tested and supported platforms:
 
