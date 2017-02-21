@@ -14,6 +14,9 @@ Please follow the installation instruction below, after that, the instruction st
     - The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
       expected to work, too.
 
+    - By default, we're using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
+      Remember to reboot your host PC after making BIOS changes.
+
     - We recommend the following tested and supported platforms:
 
       + macOS Sierra
