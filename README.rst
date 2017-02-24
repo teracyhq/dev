@@ -1,6 +1,9 @@
 teracy-dev
 ==========
 
+.. image:: https://travis-ci.org/teracyhq/dev.svg?branch=develop
+    :target: https://travis-ci.org/teracyhq/dev
+
 The only truly universal productive software development platform for all!
 
 
