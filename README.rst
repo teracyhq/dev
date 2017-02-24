@@ -4,6 +4,9 @@ teracy-dev
 .. image:: https://travis-ci.org/teracyhq/dev.svg?branch=develop
     :target: https://travis-ci.org/teracyhq/dev
 
+Issues board: https://waffle.io/teracyhq/all?source=teracyhq%2Fdev
+
+
 The only truly universal productive software development platform for all!
 
 
