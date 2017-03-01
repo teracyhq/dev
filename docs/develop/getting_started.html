@@ -75,6 +75,9 @@ workflow on Mac, Linux and Windows with good developer experience and productivi
 <li><p class="first">The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
 expected to work, too.</p>
 </li>
+<li><p class="first">By default, we&#8217;re using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
+Remember to reboot your host PC after making BIOS changes. Please refer to <a class="reference external" href="https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=62339">https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=62339</a> for more details.</p>
+</li>
 <li><p class="first">We recommend the following tested and supported platforms:</p>
 <ul class="simple">
 <li>macOS Sierra</li>
@@ -442,7 +445,7 @@ $ docker-compose --version
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
