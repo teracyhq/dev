@@ -47,6 +47,20 @@ if docker_conf['enabled'] == true
     end
 
     if !docker_conf['version'].empty?
+        # to make sure docker-engine is added into the package
+        # see: https://github.com/teracyhq/dev/issues/278
+        docker_installation 'default' do
+            repo docker_conf['repo']
+            action act
+            not_if 'which docker'
+        end
+
+        # TODO(hoatle): better to uninstall only if the 2 versions mismatch
+        docker_installation 'default' do
+            repo docker_conf['repo']
+            action :delete
+        end
+
         docker_installation_package 'default' do
             version docker_conf['version']
             action act
@@ -73,9 +87,9 @@ if docker_conf['enabled'] == true
             code <<-EOF
                 docker_compose_binary=$(which docker-compose);
                 docker_compose_version=$(docker-compose -v | awk '{print $3}');
-                docker_compose_version=${docker_compose_version::-1}
-                if [ "$docker_compose_version" != "$node['docker_compose']['release']" ]; then
-                    rm -rf $docker_compose_binary || true
+                docker_compose_version=${docker_compose_version::-1};
+                if [ "$docker_compose_version" != "#{node['docker_compose']['release']}" ]; then
+                    rm -rf $docker_compose_binary || true;
                 fi
             EOF
             only_if 'which docker-compose'
