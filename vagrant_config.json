@@ -18,10 +18,11 @@
       //"type":"dhcp", // for private_network mode; if ip and type are both defined, ip takes precedence
       //"auto_config":true, // for private_network mode + ip
       "bridge": [
-        "eth0", //wired LAN, the first priority
-        "en0: Wi-Fi (AirPort)", // macOS 10.12
-        "en1: Wi-Fi (AirPort)", // macOS 10.11
-        "wlan0" // linux
+        // see: https://github.com/teracyhq/dev/issues/262
+        // "eth0", //wired LAN, the first priority
+        // "en0: Wi-Fi (AirPort)", // macOS 10.12
+        // "en1: Wi-Fi (AirPort)", // macOS 10.11
+        // "wlan0" // linux
       ] // for public_network mode
     }],
     "synced_folders":[{ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
