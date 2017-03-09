@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Most Used Git Commands &#8212; teracy-dev v0.5.0-b2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-b2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Firefox Add-ons Development Guide" href="firefox_addon_dev_guide.html" />
+    <link rel="prev" title="Git Training" href="git_training.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="firefox_addon_dev_guide.html" title="Firefox Add-ons Development Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="git_training.html" title="Git Training"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-b2 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="most-used-git-commands">
+<h1>Most Used Git Commands<a class="headerlink" href="#most-used-git-commands" title="Permalink to this headline">¶</a></h1>
+<p>New git users usually get confused with new concepts and workflow. To make it easy, this
+documentation will list common scenarios and how to use what git commands. You will get more
+experience with git over time. This is just the easy starting point to get work with git
+and Teracy&#8217;s projects.</p>
+<p>You should install Teracy&#8217;s development environment to practise those commands mentioned below
+more easily.</p>
+<div class="section" id="fork">
+<h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline">¶</a></h2>
+<p>This is not really git concept, it was introduced by github. Basically, you can copy a repository
+into your git account (github, bitbucket) so that you could have full permission on it. The
+repository you copied from is called <code class="docutils literal"><span class="pre">upstream</span></code> (official repository) by convention. The forking
+action is done on the web UI. You do not need to use  the git command for this kind of concept.</p>
+<p>Teraciers must fork the official Teracy&#8217;s projects into their accounts to work.</p>
+</div>
+<div class="section" id="clone">
+<h2>Clone<a class="headerlink" href="#clone" title="Permalink to this headline">¶</a></h2>
+<p>Cloning means that you copy a remote repository into the local hard drive and track it. You usually
+clone your forked repository into your local hard drive to work on it.</p>
+<p>For example, I fork the official repository at <a class="reference external" href="https://github.com/teracyhq/teracy-django-boilerplate">https://github.com/teracyhq/teracy-django-boilerplate</a>.
+I will have the same repository with full permission at <a class="reference external" href="https://github.com/hoatle/teracy-django-boilerplate">https://github.com/hoatle/teracy-django-boilerplate</a>
+with the <code class="docutils literal"><span class="pre">git&#64;github.com:hoatle/teracy-django-boilerplate.git</span></code> git address. To clone it, I use the following
+commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ws
+$ cd personal
+$ git clone git@github.com:hoatle/teracy-django-boilerplate.git
+$ git remote add upstream https://github.com/teracyhq/teracy-django-boilerplate.git
+$ git fetch upstream
+</pre></div>
+</div>
+<p>By convention, your full permission repository has <code class="docutils literal"><span class="pre">origin</span></code> remote name, <code class="docutils literal"><span class="pre">upstream</span></code> remote name
+is used to track updated from official repository.</p>
+</div>
+<div class="section" id="remote">
+<h2>Remote<a class="headerlink" href="#remote" title="Permalink to this headline">¶</a></h2>
+<p>There are local and remote repositories. Local repository is the repository on your hard drive.
+Remote repository is the repository stored somewhere else by a git server. You make changes on
+your local repository and push these changes to remote repositories.</p>
+<p>By convention, there are two most used remote repositories:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">origin</span></code>: is the repository you clone into the local repository.</li>
+<li><code class="docutils literal"><span class="pre">upstream</span></code>: is the official repository that you need to keep track of it.</li>
+</ul>
+<p>With DVCS (Distributed version control system) like git, you are encouraged to collaborate with
+other collaborators&#8217; remote repositories.</p>
+<p>For example, I am working on the issue #3 with the title: &#8220;django prod deployment on prod virtual
+machine&#8221; (feature) which depends on an issue that phuonglm is working on: the issue #2 with
+the title: &#8220;add prod virtual machine with basic packages&#8221; (feature). So I need to add phuonglm&#8217;s
+repository (for example, <a class="reference external" href="https://github.com/phuonglm/teracy-django-boilerplate.git">https://github.com/phuonglm/teracy-django-boilerplate.git</a>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
+$ git fetch phuonglm
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p class="first">remote add</p>
+<blockquote>
+<div><p>To add a remote repository and to keep
+track of it.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote add &lt;remote_name&gt; &lt;remote_git_url&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">remote list</p>
+<blockquote>
+<div><p>To list all the remote repositories you tracked on the local repository:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote -v
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">remote update</p>
+<blockquote>
+<div><p>To change/ update a remote repository URL:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote set-url &lt;remote_name&gt; &lt;new_url&gt; &lt;old_url&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">remote delete</p>
+<blockquote>
+<div><p>Don&#8217;t want to keep track of a remote repository, then remove (<code class="docutils literal"><span class="pre">rm</span></code>) it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git rm &lt;remote_name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="branch">
+<h2>Branch<a class="headerlink" href="#branch" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Branching off</strong></p>
+<p>When there is an issue that you are going to work, the first thing you need to do is to create a new
+working branch to make any changes on it.</p>
+<p>For example, I am going to work on the issue #1 with the title: &#8220;Cleaning up the project&#8221; of the
+<code class="docutils literal"><span class="pre">enhancement</span></code> type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ws
+$ cd personal/teracy
+$ git fetch upstream
+$ git checkout upstream/develop -b enhance_1_project_clean_up
+$ git push origin enhance_1_project_clean_up
+</pre></div>
+</div>
+<p>What do the above commands do? First, we need to <code class="docutils literal"><span class="pre">cd</span></code> to the working repository. Then
+get the latest updates from <code class="docutils literal"><span class="pre">upstream</span></code> repository (official repository). Then branch off (copy)
+<code class="docutils literal"><span class="pre">upstream/develop</span></code> branch content into local branch with name <em>enhance_1_project_clean_up</em>. Then
+we push this branch into the <code class="docutils literal"><span class="pre">origin</span></code> repository (full permission repository).</p>
+<p><strong>2. Listing branches</strong></p>
+<p>To see the list of branches on your local repository::</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git branch
+</pre></div>
+</div>
+<p>You could see something similar like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">docs_10_useful_most_used_git_commands</span>
+  <span class="n">docs_5_workflow</span>
+  <span class="n">enhance_4_simpler_entry_access</span>
+  <span class="n">feature_1_basic_deployment_virtual_machine_deps_4</span>
+  <span class="n">feature_8_ssh_keys_configuration_virtual_machine</span>
+  <span class="n">master</span>
+  <span class="n">origin</span><span class="o">/</span><span class="n">enhance_4_simpler_entry_access</span>
+</pre></div>
+</div>
+<p>The asterisk symbol (*) shows which branch you are currently working on.</p>
+<p><strong>3. Switching branches</strong></p>
+<p>To switch to another branch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git checkout branch_name
+</pre></div>
+</div>
+</div>
+<div class="section" id="fetch">
+<h2>Fetch<a class="headerlink" href="#fetch" title="Permalink to this headline">¶</a></h2>
+<p>Fetching is usually used to get new updated from a remote repository and you could <code class="docutils literal"><span class="pre">rebase</span></code> or
+<code class="docutils literal"><span class="pre">merge</span></code> remote branch&#8217;s updates into your current working branch on the local repository.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
+$ git merge upstream/develop
+</pre></div>
+</div>
+</div>
+<div class="section" id="status">
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h2>
+<p>One of the most used command to see which files/folders are changed on the currently working branch and get
+suggestions command to add/ remove/ discard these changes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git status
+</pre></div>
+</div>
+</div>
+<div class="section" id="diff">
+<h2>Diff<a class="headerlink" href="#diff" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>To see the differences before and after your changes:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git diff
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>If your changed files/folders are already added to the committed list, it means you have used the <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> command, use the command below:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git diff --cached
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You should enable the color mode of git, it is easier to see the changes with colors.</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ git config --global color.ui true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="commit">
+<h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
+<p>When making changes to the local repository, these changes must be tracked and committed. To see the
+changes, use <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></code>. To commit the changes, use the following commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git add .
+$ git commit -a
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> or <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-A</span></code> command allows you to add all changed files/folder to the
+committed list. If you just want to commit some of these files/folders, you should use the command
+below instead:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git add [path_to_files]
+$ git commit -a
+</pre></div>
+</div>
+<p>And the terminal will open a default editor (usually <code class="docutils literal"><span class="pre">vim</span></code> on linux, mac), add your commit
+message, write and quite (vim: press [i] to enter edit mode, then [ESC] to go into view mode,
+then <code class="docutils literal"><span class="pre">:wq</span></code> to write changes and quit).</p>
+<p>You can add your commit message directly to your commit without the <code class="docutils literal"><span class="pre">vim</span></code> editor by using the
+command below instead of <code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$git commit -m &quot;&lt;issue_key&gt;|git commit message&quot;
+</pre></div>
+</div>
+<p>There are cases when you missed something and you want to add more changes into the latest commit:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git add .
+$ git commit --amend
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code> will allow you to add more changes into the latest commit and edit the commit
+message. Even if you do not want to add any changes but to edit the latest commit message,
+you should use this command.</p>
+</div>
+<div class="section" id="log">
+<h2>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. List</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>To see a full list of commits, use:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git log
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>To see the list of commit messages only, use:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git log --online
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Press [Enter] to scroll the list till the end or press <code class="docutils literal"><span class="pre">q</span></code> to quit.</p>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>2. Search</strong></p>
+<blockquote>
+<div><p>To search commit logs matching a specific pattern, use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git log -g --grep=&lt;pattern&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="push">
+<h2>Push<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
+<p>After some commits and you would like to push them into the <code class="docutils literal"><span class="pre">origin</span></code> repository, do as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git push origin enhance_1_project_clean_up
+</pre></div>
+</div>
+<p>Sometimes when there is diversity which means there are difference between git commit list on the local and remote branch,
+git does not allow you to push. In that case, you need to <code class="docutils literal"><span class="pre">force</span> <span class="pre">push</span></code> (means that you want
+to have you local changes put into the <code class="docutils literal"><span class="pre">origin</span></code> repository, keep only commit history of local
+repository.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git push origin enhance_1_project_clean_up -f
+</pre></div>
+</div>
+<p>If you want to keep the <code class="docutils literal"><span class="pre">origin</span></code> and make the local changes to resolve different commit
+list, you can use <code class="docutils literal"><span class="pre">git</span> <span class="pre">rebase</span></code> to make the history be fast-forwarded.</p>
+<p>Fast-forward means that your local repository is in sync with remote repository with some
+additional commits. When you push, the additional commits will be appended into remote history
+repository.</p>
+<p>WARNING: <cite>force push</cite> can make you lost some commits if you are not careful enough. This
+is true when you merge work from other branches into your local branch. In such case, you could
+use <code class="docutils literal"><span class="pre">git</span> <span class="pre">reflog</span></code>, find the hash commit and <code class="docutils literal"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">&lt;hash&gt;</span></code> to get back the changes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">NEVER EVER force push the official repositories.</p>
+</div>
+</div>
+<div class="section" id="rebase">
+<h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">rebase</span></code> means that you want to keep the remote&#8217;s commit list as base, any changes of local
+branch should be reorganized and appending to the remote repository. You usually <code class="docutils literal"><span class="pre">rebase</span></code> to get
+the latest changes from the <code class="docutils literal"><span class="pre">upstream</span></code> repository.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
+$ git rebase upstream/develop
+</pre></div>
+</div>
+<p>If there is any conflict, resolve it, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>. Do it until git
+says that you are done; Or you could <code class="docutils literal"><span class="pre">abort</span></code> the <code class="docutils literal"><span class="pre">rebase</span></code> process by <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></code>.
+Everything will come back before the <code class="docutils literal"><span class="pre">rebase</span></code> process after <code class="docutils literal"><span class="pre">abort</span></code>.</p>
+</div>
+<div class="section" id="merge">
+<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">merge</span></code> is used to join 2 or more commit histories together (from different branches).</p>
+</div>
+<div class="section" id="pull-request">
+<h2>Pull request<a class="headerlink" href="#pull-request" title="Permalink to this headline">¶</a></h2>
+<p>This concept is not introduced by <code class="docutils literal"><span class="pre">git</span></code> but <code class="docutils literal"><span class="pre">github</span></code>, which means that you do not have any git
+command here. Pull request is done on the web UI of github (bitbucket) to notify the <code class="docutils literal"><span class="pre">upstream</span></code>
+that your work is great, finished and you want your work to be merged into the <code class="docutils literal"><span class="pre">upstream</span></code> repository.</p>
+</div>
+<div class="section" id="reset">
+<h2>Reset<a class="headerlink" href="#reset" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">Reset</span></code> means that you could set the working branch to a specific commit history and see all the
+changes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git reset HEAD~&lt;index&gt;
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git reset &lt;commit_hash_id&gt;
+</pre></div>
+</div>
+<p>This is useful to view all the changes from some commits of your collaborators for an issue.</p>
+<ul>
+<li><p class="first">reset hard</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>To discardss all the current changes on the working branch:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git reset --hard
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>To set the</dt>
+<dd><p class="first">current working branch to a specific commit and discard all the changes, use one of two following commands:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ git reset --hard HEAD~&lt;index&gt;
+
+$ git reset --hard &lt;commit_hash_id&gt;
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>To reset the working branch to a remote branch:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ git reset --hard &lt;remote_repo&gt;/&lt;branch_name&gt;
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="stash">
+<h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. stash it</strong></p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">stash</span></code> is a stack and is usually used when you want to store temporarily changes from a working
+branch instead of committing these changes to switch to another branch. <code class="docutils literal"><span class="pre">stash</span></code> is a stack like.
+Usually, you need to store all the changes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git add .
+$ git stash
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2. stash list</strong></p>
+<blockquote>
+<div><p>To see all the stashed list:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git stash list
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>3. show it</strong></p>
+<blockquote>
+<div><p>To show the changes from a specific stash:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git stash show stash@{&lt;index&gt;}
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>4. apply it</strong></p>
+<blockquote>
+<div><p>When switching back the repository having stash, you could get the changes from <code class="docutils literal"><span class="pre">stash</span></code>.</p>
+<ul>
+<li><p class="first">To get the latest stashed content and apply changes to the current working
+branch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git stash apply
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>To apply changes from a specific stash into the current</dt>
+<dd><p class="first">working branch:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>$ git stash apply stash@{&lt;index&gt;}
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>5. drop it</strong></p>
+<blockquote>
+<div><p>To drop a specific stash:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git stash drop stash@{&lt;index&gt;}
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="squash">
+<h2>Squash<a class="headerlink" href="#squash" title="Permalink to this headline">¶</a></h2>
+<p>Warning: Squash is used to rewrite your git history, so use on your own full permission repository
+ONLY.</p>
+<p><code class="docutils literal"><span class="pre">squash</span></code> means you choose one or some commits and <code class="docutils literal"><span class="pre">amend</span></code> to its previous commit to be a
+single commit.</p>
+<p>When working, you &#8220;commit early, commit often&#8221;, and you get a list of commits that is hard for your
+collaborators to review, and each commit is not atomic itself. Each commit should be an atomic
+problem solving step, that is the reason why you need <code class="docutils literal"><span class="pre">squash</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git rebase -i HEAD~&lt;index&gt;
+</pre></div>
+</div>
+<p>Use <code class="docutils literal"><span class="pre">s</span></code> instead of <code class="docutils literal"><span class="pre">pick</span></code> for the commits you want
+to squash.</p>
+</div>
+<div class="section" id="learn-more">
+<h2>Learn More<a class="headerlink" href="#learn-more" title="Permalink to this headline">¶</a></h2>
+<p>You can learn more git commands by using one of the following commands to open the Help page, or ask us,
+Teraciers, for work and practice.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git --help
+
+$ git &lt;command&gt; --help
+
+$ man git-&lt;command&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Most Used Git Commands</a><ul>
+<li><a class="reference internal" href="#fork">Fork</a></li>
+<li><a class="reference internal" href="#clone">Clone</a></li>
+<li><a class="reference internal" href="#remote">Remote</a></li>
+<li><a class="reference internal" href="#branch">Branch</a></li>
+<li><a class="reference internal" href="#fetch">Fetch</a></li>
+<li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#diff">Diff</a></li>
+<li><a class="reference internal" href="#commit">Commit</a></li>
+<li><a class="reference internal" href="#log">Log</a></li>
+<li><a class="reference internal" href="#push">Push</a></li>
+<li><a class="reference internal" href="#rebase">Rebase</a></li>
+<li><a class="reference internal" href="#merge">Merge</a></li>
+<li><a class="reference internal" href="#pull-request">Pull request</a></li>
+<li><a class="reference internal" href="#reset">Reset</a></li>
+<li><a class="reference internal" href="#stash">Stash</a></li>
+<li><a class="reference internal" href="#squash">Squash</a></li>
+<li><a class="reference internal" href="#learn-more">Learn More</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="git_training.html"
+                        title="previous chapter">Git Training</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="firefox_addon_dev_guide.html"
+                        title="next chapter">Firefox Add-ons Development Guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/most_used_git_commands.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="firefox_addon_dev_guide.html" title="Firefox Add-ons Development Guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="git_training.html" title="Git Training"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-b2 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>
