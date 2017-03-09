@@ -127,7 +127,8 @@ Open the terminal window:
    ..  code-block:: bash
 
       $ sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list" \
-      && wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add - \
+      && wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- | sudo apt-key add - \
+      && wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add - \
       && sudo apt-get update && sudo apt-get install virtualbox-5.1 -y
 
 3. Install ``vagrant`` (>=1.8.7, >=1.9.1):
