@@ -173,7 +173,8 @@ $ sudo apt-get install -y git
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib non-free&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span> <span class="se">\</span>
-<span class="o">&amp;&amp;</span> wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
+<span class="o">&amp;&amp;</span> wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
+<span class="o">&amp;&amp;</span> wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
 <span class="o">&amp;&amp;</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install virtualbox-5.1 -y
 </pre></div>
 </div>
