@@ -24,6 +24,11 @@ Vagrant
 
    Use this command to destroy the VM to create a brand new clean VM.
 
+6. ``vagrant global-status``
+
+   Use this command to check the state of all active Vagrant environments on the system. You should
+   halt or destroy the running Vagrant enviromnents that are not being worked on.
+
 For more, please check out: https://www.vagrantup.com/docs/getting-started/
 
 
