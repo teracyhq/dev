@@ -1,8 +1,33 @@
 Change Log
 ==========
 
+[v0.5.0-b2][] (2017-03-09)
+--------------------------
+
+bug fixes and improvements, make it more stable.
+
+- Bugs
+    + fix the script to install on Ubuntu
+    + fix specific docker config
+    + fix the network setting problem related to the default bridge interface list
+
+- Improvements
+    + add `$ vagrant global-status` command to the basic guide
+    + use vX.X.X for all things related to versions
+    + mention about VT-X/AMD-v problem for the default ubuntu 64-bit guest OS
+    + display the oudated videos at the end of instruction instead of the beginning
+    + use git reset --hard to update teracy-dev instead of git pull
+
+- Tasks
+    + use latest docker-compose 1.11.2 as default
+    + contribution list is updated
+
+
+Details: https://github.com/teracyhq/dev/milestone/4?closed=1
+
+
 [v0.5.0-b1][] (2017-02-14)
--------------------------
+--------------------------
 
 The next milestone release includes:
 
@@ -230,3 +255,5 @@ Release the first milestone
 [v0.4.0]: https://issues.teracy.org/secure/ReleaseNote.jspa?projectId=10400&version=11000
 
 [v0.5.0-b1]: https://github.com/teracyhq/dev/milestone/1?closed=1
+
+[v0.5.0-b2]: https://github.com/teracyhq/dev/milestone/4?closed=1
