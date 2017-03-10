@@ -267,7 +267,7 @@ teracy-dev Git Clone and Vagrant Up
        $ cd ~/
        $ git clone https://github.com/teracyhq/dev.git teracy-dev
        $ cd teracy-dev
-       $ git checkout develop
+       $ git checkout master
        $ vagrant up
 
    ..  note::
