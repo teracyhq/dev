@@ -177,7 +177,7 @@ Vagrant.configure("2") do |config|
       options[:nfs_udp] = item['nfs_udp'] if !!item['nfs_udp'] == item['nfs_udp']
       options[:nfs_version] = item['nfs_version'] unless item['nfs_version'].nil?
     when 'rsync'
-      options[:rsync__args] = item['rsync__args'] unless item['rsync__args'].nil? or item['rsync__args'].strip().empty?
+      options[:rsync__args] = item['rsync__args'] unless item['rsync__args'].nil? or item['rsync__args'].empty?
       options[:rsync__auto] = item['rsync__auto'] if !!item['rsync__auto'] == item['rsync__auto']
       options[:rsync__chown] = item['rsync__chown'] if !!item['rsync__chown'] == item['rsync__chown']
       options[:rsync__exclude] = item['rsync__exclude'] unless item['rsync__exclude'].nil? or item['rsync__exclude'].empty?
