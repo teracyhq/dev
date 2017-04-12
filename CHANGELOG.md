@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+[v0.5.0-b3][] (2017-04-12)
+--------------------------
+
+Fix the Chef version critical bug
+
+Details: https://github.com/teracyhq/dev/milestone/6?closed=1
+
+
 [v0.5.0-b2][] (2017-03-09)
 --------------------------
 
@@ -257,3 +265,5 @@ Release the first milestone
 [v0.5.0-b1]: https://github.com/teracyhq/dev/milestone/1?closed=1
 
 [v0.5.0-b2]: https://github.com/teracyhq/dev/milestone/4?closed=1
+
+[v0.5.0-b3]: https://github.com/teracyhq/dev/milestone/6?closed=1
