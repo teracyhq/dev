@@ -1,6 +1,6 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -41,7 +41,7 @@
     </script>
 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -68,8 +68,8 @@
 <p>New git users usually get confused with new concepts and workflow. To make it easy, this
 documentation will list common scenarios and how to use what git commands. You will get more
 experience with git over time. This is just the easy starting point to get work with git
-and Teracy&#8217;s projects.</p>
-<p>You should install Teracy&#8217;s development environment to practise those commands mentioned below
+and Teracy’s projects.</p>
+<p>You should install Teracy’s development environment to practise those commands mentioned below
 more easily.</p>
 <div class="section" id="fork">
 <h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline">¶</a></h2>
@@ -77,7 +77,7 @@ more easily.</p>
 into your git account (github, bitbucket) so that you could have full permission on it. The
 repository you copied from is called <code class="docutils literal"><span class="pre">upstream</span></code> (official repository) by convention. The forking
 action is done on the web UI. You do not need to use  the git command for this kind of concept.</p>
-<p>Teraciers must fork the official Teracy&#8217;s projects into their accounts to work.</p>
+<p>Teraciers must fork the official Teracy’s projects into their accounts to work.</p>
 </div>
 <div class="section" id="clone">
 <h2>Clone<a class="headerlink" href="#clone" title="Permalink to this headline">¶</a></h2>
@@ -108,10 +108,10 @@ your local repository and push these changes to remote repositories.</p>
 <li><code class="docutils literal"><span class="pre">upstream</span></code>: is the official repository that you need to keep track of it.</li>
 </ul>
 <p>With DVCS (Distributed version control system) like git, you are encouraged to collaborate with
-other collaborators&#8217; remote repositories.</p>
-<p>For example, I am working on the issue #3 with the title: &#8220;django prod deployment on prod virtual
-machine&#8221; (feature) which depends on an issue that phuonglm is working on: the issue #2 with
-the title: &#8220;add prod virtual machine with basic packages&#8221; (feature). So I need to add phuonglm&#8217;s
+other collaborators’ remote repositories.</p>
+<p>For example, I am working on the issue #3 with the title: “django prod deployment on prod virtual
+machine” (feature) which depends on an issue that phuonglm is working on: the issue #2 with
+the title: “add prod virtual machine with basic packages” (feature). So I need to add phuonglm’s
 repository (for example, <a class="reference external" href="https://github.com/phuonglm/teracy-django-boilerplate.git">https://github.com/phuonglm/teracy-django-boilerplate.git</a>):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git
 $ git fetch phuonglm
@@ -145,7 +145,7 @@ track of it.</p>
 </li>
 <li><p class="first">remote delete</p>
 <blockquote>
-<div><p>Don&#8217;t want to keep track of a remote repository, then remove (<code class="docutils literal"><span class="pre">rm</span></code>) it:</p>
+<div><p>Don’t want to keep track of a remote repository, then remove (<code class="docutils literal"><span class="pre">rm</span></code>) it:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git rm &lt;remote_name&gt;
 </pre></div>
 </div>
@@ -158,7 +158,7 @@ track of it.</p>
 <p><strong>1. Branching off</strong></p>
 <p>When there is an issue that you are going to work, the first thing you need to do is to create a new
 working branch to make any changes on it.</p>
-<p>For example, I am going to work on the issue #1 with the title: &#8220;Cleaning up the project&#8221; of the
+<p>For example, I am going to work on the issue #1 with the title: “Cleaning up the project” of the
 <code class="docutils literal"><span class="pre">enhancement</span></code> type:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ ws
 $ cd personal/teracy
@@ -196,7 +196,7 @@ we push this branch into the <code class="docutils literal"><span class="pre">or
 <div class="section" id="fetch">
 <h2>Fetch<a class="headerlink" href="#fetch" title="Permalink to this headline">¶</a></h2>
 <p>Fetching is usually used to get new updated from a remote repository and you could <code class="docutils literal"><span class="pre">rebase</span></code> or
-<code class="docutils literal"><span class="pre">merge</span></code> remote branch&#8217;s updates into your current working branch on the local repository.</p>
+<code class="docutils literal"><span class="pre">merge</span></code> remote branch’s updates into your current working branch on the local repository.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git merge upstream/develop
 </pre></div>
@@ -331,7 +331,7 @@ use <code class="docutils literal"><span class="pre">git</span> <span class="pre
 </div>
 <div class="section" id="rebase">
 <h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">rebase</span></code> means that you want to keep the remote&#8217;s commit list as base, any changes of local
+<p><code class="docutils literal"><span class="pre">rebase</span></code> means that you want to keep the remote’s commit list as base, any changes of local
 branch should be reorganized and appending to the remote repository. You usually <code class="docutils literal"><span class="pre">rebase</span></code> to get
 the latest changes from the <code class="docutils literal"><span class="pre">upstream</span></code> repository.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
@@ -461,7 +461,7 @@ branch:</p>
 ONLY.</p>
 <p><code class="docutils literal"><span class="pre">squash</span></code> means you choose one or some commits and <code class="docutils literal"><span class="pre">amend</span></code> to its previous commit to be a
 single commit.</p>
-<p>When working, you &#8220;commit early, commit often&#8221;, and you get a list of commits that is hard for your
+<p>When working, you “commit early, commit often”, and you get a list of commits that is hard for your
 collaborators to review, and each commit is not atomic itself. Each commit should be an atomic
 problem solving step, that is the reason why you need <code class="docutils literal"><span class="pre">squash</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git rebase -i HEAD~&lt;index&gt;
@@ -558,7 +558,7 @@ $ man git-&lt;command&gt;
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.1.
     </div>
   </body>
 </html>

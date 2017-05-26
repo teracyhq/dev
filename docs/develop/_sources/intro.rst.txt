@@ -23,7 +23,7 @@ About Teracy
 
 **1. Teracy's vision**
 
-    Technology revolutionize our lives, our society and human beings. Leveraging technology to empower
+    Technology revolutionizes our lives, our society, and human beings. Leveraging technology to empower
     human beings is the present and future of Teracy's development path.
 
 **2. Teracy's mission**
