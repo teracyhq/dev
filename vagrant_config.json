@@ -88,7 +88,7 @@
   },
   "provisioners": [{
     "_id": "0",
-    "version": "12.19.36",
+    "version": "13.1.31",
     "type": "chef_solo",
     "log_level": "info", //one of debug, info, warn, error, fatal. Default: info
     "cookbooks_path": [

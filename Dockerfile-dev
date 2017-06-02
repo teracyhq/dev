@@ -1,4 +1,4 @@
-FROM ruby:2.2.6
+FROM ruby:2.4.0
 
 LABEL authors="hoatle <hoatle@teracy.com>"
 

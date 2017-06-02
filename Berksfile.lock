@@ -1,13 +1,13 @@
 DEPENDENCIES
-  docker (~> 2.13)
+  compat_resource (~> 12.19.0)
+  docker (~> 2.15)
   docker_compose (~> 0.1)
   magic_shell (~> 1.0)
   vim (~> 2.0)
 
 GRAPH
-  compat_resource (12.16.3)
-  docker (2.13.10)
-    compat_resource (>= 12.16.2)
+  compat_resource (12.19.0)
+  docker (2.15.6)
   docker_compose (0.1.1)
   magic_shell (1.0.0)
   vim (2.0.2)

@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the compat_resource cookbook.
 
+## 12.19.0 (2017-04-17)
+
+- Suppress warning already initialized constant
+- Backport yum/apt changes from 12.19
+
 ## 12.16.2 (2016-11-09)
 
 - Sync chef-client changes from Chef 12.16.42
