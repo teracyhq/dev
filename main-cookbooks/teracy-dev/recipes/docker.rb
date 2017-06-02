@@ -37,9 +37,13 @@ def get_docker_compose_release
     release = node['docker_compose']['release']
 
     if release.empty?
-        release = `curl -s https://api.github.com/repos/docker/compose/releases/latest | sed 's/[{}]//g' | awk -v k=text '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w 'tag_name' | awk '{print $2}' | awk 1 ORS=''`
+        release = Mixlib::ShellOut.new("curl -s https://api.github.com/repos/docker/compose/releases/latest | sed 's/[{}]//g' | awk -v k=text '{n=split($0,a,\",\"); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w 'tag_name' | awk '{print $2}' | awk 1 ORS=''")
 
-        node.override['docker_compose']['release'] = release
+        release.run_command
+
+        release.error!
+
+        node.override['docker_compose']['release'] = release.stdout
     end
 
     release
@@ -124,14 +128,13 @@ if docker_conf['enabled'] == true
         include_recipe 'docker_compose::installation'
 
         # install docker-compose auto complete
-        if node['platform'] == 'ubuntu'
-            execute 'install docker-compose autocomplete' do
-                action :run
-                command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
-                creates '/etc/bash_completion.d/docker-compose'
-                user 'root'
-                group 'docker'
-            end
+        execute 'install docker-compose autocomplete' do
+            action :run
+            command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+            creates '/etc/bash_completion.d/docker-compose'
+            user 'root'
+            group 'docker'
+            only_if { node['platform'] == 'ubuntu' }
         end
     end
 end
