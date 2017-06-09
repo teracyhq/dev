@@ -41,7 +41,7 @@ class Chef < (defined?(::Chef) ? ::Chef : Object)
       provides :yum_repository
 
       # http://linux.die.net/man/5/yum.conf
-      property :baseurl, String, regex: /.*/
+      property :baseurl, [String, Array], regex: /.*/
       property :cost, String, regex: /^\d+$/
       property :clean_headers, [TrueClass, FalseClass], default: false # deprecated
       property :clean_metadata, [TrueClass, FalseClass], default: true
@@ -74,7 +74,6 @@ class Chef < (defined?(::Chef) ? ::Chef : Object)
       property :repo_gpgcheck, [TrueClass, FalseClass]
       property :report_instanceid, [TrueClass, FalseClass]
       property :repositoryid, String, regex: /.*/, name_property: true
-      property :sensitive, [TrueClass, FalseClass], default: false
       property :skip_if_unavailable, [TrueClass, FalseClass]
       property :source, String, regex: /.*/
       property :sslcacert, String, regex: /.*/
