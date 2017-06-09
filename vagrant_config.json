@@ -113,6 +113,19 @@
         "members": ["vagrant"], // to append this member to "docker" group
         "action": "create" // one of create, delete. Default: create
       },
+      "docker_registry": {
+        // set true to force re-login with all the defined entries, default: false (login once)
+        "force": true,
+        "entries": [{
+          // default docker hub: "host": "https://index.docker.io/v1/",
+          "username": "",
+          "password": ""
+        },{
+          "host": "registry.gitlab.com",
+          "username": "",
+          "password": ""
+        }]
+      },
       "docker_compose": {
         "release": "1.11.2", // more: https://github.com/docker/compose/releases/
         "enabled": true // "docker" must be enabled to get this

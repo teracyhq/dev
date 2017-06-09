@@ -16,6 +16,7 @@ recipe 'teracy::aliases', "Installs useful aliases for teracy's project developm
 recipe 'teracy-dev::directories', 'Manage directories.'
 recipe 'teracy-dev::env_vars', 'Configures environment variables.'
 recipe 'teracy-dev::docker', 'Installs Docker, docker-compose'
+recipe 'teracy-dev::docker_registry', "Docker registry's tasks: login, ..."
 recipe 'teracy-dev::docker_machine', 'Installs docker-machine'
 recipe 'teracy-dev::inotify', 'Modify inotify, useful for development watching a lot of files'
 recipe 'teracy-dev::proxy', 'Create a reverse proxy with nginx'
