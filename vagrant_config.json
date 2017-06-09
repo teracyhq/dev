@@ -137,6 +137,10 @@
           "command": "cd ~/workspace",
           "action": "add" // one of add, remove. Default: add.
           // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
+        }, {
+          "name": "ctop", // `$ ctop` for top-like interface for container metrics, see: https://github.com/bcicen/ctop
+          "command": "docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest",
+          "action": "add"
         }],
         "env_vars": [{
           "_id": "0",
