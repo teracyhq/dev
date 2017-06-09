@@ -33,9 +33,24 @@
 
 docker_conf = node['docker']
 
-def get_docker_compose_autocomplete_url
+def get_docker_compose_release
     release = node['docker_compose']['release']
-    "https://raw.githubusercontent.com/docker/compose/#{release}/contrib/completion/bash/docker-compose"
+
+    if release.empty?
+        result = Mixlib::ShellOut.new("curl -s https://api.github.com/repos/docker/compose/releases/latest | sed 's/[{}]//g' | awk -v k=text '{n=split($0,a,\",\"); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w 'tag_name' | awk '{print $2}' | awk 1 ORS=''")
+
+        result.run_command
+
+        result.error!
+
+        node.override['docker_compose']['release'] = release = result.stdout
+    end
+
+    release
+end
+
+def get_docker_compose_autocomplete_url
+    "https://raw.githubusercontent.com/docker/compose/#{get_docker_compose_release}/contrib/completion/bash/docker-compose"
 end
 
 
@@ -81,34 +96,45 @@ if docker_conf['enabled'] == true
 
 
     if node['docker_compose']['enabled'] == true
+        release = node['docker_compose']['release']
 
-        bash 'clean up the mismatched docker-compose version' do
-            # docker-compose version 1.10.0, build 4bd6f1a => docker_compose_version: 1.10.0
-            code <<-EOF
-                docker_compose_binary=$(which docker-compose);
-                docker_compose_version=$(docker-compose -v | awk '{print $3}');
-                docker_compose_version=${docker_compose_version::-1};
-                if [ "$docker_compose_version" != "#{node['docker_compose']['release']}" ]; then
+        if release.empty?
+            bash 'clean up previous installed docker-compose' do
+                code <<-EOF
+                    docker_compose_binary=$(which docker-compose);
                     rm -rf $docker_compose_binary || true;
-                fi
-            EOF
-            only_if 'which docker-compose'
-            user 'root'
+                EOF
+                only_if 'which docker-compose'
+                user 'root'
+            end
+        else
+            bash 'clean up the mismatched docker-compose version' do
+                # docker-compose version 1.10.0, build 4bd6f1a => docker_compose_version: 1.10.0
+                code <<-EOF
+                    docker_compose_binary=$(which docker-compose);
+                    docker_compose_version=$(docker-compose -v | awk '{print $3}');
+                    docker_compose_version=${docker_compose_version::-1};
+                    if [ "$docker_compose_version" != "#{release}" ]; then
+                        rm -rf $docker_compose_binary || true;
+                    fi
+                EOF
+                only_if 'which docker-compose'
+                user 'root'
+            end
         end
+
+        autocomplete_url = get_docker_compose_autocomplete_url
 
         include_recipe 'docker_compose::installation'
 
         # install docker-compose auto complete
-        if node['platform'] == 'ubuntu'
-            autocomplete_url = get_docker_compose_autocomplete_url
-
-            execute 'install docker-compose autocomplete' do
-                action :run
-                command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
-                creates '/etc/bash_completion.d/docker-compose'
-                user 'root'
-                group 'docker'
-            end
+        execute 'install docker-compose autocomplete' do
+            action :run
+            command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+            creates '/etc/bash_completion.d/docker-compose'
+            user 'root'
+            group 'docker'
+            only_if { node['platform'] == 'ubuntu' }
         end
     end
 end

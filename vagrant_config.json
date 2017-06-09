@@ -115,7 +115,7 @@
         "action": "create" // one of create, delete. Default: create
       },
       "docker_compose": {
-        "release": "1.11.2", // more: https://github.com/docker/compose/releases/
+        "release": "", // more: https://github.com/docker/compose/releases/
         "enabled": true // "docker" must be enabled to get this
       },
       "docker_machine": {
