@@ -287,5 +287,134 @@ describe "utility" do
         expect(new_provisioners[0]['run_list']).to eql(obj2['provisioners'][0]['run_list'])
       end
     end
+    context "given an object then override it with another object containing an array" do
+      it "all array name in new and old array must be normalized" do
+        obj1 = {}
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_a_run_list" => []
+          }]
+        }
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        expect(new_provisioners[0]['run_list']).to eql(obj2['provisioners'][0]['_a_run_list'])
+      end
+      it "all array name in new and old array must be normalized and value must be appended" do
+        obj1 = {}
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_a_run_list" => ["vagrant", "vim", "teracy"]
+          }]
+        }
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        expect(new_provisioners[0]['run_list']).to eql(obj2['provisioners'][0]['_a_run_list'])
+      end
+      it "all array name in new and old array must be normalized and value must be appended" do
+        obj1 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_a_run_list" => ["vagrant", "vim", "helloworld"]
+          }]
+        }
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_a_run_list" => ["vagrant", "vim", "teracy"]
+          }]
+        }
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        expect(new_provisioners[0]['run_list']).to eql(["vagrant", "vim", "helloworld", "vagrant", "vim", "teracy"])
+      end
+    end
+
+    context "given two objects then unique override it with another object contain array" do
+      it "all array name in new and old array must be normalized and valued must be merged" do
+        obj1 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_ua_run_list" => ["vim", "teracy", "widget", "testsuite"]
+          }]
+        }
+
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_ua_run_list" => ["vagrant", "vim", "teracy"]
+          }]
+        }
+        obj1_origin = obj1.clone
+
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        expect(new_provisioners[0]['run_list']).to eql(["vim", "teracy", "widget", "testsuite", "vagrant"])
+      end
+      it "all array name in new and old array must be normalized and value must be merged" do
+        obj1 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "run_list" => ["vim", "teracy", "widget", "testsuite"]
+          }]
+        }
+
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_ua_run_list" => ["vagrant", "vim", "teracy"]
+          }]
+        }
+        obj1_origin = obj1.clone
+
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+        expect(new_provisioners[0]['run_list']).to eql(["vim", "teracy", "widget", "testsuite", "vagrant"])
+      end
+      it "all array name in new and old array must be normalize" do
+        obj1 = {}
+        obj2 = {
+          "provisioners" => [{
+            "_id" => "0",
+            "_a_run_list" => ["hi", "there"]
+          }]
+        }
+        new_provisioners = overrides(obj1, obj2)['provisioners']
+
+        expect(new_provisioners[0]['run_list']).to eql(obj2['provisioners'][0]['_a_run_list'])
+      end
+    end
+
+    context "Giving many config file follow project base config requirement" do
+      it "after override the config must satisfy the requirement" do
+        teracy_default_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
+        teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_overide.json'))
+        project_org_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/org_project.json'))
+        project1_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project1.json'))
+        project2_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2.json'))
+
+        origin_teracy_default_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
+        origin_teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_overide.json'))
+        origin_project_org_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/org_project.json'))
+        origin_project1_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project1.json'))
+        origin_project2_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2.json'))
+
+        final_config = overrides(teracy_default_config, teracy_override_config)
+        final_config = overrides(final_config, project_org_config)
+        final_config = overrides(final_config, project1_config)
+        final_config = overrides(final_config, project2_config)
+
+        expect(final_config['vm']['synced_folders'].length).to eql(origin_teracy_default_config['vm']['synced_folders'].length - 2 +
+          origin_project1_config['vm']['synced_folders'].length +
+          origin_project2_config['vm']['synced_folders'].length)
+
+        expect(final_config['vm']['synced_folders'][6]['guest']).to eql(origin_project2_config['vm']['synced_folders'][2]['guest'])
+        expect(final_config['vm']['synced_folders'][6]['host']).to eql(origin_project2_config['vm']['synced_folders'][2]['host'])
+        expect(final_config['vm']['synced_folders'][6]['id']).to eql(origin_project2_config['vm']['synced_folders'][2]['id'])
+
+        expect(final_config['vm']['synced_folders'][6]['guest']).to eql(origin_project2_config['vm']['synced_folders'][2]['guest'])
+        expect(final_config['vm']['synced_folders'][6]['host']).to eql(origin_project2_config['vm']['synced_folders'][2]['host'])
+        expect(final_config['vm']['synced_folders'][6]['id']).to eql(origin_project2_config['vm']['synced_folders'][2]['id'])
+
+        expect(final_config['plugins'][2]['options']['aliases'].length).to eql(origin_project1_config['plugins'][0]['options']['_ua_aliases'].length +
+          origin_project2_config['plugins'][0]['options']['_ua_aliases'].length)
+      end
+    end
   end
 end

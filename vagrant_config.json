@@ -139,8 +139,19 @@
           "action": "add" // one of add, remove. Default: add.
           // See more: https://github.com/customink-webops/magic_shell/blob/master/resources/alias.rb
         }, {
+          "_id": "1",
           "name": "ctop", // `$ ctop` for top-like interface for container metrics, see: https://github.com/bcicen/ctop
           "command": "docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest",
+          "action": "add"
+        },{
+          "_id": "2",
+          "name": "http", // `$ http` to make http requests, how to use: https://github.com/teracyhq/httpie-jwt-auth
+          "command": "docker container run -it --rm --net=host teracy/httpie-jwt-auth:latest-alpine",
+          "action": "add"
+        }, {
+          "_id": "3",
+          "name": "https", // shortcut for making https requests
+          "command": "http --default-scheme=https",
           "action": "add"
         }],
         "env_vars": [{
