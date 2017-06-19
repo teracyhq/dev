@@ -115,9 +115,9 @@
       },
       "docker_registry": {
         // set true to force re-login with all the defined entries, default: false (login once)
-        "force": true,
+        "force": false,
         "entries": [{
-          // default docker hub: "host": "https://index.docker.io/v1/",
+          "host": "https://index.docker.io/v1/",
           "username": "",
           "password": ""
         },{
