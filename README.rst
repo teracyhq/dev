@@ -19,6 +19,8 @@ We leverage Docker workflow for our software development and we use ``vagrant``,
 By using this approach, we can work in a consistent development environment and workflow.
 We do not have to install tons of development stuff on the host machine **manually** to get started.
 
+.. note:: We are using the https://github.com/acme101 project to show the best practices from ``teracy-dev`` applied for organizations.
+
 
 Features
 --------
