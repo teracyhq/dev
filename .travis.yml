@@ -1,3 +1,4 @@
+group: deprecated-2017Q2 # see: https://blog.travis-ci.com/2017-06-21-trusty-updates-2017-Q2-launch
 services:
 - docker
 env:
