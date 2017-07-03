@@ -170,21 +170,23 @@ Follow step by step instructions below:
 1. Install ``chocolatey``
 
    Run ``Command Prompt`` **as administrator** and paste the Cmd.exe command copied from
-   https://chocolatey.org/install in the **More Options** section.
+   https://chocolatey.org/install#install-with-cmdexe section.
 
    It should look similar to the following command:
 
    ..  code-block:: bash
 
-       > @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+       > @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
-2. Install ``cyg-get``
+
+2. Install ``cygwin`` and ``cyg-get``
    
    Type the command below on the opened ``Command Prompt``:
 
    ..  code-block:: bash
 
-       > choco install cyg-get -y
+       > choco install cygwin --version 2.8.0 -y --ignore-checksums
+       > choco install cyg-get --version 1.2.1 -y
 
    ..  note::
 
@@ -193,7 +195,7 @@ Follow step by step instructions below:
 
          ..  code-block:: bash
 
-             > choco install cyg-get -y --ignore-checksums --force
+             > choco install cyg-get --version 1.2.1 -y --ignore-checksums --force
 
 
 3. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``

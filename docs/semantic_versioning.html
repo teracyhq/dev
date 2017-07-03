@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Semantic Versioning &#8212; teracy-dev v0.5.0-b3 documentation</title>
-    
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -41,7 +38,7 @@
     </script>
 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -70,7 +67,7 @@ package dependency management. To manage it properly, a consistent semantic vers
 required.</p>
 <p>However, specific platforms (like Python, Java, Ruby, PHP, etc. ) have different ways of managing and
 comparing versions provided by packaging tools. This documentation is used to have rules how to use
-semantic version for Teracy&#8217;s software more easily and consistently.</p>
+semantic version for Teracy’s software more easily and consistently.</p>
 <p>There are tons of different version schemas: <a class="reference external" href="http://en.wikipedia.org/wiki/Software_versioning">http://en.wikipedia.org/wiki/Software_versioning</a>.
 At Teracy, the <code class="docutils literal"><span class="pre">Base</span></code> semantic version system MUST be extended from <a class="reference external" href="http://semver.org/">http://semver.org/</a>. The current
 latest version: <a class="reference external" href="http://semver.org/spec/v2.0.0.html">http://semver.org/spec/v2.0.0.html</a>.</p>
@@ -113,13 +110,13 @@ alpha ::= [a..zA..Z]
 <li>Prerelease tags:</li>
 </ol>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">&#64;</span></code> - &#8220;dev&#8221; means snapshot version of a in-development branch, where all features must be
-worked. When all intended features are complete, move on releasing &#8220;a&#8221; version.</li>
-<li><code class="docutils literal"><span class="pre">a</span></code> - &#8220;alpha&#8221; means features completed but its usage is not stable enough, still major bugs
+<li><code class="docutils literal"><span class="pre">&#64;</span></code> - “dev” means snapshot version of a in-development branch, where all features must be
+worked. When all intended features are complete, move on releasing “a” version.</li>
+<li><code class="docutils literal"><span class="pre">a</span></code> - “alpha” means features completed but its usage is not stable enough, still major bugs
 are expected. Continue refactoring to reach better software quality and stability.</li>
-<li><code class="docutils literal"><span class="pre">b</span></code> - &#8220;beta&#8221; means features completed, only minor bugs are expected. Avoid refactoring here,
+<li><code class="docutils literal"><span class="pre">b</span></code> - “beta” means features completed, only minor bugs are expected. Avoid refactoring here,
 just fix bugs.</li>
-<li><code class="docutils literal"><span class="pre">c</span></code> - &#8220;rc&#8221; means all minor bugs are fixed, the software works stably, and the code will be
+<li><code class="docutils literal"><span class="pre">c</span></code> - “rc” means all minor bugs are fixed, the software works stably, and the code will be
 released unless there is a last minute bug found after test campaigns.</li>
 </ul>
 <ol class="loweralpha simple" start="3">
@@ -219,8 +216,8 @@ buildnumber ::= digit+
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li><code class="docutils literal"><span class="pre">setuptools</span></code> considers this as &#8216;post-release&#8217;</li>
-<li><code class="docutils literal"><span class="pre">pip</span></code> considers this as &#8216;pre-release&#8217;.</li>
+<li><code class="docutils literal"><span class="pre">setuptools</span></code> considers this as ‘post-release’</li>
+<li><code class="docutils literal"><span class="pre">pip</span></code> considers this as ‘pre-release’.</li>
 </ul>
 </div>
 <dl class="docutils">
@@ -370,7 +367,7 @@ buildnumber ::= digit+
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

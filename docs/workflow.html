@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Workflow &#8212; teracy-dev v0.5.0-b3 documentation</title>
-    
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -41,7 +38,7 @@
     </script>
 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -68,7 +65,7 @@
 <p>At Teracy, we care about the workflow that makes it as much consistent and fun as possible, take
 less time with higher quality of work.</p>
 <p>We adopted <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> for our development workflow with some specific
-rules. What&#8217;s the fun with a game without rules :-D?</p>
+rules. What’s the fun with a game without rules :-D?</p>
 <div class="section" id="initializing-working-repositories">
 <h2>Initializing Working Repositories<a class="headerlink" href="#initializing-working-repositories" title="Permalink to this headline">¶</a></h2>
 <p>To work on a repository project, <code class="docutils literal"><span class="pre">fork</span></code> it first to your git account.
@@ -194,10 +191,10 @@ $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
 <li>Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.</li>
 <li>Step 4: Cleaning up branch</li>
 </ul>
-<p>Let&#8217;s get in more detais:</p>
+<p>Let’s get in more detais:</p>
 <p><strong>Step 1: Branching-off based on issue</strong></p>
 <blockquote>
-<div><p>If you do not know what the meaning of &#8220;Branching-off&#8221; is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
+<div><p>If you do not know what the meaning of “Branching-off” is, please check <a class="reference internal" href="#git-branching-off">Git Branching Off</a>.</p>
 <p><strong>Working on features</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git fetch upstream
 $ git checkout upstream/master -b features/&lt;issue-key&gt;-&lt;concise-title&gt;
@@ -222,7 +219,7 @@ $ git checkout upstream/master -b bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 $ git push origin bugs/&lt;issue-key&gt;-&lt;concise-title&gt;
 </pre></div>
 </div>
-<p>Above are the templates <cite>Branching off</cite> based on an issue&#8217;s types.</p>
+<p>Above are the templates <cite>Branching off</cite> based on an issue’s types.</p>
 </div></blockquote>
 <p><strong>Step 2: Developing with Code/ Commit/ Push</strong></p>
 <blockquote>
@@ -291,12 +288,12 @@ There are TWO steps in submitting a pull-request:</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Copy the pull request link on the browser&#8217;s address bar.</p>
+<li><p class="first">Copy the pull request link on the browser’s address bar.</p>
 </li>
 <li><dl class="first docutils">
 <dt>Add Pull-request to your issue.</dt>
 <dd><ul class="first last">
-<li><p class="first">Open your issue &#8211;&gt; Click <strong>Workflow</strong> &#8211;&gt; Click <strong>Send Pull Request</strong>.</p>
+<li><p class="first">Open your issue –&gt; Click <strong>Workflow</strong> –&gt; Click <strong>Send Pull Request</strong>.</p>
 <blockquote>
 <div><img alt="_images/submit-pull-request-issue.png" src="_images/submit-pull-request-issue.png" />
 </div></blockquote>
@@ -330,20 +327,20 @@ help reviewing, comments, suggestions, etc.</p>
 </div>
 <div class="section" id="branch-name-rules">
 <h3>Branch Name Rules<a class="headerlink" href="#branch-name-rules" title="Permalink to this headline">¶</a></h3>
-<p>When start working on a new issue, you always MUST to start a new branch for it and that branch&#8217;s name
+<p>When start working on a new issue, you always MUST to start a new branch for it and that branch’s name
 is based on each type of the issue, which means if the issue is:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">feature</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
-<li><code class="docutils literal"><span class="pre">improvement</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
-<li><code class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
-<li><code class="docutils literal"><span class="pre">bug</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
-<li><code class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></code> =&gt; Branch&#8217;s name is <code class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">feature</span></code> =&gt; Branch’s name is <code class="docutils literal"><span class="pre">features/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">improvement</span></code> =&gt; Branch’s name is <code class="docutils literal"><span class="pre">improvements/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">task</span> <span class="pre">or</span> <span class="pre">sub-task</span></code> =&gt; Branch’s name is <code class="docutils literal"><span class="pre">tasks/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">bug</span></code> =&gt; Branch’s name is <code class="docutils literal"><span class="pre">bugs/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">critical</span> <span class="pre">bug</span></code> =&gt; Branch’s name is <code class="docutils literal"><span class="pre">hot-fixes/&lt;issue-key&gt;-&lt;concise-title&gt;</span></code></li>
 </ul>
 <p>In which:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></code> is the &#8220;key&#8221; of the issues. It could be CLT-xxx, DEV-xxx. The key
+<li><code class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></code> is the “key” of the issues. It could be CLT-xxx, DEV-xxx. The key
 prefix is based on the type of project.</li>
-<li><code class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></code> is the issue&#8217;s title which is rewritten in concise way and replacing <code class="docutils literal"><span class="pre">space</span></code> with <code class="docutils literal"><span class="pre">-</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></code> is the issue’s title which is rewritten in concise way and replacing <code class="docutils literal"><span class="pre">space</span></code> with <code class="docutils literal"><span class="pre">-</span></code>.</li>
 <li><code class="docutils literal"><span class="pre">&lt;issue-key&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;concise-title&gt;</span></code> is seperated by a <code class="docutils literal"><span class="pre">-</span></code> character.</li>
 </ul>
 <p>For example, the issue <code class="docutils literal"><span class="pre">CLT-183</span> <span class="pre">|</span> <span class="pre">Sharing</span> <span class="pre">Tutorial</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">firing</span> <span class="pre">email</span> <span class="pre">#652</span></code>, its branch name can be <code class="docutils literal"><span class="pre">bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652</span></code>.</p>
@@ -412,10 +409,10 @@ $ git branch -d branch_name
 </div>
 </div>
 <div class="section" id="official-repository-s-merging-and-releasing">
-<h3>3. Official Repository&#8217;s Merging and Releasing<a class="headerlink" href="#official-repository-s-merging-and-releasing" title="Permalink to this headline">¶</a></h3>
+<h3>3. Official Repository’s Merging and Releasing<a class="headerlink" href="#official-repository-s-merging-and-releasing" title="Permalink to this headline">¶</a></h3>
 <p>With branch merging and releasing workflow, <em>senior</em> collaborators must follow the git branching
 model as mentioned in the topics above.</p>
-<p>As the merging, pushing must be done on official teracy&#8217;s projects, you need to push to
+<p>As the merging, pushing must be done on official teracy’s projects, you need to push to
 the <cite>upstream</cite> repository.</p>
 <p>For example, you need to merge the work of <em>features/1_auto_fabric_deployment</em> branch from
 <a class="reference external" href="https://github.com/hoatle/django-boilerplate">https://github.com/hoatle/django-boilerplate</a>.</p>
@@ -431,7 +428,7 @@ $ git merge --no-ff phuonglm/features/1-auto-fabric-deployment
 $ git push upstream develop
 </pre></div>
 </div>
-<p>Always <cite>merge</cite> with <cite>&#8211;no-ff</cite> to make sure we have the merging point to refer to later.</p>
+<p>Always <cite>merge</cite> with <cite>–no-ff</cite> to make sure we have the merging point to refer to later.</p>
 </div>
 </div>
 <div class="section" id="references">
@@ -463,7 +460,7 @@ $ git push upstream develop
 <li><a class="reference internal" href="#git-commit-messages">Git Commit Messages</a></li>
 <li><a class="reference internal" href="#git-branch-cleaning-up">Git Branch Cleaning Up</a></li>
 <li><a class="reference internal" href="#git-force-push">Git Force Push</a></li>
-<li><a class="reference internal" href="#official-repository-s-merging-and-releasing">3. Official Repository&#8217;s Merging and Releasing</a></li>
+<li><a class="reference internal" href="#official-repository-s-merging-and-releasing">3. Official Repository’s Merging and Releasing</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#references">References</a></li>
@@ -515,7 +512,7 @@ $ git push upstream develop
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

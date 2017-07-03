@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Getting Started &#8212; teracy-dev v0.5.0-b3 documentation</title>
-    
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -41,7 +38,7 @@
     </script>
 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -75,7 +72,7 @@ workflow on Mac, Linux and Windows with good developer experience and productivi
 <li><p class="first">The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
 expected to work, too.</p>
 </li>
-<li><p class="first">By default, we&#8217;re using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
+<li><p class="first">By default, we’re using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
 Remember to reboot your host PC after making BIOS changes. Please refer to <a class="reference external" href="https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=62339">https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=62339</a> for more details.</p>
 </li>
 <li><p class="first">We recommend the following tested and supported platforms:</p>
@@ -84,16 +81,16 @@ Remember to reboot your host PC after making BIOS changes. Please refer to <a cl
 <li>Ubuntu 16.04</li>
 <li>Windows 10, Windows 8, Windows 7</li>
 </ul>
-<p>Other platforms are expected to work, but we haven&#8217;t fully tested them yet.</p>
+<p>Other platforms are expected to work, but we haven’t fully tested them yet.</p>
 </li>
 </ul>
 </div>
 <ul class="simple">
-<li>If you&#8217;re using a macOS machine,
+<li>If you’re using a macOS machine,
 <a class="reference internal" href="#manual-installation-on-macos"><span class="std std-ref">click here to jump to macOS installation</span></a>.</li>
-<li>If you&#8217;re using a Linux (Ubuntu) machine,
+<li>If you’re using a Linux (Ubuntu) machine,
 <a class="reference internal" href="#manual-installation-on-linux-ubuntu"><span class="std std-ref">click here to jump to Linux (Ubuntu) installation</span></a>.</li>
-<li>If you&#8217;re using a Windows machine,
+<li>If you’re using a Windows machine,
 <a class="reference internal" href="#manual-installation-on-windows"><span class="std std-ref">click here to jump to Windows installation</span></a>.</li>
 </ul>
 <div class="section" id="automatic-installation-on-macos">
@@ -207,15 +204,16 @@ $ sudo apt-get install -y git
 <ol class="arabic">
 <li><p class="first">Install <code class="docutils literal"><span class="pre">chocolatey</span></code></p>
 <p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and paste the Cmd.exe command copied from
-<a class="reference external" href="https://chocolatey.org/install">https://chocolatey.org/install</a> in the <strong>More Options</strong> section.</p>
+<a class="reference external" href="https://chocolatey.org/install#install-with-cmdexe">https://chocolatey.org/install#install-with-cmdexe</a> section.</p>
 <p>It should look similar to the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; @powershell -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; @<span class="s2">&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot;</span> -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">cyg-get</span></code></p>
+<li><p class="first">Install <code class="docutils literal"><span class="pre">cygwin</span></code> and <code class="docutils literal"><span class="pre">cyg-get</span></code></p>
 <p>Type the command below on the opened <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get -y
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cygwin --version <span class="m">2</span>.8.0 -y --ignore-checksums
+&gt; choco install cyg-get --version <span class="m">1</span>.2.1 -y
 </pre></div>
 </div>
 <div class="admonition note">
@@ -223,7 +221,7 @@ $ sudo apt-get install -y git
 <ul class="last">
 <li><p class="first">If you cannot install the <code class="docutils literal"><span class="pre">cyg-get</span></code> due to the checksums error, reinstall it with the
 following command instead:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get -y --ignore-checksums --force
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get --version <span class="m">1</span>.2.1 -y --ignore-checksums --force
 </pre></div>
 </div>
 </li>
@@ -240,7 +238,7 @@ following command instead:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">From now on, let&#8217;s call <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <code class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></code> on Windows.</p>
+<li><p class="first">From now on, let’s call <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <code class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></code> on Windows.</p>
 </li>
 <li><p class="first">If you encounter the following error:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>C:<span class="se">\P</span>rogramData<span class="se">\c</span>hocolatey<span class="se">\l</span>ib<span class="se">\c</span>yg-get<span class="se">\t</span>ools<span class="se">\c</span>yg-get.ps1 : Please ensure you have Cygwin installed.
@@ -331,8 +329,8 @@ $ vagrant up
 <p>If the error still occurs, you have to uninstall and re-install <code class="docutils literal"><span class="pre">virtualbox</span></code>, then
 <code class="docutils literal"><span class="pre">vagrant</span></code> to fix this error.</p>
 </li>
-<li><p class="first">On Windows, if you <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find &#8220;VBoxUSBMon.inf&#8221; and
-&#8220;VBoxDrv.inf&#8221; in your installation directory then re-install it to fix the issue. The VirtualBox
+<li><p class="first">On Windows, if you <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find “VBoxUSBMon.inf” and
+“VBoxDrv.inf” in your installation directory then re-install it to fix the issue. The VirtualBox
 has an installation issue which was reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a></p>
 </li>
 </ul>
@@ -446,7 +444,7 @@ $ docker-compose --version
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2017, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
