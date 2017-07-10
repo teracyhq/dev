@@ -79,8 +79,8 @@ Init the project
       $ cd ~/teracy-dev/workspace
       $ mkdir nodejs-hello-world
 
-- Use the ``node:8.1.3-alpine`` Docker image to run ``$ npm init`` by ``ssh`` into the VM and execute
-  the commands as following:
+- Use the ``node:8.1.3-alpine`` Docker image to run ``$ npm init`` by ``vagrant ssh`` into the VM
+  and execute the commands as follows:
 
   ..  code-block:: bash
 
@@ -218,7 +218,7 @@ Create dev mode
 ---------------
 
 Dev mode usually contains development packages to assist development productivity, for example:
-auto reload when code changes; debugging, etc.
+auto reloading when there are code changes, debugging, etc.
 
 
 - Create ``docker-compose.yml`` file within the ``nodejs-hello-world`` directory with the following
@@ -276,7 +276,7 @@ https://github.com/acme101/nodejs-hello-world/commit/b0a7ac4e95898ecd12651830917
 Run on dev mode
 ---------------
 
-Open a new terminal window, ``ssh`` into the ``teracy-dev`` VM to execute the following commands:
+Open a new terminal window, ``vagrant ssh`` into the ``teracy-dev`` VM to execute the following commands:
 
 ..  code-block:: bash
 
@@ -294,12 +294,12 @@ After that, open:
   open http://dev.nodejs.<vm_ip>.xip.io or https://dev.nodejs.<vm_ip>.xip.io to see the web app.
 
 
-2 way sync for node_modules
----------------------------
+Two-way sync for node_modules
+-----------------------------
 
-By default, we disable ``node_modules`` sync. To have 2 way sync, we need to configure it.
+By default, we disable ``node_modules`` sync. To have two-way sync, we need to configure it.
 
-- Create ``node_modules`` directory from the host terminal window:
+- Create the ``node_modules`` directory from the host terminal window:
 
   ..  code-block:: bash
 
@@ -307,10 +307,8 @@ By default, we disable ``node_modules`` sync. To have 2 way sync, we need to con
       $ mkdir node_modules
       $ touch node_modules/.gitkeep
 
-- Add gitignore for node_modules content, except .gitkeep to keep the empty directory, this is required
-  by the configuration below.
-
-- Configure vagrant_config_override.json the following content:
+- Add ``.gitignore`` for ``node_modules`` content, except ``.gitkeep`` to keep the empty directory,
+  this is required by the configuration of the ``vagrant_config_override.json`` file as follows:
 
   ..  code-block:: json
 
@@ -349,7 +347,7 @@ By default, we disable ``node_modules`` sync. To have 2 way sync, we need to con
 
 - ``$ vagrant reload`` to get it take effect.
 
-- Re-run the dev container to get it install npm packages again:
+- Re-run the dev container to get it to install the ``npm`` packages again:
 
 ..  code-block:: bash
 
@@ -358,7 +356,7 @@ By default, we disable ``node_modules`` sync. To have 2 way sync, we need to con
     $ cd nodejs-hello-world
     $ docker-compose restart dev && docker-compose logs -f dev
 
-Afer this, npm packages should be syned into the host ``node_modules`` directory.
+Afer this, the ``npm`` packages should be syned into the host ``node_modules`` directory.
 
 The changes should be like this: https://github.com/acme101/nodejs-hello-world/commit/7876be54139be716d45f200f2a87a1c3985bf81a
 
@@ -402,7 +400,7 @@ Create Prod mode
 Prod mode will run the Docker image of the app which is used for production deployment. The Docker image
 usually contains only the run-time stuff.
 
-- Create ``Dockerfile`` file within the ``nodejs-hello-world`` directory with the following content:
+- Create the ``Dockerfile`` file within the ``nodejs-hello-world`` directory with the following content:
 
   ..  code-block:: docker
 
@@ -437,7 +435,7 @@ usually contains only the run-time stuff.
       CMD ["sh", "run-prod.sh"]
 
 
-- Create ``docker-compose.prod.yml`` file within the ``nodejs-hello-world`` directory with the
+- Create the ``docker-compose.prod.yml`` file within the ``nodejs-hello-world`` directory with the
   following content:
 
   ..  code-block:: yaml
@@ -477,7 +475,8 @@ https://github.com/acme101/nodejs-hello-world/commit/a710fda1e9602e4f5e558198c6a
 Run on prod mode
 ----------------
 
-Open a new terminal window,, `ssh` into the ``teracy-dev`` VM to execute the following commands:
+Open a new terminal window,, `vagrant ssh` into the ``teracy-dev`` VM to execute the following
+commands:
 
 ..  code-block:: bash
 
@@ -492,7 +491,7 @@ Open a new terminal window,, `ssh` into the ``teracy-dev`` VM to execute the fol
 After that, open:
 
 - http://nodejs.teracy.dev or https://nodejs.teracy.dev on your host browser to see the app
-  on the dev mode.
+  on the prod mode.
 - Check out the VM's :ref:`basic_usage-ip_address` and on any device within your LAN,
   open http://nodejs.<vm_ip>.xip.io or https://nodejs.<vm_ip>.xip.io to see the web app.
 
@@ -512,7 +511,8 @@ Run on review mode
 
 For example, we're going to review `hoatle/nodejs-hello-world:feature-1` Docker image.
 
-Open a new terminal window,, `ssh` into the ``teracy-dev`` VM to execute the following commands:
+Open a new terminal window,, ``$ vagrant ssh`` into the ``teracy-dev`` VM to execute the following
+commands:
 
 ..  code-block:: bash
 
@@ -541,7 +541,7 @@ For deployment, we're going to deploy on Heroku, Google Container Engine (Kubern
 
 The changes should be like this: https://github.com/acme101/nodejs-hello-world/commit/ca822a679691de619200e7cd2a0a5d946e5045ae
 
-More the most up to date and more information, please checkout the README.md file from the
+More the most up-to-date and more information, please checkout the README.md file from the
 project https://github.com/acme101/nodejs-hello-world
 
 We can deploy the app on GKE (Google Container Engine) and Heroku by default.
@@ -553,5 +553,5 @@ Summary
 -------
 
 Congratulations, we've created a basic hello world Node.js app with Docker workflow, CI/CD system on
-the ``teracy-dev``. This is the current best practices to work with ``teracy-dev``, we can apply
+the ``teracy-dev``. These are the current best practices to work with ``teracy-dev``, we can apply
 these best practices to different types of projects and stacks.
