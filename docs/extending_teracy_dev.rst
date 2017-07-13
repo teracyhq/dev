@@ -30,7 +30,7 @@ available cookbook for us to use to install ``ChefDK`` automatically on our VM:
 https://supermarket.chef.io/cookbooks/chef-dk
 
 
-Usually, we have ``dev-setup`` directory to extend ``teracy-dev``. The initial ``dev-setup`` content
+Usually, we have a ``dev-setup`` directory to extend ``teracy-dev``. The initial ``dev-setup`` content
 should be like this: https://github.com/acme101/kubernetes-dev-setup/tree/0-initial
 
 To install ``ChefDK``, we must install the ``chef-dk`` cookbook and use it as follows:
