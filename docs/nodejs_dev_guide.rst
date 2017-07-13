@@ -541,7 +541,7 @@ For deployment, we're going to deploy on Heroku, Google Container Engine (Kubern
 
 The changes should be like this: https://github.com/acme101/nodejs-hello-world/commit/ca822a679691de619200e7cd2a0a5d946e5045ae
 
-More the most up-to-date and more information, please checkout the README.md file from the
+To get the most up-to-date and more information, please checkout the README.md file from the
 project https://github.com/acme101/nodejs-hello-world
 
 We can deploy the app on GKE (Google Container Engine) and Heroku by default.
