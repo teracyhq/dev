@@ -166,6 +166,12 @@ This should be the same on Windows 10, Windows 8 and Windows 7.
 
 Follow step by step instructions below:
 
+  ..  note::
+
+      - You need to look after the console output, if there is no console output after some time,
+        press "Enter" key to make sure the process should continue.
+
+      - You must "restart the machine" when instructed to make sure we install packages properly.
 
 1. Install ``chocolatey``
 
@@ -178,8 +184,24 @@ Follow step by step instructions below:
 
        > @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
+   After the installation is finished, restart the machine.
 
-2. Install ``cygwin`` and ``cyg-get``
+2. Install ``dotnet4.5``
+
+   ..  note::
+
+       This is required for the ``vagrant`` installation later, see more:
+       https://github.com/teracyhq/dev/issues/348#issuecomment-315068962
+
+   Run ``Command Prompt`` **as administrator** and type the following command:
+
+   ..  code-block:: bash
+
+       > choco install dotnet4.5 --version 4.5.20120822 -y
+
+   After the installation is finished, restart the machine.
+
+3. Install ``cygwin`` and ``cyg-get``
    
    Type the command below on the opened ``Command Prompt``:
 
@@ -198,7 +220,7 @@ Follow step by step instructions below:
              > choco install cyg-get --version 1.2.1 -y --ignore-checksums --force
 
 
-3. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``
+4. Install ``bash-completion``, ``git``, ``virtualbox`` and ``vagrant``
 
    Run ``Cygwin Terminal`` **as administrator** with the following commands:
 
@@ -243,7 +265,7 @@ Follow step by step instructions below:
 
         $ choco install vagrant --version 1.9.1 -y
 
-   After finishing the ``vagrant`` installation, you are recommended to restart your machine.
+   After finishing the ``vagrant`` installation, restart the machine.
 
 Please check out the instruction video below for more details:
 

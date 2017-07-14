@@ -201,6 +201,16 @@ $ sudo apt-get install -y git
 <span id="id3"></span><h2>Manual Installation on Windows<a class="headerlink" href="#manual-installation-on-windows" title="Permalink to this headline">¶</a></h2>
 <p>This should be the same on Windows 10, Windows 8 and Windows 7.</p>
 <p>Follow step by step instructions below:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>You need to look after the console output, if there is no console output after some time,
+press “Enter” key to make sure the process should continue.</li>
+<li>You must “restart the machine” when instructed to make sure we install packages properly.</li>
+</ul>
+</div>
+</div></blockquote>
 <ol class="arabic">
 <li><p class="first">Install <code class="docutils literal"><span class="pre">chocolatey</span></code></p>
 <p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and paste the Cmd.exe command copied from
@@ -209,6 +219,19 @@ $ sudo apt-get install -y git
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; @<span class="s2">&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot;</span> -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
 </pre></div>
 </div>
+<p>After the installation is finished, restart the machine.</p>
+</li>
+<li><p class="first">Install <code class="docutils literal"><span class="pre">dotnet4.5</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is required for the <code class="docutils literal"><span class="pre">vagrant</span></code> installation later, see more:
+<a class="reference external" href="https://github.com/teracyhq/dev/issues/348#issuecomment-315068962">https://github.com/teracyhq/dev/issues/348#issuecomment-315068962</a></p>
+</div>
+<p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and type the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install dotnet4.5 --version <span class="m">4</span>.5.20120822 -y
+</pre></div>
+</div>
+<p>After the installation is finished, restart the machine.</p>
 </li>
 <li><p class="first">Install <code class="docutils literal"><span class="pre">cygwin</span></code> and <code class="docutils literal"><span class="pre">cyg-get</span></code></p>
 <p>Type the command below on the opened <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code>:</p>
@@ -270,7 +293,7 @@ file with the new name <em>cygwinsetup.exe</em> into the <em>cygwin</em> folder 
 </div>
 </li>
 </ul>
-<p>After finishing the <code class="docutils literal"><span class="pre">vagrant</span></code> installation, you are recommended to restart your machine.</p>
+<p>After finishing the <code class="docutils literal"><span class="pre">vagrant</span></code> installation, restart the machine.</p>
 </li>
 </ol>
 <p>Please check out the instruction video below for more details:</p>
