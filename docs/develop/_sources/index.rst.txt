@@ -15,6 +15,7 @@ Contents:
    getting_started
    basic_usage
    advanced_usage
+   extending_teracy_dev
    docker
    tool_chain
    built_in_ide
