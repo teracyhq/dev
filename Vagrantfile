@@ -4,27 +4,74 @@ require 'json'
 load File.dirname(__FILE__) + '/lib/utility.rb'
 load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
+
 # Load default setting
 file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
 data_hash = JSON.parse(file)
 override_hash = nil
 
 # Check and override if exist any match JSON object from vagrant_config_override.json
-if File.exist? (File.dirname(__FILE__) + '/vagrant_config_override.json')
-  override_file = File.read(File.dirname(__FILE__) + '/vagrant_config_override.json')
 
-  begin
+begin
+  if File.exist?(File.dirname(__FILE__) + '/vagrant_config_override.json')
+    parsing_file = File.dirname(__FILE__) + '/vagrant_config_override.json'
+    override_file = File.read(parsing_file)
     override_hash = JSON.parse(override_file)
+
     data_hash = overrides(data_hash, override_hash)
-  rescue Exception => msg
-    puts red(msg)
-    puts red('from vagrant_config_override.json')
-    ans = prompt yellow("some errors have occured and 'vagrant_config_override.json' file will not be used, do you want to continue? [y/N]: ")
-    if ans.downcase != 'y'
-      exit!
+  end
+
+  if File.exist?(File.dirname(__FILE__) + '/workspace/dev-setup/vagrant_config_default.json')
+    parsing_file = File.dirname(__FILE__) + '/workspace/dev-setup/vagrant_config_default.json'
+    org_config_file = File.read(parsing_file)
+    org_config_hash = JSON.parse(org_config_file)
+
+    overide_config_file_path = parsing_file.gsub(/default\.json$/, "overide.json")
+    if File.exist?(overide_config_file_path)
+      override_config_file = File.read(overide_config_file_path)
+      parsing_file = overide_config_file_path
+      overide_config_hash = JSON.parse(override_config_file)
+      org_config_hash = overrides(org_config_hash, overide_config_hash)
+    end
+
+    if !org_config_hash.nil?
+      overrides(data_hash, org_config_hash)
     end
   end
+
+
+  if data_hash['vagrant'] && data_hash['vagrant']['config_paths']
+    data_hash['vagrant']['config_paths'].map do |default_config_file_path|
+      overide_config_file_path = default_config_file_path.gsub(/default\.json$/, "overide.json")
+      if File.exist?(default_config_file_path)
+        default_config_file = File.read(default_config_file_path)
+        parsing_file = default_config_file_path
+        project_config_hash = JSON.parse(default_config_file)
+      else
+        puts red('Error read file ' + default_config_file_path + '. Please check if that file exist. Exiting.' )
+        exit!
+      end
+
+      if File.exist?(overide_config_file_path)
+        override_config_file = File.read(overide_config_file_path)
+        parsing_file = overide_config_file_path
+        overide_config_hash = JSON.parse(override_config_file)
+        project_config_hash = overrides(project_config_hash, overide_config_hash)
+      end
+      if !project_config_hash.nil?
+        overrides(data_hash, project_config_hash)
+      end
+    end
+  end
+rescue Exception => msg
+  puts red(msg)
+  puts red('from ' + parsing_file)
+  ans = prompt yellow("some errors have occured and '" + parsing_file + "' file will not be used, do you want to continue? [y/N]: ")
+  if ans.downcase != 'y'
+    exit!
+  end
 end
+
 
 Vagrant.configure("2") do |config|
 

@@ -1,0 +1,49 @@
+{
+  "vm": {
+    "networks": [{
+      "_id": "0",
+      "bridge": [
+        // If it asks for your network interface, add it the right network interface here
+        // to choose it by default, you don't have to choose again when $ vagrant reload
+        // note that if you choose the inactive network interface, problems could happen
+        // then uncomment the line below and $ vagrant reload to select the right one
+        //"en0: Wi-Fi (AirPort)" 
+      ]
+    }]
+  },
+  "vagrant": {
+    "config_paths": [
+      "workspace/angular-hello-world/vagrant_config.default.json",
+      "workspace/nextjs-hello-world/vagrant_config.default.json"
+    ]
+  },
+  "vb": {
+    "memory": 2048, // need to adjust for the right optimal MEM
+    "cpus": 2
+  },
+  "provisioners": [{
+    "_id": "0",
+    "_a_cookbooks_path": [
+      "workspace/dev-setup/chef/main-cookbooks"
+    ],
+    "_ua_run_list": [
+      "vim",
+      "teracy-dev",
+      "acme"
+    ],
+    "json": {
+      "teracy-dev": {
+        "aliases": [ {
+          "name": "http", // `$ http` to make http requests, how to use: https://github.com/teracyhq/httpie-jwt-auth
+          "command": "docker container run -it --rm --net=host teracy/httpie-jwt-auth:latest-alpine",
+          "action": "add"
+        }],
+        "proxy": {
+          "container": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }]
+}
