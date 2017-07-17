@@ -23,11 +23,12 @@ before_script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
 - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$IMAGE_TAG_PREFIX$TAG
 script:
+- exit 1;
 - ./.travis/build.sh
 after_success:
 - ./.travis/deploy.sh
 notifications:
   slack:
     rooms:
-      secure: u2wBISA6o8YN7/wBT62fEs5eUowNu7ksZWFz5FzGtPmY+LeRRwRcUspTtnBBPup38oWsOBXFLCMgSr5uPhnsYxk/bfzAq/ppHsTvlbbl83Lbgc8pcNs9MEZvamW0W6vlJYqzE4VVQ0HqYWkjf2P8rGtuHKGvRLzt20lvlyTuN1M=
+      secure: 7rOCiLQZBvSATaFhw/6AgLRo/dGtoume8t0Bmaao5Tp7RKe99qLdN672OzY8aQzxWvP6pexcTvgcVaIIIEk808F7l6tTsz4HRp1TNwxeb0q6kiW0ZgTGS7KvRe17sSpcLUv26T1/flaLbmOaRoqNm/e77onenuuEgM5LTIkc11s=
     on_success: change
