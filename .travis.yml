@@ -28,5 +28,6 @@ after_success:
 - ./.travis/deploy.sh
 notifications:
   slack:
-    on_success: :change
-    secure: bq2R86HUFq0fBr/YcfbuTBXbRXcUP6yb66WRwC9koJK0Et9iynIOu6WLBiQ6qmJhEWEIBNRLqnR2OWQXl3LdYlUaZ1M4e8a1R87g/Mn7LlT7GCrIwVAdr9XpWHi+pmazIk+dMe3jms1JcCjlIimh+eqaFnAmC1pfBHrIVjhCssg=
+    rooms:
+      - secure: 4i1vGAmnysabpirj1LxpVe1QD9/P3Lmf6J8S7qQECwgI+onm7UPDr8V51o6cHC2ptpOCOL/WRpfUuNsiEZnwU+cLx3EbRm0S8/xcJ7uSmqcPh6oHAZ4f32V1tgsTt0g1GHRlGT/nEOw/dg/E+QKHpqEcpAG6fcq4nPNP2Kdixco=
+    on_success: change
