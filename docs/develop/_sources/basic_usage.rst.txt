@@ -31,6 +31,7 @@ Vagrant
 
 For more, please check out: https://www.vagrantup.com/docs/getting-started/
 
+.. _basic_usage-ip_address:
 
 IP Address
 ----------
