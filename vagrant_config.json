@@ -177,7 +177,7 @@
             "enabled": false,
             "name": "nginx-proxy",
             "repo": "jwilder/nginx-proxy",
-            "tag": "latest",
+            "tag": "alpine",
             "volumes": ["/var/run/docker.sock:/tmp/docker.sock:ro", "/etc/nginx/certs:/etc/nginx/certs"],
             "restart_policy": "always",
             "port": ["80:80", "443:443"]
