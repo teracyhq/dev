@@ -39,21 +39,20 @@ begin
     end
   end
 
-
   if data_hash['vagrant'] && data_hash['vagrant']['config_paths']
     data_hash['vagrant']['config_paths'].map do |default_config_file_path|
       overide_config_file_path = default_config_file_path.gsub(/default\.json$/, "overide.json")
-      if File.exist?(default_config_file_path)
-        default_config_file = File.read(default_config_file_path)
+
+      if File.exist?(File.dirname(__FILE__) + '/' + default_config_file_path)
+        default_config_file = File.read(File.dirname(__FILE__) + '/' + default_config_file_path)
         parsing_file = default_config_file_path
         project_config_hash = JSON.parse(default_config_file)
       else
-        puts red('Error read file ' + default_config_file_path + '. Please check if that file exist. Exiting.' )
-        exit!
+        puts "[teracy-dev][INFO]: #{default_config_file_path} not found, make sure this is intended."
       end
 
-      if File.exist?(overide_config_file_path)
-        override_config_file = File.read(overide_config_file_path)
+      if File.exist?(File.dirname(__FILE__) + '/' + overide_config_file_path)
+        override_config_file = File.read(File.dirname(__FILE__) + '/' + overide_config_file_path)
         parsing_file = overide_config_file_path
         overide_config_hash = JSON.parse(override_config_file)
         project_config_hash = overrides(project_config_hash, overide_config_hash)
@@ -71,7 +70,6 @@ rescue Exception => msg
     exit!
   end
 end
-
 
 Vagrant.configure("2") do |config|
 
