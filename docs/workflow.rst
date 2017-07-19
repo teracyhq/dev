@@ -1,7 +1,7 @@
 Workflow
 ========
 
-At Teracy, we care about the workflow that makes it as much consistent and fun as possible, take
+At Teracy, we care about the workflow that makes it as much consistent and fun as possible to take
 less time with higher quality of work.
 
 We adopted `A successful Git branching model`_ for our development workflow with some specific
@@ -11,67 +11,62 @@ rules. What's the fun with a game without rules :-D?
 Initializing Working Repositories
 ---------------------------------
 
-To work on a repository project, ``fork`` it first to your git account.
-Your working repositories MUST be cloned from your git account and stored under
-the ``workspace/personal`` directory.
+To work on a repository project, ``fork`` it first to your personal account.
+Your working repositories MUST be cloned from your personal  account and stored under
+the ``workspace`` directory.
 
-For example, you are going to work on the
-https://code.teracy.org/projects/PILOT/repos/pixelate/browse project, follow the steps below:
+For example, you are going to work on the https://github.com/teracyhq/dev project, follow the steps below:
 
-1. ``Fork`` the official repository to your developer account.
+1. ``Fork`` the official repository to your personal account.
 
     **Step 1**: Click ``Fork``.
 
     .. image:: _static/workflow/fork-1.png
 
-    **Step 2**: Click ``Fork repository``.
+    **Step 2**: Click the avatar image to start forking
 
     .. image:: _static/workflow/fork-2.png
-        :width: 500
 
     Forking successfully with the URL like this:
 
     .. image:: _static/workflow/fork-3.png
 
 
-2. ``Clone`` it to   workspace.
+2. ``Clone`` it to the ``workspace`` directory.
 
-    **Step 1**: Click ``Clone`` to get the ``.git`` repository clone URL.
+    **Step 1**: Click ``Clone or download`` to get the ``git`` repository URL.
 
-    **Step 2**: Copy the URL ``ssh://git@code.teracy.org/~hoavt/pixelate.git`` in the
-    ``SSH`` field.
+    **Step 2**: Copy the URL in the ``SSH`` field (for example, mine is ``git@github.com:hoavt/teracy-dev.git``).
 
     **Step 3**: Open the terminal window and type the ``git clone`` command as below:
     ::
 
-        $ git clone ssh://git@code.teracy.org/~hoavt/pixelate.git
-                ============== "Forked" repo URL ===================
-
-    .. image:: _static/workflow/clone-fork-url.png
-
+        $ cd workspace
+        $ git clone git@github.com:hoavt/teracy-dev.git
 
 3. Add ``upstream`` repository which is the official repository.
 
-    **Step 1**: Browse the repository ``https://code.teracy.org/projects/PILOT/repos/pixelate/browse``, and click ``Clone`` to get the ``.git`` clone URL.
-
-    **Step 2**: Copy the URL ``ssh://git@code.teracy.org/pilot/pixelate.git`` in the **SSH** field.
-
-    **Step 3**: Open the terminal window and type the ``git remote add upstream`` command as below:
-    ::
-
-        $ git remote add upstream ssh://git@code.teracy.org/pilot/pixelate.git
-            ================= Official repo URL ==================
+    **Step 1**: Browse the repository ``https://github.com/teracyhq/dev``, and click ``Clone or download`` to get the official ``git`` repository URL.
 
     .. image:: _static/workflow/clone-official-url.png
+
+    **Step 2**: Copy the URL ``git@github.com:teracyhq/dev.git`` in the **SSH** field.
+
+    **Step 3**: Open the terminal window and type the ``git remote add upstream`` command in the ``teracy-dev`` folder
+    as below:
+    ::
+
+        $ cd teracy-dev
+        $ git remote add upstream git@github.com:teracyhq/dev.git
 
 4. Recheck to verify your clone by using the ``git remote -v`` command.
 
     .. image:: _static/workflow/git-remote-info.png
 
-The successful start is when you have both these remotes on your local development:
+The successful start is when you have both these remotes on your local repository.
 
-    - ``origin`` (remote from your repo)
-    - ``upstream`` (remote from official repo)
+    - ``origin`` (remote from your repository)
+    - ``upstream`` (remote from the official repository)
 
 After initializing working repository successfully, switch to the next step: `Git Branching Off`_.
 
@@ -82,55 +77,58 @@ Git Branching Off
 
 Usually, a new branch should be branched off from a target to-be-merged remote branch.
 It is often *upstream/develop* or sometimes *upstream/master*. However, there are cases
-which are not applied:
-Always keep in mind that you need to rebase often the work of that upstream branch to your working branch.
+which are not applied.
 
-Firstly, you must know what the meaning of “Branching Off” is . In a shorthand, it means you checkout from a branch,
+Remember to rebase your local branch with the remote upstream branch as often as possible.
+
+Firstly, you must know what the meaning of “Branching Off” is. It means you checkout from a branch,
 then create another branch from that checkout.
 ::
 
-    $ git checkout branch-1 -b branch-2
+    $ git checkout upstream/branch-1 -b branch-2
 
-Here is how it works: Git starts checkout branch-1, then creates branch-2 based on that checkout.
-Now branch-2 is on your local and ready for you to work on it.
+Here is how it works:
 
-This is a demonstration example. ``phuonglm`` is working on
-``features/DEV-1-fabric-deployment-virtual-machine``, and you are going to work on
-``features/DEV-2-fabric-deployment-remote-machine`` which depends on
-``phuonglm’s features/DEV-1``. On this case, you MUST indicate the branch name with ``deps_<issue-key>``.
+Git starts to checkout the ``branch-1`` branch, then creates a new branch named ``branch-2`` basing on
+the ``branch-1`` branch. Now you are at the ``branch-2`` branch on your local and it's ready for you to work on it.
 
-(In case, you are working on a branch which depends on many different branches, the branch name should have
-``deps_<issue-key[_issue-key]>``. For example: ``deps_DEV-1_DEV-2``.)
+This is a demonstration example. ``phuonglm`` is working on the
+``features/#12-fabric-deployment-virtual-machine`` branch, and you are going to work on the
+``features/#13-fabric-deployment-remote-machine`` branch which depends on
+phuonglm’s ``features/#12-fabric-deployment-virtual-machine`` branch. On this case, you MUST indicate the branch name with ``deps_<issue-key>``.
+
+In case, you are working on a branch which depends on many different branches, the branch name should have
+``deps_<issue-key>_<issue-key>``. For example: ``deps_#1_#2``.
 ::
 
     $ git remote add phuonglm https://github.com/phuonglm/teracy-django-boilerplate.git       (1)
     $ git fetch phuonglm                                                                      (2)
-    $ git checkout phuonglm/features/DEV-1-fabric-deployment-virtual-machine -b               (3)
-      features/DEV-2-fabric-deploymen-remote-machine-deps_DEV-1
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1              (4)
+    $ git checkout phuonglm/features/#12-fabric-deployment-virtual-machine -b               (3)
+      features/#13-fabric-deployment-remote-machine-deps_#12
+    $ git push origin features/#13-fabric-deployment-remote-machine-deps_#12              (4)
 
 
 Details:
-    - \(1) Adds the official repository from which you use source code for your issue.
-    - \(2) Fetches to get the  new updates of the official repository.
-    - \(3) Creates a new branch on your local device basing the remote branch.
-    - \(4) Pushes your new branch to Git to wait for being reviewed and merged to the ``features/DEV-1`` branch.
+    - \(1) Adds the official repository from which you use the source code for your issue.
+    - \(2) Fetches to get the new updates of the official repository.
+    - \(3) Creates a new branch on your local device basing on the remote branch.
+    - \(4) Pushes your new branch to ``Git`` to wait for being reviewed and merged to the ``features/#12-fabric-deployment-virtual-machine`` branch.
 
-When the ``phuonglm’s features/DEV-1-fabric-deployment-virtual-machine`` has some updates, you need to fetch
+When the phuonglm’s ``features/#12-fabric-deployment-virtual-machine`` branch has any updates, you need to fetch
 and rebase on that branch:
 ::
 
     $ git fetch phuonglm
-    $ git rebase phuonglm/features/DEV-1-fabric-deployment-virtual-machine
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+    $ git rebase phuonglm/features/#12-fabric-deployment-virtual-machine
+    $ git push origin features/#13-fabric-deployment-remote-machine-deps_#12 -f
 
-When ``phuonglm’s features/DEV-1`` is merged into ``upstream/develop``, you need to rebase on it to get these
+When phuonglm’s ``features/features/#12-fabric-deployment-virtual-machine`` branch is merged into ``upstream/develop``, you need to rebase on it to get these
 new updates:
 ::
 
     $ git fetch upstream
     $ git rebase upstream/develop
-    $ git push origin features/DEV-2-fabric-deployment-remote-machine-deps_DEV-1 -f
+    $ git push origin features/#13-fabric-deployment-remote-machine-deps_#12 -f
 
 .. note::
        Git is a distributed version control system, so collaboration like this should be encouraged.
@@ -155,7 +153,7 @@ The workingflow is summarized under 4 major steps:
 - Step 3: Submitting pull-request. Waiting for approval or resolving conflict if any.
 - Step 4: Cleaning up branch
 
-Let's get in more detais:
+Let's get in more details:
 
 **Step 1: Branching-off based on issue**
 
@@ -165,7 +163,7 @@ Let's get in more detais:
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b features/<issue-key>-<concise-title>
+        $ git checkout upstream/develop -b features/<issue-key>-<concise-title>
         $ git push origin features/<issue-key>-<concise-title>
 
 
@@ -173,39 +171,39 @@ Let's get in more detais:
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b improvements/<issue-key>-<concise-title>
+        $ git checkout upstream/develop -b improvements/<issue-key>-<concise-title>
         $ git push origin improvements/<issue-key>-<concise-title>
 
     **Working on tasks or sub-tasks**
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b tasks/<issue-key>-<concise-title>
+        $ git checkout upstream/develop -b tasks/<issue-key>-<concise-title>
         $ git push origin tasks/<issue-key>-<concise-title>
 
     **Working on bugs**
     ::
 
         $ git fetch upstream
-        $ git checkout upstream/master -b bugs/<issue-key>-<concise-title>
+        $ git checkout upstream/develop -b bugs/<issue-key>-<concise-title>
         $ git push origin bugs/<issue-key>-<concise-title>
 
 
-    Above are the templates `Branching off` based on an issue's types.
+    Above are the templates `Branching off` based on issues' types.
 
 **Step 2: Developing with Code/ Commit/ Push**
 
-    During your coding, you would make some commit and push, in that case you have to check TWO things:
+    During your coding, you would make some commits and push, in that case you have to check TWO things:
 
         - `Quality Checklist`_
         - `Git Commit Messages`_
 
-    If there are some changes from the remote branch (for example, *upstream/master*) that you need,
+    If there are some changes from the remote branch (for example, *upstream/develop*) that you need,
     you have to rebase your branch with these updates. It could be done by these commands:
     ::
 
         $ git fetch upstream
-        $ git rebase upstream/master
+        $ git rebase upstream/develop
 
     By doing this, your branch will be rebased with updates from others.
     If it has any conflicts, you have to resolve them by:
@@ -218,6 +216,7 @@ Let's get in more detais:
         The sample on a resolved-conflict file:
 
         .. image:: _static/workflow/conflict-resolved.png
+
     - Adding conflict-resolved-file in git, then continuing to rebase.
         ::
 
@@ -228,8 +227,15 @@ Let's get in more detais:
     ::
 
         $ git add -a
-        $ git commit -m "<issue-key>|git commit message"
+        $ git commit -m "@ <issue-key> | git commit messages"
         $ git push origin [your-branch-name]
+
+    For example:
+    ::
+
+        $ git commit -m "@ #3 | something here"
+
+    Remember that there is a space character before and after "|", and use the ``#issue-number`` for the issues on github, and gitlab.
 
 **Step 3: Submitting Pull-request**
 
@@ -238,17 +244,15 @@ Let's get in more detais:
 
 
     1. Create Pull-request for your code.
-        - Open the **Create Pull Request** form:
-            .. image:: _static/workflow/submit-pull-request-code-1.png
+        - Access the repository and click ``Compare & pull request``
+            .. image:: _static/workflow/submit-pull-request-code.png
 
-        - Input the neccessary information into the form:
+        - Select the repository to which you want to merge your pull request.
+            .. image:: _static/workflow/select-repo-to-merge.png
 
-            .. image:: _static/workflow/create-pull-request-form.png
+        - Click ``Create pull request``
 
-    2. Copy the pull request link on the browser's address bar.
-
-
-    3. Add Pull-request to your issue.
+    2. Optional if you're working on issues at issues.teracy.org. Copy the pull request link on the browser's address bar, then add Pull-request to your issue.
         - Open your issue --> Click **Workflow** --> Click **Send Pull Request**.
 
             .. image:: _static/workflow/submit-pull-request-issue.png
@@ -267,7 +271,7 @@ Let's get in more detais:
 
 **Step 4 : Cleaning up branch**
 
-    After your code get reviewed and approved. It will be merged to the offical repository, so you have to make a
+    After your code gets reviewed and approved. It will be merged to the official repository, so you have to make a
     `Git Branch Cleaning Up`_ to clean up your local and get ready for the next issue.
 
 
@@ -281,23 +285,21 @@ To prevent chaos happening, you should follow some rules below in the workflow:
 Branch Name Rules
 -----------------
 
-When start working on a new issue, you always MUST to start a new branch for it and that branch's name
-is based on each type of the issue, which means if the issue is:
+When starting to work on a new issue, you always MUST start a new branch for it and that branch’s name is based on each type of the issue, which means if the issue is:
 
-- ``feature`` => Branch's name is ``features/<issue-key>-<concise-title>``
-- ``improvement`` => Branch's name is ``improvements/<issue-key>-<concise-title>``
-- ``task or sub-task`` => Branch's name is ``tasks/<issue-key>-<concise-title>``
-- ``bug`` => Branch's name is ``bugs/<issue-key>-<concise-title>``
-- ``critical bug`` => Branch's name is ``hot-fixes/<issue-key>-<concise-title>``
+- ``feature`` => Branch's name is ``features/<issue_key>-<concise-title>`` or ``feature/<issue_key>-<concise-title>``
+- ``improvement`` => Branch's name is ``improvements/<issue-key>-<concise-title>`` or ``improvement/<issue-key>-<concise-title>``
+- ``task or sub-task`` => Branch's name is ``tasks/<issue-key>-<concise-title>`` or ``task/<issue-key>-<concise-title>``
+- ``bug`` => Branch's name is ``bugs/<issue-key>-<concise-title>`` or ``bug/<issue-key>-<concise-title>``
+- ``critical bug`` => Branch's name is ``hot-fixes/<issue-key>-<concise-title>`` or ``hot-fix/<issue-key>-<concise-title>``
 
 In which:
 
-- ``<issue-key>`` is the "key" of the issues. It could be CLT-xxx, DEV-xxx. The key
-  prefix is based on the type of project.
-- ``<concise-title>`` is the issue's title which is rewritten in concise way and replacing ``space`` with ``-``.
-- ``<issue-key>`` and ``<concise-title>`` is seperated by a ``-`` character.
+- ``<issue-key>`` is the "key" of the issue. It could be ``CLT-XXX``, ``DEV-XXX`` for issues on ``issues.teracy.org`` or ``#XXX`` for issues on ``gitlab`` and ``github``. The key prefix is based on the type of project.
+- ``<concise-title>`` is the issue's title which is rewritten in a concise way and replaced ``space`` with ``-``.
+- ``<issue-key>`` and ``<concise-title>`` is separated by a ``-`` character.
 
-For example, the issue ``CLT-183 | Sharing Tutorial is not firing email #652``, its branch name can be ``bugs/CLT-183-sharing-tutorial-is-not-firing-email-#652``.
+For example, the issue ``@ #652 | Sharing Tutorial is not firing email``, its branch name can be ``bugs/#652-sharing-tutorial-is-not-firing-email``.
 
 
 -----------------
@@ -327,16 +329,19 @@ Git commit messages must convey the actual change/ work of that commit. Usually,
 should follow the convention pattern:
 ::
 
-    <issue-key> | <issue-title>: <changes description>
-    <Multi-line description for detail changes, notices, solutions, etc.>
+   <issue-key> | <issue-title>: <changes description>
+   <Multi-line description for detail changes, notices, solutions, etc.>
 
 For example:
 ::
 
-    DEV-1 | Auto deployment with Fabric
+    @ #1 | Auto deployment with Fabric
 
     Fabric deployment should be very easy to deploy on both local and remote machine.
     This is the work on local part.
+
+.. note::
+    "@" is used before because github, and gitlab's issue keys have the "#" character. It's fine for the command *$ git commit -m "#"* but not for *$ git commit -a* for a new commit or *$ git commit --amend* for an existing commit to open on the VIM editor. That's the reason why we should use "@" character, it means "address".
 
 ----------------------
 Git Branch Cleaning Up
@@ -353,7 +358,7 @@ working branches.
 - Deleting local branch:
     ::
 
-        $ git checkout master
+        $ git checkout develop
         $ git branch -d branch_name
 
 --------------
