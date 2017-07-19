@@ -89,6 +89,7 @@
     "_id": "0",
     "version": "13.1.31",
     "type": "chef_solo",
+    "version": "12.19.36",
     "log_level": "info", //one of debug, info, warn, error, fatal. Default: info
     "cookbooks_path": [
       "vendor-cookbooks",
