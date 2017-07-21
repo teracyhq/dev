@@ -19,9 +19,7 @@ We'll provide a simpler way soon at https://github.com/teracyhq/dev/issues/366.
 After ``vaggrant ssh``, why cannot I run the ``grunt`` or ``npm`` command in the VM?
 ------------------------------------------------------------------------------------
 
-The ``grun`` or ``npm`` command is not used in the ``teracy-dev`` latest version anymore. Instead,
-you should install docker and use the ``docker-compose`` command.
-
+The ``grunt`` or ``npm`` command is not used in the ``teracy-dev`` latest version anymore. Instead, ``docker`` and ``docker-compose`` is installed by default and you should use these two.
 
 What should I do after updating ``vagrant_config_override.json`` to get it applied to the VM?
 ---------------------------------------------------------------------------------------------
@@ -44,8 +42,7 @@ Then stop it, ``$ vagrant ssh`` to update this http://askubuntu.com/questions/62
 
 
 ``/etc/hosts`` is not properly updated when I got errors, after ``$ vagrant destroy`` and ``$ vagrant up``. I end up having multiple same entry that the wrong one is one the top of the file. This leads to wrong DNS to point to the right VM IP. What should I do?
-----------------------------------------------------------------------
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Follow the steps below:
 
 1. check VM's ip: ``$ vagrant up``
@@ -59,18 +56,13 @@ What should I do when the ``teracy-dev`` version is changed?
 ------------------------------------------------------------
 You should run the command ``vagrant destroy``, then ``vagrant up``.
 
-What should I do when the ``vagrant_config_override.json`` file is changed?
----------------------------------------------------------------------------
-
-You should  run the command ``$ vagrant reload`` or ``$ vagrant reload --provision``.
-
 What should I do when changing provisioner (Chef, Bash...)?
 -----------------------------------------------------------
 You should run the command `` $ vagrant reload --provision``.
 
 
-What should I do when meeting other  errors, and the problems cannot be solved with ``vagrant reload`` or ``vagrant reload --provision``?
--------------------------------------------
+What should I do when meeting other errors, and the problems cannot be solved with ``vagrant reload`` or ``vagrant reload --provision``?
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 You should run the command ``vagrant destroy``, then ``$ vagrant up``.
 
