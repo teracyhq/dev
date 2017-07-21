@@ -4,8 +4,7 @@ This page provides the frequently asked questions (FAQs) about ``teracy-dev``.
 
 Why teracy-dev? Why not just Docker?
 ------------------------------------
-Docker is great to work with, it solves a lot of problems on development, distribution, and production deployment. It works great on Linux, however it's very challenging to make it work universal and consistent on Mac and Windows. There are lots of efforts to solve this problem, from Docker themselves and from Docker community, too. But, we haven't achieved that stage yet (until ``teracy-dev``). ``teracy-dev`` is an universal Productive Development Platform With Docker on macOS, Linux and Windows.  With ``teracy-dev``, anyone from any OS platforms could collaborate and help each other with no differences in the development environment, and many other reasons
-why you should use ``teracy-dev`` to develop software more easily, see details at
+Docker is great to work with, it solves a lot of problems on development, distribution, and production deployment. It works great on Linux, but it's very challenging to make it work universal and consistent on Mac and Windows. There are lots of efforts to solve this problem, from Docker themselves and from Docker community, too. However, we haven't achieved that stage yet (until ``teracy-dev``). ``teracy-dev`` is a universal Productive Development Platform With Docker on macOS, Linux and Windows.  With ``teracy-dev``, anyone from any OS platforms could collaborate and help each other with no differences in the development environment, and many other reasons why you should use ``teracy-dev`` to develop software more easily, see details at
 http://blog.teracy.com/2016/12/20/teracy-dev-the-only-truly-universal-productive-development-platform-with-docker-on-macos-linux-and-windows/.
 
 How do I know which version of ``teracy-dev`` that I'm using?
@@ -41,8 +40,8 @@ What should I do when ``$ vagrant up`` gets stuck at this step?
 Then stop it, ``$ vagrant ssh`` to update this http://askubuntu.com/questions/620317/apt-get-update-stuck-connecting-to-security-ubuntu-com, then ``$ vagrant reload --provision`` again.
 
 
-``/etc/hosts`` is not properly updated when I got errors, after ``$ vagrant destroy`` and ``$ vagrant up``. I end up having multiple same entry that the wrong one is one the top of the file. This leads to wrong DNS to point to the right VM IP. What should I do?
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+``/etc/hosts`` is not properly updated when I got errors, after ``$ vagrant destroy`` and ``$ vagrant up``. I end up having multiple same entries that the wrong one is on the top of the file. This leads to wrong DNS to point to the right VM's IP address. What should I do?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Follow the steps below:
 
 1. check VM's ip: ``$ vagrant up``
