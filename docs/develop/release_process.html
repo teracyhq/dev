@@ -62,8 +62,10 @@
 <div class="section" id="starting">
 <h2>Starting<a class="headerlink" href="#starting" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Follow workflow, a release branch should be branched off from origin branch that is ready to be
-released (for example: <code class="docutils literal"><span class="pre">releases/0.1.0</span></code> branch is branched off from the <code class="docutils literal"><span class="pre">develop</span></code> branch).</li>
+<li>Follow workflow, a releasing branch should be branched off from an origin branch that is ready to be
+released.</li>
+<li>The releasing branch should be named <code class="docutils literal"><span class="pre">releases/vX.X.X</span></code>.</li>
+<li>For example: the <code class="docutils literal"><span class="pre">releases/v0.1.0</span></code> branch is branched off from the <code class="docutils literal"><span class="pre">develop</span></code> branch.</li>
 <li>Set the next iteration version for the <code class="docutils literal"><span class="pre">develop</span></code> branch. This will make sure there is no snapshot
 version conflict between the <code class="docutils literal"><span class="pre">releases</span></code> branch and the <code class="docutils literal"><span class="pre">develop</span></code> branch. Moreover, the
 <code class="docutils literal"><span class="pre">develop</span></code> branch will not be blocked.</li>
@@ -77,8 +79,8 @@ version conflict between the <code class="docutils literal"><span class="pre">re
 <li>Follow specific release process doccuments on each project, this should be done on your forked
 repository, then make pull requests when the release is ready.</li>
 <li>Remember that release branch should not introduce big changes.</li>
-<li>After each staging releases, create an issue for release test campaign to make sure the release
-is stable enough and have a good quality.</li>
+<li>After each staging release, create an issue for release test campaign to make sure the release
+is stable enough and have good quality.</li>
 </ul>
 </div>
 <div class="section" id="ending">
@@ -90,8 +92,8 @@ Use <strong>UTC</strong> as standard reference time.</li>
 <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></code> with the <code class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></code> message. This message pattern could be later
 used for auto deployment, so make sure the message has the correct pattern.</li>
 <li>Merge the tag release into the <code class="docutils literal"><span class="pre">master</span></code> branch, then the origin branch. This is specified on the
-workflow.</li>
-<li>Delete released branch and we are done.</li>
+project workflow.</li>
+<li>Delete the released branch and we are done.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>

@@ -6,8 +6,12 @@ This is the general guide for releasing software packages at Teracy.
 Starting
 --------
 
-- Follow workflow, a release branch should be branched off from origin branch that is ready to be
-  released (for example: ``releases/0.1.0`` branch is branched off from the ``develop`` branch).
+- Follow workflow, a releasing branch should be branched off from an origin branch that is ready to be
+  released.
+
+- The releasing branch should be named ``releases/vX.X.X``.
+
+- For example: the ``releases/v0.1.0`` branch is branched off from the ``develop`` branch.
 
 - Set the next iteration version for the ``develop`` branch. This will make sure there is no snapshot
   version conflict between the ``releases`` branch and the ``develop`` branch. Moreover, the
@@ -25,8 +29,8 @@ Releasing
 
 - Remember that release branch should not introduce big changes.
 
-- After each staging releases, create an issue for release test campaign to make sure the release
-  is stable enough and have a good quality.
+- After each staging release, create an issue for release test campaign to make sure the release
+  is stable enough and have good quality.
 
 Ending
 ------
@@ -39,9 +43,9 @@ Ending
   used for auto deployment, so make sure the message has the correct pattern.
 
 - Merge the tag release into the ``master`` branch, then the origin branch. This is specified on the
-  workflow.
+  project workflow.
 
-- Delete released branch and we are done.
+- Delete the released branch and we are done.
 
 .. note::
 
