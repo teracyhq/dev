@@ -384,13 +384,13 @@ describe "utility" do
     context "Giving many config file follow project base config requirement" do
       it "after override the config must satisfy the requirement" do
         teracy_default_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
-        teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_overide.json'))
+        teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_override.json'))
         project_org_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/org_project.json'))
         project1_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project1.json'))
         project2_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2.json'))
 
         origin_teracy_default_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config.json'))
-        origin_teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_overide.json'))
+        origin_teracy_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/config_override.json'))
         origin_project_org_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/org_project.json'))
         origin_project1_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project1.json'))
         origin_project2_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2.json'))

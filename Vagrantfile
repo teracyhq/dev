@@ -26,12 +26,12 @@ begin
     org_config_file = File.read(parsing_file)
     org_config_hash = JSON.parse(org_config_file)
 
-    overide_config_file_path = parsing_file.gsub(/default\.json$/, "overide.json")
-    if File.exist?(overide_config_file_path)
-      override_config_file = File.read(overide_config_file_path)
-      parsing_file = overide_config_file_path
-      overide_config_hash = JSON.parse(override_config_file)
-      org_config_hash = overrides(org_config_hash, overide_config_hash)
+    override_config_file_path = parsing_file.gsub(/default\.json$/, "override.json")
+    if File.exist?(override_config_file_path)
+      override_config_file = File.read(override_config_file_path)
+      parsing_file = override_config_file_path
+      override_config_hash = JSON.parse(override_config_file)
+      org_config_hash = overrides(org_config_hash, override_config_hash)
     end
 
     if !org_config_hash.nil?
@@ -41,7 +41,7 @@ begin
 
   if data_hash['vagrant'] && data_hash['vagrant']['config_paths']
     data_hash['vagrant']['config_paths'].map do |default_config_file_path|
-      overide_config_file_path = default_config_file_path.gsub(/default\.json$/, "overide.json")
+      override_config_file_path = default_config_file_path.gsub(/default\.json$/, "override.json")
 
       if File.exist?(File.dirname(__FILE__) + '/' + default_config_file_path)
         default_config_file = File.read(File.dirname(__FILE__) + '/' + default_config_file_path)
@@ -51,11 +51,11 @@ begin
         puts "[teracy-dev][INFO]: #{default_config_file_path} not found, make sure this is intended."
       end
 
-      if File.exist?(File.dirname(__FILE__) + '/' + overide_config_file_path)
-        override_config_file = File.read(File.dirname(__FILE__) + '/' + overide_config_file_path)
-        parsing_file = overide_config_file_path
-        overide_config_hash = JSON.parse(override_config_file)
-        project_config_hash = overrides(project_config_hash, overide_config_hash)
+      if File.exist?(File.dirname(__FILE__) + '/' + override_config_file_path)
+        override_config_file = File.read(File.dirname(__FILE__) + '/' + override_config_file_path)
+        parsing_file = override_config_file_path
+        override_config_hash = JSON.parse(override_config_file)
+        project_config_hash = overrides(project_config_hash, override_config_hash)
       end
       if !project_config_hash.nil?
         overrides(data_hash, project_config_hash)
