@@ -41,6 +41,7 @@ Contents:
    android_training
    semantic_versioning
    release_process
+   faqs
 
 Indices and tables
 ==================
