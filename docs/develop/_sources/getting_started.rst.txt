@@ -377,6 +377,10 @@ Git Setup
 ---------
 
 To work with ``git``, complete the following guides to set up ssh keys:
-https://help.github.com/categories/ssh/
+https://help.github.com/articles/connecting-to-github-with-ssh/
+
+   .. note::
+
+      On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
 
 *Congratulations, you’ve all set now!*
