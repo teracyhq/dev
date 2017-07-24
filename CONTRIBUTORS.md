@@ -15,6 +15,7 @@ Contributors
 - hoale
 - cuzen1
 - Bryan McLellan
+- Smxsm
 
 see:
 
