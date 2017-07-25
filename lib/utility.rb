@@ -106,6 +106,23 @@ def colorize(text, color_code)
   "\e[#{color_code}m#{text}\e[0m"
 end
 
+def get_default_nic()
+  default_interface = ""
+  if Vagrant::Util::Platform.windows?
+      default_interface = %x[wmic.exe nic where "NetConnectionStatus=2" get NetConnectionID | more +1]
+      default_interface = default_interface.strip
+  elsif Vagrant::Util::Platform.linux?
+      default_interface = %x[route | grep '^default' | grep -o '[^ ]*$']
+      default_interface = default_interface.strip
+  elsif Vagrant::Util::Platform.darwin?
+      nicName = %x[route -n get 8.8.8.8 | grep interface | awk '{print $2}']
+      default_interface = nicName.strip
+      nicString = %x[networksetup -listnetworkserviceorder | grep 'Hardware Port' | grep en4 | awk -F'[:,]' '{print $2}']
+      default_interface = default_interface + ': ' + nicString.strip
+  end
+  return default_interface
+end
+
 def red(text); colorize(text, 31); end
 def yellow(text); colorize(text, 33); end
 
