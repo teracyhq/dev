@@ -170,7 +170,11 @@ Vagrant.configure("2") do |config|
         end
       when 'public_network'
         options[:ip] = vm_network['ip'] unless vm_network['ip'].nil? or vm_network['ip'].strip().empty?
-        options[:bridge] = vm_network['bridge'] unless vm_network['bridge'].nil? or vm_network['bridge'].empty?
+
+        bridge_interface = ""
+        bridge_interface = vm_network['bridge'] unless vm_network['bridge'].nil? or vm_network['bridge'].empty?
+        bridge_interface = get_default_nic() if bridge_interface.empty? and vm_network['auto_bridge_default_network']
+        options[:bridge] = bridge_interface unless bridge_interface.empty?
       end
 
       config.vm.network vm_network['mode'], options

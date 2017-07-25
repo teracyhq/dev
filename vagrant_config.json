@@ -23,7 +23,8 @@
         // "en0: Wi-Fi (AirPort)", // macOS 10.12
         // "en1: Wi-Fi (AirPort)", // macOS 10.11
         // "wlan0" // linux
-      ] // for public_network mode
+      ], // for public_network mode
+      "auto_bridge_default_network": true
     }],
     "synced_folders":[{ //see: http://docs.vagrantup.com/v2/synced-folders/index.html
       "_id": "0",
