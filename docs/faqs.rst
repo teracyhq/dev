@@ -57,7 +57,7 @@ You should run the command ``vagrant destroy``, then ``vagrant up``.
 
 What should I do when changing provisioner (Chef, Bash...)?
 -----------------------------------------------------------
-You should run the command `` $ vagrant reload --provision``.
+You should run the command ``$ vagrant reload --provision``.
 
 
 What should I do when meeting other errors, and the problems cannot be solved with ``vagrant reload`` or ``vagrant reload --provision``?
