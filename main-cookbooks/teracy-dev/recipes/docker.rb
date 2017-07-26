@@ -37,13 +37,13 @@ def get_docker_compose_release
     release = node['docker_compose']['release']
 
     if release.empty?
-        result = Mixlib::ShellOut.new("curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4")
+        result = Mixlib::ShellOut.new('curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d\" -f4')
 
         result.run_command
 
         result.error!
 
-        node.override['docker_compose']['release'] = release = result.stdout
+        node.override['docker_compose']['release'] = release = result.stdout.strip
     end
 
     release
