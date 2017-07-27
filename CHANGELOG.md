@@ -1,6 +1,36 @@
 Change Log
 ==========
 
+[v0.5.0-c1][] (2017-07-27)
+--------------------------
+
+new features, bug fixes and improvements, add more documents and make it more stable.
+
+- Bugs
+    + fixed the problem on windows with chocolate and bash-completion.
+    + upgraded and pin down with newest chef version.
+    + fixed problem with rsync_args (thanks to @smxsm).
+
+- Improvements
+    + added some useful alias (ctop, httpie-jwt-auth).
+    + used lastest docker-compose version by default.
+
+- New features
+    + added [support project base json config]
+    + json config support for docker registry login
+
+
+Details: https://github.com/teracyhq/dev/milestone/5?closed=1
+
+
+[v0.5.0-b3][] (2017-04-12)
+--------------------------
+
+Fix the Chef version critical bug
+
+Details: https://github.com/teracyhq/dev/milestone/6?closed=1
+
+
 [v0.5.0-b2][] (2017-03-09)
 --------------------------
 
@@ -257,3 +287,9 @@ Release the first milestone
 [v0.5.0-b1]: https://github.com/teracyhq/dev/milestone/1?closed=1
 
 [v0.5.0-b2]: https://github.com/teracyhq/dev/milestone/4?closed=1
+
+[v0.5.0-b3]: https://github.com/teracyhq/dev/milestone/6?closed=1
+
+[v0.5.0-c1]: https://github.com/teracyhq/dev/milestone/5?closed=1
+
+[support project base json config]: https://github.com/teracyhq/dev/issues/321
