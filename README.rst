@@ -40,7 +40,7 @@ Features
 Installation and Usage
 ----------------------
 
-Follow the guide at http://dev.teracy.org/docs/v0.5.0-c1/getting_started.html
+Follow the guide at http://dev.teracy.org/docs/getting_started.html
 
 
 License
