@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>teracy-dev’s documentation &#8212; teracy-dev v0.5.0-b3 documentation</title>
+    <title>teracy-dev’s documentation &#8212; teracy-dev v0.5.0-c1 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'v0.5.0-b3',
+        VERSION:     'v0.5.0-c1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="intro.html" title="Introduction"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">teracy-dev v0.5.0-b3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -89,6 +89,14 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced_usage.html">Advanced Usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="advanced_usage.html#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced_usage.html#upgrading">Upgrading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending_teracy_dev.html">Extending teracy-dev</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extending_teracy_dev.html#installing-chefdk">Installing <code class="docutils literal"><span class="pre">ChefDK</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_teracy_dev.html#creating-new-chef-cookbooks">Creating new <code class="docutils literal"><span class="pre">Chef</span></code> cookbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_teracy_dev.html#installing-kubectl-and-gcloud">Installing <code class="docutils literal"><span class="pre">kubectl</span></code> and <code class="docutils literal"><span class="pre">gcloud</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_teracy_dev.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_teracy_dev.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
@@ -170,14 +178,20 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="databases_guide.html">Databases Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nodejs_dev_guide.html">Node.js Development Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#demo">Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#enable-proxy-and-add-aliases-domains">Enable proxy and add aliases domains</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#init-the-project">Init the project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#install-dependencies">Install dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#add-app-js-and-update-package-json-s-scripts">Add app.js and update package.json’s scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#add-docker-files">Add Docker files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#create-dev-mode">Create dev mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#run-on-dev-mode">Run on dev mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#two-way-sync-for-node-modules">Two-way sync for node_modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#remote-debugging">Remote debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#create-prod-mode">Create Prod mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#run-on-prod-mode">Run on prod mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#create-review-mode">Create review mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#run-on-review-mode">Run on review mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#create-ci-cd-system">Create CI/CD system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs_dev_guide.html#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="c_c++_training.html">C/C++ Training</a></li>
@@ -203,6 +217,18 @@
 <li class="toctree-l2"><a class="reference internal" href="release_process.html#starting">Starting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_process.html#releasing">Releasing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release_process.html#ending">Ending</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-teracy-dev-why-not-just-docker">Why teracy-dev? Why not just Docker?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#how-do-i-know-which-version-of-teracy-dev-that-i-m-using">How do I know which version of <code class="docutils literal"><span class="pre">teracy-dev</span></code> that I’m using?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#after-vaggrant-ssh-why-cannot-i-run-the-grunt-or-npm-command-in-the-vm">After <code class="docutils literal"><span class="pre">vaggrant</span> <span class="pre">ssh</span></code>, why cannot I run the <code class="docutils literal"><span class="pre">grunt</span></code> or <code class="docutils literal"><span class="pre">npm</span></code> command in the VM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-should-i-do-after-updating-vagrant-config-override-json-to-get-it-applied-to-the-vm">What should I do after updating <code class="docutils literal"><span class="pre">vagrant_config_override.json</span></code> to get it applied to the VM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-should-i-do-when-vagrant-up-gets-stuck-at-this-step">What should I do when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> gets stuck at this step?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#etc-hosts-is-not-properly-updated-when-i-got-errors-after-vagrant-destroy-and-vagrant-up-i-end-up-having-multiple-same-entries-that-the-wrong-one-is-on-the-top-of-the-file-this-leads-to-wrong-dns-to-point-to-the-right-vm-s-ip-address-what-should-i-do"><code class="docutils literal"><span class="pre">/etc/hosts</span></code> is not properly updated when I got errors, after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code> and <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>. I end up having multiple same entries that the wrong one is on the top of the file. This leads to wrong DNS to point to the right VM’s IP address. What should I do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-should-i-do-when-the-teracy-dev-version-is-changed">What should I do when the <code class="docutils literal"><span class="pre">teracy-dev</span></code> version is changed?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-should-i-do-when-changing-provisioner-chef-bash">What should I do when changing provisioner (Chef, Bash…)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-should-i-do-when-meeting-other-errors-and-the-problems-cannot-be-solved-with-vagrant-reload-or-vagrant-reload-provision">What should I do when meeting other errors, and the problems cannot be solved with <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span></code> or <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>?</a></li>
 </ul>
 </li>
 </ul>
@@ -261,7 +287,7 @@
         <li class="right" >
           <a href="intro.html" title="Introduction"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">teracy-dev v0.5.0-b3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

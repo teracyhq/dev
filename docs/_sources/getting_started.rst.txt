@@ -291,7 +291,7 @@ teracy-dev Git Clone and Vagrant Up
        $ cd ~/
        $ git clone https://github.com/teracyhq/dev.git teracy-dev
        $ cd teracy-dev
-       $ git checkout v0.5.0-b3
+       $ git checkout v0.5.0-c1
        $ vagrant up
 
    ..  note::
@@ -377,6 +377,10 @@ Git Setup
 ---------
 
 To work with ``git``, complete the following guides to set up ssh keys:
-https://help.github.com/categories/ssh/
+https://help.github.com/articles/connecting-to-github-with-ssh/
+
+   .. note::
+
+      On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
 
 *Congratulations, you’ve all set now!*
