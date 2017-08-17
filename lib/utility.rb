@@ -117,8 +117,9 @@ def get_default_nic()
   elsif Vagrant::Util::Platform.darwin?
       nicName = %x[route -n get 8.8.8.8 | grep interface | awk '{print $2}']
       default_interface = nicName.strip
-      nicString = %x[networksetup -listnetworkserviceorder | grep 'Hardware Port' | grep en4 | awk -F'[:,]' '{print $2}']
-      default_interface = default_interface + ': ' + nicString.strip
+      nicString = %x[networksetup -listnetworkserviceorder | grep 'Hardware Port' | grep #{default_interface} | awk -F'[:,]' '{print $2}']
+      extension = nicString.strip == "Wi-Fi" ? " (AirPort)" : ""
+      default_interface = default_interface + ': ' + nicString.strip + extension
   end
   return default_interface
 end
