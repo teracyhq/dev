@@ -175,6 +175,18 @@ Vagrant.configure("2") do |config|
         bridge_interface = vm_network['bridge'] unless vm_network['bridge'].nil? or vm_network['bridge'].empty?
         bridge_interface = get_default_nic() if bridge_interface.empty? and vm_network['auto_bridge_default_network']
         options[:bridge] = bridge_interface unless bridge_interface.empty?
+
+        if vm_network['reuse_mac_address']
+          if File.exist?(File.dirname(__FILE__) + '/.vagrant/.public_mac_address')
+            options[:mac] = File.read(File.dirname(__FILE__) + '/.vagrant/.public_mac_address').gsub(/[\s:\n]/,'')
+          else
+            FileUtils::touch File.dirname(__FILE__) + '/.vagrant/.public_mac_address'
+          end
+        else
+          if File.exist?(File.dirname(__FILE__) + '/.vagrant/.public_mac_address')
+            FileUtils.rm File.dirname(__FILE__) + '/.vagrant/.public_mac_address'
+          end
+        end
       end
 
       config.vm.network vm_network['mode'], options
@@ -423,6 +435,14 @@ Vagrant.configure("2") do |config|
     "name" => "fix-hosts",
     "inline" => fix_hosts_command
   })
+
+  # save the MAC address if the file /vagrant/.vagrant/.public_mac_address exists
+  provisioners << {
+    "type" => "shell",
+    "name" => "save_mac_address",
+    "path" => "provisioners/shells/save_mac_address.sh",
+    "run" => "always"
+  }
 
   # append ip shell as the last item to always display the ip address
   provisioners << {
