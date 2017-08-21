@@ -246,8 +246,11 @@ Vagrant.configure("2") do |config|
       options[:smb_host] = item['smb_host'] unless item['smb_host'].nil? or item['smb_host'].empty?
       options[:smb_password] = item['smb_password'] unless item['smb_password'].nil? or item['smb_password'].empty?
       options[:smb_username] = item['smb_username'] unless item['smb_password'].nil? or item['smb_password'].empty?
+    when 'virtual_box'
+      if not Dir.exist?(File.dirname(__FILE__) + '/' + item['host']) and item['auto_create'] == true
+        FileUtils.mkdir_p File.dirname(__FILE__) + '/' + item['host']
+      end
     end
-
     if item['supports'].nil? or item['supports'].include?(host_os_type)
       config.vm.synced_folder item['host'], item['guest'], options
     end
