@@ -139,7 +139,7 @@
       },
       "docker_machine": {
         "enabled": false,
-        "release": "v0.8.2" // more: https://github.com/docker/machine/releases/
+        "release": "" // more: https://github.com/docker/machine/releases/
       },
       "teracy-dev": {
         "directories": [{
