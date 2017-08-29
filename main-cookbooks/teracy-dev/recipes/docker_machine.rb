@@ -35,9 +35,19 @@ docker_machine_conf = node['docker_machine']
 
 
 if docker_machine_conf['enabled'] == true
+    def get_release_version
+        release = node['docker_machine']['release']
+        if release.empty?
+            result = Mixlib::ShellOut.new('curl -s https://api.github.com/repos/docker/machine/releases/latest | grep "tag_name" | cut -d\" -f4')
+            result.run_command
+            result.error!
+            node.override['docker_machine']['release'] = release = result.stdout.strip
+        end
+        release
+    end
 
     def get_install_url
-        release = node['docker_machine']['release']
+        release = get_release_version
         kernel_name = node['kernel']['name']
         machine_hw_name = node['kernel']['machine']
         "https://github.com/docker/machine/releases/download/#{release}/docker-machine-#{kernel_name}-#{machine_hw_name}"
