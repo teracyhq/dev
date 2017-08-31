@@ -13,6 +13,7 @@ source_url 'https://github.com/teracyhq/issues'
 end
 
 recipe 'teracy::aliases', "Installs useful aliases for teracy's project development."
+recipe 'teracy-dev::normalization', 'The normalization recipe will contain all the codes to normalize the VM indeed.'
 recipe 'teracy-dev::directories', 'Manage directories.'
 recipe 'teracy-dev::env_vars', 'Configures environment variables.'
 recipe 'teracy-dev::docker', 'Installs Docker, docker-compose'
