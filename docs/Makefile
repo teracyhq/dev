@@ -179,6 +179,6 @@ pseudoxml:
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
 livehtml:
-	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0
+	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0 --port 80
 
 include sphinx_deployment.mk

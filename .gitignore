@@ -136,8 +136,9 @@ Session.vim
 !.travis
 
 # docs
-_build
 _deploy
+docs/_build/**
+!.gitkeep
 
 .rake_test_cache
 

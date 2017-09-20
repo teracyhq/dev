@@ -15,14 +15,14 @@ function deploy_docker_img {
    docker push $CONTAINER_IMAGE
 }
 
-deploy_docker_img
+if [[ $BUILD_TYPE == "dev" ]]; then
+    deploy_docker_img
+fi
 
 if [[ $BUILD_TYPE == "docs" ]]; then
-
     # build teracy-dev-docs distributed Docker image
     cd docs
     export DOCKER_FILE=Dockerfile
-    export IMAGE_TAG_PREFIX=""
     export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$IMAGE_TAG_PREFIX$TAG
     docker_build
     deploy_docker_img

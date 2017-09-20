@@ -2,7 +2,7 @@ Getting Started
 ===============
 
 ``teracy-dev`` is created to set up a universal development platform which has the same development
-workflow on Mac, Linux and Windows with good developer experience and productivity in mind. 
+workflow on Mac, Linux and Windows with good developer experience and productivity in mind.
 
 
 Please follow the installation instruction below, after that, the instruction step for teracy-dev
@@ -202,7 +202,7 @@ Follow step by step instructions below:
    After the installation is finished, restart the machine.
 
 3. Install ``cygwin`` and ``cyg-get``
-   
+
    Type the command below on the opened ``Command Prompt``:
 
    ..  code-block:: bash

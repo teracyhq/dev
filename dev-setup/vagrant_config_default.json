@@ -1,0 +1,59 @@
+{
+  "vm": {
+    "synced_folders":[{
+      "_id": "1",
+      "_ua_rsync__exclude": [
+        "docs/_build"
+      ]
+    }, { // Enable this for .git two-way sync
+      "_id": "teracy-dev-setup-0",
+      "type": "virtual_box",
+      "host": "./workspace/dev/.git",
+      "guest": "/home/vagrant/workspace/dev/.git",
+      "mount_options": [
+        "dmode=775",
+        "fmode=755"
+      ]
+    }, { // Enable this for docs/_build two-way sync to work
+      "_id": "teracy-dev-setup-1",
+      "type": "virtual_box",
+      "host": "./workspace/dev/docs/_build",
+      "guest": "/home/vagrant/workspace/dev/docs/_build",
+      "mount_options": [
+        "dmode=775",
+        "fmode=755"
+      ],
+      "auto_create": true // this will auto create the host path if it does not exists
+    }
+  ]
+  },
+  "provisioners": [{
+    "_id": "0",
+    "_ua_cookbooks_path": [
+      "workspace/dev/dev-setup/chef/main-cookbooks"
+    ],
+    "_ua_run_list": [
+      "teracy-dev-setup"
+    ],
+    "json": {
+      "teracy": {
+        "teracy-dev-setup": {
+          "project_guest_path": "/home/vagrant/workspace/dev"
+        },
+        "teracy-dev-docs": {
+           "project_guest_path": "/home/vagrant/workspace/dev/docs"
+        }
+      }
+    }
+  }],
+  "plugins": [{
+    "_id": "2",
+    "options": {
+      "_ua_aliases": [
+        "dev.dev-docs.teracy.dev", "ngrok-dev.dev-docs.teracy.dev",
+        "dev-docs.teracy.dev", "ngrok-prod.dev-docs.teracy.dev",
+        "review.dev-docs.teracy.dev", "ngrok-review.dev-docs.teracy.dev"
+      ]
+    }
+  }]
+}
