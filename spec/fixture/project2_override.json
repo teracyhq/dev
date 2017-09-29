@@ -1,0 +1,16 @@
+{
+  "provisioners": [{
+    "_id": "0",
+    "json": {
+      "teracy-dev": {
+        "aliases": [{
+          "_id": "_cmd_test",
+          "name": "ctop",  // `$ nhw` to cd right into the nextjs-hello-world project
+          "command": "run ctop",
+          "action": "add",
+          "_op": "o"
+        }]
+      }
+    }
+  }]
+}
