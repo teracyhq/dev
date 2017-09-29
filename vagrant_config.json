@@ -1,10 +1,4 @@
 {
-  "vagrant": {
-    "extension_paths": [ // add paths of Vagrantfile-ext.rb files to be loaded
-      // the path must be relative to the Vagrantfile
-      "Vagrantfile-ext.rb"
-    ]
-  },
   "vm": {
     "hostname": "teracy.dev",
     "box": "bento/ubuntu-16.04",
