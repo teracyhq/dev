@@ -3,14 +3,26 @@ services:
 - docker
 env:
   matrix:
-  - BUILD_TYPE=dev CI_REGISTRY_IMAGE=$DEV_DOCKER_IMAGE
-  - BUILD_TYPE=docs CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE
+  - BUILD_TYPE=dev CI_REGISTRY_IMAGE=$DEV_DOCKER_IMAGE IMAGE_TAG_PREFIX=dev_
+  - BUILD_TYPE=docs CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE IMAGE_TAG_PREFIX=""
   global:
   - DOCKER_FILE=Dockerfile-dev
-  - IMAGE_TAG_PREFIX=dev_
   - CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
 before_install:
 - git submodule update --init --recursive
+# install the latest docker and docker-compose versions
+- sudo apt-get remove docker docker-engine
+- sudo curl -sSL https://get.docker.com/ | sh
+- sudo rm /usr/local/bin/docker-compose
+# the latest docker-compose version
+- export DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- docker version
+- docker-compose version
+# install
 install: true
 before_script:
 - chmod ugo+x ./.travis/build.sh

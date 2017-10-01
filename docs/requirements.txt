@@ -3,3 +3,6 @@
 
 Sphinx
 sphinx-autobuild
+
+# tempory fix for https://github.com/lepture/python-livereload/issues/132
+git+https://github.com/lepture/python-livereload.git@master
