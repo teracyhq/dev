@@ -7,6 +7,7 @@ load File.dirname(__FILE__) + '/lib/provisioner.rb'
 
 # Load default setting
 file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
+extension_list = [File.dirname(__FILE__) + '/Vagrantfile-ext.rb']
 data_hash = JSON.parse(file)
 override_hash = nil
 base_override_hash = nil
@@ -22,6 +23,9 @@ begin
 
   if File.exist?(File.dirname(__FILE__) + '/workspace/dev-setup/vagrant_config_default.json')
     parsing_file = File.dirname(__FILE__) + '/workspace/dev-setup/vagrant_config_default.json'
+
+    extension_list.push(File.dirname(__FILE__) + '/workspace/dev-setup/Vagrantfile-ext.rb')
+
     org_config_file = File.read(parsing_file)
     org_config_hash = JSON.parse(org_config_file)
 
@@ -48,6 +52,7 @@ begin
 
       if File.exist?(File.dirname(__FILE__) + '/' + default_config_file_path)
         default_config_file = File.read(File.dirname(__FILE__) + '/' + default_config_file_path)
+        extension_list.push(File.dirname(File.dirname(__FILE__) + '/' + default_config_file_path) + '/Vagrantfile-ext.rb')
         parsing_file = default_config_file_path
         project_config_hash = JSON.parse(default_config_file)
       else
@@ -491,17 +496,11 @@ Vagrant.configure("2") do |config|
   end
 end
 
+
 begin
-  extension_paths = data_hash['vagrant']['extension_paths']
-  extension_paths.each do |path|
-    ext_file_path = File.dirname(__FILE__) + '/' + path
-    if File.file?(ext_file_path)
-      load ext_file_path
-    else
-      # warnings if override vagrant:extension_paths
-      if !override_hash.nil? and !override_hash['vagrant'].nil? and !override_hash['vagrant']['extension_paths'].nil?
-        puts red(ext_file_path + ' is missing!')
-      end
+  extension_list.each do |path|
+    if File.file?(path)
+      load path
     end
   end
 rescue Exception => msg
