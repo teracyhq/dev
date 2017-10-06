@@ -62,43 +62,23 @@
             
   <div class="section" id="teracy-dev-development">
 <h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
-<p>We use Docker (or better <code class="docutils literal"><span class="pre">teracy-dev</span></code>) to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code>.
-We use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
+<p>We use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code>, and use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
 <div class="section" id="project-setup">
 <h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
-<p>Fork and clone <code class="docutils literal"><span class="pre">teracy-dev</span></code> from <a class="reference external" href="https://github.com/teracyhq/dev/">https://github.com/teracyhq/dev/</a></p>
-<p>For example, this is my forked repo: <a class="reference external" href="https://github.com/hoatle/teracy-dev/">https://github.com/hoatle/teracy-dev/</a></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p ~/teracy-dev/workspace
-$ <span class="nb">cd</span> ~/teracy-dev/workspace
-$ git clone git@github.com:hoatle/teracy-dev.git teracy-dev
-$ <span class="nb">cd</span> teracy-dev
-$ git submodule update --init --recursive
+<p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev-setup/blob/develop/README.md">https://github.com/teracyhq/dev-setup/blob/develop/README.md</a> to set up teracy-dev and dev-setup.</p>
+<p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup">https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup</a> to set up <code class="docutils literal"><span class="pre">dev</span></code> project.</p>
+<p>Get Docker image <cite>teracy/dev:dev_develop</cite> to execute rake tasks</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ vagrant ssh
+$ ws
+$ <span class="nb">cd</span> workspace/dev
 $ docker-compose pull
 </pre></div>
 </div>
-<p>Notice that you use <code class="docutils literal"><span class="pre">teracy-dev</span></code> directory for the project name.</p>
 </div>
 <div class="section" id="ci-setup">
 <h2>CI Setup<a class="headerlink" href="#ci-setup" title="Permalink to this headline">¶</a></h2>
-<p>After forking the project, you should set up the CI system on travis-ci.org:</p>
-<ul class="simple">
-<li>register an account at travis-ci.org</li>
-<li>register an account at hub.docker.com</li>
-<li>enable <cite>teracy-dev</cite> repository on travis-ci.org</li>
-<li><dl class="first docutils">
-<dt>add travis-ci settings with these variables:</dt>
-<dd><ul class="first last">
-<li><code class="docutils literal"><span class="pre">DOCKER_USERNAME</span></code>: Fill with your Docker username account</li>
-<li><code class="docutils literal"><span class="pre">DOCKER_PASSWORD</span></code>: Fill with your Docker password account</li>
-<li><code class="docutils literal"><span class="pre">DEV_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev</cite></li>
-<li><code class="docutils literal"><span class="pre">DOCS_DOCKER_IMAGE</span></code>: Fill with <cite>&lt;your_docker_username&gt;/teracy-dev-docs</cite></li>
-<li><code class="docutils literal"><span class="pre">GH_REPO</span></code>: Fill with <cite>&lt;your_github_username&gt;/teracy-dev&gt;</cite> to git push on your repo</li>
-<li><code class="docutils literal"><span class="pre">GH_TOKEN</span></code>: Fill with <cite>&lt;your_github_personal_access_token&gt;</cite> to git push on your repo</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#travis-ci-configuration">https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#travis-ci-configuration</a> to set up CI system on travis-ci.org :</p>
 </div>
 <div class="section" id="rake-tasks">
 <h2>Rake Tasks<a class="headerlink" href="#rake-tasks" title="Permalink to this headline">¶</a></h2>
@@ -106,6 +86,10 @@ $ docker-compose pull
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span></code> or <code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">list</span></code> to list all <cite>Rake</cite> tasks.</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake list
+</pre></div>
+</div>
+<p>You will see similiar like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Creating network <span class="s2">&quot;dev_default&quot;</span> with the default driver
 Tasks:
 - berks_install
 - berks_upload
@@ -123,7 +107,10 @@ Tasks:
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake build
-bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
+</pre></div>
+</div>
+<p>You will see something similar to this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
 WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
 Running syntax check on teracy-dev
 Validating ruby files
@@ -134,7 +121,7 @@ bundle <span class="nb">exec</span> rspec main-cookbooks
 No examples found.
 
 
-Finished in <span class="m">0</span>.00089 seconds <span class="o">(</span>files took <span class="m">0</span>.10198 seconds to load<span class="o">)</span>
+Finished in <span class="m">0</span>.00132 seconds <span class="o">(</span>files took <span class="m">0</span>.04576 seconds to load<span class="o">)</span>
 <span class="m">0</span> examples, <span class="m">0</span> failures
 </pre></div>
 </div>
@@ -142,16 +129,19 @@ Finished in <span class="m">0</span>.00089 seconds <span class="o">(</span>files
 <li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake berks_install
-bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
+</pre></div>
+</div>
+<p>You will see something similar to this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
 Resolving cookbook dependencies...
 Fetching cookbook index from https://supermarket.chef.io...
-Installing compat_resource <span class="o">(</span><span class="m">12</span>.16.2<span class="o">)</span>
-Installing docker <span class="o">(</span><span class="m">2</span>.11.0<span class="o">)</span>
+Installing compat_resource <span class="o">(</span><span class="m">12</span>.19.0<span class="o">)</span>
+Installing docker <span class="o">(</span><span class="m">2</span>.15.6<span class="o">)</span>
 Installing docker_compose <span class="o">(</span><span class="m">0</span>.1.1<span class="o">)</span>
 Installing magic_shell <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span>
 Installing vim <span class="o">(</span><span class="m">2</span>.0.2<span class="o">)</span>
-Vendoring compat_resource <span class="o">(</span><span class="m">12</span>.16.2<span class="o">)</span> to vendor-cookbooks/compat_resource
-Vendoring docker <span class="o">(</span><span class="m">2</span>.11.0<span class="o">)</span> to vendor-cookbooks/docker
+Vendoring compat_resource <span class="o">(</span><span class="m">12</span>.19.0<span class="o">)</span> to vendor-cookbooks/compat_resource
+Vendoring docker <span class="o">(</span><span class="m">2</span>.15.6<span class="o">)</span> to vendor-cookbooks/docker
 Vendoring docker_compose <span class="o">(</span><span class="m">0</span>.1.1<span class="o">)</span> to vendor-cookbooks/docker_compose
 Vendoring magic_shell <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span> to vendor-cookbooks/magic_shell
 Vendoring vim <span class="o">(</span><span class="m">2</span>.0.2<span class="o">)</span> to vendor-cookbooks/vim
@@ -171,16 +161,17 @@ build the image with:</p>
 <p>We’re going to use <a class="reference external" href="http://chef.github.io/bento/">Bento</a> to build base boxes.</p>
 <ol class="arabic">
 <li><p class="first"><cite>Virtualbox</cite> Installation:</p>
-<p>You could install any versions of Virtualbox that matched the host machine.</p>
+<p>You could install any versions of Virtualbox that matches the host machine.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp
-$ wget http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
-$ sudo dpkg -i virtualbox-4.3_4.3.20-96996~Ubuntu~precise_amd64.deb
+$ wget http://download.virtualbox.org/virtualbox/5.1.10/virtualbox-5.1_5.1.10-112026~Ubuntu~xenial_amd64.deb
+$ sudo dpkg -i virtualbox-5.1_5.1.10-112026~Ubuntu~xenial_amd64.deb
 $ sudo apt-get install -f -y
 </pre></div>
 </div>
+<p>Note: You may encounter some errors. Do not worry, you should install the missing dependencies. After installing, run <cite>/sbin/vboxconfig</cite> as root.</p>
 <p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">VBoxManage</span> <span class="pre">--version</span></code> should print out something like:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ VBoxManage --version
-<span class="m">4</span>.3.20r96996
+<span class="m">5</span>.1.10r112026
 </pre></div>
 </div>
 </li>
@@ -188,25 +179,26 @@ $ sudo apt-get install -f -y
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
 $ mkdir packer
 $ <span class="nb">cd</span> packer
-$ wget https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
+$ wget https://releases.hashicorp.com/packer/1.1.0/packer_1.1.0_linux_amd64.zip
 $ sudo apt-get install unzip -f -y
-$ unzip packer_0.7.5_linux_amd64.zip
+$ unzip packer_1.1.0_linux_amd64.zip
 $ <span class="nb">echo</span> <span class="s1">&#39;export PATH=~/workspace/packer:$PATH&#39;</span> <span class="p">|</span> sudo tee --append ~/.bash_profile
 $ <span class="nb">source</span> ~/.bash_profile
 </pre></div>
 </div>
 <p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">packer</span> <span class="pre">version</span></code> should print out something like:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer version
-Packer v0.7.5
+Packer v1.1.0
 </pre></div>
 </div>
 </li>
 <li><p class="first"><cite>Bento</cite> Repository Clone</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
-$ git clone git@github.com:chef/bento.git
+$ git clone https://github.com/chef/bento.git
 $ <span class="nb">cd</span> bento
 </pre></div>
 </div>
+<p>Note: You may encounter some errors about <cite>public key</cite>. Do not worry, you should add the RSA key to your github and clone the project again.</p>
 </li>
 <li><p class="first">Base Boxes Build</p>
 <div class="admonition tip">
@@ -218,22 +210,22 @@ building base boxes from scratch.</p>
 <p class="first admonition-title">Warning</p>
 <p class="last">Building from “headless” mode is not recommended, it should be used only for ci-system.</p>
 </div>
-<p>We’re going to build <cite>ubuntu-12.04-amd64.json</cite> base box as an example.</p>
+<p>We’re going to build <cite>ubuntu-16.04-amd64.json</cite> base box as an example.</p>
 <p>We’re working on a headless VM so you need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
 openning any .json files and append <code class="docutils literal"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
 <p>and then:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
-$ <span class="nb">cd</span> bento/packer
-$ packer build -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+$ <span class="nb">cd</span> bento
+$ packer build -only<span class="o">=</span>virtualbox-iso ubuntu-16.04-amd64.json
 </pre></div>
 </div>
 <p>After that <cite>Packer</cite> will download the Ubuntu iso files and install, package a vagrant base box for
 us to use.</p>
 <p>We should store and share iso files somewhere to save time from downloading iso files then
 put it under <cite>~/workspace/bento/isos/</cite>.</p>
-<p>For example, you put <cite>ubuntu-12.04.5-server-amd64.iso</cite> file under <cite>~/workspace/bento/isos/ubuntu/12.04</cite>
+<p>For example, you put <cite>ubuntu-16.04.3-server-amd64.iso</cite> file under <cite>~/workspace/bento/isos/ubuntu/16.04</cite>
 and you can use the mirror like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-12.04-amd64.json
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-16.04-amd64.json
 </pre></div>
 </div>
 <p>It will take a while for the base box to be completed. The base boxe should be available under
