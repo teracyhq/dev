@@ -15,6 +15,7 @@ Contents:
    getting_started
    basic_usage
    advanced_usage
+   best_practices
    extending_teracy_dev
    docker
    tool_chain
