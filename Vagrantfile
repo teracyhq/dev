@@ -10,15 +10,16 @@ file = File.read(File.dirname(__FILE__) + '/vagrant_config.json')
 extension_list = [File.dirname(__FILE__) + '/Vagrantfile-ext.rb']
 data_hash = JSON.parse(file)
 override_hash = nil
-base_override_hash = nil
+
 # Check and override if exist any match JSON object from vagrant_config_override.json
 
 begin
   if File.exist?(File.dirname(__FILE__) + '/vagrant_config_override.json')
     parsing_file = File.dirname(__FILE__) + '/vagrant_config_override.json'
     override_file = File.read(parsing_file)
-    base_override_hash = JSON.parse(override_file)
+    override_hash = JSON.parse(override_file)
 
+    data_hash = overrides(data_hash, override_hash)
   end
 
   if File.exist?(File.dirname(__FILE__) + '/workspace/dev-setup/vagrant_config_default.json')
@@ -33,17 +34,13 @@ begin
     if File.exist?(override_config_file_path)
       override_config_file = File.read(override_config_file_path)
       parsing_file = override_config_file_path
-      override_org_config_hash = JSON.parse(override_config_file)
-      base_override_hash = overrides(base_override_hash, override_org_config_hash)
+      override_config_hash = JSON.parse(override_config_file)
+      org_config_hash = overrides(org_config_hash, override_config_hash)
     end
 
     if !org_config_hash.nil?
       overrides(data_hash, org_config_hash)
     end
-  end
-
-  if !base_override_hash.nil?
-    overrides(data_hash, base_override_hash)
   end
 
   if data_hash['vagrant'] && data_hash['vagrant']['config_paths']
@@ -59,21 +56,14 @@ begin
         puts "[teracy-dev][INFO]: #{default_config_file_path} not found, make sure this is intended."
       end
 
-
-      if !project_config_hash.nil?
-        overrides(data_hash, project_config_hash)
-      end
-    end
-  end
-  if data_hash['vagrant'] && data_hash['vagrant']['config_paths']
-    data_hash['vagrant']['config_paths'].map do |default_config_file_path|
-      override_config_file_path = default_config_file_path.gsub(/default\.json$/, "override.json")
-
-      if File.exist?(File.dirname(__FILE__) + '/' + default_config_file_path)  && File.exist?(File.dirname(__FILE__) + '/' + override_config_file_path)
+      if File.exist?(File.dirname(__FILE__) + '/' + override_config_file_path)
         override_config_file = File.read(File.dirname(__FILE__) + '/' + override_config_file_path)
         parsing_file = override_config_file_path
         override_config_hash = JSON.parse(override_config_file)
-        override_hash = overrides(data_hash, override_config_hash)
+        project_config_hash = overrides(project_config_hash, override_config_hash)
+      end
+      if !project_config_hash.nil?
+        overrides(data_hash, project_config_hash)
       end
     end
   end
@@ -85,9 +75,6 @@ rescue Exception => msg
     exit!
   end
 end
-
-#puts JSON.pretty_generate(data_hash)
-
 
 Vagrant.configure("2") do |config|
 

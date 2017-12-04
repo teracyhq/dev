@@ -41,12 +41,6 @@
           "name": "nhw",  // `$ nhw` to cd right into the nextjs-hello-world project
           "command": "cd ~/workspace/nextjs-hello-world",
           "action": "add"
-        }, {
-          "_id": "_cmd_test",
-          "name": "testCMD",  // `$ nhw` to cd right into the nextjs-hello-world project
-          "command": "cd ~/workspace/nextjs-hello-world",
-          "action": "add",
-          "_op": "a"
         }]
       },
       "acme": {

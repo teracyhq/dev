@@ -394,14 +394,11 @@ describe "utility" do
         origin_project_org_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/org_project.json'))
         origin_project1_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project1.json'))
         origin_project2_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2.json'))
-        origin_project2_override_config = JSON.parse(File.read(File.dirname(__FILE__) + '/fixture/project2_override.json'))
 
         final_config = overrides(teracy_default_config, teracy_override_config)
         final_config = overrides(final_config, project_org_config)
         final_config = overrides(final_config, project1_config)
         final_config = overrides(final_config, project2_config)
-        final_config = overrides(final_config, origin_project2_override_config)
-
 
         expect(final_config['vm']['synced_folders'].length).to eql(origin_teracy_default_config['vm']['synced_folders'].length - 2 +
           origin_project1_config['vm']['synced_folders'].length +
@@ -417,8 +414,6 @@ describe "utility" do
 
         expect(final_config['plugins'][2]['options']['aliases'].length).to eql(origin_project1_config['plugins'][0]['options']['_ua_aliases'].length +
           origin_project2_config['plugins'][0]['options']['_ua_aliases'].length)
-        expect(final_config['provisioners'][0]['json']['teracy-dev']['aliases'][3]['command']).to eql(origin_project2_override_config['provisioners'][0]['json']['teracy-dev']['aliases'][0]['command'])
-
       end
     end
   end
