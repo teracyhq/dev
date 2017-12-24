@@ -1,0 +1,373 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Semantic Versioning &#8212; teracy-dev v0.5.0-c1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release Process" href="release_process.html" />
+    <link rel="prev" title="Android Training" href="android_training.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="release_process.html" title="Release Process"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="android_training.html" title="Android Training"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="semantic-versioning">
+<h1>Semantic Versioning<a class="headerlink" href="#semantic-versioning" title="Permalink to this headline">¶</a></h1>
+<p>A good software piece must have seamless integration of coupling packages and this relates to
+package dependency management. To manage it properly, a consistent semantic version system is
+required.</p>
+<p>However, specific platforms (like Python, Java, Ruby, PHP, etc. ) have different ways of managing and
+comparing versions provided by packaging tools. This documentation is used to have rules how to use
+semantic version for Teracy’s software more easily and consistently.</p>
+<p>There are tons of different version schemas: <a class="reference external" href="http://en.wikipedia.org/wiki/Software_versioning">http://en.wikipedia.org/wiki/Software_versioning</a>.
+At Teracy, the <code class="docutils literal"><span class="pre">Base</span></code> semantic version system MUST be extended from <a class="reference external" href="http://semver.org/">http://semver.org/</a>. The current
+latest version: <a class="reference external" href="http://semver.org/spec/v2.0.0.html">http://semver.org/spec/v2.0.0.html</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Never increase software version just for <code class="docutils literal"><span class="pre">marketing</span></code>, please be <strong>semantic</strong>!</li>
+<li><dl class="first docutils">
+<dt>Take into account the way <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a> works to see</dt>
+<dd>how semantic version should be applied to production services like.</dd>
+</dl>
+</li>
+</ul>
+</div>
+<p>See related link: <a class="reference external" href="http://datasift.github.io/gitflow/Versioning.html">http://datasift.github.io/gitflow/Versioning.html</a>.</p>
+<div class="section" id="base">
+<h2>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Requirements</strong></p>
+<ul class="simple">
+<li>Must be compatible with <a class="reference external" href="http://semver.org/spec/v2.0.0.html">http://semver.org/spec/v2.0.0.html</a></li>
+<li>All time for meta data must be GMT+0.</li>
+</ul>
+<p><strong>2. Specifications</strong></p>
+<ol class="loweralpha simple">
+<li>Schema:</li>
+</ol>
+<p>Format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;+&#39;metadata)?
+major ::= digit+
+minor ::= digit+
+patch ::= digit+
+prerelease ::= identifier(&#39;.&#39;identifier)+
+metadata ::= identifier(&#39;.&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
+digit ::= [0..9]
+alpha ::= [a..zA..Z]
+</pre></div>
+</div>
+<ol class="loweralpha simple" start="2">
+<li>Prerelease tags:</li>
+</ol>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&#64;</span></code> - “dev” means snapshot version of a in-development branch, where all features must be
+worked. When all intended features are complete, move on releasing “a” version.</li>
+<li><code class="docutils literal"><span class="pre">a</span></code> - “alpha” means features completed but its usage is not stable enough, still major bugs
+are expected. Continue refactoring to reach better software quality and stability.</li>
+<li><code class="docutils literal"><span class="pre">b</span></code> - “beta” means features completed, only minor bugs are expected. Avoid refactoring here,
+just fix bugs.</li>
+<li><code class="docutils literal"><span class="pre">c</span></code> - “rc” means all minor bugs are fixed, the software works stably, and the code will be
+released unless there is a last minute bug found after test campaigns.</li>
+</ul>
+<ol class="loweralpha simple" start="3">
+<li>Example:</li>
+</ol>
+<ul class="simple">
+<li>Snapshot version: <code class="docutils literal"><span class="pre">0.1.0-&#64;</span></code></li>
+<li>Precedence: <code class="docutils literal"><span class="pre">0.1.0-&#64;</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a2</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-b</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-c</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span> <span class="pre">&lt;</span> <span class="pre">1.0.0</span></code></li>
+</ul>
+<ol class="loweralpha" start="4">
+<li><p class="first">Continuous build metadata</p>
+<blockquote>
+<div><p><strong>//TODO(hoatle): specify this</strong></p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Requirements</strong></p>
+<ul class="simple">
+<li>Must extends <code class="docutils literal"><span class="pre">Base</span></code></li>
+<li>Must be compatible with
+<a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version">https://pythonhosted.org/setuptools/setuptools.html#specifying-your-project-s-version</a></li>
+<li><dl class="first docutils">
+<dt>Future take note: <a class="reference external" href="http://www.python.org/dev/peps/pep-0440/">http://www.python.org/dev/peps/pep-0440/</a> and</dt>
+<dd><a class="reference external" href="http://www.python.org/dev/peps/pep-0426/">http://www.python.org/dev/peps/pep-0426/</a></dd>
+</dl>
+</li>
+</ul>
+<p><strong>2. Specifications</strong></p>
+<ol class="loweralpha simple">
+<li>Schema</li>
+</ol>
+<blockquote>
+<div><p>Format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?(&#39;-&#39;postrelease)?
+major ::= digit+
+minor ::= digit+
+patch ::= digit+
+prerelease ::= identifier(&#39;-&#39;identifier)+
+postrelease ::= identifier(&#39;-&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
+digit ::= [0..9]
+alpha ::= [a..zA..Z]
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li>Prerelease tags</li>
+</ol>
+<ul class="simple">
+<li>The Same as <a class="reference internal" href="#base">Base</a>.</li>
+</ul>
+<ol class="loweralpha simple" start="3">
+<li>Example</li>
+</ol>
+<ul class="simple">
+<li>Snapshot version: <code class="docutils literal"><span class="pre">0.1.0-dev0</span></code></li>
+<li>Precedence: <code class="docutils literal"><span class="pre">0.1.0-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20130826.174530</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a2</span>
+<span class="pre">&lt;</span> <span class="pre">0.1.0-b</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-c</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span> <span class="pre">&lt;</span> <span class="pre">1.0.0</span></code></li>
+</ul>
+<ol class="loweralpha simple" start="4">
+<li>Continuous build metadata</li>
+</ol>
+<blockquote>
+<div><p>Format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelese)?&#39;-dev-&#39;YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+buildnumber ::= digit+
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>Precedence: <code class="docutils literal"><span class="pre">0.1.0-dev0</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010</span>
+<span class="pre">&lt;</span> <span class="pre">0.1.0-dev-20150826.101010-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-dev-20150926.101010</span></code></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>The format here learns from maven snapshot build to make it consistent.</li>
+<li>There is a nightly build provided by <code class="docutils literal"><span class="pre">setuptools</span></code> but it does not do what we want here.</li>
+</ul>
+</div>
+<ol class="loweralpha simple" start="5">
+<li>Jenkins rules</li>
+</ol>
+<ul class="simple">
+<li>Always set developing branch with: <code class="docutils literal"><span class="pre">-dev0</span></code> affix.</li>
+<li>Snapshot build: replace <code class="docutils literal"><span class="pre">-dev0</span></code> with <code class="docutils literal"><span class="pre">-dev-YYYYMMDD.hhmmss-buildnumber</span></code>.</li>
+</ul>
+<blockquote>
+<div>For example:  <code class="docutils literal"><span class="pre">0.1.0-dev-20130914.101010-15</span></code>.</div></blockquote>
+<ul class="simple">
+<li>Staging build when there is no <code class="docutils literal"><span class="pre">-dev0</span></code> affix, add <code class="docutils literal"><span class="pre">-YYYYMMDD.hhmmss-buildnumber</span></code>.</li>
+</ul>
+<p>For example: <code class="docutils literal"><span class="pre">0.1.0-20130915-102030-2</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li><code class="docutils literal"><span class="pre">setuptools</span></code> considers this as ‘post-release’</li>
+<li><code class="docutils literal"><span class="pre">pip</span></code> considers this as ‘pre-release’.</li>
+</ul>
+</div>
+<dl class="docutils">
+<dt>We must specify the right staging version for <code class="docutils literal"><span class="pre">pip</span></code> to install.</dt>
+<dd>This should be improved, expected that
+<code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-i</span> <span class="pre">http://pypi.teracy.org/teracy/public-staging/+simple/</span> <span class="pre">package-name</span></code> should
+install the latest staging version of a specified package name.</dd>
+</dl>
+<ul class="simple">
+<li>Final release includes only final version, for example: <code class="docutils literal"><span class="pre">0.1.0</span></code>, <code class="docutils literal"><span class="pre">0.2.0-a</span></code>, <code class="docutils literal"><span class="pre">1.0.0</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="java">
+<h2>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Requirements</strong></p>
+<ol class="loweralpha simple">
+<li>Must extends <a class="reference internal" href="#base">Base</a></li>
+<li>Must be compatible with Maven version plugin</li>
+</ol>
+<ul class="simple">
+<li><a class="reference external" href="http://maven.apache.org/ref/3.1.0/maven-artifact/xref/org/apache/maven/artifact/versioning/DefaultArtifactVersion.html">http://maven.apache.org/ref/3.1.0/maven-artifact/xref/org/apache/maven/artifact/versioning/DefaultArtifactVersion.html</a></li>
+<li><a class="reference external" href="http://docs.codehaus.org/display/MAVEN/Versioning">http://docs.codehaus.org/display/MAVEN/Versioning</a></li>
+</ul>
+<ol class="loweralpha simple" start="3">
+<li>Must be compatible with <a class="reference external" href="http://www.osgi.org/download/r5/osgi.core-5.0.0.pdf">http://www.osgi.org/download/r5/osgi.core-5.0.0.pdf</a> on the <code class="docutils literal"><span class="pre">Version</span></code> part.</li>
+<li>Note:</li>
+</ol>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/forum/?fromgroups#!topic/scala-internals/Xtm3-TciwNg">https://groups.google.com/forum/?fromgroups#!topic/scala-internals/Xtm3-TciwNg</a></li>
+<li><a class="reference external" href="https://github.com/paulp/version-investigator">https://github.com/paulp/version-investigator</a></li>
+<li><a class="reference external" href="https://github.com/ngrobisa/artifactory-plugin/blob/3f5d791d2c18620142539d53f700fa8757fa6be1/src/main/java/org/jfrog/hudson/util/GenericArtifactVersion.java">https://github.com/ngrobisa/artifactory-plugin/blob/3f5d791d2c18620142539d53f700fa8757fa6be1/src/main/java/org/jfrog/hudson/util/GenericArtifactVersion.java</a></li>
+</ul>
+<p><strong>2. Specifications</strong></p>
+<ol class="loweralpha simple">
+<li>Schema</li>
+</ol>
+<p>Format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;path(&#39;-&#39;prerelease)(&#39;-&#39;postrelease)?
+major ::= digit+
+minor ::= digit+
+patch ::= digit+
+prerelease ::= identifier(&#39;-&#39;identifier)+
+postrelease ::= identifier(&#39;-&#39;identifier)+
+identifier ::= (alpha|digit|&#39;-&#39;)
+digit ::= [0..9]
+alpha ::= [a..zA..Z]
+</pre></div>
+</div>
+<ol class="loweralpha simple" start="2">
+<li>Prerelease tags</li>
+</ol>
+<ul class="simple">
+<li>Same as <a class="reference internal" href="#base">Base</a>.</li>
+</ul>
+<ol class="loweralpha simple" start="3">
+<li>Example</li>
+</ol>
+<ul class="simple">
+<li>Snapshot version: <code class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span></code></li>
+<li>Precedence: <code class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20130826.174530-1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-SNAPSHOT</span> <span class="pre">&lt;</span>
+<span class="pre">0.1.0-a-20130827.123421-5</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a1</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a2</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-b</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-c</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span> <span class="pre">&lt;</span> <span class="pre">1.0.0</span></code></li>
+</ul>
+<ol class="loweralpha simple" start="4">
+<li>Continuous build metadata</li>
+</ol>
+<p>Format:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>version ::= major&#39;.&#39;minor&#39;.&#39;patch(&#39;-&#39;prerelease)?-YYYYMMDD.hhmmss(&#39;-&#39;buildnumber)?
+buildnumber ::= digit+
+</pre></div>
+</div>
+<ul class="simple">
+<li>Precedence: <code class="docutils literal"><span class="pre">0.1.0-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-20150826.101010-5</span>
+<span class="pre">&lt;</span> <span class="pre">0.1.0-a-SNAPSHOT</span> <span class="pre">&lt;</span> <span class="pre">0.1.0-a-20150926.101010</span> <span class="pre">&lt;</span> <span class="pre">0.1.0</span></code></li>
+</ul>
+</div>
+<div class="section" id="ruby">
+<h2>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><strong>//TODO(hoatle): specify this</strong></div></blockquote>
+</div>
+<div class="section" id="php">
+<h2>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><strong>//TODO(hoatle): specify this</strong></div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Semantic Versioning</a><ul>
+<li><a class="reference internal" href="#base">Base</a></li>
+<li><a class="reference internal" href="#python">Python</a></li>
+<li><a class="reference internal" href="#java">Java</a></li>
+<li><a class="reference internal" href="#ruby">Ruby</a></li>
+<li><a class="reference internal" href="#php">PHP</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="android_training.html"
+                        title="previous chapter">Android Training</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="release_process.html"
+                        title="next chapter">Release Process</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/semantic_versioning.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="release_process.html" title="Release Process"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="android_training.html" title="Android Training"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

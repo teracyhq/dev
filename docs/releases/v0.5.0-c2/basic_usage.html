@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Basic Usage &#8212; teracy-dev v0.5.0-c1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Usage" href="advanced_usage.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="basic-usage">
+<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="vagrant">
+<h2>Vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">up</span></code></p>
+<p>Use this command to create and provision a new VM, or start up an existing VM.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span></code></p>
+<p>Use this command to restart the VM.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code></p>
+<p>Use this command to restart and then provision the VM. This is useful when we update <code class="docutils literal"><span class="pre">teracy-dev</span></code>.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">halt</span></code></p>
+<p>Use this command to shut down the VM.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">destroy</span></code></p>
+<p>Use this command to destroy the VM to create a brand new clean VM.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">global-status</span></code></p>
+<p>Use this command to check the state of all active Vagrant environments on the system. You should
+halt or destroy the running Vagrant enviromnents that are not being worked on.</p>
+</li>
+</ol>
+<p>For more, please check out: <a class="reference external" href="https://www.vagrantup.com/docs/getting-started/">https://www.vagrantup.com/docs/getting-started/</a></p>
+</div>
+<div class="section" id="ip-address">
+<span id="basic-usage-ip-address"></span><h2>IP Address<a class="headerlink" href="#ip-address" title="Permalink to this headline">¶</a></h2>
+<p>By default, the VM uses a public dynamic IP address, so we need to know its IP address to access.</p>
+<p>When provisioning, we could see it on the console output like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">==</span>&gt; default: Running provisioner: shell...
+    default: Running: inline <span class="nv">script</span>
+<span class="o">==</span>&gt; default: mesg:
+<span class="o">==</span>&gt; default: ttyname <span class="nv">failed</span>
+<span class="o">==</span>&gt; default: :
+<span class="o">==</span>&gt; default: Inappropriate ioctl <span class="k">for</span> <span class="nv">device</span>
+<span class="o">==</span>&gt; default: ip address: <span class="m">192</span>.168.0.116
+</pre></div>
+</div>
+<p>When we want to display the IP address of the VM anytime, follow the commands below:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ vagrant up
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ vagrant provision --provision-with ip
+</pre></div>
+</div>
+<p>And it should display the IP address output of the VM.</p>
+</div>
+<div class="section" id="file-sync">
+<h2>File Sync<a class="headerlink" href="#file-sync" title="Permalink to this headline">¶</a></h2>
+<p>We use <code class="docutils literal"><span class="pre">rsync</span></code> for syncing files between the host machine and the VM (the guest machine) under
+the <cite>~/teracy-dev/workspace</cite> directory by default. So put your project files there, it will be
+synced back and forth with with <cite>/home/vagrant/workspace</cite> directory on the VM guest machine.
+This is default setting and you can configure the sync directories and mechanism whatever you want.</p>
+<p>For easier and high-performance sync, we use additional vagrant plugins:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/smerrill/vagrant-gatling-rsync/">vagrant-gatling-rsync</a></li>
+<li><a class="reference external" href="https://github.com/smerrill/vagrant-rsync-back/">vagrant-rsync-back</a></li>
+</ul>
+<ol class="arabic">
+<li><p class="first">Sync from the host machine to the guest VM</p>
+<blockquote>
+<div><p>By default, we run <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">gatling-rsync-auto</span></code> automatically when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> to watch
+and sync files from the host machine to the guest VM automatically.</p>
+<p>We could stop and enable it anytime by running: <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">gatling-rsync-auto</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Sync from the guest VM to the host machine</p>
+<blockquote>
+<div><p>This is used only when you want the file changes on the VM to be synced back to the host machine,
+use this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant rsync-back
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.vagrantup.com/docs/">https://www.vagrantup.com/docs/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Basic Usage</a><ul>
+<li><a class="reference internal" href="#vagrant">Vagrant</a></li>
+<li><a class="reference internal" href="#ip-address">IP Address</a></li>
+<li><a class="reference internal" href="#file-sync">File Sync</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="advanced_usage.html"
+                        title="next chapter">Advanced Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/basic_usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

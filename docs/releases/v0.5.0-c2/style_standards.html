@@ -1,0 +1,270 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Style Standards &#8212; teracy-dev v0.5.0-c1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Workflow" href="workflow.html" />
+    <link rel="prev" title="Built-in IDE (codebox)" href="built_in_ide.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="workflow.html" title="Workflow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="built_in_ide.html" title="Built-in IDE (codebox)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="style-standards">
+<h1>Style Standards<a class="headerlink" href="#style-standards" title="Permalink to this headline">¶</a></h1>
+<p>Consistency is one of our goals for development and that is the reason why we need standards. Common
+standards must be applied to all other more specific standards if any rule is not overridden.
+Following these rules, there will be automatic checking tool to report any rule violations.</p>
+<div class="section" id="common-standards">
+<h2>Common Standards<a class="headerlink" href="#common-standards" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Line length limit must be within 100 characters (80 characters limit is recommended)</li>
+<li>4 spaces for indentation; no tab character is allowed</li>
+<li>No trailing whitespace</li>
+<li>An empty newline at the end of file</li>
+</ol>
+</div>
+<div class="section" id="document-standards">
+<h2>Document Standards<a class="headerlink" href="#document-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="c-c-coding-standards">
+<h2>C/C++ Coding Standards<a class="headerlink" href="#c-c-coding-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="python-coding-standards">
+<h2>Python Coding Standards<a class="headerlink" href="#python-coding-standards" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Unless specified, follow <a class="reference external" href="http://www.python.org/dev/peps/pep-0008">PEP 8</a></li>
+<li>Follow <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/pyguide.html">Google Python Style Guide</a></li>
+<li>Follow <a class="reference external" href="http://www.python.org/dev/peps/pep-0257/">http://www.python.org/dev/peps/pep-0257/</a> for docs string</li>
+<li><dl class="first docutils">
+<dt>Style checking tools:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/pyflakes">https://pypi.python.org/pypi/pyflakes</a> (includes pep8)</li>
+<li><a class="reference external" href="http://www.pylint.org/">http://www.pylint.org/</a></li>
+<li><a class="reference external" href="http://pychecker.sourceforge.net">http://pychecker.sourceforge.net</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>See more links:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html">http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html</a></li>
+<li><a class="reference external" href="http://deeplearning.net/software/pylearn/v2_planning/API_coding_style.html">http://deeplearning.net/software/pylearn/v2_planning/API_coding_style.html</a></li>
+<li><a class="reference external" href="http://docs.python-guide.org/en/latest/writing/style/">http://docs.python-guide.org/en/latest/writing/style/</a></li>
+<li><a class="reference external" href="http://docs.ckan.org/en/latest/python-coding-standards.html">http://docs.ckan.org/en/latest/python-coding-standards.html</a></li>
+<li><a class="reference external" href="http://courses.cms.caltech.edu/cs11/material/python/misc/python_style_guide.html">http://courses.cms.caltech.edu/cs11/material/python/misc/python_style_guide.html</a></li>
+<li><a class="reference external" href="https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python">https://sites.google.com/a/khanacademy.org/forge/for-developers/styleguide/python</a></li>
+<li><a class="reference external" href="https://dev.launchpad.net/PythonStyleGuide">https://dev.launchpad.net/PythonStyleGuide</a></li>
+<li><a class="reference external" href="http://www.pocoo.org/internal/styleguide/#styleguide">http://www.pocoo.org/internal/styleguide/#styleguide</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="java-coding-standards">
+<h2>Java Coding Standards<a class="headerlink" href="#java-coding-standards" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Follow <a class="reference external" href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html">Code Conventions for the Java TM Programming Language</a></li>
+<li>Follow <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html">Google Java Style</a> but
+must use <strong>4 spaces</strong> for indentation</li>
+<li><dl class="first docutils">
+<dt>Style checking tools:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a></li>
+<li><a class="reference external" href="http://pmd.sourceforge.net/">http://pmd.sourceforge.net/</a></li>
+<li><a class="reference external" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></li>
+<li><a class="reference external" href="http://cobertura.github.io/cobertura/">http://cobertura.github.io/cobertura/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Interesting links:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="http://www.javacodegeeks.com/2012/10/java-code-quality-tools-overview.html">http://www.javacodegeeks.com/2012/10/java-code-quality-tools-overview.html</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="javascript-coding-standards">
+<h2>JavaScript Coding Standards<a class="headerlink" href="#javascript-coding-standards" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Follow <a class="reference external" href="https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript Style Guide</a>
+but must use <strong>4 spaces</strong> for indentation</li>
+<li><dl class="first docutils">
+<dt>Style checking tools:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="http://www.jshint.com/">http://www.jshint.com/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Interesting links:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="http://addyosmani.com/blog/javascript-style-guides-and-beautifiers/">http://addyosmani.com/blog/javascript-style-guides-and-beautifiers/</a></li>
+<li><a class="reference external" href="http://www.jshint.com/">http://www.jshint.com/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="html-css-coding-standards">
+<h2>HTML, CSS Coding Standards<a class="headerlink" href="#html-css-coding-standards" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Follow <a class="reference external" href="https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml">Google HTML/CSS Style Guide</a>
+but must use <strong>4 spaces</strong> for indentation</li>
+<li>This apply for CSS pre-processors like <a class="reference external" href="http://sass-lang.com/">SASS</a>,
+<a class="reference external" href="http://lesscss.org/">LESS</a>, <a class="reference external" href="http://learnboost.github.io/stylus/">Stylus</a>, etc.</li>
+<li><dl class="first docutils">
+<dt>Style checking tools:</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="https://github.com/praveenvijayan/grunt-html-validation">https://github.com/praveenvijayan/grunt-html-validation</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="ruby-coding-standards">
+<h2>Ruby Coding Standards<a class="headerlink" href="#ruby-coding-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="php-coding-standards">
+<h2>PHP Coding Standards<a class="headerlink" href="#php-coding-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="objective-c-coding-standards">
+<h2>Objective C Coding Standards<a class="headerlink" href="#objective-c-coding-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="xml-coding-standards">
+<h2>XML Coding Standards<a class="headerlink" href="#xml-coding-standards" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Style Standards</a><ul>
+<li><a class="reference internal" href="#common-standards">Common Standards</a></li>
+<li><a class="reference internal" href="#document-standards">Document Standards</a></li>
+<li><a class="reference internal" href="#c-c-coding-standards">C/C++ Coding Standards</a></li>
+<li><a class="reference internal" href="#python-coding-standards">Python Coding Standards</a></li>
+<li><a class="reference internal" href="#java-coding-standards">Java Coding Standards</a></li>
+<li><a class="reference internal" href="#javascript-coding-standards">JavaScript Coding Standards</a></li>
+<li><a class="reference internal" href="#html-css-coding-standards">HTML, CSS Coding Standards</a></li>
+<li><a class="reference internal" href="#ruby-coding-standards">Ruby Coding Standards</a></li>
+<li><a class="reference internal" href="#php-coding-standards">PHP Coding Standards</a></li>
+<li><a class="reference internal" href="#objective-c-coding-standards">Objective C Coding Standards</a></li>
+<li><a class="reference internal" href="#xml-coding-standards">XML Coding Standards</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="built_in_ide.html"
+                        title="previous chapter">Built-in IDE (codebox)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="workflow.html"
+                        title="next chapter">Workflow</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/style_standards.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="workflow.html" title="Workflow"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="built_in_ide.html" title="Built-in IDE (codebox)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2017, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
