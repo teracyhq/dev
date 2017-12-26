@@ -37,28 +37,39 @@ def get_docker_compose_release
     release = node['docker_compose']['release']
 
     if release.empty?
-        result = Mixlib::ShellOut.new("curl -s https://api.github.com/repos/docker/compose/releases/latest | sed 's/[{}]//g' | awk -v k=text '{n=split($0,a,\",\"); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w 'tag_name' | awk '{print $2}' | awk 1 ORS=''")
+        result = Mixlib::ShellOut.new('curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d\" -f4')
 
         result.run_command
 
         result.error!
 
-        node.override['docker_compose']['release'] = release = result.stdout
+        node.override['docker_compose']['release'] = release = result.stdout.strip
     end
 
     release
+end
+
+def existing_docker_compose_version
+    existing_docker_compose_version_cmd = Mixlib::ShellOut.new("docker-compose version | head -1 | grep -o -E '[0-9].*' | cut -d ',' -f1")
+
+    existing_docker_compose_version_cmd.run_command
+
+    existing_version = ''
+
+    existing_version = existing_docker_compose_version_cmd.stdout.strip if existing_docker_compose_version_cmd.stderr.empty? && !existing_docker_compose_version_cmd.stdout.empty?
+
+    existing_version
 end
 
 def get_docker_compose_autocomplete_url
     "https://raw.githubusercontent.com/docker/compose/#{get_docker_compose_release}/contrib/completion/bash/docker-compose"
 end
 
-
 if docker_conf['enabled'] == true
 
     act = :create
     if docker_conf['action'] == 'delete'
-        act = :delete 
+        act = :delete
     end
 
     if !docker_conf['version'].empty?
@@ -96,27 +107,15 @@ if docker_conf['enabled'] == true
 
 
     if node['docker_compose']['enabled'] == true
-        release = node['docker_compose']['release']
+        release = get_docker_compose_release()
 
-        if release.empty?
-            bash 'clean up previous installed docker-compose' do
+        existing_docker_compose_version = existing_docker_compose_version()
+
+        if existing_docker_compose_version != release
+            bash 'clean up the mismatched docker-compose version' do
                 code <<-EOF
                     docker_compose_binary=$(which docker-compose);
                     rm -rf $docker_compose_binary || true;
-                EOF
-                only_if 'which docker-compose'
-                user 'root'
-            end
-        else
-            bash 'clean up the mismatched docker-compose version' do
-                # docker-compose version 1.10.0, build 4bd6f1a => docker_compose_version: 1.10.0
-                code <<-EOF
-                    docker_compose_binary=$(which docker-compose);
-                    docker_compose_version=$(docker-compose -v | awk '{print $3}');
-                    docker_compose_version=${docker_compose_version::-1};
-                    if [ "$docker_compose_version" != "#{release}" ]; then
-                        rm -rf $docker_compose_binary || true;
-                    fi
                 EOF
                 only_if 'which docker-compose'
                 user 'root'
@@ -138,4 +137,3 @@ if docker_conf['enabled'] == true
         end
     end
 end
-
