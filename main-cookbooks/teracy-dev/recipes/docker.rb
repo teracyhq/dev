@@ -43,9 +43,12 @@ def get_docker_compose_release
 
         result.error!
 
-        node.override['docker_compose']['release'] = release = result.stdout.strip
-    end
+        release = result.stdout.strip
 
+        # TODO(hoatle): what if error or empty result? need to handle this case
+    end
+    node.override['docker_compose']['release'] = release
+    Chef::Log.info("get_docker_compose_release::release: #{release}")
     release
 end
 
@@ -57,7 +60,8 @@ def existing_docker_compose_version
     existing_version = ''
 
     existing_version = existing_docker_compose_version_cmd.stdout.strip if existing_docker_compose_version_cmd.stderr.empty? && !existing_docker_compose_version_cmd.stdout.empty?
-
+    Chef::Log.debug("existing_docker_compose_version_cmd.stderr: #{existing_docker_compose_version_cmd.stderr}")
+    Chef::Log.debug("existing_docker_compose_version_cmd.stdout: #{existing_docker_compose_version_cmd.stdout}")
     existing_version
 end
 
@@ -110,15 +114,13 @@ if docker_conf['enabled'] == true
         release = get_docker_compose_release()
 
         existing_docker_compose_version = existing_docker_compose_version()
-
-        if existing_docker_compose_version != release
-            bash 'clean up the mismatched docker-compose version' do
-                code <<-EOF
-                    docker_compose_binary=$(which docker-compose);
-                    rm -rf $docker_compose_binary || true;
-                EOF
-                only_if 'which docker-compose'
-                user 'root'
+        Chef::Log.debug("existing_docker_compose_version: #{existing_docker_compose_version}")
+        # empty could mean broken installation, it's safe to do clean up.
+        if existing_docker_compose_version.empty? or existing_docker_compose_version != release
+            docker_compose_path = node['docker_compose']['command_path']
+            file docker_compose_path do
+              action :delete
+              only_if { File.exist?(docker_compose_path) }
             end
         end
 
