@@ -34,7 +34,7 @@
 docker_conf = node['docker']
 
 def get_docker_compose_release
-    release = node['docker_compose']['release']
+    release = node['docker_compose']['version']
 
     if release.empty?
         result = Mixlib::ShellOut.new('curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d\" -f4')
@@ -114,28 +114,41 @@ if docker_conf['enabled'] == true
         release = get_docker_compose_release()
 
         existing_docker_compose_version = existing_docker_compose_version()
+        docker_compose_path = node['docker_compose']['command_path']
+        docker_compose_autocomplete_path = '/etc/bash_completion.d/docker-compose'
         Chef::Log.debug("existing_docker_compose_version: #{existing_docker_compose_version}")
         # empty could mean broken installation, it's safe to do clean up.
         if existing_docker_compose_version.empty? or existing_docker_compose_version != release
-            docker_compose_path = node['docker_compose']['command_path']
             file docker_compose_path do
               action :delete
               only_if { File.exist?(docker_compose_path) }
             end
+
+            file docker_compose_autocomplete_path do
+                action :delete
+                only_if { File.exist?(docker_compose_autocomplete_path) }
+            end
         end
 
-        autocomplete_url = get_docker_compose_autocomplete_url
+        if !File.exist?(docker_compose_path)
+            # TODO(hoatle): get the cache file here
+            include_recipe 'docker_compose::installation'
+            # put the cache file here
+        end
 
-        include_recipe 'docker_compose::installation'
-
-        # install docker-compose auto complete
-        execute 'install docker-compose autocomplete' do
-            action :run
-            command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
-            creates '/etc/bash_completion.d/docker-compose'
-            user 'root'
-            group 'docker'
-            only_if { node['platform'] == 'ubuntu' }
+        if !File.exist?(docker_compose_autocomplete_path)
+            # TODO(hoatle): get the cache file here
+            autocomplete_url = get_docker_compose_autocomplete_url
+            # install docker-compose auto complete
+            execute 'install docker-compose autocomplete' do
+                action :run
+                command "curl -sSL #{autocomplete_url} > /etc/bash_completion.d/docker-compose"
+                creates docker_compose_autocomplete_path
+                user 'root'
+                group 'docker'
+                only_if { node['platform'] == 'ubuntu' }
+            end
+            # put the cache file here
         end
     end
 end
