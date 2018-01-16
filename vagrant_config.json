@@ -112,6 +112,7 @@
       "docker_registry": {
         // set true to force re-login with all the defined entries, default: false (login once)
         "force": false,
+        "config_path": "/home/vagrant/.docker/config.json",
         "entries": []
         // example:
         // "entries": [
