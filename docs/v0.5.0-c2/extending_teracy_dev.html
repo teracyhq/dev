@@ -1,0 +1,385 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Extending teracy-dev &#8212; teracy-dev v0.5.0-c2 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Docker" href="docker.html" />
+    <link rel="prev" title="Advanced Usage" href="advanced_usage.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="docker.html" title="Docker"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="extending-teracy-dev">
+<h1>Extending teracy-dev<a class="headerlink" href="#extending-teracy-dev" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> is developed with the goal to keep it as minimal and extensible as possible. The
+extension feature is so powerful that you can customize the VM in anyway you want.</p>
+<p>You can extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>’s VM by your own choice of operating system and automate the
+provisioning process by your own choice of configuration software. “The only limit is your
+imagination” :–).</p>
+<p>To extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>, you can use any kind of provisioners that are supported by <code class="docutils literal"><span class="pre">vagrant</span></code>
+(as <code class="docutils literal"><span class="pre">teracy-dev</span></code> is built on top of <code class="docutils literal"><span class="pre">vagrant</span></code>), you can see more info here:
+<a class="reference external" href="https://www.vagrantup.com/docs/provisioning/">https://www.vagrantup.com/docs/provisioning/</a></p>
+<p>We choose <code class="docutils literal"><span class="pre">Chef</span></code> as it’s our default provisioner because we have more years of usage experience.
+We also intend to use <code class="docutils literal"><span class="pre">Ansible</span></code> for some future projects, too.</p>
+<p>Let me show you how to extend it to work with <code class="docutils literal"><span class="pre">Kubernetes</span></code>.</p>
+<p>Make sure that you have <code class="docutils literal"><span class="pre">teracy-dev</span></code> running, if not, follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide first.</p>
+<p>Make sure that you master the <a class="reference internal" href="basic_usage.html"><span class="doc">Basic Usage</span></a> and <a class="reference internal" href="advanced_usage.html"><span class="doc">Advanced Usage</span></a> guides, too.</p>
+<div class="section" id="installing-chefdk">
+<h2>Installing <code class="docutils literal"><span class="pre">ChefDK</span></code><a class="headerlink" href="#installing-chefdk" title="Permalink to this headline">¶</a></h2>
+<p>To work with Chef cookbooks, we need to install <code class="docutils literal"><span class="pre">ChefDK</span></code>. Fortunately, there is already an
+available cookbook for us to use to install <code class="docutils literal"><span class="pre">ChefDK</span></code> automatically on our VM:
+<a class="reference external" href="https://supermarket.chef.io/cookbooks/chef-dk">https://supermarket.chef.io/cookbooks/chef-dk</a></p>
+<p>Usually, we have a <code class="docutils literal"><span class="pre">dev-setup</span></code> directory to extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>. The initial <code class="docutils literal"><span class="pre">dev-setup</span></code> content
+should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/0-initial">https://github.com/acme101/kubernetes-dev-setup/tree/0-initial</a></p>
+<p>To install <code class="docutils literal"><span class="pre">ChefDK</span></code>, we must install the <code class="docutils literal"><span class="pre">chef-dk</span></code> cookbook and use it as follows:</p>
+<ul>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">depends</span> <span class="pre">'chef-dk'</span></code> to <code class="docutils literal"><span class="pre">dev-setup/chef/main-cookbooks/acme/metadata.rb</span></code></p>
+</li>
+<li><p class="first">Install vendor cookbooks with the following commands within the VM:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+$ ws
+$ <span class="nb">cd</span> dev-setup/chef
+$ docker-compose up
+</pre></div>
+</div>
+</li>
+<li><p class="first">Sync back the changes from the VM to the host machine:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant rsync-back
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The updated content should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/1-dependency">https://github.com/acme101/kubernetes-dev-setup/tree/1-dependency</a></p>
+<p>Now, to install <code class="docutils literal"><span class="pre">chef-dk</span></code>, just add the following Ruby code to <code class="docutils literal"><span class="pre">default.rb</span></code> recipe, it’s never
+so easy:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>chef_dk <span class="s1">&#39;my_chef_dk&#39;</span> <span class="k">do</span>
+  global_shell_init <span class="nb">true</span>
+  action :install
+end
+</pre></div>
+</div>
+<p>Make sure you have <code class="docutils literal"><span class="pre">berks-cookbooks</span></code> paths that <code class="docutils literal"><span class="pre">vagrant</span></code> can look up. The configuration step
+should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/2-configuration">https://github.com/acme101/kubernetes-dev-setup/tree/2-configuration</a></p>
+<ul>
+<li><p class="first">After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila, you should have <code class="docutils literal"><span class="pre">ChefDk</span></code> installed.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+$ chef --version
+Chef Development Kit Version: <span class="m">1</span>.4.3
+chef-client version: <span class="m">12</span>.19.36
+delivery version: master <span class="o">(</span>41b94ffb5efd33723cf72a89bf4d273c8151c9dc<span class="o">)</span>
+berks version: <span class="m">5</span>.6.4
+kitchen version: <span class="m">1</span>.16.0
+inspec version: <span class="m">1</span>.25.1
+</pre></div>
+</div>
+</li>
+</ul>
+<p>That’s how we use Chef cookbooks to manage the VM’s software automatically. You can do the same with
+all other types of Chef cookbooks shared and opensourced from the public Chef Supermarket:
+<a class="reference external" href="https://supermarket.chef.io/">https://supermarket.chef.io/</a>
+You can use all the public shared cookbooks to do almost anything you want for your VM.</p>
+<p>However, sometimes, there is not available cookbook that we want, then it’s time we should
+build new cookbooks from scratch.</p>
+</div>
+<div class="section" id="creating-new-chef-cookbooks">
+<h2>Creating new <code class="docutils literal"><span class="pre">Chef</span></code> cookbooks<a class="headerlink" href="#creating-new-chef-cookbooks" title="Permalink to this headline">¶</a></h2>
+<p>From the steps above, we have <code class="docutils literal"><span class="pre">ChefDK</span></code> available to work with Chef cookbooks. To learn how to use it,
+you can follow: <a class="reference external" href="https://github.com/chef/chef-dk">https://github.com/chef/chef-dk</a></p>
+<p>I already created the initial <code class="docutils literal"><span class="pre">kubernetes-stack-cookbook</span></code> that we can work with. You need to clone
+the repo into the <code class="docutils literal"><span class="pre">workspace</span></code> directory:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev/workspace
+$ git clone git@github.com:teracyhq-incubator/kubernetes-stack-cookbook.git
+</pre></div>
+</div>
+<p>You can test the cookbook within the VM (<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>) with <code class="docutils literal"><span class="pre">rspec</span></code>, <code class="docutils literal"><span class="pre">kitchen</span></code> easily:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> kubernetes-stack-cookbook/
+$ rspec
+</pre></div>
+</div>
+<p>you should see the following similar content:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>kubernetes-stack::default
+  When all attributes are default, on ubuntu <span class="m">16</span>.04
+    converges successfully
+
+kubernetes-stack-test::gcloud_install_default
+  When all attributes are default, on ubuntu <span class="m">16</span>.04
+    converges successfully
+    install gcloud
+
+kubernetes-stack-test::kubectl_install_default
+  When all attributes are default, on ubuntu <span class="m">16</span>.04
+    converges successfully
+    install kubectl
+
+Finished in <span class="m">1</span>.35 seconds <span class="o">(</span>files took <span class="m">1</span>.78 seconds to load<span class="o">)</span>
+<span class="m">5</span> examples, <span class="m">0</span> failures
+
+
+ChefSpec Coverage report generated...
+
+  Total Resources:   <span class="m">7</span>
+  Touched Resources: <span class="m">2</span>
+  Touch Coverage:    <span class="m">28</span>.57%
+
+Untouched Resources:
+
+  gcloud<span class="o">[</span>install default gcloud<span class="o">]</span>     kubernetes-stack-test/recipes/gcloud_install_default.rb:1
+  execute<span class="o">[</span>import google-cloud-sdk public key<span class="o">]</span>   kubernetes-stack/resources/gcloud.rb:13
+  apt_repository<span class="o">[</span>google-cloud-sdk<span class="o">]</span>   kubernetes-stack/resources/gcloud.rb:17
+  bash<span class="o">[</span>clean up the mismatched kubectl version<span class="o">]</span>   kubernetes-stack/resources/kubectl.rb:20
+  remote_file<span class="o">[</span>/usr/local/bin/kubectl<span class="o">]</span>   kubernetes-stack/resources/kubectl.rb:33
+</pre></div>
+</div>
+<p>and to test with <code class="docutils literal"><span class="pre">kitchen</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+$ <span class="nb">cd</span> kubernetes-stack-cookbook/
+$ <span class="nb">export</span> <span class="nv">KITCHEN_LOCAL_YAML</span><span class="o">=</span>.kitchen.dokken.yml
+$ kitchen <span class="nb">test</span>
+</pre></div>
+</div>
+<p>then you should see the following similar content:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>...
+Starting Chef Client, version <span class="m">13</span>.2.7
+<span class="o">[</span><span class="m">2017</span>-06-14T17:53:24+00:00<span class="o">]</span> WARN: Plugin Network: unable to detect ipaddress
+resolving cookbooks <span class="k">for</span> run list: <span class="o">[</span><span class="s2">&quot;kubernetes-stack-test::gcloud_install_default&quot;</span><span class="o">]</span>
+Synchronizing Cookbooks:
+  - kubernetes-stack-test <span class="o">(</span><span class="m">0</span>.1.0<span class="o">)</span>
+  - kubernetes-stack <span class="o">(</span><span class="m">0</span>.1.0<span class="o">)</span>
+Installing Cookbook Gems:
+Compiling Cookbooks...
+Converging <span class="m">1</span> resources
+Recipe: kubernetes-stack-test::gcloud_install_default
+  * gcloud<span class="o">[</span>install default gcloud<span class="o">]</span> action install
+    * execute<span class="o">[</span>import google-cloud-sdk public key<span class="o">]</span> action run
+      - execute curl https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="p">|</span> apt-key add -
+    * apt_repository<span class="o">[</span>google-cloud-sdk<span class="o">]</span> action add
+      * execute<span class="o">[</span>apt-cache gencaches<span class="o">]</span> action nothing <span class="o">(</span>skipped due to action :nothing<span class="o">)</span>
+      * apt_update<span class="o">[</span>google-cloud-sdk<span class="o">]</span> action nothing <span class="o">(</span>skipped due to action :nothing<span class="o">)</span>
+      * file<span class="o">[</span>/etc/apt/sources.list.d/google-cloud-sdk.list<span class="o">]</span> action create
+        - create new file /etc/apt/sources.list.d/google-cloud-sdk.list
+        - update content in file /etc/apt/sources.list.d/google-cloud-sdk.list from none to 24ee22
+        --- /etc/apt/sources.list.d/google-cloud-sdk.list <span class="m">2017</span>-06-14 <span class="m">17</span>:53:25.296105380 +0000
+        +++ /etc/apt/sources.list.d/.chef-google-cloud-sdk20170614-20-7wqkmu.list <span class="m">2017</span>-06-14 <span class="m">17</span>:53:25.296105380 +0000
+        @@ -1 +1,2 @@
+        +deb      <span class="s2">&quot;http://packages.cloud.google.com/apt&quot;</span> cloud-sdk-xenial main
+        - change mode from <span class="s1">&#39;&#39;</span> to <span class="s1">&#39;0644&#39;</span>
+        - change owner from <span class="s1">&#39;&#39;</span> to <span class="s1">&#39;root&#39;</span>
+        - change group from <span class="s1">&#39;&#39;</span> to <span class="s1">&#39;root&#39;</span>
+      * execute<span class="o">[</span>apt-cache gencaches<span class="o">]</span> action run
+        - execute apt-cache gencaches
+      * apt_update<span class="o">[</span>google-cloud-sdk<span class="o">]</span> action update
+        - force update new lists of packages
+        * directory<span class="o">[</span>/var/lib/apt/periodic<span class="o">]</span> action create <span class="o">(</span>up to date<span class="o">)</span>
+        * directory<span class="o">[</span>/etc/apt/apt.conf.d<span class="o">]</span> action create <span class="o">(</span>up to date<span class="o">)</span>
+        * file<span class="o">[</span>/etc/apt/apt.conf.d/15update-stamp<span class="o">]</span> action create_if_missing
+          - create new file /etc/apt/apt.conf.d/15update-stamp
+          - update content in file /etc/apt/apt.conf.d/15update-stamp from none to 174cdb
+          --- /etc/apt/apt.conf.d/15update-stamp  <span class="m">2017</span>-06-14 <span class="m">17</span>:53:26.136525380 +0000
+          +++ /etc/apt/apt.conf.d/.chef-15update-stamp20170614-20-1r28edv <span class="m">2017</span>-06-14 <span class="m">17</span>:53:26.136525380 +0000
+          @@ -1 +1,2 @@
+          +APT::Update::Post-Invoke-Success <span class="o">{</span><span class="s2">&quot;touch /var/lib/apt/periodic/update-success-stamp 2&gt;/dev/null || true&quot;</span><span class="p">;</span><span class="o">}</span><span class="p">;</span>
+        * execute<span class="o">[</span>apt-get -q update<span class="o">]</span> action run
+          - execute apt-get -q update
+
+
+    * apt_package<span class="o">[</span>google-cloud-sdk<span class="o">]</span> action install
+
+      - install version <span class="m">159</span>.0.0-0 of package google-cloud-sdk
+
+
+Running handlers:
+Running handlers <span class="nb">complete</span>
+Chef Client finished, <span class="m">9</span>/13 resources updated in <span class="m">55</span> seconds
+       Finished converging &lt;smoke-gcloud-ubuntu-1604&gt; <span class="o">(</span>1m0.97s<span class="o">)</span>.
+-----&gt; Setting up &lt;smoke-gcloud-ubuntu-1604&gt;...
+       Finished setting up &lt;smoke-gcloud-ubuntu-1604&gt; <span class="o">(</span>0m0.00s<span class="o">)</span>.
+-----&gt; Verifying &lt;smoke-gcloud-ubuntu-1604&gt;...
+       Loaded tests from test/smoke/gcloud
+
+Profile: tests from test/smoke/gcloud
+Version: <span class="o">(</span>not specified<span class="o">)</span>
+Target:  docker://16562c9afb7c00447169330fc584b442617a810f6b776d2eb6b78ce87d5d652f
+
+
+  Command which
+     ✔  gcloud exit_status should eq <span class="m">0</span>
+     ✔  gcloud stdout should match <span class="s2">&quot;/usr/bin/gcloud&quot;</span>
+
+Test Summary: <span class="m">2</span> successful, <span class="m">0</span> failures, <span class="m">0</span> skipped
+       Finished verifying &lt;smoke-gcloud-ubuntu-1604&gt; <span class="o">(</span>0m0.64s<span class="o">)</span>.
+-----&gt; Destroying &lt;smoke-gcloud-ubuntu-1604&gt;...
+       Deleting kitchen sandbox at /home/vagrant/.dokken/kitchen_sandbox/1000b8c847-smoke-gcloud-ubuntu-1604
+       Deleting verifier sandbox at /home/vagrant/.dokken/verifier_sandbox/1000b8c847-smoke-gcloud-ubuntu-1604
+       Finished destroying &lt;smoke-gcloud-ubuntu-1604&gt; <span class="o">(</span>0m10.67s<span class="o">)</span>.
+       Finished testing &lt;smoke-gcloud-ubuntu-1604&gt; <span class="o">(</span>1m55.61s<span class="o">)</span>.
+-----&gt; Kitchen is finished. <span class="o">(</span>4m12.76s<span class="o">)</span>
+</pre></div>
+</div>
+<p>That’s how we develop and test the cookbook on local dev.</p>
+<p>You can see the cookbook here at <a class="reference external" href="https://github.com/teracyhq-incubator/kubernetes-stack-cookbook">https://github.com/teracyhq-incubator/kubernetes-stack-cookbook</a></p>
+<p>It’s currently a very simple cookbook to support the installation of <cite>kubectl</cite> and <cite>gcloud</cite>. In
+the future, it will do more than that and support more platforms than current Ubuntu only.</p>
+</div>
+<div class="section" id="installing-kubectl-and-gcloud">
+<h2>Installing <code class="docutils literal"><span class="pre">kubectl</span></code> and <code class="docutils literal"><span class="pre">gcloud</span></code><a class="headerlink" href="#installing-kubectl-and-gcloud" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">kubernetes-stack-cookbook</span></code> is not available on the Chef Supermarket (yet), so to use it, we need
+to install it from the github repo.</p>
+<p>To install <code class="docutils literal"><span class="pre">kubectl</span></code>, add this to the <code class="docutils literal"><span class="pre">default.rb</span></code> recipe:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="s1">&#39;install the latest kubectl&#39;</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal"><span class="pre">gcloud</span></code>, add this to the <code class="docutils literal"><span class="pre">default.rb</span></code> recipe:</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">gcloud</span> <span class="s1">&#39;install the latest gcloud&#39;</span>
+</pre></div>
+</div>
+<p>The configuration step should be like this:
+<a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/3-kubectl-gcloud-installation">https://github.com/acme101/kubernetes-dev-setup/tree/3-kubectl-gcloud-installation</a></p>
+<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila (again), you should have both of the packages installed.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ kubectl version
+Client Version: version.Info<span class="o">{</span>Major:<span class="s2">&quot;1&quot;</span>, Minor:<span class="s2">&quot;6&quot;</span>, GitVersion:<span class="s2">&quot;v1.6.4&quot;</span>, GitCommit:<span class="s2">&quot;d6f433224538d4f9ca2f7ae19b252e6fcb66a3ae&quot;</span>, GitTreeState:<span class="s2">&quot;clean&quot;</span>, BuildDate:<span class="s2">&quot;2017-05-19T18:44:27Z&quot;</span>, GoVersion:<span class="s2">&quot;go1.7.5&quot;</span>, Compiler:<span class="s2">&quot;gc&quot;</span>, Platform:<span class="s2">&quot;linux/amd64&quot;</span><span class="o">}</span>
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>vagrant@teracy:~$ gcloud --version
+Google Cloud SDK <span class="m">159</span>.0.0
+alpha <span class="m">2017</span>.06.09
+beta <span class="m">2017</span>.06.09
+bq <span class="m">2</span>.0.24
+core <span class="m">2017</span>.06.09
+gcloud
+gsutil <span class="m">4</span>.26
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Now you should know how to extend <code class="docutils literal"><span class="pre">teracy-dev</span></code> with Chef cookbooks, this is a very common task to do.
+And other newcomer devs can just use your <code class="docutils literal"><span class="pre">dev-setup</span></code> without learning anything new, just follow
+the instructions and learn more to master later.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://blog.teracy.com/2017/06/15/how-to-extend-teracy-dev-to-work-with-kubernetes/">http://blog.teracy.com/2017/06/15/how-to-extend-teracy-dev-to-work-with-kubernetes/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Extending teracy-dev</a><ul>
+<li><a class="reference internal" href="#installing-chefdk">Installing <code class="docutils literal"><span class="pre">ChefDK</span></code></a></li>
+<li><a class="reference internal" href="#creating-new-chef-cookbooks">Creating new <code class="docutils literal"><span class="pre">Chef</span></code> cookbooks</a></li>
+<li><a class="reference internal" href="#installing-kubectl-and-gcloud">Installing <code class="docutils literal"><span class="pre">kubectl</span></code> and <code class="docutils literal"><span class="pre">gcloud</span></code></a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="advanced_usage.html"
+                        title="previous chapter">Advanced Usage</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="docker.html"
+                        title="next chapter">Docker</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/extending_teracy_dev.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="docker.html" title="Docker"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="advanced_usage.html" title="Advanced Usage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2018, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

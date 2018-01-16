@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Docker &#8212; teracy-dev v0.5.0-c2 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Toolchain" href="tool_chain.html" />
+    <link rel="prev" title="Extending teracy-dev" href="extending_teracy_dev.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="extending_teracy_dev.html" title="Extending teracy-dev"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<p>We leverage Docker for our software development.</p>
+<p>When <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>, it’s expected that <code class="docutils literal"><span class="pre">docker</span></code> and <code class="docutils literal"><span class="pre">docker-compose</span></code> should be installed within
+the VM and ready to be used:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+vagrant@vagrant:~$ docker version
+Client:
+ Version:      <span class="m">1</span>.12.3
+ API version:  <span class="m">1</span>.24
+ Go version:   go1.6.3
+ Git commit:   6b644ec
+ Built:        Wed Oct <span class="m">26</span> <span class="m">22</span>:01:48 <span class="m">2016</span>
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      <span class="m">1</span>.12.3
+ API version:  <span class="m">1</span>.24
+ Go version:   go1.6.3
+ Git commit:   6b644ec
+ Built:        Wed Oct <span class="m">26</span> <span class="m">22</span>:01:48 <span class="m">2016</span>
+ OS/Arch:      linux/amd64
+</pre></div>
+</div>
+<div class="section" id="docker-machine">
+<h2>docker-machine<a class="headerlink" href="#docker-machine" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes, we want to control the Docker VM with <cite>docker-machine</cite> from our host machine. Then do this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+$ docker-machine create -d generic <span class="se">\</span>
+--generic-ssh-user vagrant <span class="se">\</span>
+--generic-ssh-key .vagrant/machines/default/virtualbox/private_key <span class="se">\</span>
+--generic-ip-address &lt;vm_ip_address&gt; teracy-dev
+</pre></div>
+</div>
+<p>And then you should see something like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Running pre-create checks...
+Creating machine...
+<span class="o">(</span>teracy-dev<span class="o">)</span> Importing SSH key...
+Waiting <span class="k">for</span> machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting <span class="k">for</span> SSH to be available...
+Detecting the provisioner...
+Provisioning with ubuntu<span class="o">(</span>upstart<span class="o">)</span>...
+Installing Docker...
+Copying certs to the <span class="nb">local</span> machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env teracy-dev
+hoatle-mbp:teracy-dev hoatle$ docker-machine env teracy-dev
+<span class="nb">export</span> <span class="nv">DOCKER_TLS_VERIFY</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+<span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">&quot;tcp://192.168.99.101:2376&quot;</span>
+<span class="nb">export</span> <span class="nv">DOCKER_CERT_PATH</span><span class="o">=</span><span class="s2">&quot;/Users/hoatle/.docker/machine/machines/teracy-dev&quot;</span>
+<span class="nb">export</span> <span class="nv">DOCKER_MACHINE_NAME</span><span class="o">=</span><span class="s2">&quot;teracy-dev&quot;</span>
+<span class="c1"># Run this command to configure your shell:</span>
+<span class="c1"># eval $(docker-machine env teracy-dev)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Node.js</li>
+</ol>
+<ul>
+<li><p class="first">node-inspector at: <a class="reference external" href="http:/">http:/</a>/&lt;vm_ip_address&gt;:8080/?port=5858</p>
+</li>
+<li><p class="first">remote js debug with IntelliJ: <a class="reference external" href="http://stackoverflow.com/a/23947664/1122198">http://stackoverflow.com/a/23947664/1122198</a></p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>vagrant ssh -- -L <span class="m">5858</span>:127.0.0.1:5858
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="related-resources">
+<h2>Related Resources<a class="headerlink" href="#related-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/smerrill/vagrant-gatling-rsync">https://github.com/smerrill/vagrant-gatling-rsync</a></li>
+<li><a class="reference external" href="https://github.com/veggiemonk/awesome-docker">https://github.com/veggiemonk/awesome-docker</a></li>
+<li><a class="reference external" href="https://github.com/wsargent/docker-cheat-sheet">https://github.com/wsargent/docker-cheat-sheet</a></li>
+<li><a class="reference external" href="https://github.com/chef-cookbooks/docker">https://github.com/chef-cookbooks/docker</a></li>
+<li><a class="reference external" href="https://docs.docker.com/">https://docs.docker.com/</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Docker</a><ul>
+<li><a class="reference internal" href="#docker-machine">docker-machine</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+<li><a class="reference internal" href="#related-resources">Related Resources</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="extending_teracy_dev.html"
+                        title="previous chapter">Extending teracy-dev</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tool_chain.html"
+                        title="next chapter">Toolchain</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/docker.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tool_chain.html" title="Toolchain"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="extending_teracy_dev.html" title="Extending teracy-dev"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2018, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

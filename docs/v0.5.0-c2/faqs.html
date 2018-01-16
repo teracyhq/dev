@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>FAQs &#8212; teracy-dev v0.5.0-c2 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'v0.5.0-c2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Release Process" href="release_process.html" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42868657-2', 'teracy.org');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="release_process.html" title="Release Process"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="faqs">
+<h1>FAQs<a class="headerlink" href="#faqs" title="Permalink to this headline">¶</a></h1>
+<p>This page provides the frequently asked questions (FAQs) about <code class="docutils literal"><span class="pre">teracy-dev</span></code>.</p>
+<div class="section" id="why-teracy-dev-why-not-just-docker">
+<h2>Why teracy-dev? Why not just Docker?<a class="headerlink" href="#why-teracy-dev-why-not-just-docker" title="Permalink to this headline">¶</a></h2>
+<p>Docker is great to work with, it solves a lot of problems on development, distribution, and production deployment. It works great on Linux, but it’s very challenging to make it work universal and consistent on Mac and Windows. There are lots of efforts to solve this problem, from Docker themselves and from Docker community, too. However, we haven’t achieved that stage yet (until <code class="docutils literal"><span class="pre">teracy-dev</span></code>). <code class="docutils literal"><span class="pre">teracy-dev</span></code> is a universal Productive Development Platform With Docker on macOS, Linux and Windows.  With <code class="docutils literal"><span class="pre">teracy-dev</span></code>, anyone from any OS platforms could collaborate and help each other with no differences in the development environment, and many other reasons why you should use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop software more easily, see details at
+<a class="reference external" href="http://blog.teracy.com/2016/12/20/teracy-dev-the-only-truly-universal-productive-development-platform-with-docker-on-macos-linux-and-windows/">http://blog.teracy.com/2016/12/20/teracy-dev-the-only-truly-universal-productive-development-platform-with-docker-on-macos-linux-and-windows/</a>.</p>
+</div>
+<div class="section" id="how-do-i-know-which-version-of-teracy-dev-that-i-m-using">
+<h2>How do I know which version of <code class="docutils literal"><span class="pre">teracy-dev</span></code> that I’m using?<a class="headerlink" href="#how-do-i-know-which-version-of-teracy-dev-that-i-m-using" title="Permalink to this headline">¶</a></h2>
+<p>Currently, to know the version of teracy-dev which you are using, you need to follow the steps:
+First, you need to <code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span></code> to know the current branch, then <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code> to know the info about the latest commits. Normally, we have the commits about release the new version, for example, “Merge pull request #313 from hoatle/tasks/#312-release-v0.5.0-b3”.</p>
+<p>We’ll provide a simpler way soon at <a class="reference external" href="https://github.com/teracyhq/dev/issues/366">https://github.com/teracyhq/dev/issues/366</a>.</p>
+</div>
+<div class="section" id="after-vaggrant-ssh-why-cannot-i-run-the-grunt-or-npm-command-in-the-vm">
+<h2>After <code class="docutils literal"><span class="pre">vaggrant</span> <span class="pre">ssh</span></code>, why cannot I run the <code class="docutils literal"><span class="pre">grunt</span></code> or <code class="docutils literal"><span class="pre">npm</span></code> command in the VM?<a class="headerlink" href="#after-vaggrant-ssh-why-cannot-i-run-the-grunt-or-npm-command-in-the-vm" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">grunt</span></code> or <code class="docutils literal"><span class="pre">npm</span></code> command is not used in the <code class="docutils literal"><span class="pre">teracy-dev</span></code> latest version anymore. Instead, <code class="docutils literal"><span class="pre">docker</span></code> and <code class="docutils literal"><span class="pre">docker-compose</span></code> is installed by default and you should use these two.</p>
+</div>
+<div class="section" id="what-should-i-do-after-updating-vagrant-config-override-json-to-get-it-applied-to-the-vm">
+<h2>What should I do after updating <code class="docutils literal"><span class="pre">vagrant_config_override.json</span></code> to get it applied to the VM?<a class="headerlink" href="#what-should-i-do-after-updating-vagrant-config-override-json-to-get-it-applied-to-the-vm" title="Permalink to this headline">¶</a></h2>
+<p>Make sure to save the <code class="docutils literal"><span class="pre">vagrant_config_override.json</span></code> file, and you can run <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">provision</span></code>
+, usually this should work. If not, run <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>.</p>
+</div>
+<div class="section" id="what-should-i-do-when-vagrant-up-gets-stuck-at-this-step">
+<h2>What should I do when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> gets stuck at this step?<a class="headerlink" href="#what-should-i-do-when-vagrant-up-gets-stuck-at-this-step" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">default</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">chef</span><span class="o">/</span><span class="mi">7</span><span class="n">cb2926f81b5c74a4ca3dd163f9d9ffd</span><span class="o">/</span><span class="n">roles</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">hoatle</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">roles</span>
+<span class="n">default</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">chef</span><span class="o">/</span><span class="mi">3071687433</span><span class="n">aa992e850e416aafea8f25</span><span class="o">/</span><span class="n">nodes</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">hoatle</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">nodes</span>
+<span class="n">default</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">chef</span><span class="o">/</span><span class="n">bbfefdc57119d7552b06b24069242f8a</span><span class="o">/</span><span class="n">data_bags</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">hoatle</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">data_bags</span>
+<span class="n">default</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">chef</span><span class="o">/</span><span class="mi">9</span><span class="n">b5518c8fee080ca55f1c57179068e17</span><span class="o">/</span><span class="n">cookbooks</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">hoatle</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">vendor</span><span class="o">-</span><span class="n">cookbooks</span>
+<span class="n">default</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">chef</span><span class="o">/</span><span class="mi">87</span><span class="n">b97d785383812081b2ec7e56be857d</span><span class="o">/</span><span class="n">cookbooks</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">hoatle</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">teracy</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">main</span><span class="o">-</span><span class="n">cookbooks</span>
+<span class="o">==&gt;</span> <span class="n">default</span><span class="p">:</span> <span class="n">Running</span> <span class="n">provisioner</span><span class="p">:</span> <span class="n">chef_solo</span><span class="o">...</span>
+<span class="n">default</span><span class="p">:</span> <span class="n">Installing</span> <span class="n">Chef</span> <span class="p">(</span><span class="n">latest</span><span class="p">)</span><span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Then stop it, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> to update this <a class="reference external" href="http://askubuntu.com/questions/620317/apt-get-update-stuck-connecting-to-security-ubuntu-com">http://askubuntu.com/questions/620317/apt-get-update-stuck-connecting-to-security-ubuntu-com</a>, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> again.</p>
+</div>
+<div class="section" id="etc-hosts-is-not-properly-updated-when-i-got-errors-after-vagrant-destroy-and-vagrant-up-i-end-up-having-multiple-same-entries-that-the-wrong-one-is-on-the-top-of-the-file-this-leads-to-wrong-dns-to-point-to-the-right-vm-s-ip-address-what-should-i-do">
+<h2><code class="docutils literal"><span class="pre">/etc/hosts</span></code> is not properly updated when I got errors, after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code> and <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>. I end up having multiple same entries that the wrong one is on the top of the file. This leads to wrong DNS to point to the right VM’s IP address. What should I do?<a class="headerlink" href="#etc-hosts-is-not-properly-updated-when-i-got-errors-after-vagrant-destroy-and-vagrant-up-i-end-up-having-multiple-same-entries-that-the-wrong-one-is-on-the-top-of-the-file-this-leads-to-wrong-dns-to-point-to-the-right-vm-s-ip-address-what-should-i-do" title="Permalink to this headline">¶</a></h2>
+<p>Follow the steps below:</p>
+<ol class="arabic simple">
+<li>check VM’s ip: <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code></li>
+<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">hostmanger</span></code> to make sure <code class="docutils literal"><span class="pre">/etc/hosts</span></code> is updated.</li>
+<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">ping</span> <span class="pre">&lt;the_configured_domain&gt;</span></code> to see if it pings the right VM IP from step 1.</li>
+<li>If it’s not right, open <code class="docutils literal"><span class="pre">/etc/hosts</span></code> to check and remove wrong entries.</li>
+<li>Come back to Step 3 to verify.</li>
+</ol>
+</div>
+<div class="section" id="what-should-i-do-when-the-teracy-dev-version-is-changed">
+<h2>What should I do when the <code class="docutils literal"><span class="pre">teracy-dev</span></code> version is changed?<a class="headerlink" href="#what-should-i-do-when-the-teracy-dev-version-is-changed" title="Permalink to this headline">¶</a></h2>
+<p>You should run the command <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">destroy</span></code>, then <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">up</span></code>.</p>
+</div>
+<div class="section" id="what-should-i-do-when-changing-provisioner-chef-bash">
+<h2>What should I do when changing provisioner (Chef, Bash…)?<a class="headerlink" href="#what-should-i-do-when-changing-provisioner-chef-bash" title="Permalink to this headline">¶</a></h2>
+<p>You should run the command <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>.</p>
+</div>
+<div class="section" id="what-should-i-do-when-meeting-other-errors-and-the-problems-cannot-be-solved-with-vagrant-reload-or-vagrant-reload-provision">
+<h2>What should I do when meeting other errors, and the problems cannot be solved with <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span></code> or <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>?<a class="headerlink" href="#what-should-i-do-when-meeting-other-errors-and-the-problems-cannot-be-solved-with-vagrant-reload-or-vagrant-reload-provision" title="Permalink to this headline">¶</a></h2>
+<p>You should run the command <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">destroy</span></code>, then <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FAQs</a><ul>
+<li><a class="reference internal" href="#why-teracy-dev-why-not-just-docker">Why teracy-dev? Why not just Docker?</a></li>
+<li><a class="reference internal" href="#how-do-i-know-which-version-of-teracy-dev-that-i-m-using">How do I know which version of <code class="docutils literal"><span class="pre">teracy-dev</span></code> that I’m using?</a></li>
+<li><a class="reference internal" href="#after-vaggrant-ssh-why-cannot-i-run-the-grunt-or-npm-command-in-the-vm">After <code class="docutils literal"><span class="pre">vaggrant</span> <span class="pre">ssh</span></code>, why cannot I run the <code class="docutils literal"><span class="pre">grunt</span></code> or <code class="docutils literal"><span class="pre">npm</span></code> command in the VM?</a></li>
+<li><a class="reference internal" href="#what-should-i-do-after-updating-vagrant-config-override-json-to-get-it-applied-to-the-vm">What should I do after updating <code class="docutils literal"><span class="pre">vagrant_config_override.json</span></code> to get it applied to the VM?</a></li>
+<li><a class="reference internal" href="#what-should-i-do-when-vagrant-up-gets-stuck-at-this-step">What should I do when <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> gets stuck at this step?</a></li>
+<li><a class="reference internal" href="#etc-hosts-is-not-properly-updated-when-i-got-errors-after-vagrant-destroy-and-vagrant-up-i-end-up-having-multiple-same-entries-that-the-wrong-one-is-on-the-top-of-the-file-this-leads-to-wrong-dns-to-point-to-the-right-vm-s-ip-address-what-should-i-do"><code class="docutils literal"><span class="pre">/etc/hosts</span></code> is not properly updated when I got errors, after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code> and <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code>. I end up having multiple same entries that the wrong one is on the top of the file. This leads to wrong DNS to point to the right VM’s IP address. What should I do?</a></li>
+<li><a class="reference internal" href="#what-should-i-do-when-the-teracy-dev-version-is-changed">What should I do when the <code class="docutils literal"><span class="pre">teracy-dev</span></code> version is changed?</a></li>
+<li><a class="reference internal" href="#what-should-i-do-when-changing-provisioner-chef-bash">What should I do when changing provisioner (Chef, Bash…)?</a></li>
+<li><a class="reference internal" href="#what-should-i-do-when-meeting-other-errors-and-the-problems-cannot-be-solved-with-vagrant-reload-or-vagrant-reload-provision">What should I do when meeting other errors, and the problems cannot be solved with <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span></code> or <code class="docutils literal"><span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="release_process.html"
+                        title="previous chapter">Release Process</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/faqs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="release_process.html" title="Release Process"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">teracy-dev v0.5.0-c2 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013 - 2018, Teracy, Inc..
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>
