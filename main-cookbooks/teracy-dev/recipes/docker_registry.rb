@@ -7,16 +7,19 @@ docker_conf = node['docker']
 
 docker_registry_conf = node['docker_registry']
 
+docker_config_path = docker_registry_conf['config_path']
+
+
 if docker_conf['enabled'] == true
     execute 'rm ~/.docker/config.json' do
-        command 'rm /home/vagrant/.docker/config.json || true'
+        command "rm #{docker_config_path} || true"
         only_if {
             docker_registry_conf['force'] == true and
-            File.exist?('/home/vagrant/.docker/config.json')
+            File.exist?(docker_config_path)
         }
     end
 
-    docker_registry_conf['entries'].each.with_index do |entry, index|
+    docker_registry_conf['entries'].each do |entry|
         # private registry login
 
         username = entry['username'] ? entry['username'] : ''
@@ -40,12 +43,13 @@ if docker_conf['enabled'] == true
         end
     end
 
+
     execute 'copy /root/.docker/config.json to ~/.docker/config.json' do
-        command 'cp /root/.docker/config.json /home/vagrant/.docker/config.json'
+        command "cp /root/.docker/config.json #{docker_config_path}"
         only_if {
             File.exist?('/root/.docker/config.json') and (
                 docker_registry_conf['force'] == true or
-                not File.exist?('/home/vagrant/.docker/config.json')
+                not File.exist?(docker_config_path)
             )
         }
     end
