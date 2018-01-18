@@ -31,7 +31,7 @@
       "type": "rsync",
       "host": "./workspace",
       "guest": "/home/vagrant/workspace",
-      "rsync__exclude": [".git", ".idea/", "node_modules/", "bower_components/", ".npm/", ".#*"]
+      "rsync__exclude": [".git", ".idea", ".#*"]
     }, { // should persist docker auth token after login success #170
       "_id": "2",
       "type": "virtual_box",
