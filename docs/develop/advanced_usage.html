@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Advanced Usage &#8212; teracy-dev v0.5.0-c3-@ documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     'v0.5.0-c3-@',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -37,8 +29,7 @@
 
     </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -70,7 +61,7 @@
 to override the default configuration on <cite>vagrant_config.json</cite> file.</p>
 <p>By using this, we can easily upgrade teracy-dev with ease, no conflicts introduced.</p>
 <p>For example, to use more memory for the VM, looking into the <cite>vagrant_config.json</cite> file we could find:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;vb&quot;</span><span class="o">:</span><span class="p">{</span> <span class="c1">//virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;vb&quot;</span><span class="o">:</span><span class="p">{</span> <span class="c1">//virtualbox settings from https://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm</span>
   <span class="c1">//&quot;gui&quot;:true,</span>
   <span class="c1">//&quot;name&quot;:&quot;teracy-dev&quot;,</span>
   <span class="s2">&quot;memory&quot;</span><span class="o">:</span><span class="mi">2048</span><span class="p">,</span>
@@ -80,14 +71,14 @@ to override the default configuration on <cite>vagrant_config.json</cite> file.<
 </pre></div>
 </div>
 <p>Now create the <cite>vagrant_config_override.json</cite> file with the following content:</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;vb&quot;</span><span class="p">:{</span>
     <span class="nt">&quot;memory&quot;</span><span class="p">:</span><span class="mi">3072</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span></code>, then this overridden configuration will update the VM with <em>3072</em> MB memory instead of default <em>2048</em> MB memory.</p>
+<p>After that, <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span></code>, then this overridden configuration will update the VM with <em>3072</em> MB memory instead of default <em>2048</em> MB memory.</p>
 <p>This applied the same for other configuration that you want to override. Under the hood, we merge
 the <cite>vagrant_config_override.json</cite> with <cite>vagrant_config.json</cite> to create the configuration settings.
 The configuration settings are then applied to the <cite>Vagrantfile</cite> file.</p>
@@ -95,12 +86,12 @@ The configuration settings are then applied to the <cite>Vagrantfile</cite> file
 <div class="section" id="upgrading">
 <h2>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h2>
 <p>To upgrade teracy-dev, just pull the latest changes from the git repo and you’re set:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
 $ git fetch origin <span class="o">&amp;&amp;</span> git reset --hard origin/master
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> is used for improvements and bug fixes change upgrading.</p>
-<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span> <span class="pre">&amp;&amp;</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> is used for next major version change upgrading.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> is used for improvements and bug fixes change upgrading.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span> <span class="pre">&amp;&amp;</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> is used for next major version change upgrading.</p>
 </div>
 </div>
 
@@ -134,12 +125,14 @@ $ git fetch origin <span class="o">&amp;&amp;</span> git reset --hard origin/mas
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -163,7 +156,7 @@ $ git fetch origin <span class="o">&amp;&amp;</span> git reset --hard origin/mas
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2018, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

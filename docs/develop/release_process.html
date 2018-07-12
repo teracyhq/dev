@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Release Process &#8212; teracy-dev v0.5.0-c3-@ documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     'v0.5.0-c3-@',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -37,8 +29,7 @@
 
     </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -68,11 +59,11 @@
 <ul class="simple">
 <li>Follow workflow, a releasing branch should be branched off from an origin branch that is ready to be
 released.</li>
-<li>The releasing branch should be named <code class="docutils literal"><span class="pre">releases/vX.X.X</span></code>.</li>
-<li>For example: the <code class="docutils literal"><span class="pre">releases/v0.1.0</span></code> branch is branched off from the <code class="docutils literal"><span class="pre">develop</span></code> branch.</li>
-<li>Set the next iteration version for the <code class="docutils literal"><span class="pre">develop</span></code> branch. This will make sure there is no snapshot
-version conflict between the <code class="docutils literal"><span class="pre">releases</span></code> branch and the <code class="docutils literal"><span class="pre">develop</span></code> branch. Moreover, the
-<code class="docutils literal"><span class="pre">develop</span></code> branch will not be blocked.</li>
+<li>The releasing branch should be named <code class="docutils literal notranslate"><span class="pre">releases/vX.X.X</span></code>.</li>
+<li>For example: the <code class="docutils literal notranslate"><span class="pre">releases/v0.1.0</span></code> branch is branched off from the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</li>
+<li>Set the next iteration version for the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch. This will make sure there is no snapshot
+version conflict between the <code class="docutils literal notranslate"><span class="pre">releases</span></code> branch and the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch. Moreover, the
+<code class="docutils literal notranslate"><span class="pre">develop</span></code> branch will not be blocked.</li>
 <li>Create an issue for DevOps team to create ci job if required.</li>
 <li>Create an issue for Blog team to preparing release announcement post.</li>
 </ul>
@@ -92,10 +83,10 @@ is stable enough and have good quality.</li>
 <ul class="simple">
 <li>Make sure that the tag step must be ready at least <strong>3 days</strong> before the expected release date.
 Use <strong>UTC</strong> as standard reference time.</li>
-<li>Tag the release: <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></code> with the <code class="docutils literal"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></code> message. For example,
-<code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></code> with the <code class="docutils literal"><span class="pre">v0.1.0</span> <span class="pre">Release</span></code> message. This message pattern could be later
+<li>Tag the release: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v&lt;version&gt;</span></code> with the <code class="docutils literal notranslate"><span class="pre">v&lt;version&gt;</span> <span class="pre">Release</span></code> message. For example,
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v0.1.0</span></code> with the <code class="docutils literal notranslate"><span class="pre">v0.1.0</span> <span class="pre">Release</span></code> message. This message pattern could be later
 used for auto deployment, so make sure the message has the correct pattern.</li>
-<li>Merge the tag release into the <code class="docutils literal"><span class="pre">master</span></code> branch, then the origin branch. This is specified on the
+<li>Merge the tag release into the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, then the origin branch. This is specified on the
 project workflow.</li>
 <li>Delete the released branch and we are done.</li>
 </ul>
@@ -139,12 +130,14 @@ should be automated and really easy to do.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -168,7 +161,7 @@ should be automated and really easy to do.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2018, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

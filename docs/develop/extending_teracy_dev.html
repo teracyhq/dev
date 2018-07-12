@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Extending teracy-dev &#8212; teracy-dev v0.5.0-c3-@ documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     'v0.5.0-c3-@',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -37,8 +29,7 @@
 
     </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -62,32 +53,32 @@
             
   <div class="section" id="extending-teracy-dev">
 <h1>Extending teracy-dev<a class="headerlink" href="#extending-teracy-dev" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> is developed with the goal to keep it as minimal and extensible as possible. The
+<p><code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> is developed with the goal to keep it as minimal and extensible as possible. The
 extension feature is so powerful that you can customize the VM in anyway you want.</p>
-<p>You can extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>’s VM by your own choice of operating system and automate the
+<p>You can extend <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code>’s VM by your own choice of operating system and automate the
 provisioning process by your own choice of configuration software. “The only limit is your
 imagination” :–).</p>
-<p>To extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>, you can use any kind of provisioners that are supported by <code class="docutils literal"><span class="pre">vagrant</span></code>
-(as <code class="docutils literal"><span class="pre">teracy-dev</span></code> is built on top of <code class="docutils literal"><span class="pre">vagrant</span></code>), you can see more info here:
+<p>To extend <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code>, you can use any kind of provisioners that are supported by <code class="docutils literal notranslate"><span class="pre">vagrant</span></code>
+(as <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> is built on top of <code class="docutils literal notranslate"><span class="pre">vagrant</span></code>), you can see more info here:
 <a class="reference external" href="https://www.vagrantup.com/docs/provisioning/">https://www.vagrantup.com/docs/provisioning/</a></p>
-<p>We choose <code class="docutils literal"><span class="pre">Chef</span></code> as it’s our default provisioner because we have more years of usage experience.
-We also intend to use <code class="docutils literal"><span class="pre">Ansible</span></code> for some future projects, too.</p>
-<p>Let me show you how to extend it to work with <code class="docutils literal"><span class="pre">Kubernetes</span></code>.</p>
-<p>Make sure that you have <code class="docutils literal"><span class="pre">teracy-dev</span></code> running, if not, follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide first.</p>
+<p>We choose <code class="docutils literal notranslate"><span class="pre">Chef</span></code> as it’s our default provisioner because we have more years of usage experience.
+We also intend to use <code class="docutils literal notranslate"><span class="pre">Ansible</span></code> for some future projects, too.</p>
+<p>Let me show you how to extend it to work with <code class="docutils literal notranslate"><span class="pre">Kubernetes</span></code>.</p>
+<p>Make sure that you have <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> running, if not, follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide first.</p>
 <p>Make sure that you master the <a class="reference internal" href="basic_usage.html"><span class="doc">Basic Usage</span></a> and <a class="reference internal" href="advanced_usage.html"><span class="doc">Advanced Usage</span></a> guides, too.</p>
 <div class="section" id="installing-chefdk">
-<h2>Installing <code class="docutils literal"><span class="pre">ChefDK</span></code><a class="headerlink" href="#installing-chefdk" title="Permalink to this headline">¶</a></h2>
-<p>To work with Chef cookbooks, we need to install <code class="docutils literal"><span class="pre">ChefDK</span></code>. Fortunately, there is already an
-available cookbook for us to use to install <code class="docutils literal"><span class="pre">ChefDK</span></code> automatically on our VM:
+<h2>Installing <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code><a class="headerlink" href="#installing-chefdk" title="Permalink to this headline">¶</a></h2>
+<p>To work with Chef cookbooks, we need to install <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code>. Fortunately, there is already an
+available cookbook for us to use to install <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code> automatically on our VM:
 <a class="reference external" href="https://supermarket.chef.io/cookbooks/chef-dk">https://supermarket.chef.io/cookbooks/chef-dk</a></p>
-<p>Usually, we have a <code class="docutils literal"><span class="pre">dev-setup</span></code> directory to extend <code class="docutils literal"><span class="pre">teracy-dev</span></code>. The initial <code class="docutils literal"><span class="pre">dev-setup</span></code> content
+<p>Usually, we have a <code class="docutils literal notranslate"><span class="pre">dev-setup</span></code> directory to extend <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code>. The initial <code class="docutils literal notranslate"><span class="pre">dev-setup</span></code> content
 should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/0-initial">https://github.com/acme101/kubernetes-dev-setup/tree/0-initial</a></p>
-<p>To install <code class="docutils literal"><span class="pre">ChefDK</span></code>, we must install the <code class="docutils literal"><span class="pre">chef-dk</span></code> cookbook and use it as follows:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code>, we must install the <code class="docutils literal notranslate"><span class="pre">chef-dk</span></code> cookbook and use it as follows:</p>
 <ul>
-<li><p class="first">Add <code class="docutils literal"><span class="pre">depends</span> <span class="pre">'chef-dk'</span></code> to <code class="docutils literal"><span class="pre">dev-setup/chef/main-cookbooks/acme/metadata.rb</span></code></p>
+<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">depends</span> <span class="pre">'chef-dk'</span></code> to <code class="docutils literal notranslate"><span class="pre">dev-setup/chef/main-cookbooks/acme/metadata.rb</span></code></p>
 </li>
 <li><p class="first">Install vendor cookbooks with the following commands within the VM:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant ssh
 $ ws
 $ <span class="nb">cd</span> dev-setup/chef
 $ docker-compose up
@@ -95,25 +86,25 @@ $ docker-compose up
 </div>
 </li>
 <li><p class="first">Sync back the changes from the VM to the host machine:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant rsync-back
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant rsync-back
 </pre></div>
 </div>
 </li>
 </ul>
 <p>The updated content should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/1-dependency">https://github.com/acme101/kubernetes-dev-setup/tree/1-dependency</a></p>
-<p>Now, to install <code class="docutils literal"><span class="pre">chef-dk</span></code>, just add the following Ruby code to <code class="docutils literal"><span class="pre">default.rb</span></code> recipe, it’s never
+<p>Now, to install <code class="docutils literal notranslate"><span class="pre">chef-dk</span></code>, just add the following Ruby code to <code class="docutils literal notranslate"><span class="pre">default.rb</span></code> recipe, it’s never
 so easy:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chef_dk <span class="s1">&#39;my_chef_dk&#39;</span> <span class="k">do</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chef_dk <span class="s1">&#39;my_chef_dk&#39;</span> <span class="k">do</span>
   global_shell_init <span class="nb">true</span>
   action :install
 end
 </pre></div>
 </div>
-<p>Make sure you have <code class="docutils literal"><span class="pre">berks-cookbooks</span></code> paths that <code class="docutils literal"><span class="pre">vagrant</span></code> can look up. The configuration step
+<p>Make sure you have <code class="docutils literal notranslate"><span class="pre">berks-cookbooks</span></code> paths that <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> can look up. The configuration step
 should be like this: <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/2-configuration">https://github.com/acme101/kubernetes-dev-setup/tree/2-configuration</a></p>
 <ul>
-<li><p class="first">After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila, you should have <code class="docutils literal"><span class="pre">ChefDk</span></code> installed.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant ssh
+<li><p class="first">After that, <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila, you should have <code class="docutils literal notranslate"><span class="pre">ChefDk</span></code> installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant ssh
 $ chef --version
 Chef Development Kit Version: <span class="m">1</span>.4.3
 chef-client version: <span class="m">12</span>.19.36
@@ -133,23 +124,23 @@ You can use all the public shared cookbooks to do almost anything you want for y
 build new cookbooks from scratch.</p>
 </div>
 <div class="section" id="creating-new-chef-cookbooks">
-<h2>Creating new <code class="docutils literal"><span class="pre">Chef</span></code> cookbooks<a class="headerlink" href="#creating-new-chef-cookbooks" title="Permalink to this headline">¶</a></h2>
-<p>From the steps above, we have <code class="docutils literal"><span class="pre">ChefDK</span></code> available to work with Chef cookbooks. To learn how to use it,
+<h2>Creating new <code class="docutils literal notranslate"><span class="pre">Chef</span></code> cookbooks<a class="headerlink" href="#creating-new-chef-cookbooks" title="Permalink to this headline">¶</a></h2>
+<p>From the steps above, we have <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code> available to work with Chef cookbooks. To learn how to use it,
 you can follow: <a class="reference external" href="https://github.com/chef/chef-dk">https://github.com/chef/chef-dk</a></p>
-<p>I already created the initial <code class="docutils literal"><span class="pre">kubernetes-stack-cookbook</span></code> that we can work with. You need to clone
-the repo into the <code class="docutils literal"><span class="pre">workspace</span></code> directory:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev/workspace
+<p>I already created the initial <code class="docutils literal notranslate"><span class="pre">kubernetes-stack-cookbook</span></code> that we can work with. You need to clone
+the repo into the <code class="docutils literal notranslate"><span class="pre">workspace</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev/workspace
 $ git clone git@github.com:teracyhq-incubator/kubernetes-stack-cookbook.git
 </pre></div>
 </div>
-<p>You can test the cookbook within the VM (<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>) with <code class="docutils literal"><span class="pre">rspec</span></code>, <code class="docutils literal"><span class="pre">kitchen</span></code> easily:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+<p>You can test the cookbook within the VM (<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>) with <code class="docutils literal notranslate"><span class="pre">rspec</span></code>, <code class="docutils literal notranslate"><span class="pre">kitchen</span></code> easily:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ws
 $ <span class="nb">cd</span> kubernetes-stack-cookbook/
 $ rspec
 </pre></div>
 </div>
 <p>you should see the following similar content:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>kubernetes-stack::default
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubernetes-stack::default
   When all attributes are default, on ubuntu <span class="m">16</span>.04
     converges successfully
 
@@ -182,15 +173,15 @@ Untouched Resources:
   remote_file<span class="o">[</span>/usr/local/bin/kubectl<span class="o">]</span>   kubernetes-stack/resources/kubectl.rb:33
 </pre></div>
 </div>
-<p>and to test with <code class="docutils literal"><span class="pre">kitchen</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+<p>and to test with <code class="docutils literal notranslate"><span class="pre">kitchen</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ws
 $ <span class="nb">cd</span> kubernetes-stack-cookbook/
 $ <span class="nb">export</span> <span class="nv">KITCHEN_LOCAL_YAML</span><span class="o">=</span>.kitchen.dokken.yml
 $ kitchen <span class="nb">test</span>
 </pre></div>
 </div>
 <p>then you should see the following similar content:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 Starting Chef Client, version <span class="m">13</span>.2.7
 <span class="o">[</span><span class="m">2017</span>-06-14T17:53:24+00:00<span class="o">]</span> WARN: Plugin Network: unable to detect ipaddress
 resolving cookbooks <span class="k">for</span> run list: <span class="o">[</span><span class="s2">&quot;kubernetes-stack-test::gcloud_install_default&quot;</span><span class="o">]</span>
@@ -273,26 +264,26 @@ Test Summary: <span class="m">2</span> successful, <span class="m">0</span> fail
 the future, it will do more than that and support more platforms than current Ubuntu only.</p>
 </div>
 <div class="section" id="installing-kubectl-and-gcloud">
-<h2>Installing <code class="docutils literal"><span class="pre">kubectl</span></code> and <code class="docutils literal"><span class="pre">gcloud</span></code><a class="headerlink" href="#installing-kubectl-and-gcloud" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">kubernetes-stack-cookbook</span></code> is not available on the Chef Supermarket (yet), so to use it, we need
+<h2>Installing <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">gcloud</span></code><a class="headerlink" href="#installing-kubectl-and-gcloud" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">kubernetes-stack-cookbook</span></code> is not available on the Chef Supermarket (yet), so to use it, we need
 to install it from the github repo.</p>
-<p>To install <code class="docutils literal"><span class="pre">kubectl</span></code>, add this to the <code class="docutils literal"><span class="pre">default.rb</span></code> recipe:</p>
-<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="s1">&#39;install the latest kubectl&#39;</span>
+<p>To install <code class="docutils literal notranslate"><span class="pre">kubectl</span></code>, add this to the <code class="docutils literal notranslate"><span class="pre">default.rb</span></code> recipe:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="s1">&#39;install the latest kubectl&#39;</span>
 </pre></div>
 </div>
-<p>To install <code class="docutils literal"><span class="pre">gcloud</span></code>, add this to the <code class="docutils literal"><span class="pre">default.rb</span></code> recipe:</p>
-<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">gcloud</span> <span class="s1">&#39;install the latest gcloud&#39;</span>
+<p>To install <code class="docutils literal notranslate"><span class="pre">gcloud</span></code>, add this to the <code class="docutils literal notranslate"><span class="pre">default.rb</span></code> recipe:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">gcloud</span> <span class="s1">&#39;install the latest gcloud&#39;</span>
 </pre></div>
 </div>
 <p>The configuration step should be like this:
 <a class="reference external" href="https://github.com/acme101/kubernetes-dev-setup/tree/3-kubectl-gcloud-installation">https://github.com/acme101/kubernetes-dev-setup/tree/3-kubectl-gcloud-installation</a></p>
-<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila (again), you should have both of the packages installed.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ kubectl version
+<p>After that, <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code> and voila (again), you should have both of the packages installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl version
 Client Version: version.Info<span class="o">{</span>Major:<span class="s2">&quot;1&quot;</span>, Minor:<span class="s2">&quot;6&quot;</span>, GitVersion:<span class="s2">&quot;v1.6.4&quot;</span>, GitCommit:<span class="s2">&quot;d6f433224538d4f9ca2f7ae19b252e6fcb66a3ae&quot;</span>, GitTreeState:<span class="s2">&quot;clean&quot;</span>, BuildDate:<span class="s2">&quot;2017-05-19T18:44:27Z&quot;</span>, GoVersion:<span class="s2">&quot;go1.7.5&quot;</span>, Compiler:<span class="s2">&quot;gc&quot;</span>, Platform:<span class="s2">&quot;linux/amd64&quot;</span><span class="o">}</span>
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>vagrant@teracy:~$ gcloud --version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vagrant@teracy:~$ gcloud --version
 Google Cloud SDK <span class="m">159</span>.0.0
 alpha <span class="m">2017</span>.06.09
 beta <span class="m">2017</span>.06.09
@@ -305,8 +296,8 @@ gsutil <span class="m">4</span>.26
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>Now you should know how to extend <code class="docutils literal"><span class="pre">teracy-dev</span></code> with Chef cookbooks, this is a very common task to do.
-And other newcomer devs can just use your <code class="docutils literal"><span class="pre">dev-setup</span></code> without learning anything new, just follow
+<p>Now you should know how to extend <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> with Chef cookbooks, this is a very common task to do.
+And other newcomer devs can just use your <code class="docutils literal notranslate"><span class="pre">dev-setup</span></code> without learning anything new, just follow
 the instructions and learn more to master later.</p>
 </div>
 <div class="section" id="references">
@@ -326,9 +317,9 @@ the instructions and learn more to master later.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Extending teracy-dev</a><ul>
-<li><a class="reference internal" href="#installing-chefdk">Installing <code class="docutils literal"><span class="pre">ChefDK</span></code></a></li>
-<li><a class="reference internal" href="#creating-new-chef-cookbooks">Creating new <code class="docutils literal"><span class="pre">Chef</span></code> cookbooks</a></li>
-<li><a class="reference internal" href="#installing-kubectl-and-gcloud">Installing <code class="docutils literal"><span class="pre">kubectl</span></code> and <code class="docutils literal"><span class="pre">gcloud</span></code></a></li>
+<li><a class="reference internal" href="#installing-chefdk">Installing <code class="docutils literal notranslate"><span class="pre">ChefDK</span></code></a></li>
+<li><a class="reference internal" href="#creating-new-chef-cookbooks">Creating new <code class="docutils literal notranslate"><span class="pre">Chef</span></code> cookbooks</a></li>
+<li><a class="reference internal" href="#installing-kubectl-and-gcloud">Installing <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">gcloud</span></code></a></li>
 <li><a class="reference internal" href="#summary">Summary</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -350,12 +341,14 @@ the instructions and learn more to master later.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -379,7 +372,7 @@ the instructions and learn more to master later.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2018, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

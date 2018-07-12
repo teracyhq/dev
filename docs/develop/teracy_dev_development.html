@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>teracy-dev Development &#8212; teracy-dev v0.5.0-c3-@ documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     'v0.5.0-c3-@',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -37,8 +29,7 @@
 
     </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -62,13 +53,13 @@
             
   <div class="section" id="teracy-dev-development">
 <h1>teracy-dev Development<a class="headerlink" href="#teracy-dev-development" title="Permalink to this headline">¶</a></h1>
-<p>We use <code class="docutils literal"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal"><span class="pre">teracy-dev</span></code>, and use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> to develop <code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code>, and use <cite>teracy/dev:dev_develop</cite> Docker image with all development runtime to execute Rake tasks.</p>
 <div class="section" id="project-setup">
 <h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
 <p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev-setup/blob/develop/README.md">https://github.com/teracyhq/dev-setup/blob/develop/README.md</a> to set up teracy-dev and dev-setup.</p>
-<p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup">https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup</a> to set up <code class="docutils literal"><span class="pre">dev</span></code> project.</p>
+<p>Please follow the document at <a class="reference external" href="https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup">https://github.com/teracyhq/dev/tree/develop/dev-setup/README.md#setting-up-teracy-dev-setup</a> to set up <code class="docutils literal notranslate"><span class="pre">dev</span></code> project.</p>
 <p>Get Docker image <cite>teracy/dev:dev_develop</cite> to execute rake tasks</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
 $ vagrant ssh
 $ ws
 $ <span class="nb">cd</span> workspace/dev
@@ -83,13 +74,13 @@ $ docker-compose pull
 <div class="section" id="rake-tasks">
 <h2>Rake Tasks<a class="headerlink" href="#rake-tasks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span></code> or <code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">list</span></code> to list all <cite>Rake</cite> tasks.</li>
+<li><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rake</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">list</span></code> to list all <cite>Rake</cite> tasks.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake list
 </pre></div>
 </div>
 <p>You will see similiar like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Creating network <span class="s2">&quot;dev_default&quot;</span> with the default driver
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Creating network <span class="s2">&quot;dev_default&quot;</span> with the default driver
 Tasks:
 - berks_install
 - berks_upload
@@ -104,13 +95,13 @@ Tasks:
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
+<li><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">build</span></code> to check code style and run tests.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake build
 </pre></div>
 </div>
 <p>You will see something similar to this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> knife cookbook <span class="nb">test</span> -a -c test/knife.rb
 WARNING: DEPRECATED: Please use ChefSpec or Rubocop to syntax-check cookbooks.
 Running syntax check on teracy-dev
 Validating ruby files
@@ -126,13 +117,13 @@ Finished in <span class="m">0</span>.00132 seconds <span class="o">(</span>files
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rake</span> <span class="pre">berks_install</span></code> to install vendor cookbooks with <a class="reference external" href="http://berkshelf.com/">Berkshelf</a>.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake berks_install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose run --rm dev rake berks_install
 </pre></div>
 </div>
 <p>You will see something similar to this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle <span class="nb">exec</span> berks vendor vendor-cookbooks
 Resolving cookbook dependencies...
 Fetching cookbook index from https://supermarket.chef.io...
 Installing compat_resource <span class="o">(</span><span class="m">12</span>.19.0<span class="o">)</span>
@@ -152,7 +143,7 @@ Vendoring vim <span class="o">(</span><span class="m">2</span>.0.2<span class="o
 <h2>Build teracy/dev Docker image<a class="headerlink" href="#build-teracy-dev-docker-image" title="Permalink to this headline">¶</a></h2>
 <p>When we update the development runtime (for example, change Gemfile or Dockerfile-dev), we need to
 build the image with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose build
 </pre></div>
 </div>
 </div>
@@ -162,21 +153,21 @@ build the image with:</p>
 <ol class="arabic">
 <li><p class="first"><cite>Virtualbox</cite> Installation:</p>
 <p>You could install any versions of Virtualbox that matches the host machine.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /tmp
 $ wget http://download.virtualbox.org/virtualbox/5.1.10/virtualbox-5.1_5.1.10-112026~Ubuntu~xenial_amd64.deb
 $ sudo dpkg -i virtualbox-5.1_5.1.10-112026~Ubuntu~xenial_amd64.deb
 $ sudo apt-get install -f -y
 </pre></div>
 </div>
 <p>Note: You may encounter some errors. Do not worry, you should install the missing dependencies. After installing, run <cite>/sbin/vboxconfig</cite> as root.</p>
-<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">VBoxManage</span> <span class="pre">--version</span></code> should print out something like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ VBoxManage --version
+<p>After that, <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">VBoxManage</span> <span class="pre">--version</span></code> should print out something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ VBoxManage --version
 <span class="m">5</span>.1.10r112026
 </pre></div>
 </div>
 </li>
 <li><p class="first"><cite>Packer</cite> Installation</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ws
 $ mkdir packer
 $ <span class="nb">cd</span> packer
 $ wget https://releases.hashicorp.com/packer/1.1.0/packer_1.1.0_linux_amd64.zip
@@ -186,14 +177,14 @@ $ <span class="nb">echo</span> <span class="s1">&#39;export PATH=~/workspace/pac
 $ <span class="nb">source</span> ~/.bash_profile
 </pre></div>
 </div>
-<p>After that, <code class="docutils literal"><span class="pre">$</span> <span class="pre">packer</span> <span class="pre">version</span></code> should print out something like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer version
+<p>After that, <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">packer</span> <span class="pre">version</span></code> should print out something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ packer version
 Packer v1.1.0
 </pre></div>
 </div>
 </li>
 <li><p class="first"><cite>Bento</cite> Repository Clone</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ws
 $ git clone https://github.com/chef/bento.git
 $ <span class="nb">cd</span> bento
 </pre></div>
@@ -211,10 +202,10 @@ building base boxes from scratch.</p>
 <p class="last">Building from “headless” mode is not recommended, it should be used only for ci-system.</p>
 </div>
 <p>We’re going to build <cite>ubuntu-16.04-amd64.json</cite> base box as an example.</p>
-<p>We’re working on a headless VM so you need to add <code class="docutils literal"><span class="pre">headless</span></code> option to the json file by
-openning any .json files and append <code class="docutils literal"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
+<p>We’re working on a headless VM so you need to add <code class="docutils literal notranslate"><span class="pre">headless</span></code> option to the json file by
+openning any .json files and append <code class="docutils literal notranslate"><span class="pre">&quot;headless&quot;:true,</span></code> before <code class="docutils literal notranslate"><span class="pre">&quot;boot_wait:</span> <span class="pre">&quot;10s&quot;,</span></code> line.</p>
 <p>and then:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ws
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ws
 $ <span class="nb">cd</span> bento
 $ packer build -only<span class="o">=</span>virtualbox-iso ubuntu-16.04-amd64.json
 </pre></div>
@@ -225,7 +216,7 @@ us to use.</p>
 put it under <cite>~/workspace/bento/isos/</cite>.</p>
 <p>For example, you put <cite>ubuntu-16.04.3-server-amd64.iso</cite> file under <cite>~/workspace/bento/isos/ubuntu/16.04</cite>
 and you can use the mirror like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-16.04-amd64.json
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ packer build -var<span class="o">=</span><span class="s2">&quot;mirror=/home/vagrant/workspace/bento/isos/ubuntu&quot;</span> -only<span class="o">=</span>virtualbox-iso ubuntu-16.04-amd64.json
 </pre></div>
 </div>
 <p>It will take a while for the base box to be completed. The base boxe should be available under
@@ -281,12 +272,14 @@ and you can use the mirror like:</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -310,7 +303,7 @@ and you can use the mirror like:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2018, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

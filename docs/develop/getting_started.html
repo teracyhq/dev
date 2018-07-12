@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Getting Started &#8212; teracy-dev v0.5.0-c3-@ documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     'v0.5.0-c3-@',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -37,8 +29,7 @@
 
     </script>
 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -62,7 +53,7 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">teracy-dev</span></code> is created to set up a universal development platform which has the same development
+<p><code class="docutils literal notranslate"><span class="pre">teracy-dev</span></code> is created to set up a universal development platform which has the same development
 workflow on Mac, Linux and Windows with good developer experience and productivity in mind.</p>
 <p>Please follow the installation instruction below, after that, the instruction step for teracy-dev
 <cite>git clone</cite> and <cite>vagrant up</cite> is the same on all the platforms.</p>
@@ -101,28 +92,28 @@ Remember to reboot your host PC after making BIOS changes. Please refer to <a cl
 <span id="id1"></span><h2>Manual Installation on macOS<a class="headerlink" href="#manual-installation-on-macos" title="Permalink to this headline">¶</a></h2>
 <p>Open the terminal window:</p>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal"><span class="pre">Homebrew</span></code> and <code class="docutils literal"><span class="pre">Homebrew</span> <span class="pre">Cask</span></code></p>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">Homebrew</span></code> and <code class="docutils literal notranslate"><span class="pre">Homebrew</span> <span class="pre">Cask</span></code></p>
 <ul class="simple">
 <li><a class="reference external" href="http://brew.sh/">http://brew.sh/</a></li>
 <li><a class="reference external" href="https://caskroom.github.io/">https://caskroom.github.io/</a></li>
 </ul>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> and <code class="docutils literal"><span class="pre">vagrant</span></code></p>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code> and <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></p>
 <ul>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ brew cask install virtualbox
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew cask install virtualbox
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ brew cask install vagrant
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew cask install vagrant
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
 <li><p class="first">If you encounter the following similar error:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">==</span>&gt; default: Box <span class="s1">&#39;bento/ubuntu-16.04&#39;</span> could not be found. Attempting to find and install...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">==</span>&gt; default: Box <span class="s1">&#39;bento/ubuntu-16.04&#39;</span> could not be found. Attempting to find and install...
     default: Box Provider: virtualbox
     default: Box Version: &gt;<span class="o">=</span> <span class="m">0</span>
 The box <span class="s1">&#39;bento/ubuntu-16.04&#39;</span> could not be found or
@@ -134,7 +125,7 @@ URL and error message are shown below:
 URL: <span class="o">[</span><span class="s2">&quot;https://atlas.hashicorp.com/bento/ubuntu-16.04&quot;</span><span class="o">]</span>
 </pre></div>
 </div>
-<p>then fix it with <code class="docutils literal"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/opt/vagrant/embedded/bin/curl</span></code> (Details at
+<p>then fix it with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">/opt/vagrant/embedded/bin/curl</span></code> (Details at
 <a class="reference external" href="https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970">https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970</a>)</p>
 </li>
 <li><p class="first">// TODO(hoatle): <a class="reference external" href="https://github.com/teracyhq/dev/issues/175">https://github.com/teracyhq/dev/issues/175</a></p>
@@ -162,22 +153,22 @@ URL: <span class="o">[</span><span class="s2">&quot;https://atlas.hashicorp.com/
 <span id="id2"></span><h2>Manual Installation on Linux (Ubuntu)<a class="headerlink" href="#manual-installation-on-linux-ubuntu" title="Permalink to this headline">¶</a></h2>
 <p>Open the terminal window:</p>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal"><span class="pre">git</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">git</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
 $ sudo apt-get install -y git
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib non-free&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span> <span class="se">\</span>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib non-free&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span> <span class="se">\</span>
 <span class="o">&amp;&amp;</span> wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
 <span class="o">&amp;&amp;</span> wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add - <span class="se">\</span>
 <span class="o">&amp;&amp;</span> sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install virtualbox-5.1 -y
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nv">version</span><span class="o">=</span><span class="m">1</span>.9.1 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /tmp <span class="se">\</span>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">version</span><span class="o">=</span><span class="m">1</span>.9.1 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /tmp <span class="se">\</span>
 <span class="o">&amp;&amp;</span> wget <span class="k">$(if</span> <span class="o">[</span> <span class="sb">`</span>uname -m<span class="sb">`</span> <span class="o">==</span> <span class="s2">&quot;x86_64&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;https://releases.hashicorp.com/vagrant/</span><span class="nv">$version</span><span class="s2">/vagrant_</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">_x86_64.deb&quot;</span><span class="p">;</span> <span class="k">else</span> <span class="nb">echo</span> <span class="s2">&quot;https://releases.hashicorp.com/vagrant/</span><span class="nv">$version</span><span class="s2">/vagrant_</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">_i686.deb&quot;</span><span class="p">;</span> <span class="k">fi</span><span class="p">;</span><span class="k">)</span> <span class="se">\</span>
 <span class="o">&amp;&amp;</span> sudo dpkg -i vagrant_<span class="si">${</span><span class="nv">version</span><span class="si">}</span>* <span class="o">&amp;&amp;</span> rm vagrant_<span class="si">${</span><span class="nv">version</span><span class="si">}</span>* <span class="o">&amp;&amp;</span> <span class="nb">cd</span> --
 </pre></div>
@@ -212,59 +203,59 @@ press “Enter” key to make sure the process should continue.</li>
 </div>
 </div></blockquote>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal"><span class="pre">chocolatey</span></code></p>
-<p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and paste the Cmd.exe command copied from
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">chocolatey</span></code></p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and paste the Cmd.exe command copied from
 <a class="reference external" href="https://chocolatey.org/install#install-with-cmdexe">https://chocolatey.org/install#install-with-cmdexe</a> section.</p>
 <p>It should look similar to the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; @<span class="s2">&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot;</span> -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; @<span class="s2">&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot;</span> -NoProfile -ExecutionPolicy Bypass -Command <span class="s2">&quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot;</span> <span class="o">&amp;&amp;</span> SET <span class="s2">&quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span>
 </pre></div>
 </div>
 <p>After the installation is finished, restart the machine.</p>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">dotnet4.5</span></code></p>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">dotnet4.5</span></code></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This is required for the <code class="docutils literal"><span class="pre">vagrant</span></code> installation later, see more:
+<p class="last">This is required for the <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> installation later, see more:
 <a class="reference external" href="https://github.com/teracyhq/dev/issues/348#issuecomment-315068962">https://github.com/teracyhq/dev/issues/348#issuecomment-315068962</a></p>
 </div>
-<p>Run <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and type the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install dotnet4.5 --version <span class="m">4</span>.5.20120822 -y
+<p>Run <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code> <strong>as administrator</strong> and type the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; choco install dotnet4.5 --version <span class="m">4</span>.5.20120822 -y
 </pre></div>
 </div>
 <p>After the installation is finished, restart the machine.</p>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">cygwin</span></code> and <code class="docutils literal"><span class="pre">cyg-get</span></code></p>
-<p>Type the command below on the opened <code class="docutils literal"><span class="pre">Command</span> <span class="pre">Prompt</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cygwin --version <span class="m">2</span>.8.0 -y --ignore-checksums
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">cygwin</span></code> and <code class="docutils literal notranslate"><span class="pre">cyg-get</span></code></p>
+<p>Type the command below on the opened <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; choco install cygwin --version <span class="m">2</span>.8.0 -y --ignore-checksums
 &gt; choco install cyg-get --version <span class="m">1</span>.2.1 -y
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">If you cannot install the <code class="docutils literal"><span class="pre">cyg-get</span></code> due to the checksums error, reinstall it with the
+<li><p class="first">If you cannot install the <code class="docutils literal notranslate"><span class="pre">cyg-get</span></code> due to the checksums error, reinstall it with the
 following command instead:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; choco install cyg-get --version <span class="m">1</span>.2.1 -y --ignore-checksums --force
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; choco install cyg-get --version <span class="m">1</span>.2.1 -y --ignore-checksums --force
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">bash-completion</span></code>, <code class="docutils literal"><span class="pre">git</span></code>, <code class="docutils literal"><span class="pre">virtualbox</span></code> and <code class="docutils literal"><span class="pre">vagrant</span></code></p>
-<p>Run <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <strong>as administrator</strong> with the following commands:</p>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">bash-completion</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span></code>, <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code> and <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <strong>as administrator</strong> with the following commands:</p>
 <ul>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">bash-completion</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyg-get.bat bash-completion
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">bash-completion</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cyg-get.bat bash-completion
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">From now on, let’s call <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <code class="docutils literal"><span class="pre">terminal</span> <span class="pre">window</span></code> on Windows.</p>
+<li><p class="first">From now on, let’s call <code class="docutils literal notranslate"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code> <code class="docutils literal notranslate"><span class="pre">terminal</span> <span class="pre">window</span></code> on Windows.</p>
 </li>
 <li><p class="first">If you encounter the following error:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>C:<span class="se">\P</span>rogramData<span class="se">\c</span>hocolatey<span class="se">\l</span>ib<span class="se">\c</span>yg-get<span class="se">\t</span>ools<span class="se">\c</span>yg-get.ps1 : Please ensure you have Cygwin installed.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\P</span>rogramData<span class="se">\c</span>hocolatey<span class="se">\l</span>ib<span class="se">\c</span>yg-get<span class="se">\t</span>ools<span class="se">\c</span>yg-get.ps1 : Please ensure you have Cygwin installed.
 To install please call <span class="s1">&#39;choco install cygwin&#39;</span> <span class="o">(</span>optionally add -y to autoconfirm<span class="o">)</span>.
 ERROR: This <span class="nb">command</span> cannot be run due to the error: The system cannot find the file specified.
 At line:1 char:1
@@ -277,23 +268,23 @@ file with the new name <em>cygwinsetup.exe</em> into the <em>cygwin</em> folder 
 </ul>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">git</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cyg-get.bat git
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cyg-get.bat git
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ choco install virtualbox --version <span class="m">5</span>.1.14 -y
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code> (&gt;=5.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ choco install virtualbox --version <span class="m">5</span>.1.14 -y
 </pre></div>
 </div>
 </li>
-<li><p class="first">Install <code class="docutils literal"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ choco install vagrant --version <span class="m">1</span>.9.1 -y
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> (&gt;=1.8.7, &gt;=1.9.1):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ choco install vagrant --version <span class="m">1</span>.9.1 -y
 </pre></div>
 </div>
 </li>
 </ul>
-<p>After finishing the <code class="docutils literal"><span class="pre">vagrant</span></code> installation, restart the machine.</p>
+<p>After finishing the <code class="docutils literal notranslate"><span class="pre">vagrant</span></code> installation, restart the machine.</p>
 </li>
 </ol>
 <p>Please check out the instruction video below for more details:</p>
@@ -311,7 +302,7 @@ file with the new name <em>cygwinsetup.exe</em> into the <em>cygwin</em> folder 
 <span id="id4"></span><h2>teracy-dev Git Clone and Vagrant Up<a class="headerlink" href="#teracy-dev-git-clone-and-vagrant-up" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Open your terminal window and type:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/
 $ git clone https://github.com/teracyhq/dev.git teracy-dev
 $ <span class="nb">cd</span> teracy-dev
 $ git checkout develop
@@ -325,8 +316,8 @@ $ vagrant up
 <li>Check out the <cite>master</cite> branch to use the latest stable version of teracy-dev.</li>
 </ul>
 </div>
-<p>You should see the following similar messages after <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> finishes running:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>==&gt; default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
+<p>You should see the following similar messages after <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> finishes running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>==&gt; default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
 ==&gt; default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
 ==&gt; default: Running provisioner: shell...
 ==&gt; default: Running: inline script
@@ -342,31 +333,31 @@ $ vagrant up
 <p class="first admonition-title">Note</p>
 <ul class="last">
 <li><p class="first">You may see the error on Windows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">VBoxManage</span> <span class="n">binary</span> <span class="n">that</span> <span class="n">ships</span> <span class="k">with</span> <span class="n">VirtualBox</span> <span class="ow">and</span> <span class="n">requires</span> <span class="n">this</span> <span class="n">to</span> <span class="n">be</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">VBoxManage</span> <span class="n">binary</span> <span class="n">that</span> <span class="n">ships</span> <span class="k">with</span> <span class="n">VirtualBox</span> <span class="ow">and</span> <span class="n">requires</span> <span class="n">this</span> <span class="n">to</span> <span class="n">be</span>
 <span class="n">available</span> <span class="n">on</span> <span class="n">the</span> <span class="n">PATH</span><span class="o">.</span> <span class="n">If</span> <span class="n">VirtualBox</span> <span class="ow">is</span> <span class="n">installed</span><span class="p">,</span> <span class="n">please</span> <span class="n">find</span> <span class="n">the</span> <span class="n">VBoxManage</span> <span class="n">binary</span> <span class="ow">and</span>
 <span class="n">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="n">PATH</span> <span class="n">environmental</span> <span class="n">variable</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>To fix this error, add the path of the <strong>VirtualBox</strong> folder to your environment variable.</p>
-<p>For example: In Windows, add this <code class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files\Oracle\VirtualBox</span></code>.</p>
-<p>If the error still occurs, you have to uninstall and re-install <code class="docutils literal"><span class="pre">virtualbox</span></code>, then
-<code class="docutils literal"><span class="pre">vagrant</span></code> to fix this error.</p>
+<p>For example: In Windows, add this <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Oracle\VirtualBox</span></code>.</p>
+<p>If the error still occurs, you have to uninstall and re-install <code class="docutils literal notranslate"><span class="pre">virtualbox</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">vagrant</span></code> to fix this error.</p>
 </li>
-<li><p class="first">On Windows, if you <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find “VBoxUSBMon.inf” and
+<li><p class="first">On Windows, if you <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> but cannot start the VirtualBox, please find “VBoxUSBMon.inf” and
 “VBoxDrv.inf” in your installation directory then re-install it to fix the issue. The VirtualBox
 has an installation issue which was reported <a class="reference external" href="https://www.virtualbox.org/ticket/4140">here</a></p>
 </li>
 </ul>
 </div>
 </li>
-<li><p class="first">Keep the first terminal window running, open a new terminal window and use the <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>
+<li><p class="first">Keep the first terminal window running, open a new terminal window and use the <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>
 command to access the virtual machine you have just provisioned.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/teracy-dev
 $ vagrant ssh
 </pre></div>
 </div>
 <p>You should see the following similar messages:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Welcome to Ubuntu <span class="m">16</span>.04.1 LTS <span class="o">(</span>GNU/Linux <span class="m">4</span>.4.0-51-generic x86_64<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Welcome to Ubuntu <span class="m">16</span>.04.1 LTS <span class="o">(</span>GNU/Linux <span class="m">4</span>.4.0-51-generic x86_64<span class="o">)</span>
 
   * Documentation:  https://help.ubuntu.com
   * Management:     https://landscape.canonical.com
@@ -381,27 +372,27 @@ Last login: Tue Dec  <span class="m">6</span> <span class="m">14</span>:19:56 <s
 </div>
 </li>
 <li><p class="first">Check if <cite>docker</cite> and <cite>docker-compose</cite> are already installed</p>
-<p>After <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>, use the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker --version
+<p>After <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code>, use the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker --version
 $ docker-compose --version
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In case the <cite>docker</cite> command is not found, you should <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code>, then
-<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> again or <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>.</p>
+<p class="last">In case the <cite>docker</cite> command is not found, you should <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">destroy</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> again or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">reload</span> <span class="pre">--provision</span></code>.</p>
 </div>
 </li>
 </ol>
 </div>
 <div class="section" id="git-setup">
 <h2>Git Setup<a class="headerlink" href="#git-setup" title="Permalink to this headline">¶</a></h2>
-<p>To work with <code class="docutils literal"><span class="pre">git</span></code>, complete the following guides to set up ssh keys:
+<p>To work with <code class="docutils literal notranslate"><span class="pre">git</span></code>, complete the following guides to set up ssh keys:
 <a class="reference external" href="https://help.github.com/articles/connecting-to-github-with-ssh/">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
 <blockquote>
 <div><div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">On Windows, you must always use <code class="docutils literal"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code>, not <code class="docutils literal"><span class="pre">Git</span> <span class="pre">Bash</span></code>.</p>
+<p class="last">On Windows, you must always use <code class="docutils literal notranslate"><span class="pre">Cygwin</span> <span class="pre">Terminal</span></code>, not <code class="docutils literal notranslate"><span class="pre">Git</span> <span class="pre">Bash</span></code>.</p>
 </div>
 </div></blockquote>
 <p><em>Congratulations, you’ve all set now!</em></p>
@@ -444,12 +435,14 @@ $ docker-compose --version
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -473,7 +466,7 @@ $ docker-compose --version
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2013 - 2018, Teracy, Inc..
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
