@@ -135,7 +135,9 @@ end
 # thanks to https://github.com/devopsgroup-io/vagrant-hostmanager/issues/121#issuecomment-69050265
 
 def read_ip_address(machine)
-  command = "LANG=en ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'"
+  # workaround for public ip address: get the pattern 192.168.x.x
+  # this could be problems with IP address other than this pattern for LAN access
+  command = "LANG=en ifconfig | grep 'inet addr:192.168' | cut -d: -f2 | awk '{ print $1 }'"
   result  = ""
 
   # $logger.info "Processing #{ machine.name } ... "
@@ -151,6 +153,5 @@ def read_ip_address(machine)
     # $logger.info "Processing #{ machine.name } ... not running"
   end
 
-  # the second inet is more accurate
-  result.chomp.split("\n").last
+  result.chomp
 end
