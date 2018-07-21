@@ -1,5 +1,5 @@
 # Utility functions
-def overrides(obj1, obj2)
+def overrides(obj1, obj2, debug = false)
   obj2.each do |key, value|
     replaced_key = key.to_s.sub(/_u?[ra]_/, '')
 
