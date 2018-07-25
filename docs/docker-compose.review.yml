@@ -4,9 +4,9 @@ services:
 
   ngrok-review:
     image: ${NGROK_REVIEW_IMAGE:-wernight/ngrok}
-    command: ngrok http -host-header=review.dev-docs.teracy.dev nginx-proxy:80
+    command: ngrok http -host-header=review.dev-docs.teracy.local nginx-proxy:80
     environment:
-      - VIRTUAL_HOST=ngrok-review.dev-docs.teracy.dev
+      - VIRTUAL_HOST=ngrok-review.dev-docs.teracy.local
       - HTTPS_METHOD=noredirect
     ports:
       - 4040
@@ -19,6 +19,6 @@ services:
   app-review:
     image: ${APP_REVIEW_IMAGE}
     environment:
-      VIRTUAL_HOST: ${APP_REVIEW_VIRTUAL_HOST:-review.dev-docs.teracy.dev, ~^review\.dev-docs\..*\.xip\.io}
+      VIRTUAL_HOST: ${APP_REVIEW_VIRTUAL_HOST:-review.dev-docs.teracy.local, ~^review\.dev-docs\..*\.xip\.io}
       HTTPS_METHOD: noredirect # support both http and https
     network_mode: bridge

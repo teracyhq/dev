@@ -4,9 +4,9 @@ services:
 
   ngrok-prod:
     image: ${NGROK_PROD_IMAGE:-wernight/ngrok}
-    command: ngrok http -host-header=dev-docs.teracy.dev nginx-proxy:80
+    command: ngrok http -host-header=dev-docs.teracy.local nginx-proxy:80
     environment:
-      - VIRTUAL_HOST=ngrok-prod.dev-docs.teracy.dev
+      - VIRTUAL_HOST=ngrok-prod.dev-docs.teracy.local
       - HTTPS_METHOD=noredirect
     ports:
       - 4040
@@ -27,6 +27,6 @@ services:
         CI_REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}
     image: ${APP_PROD_IMAGE:-teracy/dev-docs:develop}
     environment:
-      VIRTUAL_HOST: ${APP_PROD_VIRTUAL_HOST:-dev-docs.teracy.dev, ~^dev-docs\..*\.xip\.io}
+      VIRTUAL_HOST: ${APP_PROD_VIRTUAL_HOST:-dev-docs.teracy.local, ~^dev-docs\..*\.xip\.io}
       HTTPS_METHOD: noredirect # support both http and https
     network_mode: bridge

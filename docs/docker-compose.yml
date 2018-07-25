@@ -4,9 +4,9 @@ services:
 
   ngrok-dev:
     image: ${NGROK_DEV_IMAGE:-wernight/ngrok}
-    command: ngrok http -host-header=dev.dev-docs.teracy.dev nginx-proxy:80
+    command: ngrok http -host-header=dev.dev-docs.teracy.local nginx-proxy:80
     environment:
-      - VIRTUAL_HOST=ngrok-dev.dev-docs.teracy.dev
+      - VIRTUAL_HOST=ngrok-dev.dev-docs.teracy.local
       - HTTPS_METHOD=noredirect
     ports:
       - 4040
@@ -24,7 +24,7 @@ services:
     volumes:
       - .:/opt/app
     environment:
-      VIRTUAL_HOST: ${APP_DEV_VIRTUAL_HOST:-dev.dev-docs.teracy.dev, ~^dev.dev-docs\..*\.xip\.io}
+      VIRTUAL_HOST: ${APP_DEV_VIRTUAL_HOST:-dev.dev-docs.teracy.local, ~^dev.dev-docs\..*\.xip\.io}
       HTTPS_METHOD: noredirect # support both http and https
     ports:
       - 80

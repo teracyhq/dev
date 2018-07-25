@@ -11,8 +11,8 @@ Make sure that you master the :doc:`basic_usage` guide, too.
 Enable proxy and add aliases domains
 ------------------------------------
 
-To access your nodejs web app with the domain ``dev.nodejs.teracy.dev`` (dev mode),
-``review.nodejs.teracy.dev``` (review mode) and ``nodejs.teracy.dev`` (local prod mode), you need
+To access your nodejs web app with the domain ``dev.nodejs.teracy.local`` (dev mode),
+``review.nodejs.teracy.local``` (review mode) and ``nodejs.teracy.local`` (local prod mode), you need
 to enable the proxy container and configure domain aliases so that everything should be
 set up automatically under the hood for you.
 
@@ -37,7 +37,7 @@ set up automatically under the hood for you.
         "plugins": [{
           "_id": "2",
           "options": {
-            "aliases": ["dev.nodejs.teracy.dev", "review.nodejs.teracy.dev" "nodejs.teracy.dev"]
+            "aliases": ["dev.nodejs.teracy.local", "review.nodejs.teracy.local" "nodejs.teracy.local"]
           }
         }]
       }
@@ -56,7 +56,7 @@ set up automatically under the hood for you.
       $ cd ~/teracy-dev
       $ vagrant hostmanager
 
-- Now open teracy.dev on your browser, it should display the following similar message:
+- Now open teracy.local on your browser, it should display the following similar message:
 
   ..  code-block:: bash
 
@@ -237,7 +237,7 @@ auto reloading when there are code changes, debugging, etc.
           environment:
             NODE_ENV: development
             PORT: 3000
-            VIRTUAL_HOST: dev.nodejs.teracy.dev, ~^dev\.nodejs\..*\.xip\.io
+            VIRTUAL_HOST: dev.nodejs.teracy.local, ~^dev\.nodejs\..*\.xip\.io
             VIRTUAL_PORT: 3000
             HTTPS_METHOD: noredirect # support both http and https
           env_file:
@@ -288,7 +288,7 @@ Open a new terminal window, ``vagrant ssh`` into the ``teracy-dev`` VM to execut
 
 After that, open:
 
-- http://dev.nodejs.teracy.dev or https://dev.nodejs.teracy.dev on your host browser to see the app
+- http://dev.nodejs.teracy.local or https://dev.nodejs.teracy.local on your host browser to see the app
   on the dev mode.
 - Check out the VM's :ref:`basic_usage-ip_address` and on any device within your LAN,
   open http://dev.nodejs.<vm_ip>.xip.io or https://dev.nodejs.<vm_ip>.xip.io to see the web app.
@@ -340,7 +340,7 @@ By default, we disable ``node_modules`` sync. To have two-way sync, we need to c
         "plugins": [{
           "_id": "2",
           "options": {
-            "aliases": ["dev.nodejs.teracy.dev", "review.nodejs.teracy.dev" "nodejs.teracy.dev"]
+            "aliases": ["dev.nodejs.teracy.local", "review.nodejs.teracy.local" "nodejs.teracy.local"]
           }
         }]
       }
@@ -382,7 +382,7 @@ You could see something like this:
 
 => use ``32769`` as the debug port.
 
-=> use ``teracy.dev`` as the debug host.
+=> use ``teracy.local`` as the debug host.
 
 And you follow the links below for remote debugging:
 
@@ -457,7 +457,7 @@ usually contains only the run-time stuff.
           image: ${DOCKER_IMAGE_PROD:-acme101/nodejs-hello-world:develop}
           environment:
             PORT: 8080
-            VIRTUAL_HOST: nodejs.teracy.dev, ~^nodejs\..*\.xip\.io
+            VIRTUAL_HOST: nodejs.teracy.local, ~^nodejs\..*\.xip\.io
             HTTPS_METHOD: noredirect # support both http and https
           env_file:
             - .env-common
@@ -490,7 +490,7 @@ commands:
 
 After that, open:
 
-- http://nodejs.teracy.dev or https://nodejs.teracy.dev on your host browser to see the app
+- http://nodejs.teracy.local or https://nodejs.teracy.local on your host browser to see the app
   on the prod mode.
 - Check out the VM's :ref:`basic_usage-ip_address` and on any device within your LAN,
   open http://nodejs.<vm_ip>.xip.io or https://nodejs.<vm_ip>.xip.io to see the web app.
@@ -525,7 +525,7 @@ commands:
 
 After that, open:
 
-- http://review.nodejs.teracy.dev or https://review.nodejs.teracy.dev on your host browser to see
+- http://review.nodejs.teracy.local or https://review.nodejs.teracy.local on your host browser to see
   the app on the review mode.
 - Check out the VM's :ref:`basic_usage-ip_address` and on any device within your LAN,
   open http://review.nodejs.<vm_ip>.xip.io or https://review.nodejs.<vm_ip>.xip.io to see the web app.

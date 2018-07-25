@@ -50,9 +50,9 @@
     "_id": "2",
     "options": {
       "_ua_aliases": [
-        "dev.dev-docs.teracy.dev", "ngrok-dev.dev-docs.teracy.dev",
-        "dev-docs.teracy.dev", "ngrok-prod.dev-docs.teracy.dev",
-        "review.dev-docs.teracy.dev", "ngrok-review.dev-docs.teracy.dev"
+        "dev.dev-docs.teracy.local", "ngrok-dev.dev-docs.teracy.local",
+        "dev-docs.teracy.local", "ngrok-prod.dev-docs.teracy.local",
+        "review.dev-docs.teracy.local", "ngrok-review.dev-docs.teracy.local"
       ]
     }
   }]

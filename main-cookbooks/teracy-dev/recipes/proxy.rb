@@ -34,39 +34,86 @@
 proxy_conf = node['teracy-dev']['proxy']
 
 if proxy_conf['enabled'] == true
-    certs_conf = node['teracy-dev']['proxy']['certs']
+    # certs_conf = node['teracy-dev']['proxy']['certs']
 
-    if certs_conf['enabled'] == true
+    # if certs_conf['enabled'] == true
 
-        owner = certs_conf['owner']
-        group = certs_conf['group']
-        mode = certs_conf['mode']
-        sources = certs_conf['sources']
-        destination = certs_conf['destination']
+    #     owner = certs_conf['owner']
+    #     group = certs_conf['group']
+    #     mode = certs_conf['mode']
+    #     sources = certs_conf['sources']
+    #     destination = certs_conf['destination']
 
-        # create the destination directory first
-        directory destination do
-            owner owner
-            group group
-            mode '0755'
-            action :create
-            recursive true
-        end
+    #     # create the destination directory first
+    #     directory destination do
+    #         owner owner
+    #         group group
+    #         mode '0755'
+    #         action :create
+    #         recursive true
+    #     end
 
-        # then copy files
-        sources.each do |source|
-            source_path = "default/#{source}"
-            file_ext_splits = source.split('.')
-            file_ext = file_ext_splits[file_ext_splits.length-1]
-            destination_path = "#{destination}/#{node.name}.#{file_ext}"
+    #     # then copy files
+    #     sources.each do |source|
+    #         source_path = "default/#{source}"
+    #         file_ext_splits = source.split('.')
+    #         file_ext = file_ext_splits[file_ext_splits.length-1]
+    #         destination_path = "#{destination}/#{node.name}.#{file_ext}"
 
-            cookbook_file destination_path do
-                source source_path
+    #         cookbook_file destination_path do
+    #             source source_path
+    #             owner owner
+    #             group group
+    #             mode mode
+    #             action :create
+    #         end
+    #     end
+    # end
+
+    server_conf = node['teracy-dev']['proxy']['server']
+
+    if server_conf['enabled'] == true
+
+        owner = server_conf['owner']
+        group = server_conf['group']
+        mode = server_conf['mode']
+        files = server_conf['files']
+
+        files.each do |file_conf|
+            sources = file_conf['sources']
+            destination = file_conf['destination']
+
+            # create the destination directory first
+            directory destination do
                 owner owner
                 group group
-                mode mode
+                mode '0755'
                 action :create
+                recursive true
             end
+
+            # then copy files
+            sources.each do |source|
+                source_path = "default/#{source}"
+                file_name_arr = source.split('/')
+                file_name = file_name_arr[file_name_arr.length-1]
+                destination_path = "#{destination}/#{file_name}"
+
+                if file_conf['rename_host'] == true
+                    file_ext_splits = source.split('.')
+                    file_ext = file_ext_splits[file_ext_splits.length-1]
+                    destination_path = "#{destination}/#{node.name}.#{file_ext}"
+                end
+
+                cookbook_file destination_path do
+                    source source_path
+                    owner owner
+                    group group
+                    mode mode
+                    action :create
+                end
+            end
+
         end
     end
 
@@ -81,12 +128,19 @@ if proxy_conf['enabled'] == true
             notifies :redeploy, "docker_container[#{container_conf['name']}]"
         end
 
+        envs = []
+
+        if container_conf['force_https'] == true
+            envs = ['VIRTUAL_PORT=443', 'VIRTUAL_PROTO=https', "VIRTUAL_HOST=#{node.name}"]
+        end
+
         docker_container container_conf['name'] do
             repo container_conf['repo']
             tag container_conf['tag']
             volumes container_conf['volumes']
             restart_policy container_conf['restart_policy']
             port container_conf['port']
+            env envs
         end
     end
 end

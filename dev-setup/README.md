@@ -69,7 +69,7 @@ Stop the watching files by using `Ctrl + c`.
     $ vagrant hostmanager
     ```
 
-- `$ ping dev.dev-docs.teracy.dev` to make sure it pings to the right IP address of the VM:
+- `$ ping dev.dev-docs.teracy.local` to make sure it pings to the right IP address of the VM:
    http://dev.teracy.org/docs/basic_usage.html#ip-address.
 
 - `$ cat /etc/hosts` file from the host machine to make sure there are no duplicated entries for
@@ -104,12 +104,12 @@ Stop the watching files by using `Ctrl + c`.
 
 Then open:
 
-- http://dev.dev-docs.teracy.dev or https://dev.dev-docs.teracy.dev to check out
+- http://dev.dev-docs.teracy.local or https://dev.dev-docs.teracy.local to check out
   the docs within your host machine.
 
 - http://dev.dev-docs.<vm_ip>.xip.io to check out the docs within your LAN network.
 
-- http://ngrok-dev.dev-docs.teracy.dev to check out the docs on the Internet.
+- http://ngrok-dev.dev-docs.teracy.local to check out the docs on the Internet.
 
 
 ### Local dev mode docs
@@ -121,7 +121,7 @@ $ cd dev/docs
 $ docker-compose up -d && docker-compose logs -f
 ```
 
-Open http://dev.dev-docs.teracy.dev and edit docs files, it should auto reload when new
+Open http://dev.dev-docs.teracy.local and edit docs files, it should auto reload when new
 changes are detected.
 
 
@@ -138,12 +138,12 @@ $ docker-compose -f docker-compose.prod.yml up
 
 Then open:
 
-- http://dev-docs.teracy.dev or https://dev-docs.teracy.dev to check out
+- http://dev-docs.teracy.local or https://dev-docs.teracy.local to check out
   the docs within your host machine.
 
 - http://dev-docs.<vm_ip>.xip.io to check out the docs within your LAN network.
 
-- http://ngrok-prod.dev-docs.teracy.dev to check out the docs on the Internet.
+- http://ngrok-prod.dev-docs.teracy.local to check out the docs on the Internet.
 
 
 ### Local review mode docs
@@ -162,12 +162,12 @@ $ APP_REVIEW_IMAGE=hoatle/teracy-dev-docs:improvements-176-teracy-dev-docs-guide
 
 Then open:
 
-- http://review.dev-docs.teracy.dev or https://review.dev-docs.teracy.dev to
+- http://review.dev-docs.teracy.local or https://review.dev-docs.teracy.local to
   check out the docs within your host machine.
 
 - http://review.dev-docs.<vm_ip>.xip.io to check out the docs within your LAN network.
 
-- http://ngrok-review.dev-docs.teracy.dev to check out the docs on the Internet.
+- http://ngrok-review.dev-docs.teracy.local to check out the docs on the Internet.
 
 
 ## travis-ci configuration
