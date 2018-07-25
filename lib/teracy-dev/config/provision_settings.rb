@@ -82,7 +82,7 @@ module TeracyDev
 
 
       # https://www.vagrantup.com/docs/provisioning/ansible_common.html
-      def self.ansible_common(ansible, config) 
+      def self.ansible_common(ansible, config)
         ansible.playbook = config['playbook']
 
         unless config['config_file'].nil?
@@ -144,42 +144,30 @@ module TeracyDev
 
       # https://www.vagrantup.com/docs/provisioning/ansible.html
       def self.ansible_settings(ansible, config)
-        ansible_common(ansible, config)
-        unless config['ask_sudo_pass'].nil?
-          ansible.ask_sudo_pass = config['ask_sudo_pass']
-        end
-        unless config['ask_valt_pass'].nil?
-          ansible.ask_valt_pass = config['ask_valt_pass']
-        end
-        unless config['force_remote_user'].nil?
-          ansible.force_remote_user = config['force_remote_user']
-        end
-        unless config['host_key_checking'].nil?
-          ansible.host_key_checking = config['host_key_checking']
-        end
-        unless config['raw_ssh_args'].nil?
-          ansible.raw_ssh_args = config['raw_ssh_args']
-        end
+        keys = ["ask_become_pass", "ask_vault_pass", "force_remote_user", "host_key_checking",
+                "raw_ssh_args"]
+        config = config.slice(*[ansible_common_keys, keys].flatten)
+
+        ansible.set_options(config)
       end
 
       # https://www.vagrantup.com/docs/provisioning/ansible_local.html
       def self.ansible_local_settings(ansible, config)
-        ansible_common(ansible, config)
-        unless config['install'].nil?
-          ansible.install = config['install']
-        end
-        unless config['install_mode'].nil?
-          ansible.install_mode = config['install_mode'].to_sym
-        end
-        unless config['provisioning_path'].nil?
-          ansible.provisioning_path = config['provisioning_path']
-        end
-        unless config['tmp_path'].nil?
-          ansible.tmp_path = config['tmp_path']
-        end
-        unless config['version'].nil?
-          ansible.version = config['version']
-        end
+
+        local_keys = ["install", "install_mode", "pip_args", "provisioning_path", "tmp_path"]
+
+        config = config.slice(*[ansible_common_keys, local_keys].flatten)
+
+        ansible.set_options(config)
+      end
+
+      # https://www.vagrantup.com/docs/provisioning/ansible_common.html
+      def self.ansible_common_keys
+
+          ["playbook", "become", "become_user", "compatibility_mode", "config_file", "extra_vars",
+            "galaxy_command", "galaxy_role_file", "galaxy_roles_path", "groups", "host_vars",
+            "inventory_path", "limit", "playbook_command", "raw_arguments", "skip_tags",
+            "start_at_task", "tags", "vault_password_file", "verbose", "version"]
       end
 
       # https://www.vagrantup.com/docs/provisioning/cfengine.html
