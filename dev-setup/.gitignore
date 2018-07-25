@@ -1,5 +1,0 @@
-.DS_Store
-.delivery/*
-!.delivery/project.toml
-.kitchen
-vagrant_config_override.json

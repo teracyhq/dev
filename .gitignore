@@ -153,15 +153,3 @@ docs/_build/**
 # Ignore workspace sub directories
 workspace/*
 !workspace/.gitkeep
-
-home/.virtualenvs/*
-!home/.virtualenvs/.gitkeep
-
-home/.docker/*
-!home/.docker/.gitkeep
-
-nodes/*.json
-
-# https://github.com/teracyhq/dev/issues/246
-vagrant_config_override.json
-Vagrantfile-ext.rb

@@ -1,0 +1,111 @@
+# vars must be defined to be used
+# format:
+# key: ${ENV_VAR}
+# key: ${ENV_VAR-:default}
+# and "#{key}" can be used for settings values if available
+variables:
+  node_name_prefix: ${NODE_NAME_PREFIX:-node}
+  node_hostname_prefix: ${NODE_HOSTNAME_PREFIX:-teracy-dev}
+  some_value: ${MY_VAR:-value}-affix
+
+# teracy-dev related settings
+teracy-dev:
+  require_version: ">= 0.6.0-a1-SNAPSHOT"
+
+# vagrant related settings
+vagrant:
+  require_version: ">= 2.1.0"
+  # usually defined on workspace/dev-setup/config_default.yaml
+  extension_file_paths: []
+  config_file_paths: []
+
+  # vagrant plugins are actually rubygems so you can declare to use any rubygems
+  # common config level
+  plugins:
+    - _id: "0"
+      name: vagrant-gatling-rsync
+      version: "" # empty means latest by default
+      state: installed # uninstalled
+      enabled: true
+      config_key: gatling
+      options:
+        latency: 0.5
+        time_format: "%H:%M:%S"
+        rsync_on_startup: true
+    - _id: "1"
+      name: vagrant-rsync-back
+      version: ""
+      state: installed
+      enabled: true
+    - _id: "2"
+      name: vagrant-hostmanager
+      version: ""
+      state: installed
+      config_key: hostmanager
+      enabled: true
+      options:
+        enabled: true
+        manage_host: true
+        manage_guest: true
+    - _id: "3"
+      name: vagrant-cachier
+      version: ""
+      state: installed
+      config_key: cache
+      enabled: true
+      options:
+        scope: machine
+
+
+# default settings for all nodes
+default:
+  vm:
+    box: bento/ubuntu-16.04
+    box_version:
+    box_url:
+    networks:
+      - _id: "0"
+        mode: public_network # one of "forwarded_port", "private_network" or "public_network"
+        # ip:    # for private_network, public_network mode
+        # type: dhcp  # for private_network mode; if ip and type are both defined, ip takes precedence
+        # auto_config: true #for private_network mode + ip
+        # bridge:
+        auto_bridge_default_network: true # custom key from teracy-dev to auto select active network interface
+        reuse_mac_address: true # custom key from teracy-dev to reuse mac address to keep IP stable, only on public_network
+    synced_folders:
+      - _id: "0"
+        type: virtual_box
+        host: "."
+        guest: "/vagrant"
+      - _id: "1"
+        type: rsync
+        host: "./workspace"
+        guest: "/home/vagrant/workspace"
+        # can add exclude path from the `workspace` directory
+        # - a => exclude: `workspace/a`
+        rsync__exclude:
+          - .git
+          - .#*
+
+  providers:
+    - _id: "0"
+      enabled: true
+      type: virtualbox
+      require_version: ">=5.2.14"
+      gui: false
+      memory: 1024
+      description: "teracy-dev #{Time.now.getutc.to_i}"
+
+  provisioners: []
+
+  # default node config level
+  plugins: []
+
+# specific nodes, each node will override the default
+nodes:
+  - _id: "0"
+    name: "teracy-dev-01"
+    primary: true
+    vm:
+      hostname: "teracy-dev-01.local"
+

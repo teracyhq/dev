@@ -1,4 +1,0 @@
-Authors
-=======
-
-Author Name - Email

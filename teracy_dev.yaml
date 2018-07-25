@@ -1,0 +1,7 @@
+# teracy-dev config, not overriable
+
+# rubygems (vagrant plugins)
+plugins:
+  # - name: wisper
+  #   version: ""
+  #   state: installed # or uninstalled

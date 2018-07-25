@@ -1,1 +1,0 @@
-store all chef cookbooks and extended-chef cookbooks.

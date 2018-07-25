@@ -1,6 +1,10 @@
 require 'json'
 require "./lib/utility"
 
+#TODO: add this case
+# first = {"default"=>{"provisioners"=>nil}}
+# second = {"default"=>{"provisioners"=>[{"_id"=>"dev-setup-0", "verbose"=>"v", "type"=>"ansible_local", "playbook"=>"workspace/dev-setup/ansible/playbook.yml"}]}}
+
 describe "utility" do
   describe "overrides" do
     context "given an empty obj2" do

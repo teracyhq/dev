@@ -1,4 +1,0 @@
-Contributors
-============
-
-Contributor Name - Email
