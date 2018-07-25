@@ -15,9 +15,9 @@ teracy-dev:
 # vagrant related settings
 vagrant:
   require_version: ">= 2.1.0"
-  # usually defined on workspace/dev-setup/config_default.yaml
-  extension_file_paths: []
+  # to be defined on workspace/dev-setup/config_default.yaml to load extensions
   config_file_paths: []
+  extension_file_paths: []
 
   # vagrant plugins are actually rubygems so you can declare to use any rubygems
   # common config level
