@@ -46,10 +46,10 @@ module TeracyDev
       def self.build_projects_settings(organization_settings)
         # immutable
         organization_settings = Util.deep_copy(organization_settings)
-        project_paths = organization_settings["config_file_paths"] ||= []
+        project_paths = organization_settings["vagrant"]["config_file_paths"] ||= []
         projects_settings = []
         project_paths.each do |project_path|
-          project_settings << build_settings_from(project_path)
+          projects_settings << build_settings_from(project_path)
         end
 
         settings = {}
