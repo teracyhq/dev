@@ -38,3 +38,14 @@ bash 'check exist and install bash-completion' do
     EOH
   not_if { ::File.exist?('/etc/bash_completion') && ::File.exist?('/usr/share/bash-completion/bash_completion') }
 end
+
+bash 'set default route external interface' do
+  code <<-EOH
+    IFaceCount=$(ls -la /var/lib/dhcp/* | awk '{ gsub("/var/lib/dhcp/dhclient.","",$9); gsub(".leases","", $9); print $9}' | wc -l);
+    if [ $IFaceCount -gt 1 ]; then
+      InTF=$(ls -la /var/lib/dhcp/* | awk '{ gsub("/var/lib/dhcp/dhclient.","",$9); gsub(".leases","", $9); print $9}' | tail -n1);
+      GATE=$(cat '/var/lib/dhcp/dhclient.'$InTF'.leases' | grep routers | tail -n1 | awk '{print substr($3, 1, length($3)-1)}');
+      route delete default && route add default gw $GATE dev $InTF;
+    fi
+    EOH
+end

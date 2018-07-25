@@ -43,6 +43,7 @@ if proxy_conf['enabled'] == true
         mode = certs_conf['mode']
         sources = certs_conf['sources']
         destination = certs_conf['destination']
+        auto_certs = certs_conf['auto_certs']
 
         # create the destination directory first
         directory destination do
@@ -66,6 +67,17 @@ if proxy_conf['enabled'] == true
                 group group
                 mode mode
                 action :create
+            end
+        end
+
+        auto_certs.each do |cert_domain|
+            execute "install certificate for #{cert_domain}" do
+                action :run
+                command "DNS=$(nslookup #{cert_domain} 8.8.8.8 | grep Address | tail -n1 | awk '{print $2}') && \
+                         curl -sSL --resolve \"#{cert_domain}:443:$DNS\" https://#{cert_domain}/privkey.pem -o #{destination}/#{cert_domain}.key && \
+                         curl -sSL --resolve \"#{cert_domain}:443:$DNS\" https://#{cert_domain}/fullchain.pem -o #{destination}/#{cert_domain}.crt"
+                user owner
+                group group
             end
         end
     end

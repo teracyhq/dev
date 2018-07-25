@@ -1,6 +1,6 @@
 {
   "vm": {
-    "hostname": "teracy.dev",
+    "hostname": "localdev.tk",
     "box": "bento/ubuntu-16.04",
     "box_version": "",
     "networks": [{ // see: http://docs.vagrantup.com/v2/networking/index.html
@@ -182,11 +182,12 @@
           "enabled": true,
           "certs": {
             "enabled": true,
-            "sources": ["nginx/certs/default.crt", "nginx/certs/default.key"],
+            "sources": [],
             "destination": "/etc/nginx/certs",
             "owner": "vagrant",
             "group": "vagrant",
-            "mode": "0644"
+            "mode": "0644",
+            "auto_certs": ["localdev.tk"]
           },
           "container": {
             "enabled": false,
