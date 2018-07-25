@@ -49,6 +49,7 @@ module TeracyDev
         project_paths = organization_settings["vagrant"]["config_file_paths"] ||= []
         projects_settings = []
         project_paths.each do |project_path|
+          project_path = File.dirname(__FILE__) + '/../../../' + project_path
           projects_settings << build_settings_from(project_path)
         end
 
