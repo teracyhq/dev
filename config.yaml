@@ -17,7 +17,7 @@ teracy-dev:
     #   require_version: ">= 0.1.0-a1-SNAPSHOT"
     #   required: true
   # extension must have meta.yaml file to describe its name, version and optional description
-  # optional: config_default.yaml, Vagrantfile-ext.rb will be auto reloaded when exists
+  # optional: config_default.yaml, teracy-dev-ext.rb will be auto reloaded when exists
 
 
 # vagrant related settings
