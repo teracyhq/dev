@@ -47,7 +47,7 @@ module TeracyDev
       file_path = Util.normalized_dir_path(extension['path']) + 'teracy-dev-ext.rb'
       absolute_path = File.dirname(__FILE__) + '/../' + file_path
       @@logger.debug("load_extensions: absolute_path: #{absolute_path}")
-      if File.exists? absolute_path
+      if File.exist? absolute_path
         Util.load_file_path(file_path)
       else
         @@logger.debug("load_extensions: #{file_path} does not exist, ignored.")

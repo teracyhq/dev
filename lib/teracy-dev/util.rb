@@ -5,15 +5,15 @@ module TeracyDev
     @@logger = TeracyDev::Logging.logger_for('Util')
 
     # check if a value exists (not nil and not empty if is a string)
-    def self.exists?(value)
-      exists = false
+    def self.exist?(value)
+      exist = false
       if !value.nil?
         if value.instance_of? String
-          exists = !value.empty?
+          exist = !value.empty?
         end
-        exists = true
+        exist = true
       end
-      exists
+      exist
     end
 
     # thanks to https://gist.github.com/Integralist/9503099

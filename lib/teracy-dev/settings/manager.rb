@@ -51,7 +51,7 @@ module TeracyDev
       end
 
       def build_extensions_settings(organization_settings)
-        if !Util.exists? organization_settings['teracy-dev'] or !Util.exists? organization_settings['teracy-dev']['extensions']
+        if !Util.exist? organization_settings['teracy-dev'] or !Util.exist? organization_settings['teracy-dev']['extensions']
           return {}
         end
         extensions = organization_settings["teracy-dev"]["extensions"]
@@ -76,7 +76,7 @@ module TeracyDev
         absolute_path = File.dirname(__FILE__) + '/../../../' + Util.normalized_dir_path(extension['path'])
 
         # extension does exists, load the meta info and check the version requirements
-        if File.exists? absolute_path
+        if File.exist? absolute_path
           validate_extension_meta(extension)
         else
           # extension path does not exist, check if it's required
@@ -96,9 +96,9 @@ module TeracyDev
       def validate_extension_meta(extension)
         meta_path = File.dirname(__FILE__) + '/../../../' + Util.normalized_dir_path(extension['path']) + "meta.yaml"
 
-        if File.exists? meta_path
+        if File.exist? meta_path
           meta = load_yaml_file(meta_path)
-          if !Util.exists?(meta['name']) or !Util.exists?(meta['version'])
+          if !Util.exist?(meta['name']) or !Util.exist?(meta['version'])
             @logger.error("The extension meta's name and version must be defined: #{meta}, #{extension}")
             abort
           end
@@ -110,7 +110,7 @@ module TeracyDev
           end
 
           # check if teracy-dev version satisfies the meta['require_version'] if specified
-          if Util.exists?(meta['require_version']) and !Util.require_version_valid?(TeracyDev::VERSION, meta['require_version'])
+          if Util.exist?(meta['require_version']) and !Util.require_version_valid?(TeracyDev::VERSION, meta['require_version'])
             @logger.error("teracy-dev's current version: #{TeracyDev::VERSION}")
             @logger.error("this extension requires teracy-dev version: #{meta['require_version']} (#{extension})")
             abort
@@ -135,7 +135,7 @@ module TeracyDev
 
 
       def load_yaml_file(file_path)
-        if File.exists? file_path
+        if File.exist? file_path
           # TODO: exception handling
           result = YAML.load(File.new(file_path))
           if result == false
