@@ -22,7 +22,6 @@ teracy-dev:
 
 # vagrant related settings
 vagrant:
-  require_version: ">= 2.1.0"
   # vagrant plugins are actually rubygems so you can declare to use any rubygems
   # common config level
   plugins:

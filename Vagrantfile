@@ -19,7 +19,10 @@ $logger = TeracyDev::Logging.logger_for("main")
 
 def init()
   settings = YAML.load_file(File.join(File.dirname(__FILE__), '/system.yaml'))
-  TeracyDev::Plugin.sync(settings['plugins'])
+  # versions requirements
+  Vagrant.require_version settings['vagrant']['require_version']
+
+  TeracyDev::Plugin.sync(settings['vagrant']['plugins'])
 end
 
 init()
@@ -37,8 +40,6 @@ TeracyDev.register_configurator(TeracyDev::Ext::PluginsConfig.new)
 
 settings = TeracyDev.build_settings()
 
-# versions requirements
-Vagrant.require_version settings['vagrant']['require_version']
 TeracyDev.require_version settings['teracy-dev']['require_version']
 
 TeracyDev.load_extensions(settings)
