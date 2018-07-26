@@ -1,4 +1,4 @@
-# teracy-dev config, not overriable
+# teracy-dev system config, not overriable
 
 # rubygems (vagrant plugins)
 plugins:

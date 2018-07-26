@@ -11,14 +11,18 @@ variables:
 # teracy-dev related settings
 teracy-dev:
   require_version: ">= 0.6.0-a1-SNAPSHOT"
+  # placeholder, this must be always empty here, must be overriden by organization/extension level config
+  extensions: []
+    # - path: workspace/teracy-dev-basic
+    #   require_version: ">= 0.1.0-a1-SNAPSHOT"
+    #   required: true
+  # extension must have meta.yaml file to describe its name, version and optional description
+  # optional: config_default.yaml, Vagrantfile-ext.rb will be auto reloaded when exists
+
 
 # vagrant related settings
 vagrant:
   require_version: ">= 2.1.0"
-  # to be defined on workspace/dev-setup/config_default.yaml to load extensions
-  config_file_paths: []
-  extension_file_paths: []
-
   # vagrant plugins are actually rubygems so you can declare to use any rubygems
   # common config level
   plugins:

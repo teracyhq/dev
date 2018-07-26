@@ -5,7 +5,7 @@ module TeracyDev
     @@logger = TeracyDev::Logging.logger_for('Util')
 
     # check if a value exists (not nil and not empty if is a string)
-    def self.exists(value)
+    def self.exists?(value)
       exists = false
       if !value.nil?
         if value.instance_of? String
@@ -29,6 +29,12 @@ module TeracyDev
       obj
     end
 
+    # make sure dir_path must have / at the end
+    def self.normalized_dir_path(dir_path)
+      return dir_path if dir_path.end_with? '/'
+      return dir_path + '/'
+    end
+
     # file_path must be relative to the workspace directory
     def self.load_file_path(file_path)
       file_path = File.dirname(__FILE__) + '/../../' + file_path
@@ -47,15 +53,10 @@ module TeracyDev
     end
 
 
-    def self.require_version(version, *requirements)
-      @@logger.debug("require_version: #{version}, #{requirements}")
+    def self.require_version_valid?(version, *requirements)
+      @@logger.debug("require_version_valid?: version: #{version}; requirements: #{requirements}")
       req = Gem::Requirement.new(*requirements)
-      if req.satisfied_by?(Gem::Version.new(version))
-          @@logger.debug("The version #{version} satisfies the requirements #{requirements}")
-          return
-      end
-      @@logger.error("The version #{version} does not satisfy the requirements: #{requirements}")
-      abort
+      req.satisfied_by?(Gem::Version.new(version))
     end
 
     # teracy-dev hash override algorithm

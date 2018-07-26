@@ -18,26 +18,30 @@ require 'teracy-dev/plugin'
 $logger = TeracyDev::Logging.logger_for("main")
 
 def init()
-  settings = YAML.load_file(File.join(File.dirname(__FILE__), '/teracy_dev.yaml'))
+  settings = YAML.load_file(File.join(File.dirname(__FILE__), '/system.yaml'))
   TeracyDev::Plugin.sync(settings['plugins'])
 end
 
 init()
 
-# when init_system() succeeds, we're good to proceed
+
+# when init_system() succeeds, we're good to proceed because teracy-dev can require
+# other gems via plugins config to work
 require 'teracy-dev'
+
+# extend
+require 'teracy-dev/ext'
+# register custom configurator
+TeracyDev.register_configurator(TeracyDev::Ext::PluginsConfig.new)
+
 
 settings = TeracyDev.build_settings()
 
 # versions requirements
 Vagrant.require_version settings['vagrant']['require_version']
-TeracyDev.require_version(settings['teracy-dev']['require_version'])
+TeracyDev.require_version settings['teracy-dev']['require_version']
 
-extension_file_paths = settings['vagrant']['extension_file_paths'] ||= []
-# always load the system extension file first
-extension_file_paths.unshift('Vagrantfile-ext.rb')
-
-TeracyDev.load_extensions(extension_file_paths)
+TeracyDev.load_extensions(settings)
 
 settings = TeracyDev.process(settings).freeze
 
