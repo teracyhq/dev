@@ -16,7 +16,6 @@ module TeracyDev
       # then override extensions => organization => teracy-dev
       # the latter extension will override the former one to build extensions settings
       def build_settings(organization_dir_path)
-        organization_dir_path = Util.normalized_dir_path(organization_dir_path)
         @logger.debug("build_settings: #{organization_dir_path}")
         teracy_dev_settings = build_teracy_dev_settings()
         organization_settings = build_organization_settings(organization_dir_path)
@@ -36,7 +35,7 @@ module TeracyDev
       private
 
       def build_teracy_dev_settings()
-        config_file_path = File.dirname(__FILE__) + '/../../../config.yaml'
+        config_file_path = File.join(File.dirname(__FILE__), '../../../config.yaml')
         settings = load_yaml_file(config_file_path)
         @logger.debug("build_teracy_dev_settings: #{settings}")
         settings
@@ -44,7 +43,7 @@ module TeracyDev
 
 
       def build_organization_settings(lookup_dir)
-        config_default_file_path = File.dirname(__FILE__) + '/../../../' + lookup_dir + 'config_default.yaml'
+        config_default_file_path = File.join(File.dirname(__FILE__), '../../../', lookup_dir, 'config_default.yaml')
         settings = build_settings_from(config_default_file_path)
         @logger.debug("build_organization_settings: #{settings}")
         settings
@@ -59,7 +58,7 @@ module TeracyDev
         extensions_settings = []
         extensions.each do |extension|
           validate_extension(extension)
-          absolute_path = File.dirname(__FILE__) + '/../../../' + Util.normalized_dir_path(extension['path']) + 'config_default.yaml'
+          absolute_path = File.join(File.dirname(__FILE__), '../../../', extension['path'], 'config_default.yaml')
           extensions_settings << build_settings_from(absolute_path)
         end
 
@@ -73,7 +72,7 @@ module TeracyDev
 
       def validate_extension(extension)
         @logger.debug("validate_extension: #{extension}")
-        absolute_path = File.dirname(__FILE__) + '/../../../' + Util.normalized_dir_path(extension['path'])
+        absolute_path = File.join(File.dirname(__FILE__), '../../../', extension['path'])
 
         # extension does exists, load the meta info and check the version requirements
         if File.exist? absolute_path
@@ -94,7 +93,7 @@ module TeracyDev
       end
 
       def validate_extension_meta(extension)
-        meta_path = File.dirname(__FILE__) + '/../../../' + Util.normalized_dir_path(extension['path']) + "meta.yaml"
+        meta_path = File.join(File.dirname(__FILE__), '../../../', extension['path'], 'meta.yaml')
 
         if File.exist? meta_path
           meta = load_yaml_file(meta_path)

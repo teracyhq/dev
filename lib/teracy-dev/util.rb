@@ -29,15 +29,9 @@ module TeracyDev
       obj
     end
 
-    # make sure dir_path must have / at the end
-    def self.normalized_dir_path(dir_path)
-      return dir_path if dir_path.end_with? '/'
-      return dir_path + '/'
-    end
-
     # file_path must be relative to the workspace directory
     def self.load_file_path(file_path)
-      file_path = File.dirname(__FILE__) + '/../../' + file_path
+      file_path = File.join(File.dirname(__FILE__), '../../', file_path)
       @@logger.debug("load_file_path: #{file_path}")
       begin
         load file_path
