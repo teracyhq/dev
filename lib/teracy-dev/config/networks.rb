@@ -39,14 +39,14 @@ module TeracyDev
               options[:bridge] = bridge_interface unless bridge_interface.empty?
 
               if vm_network['reuse_mac_address']
-                if File.exist?(File.dirname(__FILE__) + '/../../../../.vagrant/.public_mac_address')
-                  options[:mac] = File.read(File.dirname(__FILE__) + '/../../../../.vagrant/.public_mac_address').gsub(/[\s:\n]/,'')
+                if File.exist?(File.dirname(__FILE__) + '/../../../.vagrant/.public_mac_address')
+                  options[:mac] = File.read(File.dirname(__FILE__) + '/../../../.vagrant/.public_mac_address').gsub(/[\s:\n]/,'')
                 else
-                  FileUtils::touch File.dirname(__FILE__) + '/../../../../.vagrant/.public_mac_address'
+                  FileUtils::touch File.dirname(__FILE__) + '/../../../.vagrant/.public_mac_address'
                 end
               else
-                if File.exist?(File.dirname(__FILE__) + '/../../../../.vagrant/.public_mac_address')
-                  FileUtils.rm File.dirname(__FILE__) + '/../../../../.vagrant/.public_mac_address'
+                if File.exist?(File.dirname(__FILE__) + '/../../../.vagrant/.public_mac_address')
+                  FileUtils.rm File.dirname(__FILE__) + '/../../../.vagrant/.public_mac_address'
                 end
               end
             end
