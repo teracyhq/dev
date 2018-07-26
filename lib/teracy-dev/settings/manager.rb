@@ -2,6 +2,7 @@ require 'yaml'
 
 require_relative '../logging'
 require_relative '../util'
+require_relative '../version'
 
 module TeracyDev
   module Settings
@@ -105,6 +106,13 @@ module TeracyDev
           if !Util.require_version_valid?(meta['version'], extension['require_version'])
             @logger.error("`#{extension['require_version']}` is required, but current `#{meta['version']}`: #{extension}")
             @logger.error("The current extension version must be updated to satisfy the requirements above")
+            abort
+          end
+
+          # check if teracy-dev version satisfies the meta['require_version'] if specified
+          if Util.exists?(meta['require_version']) and !Util.require_version_valid?(TeracyDev::VERSION, meta['require_version'])
+            @logger.error("teracy-dev's current version: #{TeracyDev::VERSION}")
+            @logger.error("this extension requires teracy-dev version: #{meta['require_version']} (#{extension})")
             abort
           end
         else
