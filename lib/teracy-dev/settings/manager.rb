@@ -62,6 +62,7 @@ module TeracyDev
         @logger.debug("build_extensions_settings: #{extensions}")
         extensions_settings = []
         extensions.each do |extension|
+          next if extension['enabled'] != true
           validate_extension(extension)
           absolute_path = File.join(File.dirname(__FILE__), '../../../', extension['path'], 'config_default.yaml')
           extensions_settings << build_settings_from(absolute_path)

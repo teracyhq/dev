@@ -54,6 +54,7 @@ module TeracyDev
       @logger.debug("load_extension_entry_files: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
       extensions.each do |extension|
+        next if extension['enabled'] != true
         file_path = File.join(extension['path'], 'teracy-dev-ext.rb')
         absolute_path = File.join(File.dirname(__FILE__), '../../', file_path)
         @logger.debug("load_extension_entry_files: absolute_path: #{absolute_path}")
