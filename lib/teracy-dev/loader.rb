@@ -12,7 +12,6 @@ require_relative 'settings/manager'
 module TeracyDev
   class Loader
     @@instance = nil
-    @@vagrant_configured = false
 
     attr_reader :processorsManager, :configManager
 
