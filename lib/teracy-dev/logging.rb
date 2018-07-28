@@ -32,7 +32,7 @@ module TeracyDev
       end
 
       logger.formatter = proc do |severity, datetime, progname, msg|
-        msg = "[teracy-dev][#{progname}][#{severity}]: #{msg}\n\n"
+        msg = "[#{progname}][#{severity}]: #{msg}\n\n"
         case severity
         when "UNKNOWN", "FATAL", "ERROR"
           msg = TeracyDev::Common.red(msg)

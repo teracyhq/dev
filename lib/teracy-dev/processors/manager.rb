@@ -4,9 +4,15 @@ require_relative 'variables'
 module TeracyDev
   module Processors
     class Manager
+      @@instance = nil
 
       def initialize
-        @logger = Logging.logger_for('Processors::Manager')
+        if !!@@instance
+          raise "TeracyDev::Processors::Manager can only be initialized once"
+        end
+        @@instance = self
+
+        @logger = Logging.logger_for(self.class.name)
         @processors = []
 
         # system processors

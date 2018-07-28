@@ -2,7 +2,7 @@
 vagrant:
   require_version: ">= 2.1.0"
   # rubygems (vagrant plugins)
-  plugins:
+  plugins: []
     # - name: wisper
     #   version: ""
     #   state: installed # or uninstalled

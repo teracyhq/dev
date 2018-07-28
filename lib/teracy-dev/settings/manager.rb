@@ -2,26 +2,31 @@ require 'yaml'
 
 require_relative '../logging'
 require_relative '../util'
-require_relative '../version'
 
 module TeracyDev
   module Settings
     class Manager
 
+      @@instance = nil
+
       def initialize
-        @logger = Logging.logger_for('Settings::Manager')
+        if !!@@instance
+          raise "TeracyDev::Settings::Manager can only be initialized once"
+        end
+        @@instance = self
+        @logger = Logging.logger_for(self.class.name)
       end
 
-      # build teracy-dev, organization and extensions setting levels
-      # then override extensions => organization => teracy-dev
+      # build teracy-dev, entry extension and extensions setting levels
+      # then override extensions => entry extension => teracy-dev
       # the latter extension will override the former one to build extensions settings
-      def build_settings(organization_dir_path)
-        @logger.debug("build_settings: #{organization_dir_path}")
+      def build_settings(entry_dir_path)
+        @logger.debug("build_settings: #{entry_dir_path}")
         teracy_dev_settings = build_teracy_dev_settings()
-        organization_settings = build_organization_settings(organization_dir_path)
-        extensions_settings = build_extensions_settings(organization_settings)
-        settings = Util.override(organization_settings, extensions_settings)
-        @logger.debug("override(organization_settings, extensions_settings): #{settings}")
+        entry_settings = build_entry_settings(entry_dir_path)
+        extensions_settings = build_extensions_settings(entry_settings)
+        settings = Util.override(entry_settings, extensions_settings)
+        @logger.debug("override(entry_settings, extensions_settings): #{settings}")
         settings = Util.override(teracy_dev_settings, settings)
         @logger.debug("override(teracy_dev_settings, settings): #{settings}")
         # create nodes by overrides each node with the default
@@ -42,18 +47,18 @@ module TeracyDev
       end
 
 
-      def build_organization_settings(lookup_dir)
+      def build_entry_settings(lookup_dir)
         config_default_file_path = File.join(File.dirname(__FILE__), '../../../', lookup_dir, 'config_default.yaml')
         settings = build_settings_from(config_default_file_path)
-        @logger.debug("build_organization_settings: #{settings}")
+        @logger.debug("build_entry_settings: #{settings}")
         settings
       end
 
-      def build_extensions_settings(organization_settings)
-        if !Util.exist? organization_settings['teracy-dev'] or !Util.exist? organization_settings['teracy-dev']['extensions']
+      def build_extensions_settings(entry_settings)
+        if !Util.exist? entry_settings['teracy-dev'] or !Util.exist? entry_settings['teracy-dev']['extensions']
           return {}
         end
-        extensions = organization_settings["teracy-dev"]["extensions"]
+        extensions = entry_settings["teracy-dev"]["extensions"]
         @logger.debug("build_extensions_settings: #{extensions}")
         extensions_settings = []
         extensions.each do |extension|
@@ -68,6 +73,35 @@ module TeracyDev
         end
         @logger.debug("build_extensions_settings: #{settings}")
         settings
+      end
+
+
+      def build_settings_from(default_file_path)
+        @logger.debug("build_settings_from default file path: '#{default_file_path}'")
+        override_file_path = default_file_path.gsub(/default\.yaml$/, "override.yaml")
+        default_settings = load_yaml_file(default_file_path)
+        @logger.debug("build_settings_from default_settings: #{default_settings}")
+        override_settings = load_yaml_file(override_file_path)
+        @logger.debug("build_settings_from override_settings: #{override_settings}")
+        settings = Util.override(default_settings, override_settings)
+        @logger.debug("build_settings_from final: #{settings}")
+        settings
+      end
+
+
+      def load_yaml_file(file_path)
+        if File.exist? file_path
+          # TODO: exception handling
+          result = YAML.load(File.new(file_path))
+          if result == false
+            @logger.debug("load_yaml_file: #{file_path} is empty")
+            result = {}
+          end
+          result
+        else
+          @logger.debug("load_yaml_file: #{file_path} does not exist")
+          {}
+        end
       end
 
       def validate_extension(extension)
@@ -108,43 +142,15 @@ module TeracyDev
             abort
           end
 
-          # check if teracy-dev version satisfies the meta['require_version'] if specified
-          if Util.exist?(meta['require_version']) and !Util.require_version_valid?(TeracyDev::VERSION, meta['require_version'])
+          # check if teracy-dev version satisfies the meta['target'] if specified
+          if Util.exist?(meta['target']) and !Util.require_version_valid?(TeracyDev::VERSION, meta['target'])
             @logger.error("teracy-dev's current version: #{TeracyDev::VERSION}")
-            @logger.error("this extension requires teracy-dev version: #{meta['require_version']} (#{extension})")
+            @logger.error("this extension requires teracy-dev version: #{meta['target']} (#{extension})")
             abort
           end
         else
           @logger.error("#{meta_path} must exist for this extension: #{extension}")
           abort
-        end
-      end
-
-      def build_settings_from(default_file_path)
-        @logger.debug("build_settings_from default file path: '#{default_file_path}'")
-        override_file_path = default_file_path.gsub(/default\.yaml$/, "override.yaml")
-        default_settings = load_yaml_file(default_file_path)
-        @logger.debug("build_settings_from default_settings: #{default_settings}")
-        override_settings = load_yaml_file(override_file_path)
-        @logger.debug("build_settings_from override_settings: #{override_settings}")
-        settings = Util.override(default_settings, override_settings)
-        @logger.debug("build_settings_from final: #{settings}")
-        settings
-      end
-
-
-      def load_yaml_file(file_path)
-        if File.exist? file_path
-          # TODO: exception handling
-          result = YAML.load(File.new(file_path))
-          if result == false
-            @logger.debug("load_yaml_file: #{file_path} is empty")
-            result = {}
-          end
-          result
-        else
-          @logger.debug("load_yaml_file: #{file_path} does not exist")
-          {}
         end
       end
     end

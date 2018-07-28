@@ -2,7 +2,7 @@ require_relative 'logging'
 
 module TeracyDev
   class Util
-    @@logger = TeracyDev::Logging.logger_for('Util')
+    @@logger = TeracyDev::Logging.logger_for(self)
 
     # check if a value exists (not nil and not empty if is a string)
     def self.exist?(value)

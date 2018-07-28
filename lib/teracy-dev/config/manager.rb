@@ -14,9 +14,15 @@ module TeracyDev
   module Config
     # Manage the vagrant configuration from the provided settings hash object
     class Manager
+      @@instance = nil
 
       def initialize
-        @logger = TeracyDev::Logging.logger_for('Config::Manager')
+        if !!@@instance
+          raise "TeracyDev::Processors::Manager can only be initialized once"
+        end
+        @@instance = self
+
+        @logger = TeracyDev::Logging.logger_for(self.class.name)
         @configurators = []
 
         # system configurators
@@ -43,7 +49,7 @@ module TeracyDev
 
 
       def configure(settings, config, type:)
-        @logger.debug("start configuring #{type}: #{config} with #{settings}")
+        @logger.debug("configure #{type}: #{config} with #{settings}")
 
         @configurators.each do |configurator|
           configurator.configure(settings, config, type: type)
