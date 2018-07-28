@@ -113,16 +113,9 @@ module TeracyDev
         if File.exist? absolute_path
           validate_extension_meta(extension)
         else
-          # extension path does not exist, check if it's required
-          # if required, send error message and abort
-          # otherwise, send a warning message
-          required = extension['required'] || false
-          if required == true
-            @logger.error("This extension is required but its path does not exist: #{extension}")
+            @logger.error("This extension is enabled but its path does not exist: #{extension}")
+            # TODO: implement auto downloader if not found
             abort
-          else
-            @logger.warn("This extension's path does not exist, make sure it's intented: #{extension}")
-          end
         end
 
       end
