@@ -11,11 +11,11 @@ module TeracyDev
           # ignore
         when 'node'
           networks_settings = settings['vm']['networks']
-          configure_networks(networks_settings)
+          configure_networks(networks_settings, config)
         end
       end
 
-      def configure_networks(networks_settings)
+      def configure_networks(networks_settings, config)
         networks_settings ||= []
         @logger.debug("configure_networks: #{networks_settings}")
         networks_settings.each do |vm_network|
