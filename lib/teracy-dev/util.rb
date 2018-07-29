@@ -29,9 +29,8 @@ module TeracyDev
       obj
     end
 
-    # file_path must be relative to the workspace directory
+    # file_path must be absolute path
     def self.load_file_path(file_path)
-      file_path = File.join(File.dirname(__FILE__), '../../', file_path)
       @@logger.debug("load_file_path: #{file_path}")
       begin
         load file_path

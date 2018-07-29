@@ -48,7 +48,7 @@ module TeracyDev
 
 
       def build_entry_settings(lookup_dir)
-        config_default_file_path = File.join(File.dirname(__FILE__), '../../../', lookup_dir, 'config_default.yaml')
+        config_default_file_path = File.join(lookup_dir, 'config_default.yaml')
         settings = build_settings_from(config_default_file_path)
         @logger.debug("build_entry_settings: #{settings}")
         settings
@@ -64,7 +64,7 @@ module TeracyDev
         extensions.each do |extension|
           next if extension['enabled'] != true
           validate_extension(extension)
-          absolute_path = File.join(File.dirname(__FILE__), '../../../', extension['path'], 'config_default.yaml')
+          absolute_path = File.join(TeracyDev::EXTENSIONS_DIR, extension['path'], 'config_default.yaml')
           extensions_settings << build_settings_from(absolute_path)
         end
 
@@ -107,7 +107,7 @@ module TeracyDev
 
       def validate_extension(extension)
         @logger.debug("validate_extension: #{extension}")
-        absolute_path = File.join(File.dirname(__FILE__), '../../../', extension['path'])
+        absolute_path = File.join(TeracyDev::EXTENSIONS_DIR, extension['path'])
 
         # extension does exists, load the meta info and check the version requirements
         if File.exist? absolute_path
@@ -121,7 +121,7 @@ module TeracyDev
       end
 
       def validate_extension_meta(extension)
-        meta_path = File.join(File.dirname(__FILE__), '../../../', extension['path'], 'meta.yaml')
+        meta_path = File.join(TeracyDev::EXTENSIONS_DIR, extension['path'], 'meta.yaml')
 
         if File.exist? meta_path
           meta = load_yaml_file(meta_path)

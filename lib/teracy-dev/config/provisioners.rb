@@ -17,7 +17,7 @@ module TeracyDev
         @logger.debug("configure #{type}: #{provisioners_settings}")
 
         provisioners_settings.each do |provisioner_settings|
-          @@logger.info("provisioner ignored: #{provisioner_settings}") if provisioner_settings['enabled'] != true
+          @logger.info("provisioner ignored: #{provisioner_settings}") if provisioner_settings['enabled'] != true
           next if provisioner_settings['enabled'] != true
 
           type = provisioner_settings['type']
