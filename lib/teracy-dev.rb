@@ -1,4 +1,4 @@
-# to use teracy/dev, just require it: require 'teracy/dev'
+# to use teracy-dev, just require it: require 'teracy-dev'
 # and it will load all the required modules loaded here
 
 require_relative 'teracy-dev/logging'
