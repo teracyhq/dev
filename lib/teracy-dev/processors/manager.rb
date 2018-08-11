@@ -1,5 +1,4 @@
 require_relative '../logging'
-require_relative 'variables'
 
 module TeracyDev
   module Processors
@@ -15,8 +14,6 @@ module TeracyDev
         @logger = Logging.logger_for(self.class.name)
         @processors = []
 
-        # system processors
-        register(Variables.new)
       end
 
       def register(processor)

@@ -1,79 +1,14 @@
-# vars must be defined to be used
-# format:
-# key: ${ENV_VAR}
-# key: ${ENV_VAR-:default}
-# and "#{key}" can be used for settings values if available
-variables: {}
-  # node_name_prefix: ${NODE_NAME_PREFIX:-node}
-  # node_hostname_prefix: ${NODE_HOSTNAME_PREFIX:-teracy-dev}
-  # some_value: ${MY_VAR:-value}-affix
 
 # teracy-dev related settings
 teracy-dev:
   require_version: ">= 0.6.0-a1-SNAPSHOT"
-  # placeholder, this must be always empty here, must be overriden by organization/extension level config
   extensions: []
-    # - _id: "0"
-    #   path: workspace/teracy-dev-k8s
-    #   location: # TODO: auto download feature to be implemented
-    #     git:
-    #     branch:
-    #     tag:
-    #     ref:
-    #   require_version: ">= 0.1.0-SNAPSHOT"
-    #   enabled: true
-  # extension must have meta.yaml file to describe its name, version and optional description
-  # optional: config_default.yaml, teracy-dev-ext.rb will be auto reloaded when exists
-
 
 # vagrant related settings
-vagrant:
-  # vagrant plugins are actually rubygems so you can declare to use any rubygems
-  # common config level
-  plugins: []
-    # - _id: "0"
-    #   name: vagrant-gatling-rsync
-    #   version: "" # empty means latest by default
-    #   state: installed # uninstalled
-    #   enabled: true
-    #   config_key: gatling
-    #   options:
-    #     latency: 0.5
-    #     time_format: "%H:%M:%S"
-    #     rsync_on_startup: true
-
+vagrant: {}
 
 # default settings for all nodes
-default:
-  vm:
-    box: bento/ubuntu-16.04
-    box_version:
-    box_url:
-    synced_folders:
-      - _id: "0"
-        type: virtual_box
-        host: "."
-        guest: "/vagrant"
-
-  providers:
-    - _id: "0"
-      enabled: true
-      type: virtualbox
-      require_version: ">=5.2.14"
-      gui: false
-      memory: 1024
-      description: "teracy-dev #{Time.now.getutc.to_i}"
-
-  provisioners: []
-
-  # default node config level
-  plugins: []
+default: {}
 
 # specific nodes, each node will override the default
-nodes:
-  - _id: "0"
-    name: "node-01"
-    primary: true
-    vm:
-      hostname: "node-01.local"
-
+nodes: []

@@ -8,8 +8,24 @@ module TeracyDev
         @logger = TeracyDev::Logging.logger_for(self.class.name)
       end
 
-      # configurator must implement this to execute actual configuration
+      # configurator must have this method to execute actual configuration
       def configure(settings, config, type:)
+        case type
+        when 'common'
+          configure_common(settings, config)
+        when 'node'
+          configure_node(settings, config)
+        end
+      end
+
+      protected
+      # sub class should override this
+      def configure_common(settings, config)
+
+      end
+
+      # sub class should override this
+      def configure_node(settings, config)
 
       end
 

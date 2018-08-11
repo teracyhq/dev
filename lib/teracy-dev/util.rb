@@ -16,6 +16,34 @@ module TeracyDev
       exist
     end
 
+
+    def self.load_yaml_file(file_path)
+      if File.exist? file_path
+        # TODO: exception handling
+        result = YAML.load(File.new(file_path))
+        if result == false
+          @@logger.debug("load_yaml_file: #{file_path} is empty")
+          result = {}
+        end
+        result
+      else
+        @@logger.debug("load_yaml_file: #{file_path} does not exist")
+        {}
+      end
+    end
+
+    def self.build_settings_from(default_file_path)
+      @@logger.debug("build_settings_from default file path: #{default_file_path}")
+      override_file_path = default_file_path.gsub(/default\.yaml$/, "override.yaml")
+      default_settings = load_yaml_file(default_file_path)
+      @@logger.debug("build_settings_from default_settings: #{default_settings}")
+      override_settings = load_yaml_file(override_file_path)
+      @@logger.debug("build_settings_from override_settings: #{override_settings}")
+      settings = Util.override(default_settings, override_settings)
+      @@logger.debug("build_settings_from final: #{settings}")
+      settings
+    end
+
     # thanks to https://gist.github.com/Integralist/9503099
     def self.symbolize(obj)
       return obj.reduce({}) do |memo, (k, v)|

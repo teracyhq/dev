@@ -8,8 +8,8 @@ require_relative 'teracy-dev/loader'
 # define public APIs here
 module TeracyDev
 
-  EXTENSIONS_DIR = ENV['TERACY_EXTENSIONS_DIR'] ||= File.join(File.dirname(__FILE__), '../workspace/')
-  EXTENSION_ENTRY_NAME = ENV['TERACY_EXTENSION_ENTRY_NAME'] ||= 'teracy-dev-entry'
+  BASE_DIR = File.join(File.dirname(__FILE__), '..')
+  EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= 'workspace/teracy-dev-entry'
 
   @@logger = TeracyDev::Logging.logger_for(self)
   # we can only create one Loader instance and accessible on this only

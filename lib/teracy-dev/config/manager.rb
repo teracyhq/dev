@@ -1,14 +1,4 @@
 require_relative '../logging'
-require_relative 'plugins'
-require_relative 'vm'
-require_relative 'ssh'
-require_relative 'winrm'
-require_relative 'winssh'
-require_relative 'vgrant'
-require_relative 'provisioners'
-require_relative 'virtualbox_provider'
-require_relative 'networks'
-require_relative 'synced_folders'
 
 module TeracyDev
   module Config
@@ -24,18 +14,6 @@ module TeracyDev
 
         @logger = TeracyDev::Logging.logger_for(self.class.name)
         @configurators = []
-
-        # system configurators
-        register(Networks.new)
-        register(Plugins.new)
-        register(VirtualBoxProvider.new)
-        register(Provisioners.new)
-        register(SSH.new)
-        register(SyncedFolders.new)
-        register(Vgrant.new)
-        register(VM.new)
-        register(WinRM.new)
-        register(WinSSH.new)
       end
 
       def register(configurator)
