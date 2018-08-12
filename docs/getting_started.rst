@@ -54,13 +54,13 @@ Open the terminal window:
 
 2. Install ``virtualbox`` and ``vagrant``
 
-   - Install ``virtualbox`` (>=5.1):
+   - Install ``virtualbox``:
 
      .. code-block:: bash
 
         $ brew cask install virtualbox
 
-   - Install ``vagrant`` (>=1.8.7, >=1.9.1):
+   - Install ``vagrant``:
 
      .. code-block:: bash
 
@@ -89,16 +89,6 @@ Open the terminal window:
          - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
 
-Please check out the instruction video below for more details:
-
-    .. raw:: html
-
-        <iframe width="100%" height="630" src="https://www.youtube.com/embed/htGqh_UyY_I" frameborder="0" allowfullscreen></iframe>
-
-    ..  note::
-
-      The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
-
 Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
 
 Automatic Installation on Linux (Ubuntu)
@@ -122,20 +112,20 @@ Open the terminal window:
       $ sudo apt-get update
       $ sudo apt-get install -y git
 
-2. Install ``virtualbox`` (>=5.1):
+2. Install ``virtualbox``:
 
    ..  code-block:: bash
 
       $ sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list" \
       && wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- | sudo apt-key add - \
       && wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add - \
-      && sudo apt-get update && sudo apt-get install virtualbox-5.1 -y
+      && sudo apt-get update && sudo apt-get install virtualbox-5.2 -y
 
-3. Install ``vagrant`` (>=1.8.7, >=1.9.1):
+3. Install ``vagrant``:
 
    ..  code-block:: bash
 
-      $ version=1.9.1 && cd /tmp \
+      $ version=2.1.2 && cd /tmp \
       && wget $(if [ `uname -m` == "x86_64" ]; then echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_x86_64.deb"; else echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_i686.deb"; fi;) \
       && sudo dpkg -i vagrant_${version}* && rm vagrant_${version}* && cd --
 
@@ -253,17 +243,17 @@ Follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox`` (>=5.1):
+   - Install ``virtualbox``:
 
      .. code-block:: bash
 
-        $ choco install virtualbox --version 5.1.14 -y
+        $ choco install virtualbox --version 5.2.14 -y
 
-   - Install ``vagrant`` (>=1.8.7, >=1.9.1):
+   - Install ``vagrant``:
 
      .. code-block:: bash
 
-        $ choco install vagrant --version 1.9.1 -y
+        $ choco install vagrant --version 2.1.2 -y
 
    After finishing the ``vagrant`` installation, restart the machine.
 
@@ -298,22 +288,30 @@ teracy-dev Git Clone and Vagrant Up
 
        - Check out the `develop` branch to use the latest development version of teracy-dev.
        - Check out the `master` branch to use the latest stable version of teracy-dev.
+       - Checkout the tagged released version for usage.
 
 
    You should see the following similar messages after ``$ vagrant up`` finishes running:
    ::
 
-     ==> default: [2016-11-25T06:02:16+00:00] INFO: Report handlers complete
-     ==> default: Chef Client finished, 9/15 resources updated in 03 minutes 36 seconds
-     ==> default: Running provisioner: shell...
-     ==> default: Running: inline script
-     ==> default: stdin: is not a tty
-     ==> default: ip address: 192.168.0.105
-     ==> default: vagrant-gatling-rsync is starting the sync engine because you have at least one rsync folder. To disable this behavior, set `config.gatling.rsync_on_startup = false` in your Vagrantfile.
-     ==> default: Doing an initial rsync...
-     ==> default: Rsyncing folder: /Users/hoatle/teracy-dev/workspace/ => /home/vagrant/workspace
-     ==> default:   - Exclude: [".vagrant/", ".git", ".idea/", "node_modules/", "bower_components/", ".npm/"]
-
+      ==> node-01: Waiting for machine to boot. This may take a few minutes...
+          node-01: SSH address: 127.0.0.1:2201
+          node-01: SSH username: vagrant
+          node-01: SSH auth method: private key
+          node-01: Warning: Remote connection disconnect. Retrying...
+          node-01: Warning: Connection reset. Retrying...
+          node-01: 
+          node-01: Vagrant insecure key detected. Vagrant will automatically replace
+          node-01: this with a newly generated keypair for better security.
+          node-01: 
+          node-01: Inserting generated public key within guest...
+          node-01: Removing insecure key from the guest if it's present...
+          node-01: Key inserted! Disconnecting and reconnecting using new SSH key...
+      ==> node-01: Machine booted and ready!
+      ==> node-01: Checking for guest additions in VM...
+      ==> node-01: Setting hostname...
+      ==> node-01: Mounting shared folders...
+          node-01: /vagrant => /Users/hoatle/teracy-dev/workspace/dev
 
    ..  note::
 
@@ -335,8 +333,7 @@ teracy-dev Git Clone and Vagrant Up
          "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
          has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
 
-2. Keep the first terminal window running, open a new terminal window and use the ``$ vagrant ssh``
-   command to access the virtual machine you have just provisioned.
+2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just `vagrant up`.
 
    ..  code-block:: bash
 
@@ -347,31 +344,15 @@ teracy-dev Git Clone and Vagrant Up
 
    .. code-block:: bash
 
-      Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-51-generic x86_64)
+      Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-116-generic x86_64)
 
-        * Documentation:  https://help.ubuntu.com
-        * Management:     https://landscape.canonical.com
-        * Support:        https://ubuntu.com/advantage
+       * Documentation:  https://help.ubuntu.com
+       * Management:     https://landscape.canonical.com
+       * Support:        https://ubuntu.com/advantage
 
-      1 package can be updated.
-      1 update is a security update.
+      0 packages can be updated.
+      0 updates are security updates.
 
-
-      Last login: Tue Dec  6 14:19:56 2016 from 10.0.2.2
-
-3. Check if `docker` and `docker-compose` are already installed
-
-   After ``$ vagrant ssh``, use the following commands:
-
-   ..  code-block:: bash
-
-       $ docker --version
-       $ docker-compose --version
-
-   .. note::
-
-      In case the `docker` command is not found, you should ``$ vagrant destroy``, then
-      ``$ vagrant up`` again or ``$ vagrant reload --provision``.
 
 Git Setup
 ---------
