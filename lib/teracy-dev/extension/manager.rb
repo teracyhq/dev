@@ -33,6 +33,7 @@ module TeracyDev
           if git != nil
             if Vagrant::Util::Which.which('git') == nil
               @logger.error("git is not avaiable")
+              abort
             end
             Dir.chdir(lookup_path) do
               @logger.info("cd #{lookup_path} && git clone #{git}")
