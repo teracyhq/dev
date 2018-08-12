@@ -7,7 +7,6 @@ require_relative 'version'
 require_relative 'processors/manager'
 require_relative 'config/manager'
 require_relative 'settings/manager'
-require_relative 'extension/manager'
 
 
 module TeracyDev
@@ -27,9 +26,7 @@ module TeracyDev
     def start
       @processorsManager = Processors::Manager.new
       @configManager = Config::Manager.new
-      @extensionManager = Extension::Manager.new
       init_system
-      init_entry_extensions
       settings = build_settings().freeze
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
@@ -38,24 +35,11 @@ module TeracyDev
     private
 
     def init_system
-      @system_settings = YAML.load_file(File.join(File.dirname(__FILE__), '../../system.yaml'))
-      @logger.debug("init_system: @system_settings: #{@system_settings}")
+      system_settings = YAML.load_file(File.join(File.dirname(__FILE__), '../../system.yaml'))
+      @logger.debug("init_system: system_settings: #{system_settings}")
       # versions requirements
-      Vagrant.require_version @system_settings['vagrant']['require_version']
-      TeracyDev::Plugin.sync(@system_settings['vagrant']['plugins'])
-      @extensionManager.install(@system_settings['teracy-dev']['extensions'])
-    end
-
-    def init_entry_extensions
-      # install extensions from EXTENSION_ENTRY
-      entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
-      @logger.debug("init_entry_extensions: entry_path: #{entry_path}")
-      if File.exist? entry_path
-        entry_settings = Util.build_settings_from(File.join(entry_path, "config_default.yaml"))
-        @logger.debug("init_entry_extensions: entry_settings: #{entry_settings}")
-        extensions = entry_settings['teracy-dev'] ? entry_settings['teracy-dev']['extensions'] || [] : []
-        @extensionManager.install(extensions)
-      end
+      Vagrant.require_version system_settings['vagrant']['require_version']
+      TeracyDev::Plugin.sync(system_settings['vagrant']['plugins'])
     end
 
 
@@ -71,8 +55,6 @@ module TeracyDev
     def load_extension_entry_files(settings)
       @logger.debug("load_extension_entry_files: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
-      system_extensions = @system_settings['teracy-dev']['extensions']
-      extensions = [system_extensions, extensions].flatten
       extensions.each do |extension|
         next if extension['enabled'] != true
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || 'extensions')

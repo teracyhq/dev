@@ -35,8 +35,8 @@ module TeracyDev
               @logger.error("git is not avaiable")
             end
             Dir.chdir(lookup_path) do
-              @logger.info("cd #{lookup_path} && git clone #{git} -b #{branch} --single-branch --depth=1")
-              system("git clone #{git} -b #{branch} --single-branch --depth=1")
+              @logger.info("cd #{lookup_path} && git clone #{git} -b #{branch}")
+              system("git clone #{git} -b #{branch}")
             end
           end
         end

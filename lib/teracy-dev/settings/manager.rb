@@ -2,6 +2,7 @@ require 'yaml'
 
 require_relative '../logging'
 require_relative '../util'
+require_relative '../extension/manager'
 
 module TeracyDev
   module Settings
@@ -15,16 +16,23 @@ module TeracyDev
         end
         @@instance = self
         @logger = Logging.logger_for(self.class.name)
+        @extensionManager = Extension::Manager.new
       end
 
       # build teracy-dev, entry extension and extensions setting levels
       # then override: entry extension => extensions => teracy-dev
       # the latter extension will override the former one to build extensions settings
       def build_settings(entry_dir_path)
+
         @logger.debug("build_settings: #{entry_dir_path}")
         teracy_dev_settings = build_teracy_dev_settings()
         entry_settings = build_entry_settings(entry_dir_path)
-        extensions_settings = build_extensions_settings(entry_settings)
+        # we use extensions config from entry overriding teracy-dev only to install and validate
+        entry_extensions = Util.override(teracy_dev_settings, entry_settings)['teracy-dev']['extensions']
+        @logger.debug("build_settings: entry_extensions: #{entry_extensions}")
+        @extensionManager.install(entry_extensions)
+
+        extensions_settings = build_extensions_settings(entry_extensions)
 
         settings = Util.override(teracy_dev_settings, extensions_settings)
         @logger.debug("override(teracy_dev_settings, extensions_settings): #{settings}")
@@ -58,15 +66,8 @@ module TeracyDev
       end
 
 
-      def build_extensions_settings(entry_settings)
-        system_settings = YAML.load_file(File.join(File.dirname(__FILE__), '../../../system.yaml'))
-        system_extensions = system_settings['teracy-dev']['extensions']
-        # we append extensions from system_settings here
-        @logger.debug("build_extensions_settings: system_extensions: #{system_extensions}")
-
-        extensions = entry_settings['teracy-dev'] ? entry_settings['teracy-dev']['extensions'] || [] : []
-        extensions = [system_extensions, extensions].flatten
-        @logger.debug("build_extensions_settings: #{extensions}")
+      def build_extensions_settings(extensions)
+        @logger.debug("build_extensions_settings: extensions: #{extensions}")
         extensions_settings = []
         extensions.each do |extension|
           next if extension['enabled'] != true
@@ -78,7 +79,7 @@ module TeracyDev
         extensions_settings.reverse_each do |extension_settings|
           settings = Util.override(extension_settings, settings)
         end
-        @logger.debug("build_extensions_settings: #{settings}")
+        @logger.debug("build_extensions_settings: settings: #{settings}")
         settings
       end
 
