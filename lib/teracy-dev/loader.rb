@@ -8,12 +8,11 @@ require_relative 'processors/manager'
 require_relative 'config/manager'
 require_relative 'settings/manager'
 
-
 module TeracyDev
   class Loader
     @@instance = nil
 
-    attr_reader :processorsManager, :configManager
+    attr_reader :processorsManager, :configManager, :settings
 
     def initialize
       if !!@@instance
@@ -27,7 +26,7 @@ module TeracyDev
       @processorsManager = Processors::Manager.new
       @configManager = Config::Manager.new
       init_system
-      settings = build_settings().freeze
+      @settings = build_settings().freeze
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end

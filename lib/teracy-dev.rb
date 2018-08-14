@@ -3,6 +3,7 @@
 
 require_relative 'teracy-dev/logging'
 require_relative 'teracy-dev/loader'
+require_relative 'teracy-dev/extension/manager'
 
 
 # define public APIs here
@@ -22,6 +23,19 @@ module TeracyDev
 
   def self.register_configurator(configurator)
     @@loader.configManager.register(configurator)
+  end
+
+  # find the extension lookup_path by its name
+  def self.extension_lookup_path(extension_name)
+    extensions = @@loader.settings['teracy-dev']['extensions'] ||= []
+    extensions.each do |ext|
+      manifest = Extension::Manager.manifest(ext)
+      if manifest['name'] == extension_name
+        return ext['path']['lookup']
+      end
+    end
+    # extension_name not found
+    return nil
   end
 
   @@loader.start
