@@ -25,22 +25,12 @@ module TeracyDev
     def start
       @processorsManager = Processors::Manager.new
       @configManager = Config::Manager.new
-      init_system
       @settings = build_settings().freeze
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
 
     private
-
-    def init_system
-      system_settings = YAML.load_file(File.join(File.dirname(__FILE__), '../../system.yaml'))
-      @logger.debug("init_system: system_settings: #{system_settings}")
-      # versions requirements
-      Vagrant.require_version system_settings['vagrant']['require_version']
-      TeracyDev::Plugin.sync(system_settings['vagrant']['plugins'])
-    end
-
 
     def build_settings
       extension_entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
