@@ -17,6 +17,21 @@ module TeracyDev
     end
 
 
+    # find the extension lookup_path by its name from the provided settings
+    def self.extension_lookup_path(settings, extension_name)
+      @@logger.debug("settings: #{settings}")
+      extensions = settings['teracy-dev']['extensions'] ||= []
+      extensions.each do |ext|
+        manifest = Extension::Manager.manifest(ext)
+        if manifest['name'] == extension_name
+          return ext['path']['lookup']
+        end
+      end
+      # extension_name not found
+      return nil
+    end
+
+
     def self.load_yaml_file(file_path)
       if File.exist? file_path
         # TODO: exception handling
