@@ -39,12 +39,6 @@ module TeracyDev
 
         settings = Util.override(settings, entry_settings)
         @logger.debug("override(settings, entry_settings): #{settings}")
-
-        # create nodes by overrides each node with the default
-        settings["nodes"].each_with_index do |node, index|
-          settings["nodes"][index] = Util.override(settings['default'], node)
-        end
-        @logger.debug("final: #{settings}")
         settings
       end
 

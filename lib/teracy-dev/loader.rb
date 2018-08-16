@@ -38,6 +38,13 @@ module TeracyDev
       settings = settingsManager.build_settings(extension_entry_path)
       load_extension_entry_files(settings)
       settings = process(settings)
+      # updating nodes here so that processors have change to adjust nodes by adjusting default
+      # create nodes by overrides each node with the default
+      settings["nodes"].each_with_index do |node, index|
+        settings["nodes"][index] = Util.override(settings['default'], node)
+      end
+      @logger.debug("final: #{settings}")
+      settings
     end
 
 
