@@ -40,6 +40,7 @@ module TeracyDev
       settings = process(settings)
       # updating nodes here so that processors have change to adjust nodes by adjusting default
       # create nodes by overrides each node with the default
+      @logger.debug("settings: #{settings}")
       settings["nodes"].each_with_index do |node, index|
         settings["nodes"][index] = Util.override(settings['default'], node)
       end
