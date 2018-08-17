@@ -25,10 +25,10 @@ module TeracyDev
 
       def sync(extension)
         return if extension['enabled'] != true
-        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || 'extensions')
+        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         git = extension['location']['git'] # maybe we'll support for protocols
-        branch = extension['location']['tag'] || extension['location']['branch']
+        branch = extension['location']['tag'] ||= extension['location']['branch']
         ref = extension['location']['ref'] # TODO: support sync to a specific revision
 
         @logger.debug("path: #{path}")

@@ -54,7 +54,7 @@ module TeracyDev
       extensions = settings['teracy-dev']['extensions'] ||= []
       extensions.each do |extension|
         next if extension['enabled'] != true
-        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || 'extensions')
+        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         entry_file_path = File.join(path, 'teracy-dev-ext.rb')
         @logger.debug("load_extension_entry_files: entry_file_path: #{entry_file_path}")

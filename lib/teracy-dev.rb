@@ -11,6 +11,7 @@ module TeracyDev
 
   BASE_DIR = File.join(File.dirname(__FILE__), '..')
   EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= 'workspace/teracy-dev-entry'
+  DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions' # relative to the Vagrantfile
 
   @@logger = TeracyDev::Logging.logger_for(self)
   # we can only create one Loader instance and accessible on this only

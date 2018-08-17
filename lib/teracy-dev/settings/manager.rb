@@ -65,7 +65,7 @@ module TeracyDev
         extensions_settings = []
         extensions.each do |extension|
           next if extension['enabled'] != true
-          lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || 'extensions')
+          lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTESION_LOOKUP_PATH)
           path = File.join(lookup_path, extension['path']['extension'])
           extensions_settings << Util.build_settings_from(File.join(path, 'config_default.yaml'))
         end
