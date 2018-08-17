@@ -29,10 +29,10 @@ Features
 Useful Extensions
 -----------------
 
-- teracy-dev-core: https://github.com/hoatle/teracy-dev-core
-- teracy-dev-essential: https://github.com/hoatle/teracy-dev-essential
-- teracy-dev-k8s: https://github.com/hoatle/teracy-dev-k8s
-- teracy-dev-v05-compat: https://github.com/hoatle/teracy-dev-v05-compat
+- teracy-dev-core: https://github.com/teracyhq-incubator/teracy-dev-core
+- teracy-dev-essential: https://github.com/teracyhq-incubator/teracy-dev-essential
+- teracy-dev-k8s: https://github.com/teracyhq-incubator/teracy-dev-k8s
+- teracy-dev-v05-compat: https://github.com/teracyhq-incubator/teracy-dev-v05-compat
 
 
 Installation and Usage
