@@ -1,6 +1,0 @@
-[submodule "test/foodcritic/customink"]
-	path = test/foodcritic/customink
-	url = git://github.com/customink-webops/foodcritic-rules.git
-[submodule "test/foodcritic/etsy"]
-	path = test/foodcritic/etsy
-	url = git://github.com/etsy/foodcritic-rules.git
