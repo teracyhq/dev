@@ -1,5 +1,5 @@
-# some vagrant sub commands cause teracy-dev's malfunction and it's safe to not load tearcy-dev
-unloadable_sub_commands = ['box', 'plugin']
+# some vagrant sub commands cause teracy-dev's malfunction and it's safe to not load teracy-dev
+unloadable_sub_commands = ['plugin']
 
 if ARGV[0] && !unloadable_sub_commands.include?(ARGV[0])
   # add ./lib to ruby load path
