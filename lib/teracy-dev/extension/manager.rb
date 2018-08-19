@@ -34,8 +34,28 @@ module TeracyDev
         @logger.debug("path: #{path}")
 
         if File.exist? path
-          # TODO: make sure the extention is always at the correct latest state
-          # up to date branch; up to date tag, etc.
+          # only check if the extension is in the default extensions directory
+          Dir.chdir(path) do
+            @logger.info("Checking #{path}")
+
+            `git remote remove origin`
+
+            `git remote add origin #{git}`
+
+            `git fetch origin`
+
+            if ref
+              @logger.info("Ref detected, checking out #{ref}")
+
+              `git checkout #{ref}`
+            else
+              branch ||= 'master'
+
+              @logger.info("Sync with origin/#{branch}")
+
+              `git checkout #{branch} && git reset --hard origin/#{branch}`
+            end
+          end if extension['path']['lookup'] == DEFAULT_EXTENSION_LOOKUP_PATH
         else
           # sync bases on the location specification
           if git != nil
