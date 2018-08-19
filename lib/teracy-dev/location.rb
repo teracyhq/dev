@@ -25,7 +25,7 @@ module TeracyDev
           @@logger.debug("git_sync: sync existing, location: #{location}")
 
           Dir.chdir(path) do
-            @@logger.info("Checking #{path}")
+            @@logger.debug("Checking #{path}")
 
             `git remote remove origin`
 
@@ -34,13 +34,13 @@ module TeracyDev
             `git fetch origin`
 
             if ref
-              @@logger.info("Ref detected, checking out #{ref}")
+              @@logger.debug("Ref detected, checking out #{ref}")
 
               `git checkout #{ref}`
             else
               branch ||= 'master'
 
-              @@logger.info("Sync with origin/#{branch}")
+              @@logger.debug("Sync with origin/#{branch}")
 
               `git checkout #{branch} && git reset --hard origin/#{branch}`
             end
