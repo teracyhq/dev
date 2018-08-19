@@ -8,7 +8,7 @@ teracy-dev:
         lookup: extensions # we can configure where to lookup for the extension, "extensions" by default if no configured
         extension: teracy-dev-core # extension_path, we'll lookup the extension by its lookup_path + extension_path
       location: # auto download the extension into the lookup_path
-        git: https://github.com/hoatle/teracy-dev-core.git
+        git: https://github.com/teracyhq-incubator/teracy-dev-core.git
         # ref:
         # tag:
         branch: develop
