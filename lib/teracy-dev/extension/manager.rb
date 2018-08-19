@@ -30,8 +30,12 @@ module TeracyDev
         return if extension['enabled'] != true
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
+        extension['location'].merge!({
+          "lookup_path" => lookup_path,
+          "path" => path
+        })
         sync_existing = extension['path']['lookup'] == DEFAULT_EXTENSION_LOOKUP_PATH
-        Location.sync(path, extension['location'], sync_existing)
+        Location.sync(extension['location'], sync_existing)
       end
 
       def validate(extension)

@@ -5,22 +5,25 @@ module TeracyDev
     @@logger = Logging.logger_for(self)
 
     # location sync
-    def self.sync(path, location, sync_existing = true)
-      self.git_sync(path, location, sync_existing) if Util.exist? location['git']
+    def self.sync(location, sync_existing = true)
+      self.git_sync(location, sync_existing) if Util.exist? location['git']
     end
 
     private
 
-    def self.git_sync(path, location, sync_existing)
-      @@logger.debug("git_sync: path: #{path}")
-      @@logger.debug("git_sync: location: #{location}")
-      @@logger.debug("git_sync: sync_existing: #{sync_existing}")
+    def self.git_sync(location, sync_existing)
+      @@logger.debug("git_sync: location: #{location}; sync_existing: #{sync_existing}")
+
       git = location['git'] # maybe we'll support for protocols
       branch = location['tag'] ||= location['branch']
       ref = location['ref']
+      lookup_path = location['lookup_path']
+      path = location['path']
       if File.exist? path
         # only check if the extension is in the default extensions directory
         if sync_existing == true
+          @@logger.debug("git_sync: sync existing, location: #{location}")
+
           Dir.chdir(path) do
             @@logger.info("Checking #{path}")
 
@@ -48,8 +51,8 @@ module TeracyDev
           @@logger.error("git is not avaiable")
           abort
         end
-        Dir.chdir(path) do
-          @@logger.info("cd #{path} && git clone #{git}")
+        Dir.chdir(lookup_path) do
+          @@logger.info("cd #{lookup_path} && git clone #{git}")
           system("git clone #{git}")
         end
 
