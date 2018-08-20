@@ -14,13 +14,12 @@ module TeracyDev
     def self.git_sync(location, sync_existing)
       @@logger.debug("git_sync: location: #{location}; sync_existing: #{sync_existing}")
 
-      git = location['git'] # maybe we'll support for protocols
+      git = location['git']
       branch = location['tag'] ||= location['branch']
       ref = location['ref']
       lookup_path = location['lookup_path']
       path = location['path']
       if File.exist? path
-        # only check if the extension is in the default extensions directory
         if sync_existing == true
           @@logger.debug("git_sync: sync existing, location: #{location}")
 
@@ -63,7 +62,7 @@ module TeracyDev
       end
     end
 
-    # add other types of protocol sync here
+    # add other types of sync protocols here when required/ implemented
 
   end
 end
