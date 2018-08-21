@@ -32,16 +32,24 @@ module TeracyDev
 
             `git fetch origin`
 
+            current_ref = `git rev-parse --verify HEAD`.strip
+
             if ref
               @@logger.debug("Ref detected, checking out #{ref}")
 
-              `git checkout #{ref}`
+              if !current_ref.include? ref
+                `git checkout #{ref}`
+              end
             else
-              branch ||= 'master'
-
               @@logger.debug("Sync with origin/#{branch}")
 
-              `git checkout #{branch} && git reset --hard origin/#{branch}`
+              branch ||= 'master'
+
+              remote_ref = `cat .git/refs/remotes/origin/#{branch}`.strip
+
+              if current_ref != remote_ref
+                `git checkout #{branch} && git reset --hard origin/#{branch}`
+              end
             end
           end
         end
