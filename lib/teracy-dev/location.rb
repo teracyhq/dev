@@ -41,9 +41,9 @@ module TeracyDev
                 `git checkout #{ref}`
               end
             else
-              @@logger.debug("Sync with origin/#{branch}")
-
               branch ||= 'master'
+
+              @@logger.debug("Sync with origin/#{branch}")
 
               remote_ref = `cat .git/refs/remotes/origin/#{branch}`.strip
 
