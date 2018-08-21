@@ -26,24 +26,30 @@ module TeracyDev
           Dir.chdir(path) do
             @@logger.debug("Checking #{path}")
 
-            `git remote remove origin`
-
-            `git remote add origin #{git}`
-
-            `git fetch origin`
+            current_git = `git remote get-url origin`.strip
 
             current_ref = `git rev-parse --verify HEAD`.strip
+
+            if current_git != git
+              `git remote remove origin`
+
+              `git remote add origin #{git}`
+            end
 
             if ref
               @@logger.debug("Ref detected, checking out #{ref}")
 
-              if !current_ref.include? ref
+              if !current_ref.start_with? ref
+                `git fetch origin`
+
                 `git checkout #{ref}`
               end
             else
               branch ||= 'master'
 
               @@logger.debug("Sync with origin/#{branch}")
+
+              `git fetch origin`
 
               remote_ref = `cat .git/refs/remotes/origin/#{branch}`.strip
 
