@@ -2,6 +2,11 @@
 # teracy-dev related settings
 teracy-dev:
   require_version: ">= 0.6.0-a1-SNAPSHOT"
+  # location sync
+  location:
+    git: https://github.com/teracyhq/dev.git
+    branch: develop
+    sync: false # disabled by default, should be enabled by teracy-dev-entry when needed
   extensions:
     - _id: "0"
       path:

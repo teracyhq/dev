@@ -7,6 +7,7 @@ require_relative 'version'
 require_relative 'processors/manager'
 require_relative 'config/manager'
 require_relative 'settings/manager'
+require_relative 'location/manager'
 
 module TeracyDev
   class Loader
@@ -25,12 +26,25 @@ module TeracyDev
     def start
       @processorsManager = Processors::Manager.new
       @configManager = Config::Manager.new
-      @settings = build_settings().freeze
+      settings = build_settings().freeze
+      sync_teracy_dev(settings)
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
 
     private
+
+    def sync_teracy_dev(settings)
+      location = settings['teracy-dev']['location']
+      location.merge!({
+        "path" => TeracyDev::BASE_DIR
+      })
+      @logger.debug("sync_teracy_dev: location: #{location}")
+
+      if location['sync'] == true
+        Location::Manager.sync(location)
+      end
+    end
 
     def build_settings
       extension_entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
