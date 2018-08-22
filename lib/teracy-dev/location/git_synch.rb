@@ -115,7 +115,7 @@ module TeracyDev
       @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
 
       # found no such branch, switch to found as tag
-      return self._check_tag(current_ref, desired_branch) if !File.exist?(
+      return check_tag(current_ref, desired_branch) if !File.exist?(
         ".git/refs/heads/#{desired_branch}")
 
       remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{desired_branch}\\).*//p'`.strip
