@@ -38,7 +38,7 @@ module TeracyDev
       return true if !@@filter_message[classname].any?
 
       @@filter_message[classname].reduce(true) do |memo, reg|
-        memo and !Regexp.new(reg).match(text).nil?
+        memo and reg ? !Regexp.new(reg).match(text).nil? : true
       end
     end
 
