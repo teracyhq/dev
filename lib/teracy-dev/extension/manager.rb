@@ -1,4 +1,4 @@
-require_relative '../location'
+require_relative '../location/manager'
 require_relative '../util'
 
 module TeracyDev
@@ -35,7 +35,7 @@ module TeracyDev
           "path" => path
         })
         sync_existing = extension['path']['lookup'] == DEFAULT_EXTENSION_LOOKUP_PATH
-        Location.sync(extension['location'], sync_existing)
+        Location::Manager.sync(extension['location'], sync_existing)
       end
 
       def validate(extension)
