@@ -16,7 +16,7 @@ module TeracyDev
     def self.logger_for(classname)
       @@filter_progname[classname] ||= [LOG_FILTER]
 
-      @@filter_message[classname] ||= [LOG_FILTER]
+      @@filter_message[classname] ||= []
 
       @@loggers[classname] ||= _configure_logger_for(classname)
     end
@@ -46,7 +46,7 @@ module TeracyDev
       return true if !@@filter_progname[classname].any?
 
       @@filter_progname[classname].reduce(true) do |memo, reg|
-        memo and !Regexp.new(reg).match(text).nil?
+        memo and reg ? !Regexp.new(reg).match(text).nil? : true
       end
     end
 
