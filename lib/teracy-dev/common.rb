@@ -8,8 +8,16 @@ module TeracyDev
       colorize(text, 31)
     end
 
+    def self.green(text)
+      colorize(text, 32)
+    end
+
     def self.yellow(text)
       colorize(text, 33)
+    end
+
+    def self.light_gray(text)
+      colorize(text, 37)
     end
 
     def self.prompt(message)

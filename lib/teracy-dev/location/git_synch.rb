@@ -6,6 +6,10 @@ module TeracyDev
 
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
+
+        # Logging.add_filter(self.class.name, 'chdir') # only display class method that is contains `chdir` text
+
+        # Logging.add_filter_for_message(self.class.name, 'Sync') # only display message that is contains `Sync` text
       end
 
       def sync(location, sync_existing)
