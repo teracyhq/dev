@@ -28,6 +28,7 @@ module TeracyDev
       @configManager = Config::Manager.new
       settings = build_settings().freeze
       sync_teracy_dev(settings)
+      sync_teracy_dev_entry(settings)
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
@@ -42,7 +43,25 @@ module TeracyDev
       @logger.debug("sync_teracy_dev: location: #{location}")
 
       if location['sync'] == true
-        Location::Manager.sync(location)
+        if Location::Manager.sync(location) == true
+          # reload
+          logger.info("reloading...")
+          exec "vagrant #{ARGV.join(" ")}"
+        end
+      end
+    end
+
+    def sync_teracy_dev_entry(settings)
+      location = settings['teracy-dev']['entry_location']
+      location.merge!({
+        "path" => File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
+      })
+      if location['sync'] == true
+        if Location::Manager.sync(location) == true
+          # reload
+          logger.info("reloading...")
+          exec "vagrant #{ARGV.join(" ")}"
+        end
       end
     end
 

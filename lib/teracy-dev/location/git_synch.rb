@@ -7,11 +7,11 @@ module TeracyDev
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
       end
-
+      # return true if sync action is carried out, otherwise, return false
       def sync(location, sync_existing)
         @logger.debug("git_sync: location: #{location}; sync_existing: #{sync_existing}")
-
-        return if ! Util.exist? location['git']
+        updated = false
+        return updated if ! Util.exist? location['git']
 
         git = location['git']
         branch = location['branch'] ||= 'master'
@@ -35,16 +35,17 @@ module TeracyDev
                 `git remote remove origin`
 
                 `git remote add origin #{git}`
+                updated = true
               end
 
               if ref
-                check_ref(current_ref, ref)
+                updated = check_ref(current_ref, ref)
               elsif tag
-                check_tag(current_ref, tag)
+                updated = check_tag(current_ref, tag)
               else
                 branch ||= 'master'
 
-                check_branch(current_ref, branch)
+                updated = check_branch(current_ref, branch)
               end
             end
           end
@@ -62,7 +63,9 @@ module TeracyDev
             @logger.info("cd #{path} && git checkout #{branch}")
             system("git checkout #{branch}")
           end
+          updated = true
         end
+        updated
       end
 
 
@@ -70,17 +73,19 @@ module TeracyDev
 
     def check_ref(current_ref, ref_string)
       @logger.debug("Ref detected, checking out #{ref_string}")
-
+      updated = false
       if !current_ref.start_with? ref_string
         `git fetch origin`
 
         `git checkout #{ref_string}`
+        updated = true
       end
+      updated
     end
 
     def check_tag(current_ref, desired_tag)
       @logger.debug("Sync with tags/#{desired_tag}")
-
+      updated = false
       cmd = "git show-ref --tags #{desired_tag} | sed 's/ .*//'"
 
       @logger.debug("tag present: #{Util.exist? `#{cmd}`.strip}")
@@ -94,12 +99,14 @@ module TeracyDev
 
       if current_ref != tag_ref
         `git checkout tags/#{desired_tag}`
+        updated = true
       end
+      updated
     end
 
     def check_branch(current_ref, desired_branch)
       @logger.debug("Sync with origin/#{desired_branch}")
-
+      updated = false
       current_branch = `git rev-parse --abbrev-ref HEAD`.strip
 
       # branch master/develop are always get update
@@ -126,7 +133,9 @@ module TeracyDev
         `git checkout #{desired_branch}`
 
         `git reset --hard origin/#{desired_branch}`
+        updated = true
       end
+      updated
     end
 
     end
