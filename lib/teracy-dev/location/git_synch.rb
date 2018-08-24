@@ -19,6 +19,7 @@ module TeracyDev
         ref = location['ref']
         lookup_path = location['lookup_path']
         path = location['path']
+        dir = location['dir']
 
         if File.exist? path
           if sync_existing == true
@@ -56,7 +57,10 @@ module TeracyDev
           end
           Dir.chdir(lookup_path) do
             @logger.info("cd #{lookup_path} && git clone #{git}")
-            system("git clone #{git}")
+
+            git_dir = (Util.exist? dir) ? " #{dir}" : ''
+
+            system("git clone #{git}#{git_dir}")
           end
 
           Dir.chdir(path) do

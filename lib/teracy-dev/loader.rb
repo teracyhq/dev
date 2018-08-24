@@ -45,7 +45,7 @@ module TeracyDev
       if location['sync'] == true
         if Location::Manager.sync(location) == true
           # reload
-          logger.info("reloading...")
+          @logger.info("reloading...")
           exec "vagrant #{ARGV.join(" ")}"
         end
       end
@@ -54,12 +54,14 @@ module TeracyDev
     def sync_teracy_dev_entry(settings)
       location = settings['teracy-dev']['entry_location']
       location.merge!({
-        "path" => File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
+        "path" => File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH),
+        "lookup_path" => File.join(TeracyDev::BASE_DIR, TeracyDev::WORKSPACE_PATH),
+        "dir" => TeracyDev::ENTRY_PATH
       })
       if location['sync'] == true
         if Location::Manager.sync(location) == true
           # reload
-          logger.info("reloading...")
+          @logger.info("reloading...")
           exec "vagrant #{ARGV.join(" ")}"
         end
       end
