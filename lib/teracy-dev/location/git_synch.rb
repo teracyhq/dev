@@ -56,11 +56,8 @@ module TeracyDev
             abort
           end
           Dir.chdir(lookup_path) do
-            @logger.info("cd #{lookup_path} && git clone #{git}")
-
-            git_dir = (Util.exist? dir) ? " #{dir}" : ''
-
-            system("git clone #{git}#{git_dir}")
+            @logger.info("cd #{lookup_path} && git clone #{git} #{dir}")
+            system("git clone #{git} #{dir}")
           end
 
           Dir.chdir(path) do
