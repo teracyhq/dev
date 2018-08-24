@@ -8,12 +8,11 @@ module TeracyDev
     class PrognameAcceptor < Acceptor
 
       def initialize
-        @LOG_PROGNAME = ENV['LOG_PROGNAME'] || '*' # use regex to check with progname
+        @LOG_PROGNAME = ENV['LOG_PROGNAME'] || '.*' # use regex to check with progname
       end
 
       def accept(severity, datetime, progname, msg)
-        # TODO(hoatle): implement this
-        return true
+        return !Regexp.new(@LOG_PROGNAME).match(progname.to_s).nil?
       end
     end
   end
