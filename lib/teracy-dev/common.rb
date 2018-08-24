@@ -12,6 +12,10 @@ module TeracyDev
       colorize(text, 33)
     end
 
+    def self.light_gray(text)
+      colorize(text, 37)
+    end
+
     def self.prompt(message)
       print message
       return STDIN.gets.chomp

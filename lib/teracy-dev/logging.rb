@@ -52,16 +52,18 @@ module TeracyDev
         end
 
         if accepted
-          # TODO(hoatle): implement this
-          # display log message here with tracing
-          msg = "[#{progname}:#{caller[5]}][#{severity}]: #{msg}\n\n"
+          log = "[#{progname}][#{severity}]: #{msg}"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"
-            msg = TeracyDev::Common.red(msg)
+            log = TeracyDev::Common.red(msg)
           when "WARN"
             msg = TeracyDev::Common.yellow(msg)
           end
-          puts msg
+          # display log message here with tracing
+          # TODO: must display the trace of the exact line numeber having logger call (file, line number, function name)
+          tracing = TeracyDev::Common.light_gray("\t#{caller[5]}\n")
+          log = log + tracing
+          puts log
         end
       end
       logger
