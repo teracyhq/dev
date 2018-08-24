@@ -16,6 +16,15 @@ module TeracyDev
       exist
     end
 
+    # convert a value (case insensitive) to boolean value
+    # true, "true", "t", "yes", "y", "1" => true
+    # false, "false", "f", "no", "n", "0" => false
+    # otherwise, error raised
+    def self.boolean(value)
+      return true if value == true || value.to_s.downcase =~ (/(true|t|yes|y|1)$/i)
+      return false if value == false || value.to_s.empty? || value.to_s.downcase =~ (/(false|f|no|n|0)$/i)
+      raise ArgumentError.new("invalid value for boolean: #{value}")
+    end
 
     # find the extension lookup_path by its name from the provided settings
     def self.extension_lookup_path(settings, extension_name)

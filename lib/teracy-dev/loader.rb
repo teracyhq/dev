@@ -52,13 +52,30 @@ module TeracyDev
     end
 
     def sync_teracy_dev_entry(settings)
+      path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
+      lookup_path = TeracyDev::EXTENSION_ENTRY_PATH.split('/')[0..-2].join('/')
+      lookup_path = File.join(TeracyDev::BASE_DIR, lookup_path)
+      dir = TeracyDev::EXTENSION_ENTRY_PATH.split('/').last
+
       location = settings['teracy-dev']['entry_location']
       location.merge!({
-        "path" => File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH),
-        "lookup_path" => File.join(TeracyDev::BASE_DIR, TeracyDev::WORKSPACE_PATH),
-        "dir" => TeracyDev::ENTRY_PATH
+        "lookup_path" => lookup_path,
+        "path" => path,
+        "dir" => dir
       })
-      if location['sync'] == true
+
+      # override/init with env vars if available
+      # this is useful to init the teracy-dev-entry or to override existing settings to enable auto sync
+      # TERACY_DEV_ENTRY_LOCATION_GIT, TERACY_DEV_ENTRY_LOCATION_BRANCH
+      # TERACY_DEV_ENTRY_LOCATION_REF, TERACY_DEV_ENTRY_LOCATION_SYNC
+      location['git'] = ENV['TERACY_DEV_ENTRY_LOCATION_GIT'] if ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
+      location['branch'] = ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH'] if ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
+      location['tag'] = ENV['TERACY_DEV_ENTRY_LOCATION_TAG'] if ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
+      location['ref'] = ENV['TERACY_DEV_ENTRY_LOCATION_REF'] if ENV['TERACY_DEV_ENTRY_LOCATION_REF']
+
+      @logger.debug("sync_teracy_dev_entry: location: #{location}")
+
+      if Util.boolean(location['sync']) == true || Util.boolean(ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']) == true
         if Location::Manager.sync(location) == true
           # reload
           @logger.info("reloading...")

@@ -11,12 +11,8 @@ module TeracyDev
 
   BASE_DIR = File.join(File.dirname(__FILE__), '..')
 
-  WORKSPACE_PATH = ENV['TERACY_DEV_WORKSPACE_PATH'] ||= 'workspace'
+  EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= 'workspace/teracy-dev-entry'
 
-  ENTRY_PATH = ENV['TERACY_DEV_ENTRY_PATH'] ||= 'teracy-dev-entry'
-
-  EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= "#{WORKSPACE_PATH}/#{ENTRY_PATH}"
-  
   DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions' # relative to the Vagrantfile
 
   @@logger = TeracyDev::Logging.logger_for(self)
