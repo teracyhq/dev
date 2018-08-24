@@ -54,7 +54,7 @@ module TeracyDev
         if accepted
           # TODO(hoatle): implement this
           # display log message here with tracing
-          msg = "[#{progname}][#{severity}]: #{msg}\n\n"
+          msg = "[#{progname}:#{caller[5]}][#{severity}]: #{msg}\n\n"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"
             msg = TeracyDev::Common.red(msg)
