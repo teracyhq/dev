@@ -34,7 +34,7 @@ module TeracyDev
       extensions.each do |ext|
         manifest = Extension::Manager.manifest(ext)
         if manifest['name'] == extension_name
-          return ext['path']['lookup'] || 'extensions'
+          return ext['path']['lookup'] || TeracyDev::DEFAULT_EXTENSION_LOOKUP_PATH
         end
       end
       # extension_name not found
@@ -98,8 +98,9 @@ module TeracyDev
     end
 
 
-    def self.require_version_valid?(version, *requirements)
+    def self.require_version_valid?(version, requirements)
       @@logger.debug("require_version_valid?: version: #{version}; requirements: #{requirements}")
+      requirements = requirements.split(',')
       req = Gem::Requirement.new(*requirements)
       req.satisfied_by?(Gem::Version.new(version))
     end
