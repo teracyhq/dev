@@ -1,27 +1,24 @@
 Release Steps
 =============
 
-vagrant_config.json
--------------------
 
-- set "vm_box_version" limit on the new release when neccessary
+lib/teracy-dev/version
+----------------------
+
+- Update the teracy-dev version
 
 
-README.rst
-----------
+config.yaml
+-----------
 
-- change `develop` to the tag version. For example, `develop/` to `v0.5.0`
+- Update teracy-dev's require_version
+- Update teracy-dev-core extension config
+
 
 docs/conf.py
 ------------
 
 - Update docs version on `docs/conf.py`
-
-docs/getting_started.rst
-------------------------
-
-- Change `develop` to the tag version. For example, `develop` to `v0.5.0`
-- Keep the tag version for both the git tag and the master branch
 
 
 CHANGELOG.md
