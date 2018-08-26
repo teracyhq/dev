@@ -69,75 +69,74 @@ module TeracyDev
         updated
       end
 
+      private
 
-    private
+      def check_ref(current_ref, ref_string)
+        @logger.debug("Ref detected, checking out #{ref_string}")
+        updated = false
+        if !current_ref.start_with? ref_string
+          `git fetch origin`
 
-    def check_ref(current_ref, ref_string)
-      @logger.debug("Ref detected, checking out #{ref_string}")
-      updated = false
-      if !current_ref.start_with? ref_string
-        `git fetch origin`
-
-        `git checkout #{ref_string}`
-        updated = true
-      end
-      updated
-    end
-
-    def check_tag(current_ref, desired_tag)
-      @logger.debug("Sync with tags/#{desired_tag}")
-      updated = false
-      cmd = "git show-ref --tags #{desired_tag} | sed 's/ .*//'"
-
-      @logger.debug("tag present: #{Util.exist? `#{cmd}`.strip}")
-
-      # fetch origin if tag is not present
-      `git fetch origin` if !Util.exist? `#{cmd}`.strip
-
-      tag_ref = `#{cmd}`.strip
-
-      @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
-
-      if current_ref != tag_ref
-        `git checkout tags/#{desired_tag}`
-        updated = true
-      end
-      updated
-    end
-
-    def check_branch(current_ref, desired_branch)
-      @logger.debug("Sync with origin/#{desired_branch}")
-      updated = false
-      current_branch = `git rev-parse --abbrev-ref HEAD`.strip
-
-      # branch master/develop are always get update
-      # 
-      # other branch is only get update once
-      if ['master', 'develop'].include? desired_branch
-        `git fetch origin`
-      # only fetch if it is valid branch and not other (tags, ref, ...)
-      elsif desired_branch != current_branch and current_branch != 'HEAD'
-        `git fetch origin`
+          `git checkout #{ref_string}`
+          updated = true
+        end
+        updated
       end
 
-      @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
+      def check_tag(current_ref, desired_tag)
+        @logger.debug("Sync with tags/#{desired_tag}")
+        updated = false
+        cmd = "git show-ref --tags #{desired_tag} | sed 's/ .*//'"
 
-      # found no such branch, switch to found as tag
-      return check_tag(current_ref, desired_branch) if !File.exist?(
-        ".git/refs/heads/#{desired_branch}")
+        @logger.debug("tag present: #{Util.exist? `#{cmd}`.strip}")
 
-      remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{desired_branch}\\).*//p'`.strip
+        # fetch origin if tag is not present
+        `git fetch origin` if !Util.exist? `#{cmd}`.strip
 
-      @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
+        tag_ref = `#{cmd}`.strip
 
-      if current_ref != remote_ref
-        `git checkout #{desired_branch}`
+        @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
 
-        `git reset --hard origin/#{desired_branch}`
-        updated = true
+        if current_ref != tag_ref
+          `git checkout tags/#{desired_tag}`
+          updated = true
+        end
+        updated
       end
-      updated
-    end
+
+      def check_branch(current_ref, desired_branch)
+        @logger.debug("Sync with origin/#{desired_branch}")
+        updated = false
+        current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+
+        # branch master/develop are always get update
+        # 
+        # other branch is only get update once
+        if ['master', 'develop'].include? desired_branch
+          `git fetch origin`
+        # only fetch if it is valid branch and not other (tags, ref, ...)
+        elsif desired_branch != current_branch and current_branch != 'HEAD'
+          `git fetch origin`
+        end
+
+        @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
+
+        # found no such branch, switch to found as tag
+        return check_tag(current_ref, desired_branch) if !File.exist?(
+          ".git/refs/heads/#{desired_branch}")
+
+        remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{desired_branch}\\).*//p'`.strip
+
+        @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
+
+        if current_ref != remote_ref
+          `git checkout #{desired_branch}`
+
+          `git reset --hard origin/#{desired_branch}`
+          updated = true
+        end
+        updated
+      end
 
     end
   end
