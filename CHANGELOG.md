@@ -2,6 +2,15 @@ Change Log
 ==========
 
 
+[v0.6.0-a2][] (2018-08-26)
+--------------------------
+
+Bug fix for gitsynch tag
+
+
+Details: https://github.com/teracyhq/dev/milestone/9?closed=1
+
+
 [v0.6.0-a1][] (2018-08-25)
 --------------------------
 
@@ -323,3 +332,4 @@ Release the first milestone
 [support project base json config]: https://github.com/teracyhq/dev/issues/321
 
 [v0.6.0-a1]: https://github.com/teracyhq/dev/milestone/7?closed=1
+[v0.6.0-a2]: https://github.com/teracyhq/dev/milestone/9?closed=1
