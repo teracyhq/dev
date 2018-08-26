@@ -86,14 +86,23 @@ module TeracyDev
       def check_tag(current_ref, desired_tag)
         @logger.debug("Sync with tags/#{desired_tag}")
         updated = false
-        cmd = "git show-ref --tags #{desired_tag} | sed 's/ .*//'"
-
-        @logger.debug("tag present: #{Util.exist? `#{cmd}`.strip}")
-
-        # fetch origin if tag is not present
-        `git fetch origin` if !Util.exist? `#{cmd}`.strip
+        cmd = "git log #{desired_tag} -1 --pretty=%H"
 
         tag_ref = `#{cmd}`.strip
+
+        if $?.success? != true
+          # fetch origin if tag is not present
+          `git fetch origin`
+        end
+
+        # re-check
+        tag_ref = `#{cmd}`.strip
+
+        if $?.success? != true
+          # tag not found
+          @logger.warning("tag not found: #{desired_tag}")
+          return updated
+        end
 
         @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
 
