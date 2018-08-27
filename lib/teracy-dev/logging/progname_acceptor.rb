@@ -5,6 +5,7 @@ module TeracyDev
     # filter messages by LOG_PROGNAME env var
     # LOG_PROGNAME=TeracyDev => display all logs has progname matching TeracyDev, eg: TeracyDev, TeracyDev::Config, etc
     # LOG_PROGNAME=TeracyDev::Config => display all logs has progname matching TeracyDev::Config, eg: TeracyDev::Config, TeracyDev::Config::Provisioners, etc
+    # LOG_PROGNAME="TeracyDev::Loader|TeracyDev::TeracyDev::Location" => display all logs having progname matching this regex
     class PrognameAcceptor < Acceptor
 
       def initialize
