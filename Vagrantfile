@@ -17,6 +17,12 @@ if ARGV[0] && !unloadable_sub_commands.include?(ARGV[0])
 
   init_system
 
-  require 'teracy-dev'
+  begin
+    require 'teracy-dev'
+  rescue
+    # add tracing for easier debugging and fixing
+    puts $@
+    raise
+  end
 
 end
