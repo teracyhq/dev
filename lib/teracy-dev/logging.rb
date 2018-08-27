@@ -55,9 +55,11 @@ module TeracyDev
           log = "[#{progname}][#{severity}]: #{msg}"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"
-            log = TeracyDev::Common.red(msg)
+            log = TeracyDev::Common.red(log)
           when "WARN"
-            msg = TeracyDev::Common.yellow(msg)
+            log = TeracyDev::Common.yellow(log)
+          when "INFO"
+            log = TeracyDev::Common.green(log)
           end
           # display log message here with tracing
           # TODO: must display the trace of the exact line numeber having logger call (file, line number, function name)

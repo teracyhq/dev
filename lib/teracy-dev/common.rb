@@ -12,6 +12,10 @@ module TeracyDev
       colorize(text, 33)
     end
 
+    def self.green(text)
+      colorize(text, 32)
+    end
+
     def self.light_gray(text)
       colorize(text, 37)
     end
