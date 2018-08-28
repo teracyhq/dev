@@ -11,7 +11,7 @@ The only truly universal productive software development platform for all!
 
 
 ``teracy-dev`` is created to set up a universal development platform which has the same development
-workflow on Mac, Linux and Windows with good developer experience and productivity in mind. 
+workflow on Mac, Linux and Windows with good developer experience and productivity in mind.
 
 
 `teracy-dev` is super minimal kernel with extension mechanism so that we can use/ develop many
@@ -20,9 +20,10 @@ different extensions by our needs.
 
 Features
 --------
-- super minimal kernel with extension support to extend without any limitation
+
+- super minimal kernel
+- highly configurable and extensible with extensions
 - the universally same workflow on Windows, Linux and Mac
-- higher performance and productivity gain than the default vagrant settings by yaml configuration mechanism
 - best practices to develop and deploy any types of stacks and architectures
 
 
