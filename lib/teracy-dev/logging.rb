@@ -62,8 +62,8 @@ module TeracyDev
             log = TeracyDev::Common.green(log)
           end
           # display log message here with tracing
-          # TODO: must display the trace of the exact line numeber having logger call (file, line number, function name)
-          tracing = TeracyDev::Common.light_gray("\t#{caller[5]}\n")
+          # display the trace of the exact line numeber having logger call (file, line number, function name)
+          tracing = TeracyDev::Common.light_gray("\n#{caller[3]}\n")
           log = log + tracing
           puts log
         end
