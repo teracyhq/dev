@@ -61,8 +61,7 @@ module TeracyDev
           end
           # display log message here with tracing
           # display the trace of the exact line numeber having logger call (file, line number, function name)
-          # not display this logger tracing (< 3), but display 7 steps above
-          tracing = TeracyDev::Common.light_gray("\n#{caller[3..10] ? caller[3..10].join("\n") : caller}\n")
+          tracing = TeracyDev::Common.light_gray("\n#{caller[3]}\n")
           log = log + tracing
           puts log
         end
