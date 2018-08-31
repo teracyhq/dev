@@ -9,7 +9,7 @@ module TeracyDev
       end
       # return true if sync action is carried out, otherwise, return false
       def sync(location, sync_existing)
-        @logger.debug("git_sync: location: #{location}; sync_existing: #{sync_existing}")
+        @logger.debug("location: #{location}; sync_existing: #{sync_existing}")
         updated = false
         return updated if ! Util.exist? location['git']
 
@@ -23,7 +23,7 @@ module TeracyDev
 
         if File.exist? path
           if sync_existing == true
-            @logger.debug("git_sync: sync existing, location: #{location}")
+            @logger.debug("sync existing, location: #{location}")
 
             Dir.chdir(path) do
               @logger.debug("Checking #{path}")
@@ -72,7 +72,7 @@ module TeracyDev
       private
 
       def check_ref(current_ref, ref_string)
-        @logger.debug("Ref detected, checking out #{ref_string}")
+        @logger.debug("ref detected, checking out #{ref_string}")
         updated = false
         if !current_ref.start_with? ref_string
           `git fetch origin`

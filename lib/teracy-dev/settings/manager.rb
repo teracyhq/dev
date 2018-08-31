@@ -24,12 +24,12 @@ module TeracyDev
       # the latter extension will override the former one to build extensions settings
       def build_settings(entry_dir_path)
 
-        @logger.debug("build_settings: #{entry_dir_path}")
+        @logger.debug("entry_dir_path: #{entry_dir_path}")
         teracy_dev_settings = build_teracy_dev_settings()
         entry_settings = build_entry_settings(entry_dir_path)
         # we use extensions config from entry overriding teracy-dev only to install and validate
         entry_extensions = Util.override(teracy_dev_settings, entry_settings)['teracy-dev']['extensions']
-        @logger.debug("build_settings: entry_extensions: #{entry_extensions}")
+        @logger.debug("entry_extensions: #{entry_extensions}")
         @extensionManager.install(entry_extensions)
 
         extensions_settings = build_extensions_settings(entry_extensions)
@@ -47,7 +47,7 @@ module TeracyDev
       def build_teracy_dev_settings()
         config_file_path = File.join(File.dirname(__FILE__), '../../../config.yaml')
         settings = Util.load_yaml_file(config_file_path)
-        @logger.debug("build_teracy_dev_settings: #{settings}")
+        @logger.debug("settings: #{settings}")
         settings
       end
 
@@ -55,13 +55,13 @@ module TeracyDev
       def build_entry_settings(lookup_dir)
         config_default_file_path = File.join(lookup_dir, 'config_default.yaml')
         settings = Util.build_settings_from(config_default_file_path)
-        @logger.debug("build_entry_settings: #{settings}")
+        @logger.debug("settings: #{settings}")
         settings
       end
 
 
       def build_extensions_settings(extensions)
-        @logger.debug("build_extensions_settings: extensions: #{extensions}")
+        @logger.debug("extensions: #{extensions}")
         extensions_settings = []
         extensions.each do |extension|
           next if extension['enabled'] != true
@@ -73,7 +73,7 @@ module TeracyDev
         extensions_settings.reverse_each do |extension_settings|
           settings = Util.override(extension_settings, settings)
         end
-        @logger.debug("build_extensions_settings: settings: #{settings}")
+        @logger.debug("settings: #{settings}")
         settings
       end
 

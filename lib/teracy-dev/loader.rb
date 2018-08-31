@@ -40,7 +40,7 @@ module TeracyDev
       location.merge!({
         "path" => TeracyDev::BASE_DIR
       })
-      @logger.debug("sync_teracy_dev: location: #{location}")
+      @logger.debug("location: #{location}")
 
       if location['sync'] == true
         if Location::Manager.sync(location) == true
@@ -73,7 +73,7 @@ module TeracyDev
       location['tag'] = ENV['TERACY_DEV_ENTRY_LOCATION_TAG'] if ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
       location['ref'] = ENV['TERACY_DEV_ENTRY_LOCATION_REF'] if ENV['TERACY_DEV_ENTRY_LOCATION_REF']
 
-      @logger.debug("sync_teracy_dev_entry: location: #{location}")
+      @logger.debug("location: #{location}")
 
       if Util.boolean(location['sync']) == true || Util.boolean(ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']) == true
         if Location::Manager.sync(location) == true
@@ -102,18 +102,18 @@ module TeracyDev
 
 
     def load_extension_entry_files(settings)
-      @logger.debug("load_extension_entry_files: #{settings}")
+      @logger.debug("settings: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
       extensions.each do |extension|
         next if extension['enabled'] != true
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         entry_file_path = File.join(path, 'teracy-dev-ext.rb')
-        @logger.debug("load_extension_entry_files: entry_file_path: #{entry_file_path}")
+        @logger.debug("entry_file_path: #{entry_file_path}")
         if File.exist? entry_file_path
           Util.load_file_path(entry_file_path)
         else
-          @logger.debug("load_extension_entry_files: #{entry_file_path} does not exist, ignored.")
+          @logger.debug("#{entry_file_path} does not exist, ignored.")
         end
       end
     end

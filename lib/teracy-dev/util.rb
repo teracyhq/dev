@@ -46,25 +46,25 @@ module TeracyDev
         # TODO: exception handling
         result = YAML.load(File.new(file_path))
         if result == false
-          @@logger.debug("load_yaml_file: #{file_path} is empty")
+          @@logger.debug("#{file_path} is empty")
           result = {}
         end
         result
       else
-        @@logger.debug("load_yaml_file: #{file_path} does not exist")
+        @@logger.debug("#{file_path} does not exist")
         {}
       end
     end
 
     def self.build_settings_from(default_file_path)
-      @@logger.debug("build_settings_from default file path: #{default_file_path}")
+      @@logger.debug("default_file_path: #{default_file_path}")
       override_file_path = default_file_path.gsub(/default\.yaml$/, "override.yaml")
       default_settings = load_yaml_file(default_file_path)
-      @@logger.debug("build_settings_from default_settings: #{default_settings}")
+      @@logger.debug("default_settings: #{default_settings}")
       override_settings = load_yaml_file(override_file_path)
-      @@logger.debug("build_settings_from override_settings: #{override_settings}")
+      @@logger.debug("override_settings: #{override_settings}")
       settings = Util.override(default_settings, override_settings)
-      @@logger.debug("build_settings_from final: #{settings}")
+      @@logger.debug("final: #{settings}")
       settings
     end
 
@@ -99,7 +99,7 @@ module TeracyDev
 
 
     def self.require_version_valid?(version, requirements)
-      @@logger.debug("require_version_valid?: version: #{version}; requirements: #{requirements}")
+      @@logger.debug("version: #{version.strip}; requirements: #{requirements.strip}")
       requirements = requirements.split(',')
       req = Gem::Requirement.new(*requirements)
       req.satisfied_by?(Gem::Version.new(version))
