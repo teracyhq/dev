@@ -86,6 +86,7 @@ module TeracyDev
       def check_tag(current_ref, desired_tag)
         @logger.debug("Sync with tags/#{desired_tag}")
         updated = false
+
         cmd = "git log #{desired_tag} -1 --pretty=%H"
 
         tag_ref = `#{cmd}`.strip
@@ -130,11 +131,14 @@ module TeracyDev
 
         @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
 
-        # found no such branch, switch to found as tag
-        return check_tag(current_ref, desired_branch) if !File.exist?(
-          ".git/refs/heads/#{desired_branch}")
+        local_branch = `git branch -a | grep -r "#{desired_branch}"`.strip
 
-        remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{desired_branch}\\).*//p'`.strip
+        # found no such branch, switch to found as tag
+        return check_tag(current_ref, desired_branch) if !Util.exist?(local_branch)
+
+        quoted_branch = Regexp.quote(desired_branch).gsub("/", '\/')
+
+        remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{quoted_branch}\\).*//p'`.strip
 
         @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
 
