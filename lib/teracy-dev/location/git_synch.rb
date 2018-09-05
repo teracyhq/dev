@@ -131,7 +131,7 @@ module TeracyDev
 
         @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
 
-        local_branch = `git branch -a | grep -r "#{desired_branch}"`.strip
+        local_branch = `git branch -a | grep -v "HEAD detached" | grep -r "#{desired_branch}"`.strip
 
         # found no such branch, switch to found as tag
         return check_tag(current_ref, desired_branch) if !Util.exist?(local_branch)
