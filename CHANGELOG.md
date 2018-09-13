@@ -2,6 +2,21 @@ Change Log
 ==========
 
 
+[v0.6.0-a3][] (2018-09-14)
+--------------------------
+
+- Improvements:
+    + add tracing when something wrong
+    + improve logging by adding filter, tracing
+    + simply the config override mechanism and use teracy-dev-entry only for override
+
+- Bug Fixes:
+    + warn log did not display the yellow color
+
+
+Details: https://github.com/teracyhq/dev/milestone/10?closed=1
+
+
 [v0.6.0-a2][] (2018-08-26)
 --------------------------
 
@@ -333,3 +348,4 @@ Release the first milestone
 
 [v0.6.0-a1]: https://github.com/teracyhq/dev/milestone/7?closed=1
 [v0.6.0-a2]: https://github.com/teracyhq/dev/milestone/9?closed=1
+[v0.6.0-a3]: https://github.com/teracyhq/dev/milestone/10?closed=1

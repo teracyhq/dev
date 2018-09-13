@@ -1,7 +1,7 @@
 
 # teracy-dev related settings
 teracy-dev:
-  require_version: ">= 0.6.0-a3-SNAPSHOT"
+  require_version: ">= 0.6.0-a3"
   # location sync
   location:
     git: https://github.com/teracyhq/dev.git
