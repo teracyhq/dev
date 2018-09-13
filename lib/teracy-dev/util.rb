@@ -10,8 +10,9 @@ module TeracyDev
       if !value.nil?
         if value.instance_of? String
           exist = !value.empty?
+        else
+          exist = true
         end
-        exist = true
       end
       exist
     end
