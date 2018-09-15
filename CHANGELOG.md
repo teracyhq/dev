@@ -2,6 +2,19 @@ Change Log
 ==========
 
 
+[v0.6.0-a4][] (2018-09-15)
+--------------------------
+
+- Tasks:
+    + clean up config_default.yaml support for extensions
+
+- Bug Fixes:
+    + fix Util.exist always return true if it is String
+
+
+Details: https://github.com/teracyhq/dev/milestone/11?closed=1
+
+
 [v0.6.0-a3][] (2018-09-14)
 --------------------------
 
@@ -349,3 +362,4 @@ Release the first milestone
 [v0.6.0-a1]: https://github.com/teracyhq/dev/milestone/7?closed=1
 [v0.6.0-a2]: https://github.com/teracyhq/dev/milestone/9?closed=1
 [v0.6.0-a3]: https://github.com/teracyhq/dev/milestone/10?closed=1
+[v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1
