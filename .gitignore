@@ -136,8 +136,9 @@ Session.vim
 !.travis
 
 # docs
-_build
 _deploy
+docs/_build/**
+!.gitkeep
 
 .rake_test_cache
 
@@ -149,18 +150,9 @@ _deploy
 
 .vagrant
 
+extensions/*
+!extensions/.gitkeep
+
 # Ignore workspace sub directories
 workspace/*
 !workspace/.gitkeep
-
-home/.virtualenvs/*
-!home/.virtualenvs/.gitkeep
-
-home/.docker/*
-!home/.docker/.gitkeep
-
-nodes/*.json
-
-# https://github.com/teracyhq/dev/issues/246
-vagrant_config_override.json
-Vagrantfile-ext.rb

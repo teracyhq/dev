@@ -1,6 +1,0 @@
-default_environments:
-    - dev
-    - stag
-    - prod
-version_changed_threshold: 2
-environment_path: "environments"

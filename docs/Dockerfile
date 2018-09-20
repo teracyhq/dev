@@ -1,16 +1,41 @@
-FROM nginx:1.11
+ARG PYTHON_VERSION=3.6
+ARG NGINX_VERSION=1.13
+
+#building
+FROM python:$PYTHON_VERSION as builder
+
+RUN mkdir -p /opt/app
+
+ENV TERM=xterm-256color APP=/opt/app
+
+WORKDIR $APP
+
+ADD requirements.txt $APP/
+
+RUN pip install -r requirements.txt
+
+ADD . $APP
+
+RUN make html
+
+# packaging
+FROM nginx:$NGINX_VERSION
 
 LABEL authors="hoatle <hoatle@teracy.com>"
+
+RUN mkdir -p /opt/app
+
+ENV TERM=xterm APP=/opt/app
+
+WORKDIR $APP
 
 # add more arguments from CI to the image so that `$ env` should reveal more info
 ARG CI_BUILD_ID
 ARG CI_BUILD_REF
 ARG CI_REGISTRY_IMAGE
-ARG CI_PROJECT_NAME
-ARG CI_BUILD_REF_NAME
 ARG CI_BUILD_TIME
 
 ENV CI_BUILD_ID=$CI_BUILD_ID CI_BUILD_REF=$CI_BUILD_REF CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE \
-    CI_PROJECT_NAME=$CI_PROJECT_NAME CI_BUILD_REF_NAME=$CI_BUILD_REF_NAME CI_BUILD_TIME=$CI_BUILD_TIME
+    CI_BUILD_TIME=$CI_BUILD_TIME
 
-COPY _build/html /usr/share/nginx/html
+COPY --from=builder /opt/app/_build/html /usr/share/nginx/html

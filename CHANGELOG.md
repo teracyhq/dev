@@ -1,6 +1,54 @@
 Change Log
 ==========
 
+
+[v0.6.0-a4][] (2018-09-15)
+--------------------------
+
+- Tasks:
+    + clean up config_default.yaml support for extensions
+
+- Bug Fixes:
+    + fix Util.exist always return true if it is String
+
+
+Details: https://github.com/teracyhq/dev/milestone/11?closed=1
+
+
+[v0.6.0-a3][] (2018-09-14)
+--------------------------
+
+- Improvements:
+    + add tracing when something wrong
+    + improve logging by adding filter, tracing
+    + simply the config override mechanism and use teracy-dev-entry only for override
+
+- Bug Fixes:
+    + warn log did not display the yellow color
+
+
+Details: https://github.com/teracyhq/dev/milestone/10?closed=1
+
+
+[v0.6.0-a2][] (2018-08-26)
+--------------------------
+
+Bug fix for gitsynch tag
+
+
+Details: https://github.com/teracyhq/dev/milestone/9?closed=1
+
+
+[v0.6.0-a1][] (2018-08-25)
+--------------------------
+
+Completely new teracy-dev with initial alpha-1 version
+
+
+Details: https://github.com/teracyhq/dev/milestone/7?closed=1
+
+
+
 [v0.5.0-c2][] (2018-01-16)
 --------------------------
 
@@ -310,3 +358,8 @@ Release the first milestone
 [v0.5.0-c2]: https://github.com/teracyhq/dev/milestone/8?closed=1
 
 [support project base json config]: https://github.com/teracyhq/dev/issues/321
+
+[v0.6.0-a1]: https://github.com/teracyhq/dev/milestone/7?closed=1
+[v0.6.0-a2]: https://github.com/teracyhq/dev/milestone/9?closed=1
+[v0.6.0-a3]: https://github.com/teracyhq/dev/milestone/10?closed=1
+[v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1

@@ -1,33 +1,7 @@
-group: deprecated-2017Q2 # see: https://blog.travis-ci.com/2017-06-21-trusty-updates-2017-Q2-launch
+sudo: required
+
 services:
-- docker
-env:
-  matrix:
-  - BUILD_TYPE=dev CI_REGISTRY_IMAGE=$DEV_DOCKER_IMAGE
-  - BUILD_TYPE=docs CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE
-  global:
-  - DOCKER_FILE=Dockerfile-dev
-  - IMAGE_TAG_PREFIX=dev_
-  - CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-before_install:
-- git submodule update --init --recursive
-install: true
-before_script:
-- chmod ugo+x ./.travis/build.sh
-- chmod ugo+x ./.travis/deploy.sh
-- git config --global user.name "Teracy Bot"
-- git config --global user.email "teracy.com@gmail.com"
-- export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
-- . ./.travis/setup.sh
-- echo $DEPLOY_HTML_DIR
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
-- export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$IMAGE_TAG_PREFIX$TAG
+  - docker
+
 script:
-- ./.travis/build.sh
-after_success:
-- ./.travis/deploy.sh
-notifications:
-  slack:
-    rooms:
-      secure: 7rOCiLQZBvSATaFhw/6AgLRo/dGtoume8t0Bmaao5Tp7RKe99qLdN672OzY8aQzxWvP6pexcTvgcVaIIIEk808F7l6tTsz4HRp1TNwxeb0q6kiW0ZgTGS7KvRe17sSpcLUv26T1/flaLbmOaRoqNm/e77onenuuEgM5LTIkc11s=
-    on_success: change
+- echo "OK"

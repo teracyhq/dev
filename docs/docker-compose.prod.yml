@@ -1,8 +1,0 @@
-version: "2"
-
-services:
-  prod:
-    build: .
-    image: teracy/dev-docs:develop
-    ports:
-      - "8080:80"

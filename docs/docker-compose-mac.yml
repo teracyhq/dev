@@ -1,9 +1,0 @@
-version: "2"
-
-services:
-  dev:
-    volumes:
-      - teracy-dev-docs-sync:/opt/app:rw
-volumes:
-  teracy-dev-docs-sync:
-    external: true
