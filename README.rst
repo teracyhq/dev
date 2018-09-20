@@ -41,6 +41,21 @@ Installation and Usage
 
 Follow the guide at http://dev.teracy.org/docs/develop/getting_started.html
 
+How to develop
+--------------
+Follow the commands below to pull the latest code of teracy-dev and you can continue to develop it.
+
+   ..  code-block:: bash
+
+      $ cd ~/
+	  $ git clone <your_forked_repo> teracy-dev
+      $ cd teracy-dev
+      $ git remote add upstream git@github.com:teracyhq/dev.git
+      $ git fetch upstream # get the changes from the upstream repo
+      $ git checkout develop # the develop branch to work on it
+      $ git branch -u upstream/develop # track the upstream's branch
+      $ git pull # update to the latest upstream's changes
+
 
 License
 -------
