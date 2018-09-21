@@ -5,7 +5,7 @@ module TeracyDev
   class Plugin
     # install or uninstall plugins bases on the plugins config
     def self.sync(plugins)
-      logger = TeracyDev::Logging.logger_for('Plugin')
+      logger = TeracyDev::Logging.logger_for(self)
       plugins ||= []
       plugin_manager = Vagrant::Plugin::Manager.instance
       installed_plugins = plugin_manager.installed_plugins
