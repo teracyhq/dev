@@ -48,7 +48,7 @@ Follow the commands below to pull the latest code of teracy-dev and you can cont
    ..  code-block:: bash
 
       $ cd ~/
-	  $ git clone <your_forked_repo> teracy-dev
+      $ git clone <your_forked_repo> teracy-dev
       $ cd teracy-dev
       $ git remote add upstream git@github.com:teracyhq/dev.git
       $ git fetch upstream # get the changes from the upstream repo
