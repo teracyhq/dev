@@ -39,6 +39,12 @@ module TeracyDev
                 updated = true
               end
 
+              if git_stage_has_untracked_changes?
+                @logger.warn("Git stage has untracked changes, abort!\n #{`git status`}")
+
+                return false
+              end
+
               if ref
                 updated = check_ref(current_ref, ref)
               elsif tag
@@ -85,31 +91,36 @@ module TeracyDev
 
       def check_tag(current_ref, desired_tag)
         @logger.debug("Sync with tags/#{desired_tag}")
+
         updated = false
+
         cmd = "git log #{desired_tag} -1 --pretty=%H"
 
         tag_ref = `#{cmd}`.strip
 
-        if $?.success? != true
+        if !$?.success?
           # fetch origin if tag is not present
           `git fetch origin`
-        end
 
-        # re-check
-        tag_ref = `#{cmd}`.strip
+          # re-check
+          tag_ref = `#{cmd}`.strip
 
-        if $?.success? != true
-          # tag not found
-          @logger.warning("tag not found: #{desired_tag}")
-          return updated
+          if !$?.success?
+            # tag not found
+            @logger.warn("tag not found: #{desired_tag}")
+
+            return updated
+          end
         end
 
         @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
 
         if current_ref != tag_ref
           `git checkout tags/#{desired_tag}`
+
           updated = true
         end
+
         updated
       end
 
@@ -130,21 +141,34 @@ module TeracyDev
 
         @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
 
-        # found no such branch, switch to found as tag
-        return check_tag(current_ref, desired_branch) if !File.exist?(
-          ".git/refs/heads/#{desired_branch}")
+        quoted_branch = Regexp.quote(desired_branch).gsub("/", '\/')
 
-        remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{desired_branch}\\).*//p'`.strip
+        remote_ref = `git show-ref --head | sed -n 's/ .*\\(refs\\/remotes\\/origin\\/#{quoted_branch}\\).*//p'`.strip
+
+        # remote origin ref is not exist mean remote origin branch is not exist
+        # if found no such remote branch, switch to found as tag
+        return check_tag(current_ref, desired_branch) if !Util.exist? remote_ref
 
         @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
 
         if current_ref != remote_ref
           `git checkout #{desired_branch}`
 
+          if !$?.success?
+            # create new local branch if it is not present
+            @logger.debug("No such branch! Creating one.")
+
+            `git checkout -b #{desired_branch}`
+          end
+
           `git reset --hard origin/#{desired_branch}`
           updated = true
         end
         updated
+      end
+
+      def git_stage_has_untracked_changes?()
+        !Util.exist? `git status | grep 'nothing to commit, working tree clean'`.strip
       end
 
     end
