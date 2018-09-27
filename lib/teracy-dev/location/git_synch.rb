@@ -40,7 +40,7 @@ module TeracyDev
               end
 
               if git_stage_has_untracked_changes?
-                @logger.warn("Git stage has untracked changes, abort!\n #{`git status`}")
+                @logger.warn("`#{path}` has untracked changes, auto update is aborted!\n #{`git status`}")
 
                 return false
               end
