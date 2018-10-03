@@ -26,17 +26,31 @@ module TeracyDev
     def start
       @processorsManager = Processors::Manager.new
       @configManager = Config::Manager.new
+      @settingsManager = Settings::Manager.new
+      @extension_entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
+      # we sync teracy-dev and teracy-dev-entry before extensions
+      sync()
       settings = build_settings().freeze
-      sync_teracy_dev(settings)
-      sync_teracy_dev_entry(settings)
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
 
     private
 
-    def sync_teracy_dev(settings)
-      location = settings['teracy-dev']['location']
+    def sync
+      # teracy_dev_location and teracy_dev_entry_location is built from teracy-dev and teracy-dev-entry settings
+      # with the override mechanism
+      # extensions settings for these syncs are not accepted
+      teracy_dev_settings = @settingsManager.build_teracy_dev_settings()
+      entry_settings = @settingsManager.build_entry_settings(@extension_entry_path)
+      settings = Util.override(teracy_dev_settings, entry_settings)
+      @logger.debug("settings: #{settings}")
+      sync_teracy_dev(settings['teracy-dev']['location'])
+      sync_teracy_dev_entry(settings['teracy-dev']['entry_location'])
+    end
+
+
+    def sync_teracy_dev(location)
       location.merge!({
         "path" => TeracyDev::BASE_DIR
       })
@@ -51,13 +65,12 @@ module TeracyDev
       end
     end
 
-    def sync_teracy_dev_entry(settings)
-      path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
+    def sync_teracy_dev_entry(location)
+      path = @extension_entry_path
       lookup_path = TeracyDev::EXTENSION_ENTRY_PATH.split('/')[0..-2].join('/')
       lookup_path = File.join(TeracyDev::BASE_DIR, lookup_path)
       dir = TeracyDev::EXTENSION_ENTRY_PATH.split('/').last
 
-      location = settings['teracy-dev']['entry_location']
       location.merge!({
         "lookup_path" => lookup_path,
         "path" => path,
@@ -85,9 +98,7 @@ module TeracyDev
     end
 
     def build_settings
-      extension_entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
-      settingsManager = Settings::Manager.new
-      settings = settingsManager.build_settings(extension_entry_path)
+      settings = @settingsManager.build_settings(@extension_entry_path)
       load_extension_entry_files(settings)
       settings = process(settings)
       # updating nodes here so that processors have change to adjust nodes by adjusting default

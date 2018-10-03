@@ -42,7 +42,6 @@ module TeracyDev
         settings
       end
 
-      private
 
       def build_teracy_dev_settings()
         config_file_path = File.join(File.dirname(__FILE__), '../../../config.yaml')
@@ -59,6 +58,7 @@ module TeracyDev
         settings
       end
 
+      private
 
       def build_extensions_settings(extensions)
         @logger.debug("extensions: #{extensions}")
