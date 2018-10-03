@@ -17,6 +17,14 @@ module TeracyDev
 
         if !installed_plugins.has_key?(plugin['name']) and plugin['state'] == 'installed'
           logger.info("installing plugin: #{plugin}")
+
+          if plugin['sources'].nil? or plugin['sources'].empty?
+            plugin['sources'] = [
+              "https://rubygems.org/",
+              "https://gems.hashicorp.com/"
+            ]
+          end
+
           plugin_manager.install_plugin(plugin['name'], Util.symbolize(plugin))
           reload_required = true
         end
