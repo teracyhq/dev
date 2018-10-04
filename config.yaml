@@ -14,8 +14,8 @@ teracy-dev:
         extension: teracy-dev-core # extension_path, we'll lookup the extension by its lookup_path + extension_path
       location: # auto download the extension into the lookup_path
         git: https://github.com/teracyhq-incubator/teracy-dev-core.git
-        branch: develop
-      require_version: ">= 0.3.0-SNAPSHOT"
+        branch: v0.3.0
+      require_version: ">= 0.3.0"
       enabled: true # when true, extension will be auto-downloaded if not available yet and will load this extension to be used
     # extension must have manifest.yaml file to describe its name, version and optional description
     # optional: config_default.yaml, teracy-dev-ext.rb will be auto loaded if available
