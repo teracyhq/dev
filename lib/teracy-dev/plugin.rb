@@ -15,24 +15,35 @@ module TeracyDev
 
       plugins.each do |plugin|
 
-        if !installed_plugins.has_key?(plugin['name']) and plugin['state'] == 'installed'
-          logger.info("installing plugin: #{plugin}")
-
-          if plugin['sources'].nil? or plugin['sources'].empty?
-            plugin['sources'] = [
-              "https://rubygems.org/",
-              "https://gems.hashicorp.com/"
-            ]
-          end
-
-          plugin_manager.install_plugin(plugin['name'], Util.symbolize(plugin))
-          reload_required = true
+        unless Util.exist? plugin['name']
+          logger.warn('Plugin name must be configured')
+          next
         end
 
-        if installed_plugins.has_key?(plugin['name']) and plugin['state'] == 'uninstalled'
-          logger.info("uninstalling plugin: #{plugin['name']}")
-          plugin_manager.uninstall_plugin(plugin['name'])
-          reload_required = true
+        case plugin['state']
+        when 'installed'
+          if installed_plugins.empty?
+            unless Util.exist? plugin['sources']
+              plugin['sources'] = [
+                "https://rubygems.org/",
+                "https://gems.hashicorp.com/"
+              ]
+            end
+          end
+
+          if !installed_plugins.has_key?(plugin['name'])
+            logger.info("installing plugin: #{plugin}")
+            plugin_manager.install_plugin(plugin['name'], Util.symbolize(plugin))
+            reload_required = true
+          end
+        when 'uninstalled'
+          if installed_plugins.has_key?(plugin['name'])
+            logger.info("uninstalling plugin: #{plugin['name']}")
+            plugin_manager.uninstall_plugin(plugin['name'])
+            reload_required = true
+          end
+        else
+          logger.debug('The plugin state is not set, no action will be taken')
         end
       end
 
