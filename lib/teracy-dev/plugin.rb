@@ -16,7 +16,7 @@ module TeracyDev
       plugins.each do |plugin|
 
         unless Util.exist? plugin['name']
-          logger.warn('Plugin name must be configured')
+          logger.warn("Plugin name must be configured for #{plugin}")
           next
         end
 
@@ -38,12 +38,12 @@ module TeracyDev
           end
         when 'uninstalled'
           if installed_plugins.has_key?(plugin['name'])
-            logger.info("uninstalling plugin: #{plugin['name']}")
+            logger.info("uninstalling plugin: #{plugin}")
             plugin_manager.uninstall_plugin(plugin['name'])
             reload_required = true
           end
         else
-          logger.debug('The plugin state is not set, no action will be taken')
+          logger.debug("The plugin state is not set, no action will be taken for #{plugin}")
         end
       end
 

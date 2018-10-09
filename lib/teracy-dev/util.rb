@@ -135,9 +135,9 @@ module TeracyDev
 
         if !originHash.has_key?(replaced_key)
           if value.class.name == 'Hash'
-              originHash[key] = {}
+            originHash[key] = {}
           elsif value.class.name == 'Array'
-              originHash[replaced_key] = []
+            originHash[replaced_key] = []
           end
         end
 
