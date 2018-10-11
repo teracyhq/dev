@@ -70,10 +70,11 @@ module TeracyDev
           extensions_settings << Util.load_yaml_file(File.join(path, 'config.yaml'))
         end
         settings = {}
-        extensions_settings.reverse_each do |extension_settings|
-          settings = Util.override(extension_settings, settings)
+        extensions_settings.each do |extension_setting|
+          settings = Util.override(settings, extension_setting)
         end
-        @logger.debug("settings: #{settings}")
+
+        @logger.debug("final extensions settings: #{settings}")
         settings
       end
 
