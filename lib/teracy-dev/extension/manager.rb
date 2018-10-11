@@ -6,7 +6,7 @@ module TeracyDev
     class Manager
 
       def self.manifest(extension)
-        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || 'extensions')
+        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || TeracyDev::DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         manifest_path = File.join(path, 'manifest.yaml')
         return YAML.load(File.new(manifest_path))
