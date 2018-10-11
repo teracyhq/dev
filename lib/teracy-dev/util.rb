@@ -118,9 +118,8 @@ module TeracyDev
     # We also support force override the array key with: "r" ("r" - replace) to completely replace the array key, this is useful when we want to replace the array completely
     # We also support update by adding more array elements by the key with "_ua_" prefix, this is useful for array objects without "_id_" key.
     # for example:
-    # "_r_synced_folders": []
-    # "_ua__ua_aliases": ["dev.teracy.com"]
-    # This will replace default "synced_folders" with an empty array "[]".
+    # "_r_synced_folders": [] # This will replace default "synced_folders" with an empty array "[]".
+    # "_ua_aliases": ["dev.teracy.com"] # This will update "aliases" by appending specified items.
     # "_" is reserved for teracy-dev to override the default config.
     # This is applied for objects within array only, for JSON object, just use its key to override.
     # see: https://github.com/teracyhq/dev/issues/239
