@@ -17,11 +17,14 @@ module TeracyDev
       end
 
       def install(extensions)
-        @logger.debug("install: #{extensions}")
+        @logger.debug("extensions: #{extensions}")
+        timer_start = Time.now
         extensions.each do |extension|
           sync(extension)
           validate(extension)
         end
+        timer_end = Time.now
+        @logger.debug("installation finished in #{timer_end - timer_start}s of extensions: #{extensions}")
       end
 
       private
