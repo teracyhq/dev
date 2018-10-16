@@ -27,6 +27,18 @@ module TeracyDev
       raise ArgumentError.new("invalid value for boolean: #{value}")
     end
 
+
+    # convert a value (case insentitive) to a boolen value
+    # true, "true", "t", "yes", "y", "1" => true
+    # othwerwise, false
+    def self.true?(value)
+      begin
+        return self.boolean(value)
+      rescue
+        return false
+      end
+    end
+
     # find the extension lookup_path by its name from the provided settings
     def self.extension_lookup_path(settings, extension_name)
       @@logger.debug("settings: #{settings}")
