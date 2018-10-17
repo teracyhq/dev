@@ -30,7 +30,7 @@ module TeracyDev
       private
 
       def sync(extension)
-        return if extension['enabled'] != true
+        return unless Util.true?(extension['enabled'])
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         extension['location'].merge!({
@@ -42,7 +42,7 @@ module TeracyDev
       end
 
       def validate(extension)
-        return if extension['enabled'] != true
+        return unless Util.true?(extension['enabled'])
         manifest = Manager.manifest(extension)
 
         if !Util.exist?(manifest['name']) or !Util.exist?(manifest['version'])

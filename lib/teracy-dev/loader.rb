@@ -56,7 +56,7 @@ module TeracyDev
       })
       @logger.debug("location: #{location}")
 
-      if location['sync'] == true
+      if Util.true?(location['sync'])
         if Location::Manager.sync(location) == true
           # reload
           @logger.info("reloading...")
@@ -88,7 +88,7 @@ module TeracyDev
 
       @logger.debug("location: #{location}")
 
-      if Util.boolean(location['sync']) == true || Util.boolean(ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']) == true
+      if Util.true?(location['sync']) || Util.true?(ENV['TERACY_DEV_ENTRY_LOCATION_SYNC'])
         if Location::Manager.sync(location) == true
           # reload
           @logger.info("reloading...")
@@ -116,7 +116,7 @@ module TeracyDev
       @logger.debug("settings: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
       extensions.each do |extension|
-        next if extension['enabled'] != true
+        next unless Util.true?(extension['enabled'])
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         entry_file_path = File.join(path, 'teracy-dev-ext.rb')
