@@ -107,7 +107,11 @@ module TeracyDev
       settings["nodes"].each_with_index do |node, index|
         settings["nodes"][index] = Util.override(settings['default'], node)
       end
-      @logger.debug("final: #{settings}")
+      if Util.true?(ENV['LOG_SETTINGS_YAML'])
+        @logger.debug("final settings: \n #{settings.to_yaml}")
+      else
+        @logger.debug("final settings: #{settings}")
+      end
       settings
     end
 
