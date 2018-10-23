@@ -74,17 +74,21 @@ module TeracyDev
       location.merge!({
         "lookup_path" => lookup_path,
         "path" => path,
-        "dir" => dir
       })
 
       # override/init with env vars if available
       # this is useful to init the teracy-dev-entry or to override existing settings to enable auto sync
       # TERACY_DEV_ENTRY_LOCATION_GIT, TERACY_DEV_ENTRY_LOCATION_BRANCH
       # TERACY_DEV_ENTRY_LOCATION_REF, TERACY_DEV_ENTRY_LOCATION_SYNC
-      location['git'] = ENV['TERACY_DEV_ENTRY_LOCATION_GIT'] if ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
-      location['branch'] = ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH'] if ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
-      location['tag'] = ENV['TERACY_DEV_ENTRY_LOCATION_TAG'] if ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
-      location['ref'] = ENV['TERACY_DEV_ENTRY_LOCATION_REF'] if ENV['TERACY_DEV_ENTRY_LOCATION_REF']
+      location["git"] = {
+        "remote" => {
+          "origin" => ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
+        },
+        "branch" => ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH'],
+        "tag" => ENV['TERACY_DEV_ENTRY_LOCATION_TAG'],
+        "ref" => ENV['TERACY_DEV_ENTRY_LOCATION_REF'],
+        "dir" => dir
+      }
 
       @logger.debug("location: #{location}")
 

@@ -4,8 +4,10 @@ teracy-dev:
   require_version: ">= 0.6.0-a5-SNAPSHOT"
   # location sync
   location:
-    git: https://github.com/teracyhq/dev.git
-    branch: develop
+    git:
+      remote:
+        origin: https://github.com/teracyhq/dev.git
+      branch: develop
     sync: false # disabled by default, should be enabled by teracy-dev-entry when needed
   extensions:
     - _id: "0"
@@ -13,8 +15,10 @@ teracy-dev:
         lookup: extensions # we can configure where to lookup for the extension, "extensions" by default if no configured
         extension: teracy-dev-core # extension_path, we'll lookup the extension by its lookup_path + extension_path
       location: # auto download the extension into the lookup_path
-        git: https://github.com/teracyhq-incubator/teracy-dev-core.git
-        branch: v0.3.0
+        git:
+          remote:
+            origin: https://github.com/teracyhq-incubator/teracy-dev-core.git
+          branch: v0.3.0
       require_version: ">= 0.3.0"
       enabled: true # when true, extension will be auto-downloaded if not available yet and will load this extension to be used
     # extension must have manifest.yaml file to describe its name, version and optional description
@@ -22,7 +26,9 @@ teracy-dev:
   # support for teracy-dev-entry auto update
   entry_location:
     git:
-    branch:
+      remote:
+        origin:
+      branch:
     sync: false # disabled by default, should be enabled by teracy-dev-entry when needed
 
 # vagrant related settings

@@ -1,4 +1,5 @@
 require_relative '../logging'
+require 'open3'
 
 module TeracyDev
   module Location
@@ -13,31 +14,46 @@ module TeracyDev
         updated = false
         return updated if ! Util.exist? location['git']
 
-        git = location['git']
-        branch = location['branch'] ||= 'master'
-        tag = location['tag']
-        ref = location['ref']
         lookup_path = location['lookup_path']
+
         path = location['path']
-        dir = location['dir']
+
+        git_config = location['git']
+
+        if git_config.instance_of? String
+          @logger.warn("Deprecated string value at location.git of #{path}, please use location.git.remote.origin instead")
+
+          git_config = {
+            "remote" => {
+              "origin" => git_config
+            }
+          }
+
+          git_config.merge!(location)
+        end
+
+        git_remote = git_config['remote']
+
+        git_remote_url = git_remote['origin']
+
+        branch = git_config['branch'] ||= 'master'
+
+        tag = git_config['tag']
+
+        ref = git_config['ref']
+
+        dir = git_config['dir']
 
         if File.exist? path
           if sync_existing == true
             @logger.debug("sync existing, location: #{location}")
 
+            updated = update_remote(path, git_remote)
+
             Dir.chdir(path) do
               @logger.debug("Checking #{path}")
 
-              current_git = `git remote get-url origin`.strip
-
               current_ref = `git rev-parse --verify HEAD`.strip
-
-              if current_git != git
-                `git remote remove origin`
-
-                `git remote add origin #{git}`
-                updated = true
-              end
 
               if git_stage_has_untracked_changes?
                 @logger.warn("`#{path}` has untracked changes, auto update is aborted!\n #{`git status`}")
@@ -62,20 +78,48 @@ module TeracyDev
             abort
           end
           Dir.chdir(lookup_path) do
-            @logger.info("cd #{lookup_path} && git clone #{git} #{dir}")
-            system("git clone #{git} #{dir}")
+            @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
+            system("git clone #{git_remote_url} #{dir}")
           end
 
           Dir.chdir(path) do
             @logger.info("cd #{path} && git checkout #{branch}")
             system("git checkout #{branch}")
           end
+
+          update_remote(path, git_remote)
+
           updated = true
         end
         updated
       end
 
       private
+
+      def update_remote(path, git_remote)
+        updated = false
+
+        Dir.chdir(path) do
+          @logger.debug("update git remote urls for #{path}")
+
+          git_remote.each do |remote_name, remote_url|
+            stdout, stderr, status = Open3.capture3("git remote get-url #{remote_name}")
+
+            current_remote_url = stdout.strip
+
+            if !remote_url.nil? and current_remote_url != remote_url
+              `git remote remove #{remote_name}`
+
+              `git remote add #{remote_name} #{remote_url}`
+
+              updated = true
+            end
+
+          end
+        end
+
+        updated
+      end
 
       def check_ref(current_ref, ref_string)
         @logger.debug("ref detected, checking out #{ref_string}")
