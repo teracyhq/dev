@@ -32,6 +32,8 @@ module TeracyDev
     # convert a value (case insentitive) to a boolen value
     # true, "true", "t", "yes", "y", "1" => true
     # othwerwise, false
+    #
+    # @since v0.6.0-a5
     def self.true?(value)
       begin
         return self.boolean(value)
