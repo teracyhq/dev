@@ -19,13 +19,13 @@ module TeracyDev
   # we can only create one Loader instance and accessible on this only
   @@loader = TeracyDev::Loader.new
 
-  def self.register_processor(processor)
-    @@loader.processorsManager.register(processor)
+  def self.register_processor(processor, weight = 5)
+    @@loader.processorsManager.register(processor, weight)
   end
 
 
-  def self.register_configurator(configurator)
-    @@loader.configManager.register(configurator)
+  def self.register_configurator(configurator, weight = 5)
+    @@loader.configManager.register(configurator, weight)
   end
 
   @@loader.start

@@ -1,4 +1,5 @@
 require_relative 'logging'
+require 'yaml'
 
 module TeracyDev
   class Util
@@ -36,6 +37,28 @@ module TeracyDev
         return self.boolean(value)
       rescue
         return false
+      end
+    end
+
+    # sort by multiple fields and multilple directions for different data types
+    # https://stackoverflow.com/questions/28234803/ruby-sort-by-multiple-fields-and-multilple-directions-for-different-data-types
+    #
+    # data structure of items : hash in array [ {} ]
+    # output array
+    def self.multi_sort(items, order)
+      direction_multiplier = { asc: 1, desc: -1 }
+      items.sort do |this, that|
+        order.reduce(0) do |diff, order|
+          next diff if diff != 0 # this and that have differed at an earlier order entry
+          key, direction = order
+          # deal with nil cases
+          next  0 if this[key].nil? && that[key].nil?
+          next  1 if this[key].nil?
+          next -1 if that[key].nil?
+          # do the actual comparison
+          comparison = this[key] <=> that[key]
+          next comparison * direction_multiplier[direction]
+        end
       end
     end
 
