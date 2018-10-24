@@ -14,7 +14,7 @@ module TeracyDev
         @@instance = self
 
         @logger = TeracyDev::Logging.logger_for(self.class.name)
-        @configurators = []
+        @items = []
       end
 
       def register(configurator, weight)
@@ -24,20 +24,20 @@ module TeracyDev
         end
 
         unless weight.is_a? Integer and (0..9).include?(weight)
-          @logger.warn("#{configurator}'s weight must be integer and have value in range 0.. 9, otherwise weight will be set to default (5)")
+          @logger.warn("#{configurator}'s weight (#{weight}) must be an integer and have value in range (0..9), otherwise it will be set to default (5)")
           weight = 5
         end
 
-        @configurators << { configurator: configurator, id: @configurators.length, weight: weight }
-        # @logger.warn("configurators before: #{@configurators.to_yaml}")
+        @items << { configurator: configurator, id: @items.length, weight: weight }
         @logger.debug("configurator: #{configurator} registered")
       end
 
       def configure(settings, config, type:)
         @logger.debug("configure #{type}: #{config} with #{settings}")
 
-        TeracyDev::Util.multi_sort(@configurators, weight: :desc, id: :asc).each do |configurator|
-          configurator[:configurator].configure(settings, config, type: type)
+        TeracyDev::Util.multi_sort(@items, weight: :desc, id: :asc).each do |item|
+          configurator = item[:configurator]
+          configurator.configure(settings, config, type: type)
         end
       end
 

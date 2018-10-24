@@ -13,7 +13,7 @@ module TeracyDev
         @@instance = self
 
         @logger = Logging.logger_for(self.class.name)
-        @processors = []
+        @items = []
       end
 
       def register(processor, weight)
@@ -23,22 +23,23 @@ module TeracyDev
         end
 
         unless weight.is_a? Integer and (0..9).include?(weight)
-          @logger.warn("#{processor}'s weight must be integer and have value in range 0.. 9, otherwise weight will be set to default (5)")
+          @logger.warn("#{processor}'s weight (#{weight}) must be an integer and have value in range (0..9), otherwise it will be set to default (5)")
           weight = 5
         end
 
-        @processors << { processor: processor, id: @processors.length, weight: weight }
+        @items << { processor: processor, id: @items.length, weight: weight }
         @logger.debug("processor: #{processor} registered")
       end
 
       # run the pipelines
       def process(settings)
-        @logger.debug("start processing: #{settings}")
 
-        TeracyDev::Util.multi_sort(@processors, weight: :desc, id: :asc).each do |processor|
-          result = processor[:processor].process(settings)
+        TeracyDev::Util.multi_sort(@items, weight: :desc, id: :asc).each do |item|
+          processor = item[:processor]
+          @logger.debug("#{processor} starts processing")
+          result = processor.process(settings)
           if !result
-            @logger.warn("invalid result from #{processor[:processor]}, ignored")
+            @logger.warn("invalid result from #{processor}, ignored")
             next
           end
           settings = result

@@ -41,10 +41,12 @@ module TeracyDev
     end
 
     # sort by multiple fields and multilple directions for different data types
-    # https://stackoverflow.com/questions/28234803/ruby-sort-by-multiple-fields-and-multilple-directions-for-different-data-types
     #
-    # data structure of items : hash in array [ {} ]
-    # output array
+    # data structure of items: hash in array [ {} ]
+    # this will return a sorted items by the keys with their specified ascending or descending order
+    #
+    # @since v0.6.0-a5
+    # @see https://stackoverflow.com/questions/28234803/ruby-sort-by-multiple-fields-and-multilple-directions-for-different-data-types
     def self.multi_sort(items, order)
       direction_multiplier = { asc: 1, desc: -1 }
       items.sort do |this, that|
