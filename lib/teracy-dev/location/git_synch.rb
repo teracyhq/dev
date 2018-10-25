@@ -21,7 +21,7 @@ module TeracyDev
         git_config = location['git']
 
         if git_config.instance_of? String
-          @logger.warn("Deprecated string value at location.git of #{path}, please use location.git.remote.origin instead")
+          @logger.warn("Deprecated string value at location.git of location: #{location}, please use location.git.remote.origin instead")
 
           git_config = {
             "remote" => {
