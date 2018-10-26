@@ -110,6 +110,11 @@ module TeracyDev
 
       private
 
+      # if remote_name does not exist => add
+      # if remote_name exists with updated remote_url => update the remote_name with the updated remote_url
+      #
+      # for deleting existing remote_name, it should be manually deleted by users, we do not
+      # sync git remote config here, only add or update is expected
       def update_remote(path, git_remote)
         updated = false
 
