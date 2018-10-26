@@ -20,6 +20,8 @@ module TeracyDev
 
         git_config = location['git']
 
+        avaiable_conf = ['branch', 'tag', 'ref', 'dir']
+
         if git_config.instance_of? String
           @logger.warn("Deprecated string value at location.git of location: #{location}, please use location.git.remote.origin instead")
 
@@ -29,7 +31,13 @@ module TeracyDev
             }
           }
 
-          git_config.merge!(location)
+          git_config.merge!(location.select {|k,v| avaiable_conf.include? k })
+        end
+
+        if (avaiable_conf & location.keys).any?
+          @logger.warn("#{avaiable_conf & location.keys} of location setting has been deprecated at location: #{location}, please use location['git'][<#{avaiable_conf.join('|')}>] instead")
+
+          git_config.merge!(location.select {|k,v| avaiable_conf.include? k })
         end
 
         git_remote = git_config['remote']
@@ -51,10 +59,10 @@ module TeracyDev
         dir = git_config['dir']
 
         if File.exist? path
+          update_remote(path, git_remote)
+
           if sync_existing == true
             @logger.debug("sync existing, location: #{location}")
-
-            updated = update_remote(path, git_remote)
 
             Dir.chdir(path) do
               @logger.debug("Checking #{path}")
