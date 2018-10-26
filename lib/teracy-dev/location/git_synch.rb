@@ -59,7 +59,7 @@ module TeracyDev
         dir = git_config['dir']
 
         if File.exist? path
-          updated = update_remote(path, git_remote)
+          update_remote(path, git_remote)
 
           if sync_existing == true
             @logger.debug("sync existing, location: #{location}")
