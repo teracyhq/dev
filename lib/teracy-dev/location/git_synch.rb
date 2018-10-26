@@ -35,7 +35,7 @@ module TeracyDev
         end
 
         if (avaiable_conf & location.keys).any?
-          @logger.warn("#{avaiable_conf & location.keys} of location setting has been deprecated at location: #{location}, please use location['git'][<#{deprecated_conf.join('|')}>] instead")
+          @logger.warn("#{avaiable_conf & location.keys} of location setting has been deprecated at location: #{location}, please use location['git'][<#{avaiable_conf.join('|')}>] instead")
 
           git_config.merge!(location.select {|k,v| avaiable_conf.include? k })
         end
