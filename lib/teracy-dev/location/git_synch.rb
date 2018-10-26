@@ -67,21 +67,19 @@ module TeracyDev
             Dir.chdir(path) do
               @logger.debug("Checking #{path}")
 
-              current_ref = `git rev-parse --verify HEAD`.strip
-
               if git_stage_has_untracked_changes?
                 @logger.warn("`#{path}` has untracked changes, auto update is aborted!\n #{`git status`}")
 
                 return false
               end
 
+              current_ref = `git rev-parse --verify HEAD`.strip
+
               if ref
                 updated = check_ref(current_ref, ref)
               elsif tag
                 updated = check_tag(current_ref, tag)
               else
-                branch ||= 'master'
-
                 updated = check_branch(current_ref, branch)
               end
             end
@@ -230,8 +228,44 @@ module TeracyDev
         updated
       end
 
-      def git_stage_has_untracked_changes?()
-        !Util.exist? `git status | grep 'nothing to commit, working tree clean'`.strip
+      def git_stage_has_untracked_changes?
+        git_status = `git status`
+
+        working_tree_are_clean = Util.exist? git_status.match(/nothing to commit, working .* clean/)
+
+        # if clean, check again if there are commits that has not been pushed
+        if working_tree_are_clean
+          
+          detached_info = git_status.match(/HEAD detached (at|from) (.*)/)
+          branch_info = git_status.match(/On branch (.*)/)
+
+          
+          if detached_info
+            # if it is at ref or tag
+
+            # has commit away from main checkout point
+            has_commit_away = detached_info[1] == 'from'
+
+            # working tree are clean when its not had commits away from its checkout point
+            working_tree_are_clean = !has_commit_away
+          elsif branch_info
+            # if it is at a branch
+            branch = branch_info[1]
+
+            has_commit_away = false
+
+            # all branchs except these two are consider clean
+            # because commits has been saved in its branch
+            if ['develop', 'master'].include? branch
+              has_commit_away = Util.exist? `git cherry -v origin/#{branch}`.strip
+            end
+
+            working_tree_are_clean = !has_commit_away
+          end
+        end
+
+        # stage has untracked changes when working tree are not clean
+        !working_tree_are_clean
       end
 
     end
