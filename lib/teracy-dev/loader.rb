@@ -174,13 +174,12 @@ module TeracyDev
     def configure_vagrant(settings)
       Vagrant.configure("2") do |common|
 
-        configure(settings, common, type: 'common')
-
+        configure(Util.deep_copy(settings).freeze, common, type: 'common')
         settings['nodes'].each do |node_settings|
           primary = node_settings['primary'] ||= false
           autostart = node_settings['autostart'] === false ? false : true
           common.vm.define node_settings['name'], primary: primary, autostart: autostart do |node|
-            configure(node_settings, node, type: 'node')
+            configure(Util.deep_copy(node_settings).freeze, node, type: 'node')
           end
         end
       end
