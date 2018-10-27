@@ -37,7 +37,7 @@ module TeracyDev
 
         TeracyDev::Util.multi_sort(@items, weight: :desc, id: :asc).each do |item|
           configurator = item[:configurator]
-          configurator.configure(settings, config, type: type)
+          configurator.configure(Util.deep_copy(settings).freeze, config, type: type)
         end
       end
 
