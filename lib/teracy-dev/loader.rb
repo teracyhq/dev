@@ -96,15 +96,26 @@ module TeracyDev
         @logger.warn("#{deprecated_env & ENV.keys} are deprecated, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF|SYNC>")
       end
 
-      location["git"] = {
-        "remote" => {
-          "origin" => git_remote_origin
-        },
-        "branch" => git_branch,
-        "tag" => git_tag,
-        "ref" => git_ref,
-        "dir" => dir
-      }
+      location['git'] ||= ''
+
+      if location['git'].instance_of? String
+        location['git'] = {
+          "remote" => {
+            "origin" => location['git']
+          }
+        }
+      end
+
+      location['git']['remote']['origin'] = git_remote_origin if git_remote_origin
+
+      git_config = {}
+
+      git_config['branch'] = git_branch if git_branch
+      git_config['tag'] = git_tag if git_tag
+      git_config['ref'] = git_ref if git_ref
+      git_config['dir'] = dir if dir
+
+      location['git'].merge!(git_config)
 
       @logger.debug("location: #{location}")
 
