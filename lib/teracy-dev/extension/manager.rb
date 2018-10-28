@@ -22,6 +22,7 @@ module TeracyDev
         extensions.each do |extension|
           sync(extension)
           validate(extension)
+          validate_dependencies(extension, extensions)
         end
 
         timer_end = Time.now
@@ -72,6 +73,32 @@ module TeracyDev
         end
       end
 
+      def validate_dependencies(extension, extensions)
+        extension_manifest = Manager.manifest(extension)
+        return unless Util.exist?(extension_manifest['dependencies'])
+
+        extension_manifest['dependencies'].each do |dependency|
+          found = nil
+          extensions.each do |target_extension|
+            target_manifest = Manager.manifest(target_extension)
+            if dependency['name'] == target_manifest['name']
+              found = target_manifest
+              break
+            end
+          end
+
+          if found.nil?
+            @logger.error("the extension #{dependency['name']} is required by #{extension_manifest['name']} but could not be found.")
+            abort
+          else
+            if !Util.require_version_valid?(found['version'], dependency['require_version'])
+              @logger.error("the extension #{dependency['name']} #{dependency['require_version']} is required by "\
+              "#{extension_manifest['name']} but found version #{found['version']}")
+              abort
+            end
+          end
+        end
+      end
     end
   end
 end
