@@ -257,7 +257,11 @@ module TeracyDev
             # all branchs except these two are consider clean
             # because commits has been saved in its branch
             if ['develop', 'master'].include? branch
+              have_diverged = Util.exist? git_status.match(/Your branch (.*) have diverged/)
+
               has_commit_away = Util.exist? `git cherry -v origin/#{branch}`.strip
+
+              has_commit_away = have_diverged || has_commit_away
             end
 
             working_tree_are_clean = !has_commit_away
