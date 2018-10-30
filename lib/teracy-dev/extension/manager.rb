@@ -23,6 +23,7 @@ module TeracyDev
           sync(extension)
           validate(extension)
         end
+
         timer_end = Time.now
         @logger.debug("installation finished in #{timer_end - timer_start}s of extensions: #{extensions}")
       end
@@ -31,8 +32,15 @@ module TeracyDev
 
       def sync(extension)
         return unless Util.true?(extension['enabled'])
+
+        if !Util.exist? extension['path']['extension']
+          @logger.error("#{extension} must have path.extension, please set path.extension then reload again.")
+
+          abort
+        end
+
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
-        path = File.join(lookup_path, extension['path']['extension'])
+        path = File.join(lookup_path, extension['path']['extension'].split('/')[0])
         extension['location'].merge!({
           "lookup_path" => lookup_path,
           "path" => path
