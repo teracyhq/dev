@@ -84,7 +84,7 @@ module TeracyDev
     def self.load_yaml_file(file_path)
       if File.exist? file_path
         # TODO: exception handling
-        result = YAML.load(File.new(file_path))
+        result = YAML.load_file(file_path)
         if result == false
           @@logger.debug("#{file_path} is empty")
           result = {}

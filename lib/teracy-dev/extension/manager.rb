@@ -9,7 +9,7 @@ module TeracyDev
         lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] || TeracyDev::DEFAULT_EXTENSION_LOOKUP_PATH)
         path = File.join(lookup_path, extension['path']['extension'])
         manifest_path = File.join(path, 'manifest.yaml')
-        return YAML.load(File.new(manifest_path))
+        return YAML.load_file(manifest_path)
       end
 
       def initialize
