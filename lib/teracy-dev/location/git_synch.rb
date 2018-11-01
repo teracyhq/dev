@@ -273,17 +273,17 @@ module TeracyDev
             processed_remote_url, credential_exists, repo_username_key, repo_password_key = get_remote_credentials remote_url
 
             if processed_remote_url.nil?
-              @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+              @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your credentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
 
               exit!
             end
 
             if credential_exists
-              @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to connect to #{remote_url}, the error has been shown above, make sure your creadentials are valid, the repo is present or your internet connection are up then try again!"
+              @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to connect to #{remote_url}, the error has been shown above, make sure your credentials are valid, the repo is present or your internet connection are up then try again!"
             else
               # has internet but unable to connect
               if error_msg.match('fatal: unable to access')
-                @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+                @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your credentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
 
               # no internet or has no credentials
               else
