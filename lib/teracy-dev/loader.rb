@@ -114,16 +114,16 @@ module TeracyDev
       git_config['ref'] = git_ref if git_ref
       git_config['dir'] = dir if dir
 
+      location['sync'] = sync if sync
+
       location['git'].merge!(git_config)
 
       @logger.debug("location: #{location}")
 
-      if Util.true?(location['sync']) || Util.true?(sync)
-        if Location::Manager.sync(location) == true
-          # reload
-          @logger.info("reloading...")
-          exec "vagrant #{ARGV.join(" ")}"
-        end
+      if Location::Manager.sync(location, location['sync']) == true
+        # reload
+        @logger.info("reloading...")
+        exec "vagrant #{ARGV.join(" ")}"
       end
     end
 
