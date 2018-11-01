@@ -10,8 +10,6 @@ module TeracyDev
 
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
-
-
       end
 
       def sync(location, sync_existing)
