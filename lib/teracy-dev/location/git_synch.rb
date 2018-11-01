@@ -8,8 +8,21 @@ module TeracyDev
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
       end
-      # return true if sync action is carried out, otherwise, return false
+
       def sync(location, sync_existing)
+        begin
+          start(location, sync_existing)
+        rescue Exception => e
+          @logger.warn(e)
+
+          false
+        end
+      end
+
+      private
+
+      # return true if sync action is carried out, otherwise, return false
+      def start(location, sync_existing)
         @logger.debug("location: #{location}; sync_existing: #{sync_existing}")
         updated = false
         return updated if ! Util.exist? location['git']
@@ -92,6 +105,8 @@ module TeracyDev
           Dir.chdir(lookup_path) do
             @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
             system("git clone #{git_remote_url} #{dir}")
+
+            abort_process_if_fail_to_clone git_remote_url
           end
 
           Dir.chdir(path) do
@@ -105,8 +120,6 @@ module TeracyDev
         end
         updated
       end
-
-      private
 
       # if remote_name does not exist => add
       # if remote_name exists with updated remote_url => update the remote_name with the updated remote_url
@@ -144,6 +157,8 @@ module TeracyDev
         if !current_ref.start_with? ref_string
           `git fetch origin`
 
+          raise_warning_if_fail_to_fetch
+
           `git checkout #{ref_string}`
           updated = true
         end
@@ -162,6 +177,8 @@ module TeracyDev
         if !$?.success?
           # fetch origin if tag is not present
           `git fetch origin`
+
+          raise_warning_if_fail_to_fetch
 
           # re-check
           tag_ref = `#{cmd}`.strip
@@ -195,9 +212,13 @@ module TeracyDev
         # other branch is only get update once
         if ['master', 'develop'].include? desired_branch
           `git fetch origin`
+
+          raise_warning_if_fail_to_fetch
         # only fetch if it is valid branch and not other (tags, ref, ...)
         elsif desired_branch != current_branch and current_branch != 'HEAD'
           `git fetch origin`
+
+          raise_warning_if_fail_to_fetch
         end
 
         @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
@@ -226,6 +247,22 @@ module TeracyDev
           updated = true
         end
         updated
+      end
+
+      def raise_warning_if_fail_to_fetch (remote_name = 'origin')
+        if !$?.success?
+          remote_url = `git remote get-url #{remote_name}`
+
+          raise "The repo is unable to access at #{remote_url}, please check your internet connection or check your repo info." 
+        end
+      end
+
+      def abort_process_if_fail_to_clone (remote_url)
+        if !$?.success?
+          @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+
+          exit!
+        end
       end
 
       def git_stage_has_untracked_changes?
