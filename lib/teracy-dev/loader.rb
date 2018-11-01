@@ -120,6 +120,11 @@ module TeracyDev
 
       @logger.debug("location: #{location}")
 
+      # because teracy-dev.entry_location is optional, so if not configured, just continue
+      if location['git']['remote']['origin'] == nil
+        return
+      end
+
       if Location::Manager.sync(location, location['sync']) == true
         # reload
         @logger.info("reloading...")
