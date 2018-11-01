@@ -79,12 +79,12 @@ module TeracyDev
       # override/init with env vars if available
       # this is useful to init the teracy-dev-entry or to override existing settings to enable auto sync
       # TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN, TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH
-      # TERACY_DEV_ENTRY_LOCATION_GIT_REF, TERACY_DEV_ENTRY_LOCATION_GIT_SYNC
+      # TERACY_DEV_ENTRY_LOCATION_GIT_REF, TERACY_DEV_ENTRY_LOCATION_SYNC
       git_remote_origin = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN'] || ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
       git_branch = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH'] || ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
       git_ref = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REF'] || ENV['TERACY_DEV_ENTRY_LOCATION_REF']
       git_tag = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_TAG'] || ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
-      git_sync = ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
+      sync = ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
 
       deprecated_env = [
         'TERACY_DEV_ENTRY_LOCATION_GIT', 'TERACY_DEV_ENTRY_LOCATION_BRANCH',
@@ -118,7 +118,7 @@ module TeracyDev
 
       @logger.debug("location: #{location}")
 
-      if Util.true?(location['sync']) || Util.true?(git_sync)
+      if Util.true?(location['sync']) || Util.true?(sync)
         if Location::Manager.sync(location) == true
           # reload
           @logger.info("reloading...")
