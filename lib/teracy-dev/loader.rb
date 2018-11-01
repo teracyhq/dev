@@ -79,21 +79,20 @@ module TeracyDev
       # override/init with env vars if available
       # this is useful to init the teracy-dev-entry or to override existing settings to enable auto sync
       # TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN, TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH
-      # TERACY_DEV_ENTRY_LOCATION_GIT_REF, TERACY_DEV_ENTRY_LOCATION_GIT_SYNC
+      # TERACY_DEV_ENTRY_LOCATION_GIT_REF, TERACY_DEV_ENTRY_LOCATION_SYNC
       git_remote_origin = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN'] || ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
       git_branch = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH'] || ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
       git_ref = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REF'] || ENV['TERACY_DEV_ENTRY_LOCATION_REF']
       git_tag = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_TAG'] || ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
-      git_sync = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_SYNC'] || ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
+      sync = ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
 
       deprecated_env = [
         'TERACY_DEV_ENTRY_LOCATION_GIT', 'TERACY_DEV_ENTRY_LOCATION_BRANCH',
-        'TERACY_DEV_ENTRY_LOCATION_TAG', 'TERACY_DEV_ENTRY_LOCATION_REF',
-        'TERACY_DEV_ENTRY_LOCATION_SYNC'
+        'TERACY_DEV_ENTRY_LOCATION_TAG', 'TERACY_DEV_ENTRY_LOCATION_REF'
       ]
 
       if (deprecated_env & ENV.keys).any?
-        @logger.warn("#{deprecated_env & ENV.keys} are deprecated, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF|SYNC>")
+        @logger.warn("deprecated: #{deprecated_env & ENV.keys}, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF>")
       end
 
       location['git'] ||= ''
@@ -115,16 +114,16 @@ module TeracyDev
       git_config['ref'] = git_ref if git_ref
       git_config['dir'] = dir if dir
 
+      location['sync'] = sync if sync
+
       location['git'].merge!(git_config)
 
       @logger.debug("location: #{location}")
 
-      if Util.true?(location['sync']) || Util.true?(git_sync)
-        if Location::Manager.sync(location) == true
-          # reload
-          @logger.info("reloading...")
-          exec "vagrant #{ARGV.join(" ")}"
-        end
+      if Location::Manager.sync(location, location['sync']) == true
+        # reload
+        @logger.info("reloading...")
+        exec "vagrant #{ARGV.join(" ")}"
       end
     end
 

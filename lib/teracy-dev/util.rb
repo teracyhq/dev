@@ -4,6 +4,7 @@ require 'yaml'
 module TeracyDev
   class Util
     @@logger = TeracyDev::Logging.logger_for(self)
+    @@duplicate_deprecated_message = []
 
     # check if a value exists (not nil and not empty if is a string)
     def self.exist?(value)
@@ -68,7 +69,7 @@ module TeracyDev
 
     # find the extension lookup_path by its name from the provided settings
     def self.extension_lookup_path(settings, extension_name)
-      @@logger.warn("settings: #{settings.to_yaml}")
+      @@logger.debug("settings: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
 
       extensions.each do |ext|
@@ -104,7 +105,7 @@ module TeracyDev
       override_settings = load_yaml_file(override_file_path)
       @@logger.debug("override_settings: #{override_settings}")
       settings = Util.override(default_settings, override_settings)
-      @@logger.warn("final: #{settings.to_yaml}")
+      @@logger.debug("final: #{settings}")
       settings
     end
 
@@ -166,7 +167,9 @@ module TeracyDev
     def self.override(originHash, sourceHash)
       # immutable
       originHash = originHash.clone
+      # @@logger.info("originHash: #{originHash.to_yaml}")
       sourceHash = sourceHash.clone
+      # @@logger.info("sourceHash: #{sourceHash.to_yaml}")
 
       sourceHash.each do |key, value|
         replaced_key = key.to_s.sub(/_u?[ra]_/, '')
@@ -215,17 +218,16 @@ module TeracyDev
                 id_existing = false
                 originHash[key] ||= []
                 originHash[key].each do |val1|
-                  if val['_id'] == val1['_id_deprecated']
-                    @@logger.warn("The _id: #{val['_id']} is deprecated, use the _id: #{val1['_id']} instead")
 
-                    if val1['_id'].nil?
-                      val1['_id'] = val['_id']
-                    else
-                      val['_id'] = val1['_id']
+                  if val1['_id_deprecated'] != nil && val['_id'] == val1['_id_deprecated']
+                    message = "The _id: '#{val1['_id_deprecated']}' is deprecated, use the _id: '#{val1['_id']}' instead for #{val}"
+                    unless @@duplicate_deprecated_message.include?(message)
+                      @@logger.warn(message)
+                      @@duplicate_deprecated_message << message
                     end
 
-                    id_existing = true
-                    break
+                    # val['_id'] should be updated to use val1['_id'] instead
+                    val['_id'] = val1['_id']
                   end
 
                   if val1['_id'] == val['_id']
