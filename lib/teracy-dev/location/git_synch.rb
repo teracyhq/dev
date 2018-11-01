@@ -3,19 +3,26 @@ require 'open3'
 
 module TeracyDev
   module Location
+    class GitError < StandardError
+    end
+
     class GitSynch
 
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
+
+
       end
 
       def sync(location, sync_existing)
         begin
           start(location, sync_existing)
-        rescue Exception => e
+        rescue GitError => e
           @logger.warn(e)
 
           false
+        rescue
+          raise
         end
       end
 
@@ -106,7 +113,7 @@ module TeracyDev
             @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
             system("git clone #{git_remote_url} #{dir}")
 
-            abort_process_if_fail_to_clone git_remote_url
+            abort_process_if_fail_to_clone git_remote_url, dir
           end
 
           Dir.chdir(path) do
@@ -253,16 +260,92 @@ module TeracyDev
         if !$?.success?
           remote_url = `git remote get-url #{remote_name}`
 
-          raise "The repo is unable to access at #{remote_url}, please check your internet connection or check your repo info." 
+          raise GitError.new "The repo is unable to access at #{remote_url}, please check your internet connection or check your repo info." 
         end
       end
 
-      def abort_process_if_fail_to_clone (remote_url)
+      def abort_process_if_fail_to_clone (remote_url, dir)
         if !$?.success?
-          @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
 
-          exit!
+          attempt_success, error_msg = attempt_to_use_http_auth? remote_url, dir
+
+          @logger.debug("attempt_success: #{attempt_success}")
+
+          if !attempt_success
+            processed_remote_url, credential_exists, repo_username_key, repo_password_key = get_remote_credentials remote_url
+
+            if processed_remote_url.nil?
+              @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+
+              exit!
+            end
+
+            if credential_exists
+              @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to connect to #{remote_url}, the error has been shown above, make sure your creadentials are valid, the repo is present or your internet connection are up then try again!"
+            else
+              # has internet but unable to connect
+              if error_msg.match('fatal: unable to access')
+                @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your creadentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+
+              # no internet or has no credentials
+              else
+                @logger.error "#{repo_username_key} and #{repo_password_key} are not found to access to #{remote_url}, please make sure those key are present, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+              end
+            end
+
+            exit!
+
+          end
         end
+      end
+
+      def get_remote_credentials (remote_url)
+        matches = remote_url.match(/(https?):\/\/(.*)/)
+
+        return nil if matches.nil?
+
+        repo_host = Util.get_hostname matches[2]
+
+        # find from ENV if there are any of these credentials
+        # example: GITHUB_USERNAME, GITHUB_PASSWORD
+        repo_username_key = "#{repo_host}_username".upcase
+
+        repo_password_key = "#{repo_host}_password".upcase
+
+        credential_exists = !ENV[repo_username_key].nil? and !ENV[repo_password_key].nil?
+
+        @logger.debug("repo_username: #{repo_username_key}=#{ENV[repo_username_key]}, repo_password_key: #{repo_password_key}=#{ENV[repo_password_key]}")
+
+        if credential_exists
+          remote_url = "#{matches[1]}://#{ENV[repo_username_key]}:#{ENV[repo_password_key]}@#{matches[2]}"
+        end
+
+        return remote_url, credential_exists, repo_username_key, repo_password_key
+      end
+
+      # return success value, error
+      def attempt_to_use_http_auth? (remote_url, dir)
+        processed_remote_url, credential_exists = get_remote_credentials remote_url
+
+        return false, 'credential is not exists' unless credential_exists
+
+        @logger.info("Attempting to try agian using you configurated credentials for #{remote_url}")
+
+        stdout, stderr, status = Open3.capture3("git clone #{processed_remote_url} #{dir}")
+
+
+        @logger.debug("stdout: #{stdout}, stderr: #{stderr}, status: #{status}")
+
+        # the clone is success but still has stderr return
+        if status.to_s.match('exit (128|0)')
+          @logger.debug("Dir.exists?: #{Dir.exists? (dir || remote_url.split('/').last.split('.').first)}")
+
+          if Dir.exists? (dir || remote_url.split('/').last.split('.').first)
+            return true, ''
+          end
+        end
+
+        return !Util.exist?(stderr), stderr.to_s
       end
 
       def git_stage_has_untracked_changes?

@@ -6,6 +6,16 @@ module TeracyDev
     @@logger = TeracyDev::Logging.logger_for(self)
     @@deprecated_messages = []
 
+    def self.get_hostname(url)
+      if url.start_with? 'www'
+          url = url.split('.')[1]
+      else
+          url = url.split('.')[0]
+      end
+
+      url
+    end
+
     # check if a value exists (not nil and not empty if is a string)
     def self.exist?(value)
       exist = false
