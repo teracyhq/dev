@@ -84,15 +84,16 @@ module TeracyDev
       git_branch = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH'] || ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
       git_ref = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REF'] || ENV['TERACY_DEV_ENTRY_LOCATION_REF']
       git_tag = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_TAG'] || ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
-      git_sync = ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
+      git_sync = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_SYNC'] || ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
 
       deprecated_env = [
         'TERACY_DEV_ENTRY_LOCATION_GIT', 'TERACY_DEV_ENTRY_LOCATION_BRANCH',
-        'TERACY_DEV_ENTRY_LOCATION_TAG', 'TERACY_DEV_ENTRY_LOCATION_REF'
+        'TERACY_DEV_ENTRY_LOCATION_TAG', 'TERACY_DEV_ENTRY_LOCATION_REF',
+        'TERACY_DEV_ENTRY_LOCATION_SYNC'
       ]
 
       if (deprecated_env & ENV.keys).any?
-        @logger.warn("deprecated: #{deprecated_env & ENV.keys}, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF>")
+        @logger.warn("#{deprecated_env & ENV.keys} are deprecated, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF|SYNC>")
       end
 
       location['git'] ||= ''

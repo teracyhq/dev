@@ -68,7 +68,7 @@ module TeracyDev
 
     # find the extension lookup_path by its name from the provided settings
     def self.extension_lookup_path(settings, extension_name)
-      @@logger.debug("settings: #{settings}")
+      @@logger.warn("settings: #{settings.to_yaml}")
       extensions = settings['teracy-dev']['extensions'] ||= []
 
       extensions.each do |ext|
@@ -104,7 +104,7 @@ module TeracyDev
       override_settings = load_yaml_file(override_file_path)
       @@logger.debug("override_settings: #{override_settings}")
       settings = Util.override(default_settings, override_settings)
-      @@logger.debug("final: #{settings}")
+      @@logger.warn("final: #{settings.to_yaml}")
       settings
     end
 
@@ -215,11 +215,25 @@ module TeracyDev
                 id_existing = false
                 originHash[key] ||= []
                 originHash[key].each do |val1|
+                  if val['_id'] == val1['_id_deprecated']
+                    @@logger.warn("The _id: #{val['_id']} is deprecated, use the _id: #{val1['_id']} instead")
+
+                    if val1['_id'].nil?
+                      val1['_id'] = val['_id']
+                    else
+                      val['_id'] = val1['_id']
+                    end
+
+                    id_existing = true
+                    break
+                  end
+
                   if val1['_id'] == val['_id']
                     id_existing = true
                     break
                   end
                 end
+
                 if id_existing == false
                   if !val['_op'].nil? and val['_op'] != 'a'
                     # warnings
