@@ -167,9 +167,7 @@ module TeracyDev
     def self.override(originHash, sourceHash)
       # immutable
       originHash = originHash.clone
-      # @@logger.info("originHash: #{originHash.to_yaml}")
       sourceHash = sourceHash.clone
-      # @@logger.info("sourceHash: #{sourceHash.to_yaml}")
 
       sourceHash.each do |key, value|
         replaced_key = key.to_s.sub(/_u?[ra]_/, '')

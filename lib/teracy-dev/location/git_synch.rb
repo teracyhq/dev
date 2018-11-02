@@ -47,7 +47,7 @@ module TeracyDev
         if !Util.exist? git_remote_url
           @logger.error("git.remote.origin is required for #{path}")
 
-          abort
+          return false
         end
 
         branch = git_config['branch'] ||= 'master'
