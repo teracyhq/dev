@@ -125,7 +125,7 @@ module TeracyDev
             current_remote_url = stdout.strip
 
             if !remote_url.nil? and current_remote_url != remote_url
-              `git remote remove #{remote_name}`
+              `git remote remove #{remote_name}` if !current_remote_url.empty?
 
               `git remote add #{remote_name} #{remote_url}`
 
@@ -191,7 +191,7 @@ module TeracyDev
         current_branch = `git rev-parse --abbrev-ref HEAD`.strip
 
         # branch master/develop are always get update
-        # 
+        #
         # other branch is only get update once
         if ['master', 'develop'].include? desired_branch
           `git fetch origin`
@@ -235,11 +235,11 @@ module TeracyDev
 
         # if clean, check again if there are commits that has not been pushed
         if working_tree_are_clean
-          
+
           detached_info = git_status.match(/HEAD detached (at|from) (.*)/)
           branch_info = git_status.match(/On branch (.*)/)
 
-          
+
           if detached_info
             # if it is at ref or tag
 
