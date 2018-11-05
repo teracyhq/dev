@@ -404,7 +404,7 @@ module TeracyDev
       end
 
       def credentials_are_present_but_fail_to_pull remote_url, repo_username_key, repo_password_key
-        @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to pull from #{remote_url}, the process is aborted until your credentials are valid, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are found but still unable to pull from #{remote_url}, the process is aborted until your credentials are valid, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
       end
 
       def fail_to_access remote_url
