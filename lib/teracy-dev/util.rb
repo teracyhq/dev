@@ -4,7 +4,7 @@ require 'yaml'
 module TeracyDev
   class Util
     @@logger = TeracyDev::Logging.logger_for(self)
-    @@duplicate_deprecated_message = []
+    @@deprecated_messages = []
 
     # check if a value exists (not nil and not empty if is a string)
     def self.exist?(value)
@@ -219,9 +219,9 @@ module TeracyDev
 
                   if val1['_id_deprecated'] != nil && val['_id'] == val1['_id_deprecated']
                     message = "The _id: '#{val1['_id_deprecated']}' is deprecated, use the _id: '#{val1['_id']}' instead for #{val}"
-                    unless @@duplicate_deprecated_message.include?(message)
+                    unless @@deprecated_messages.include?(message)
                       @@logger.warn(message)
-                      @@duplicate_deprecated_message << message
+                      @@deprecated_messages << message
                     end
 
                     # val['_id'] should be updated to use val1['_id'] instead
