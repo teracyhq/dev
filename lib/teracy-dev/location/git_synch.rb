@@ -3,7 +3,7 @@ require 'open3'
 
 module TeracyDev
   module Location
-    class GitError < StandardError
+    class GitWarn < StandardError
     end
 
     class GitSynch
@@ -15,7 +15,7 @@ module TeracyDev
       def sync(location, sync_existing)
         begin
           start(location, sync_existing)
-        rescue GitError => e
+        rescue GitWarn => e
           @logger.warn(e)
 
           false
@@ -109,14 +109,18 @@ module TeracyDev
           end
           Dir.chdir(lookup_path) do
             @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
-            system("git clone #{git_remote_url} #{dir}")
 
-            abort_process_if_fail_to_clone git_remote_url, dir
+            attempt_success = attempt_to_clone_using_http_auth? git_remote_url, dir
+
+            # abort the process if this fail
+            if !attempt_success
+              exit!
+            end
           end
 
           Dir.chdir(path) do
             @logger.info("cd #{path} && git checkout #{branch}")
-            system("git checkout #{branch}")
+            system("git checkout '#{branch}'")
           end
 
           update_remote(path, git_remote)
@@ -143,9 +147,9 @@ module TeracyDev
             current_remote_url = stdout.strip
 
             if !remote_url.nil? and current_remote_url != remote_url
-              `git remote remove #{remote_name}` if !current_remote_url.empty?
+              `git remote remove '#{remote_name}'` if !current_remote_url.empty?
 
-              `git remote add #{remote_name} #{remote_url}`
+              `git remote add '#{remote_name}' '#{remote_url}'`
 
               updated = true
             end
@@ -160,11 +164,9 @@ module TeracyDev
         @logger.debug("ref detected, checking out #{ref_string}")
         updated = false
         if !current_ref.start_with? ref_string
-          `git fetch origin`
+          attempt_to_pull_using_http_auth 'origin'
 
-          raise_warning_if_fail_to_fetch
-
-          `git checkout #{ref_string}`
+          `git checkout '#{ref_string}'`
           updated = true
         end
         updated
@@ -175,15 +177,13 @@ module TeracyDev
 
         updated = false
 
-        cmd = "git log #{desired_tag} -1 --pretty=%H"
+        cmd = "git log '#{desired_tag}' -1 --pretty=%H"
 
         tag_ref = `#{cmd}`.strip
 
         if !$?.success?
           # fetch origin if tag is not present
-          `git fetch origin`
-
-          raise_warning_if_fail_to_fetch
+          attempt_to_pull_using_http_auth 'origin'
 
           # re-check
           tag_ref = `#{cmd}`.strip
@@ -199,7 +199,7 @@ module TeracyDev
         @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
 
         if current_ref != tag_ref
-          `git checkout tags/#{desired_tag}`
+          `git checkout 'tags/#{desired_tag}'`
 
           updated = true
         end
@@ -216,14 +216,10 @@ module TeracyDev
         #
         # other branch is only get update once
         if ['master', 'develop'].include? desired_branch
-          `git fetch origin`
-
-          raise_warning_if_fail_to_fetch
+          attempt_to_pull_using_http_auth 'origin'
         # only fetch if it is valid branch and not other (tags, ref, ...)
         elsif desired_branch != current_branch and current_branch != 'HEAD'
-          `git fetch origin`
-
-          raise_warning_if_fail_to_fetch
+          attempt_to_pull_using_http_auth 'origin'
         end
 
         @logger.debug("current_branch: #{current_branch} - desired_branch: #{desired_branch}")
@@ -239,65 +235,120 @@ module TeracyDev
         @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
 
         if current_ref != remote_ref
-          `git checkout #{desired_branch}`
+          `git checkout '#{desired_branch}'`
 
           if !$?.success?
             # create new local branch if it is not present
             @logger.debug("No such branch! Creating one.")
 
-            `git checkout -b #{desired_branch}`
+            `git checkout -b '#{desired_branch}'`
           end
 
-          `git reset --hard origin/#{desired_branch}`
+          `git reset --hard 'origin/#{desired_branch}'`
           updated = true
         end
         updated
       end
 
-      def raise_warning_if_fail_to_fetch (remote_name = 'origin')
-        if !$?.success?
-          remote_url = `git remote get-url #{remote_name}`
+      # return true if pull success, raise a warning otherwise
+      def attempt_to_pull_using_http_auth remote_name = 'origin'
+        # in most case, credentials of #{remote_name} has already been cached
+        # so pull first, to see if there are any errors showing up
 
-          raise GitError.new "The repo is unable to access at #{remote_url}, please check your internet connection or check your repo info." 
-        end
-      end
+        pull_success, error_msg = git_fetch remote_name
 
-      def abort_process_if_fail_to_clone (remote_url, dir)
-        if !$?.success?
+        return true if pull_success
 
-          attempt_success, error_msg = attempt_to_use_http_auth? remote_url, dir
+        # we have errors then we will using configurated credentials
+        # or inform user to update, then try again
 
-          @logger.debug("attempt_success: #{attempt_success}")
+        remote_url = `git remote get-url '#{remote_name}'`.strip
 
-          if !attempt_success
-            processed_remote_url, credential_exists, repo_username_key, repo_password_key = get_remote_credentials remote_url
+        processed_remote_url, credential_exists,
+        repo_username_key, repo_password_key = get_remote_credentials remote_url
 
-            if processed_remote_url.nil?
-              @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your credentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+        # if it is not https format
+        # we will assume it is ssh format and the pull has fail
+        if processed_remote_url.nil?
+          fail_to_pull remote_url
+        else
+          # otherwise
+          # it is https url
 
-              exit!
-            end
+          # and only pull again if credentials are still exists
+          if credential_exists
+            `git remote set-url '#{remote_name}' '#{processed_remote_url}'`
 
-            if credential_exists
-              @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to connect to #{remote_url}, the error has been shown above, make sure your credentials are valid, the repo is present or your internet connection are up then try again!"
+            pull_success = git_fetch remote_name
+
+            return true if pull_success
+
+            # still fail then the credentials user provided are not correct
+            credentials_are_present_but_fail_to_pull remote_url,
+              repo_username_key, repo_password_key
+          else
+            # if credentials are not exists then inform user about it
+
+            # we has internet but unable to connect
+            if error_msg.to_s.match('fatal: unable to access')
+              fail_to_pull remote_url
+            # we has no internet or has no credentials
             else
-              # has internet but unable to connect
-              if error_msg.match('fatal: unable to access')
-                @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your credentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
-
-              # no internet or has no credentials
-              else
-                @logger.error "#{repo_username_key} and #{repo_password_key} are not found to access to #{remote_url}, please make sure those key are present, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
-              end
+              internet_down_or_credential_not_found_to_pull remote_url,
+                repo_username_key, repo_password_key
             end
-
-            exit!
-
           end
         end
+
+        return false
       end
 
-      def get_remote_credentials (remote_url)
+      # return true if clone success, false otherwise
+      def attempt_to_clone_using_http_auth? remote_url, dir
+        processed_remote_url, credential_exists,
+        repo_username_key, repo_password_key = get_remote_credentials remote_url
+
+        # if it is not https format
+        # we will assume it is ssh format and use normal clone
+        if processed_remote_url.nil?
+          clone_success = git_clone remote_url, dir
+
+          return true if clone_success
+
+          fail_to_access remote_url
+        else
+          # otherwise
+          # it is https url
+          # and wheter it has credentials or not, still clone it
+
+          @logger.info("Attempting to using your configurated credentials for #{remote_url}")
+
+          clone_success, error_msg = git_clone processed_remote_url, dir
+
+          return true if clone_success
+
+          # we fail, so raise corresponding messages
+
+          # we has credentials
+          if credential_exists
+            credentials_are_present_but_fail_to_access remote_url,
+                repo_username_key, repo_password_key
+          else
+            # we has internet but unable to connect
+            if error_msg.match('fatal: unable to access')
+              fail_to_access remote_url
+            # we has no internet or has no credentials
+            else
+              internet_down_or_credential_not_found_to_access remote_url,
+                repo_username_key, repo_password_key
+            end
+          end
+        end
+
+        return false
+      end
+
+      def get_remote_credentials remote_url
         matches = remote_url.match(/(https?):\/\/(.*)/)
 
         return nil if matches.nil?
@@ -315,35 +366,57 @@ module TeracyDev
         @logger.debug("repo_username: #{repo_username_key}=#{ENV[repo_username_key]}, repo_password_key: #{repo_password_key}=#{ENV[repo_password_key]}")
 
         if credential_exists
-          remote_url = "#{matches[1]}://#{ENV[repo_username_key]}:#{ENV[repo_password_key]}@#{matches[2]}"
+          remote_url = "#{matches[1]}://#{ENV[repo_username_key]}:'#{ENV[repo_password_key]}'@#{matches[2]}"
         end
 
         return remote_url, credential_exists, repo_username_key, repo_password_key
       end
 
-      # return success value, error
-      def attempt_to_use_http_auth? (remote_url, dir)
-        processed_remote_url, credential_exists = get_remote_credentials remote_url
+      def git_fetch remote_name
+        stdout, stderr, status = Open3.capture3("git fetch '#{remote_name}'")
 
-        return false, 'credential is not exists' unless credential_exists
+        puts "fail to fetch:\n#{stderr}" if Util.exist?(stderr)
 
-        @logger.info("Attempting to try again using your configurated credentials for #{remote_url}")
+        return !Util.exist?(stderr), stderr.to_s
+      end
 
-        stdout, stderr, status = Open3.capture3("git clone #{processed_remote_url} #{dir}")
-
-
-        @logger.debug("stdout: #{stdout}, stderr: #{stderr}, status: #{status}")
+      def git_clone remote_url, dir
+        stdout, stderr, status = Open3.capture3("git clone '#{remote_url}' #{dir}")
 
         # the clone is success but still has stderr return
         if status.to_s.match('exit (128|0)')
-          @logger.debug("Dir.exists?: #{Dir.exists? (dir || remote_url.split('/').last.split('.').first)}")
-
           if Dir.exists? (dir || remote_url.split('/').last.split('.').first)
             return true, ''
           end
         end
 
+        puts "fail to clone:\n#{stderr}" if Util.exist?(stderr)
+
         return !Util.exist?(stderr), stderr.to_s
+      end
+
+      def fail_to_pull remote_url
+        raise GitWarn.new "The repo is unable to access at #{remote_url}, please check your internet connection or check your repo info." 
+      end
+
+      def internet_down_or_credential_not_found_to_pull remote_url, repo_username_key, repo_password_key
+        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are not found to pull from #{remote_url}, the process is aborted until those key are present, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+      end
+
+      def credentials_are_present_but_fail_to_pull remote_url, repo_username_key, repo_password_key
+        @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to pull from #{remote_url}, the process is aborted until your credentials are valid, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+      end
+
+      def fail_to_access remote_url
+        @logger.error "The repo is unable to access at #{remote_url}, the error has been shown above, make sure your credentials are valid, please follow ./docs/getting_started.rst to resolve those issues."
+      end
+
+      def internet_down_or_credential_not_found_to_access remote_url, repo_username_key, repo_password_key
+        @logger.error "#{repo_username_key} and #{repo_password_key} are not found to access to #{remote_url}, please make sure those key are present, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+      end
+
+      def credentials_are_present_but_fail_to_access remote_url, repo_username_key, repo_password_key
+        @logger.error "#{repo_username_key} and #{repo_password_key} are found but still unable to connect to #{remote_url}, the error has been shown above, make sure your credentials are valid, the repo is present or your internet connection are up then try again!"
       end
 
       def git_stage_has_untracked_changes?
