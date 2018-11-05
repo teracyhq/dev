@@ -400,11 +400,11 @@ module TeracyDev
       end
 
       def internet_down_or_credential_not_found_to_pull remote_url, repo_username_key, repo_password_key
-        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are not found to pull from #{remote_url}, the process is aborted until those key are present, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are not found to pull from #{remote_url}, the process is aborted until those key are present, please run this command: \"export #{repo_username_key}='username'; export #{repo_password_key}='password';\" then \"vagrant status\" to see if it is working"
       end
 
       def credentials_are_present_but_fail_to_pull remote_url, repo_username_key, repo_password_key
-        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are found but still unable to pull from #{remote_url}, the process is aborted until your credentials are valid, please run this command: \"#{repo_username_key}=username #{repo_password_key}=password vagrant status\" to see if it is working"
+        raise GitWarn.new "#{repo_username_key} and #{repo_password_key} are found but still unable to pull from #{remote_url}, the process is aborted until your credentials are valid, please run this command: \"export #{repo_username_key}='username'; export #{repo_password_key}='password';\" then \"vagrant status\" to see if it is working"
       end
 
       def fail_to_access remote_url
