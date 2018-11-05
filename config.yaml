@@ -10,7 +10,8 @@ teracy-dev:
       branch: develop
     sync: false # disabled by default, should be enabled by teracy-dev-entry when needed
   extensions:
-    - _id: "0"
+    - _id: "kernel-core"
+      _id_deprecated: "0"
       path:
         lookup: extensions # we can configure where to lookup for the extension, "extensions" by default if no configured
         extension: teracy-dev-core # extension_path, we'll lookup the extension by its lookup_path + extension_path
