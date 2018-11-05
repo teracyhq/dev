@@ -327,7 +327,7 @@ module TeracyDev
 
         return false, 'credential is not exists' unless credential_exists
 
-        @logger.info("Attempting to try agian using you configurated credentials for #{remote_url}")
+        @logger.info("Attempting to try again using your configurated credentials for #{remote_url}")
 
         stdout, stderr, status = Open3.capture3("git clone #{processed_remote_url} #{dir}")
 
