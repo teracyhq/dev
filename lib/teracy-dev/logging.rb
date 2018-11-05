@@ -52,7 +52,7 @@ module TeracyDev
         end
 
         if accepted
-          log = "[#{progname}][#{severity}]: #{msg}"
+          log = "[#{progname}][#{severity}]: #{msg}\n"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"
             log = TeracyDev::Common.red(log)
@@ -63,7 +63,7 @@ module TeracyDev
           when "DEBUG"
             # display log message here with tracing
             # display the trace of the exact line numeber having logger call (file, line number, function name)
-            tracing = TeracyDev::Common.light_gray("\n#{caller[3]}\n")
+            tracing = TeracyDev::Common.light_gray("#{caller[3]}\n")
             log = log + tracing
           end
 
