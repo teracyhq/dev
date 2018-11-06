@@ -277,9 +277,11 @@ module TeracyDev
 
           # and only pull again if credentials are still exists
           if credential_exists
+            @logger.debug "Attempting to pull #{remote_name}:#{remote_url} again"
+
             `git remote set-url '#{remote_name}' '#{processed_remote_url}'`
 
-            pull_success = git_fetch remote_name
+            pull_success, = git_fetch remote_name
 
             return true if pull_success
 
@@ -311,7 +313,7 @@ module TeracyDev
         # if it is not https format
         # we will assume it is ssh format and use normal clone
         if processed_remote_url.nil?
-          clone_success = git_clone remote_url, dir
+          clone_success, = git_clone remote_url, dir
 
           return true if clone_success
 
@@ -366,7 +368,9 @@ module TeracyDev
         @logger.debug("repo_username: #{repo_username_key}=#{ENV[repo_username_key]}, repo_password_key: #{repo_password_key}=#{ENV[repo_password_key]}")
 
         if credential_exists
-          remote_url = "#{matches[1]}://#{ENV[repo_username_key]}:'#{ENV[repo_password_key]}'@#{matches[2]}"
+          credential_str = "'#{CGI.escape ENV[repo_username_key]}':'#{CGI.escape ENV[repo_password_key]}'"
+
+          remote_url = "#{matches[1]}://#{credential_str}@#{matches[2]}"
         end
 
         return remote_url, credential_exists, repo_username_key, repo_password_key
@@ -375,7 +379,15 @@ module TeracyDev
       def git_fetch remote_name
         stdout, stderr, status = Open3.capture3("git fetch '#{remote_name}'")
 
-        puts "fail to fetch:\n#{stderr}" if Util.exist?(stderr)
+        # the pull is success but still has stderr return
+        # if stderr is not contains 'fatal: ' message then we consider it is a success
+        if status.to_s.match('exit 0') and !stderr.to_s.match('fatal: ')
+          return true, ''
+        end
+
+        # only display error messages when in debug
+        # to prevent this error always printing out if user have not used git-credential-store helper
+        @logger.debug "fail to fetch (#{status}):\n#{stderr}" if Util.exist?(stderr)
 
         return !Util.exist?(stderr), stderr.to_s
       end
@@ -390,7 +402,7 @@ module TeracyDev
           end
         end
 
-        puts "fail to clone:\n#{stderr}" if Util.exist?(stderr)
+        @logger.error "fail to clone (#{status}):\n#{stderr}" if Util.exist?(stderr)
 
         return !Util.exist?(stderr), stderr.to_s
       end
@@ -430,7 +442,6 @@ module TeracyDev
           detached_info = git_status.match(/HEAD detached (at|from) (.*)/)
           branch_info = git_status.match(/On branch (.*)/)
 
-
           if detached_info
             # if it is at ref or tag
 
@@ -450,7 +461,12 @@ module TeracyDev
             if ['develop', 'master'].include? branch
               have_diverged = Util.exist? git_status.match(/Your branch (.*) have diverged/)
 
-              has_commit_away = Util.exist? `git cherry -v origin/#{branch}`.strip
+              stdout, stderr = Open3.capture3("git cherry -v 'origin/#{branch}'")
+
+              # is it has error we will assume it has no commit away
+              @logger.debug("stderr: #{stderr}")
+
+              has_commit_away = Util.exist? stdout.strip
 
               has_commit_away = have_diverged || has_commit_away
             end
