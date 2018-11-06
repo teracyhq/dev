@@ -355,7 +355,16 @@ module TeracyDev
 
         return nil if matches.nil?
 
-        repo_host = Util.get_hostname matches[2]
+        repo_info = matches[2].split('@')
+
+        # extract credential string
+        # example: username:password@host.com/username/repo.git
+        # result: host.com/username/repo.git
+        repo_url = repo_info.last
+
+        # user defined credentials: repo_info[0...-1].join('')
+
+        repo_host = Util.get_hostname repo_url
 
         # find from ENV if there are any of these credentials
         # example: GITHUB_USERNAME, GITHUB_PASSWORD
@@ -367,10 +376,11 @@ module TeracyDev
 
         @logger.debug("repo_username: #{repo_username_key}=#{ENV[repo_username_key]}, repo_password_key: #{repo_password_key}=#{ENV[repo_password_key]}")
 
+        # only if user defined credentials are not present
         if credential_exists
           credential_str = "'#{CGI.escape ENV[repo_username_key]}':'#{CGI.escape ENV[repo_password_key]}'"
 
-          remote_url = "#{matches[1]}://#{credential_str}@#{matches[2]}"
+          remote_url = "#{matches[1]}://#{credential_str}@#{repo_url}"
         end
 
         return remote_url, credential_exists, repo_username_key, repo_password_key
