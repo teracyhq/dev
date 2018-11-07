@@ -363,7 +363,7 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
    .. note::
 
       On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
-      If you have SSH configurated and vagrant is still not working on Windows, set the
+      If you have SSH configured and vagrant is still not working on Windows, set the
       `VAGRANT_PREFER_SYSTEM_BIN` environment variable to true:
 
       ..  code-block:: bash
