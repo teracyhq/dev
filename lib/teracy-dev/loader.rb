@@ -49,7 +49,6 @@ module TeracyDev
       sync_teracy_dev_entry(settings['teracy-dev']['entry_location'])
     end
 
-
     def sync_teracy_dev(location)
       location.merge!({
         "path" => TeracyDev::BASE_DIR
@@ -150,7 +149,6 @@ module TeracyDev
       settings
     end
 
-
     def load_extension_entry_files(settings)
       @logger.debug("settings: #{settings}")
       extensions = settings['teracy-dev']['extensions'] ||= []
@@ -168,7 +166,6 @@ module TeracyDev
       end
     end
 
-
     def process(settings)
       @processorsManager.process(settings)
     end
@@ -184,7 +181,6 @@ module TeracyDev
     def configure(settings, config, type:)
       @configManager.configure(settings, config, type: type)
     end
-
 
     def configure_vagrant(settings)
       Vagrant.configure("2") do |common|
