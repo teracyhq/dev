@@ -364,7 +364,7 @@ module TeracyDev
 
         # user defined credentials: repo_info[0...-1].join('')
 
-        repo_host = Util.get_hostname repo_url
+        repo_host = get_hostname repo_url
 
         # find from ENV if there are any of these credentials
         # example: GITHUB_USERNAME, GITHUB_PASSWORD
@@ -415,6 +415,16 @@ module TeracyDev
         @logger.error "fail to clone (#{status}):\n#{stderr}" if Util.exist?(stderr)
 
         return !Util.exist?(stderr), stderr.to_s
+      end
+
+      def get_hostname(url)
+        if url.start_with? 'www'
+            url = url.split('.')[1]
+        else
+            url = url.split('.')[0]
+        end
+
+        url
       end
 
       def fail_to_pull remote_url
