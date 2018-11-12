@@ -364,6 +364,10 @@ module TeracyDev
 
         # user defined credentials: repo_info[0...-1].join('')
 
+        # TODO(@phuonglm): I don't think get hostname is right here for example git address is
+        # 192.168.1.10 then host name became 192???
+        # we could just use domain name and remove all invalid character to make env var key.
+        # see: https://github.com/teracyhq/dev/pull/539#discussion_r231374266
         repo_host = get_hostname repo_url
 
         # find from ENV if there are any of these credentials
