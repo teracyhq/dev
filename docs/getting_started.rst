@@ -152,7 +152,7 @@ Automatic Installation on Windows
 Manual Installation on Windows
 ------------------------------
 
-This should be the same on Windows 10, Windows 8 and Windows 7.
+This should be the same on Windows 10, Windows 8 and Windows 7 SP1 x64. We don't support Windows 32 bit.
 
 Follow step by step instructions below:
 
@@ -332,6 +332,31 @@ teracy-dev Git Clone and Vagrant Up
        - On Windows, if you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
          "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
          has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
+
+       - On Windows, if you see the error `code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)` when using vagrant:
+
+        ::
+
+          $ vagrant status
+          [TeracyDev::Util][WARN]: The _id: '0' is deprecated, use the _id: 'kernel-core' instead for {"_id"=>"0", "location"=>{"git"=>{"remote"=>{"origin"=>"https://github.com/teracyhq-incubator/teracy-dev-core.git"}, "branch"=>"develop"}}, "require_version"=>">= 0.4.0-SNAPSHOT"}
+
+          [TeracyDev::Plugin][INFO]: installing plugin: {"_id"=>"essential-0", "name"=>"vagrant-hostmanager", "version"=>"", "state"=>"installed", "config_key"=>"hostmanager", "enabled"=>true, "options"=>{"enabled"=>true, "manage_host"=>true, "manage_guest"=>true}, "sources"=>["https://rubygems.org/", "https://gems.hashicorp.com/"]}
+
+          [TeracyDev::Plugin][INFO]: installing plugin: {"_id"=>"essential-0", "name"=>"vagrant-hostmanager", "version"=>"", "state"=>"installed", "config_key"=>"hostmanager", "enabled"=>true, "options"=>{"enabled"=>true, "manage_host"=>true, "manage_guest"=>true}, "sources"=>["https://rubygems.org/", "https://gems.hashicorp.com/"]}
+
+          C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `initialize'
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:250:in `exception'
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:250:in `raise'
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:250:in `check'
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:320:in `QueryValue'
+          from C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:644:in `read'
+
+
+        you should set the `system locale` into `US`, by going to `Control Panel` --> `Region`
+        --> `Location` --> select `United States` for `Home Location`. Then, navigate to the
+        `Administrative` tab --> Change system locale… > Click `Appy` in the popup --> click `OK` to confirm selecting
+        `English (United States)` --> Apply, and restart the machine.
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just `vagrant up`.
 
