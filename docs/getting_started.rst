@@ -335,15 +335,15 @@ teracy-dev Git Clone and Vagrant Up
 
        - On Windows, if you see the error `code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)` when using vagrant:
 
-        ::
+         ::
 
-          $ vagrant status
-          C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)
+           $ vagrant status
+           C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)
 
-        You should set the `system locale` into `US`, by following the steps below:
+         You should set the `system locale` into `US`, by following the steps below:
          
-        - Open `Control Panel` --> `Region` --> `Location` --> select `United States` for `Home Location`.
-        - Navigate to the `Administrative` tab --> Change system locale… > Click `Appy` in the popup --> click `OK` to confirm selecting `English (United States)` --> Apply, and restart the machine.
+           - Open `Control Panel` --> `Region` --> `Location` --> select `United States` for `Home Location`.
+           - Navigate to the `Administrative` tab --> Change system locale… > Click `Appy` in the popup --> click `OK` to confirm selecting `English (United States)` --> Apply, and restart the machine.
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just `vagrant up`.
 
