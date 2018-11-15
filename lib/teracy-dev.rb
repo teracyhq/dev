@@ -2,6 +2,7 @@
 # and it will load all the required modules loaded here
 
 require_relative 'teracy-dev/logging'
+require_relative 'teracy-dev/logging/mask_log_manager'
 require_relative 'teracy-dev/loader'
 require_relative 'teracy-dev/extension/manager'
 
@@ -15,14 +16,16 @@ module TeracyDev
 
   DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions' # relative to the Vagrantfile
 
+  TeracyDev::Logging::MaskLogManager.build_settings
+
   @@logger = TeracyDev::Logging.logger_for(self)
+
   # we can only create one Loader instance and accessible on this only
   @@loader = TeracyDev::Loader.new
 
   def self.register_processor(processor, weight = 5)
     @@loader.processorsManager.register(processor, weight)
   end
-
 
   def self.register_configurator(configurator, weight = 5)
     @@loader.configManager.register(configurator, weight)

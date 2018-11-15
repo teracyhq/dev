@@ -19,6 +19,10 @@ module TeracyDev
       @@acceptors << acceptor
     end
 
+    def self.masked(msg)
+      msg = Logging::MaskLogManager.masked(msg)
+    end
+
     private
 
     def self.configure_logger_for(classname)
@@ -52,6 +56,7 @@ module TeracyDev
         end
 
         if accepted
+          msg = masked(msg)
           log = "[#{progname}][#{severity}]: #{msg}\n"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"

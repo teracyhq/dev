@@ -8,7 +8,7 @@ module TeracyDev
       @@synch_list = [GitSynch.new]
       @@logger = TeracyDev::Logging.logger_for(self)
 
-      # return true if location is updated, otherwise, return false (no sync)
+      # return true if sync action is carried out, otherwise, return false
       def self.sync(location, sync_existing = true)
         updated = false
         timer_start = Time.now

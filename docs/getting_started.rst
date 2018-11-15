@@ -280,7 +280,7 @@ teracy-dev Git Clone and Vagrant Up
        $ cd ~/
        $ git clone https://github.com/teracyhq/dev.git teracy-dev
        $ cd teracy-dev
-       $ git checkout v0.6.0-a5
+       $ git checkout develop
        $ vagrant up
 
    ..  note::
@@ -362,5 +362,14 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
    .. note::
 
       On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
+      If you have SSH configured and vagrant is still not working on Windows, set the
+      `VAGRANT_PREFER_SYSTEM_BIN` environment variable to true:
+
+      ..  code-block:: bash
+
+          $ export VAGRANT_PREFER_SYSTEM_BIN=true
+          $ vagrant status
+
+
 
 *Congratulations, you’ve all set now!*
