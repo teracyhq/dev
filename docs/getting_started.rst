@@ -21,7 +21,7 @@ Please follow the installation instruction below, after that, the instruction st
 
       + macOS Sierra
       + Ubuntu 16.04
-      + Windows 10, Windows 8, Windows 7
+      + Windows 10, Windows 8, Windows 7 SP1 x64. We don't support Windows 32 bit.
 
       Other platforms are expected to work, but we haven't fully tested them yet.
 
@@ -332,6 +332,18 @@ teracy-dev Git Clone and Vagrant Up
        - On Windows, if you ``$ vagrant up`` but cannot start the VirtualBox, please find "VBoxUSBMon.inf" and
          "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
          has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
+
+       - On Windows, if you see the error `code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)` when using vagrant:
+
+         ::
+
+           $ vagrant status
+           C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)
+
+         You should set the `system locale` into `US`, by following the steps below:
+         
+           - Open `Control Panel` --> `Region` --> `Location` --> select `United States` for `Home Location`.
+           - Navigate to the `Administrative` tab --> Change system locale… > Click `Appy` in the popup --> click `OK` to confirm selecting `English (United States)` --> Apply, and restart the machine.
 
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just `vagrant up`.
 
