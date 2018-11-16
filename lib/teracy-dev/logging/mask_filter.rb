@@ -107,7 +107,7 @@ module TeracyDev
 
       def load_logger_conf
         logger_file_path = File.join(TeracyDev::Env::EXTENSION_ENTRY_PATH, 'logger.yaml')
-        return nil unless File.exist? logger_file_path
+        return {} unless File.exist? logger_file_path
         load_yaml_file(logger_file_path)
       end
 
