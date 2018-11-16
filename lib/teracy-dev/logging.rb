@@ -2,12 +2,14 @@ require 'logger'
 
 require_relative 'common'
 require_relative 'logging/progname_acceptor'
+require_relative 'logging/mask_filter'
 
 module TeracyDev
   module Logging
     # Use a hash class-ivar to cache a unique Logger per class:
     @@loggers = {}
     @@acceptors = [PrognameAcceptor.new] # default acceptors
+    @@filters = [MaskFilter.new] # default filters
 
     def self.logger_for(classname)
       # cache
@@ -19,8 +21,8 @@ module TeracyDev
       @@acceptors << acceptor
     end
 
-    def self.masked(msg)
-      msg = Logging::MaskLogManager.masked(msg)
+    def self.add_filter(filter)
+      @@filters << filter
     end
 
     private
@@ -56,7 +58,9 @@ module TeracyDev
         end
 
         if accepted
-          msg = masked(msg)
+          @@filters.each do |filter|
+            msg = filter.filtered(msg)
+          end
           log = "[#{progname}][#{severity}]: #{msg}\n"
           case severity
           when "UNKNOWN", "FATAL", "ERROR"
