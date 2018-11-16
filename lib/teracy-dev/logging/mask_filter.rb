@@ -72,12 +72,13 @@ module TeracyDev
         end
 
         variables.each do |key, val|
+          val = val.to_s
           # now resolve val to mask_value
           # refer to: https://github.com/teracyhq-incubator/teracy-dev-core/blob/develop/lib/teracy-dev-core/processors/variables.rb#L14
-          match_string = /\$\{(.*):\-(.*)?\}/.match(val.to_s)
+          match_string = /\$\{(.*):\-(.*)?\}/.match(val)
 
           if !match_string
-            match_string = /\$\{(.*)\}/.match(val.to_s)
+            match_string = /\$\{(.*)\}/.match(val)
           end
 
           if match_string
