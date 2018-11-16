@@ -12,7 +12,7 @@ module TeracyDev
       def self.sync(location, sync_existing = true, force = false)
         updated = false
         timer_start = Time.now
-        if !force && !cmdRequireSync?
+        if !force && !sync_required?
           return false
         end
         @@synch_list.each do |synch|
@@ -25,7 +25,7 @@ module TeracyDev
         updated
       end
 
-      def self.cmdRequireSync?
+      def self.sync_required?
         return ARGV.include?('up') || ARGV.include?('status') || ARGV.include?('reload')
       end
     end
