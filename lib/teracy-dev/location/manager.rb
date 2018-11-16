@@ -9,9 +9,12 @@ module TeracyDev
       @@logger = TeracyDev::Logging.logger_for(self)
 
       # return true if sync action is carried out, otherwise, return false
-      def self.sync(location, sync_existing = true)
+      def self.sync(location, sync_existing = true, force = false)
         updated = false
         timer_start = Time.now
+        if !force && !cmdRequireSync?
+          return false
+        end
         @@synch_list.each do |synch|
           if synch.sync(location, sync_existing) == true
             updated = true
@@ -20,6 +23,10 @@ module TeracyDev
         timer_end = Time.now
         @@logger.debug("sync finished in #{timer_end - timer_start}s with updated: #{updated}, location: #{location}")
         updated
+      end
+
+      def self.cmdRequireSync?
+        return ARGV.include?('up') || ARGV.include?('status') || ARGV.include?('reload')
       end
     end
   end
