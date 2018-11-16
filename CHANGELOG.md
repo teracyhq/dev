@@ -2,6 +2,48 @@ Change Log
 ==========
 
 
+[v0.6.0-a5][] (2018-11-16)
+--------------------------
+
+- Features:
+    + should support register processors, configurators with weight #497
+    + should support "remote" location config from Location::GitSynch #502
+    + should add support for extension dependency validation #498
+    + should support \_id update with deprecation #501
+    + should mask specified secret values within log messages #492
+
+- Improvements:
+    + gitsynch should not auto update repos when there are untracked changes #469
+    + should always use Util.true? for converting boolean values #506
+    + should add "nodes" generated from chef provisioner to the .gitignore file #503
+    + should have a way to display the final settings in yaml format for the debug log level #505
+    + should not display log tracing when the log level is not debug #533
+    + should use \_id: "kernel-core" instead of \_id: "0" for the core extension config #545
+    + location sync should support offline mode #526
+    + gitsynch should check if git clone success or not to inform users about errors #508
+    + should make sure gitsynch support http authentication #464
+    + should run location sync with specific vagrant sub commands only to improve responsiveness #531
+
+- Bug Fixes:
+    + should sync teracy-dev, sync teracy-dev-entry before syncing extensions #487
+    + something wrong with the plugin installation when no plugin is installed #486
+    + plugin should validate plugin params before proceeding #493
+    + wrong order in extensions config merge #499
+    + should make sure settings is immutable after being built #462
+    + failed to sync teracy-dev-entry #523
+    + load_yaml_file should use YAML.load_file instead of YAML.load #529
+    + teracy-dev-entry should update its git remote repos even if sync is false #535
+    + "fatal: No such remote:" should not be displayed when a new git remote repo config is added #534
+
+- Tasks:
+    + should update README with "how to develop" section #470
+    + logger should be `TeracyDev::Config::Manager` instead of `TeracyDev::Processors::Manager` #514
+    + gitsynch on Windows did not work as expected with private git repos #509
+    + update docs for "win32/registry.rb:185:in "encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)" error on Windows #544
+
+Details: https://github.com/teracyhq/dev/milestone/12?closed=1
+
+
 [v0.6.0-a4][] (2018-09-15)
 --------------------------
 
@@ -363,3 +405,4 @@ Release the first milestone
 [v0.6.0-a2]: https://github.com/teracyhq/dev/milestone/9?closed=1
 [v0.6.0-a3]: https://github.com/teracyhq/dev/milestone/10?closed=1
 [v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1
+[v0.6.0-a5]: https://github.com/teracyhq/dev/milestone/12?closed=1
