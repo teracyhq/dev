@@ -259,7 +259,7 @@ module TeracyDev
 
         return true if pull_success
 
-        # we have errors then we will using configurated credentials
+        # we have errors then we will using configured credentials
         # or inform user to update, then try again
 
         remote_url = `git remote get-url '#{remote_name}'`.strip
@@ -323,7 +323,7 @@ module TeracyDev
           # it is https url
           # and wheter it has credentials or not, still clone it
 
-          @logger.info("Attempting to using your configurated credentials for #{remote_url}")
+          @logger.info("Attempting to using your configured credentials for #{remote_url}")
 
           clone_success, error_msg = git_clone processed_remote_url, dir
 
