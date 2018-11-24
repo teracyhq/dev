@@ -31,6 +31,7 @@ module TeracyDev
       # we sync teracy-dev and teracy-dev-entry before extensions
       sync()
       settings = build_settings().freeze
+      require_vagrant_version(settings['vagrant']['require_version']) if TeracyDev::Util.exist?(settings['vagrant']['require_version'])
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
@@ -170,10 +171,20 @@ module TeracyDev
       @processorsManager.process(settings)
     end
 
+    def require_vagrant_version(*requirements)
+      vagrant_version = Vagrant::VERSION
+
+      if !Util.require_version_valid?(vagrant_version, *requirements)
+        @logger.error("vagrant's current version: #{vagrant_version}")
+        @logger.error("`#{requirements}` is required, make sure to update vagrant to satisfy the requirements.")
+        abort
+      end
+    end
+
     def require_teracy_dev_version(*requirements)
       if !Util.require_version_valid?(TeracyDev::VERSION, *requirements)
-        @@logger.error("teracy-dev's current version: #{VERSION}")
-        @@logger.error("`#{requirements}` is required, make sure to update teracy-dev to satisfy the requirements.")
+        @logger.error("teracy-dev's current version: #{VERSION}")
+        @logger.error("`#{requirements}` is required, make sure to update teracy-dev to satisfy the requirements.")
         abort
       end
     end
