@@ -59,7 +59,7 @@ module TeracyDev
 
         if accepted
           @@filters.each do |filter|
-            msg = filter.filtered(msg)
+            msg = filter.filtered(msg.to_s)
           end
           log = "[#{progname}][#{severity}]: #{msg}\n"
           case severity
