@@ -24,7 +24,7 @@ module TeracyDev
         resolve_variables logger_conf['logger']['mask']['variables']
       end
 
-      def filtered(msg)
+      def filter(msg)
         return masked(msg)
       end
 
