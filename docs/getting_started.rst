@@ -388,7 +388,7 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
 
        ..  code-block:: bash
 
-           $ source ~/.bash_profile
+          $ source ~/.bash_profile
 
       Now, open the terminal and run the ``export`` command to check if the variable is added successfully
 
