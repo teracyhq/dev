@@ -58,8 +58,14 @@ module TeracyDev
         end
 
         if accepted
-          @@filters.each do |filter|
-            msg = filter.filtered(msg.to_s)
+          @@filters.each do |flt|
+            if flt.respond_to?(:filtered)
+              deprecated_msg = "[TeracyDev::Logging][WARN]: filter.filtered is deprecated, use filter.filter instead for #{flt}"
+              puts TeracyDev::Common.yellow(deprecated_msg)
+              msg = flt.filtered(msg.to_s)
+            else
+              msg = flt.filter(msg.to_s)
+            end
           end
           log = "[#{progname}][#{severity}]: #{msg}\n"
           case severity
