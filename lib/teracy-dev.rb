@@ -5,9 +5,11 @@ require_relative 'teracy-dev/env'
 require_relative 'teracy-dev/logging'
 require_relative 'teracy-dev/loader'
 require_relative 'teracy-dev/extension/manager'
+require_relative 'teracy-dev/location/manager'
 
 require_relative 'teracy-dev/logging/progname_acceptor'
 require_relative 'teracy-dev/logging/mask_filter'
+require_relative 'teracy-dev/location/git_synch'
 
 
 # define public APIs here
@@ -41,6 +43,7 @@ module TeracyDev
   def self.init
     Logging.add_acceptor(Logging::PrognameAcceptor.new)
     Logging.add_filter(Logging::MaskFilter.new)
+    Location::Manager.add_synch(Location::GitSynch.new)
     @@loader.start
   end
 
