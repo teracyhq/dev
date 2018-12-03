@@ -6,6 +6,9 @@ require_relative 'teracy-dev/logging'
 require_relative 'teracy-dev/loader'
 require_relative 'teracy-dev/extension/manager'
 
+require_relative 'teracy-dev/logging/progname_acceptor'
+require_relative 'teracy-dev/logging/mask_filter'
+
 
 # define public APIs here
 module TeracyDev
@@ -34,6 +37,11 @@ module TeracyDev
     @@loader.configManager.register(configurator, weight)
   end
 
-  @@loader.start
+
+  def self.init
+    Logging.add_acceptor(Logging::PrognameAcceptor.new)
+    Logging.add_filter(Logging::MaskFilter.new)
+    @@loader.start
+  end
 
 end
