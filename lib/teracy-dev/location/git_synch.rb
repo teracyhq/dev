@@ -1,20 +1,20 @@
-require_relative '../logging'
 require 'open3'
+
+require_relative '../logging'
+require_relative './synch'
+
 
 module TeracyDev
   module Location
     class GitWarn < StandardError
     end
 
-    class GitSynch
+    class GitSynch < Synch
 
-      def initialize
-        @logger = TeracyDev::Logging.logger_for(self.class.name)
-      end
 
-      def sync(location, sync_existing)
+      def sync(location_conf, sync_existing)
         begin
-          start(location, sync_existing)
+          start(location_conf, sync_existing)
         rescue GitWarn => e
           @logger.warn(e)
 
