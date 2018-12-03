@@ -9,6 +9,7 @@ module TeracyDev
     class PrognameAcceptor < Acceptor
 
       def initialize
+        super
         @LOG_PROGNAME = ENV['LOG_PROGNAME'] || '.*' # use regex to check with progname
       end
 

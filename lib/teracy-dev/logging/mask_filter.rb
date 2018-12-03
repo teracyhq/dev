@@ -2,6 +2,7 @@ require 'set'
 
 require_relative '../env'
 require_relative 'filter'
+require_relative '../util'
 
 
 module TeracyDev
@@ -17,6 +18,7 @@ module TeracyDev
       # - load logger.yaml and config_override.yaml to resolve logger.mask.variables
       # - add to @masked_values from logger.mask.values
       def initialize
+        super
         @masked_values = Set[] # because no duplicated values within set
         logger_conf = load_logger_conf
         return unless logger_conf_valid? logger_conf
@@ -108,30 +110,16 @@ module TeracyDev
       def load_logger_conf
         logger_file_path = File.join(TeracyDev::Env::EXTENSION_ENTRY_PATH, 'logger.yaml')
         return {} unless File.exist? logger_file_path
-        load_yaml_file(logger_file_path)
+        Util.load_yaml_file(logger_file_path)
       end
 
       def load_override_variables
         config_override_path = File.join(TeracyDev::Env::EXTENSION_ENTRY_PATH, 'config_override.yaml')
         return nil unless File.exist? config_override_path
-        override_conf = load_yaml_file(config_override_path)
+        override_conf = Util.load_yaml_file(config_override_path)
         return {} if override_conf.nil?
         return {} if override_conf['variables'].nil?
         override_conf['variables']
-      end
-
-      # we can't use util because it requires logging (which is not avaiable on this module)
-      def load_yaml_file(file_path)
-        if File.exist? file_path
-          # TODO: exception handling
-          result = YAML.load_file(file_path)
-          if result == false
-            result = {}
-          end
-          result
-        else
-          {}
-        end
       end
     end
   end

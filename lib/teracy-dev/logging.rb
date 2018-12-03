@@ -1,15 +1,14 @@
 require 'logger'
 
 require_relative 'common'
-require_relative 'logging/progname_acceptor'
-require_relative 'logging/mask_filter'
+
 
 module TeracyDev
   module Logging
     # Use a hash class-ivar to cache a unique Logger per class:
     @@loggers = {}
-    @@acceptors = [PrognameAcceptor.new] # default acceptors
-    @@filters = [MaskFilter.new] # default filters
+    @@acceptors = []
+    @@filters = []
 
     def self.logger_for(classname)
       # cache
