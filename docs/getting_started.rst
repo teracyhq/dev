@@ -374,15 +374,23 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
 
    .. note::
 
-      On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
-      If you have SSH configured and vagrant is still not working on Windows, set the
-      `VAGRANT_PREFER_SYSTEM_BIN` environment variable to true:
+      - On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
+
+      - If you have SSH configured and ``vagrant`` is still not working on Windows, you should add the
+        ``export VAGRANT_PREFER_SYSTEM_BIN=true`` environment variable to the ``.bash_profile`` file, that helps you
+        not add this variable on Cygwin repeatedly.
 
       ..  code-block:: bash
 
-          $ export VAGRANT_PREFER_SYSTEM_BIN=true
-          $ vagrant status
+          $ cat >> ~/.bash_profile
 
+      Type ``export VAGRANT_PREFER_SYSTEM_BIN=true`` and press ``Ctrl + D``, then run:
+
+       ..  code-block:: bash
+
+           $ source ~/.bash_profile
+
+      Now, open the terminal and run the ``export`` command to check if the variable is added successfully
 
 
 *Congratulations, you’ve all set now!*
