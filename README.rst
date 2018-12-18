@@ -61,4 +61,4 @@ Follow the commands below to pull the latest code of teracy-dev and you can cont
 License
 -------
 
-BSD License
+MIT License
