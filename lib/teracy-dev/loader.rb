@@ -135,6 +135,8 @@ module TeracyDev
     def build_settings
       settings = @settingsManager.build_settings(@extension_entry_path)
       load_extension_entry_files(settings)
+      load_entry_file(@extension_entry_path)
+
       settings = process(settings)
       # updating nodes here so that processors have change to adjust nodes by adjusting default
       # create nodes by overrides each node with the default
@@ -148,6 +150,16 @@ module TeracyDev
         @logger.debug("final settings: #{settings}")
       end
       settings
+    end
+
+    def load_entry_file(extension_entry_path)
+      entry_file_path = File.join(extension_entry_path, 'teracy-dev-ext.rb')
+
+      if File.exist? entry_file_path
+        TeracyDev::Util.load_file_path(entry_file_path)
+      else
+        @logger.debug("#{entry_file_path} does not exist, ignored.")
+      end
     end
 
     def load_extension_entry_files(settings)
