@@ -152,6 +152,8 @@ module TeracyDev
       settings
     end
 
+    # @since v0.6.0-b1
+    # see: https://github.com/teracyhq/dev/issues/559
     def load_entry_file(extension_entry_path)
       entry_file_path = File.join(extension_entry_path, 'teracy-dev-ext.rb')
 
