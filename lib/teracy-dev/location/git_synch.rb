@@ -18,7 +18,7 @@ module TeracyDev
         required_git_version = '>= 2.20'
 
         if !TeracyDev::Util.require_version_valid? current_git_version, required_git_version
-          @logger.warn("Your current git version (#{current_git_version}) is not meet the required version (#{required_git_version}), please upgrade it to run properly.")
+          @logger.warn("Your current git version (#{current_git_version}) does not meet the required version (#{required_git_version}), please upgrade it to run properly.")
         end
       end
 
