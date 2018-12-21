@@ -1,4 +1,4 @@
 module TeracyDev
   # sermver format
-  VERSION = '0.6.0-a5'
+  VERSION = '0.6.0-a6-SNAPSHOT'
 end
