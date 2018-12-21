@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+[v0.6.0-a6][] (2018-12-21)
+--------------------------
+
+- Bug Fixes:
+    + Should support multi language for git_sync #580
+
+Details: https://github.com/teracyhq/dev/milestone/15?closed=1
+
 
 [v0.6.0-a5][] (2018-11-16)
 --------------------------
@@ -406,3 +414,4 @@ Release the first milestone
 [v0.6.0-a3]: https://github.com/teracyhq/dev/milestone/10?closed=1
 [v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1
 [v0.6.0-a5]: https://github.com/teracyhq/dev/milestone/12?closed=1
+[v0.6.0-a6]: https://github.com/teracyhq/dev/milestone/15?closed=1
