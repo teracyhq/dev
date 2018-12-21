@@ -10,7 +10,17 @@ module TeracyDev
     end
 
     class GitSynch < Synch
+      def initialize
+        super
 
+        current_git_version = `git --version`.gsub("git version", "").strip
+
+        required_git_version = '>= 2.20'
+
+        if !TeracyDev::Util.require_version_valid? current_git_version, required_git_version
+          @logger.warn("Your current git version (#{current_git_version}) is not meet the required version (#{required_git_version}), please upgrade it to run properly.")
+        end
+      end
 
       def sync(location_conf, sync_existing)
         begin
@@ -456,7 +466,8 @@ module TeracyDev
       end
 
       def git_stage_has_untracked_changes?
-        git_status = `git status`
+        git_status = `LANGUAGE= LANG=en_US.UTF-8 git status`
+
 
         working_tree_are_clean = Util.exist? git_status.match(/nothing to commit, working .* clean/)
 
