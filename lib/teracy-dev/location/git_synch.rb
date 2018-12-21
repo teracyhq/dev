@@ -15,6 +15,10 @@ module TeracyDev
 
         required_git_version = '>= 2.20'
 
+        ENV['LANG'] = 'en_US.UTF-8'
+
+        ENV['LANGUAGE'] = ''
+
         if !TeracyDev::Util.require_version_valid? current_git_version, required_git_version
           @logger.warn("Your current git version (#{current_git_version}) does not meet the required version (#{required_git_version}), please upgrade it to run properly.")
         end
@@ -464,8 +468,7 @@ module TeracyDev
       end
 
       def git_stage_has_untracked_changes?
-        git_status = `LANGUAGE= LANG=en_US.UTF-8 git status`
-
+        git_status = `git status`
 
         working_tree_are_clean = Util.exist? git_status.match(/nothing to commit, working .* clean/)
 
