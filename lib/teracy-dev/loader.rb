@@ -56,12 +56,10 @@ module TeracyDev
       })
       @logger.debug("location: #{location}")
 
-      if Util.true?(location['sync'])
-        if Location::Manager.sync(location) == true
-          # reload
-          @logger.info("reloading...")
-          exec "vagrant #{ARGV.join(" ")}"
-        end
+      if Location::Manager.sync(location, location['sync']) == true
+        # reload
+        @logger.info("reloading...")
+        exec "vagrant #{ARGV.join(" ")}"
       end
     end
 
