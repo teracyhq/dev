@@ -26,6 +26,42 @@ module TeracyDev
         end
       end
 
+      # location sync with git location config format:
+      #
+      #```yaml
+      # location:
+      #   lookup_path: <the_path_to_clone>
+      #   path: <the_git_repo_path_to_sync> //TODO(hoatle): path = lookup_path + (dir || repo_name) so we can omit the path config
+      #   git:
+      #     remote:
+      #       origin: <git_remote_url>
+      #       <remote_name>: <git_remote_url>
+      #     branch: <the_branch_to_sync> or 'master' by default
+      #     tag: <the_same_as_branch>
+      #     ref: <the_revision_reference_to_sync>
+      #     dir: <the_dir_name_when_cloned>
+      #```
+      #
+      # origin remote repo is required for sync
+      # git_remote_url can be ssh or https protocol. The https protocol supports authentication
+      # via user:pass@host/repo.git or env var:  `HOST`_USERNAME and `HOST`_PASSWORD
+      # `HOST` is normalized by converting `.` to `_` in the host, eg: github.com => GITHUB_COM, 192.168.1.1 => 192_168_1_1 
+      # TODO(hoatle): fix the host as specified above, current: github.com => GITHUB, expected: GITHUB_COM
+      #
+      # precedence: ref > tag > branch when they co-exist within the config, 1 of them must be specified
+      # if none of ref, tag, branch is valid and synced, the error will be reported
+      #
+      # the remote repos from the config will always be added/updated to the existing repo by the path
+      #
+      # if the path exists => we'll sync the existing repo, otherwise, we'll clone the repo
+      #
+      # - sync existing:
+      #   + if there are uncommited changes => abort, no sync
+      #   + if `master` or `develop` branch specififed => always try to fetch and sync the latest (prod or dev mode)
+      #   + otherwise, the ref/tag/branch must be exactly synced as specified
+      # - clone:
+      #   + clone the defined origin remote repo in the lookup_path dir with optional dir name
+      #   + and then checkout the specified ref/tag/branch
       def sync(location_conf, sync_existing)
         begin
           start(location_conf, sync_existing)
@@ -118,7 +154,7 @@ module TeracyDev
           end
         else
           if Vagrant::Util::Which.which('git') == nil
-            @logger.error("git is not avaiable")
+            @logger.error("git is not available")
             abort
           end
           Dir.chdir(lookup_path) do
