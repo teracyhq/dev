@@ -25,15 +25,11 @@ Please follow the installation instruction below, after that, the instruction st
 
       Other platforms are expected to work, but we haven't fully tested them yet.
 
-- If you're using a macOS machine,
-  :ref:`click here to jump to macOS installation <manual-installation-on-macos>`.
+- If you're using a macOS machine, `click here to jump to macOS installation <manual-installation-on-macos_>`_.
 
-- If you're using a Linux (Ubuntu) machine,
-  :ref:`click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu>`.
+- If you're using a Linux (Ubuntu) machine, `click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu_>`_.
 
-- If you're using a Windows machine,
-  :ref:`click here to jump to Windows installation <manual-installation-on-windows>`.
-
+- If you're using a Windows machine, `click here to jump to Windows manual installation <manual-installation-on-windows-to-use-git-bash)>`_.
 
 Automatic Installation on macOS
 -------------------------------
@@ -89,7 +85,7 @@ Open the terminal window:
          - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 Automatic Installation on Linux (Ubuntu)
 ----------------------------------------
@@ -140,17 +136,58 @@ Please check out the instruction video below for more details:
 
       The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 Automatic Installation on Windows
 ---------------------------------
 
 // TODO(hoatle): add this
 
-.. _manual-installation-on-windows:
+.. _manual-installation-on-windows-to-use-git-bash:
 
-Manual Installation on Windows
-------------------------------
+Manual Installation on Windows to use Git Bash
+----------------------------------------------
+
+1. Install `chocolatey <https://chocolatey.org/install#installing-chocolatey>`_:
+
+   Run ``Command Prompt`` **as administrator** and then copy this to your terminal window:
+
+   ..  code-block:: bash
+
+       @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+   After the installation is finished, restart the machine.
+
+2. Install `git <https://git-scm.com/downloads>`_ (>= 2.20.1):
+
+   ..  code-block:: bash
+
+       $ choco install git.install --version 2.20.1
+
+3. Install `virtualbox <https://www.virtualbox.org/>`_ (>= 5.2.22):
+
+   ..  code-block:: bash
+
+       $ choco install virtualbox --version 5.2.22
+
+4. Install `vagrant <https://www.vagrantup.com/>`_ (>= 2.2.2):
+
+   ..  code-block:: bash
+
+       $ choco install vagrant --version 2.2.2
+
+5. Install rsync for ```Git Bash```:
+
+  - Download `rsync-3.1 <http://www2.futureware.at/~nickoe/msys2-mirror/msys/x86_64/rsync-3.1.2-2-x86_64.pkg.tar.xz>`_ at http://www2.futureware.at/~nickoe/msys2-mirror/msys/x86_64/
+
+  - Extract and copy ``rsync.exe`` to ``C:\Program Files\Git\usr\bin``, then re-open your terminal window.
+
+Now everything is done, head over to `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_ to continue the setup.
+
+.. _manual-installation-on-windows-to-use-cygwin:
+
+Manual Installation on Windows to use Cygwin
+--------------------------------------------
 
 This should be the same on Windows 10, Windows 8 and Windows 7.
 
@@ -267,7 +304,8 @@ Please check out the instruction video below for more details:
 
       The video is not really up to date with current teracy-dev v0.5.0, however, you will see the similar workflow and result.
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 .. _teracy-dev-git-clone-and-vagrant-up:
 
@@ -372,9 +410,8 @@ Git Setup
 To work with ``git``, complete the following guides to set up ssh keys:
 https://help.github.com/articles/connecting-to-github-with-ssh/
 
-   .. note::
 
-      - On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
+   .. note::
 
       - If you have SSH configured and ``vagrant`` is still not working on Windows, you should add the
         ``export VAGRANT_PREFER_SYSTEM_BIN=true`` environment variable to the ``.bash_profile`` file, that helps you
@@ -391,6 +428,5 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
           $ source ~/.bash_profile
 
       Now, open the terminal and run the ``export`` command to check if the variable is added successfully
-
 
 *Congratulations, you’ve all set now!*
