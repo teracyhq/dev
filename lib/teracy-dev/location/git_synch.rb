@@ -13,23 +13,7 @@ module TeracyDev
       def initialize
         super
 
-        current_git_version = `git --version`.gsub("git version", "").strip
-
-        required_git_version = '>= 2.19.1'
-
-        ENV['LANG'] = 'en_US.UTF-8'
-
-        ENV['LANGUAGE'] = ''
-
-        # to check which git version is support this feature
-        # copy all the contents of the specific git version,
-        # for exp: https://raw.githubusercontent.com/Homebrew/homebrew-core/6fd2a74356b62ac643f8689757288b0f5eee3a5e/Formula/git.rb
-        # then `brew edit git` and paste the contents above into it then `brew install git`
-        # then `git --version` and `LANGUAGE= LANG=en_US.UTF-8 git status` to check it
-
-        if !TeracyDev::Util.require_version_valid? current_git_version, required_git_version
-          @logger.warn("Your current git version (#{current_git_version}) does not meet the required version (#{required_git_version}), please upgrade it to run properly.")
-        end
+        ENV['LANGUAGE'] = 'en_US'
       end
 
       def sync(location_conf, sync_existing)
