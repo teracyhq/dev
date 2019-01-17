@@ -29,7 +29,7 @@ Please follow the installation instruction below, after that, the instruction st
 
 - If you're using a Linux (Ubuntu) machine, `click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu_>`_.
 
-- If you're using a Windows machine, `click here to jump to Windows manual installation <manual-installation-on-windows-to-use-git-bash)>`_.
+- If you're using a Windows machine, `click here to jump to Windows manual installation <manual-installation-on-windows-to-use-git-bash_>`_.
 
 Automatic Installation on macOS
 -------------------------------
