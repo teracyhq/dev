@@ -185,7 +185,7 @@ module TeracyDev
 
         if !$?.success?
           # fetch origin if tag is not present
-          attempt_to_pull_using_http_auth 'origin'
+          attempt_to_pull_using_http_auth 'origin', '--tags'
 
           # re-check
           tag_ref = `#{cmd}`.strip
@@ -253,11 +253,11 @@ module TeracyDev
       end
 
       # return true if pull success, raise a warning otherwise
-      def attempt_to_pull_using_http_auth remote_name = 'origin'
+      def attempt_to_pull_using_http_auth remote_name = 'origin', pull_options = ''
         # in most case, credentials of #{remote_name} has already been cached
         # so pull first, to see if there are any errors showing up
 
-        pull_success, error_msg = git_fetch remote_name
+        pull_success, error_msg = git_fetch remote_name, pull_options
 
         return true if pull_success
 
@@ -392,8 +392,8 @@ module TeracyDev
         return remote_url, credential_exists, repo_username_key, repo_password_key
       end
 
-      def git_fetch remote_name
-        stdout, stderr, status = Open3.capture3("git fetch #{remote_name}")
+      def git_fetch remote_name, fetch_options = ''
+        stdout, stderr, status = Open3.capture3("git fetch #{remote_name} #{fetch_options}")
 
         # the pull is success but still has stderr return
         # if stderr is not contains 'fatal: ' message then we consider it is a success
