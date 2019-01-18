@@ -1,13 +1,13 @@
 
 # teracy-dev related settings
 teracy-dev:
-  require_version: ">= 0.6.0-a8-SNAPSHOT"
+  require_version: ">= 0.6.0-a8"
   # location sync
   location:
     git:
       remote:
         origin: https://github.com/teracyhq/dev.git
-      branch: v0.6.0-x
+      branch: v0.6.0-a8
     sync: false # disabled by default, should be enabled by teracy-dev-entry when needed
   extensions:
     - _id: "kernel-core"
