@@ -19,6 +19,7 @@ if ARGV[0] && !unloadable_sub_commands.include?(ARGV[0])
 
   begin
     require 'teracy-dev'
+    TeracyDev.init
   rescue
     # add tracing for easier debugging and fixing
     puts $@

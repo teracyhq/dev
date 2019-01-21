@@ -11,29 +11,23 @@ Please follow the installation instruction below, after that, the instruction st
 
 ..  note::
 
-    - The 64-bit architecture is used and run every day by us, however, the 32-bit architecture is
-      expected to work, too.
-
     - By default, we're using a Ubuntu 64-bit guest OS, so you need to enable VT-x/AMD-v in the host PC BIOS.
       Remember to reboot your host PC after making BIOS changes. Please refer to https://forums.virtualbox.org/viewtopic.php?f=1&t=62339 for more details.
 
     - We recommend the following tested and supported platforms:
 
-      + macOS Sierra or above
-      + Ubuntu 16.04 or above
-      + Windows 10, Windows 8, Windows 7
+      + macOS Sierra and above
+      + Ubuntu 16.04 and above
+      + Windows 10, Windows 8, Windows 7 SP1 x64. We don't support Windows 32 bit.
+        Note: Power shell version >= 3.0
 
       Other platforms are expected to work, but we haven't fully tested them yet.
 
-- If you're using a macOS machine,
-  :ref:`click here to jump to macOS installation <manual-installation-on-macos>`.
+- If you're using a macOS machine, `click here to jump to macOS installation <manual-installation-on-macos_>`_.
 
-- If you're using a Linux (Ubuntu) machine,
-  :ref:`click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu>`.
+- If you're using a Linux (Ubuntu) machine, `click here to jump to Linux (Ubuntu) installation <manual-installation-on-linux-ubuntu_>`_.
 
-- If you're using a Windows machine,
-  :ref:`click here to jump to Windows installation <manual-installation-on-windows>`.
-
+- If you're using a Windows machine, `click here to jump to Windows manual installation <manual-installation-on-windows-to-use-git-bash_>`_.
 
 Automatic Installation on macOS
 -------------------------------
@@ -54,7 +48,7 @@ Open the terminal window:
 
 2. Install ``virtualbox`` and ``vagrant``
 
-   - Install ``virtualbox`` (v5.2 or above):
+   - Install ``virtualbox`` (v5.2.22 or above):
 
      .. code-block:: bash
 
@@ -68,28 +62,10 @@ Open the terminal window:
 
      ..  note::
 
-         - If you encounter the following similar error:
-
-           ..  code-block:: bash
-
-              ==> default: Box 'bento/ubuntu-18.04' could not be found. Attempting to find and install...
-                  default: Box Provider: virtualbox
-                  default: Box Version: >= 0
-              The box 'bento/ubuntu-18.04' could not be found or
-              could not be accessed in the remote catalog. If this is a private
-              box on HashiCorp's Atlas, please verify you're logged in via
-              `vagrant login`. Also, please double-check the name. The expanded
-              URL and error message are shown below:
-
-              URL: ["https://atlas.hashicorp.com/bento/ubuntu-18.04"]
-
-           then fix it with ``$ sudo rm -rf /opt/vagrant/embedded/bin/curl`` (Details at
-           https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970)
-
          - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 Automatic Installation on Linux (Ubuntu)
 ----------------------------------------
@@ -112,21 +88,19 @@ Open the terminal window:
       $ sudo apt-get update
       $ sudo apt-get install -y git
 
-2. Install ``virtualbox`` (v5.2 or above):
+2. Install ``virtualbox`` (v5.2.22 or above):
 
    ..  code-block:: bash
 
-      $ sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib non-free' > /etc/apt/sources.list.d/virtualbox.list" \
-      && wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc -O- | sudo apt-key add - \
+      $ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add - \
       && wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add - \
-      && sudo apt-get update && sudo apt-get install virtualbox-5.2 -y
+      && sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian `lsb_release -cs` contrib"
+      && sudo apt-get update && sudo apt-get install virtualbox -y
 
 3. Install ``vagrant`` (v2.1.0 or above):
    ..  code-block:: bash
 
-      $ version=2.1.2 && cd /tmp \
-      && wget $(if [ `uname -m` == "x86_64" ]; then echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_x86_64.deb"; else echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_i686.deb"; fi;) \
-      && sudo dpkg -i vagrant_${version}* && rm vagrant_${version}* && cd --
+      $ sudo apt-get update && sudo apt-get install vagrant
 
 
 Please check out the instruction video below for more details:
@@ -139,17 +113,58 @@ Please check out the instruction video below for more details:
 
       The video is not really up to date with current teracy-dev v0.6.0, however, you will see the similar workflow and result.
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 Automatic Installation on Windows
 ---------------------------------
 
 // TODO(hoatle): add this
 
-.. _manual-installation-on-windows:
+.. _manual-installation-on-windows-to-use-git-bash:
 
-Manual Installation on Windows
-------------------------------
+Manual Installation on Windows to use Git Bash
+----------------------------------------------
+
+1. Install `chocolatey <https://chocolatey.org/install#installing-chocolatey>`_:
+
+   Run ``Command Prompt`` **as administrator** and then copy this to your terminal window:
+
+   ..  code-block:: bash
+
+       @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+   After the installation is finished, restart the machine.
+
+2. Install `git <https://git-scm.com/downloads>`_ (>= 2.20.1):
+
+   ..  code-block:: bash
+
+       $ choco install git.install --version 2.20.1
+
+3. Install `virtualbox <https://www.virtualbox.org/>`_ (>= 5.2.22):
+
+   ..  code-block:: bash
+
+       $ choco install virtualbox --version 5.2.22
+
+4. Install `vagrant <https://www.vagrantup.com/>`_ (>= 2.2.3):
+
+   ..  code-block:: bash
+
+       $ choco install vagrant --version 2.2.3
+
+5. Install rsync for ```Git Bash```:
+
+  - Download `rsync-3.1 <http://www2.futureware.at/~nickoe/msys2-mirror/msys/x86_64/rsync-3.1.2-2-x86_64.pkg.tar.xz>`_ at http://www2.futureware.at/~nickoe/msys2-mirror/msys/x86_64/
+
+  - Extract and copy ``rsync.exe`` to ``C:\Program Files\Git\usr\bin``, then re-open your terminal window.
+
+Now everything is done, head over to `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_ to continue the setup.
+
+.. _manual-installation-on-windows-to-use-cygwin:
+
+Manual Installation on Windows to use Cygwin
+--------------------------------------------
 
 This should be the same on Windows 10, Windows 8 and Windows 7.
 
@@ -242,11 +257,11 @@ Follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox`` (v5.2 or above):
+   - Install ``virtualbox`` (v5.2.22 or above):
 
      .. code-block:: bash
 
-        $ choco install virtualbox --version 5.2.14 -y
+        $ choco install virtualbox --version 5.2.22 -y
 
    - Install ``vagrant`` (v2.1.0 or above):
 
@@ -266,7 +281,8 @@ Please check out the instruction video below for more details:
 
       The video is not really up to date with current teracy-dev v0.6.0, however, you will see the similar workflow and result.
 
-Next: :ref:`teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up>`
+
+Next: `teracy-dev Git Clone and Vagrant Up <teracy-dev-git-clone-and-vagrant-up_>`_
 
 .. _teracy-dev-git-clone-and-vagrant-up:
 
@@ -332,6 +348,18 @@ teracy-dev Git Clone and Vagrant Up
          "VBoxDrv.inf" in your installation directory then re-install it to fix the issue. The VirtualBox
          has an installation issue which was reported `here <https://www.virtualbox.org/ticket/4140>`_
 
+       - On Windows, if you see the error `code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)` when using vagrant:
+
+         ::
+
+           $ vagrant status
+           C:/HashiCorp/Vagrant/embedded/mingw64/lib/ruby/2.4.0/win32/registry.rb:185:in `encode!': code converter not found (UTF-16LE to Windows-1258) (Encoding::ConverterNotFoundError)
+
+         You should set the `system locale` into `US`, by following the steps below:
+
+           - Open `Control Panel` --> `Region` --> `Location` --> select `United States` for `Home Location`.
+           - Navigate to the `Administrative` tab --> Change system locale… > Click `Appy` in the popup --> click `OK` to confirm selecting `English (United States)` --> Apply, and restart the machine.
+
 2. Use the ``$ vagrant ssh`` command to access the virtual machine you have just `vagrant up`.
 
    ..  code-block:: bash
@@ -359,17 +387,23 @@ Git Setup
 To work with ``git``, complete the following guides to set up ssh keys:
 https://help.github.com/articles/connecting-to-github-with-ssh/
 
+
    .. note::
 
-      On Windows, you must always use ``Cygwin Terminal``, not ``Git Bash``.
-      If you have SSH configured and vagrant is still not working on Windows, set the
-      `VAGRANT_PREFER_SYSTEM_BIN` environment variable to true:
+      - If you have SSH configured and ``vagrant`` is still not working on Windows, you should add the
+        ``export VAGRANT_PREFER_SYSTEM_BIN=true`` environment variable to the ``.bash_profile`` file, that helps you
+        not add this variable on Cygwin repeatedly.
 
       ..  code-block:: bash
 
-          $ export VAGRANT_PREFER_SYSTEM_BIN=true
-          $ vagrant status
+          $ cat >> ~/.bash_profile
 
+      Type ``export VAGRANT_PREFER_SYSTEM_BIN=true`` and press ``Ctrl + D``, then run:
 
+       ..  code-block:: bash
+
+          $ source ~/.bash_profile
+
+      Now, open the terminal and run the ``export`` command to check if the variable is added successfully
 
 *Congratulations, you’ve all set now!*

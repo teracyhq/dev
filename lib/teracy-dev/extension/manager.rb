@@ -30,7 +30,6 @@ module TeracyDev
         extensions.each do |extension|
           validate_dependencies(extension, extention_manifest_list) if Util.true?(extension['enabled'])
         end
-
         timer_end = Time.now
         @logger.debug("installation finished in #{timer_end - timer_start}s of extensions: #{extensions}")
       end
@@ -52,13 +51,20 @@ module TeracyDev
           "path" => path
         })
         sync_existing = extension['path']['lookup'] == DEFAULT_EXTENSION_LOOKUP_PATH
+
         Location::Manager.sync(extension['location'], sync_existing)
+
       end
 
       def validate(extension)
         return unless Util.true?(extension['enabled'])
 
-        manifest = Manager.manifest(extension)
+        begin
+          manifest = Manager.manifest(extension)
+        rescue Errno::ENOENT
+          @logger.error("manifest for extension #{extension['path']['extension']} not found, seem that you haven't synced all the required extensions. Please run vagrant <status|up|reload> to sync them first")
+          abort
+        end
 
         if !Util.exist?(manifest['name']) or !Util.exist?(manifest['version'])
           @logger.error("The extension manifest's name and version must be defined: #{manifest}, #{extension}")

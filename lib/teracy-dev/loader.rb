@@ -31,6 +31,7 @@ module TeracyDev
       # we sync teracy-dev and teracy-dev-entry before extensions
       sync()
       settings = build_settings().freeze
+      require_vagrant_version(settings['vagrant']['require_version']) if TeracyDev::Util.exist?(settings['vagrant']['require_version'])
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
@@ -55,12 +56,10 @@ module TeracyDev
       })
       @logger.debug("location: #{location}")
 
-      if Util.true?(location['sync'])
-        if Location::Manager.sync(location) == true
-          # reload
-          @logger.info("reloading...")
-          exec "vagrant #{ARGV.join(" ")}"
-        end
+      if Location::Manager.sync(location, location['sync']) == true
+        # reload
+        @logger.info("reloading...")
+        exec "vagrant #{ARGV.join(" ")}"
       end
     end
 
@@ -134,6 +133,8 @@ module TeracyDev
     def build_settings
       settings = @settingsManager.build_settings(@extension_entry_path)
       load_extension_entry_files(settings)
+      load_entry_file(@extension_entry_path)
+
       settings = process(settings)
       # updating nodes here so that processors have change to adjust nodes by adjusting default
       # create nodes by overrides each node with the default
@@ -147,6 +148,18 @@ module TeracyDev
         @logger.debug("final settings: #{settings}")
       end
       settings
+    end
+
+    # @since v0.6.0-b1
+    # see: https://github.com/teracyhq/dev/issues/559
+    def load_entry_file(extension_entry_path)
+      entry_file_path = File.join(extension_entry_path, 'teracy-dev-ext.rb')
+
+      if File.exist? entry_file_path
+        TeracyDev::Util.load_file_path(entry_file_path)
+      else
+        @logger.debug("#{entry_file_path} does not exist, ignored.")
+      end
     end
 
     def load_extension_entry_files(settings)
@@ -170,10 +183,20 @@ module TeracyDev
       @processorsManager.process(settings)
     end
 
+    def require_vagrant_version(*requirements)
+      vagrant_version = Vagrant::VERSION
+
+      if !Util.require_version_valid?(vagrant_version, *requirements)
+        @logger.error("vagrant's current version: #{vagrant_version}")
+        @logger.error("`#{requirements}` is required, make sure to update vagrant to satisfy the requirements.")
+        abort
+      end
+    end
+
     def require_teracy_dev_version(*requirements)
       if !Util.require_version_valid?(TeracyDev::VERSION, *requirements)
-        @@logger.error("teracy-dev's current version: #{VERSION}")
-        @@logger.error("`#{requirements}` is required, make sure to update teracy-dev to satisfy the requirements.")
+        @logger.error("teracy-dev's current version: #{VERSION}")
+        @logger.error("`#{requirements}` is required, make sure to update teracy-dev to satisfy the requirements.")
         abort
       end
     end

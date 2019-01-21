@@ -32,6 +32,7 @@ Useful Extensions
 
 - teracy-dev-core: https://github.com/teracyhq-incubator/teracy-dev-core
 - teracy-dev-essential: https://github.com/teracyhq-incubator/teracy-dev-essential
+- teracy-dev-certs: https://github.com/teracyhq-incubator/teracy-dev-certs
 - teracy-dev-k8s: https://github.com/teracyhq-incubator/teracy-dev-k8s
 - teracy-dev-v05-compat: https://github.com/teracyhq-incubator/teracy-dev-v05-compat
 
@@ -60,4 +61,4 @@ Follow the commands below to pull the latest code of teracy-dev and you can cont
 License
 -------
 
-BSD License
+MIT License

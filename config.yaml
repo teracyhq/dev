@@ -1,7 +1,7 @@
 
 # teracy-dev related settings
 teracy-dev:
-  require_version: ">= 0.6.0-a5-SNAPSHOT"
+  require_version: ">= 0.6.0-b1-SNAPSHOT"
   # location sync
   location:
     git:
@@ -19,9 +19,8 @@ teracy-dev:
         git:
           remote:
             origin: https://github.com/teracyhq-incubator/teracy-dev-core.git
-          branch: develop
-      # TODO(hoatle): use the released version here instead
-      require_version: ">= 0.4.0-SNAPSHOT"
+          branch: v0.4.0
+      require_version: ">= 0.4.0"
       enabled: true # when true, extension will be auto-downloaded if not available yet and will load this extension to be used
     # extension must have manifest.yaml file to describe its name, version and optional description
     # optional: config_default.yaml, teracy-dev-ext.rb will be auto loaded if available

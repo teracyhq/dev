@@ -2,16 +2,15 @@ require_relative '../logging'
 
 module TeracyDev
   module Logging
-    class Acceptor
+    class Filter
       def initialize
         @logger = TeracyDev::Logging.logger_for(self.class.name)
       end
 
       protected
-      # to be implemented by subclass, return true or false
-      # return true => log will be displayed
-      def accept(severity, datetime, progname, msg)
-        return true
+      # to be implemented by subclass, return the filtered message
+      def filter(msg)
+        return msg
       end
     end
   end

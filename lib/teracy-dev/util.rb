@@ -170,6 +170,8 @@ module TeracyDev
       sourceHash = sourceHash.clone
 
       sourceHash.each do |key, value|
+        next if value.nil?
+
         replaced_key = key.to_s.sub(/_u?[ra]_/, '')
 
         if !originHash.has_key?(replaced_key)

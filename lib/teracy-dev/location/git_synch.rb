@@ -1,20 +1,24 @@
-require_relative '../logging'
 require 'open3'
+
+require_relative '../logging'
+require_relative './synch'
+
 
 module TeracyDev
   module Location
     class GitWarn < StandardError
     end
 
-    class GitSynch
-
+    class GitSynch < Synch
       def initialize
-        @logger = TeracyDev::Logging.logger_for(self.class.name)
+        super
+
+        ENV['LANGUAGE'] = 'en_US'
       end
 
-      def sync(location, sync_existing)
+      def sync(location_conf, sync_existing)
         begin
-          start(location, sync_existing)
+          start(location_conf, sync_existing)
         rescue GitWarn => e
           @logger.warn(e)
 
@@ -120,7 +124,7 @@ module TeracyDev
 
           Dir.chdir(path) do
             @logger.info("cd #{path} && git checkout #{branch}")
-            system("git checkout '#{branch}'")
+            system("git checkout #{branch}")
           end
 
           update_remote(path, git_remote)
@@ -147,9 +151,9 @@ module TeracyDev
             current_remote_url = stdout.strip
 
             if !remote_url.nil? and current_remote_url != remote_url
-              `git remote remove '#{remote_name}'` if !current_remote_url.empty?
+              `git remote remove #{remote_name}` if !current_remote_url.empty?
 
-              `git remote add '#{remote_name}' '#{remote_url}'`
+              `git remote add #{remote_name} #{remote_url}`
 
               updated = true
             end
@@ -166,7 +170,7 @@ module TeracyDev
         if !current_ref.start_with? ref_string
           attempt_to_pull_using_http_auth 'origin'
 
-          `git checkout '#{ref_string}'`
+          `git checkout #{ref_string}`
           updated = true
         end
         updated
@@ -177,13 +181,13 @@ module TeracyDev
 
         updated = false
 
-        cmd = "git log '#{desired_tag}' -1 --pretty=%H"
+        cmd = "git log #{desired_tag} -1 --pretty=%H"
 
         tag_ref = `#{cmd}`.strip
 
         if !$?.success?
           # fetch origin if tag is not present
-          attempt_to_pull_using_http_auth 'origin'
+          attempt_to_pull_using_http_auth 'origin', '--tags'
 
           # re-check
           tag_ref = `#{cmd}`.strip
@@ -199,7 +203,7 @@ module TeracyDev
         @logger.debug("current_ref: #{current_ref} - tag_ref: #{tag_ref}")
 
         if current_ref != tag_ref
-          `git checkout 'tags/#{desired_tag}'`
+          `git checkout tags/#{desired_tag}`
 
           updated = true
         end
@@ -235,34 +239,34 @@ module TeracyDev
         @logger.debug("current_ref: #{current_ref} - remote_ref: #{remote_ref}")
 
         if current_ref != remote_ref
-          `git checkout '#{desired_branch}'`
+          `git checkout #{desired_branch}`
 
           if !$?.success?
             # create new local branch if it is not present
             @logger.debug("No such branch! Creating one.")
 
-            `git checkout -b '#{desired_branch}'`
+            `git checkout -b #{desired_branch}`
           end
 
-          `git reset --hard 'origin/#{desired_branch}'`
+          `git reset --hard origin/#{desired_branch}`
           updated = true
         end
         updated
       end
 
       # return true if pull success, raise a warning otherwise
-      def attempt_to_pull_using_http_auth remote_name = 'origin'
+      def attempt_to_pull_using_http_auth remote_name = 'origin', pull_options = ''
         # in most case, credentials of #{remote_name} has already been cached
         # so pull first, to see if there are any errors showing up
 
-        pull_success, error_msg = git_fetch remote_name
+        pull_success, error_msg = git_fetch remote_name, pull_options
 
         return true if pull_success
 
-        # we have errors then we will using configurated credentials
+        # we have errors then we will using configured credentials
         # or inform user to update, then try again
 
-        remote_url = `git remote get-url '#{remote_name}'`.strip
+        remote_url = `git remote get-url #{remote_name}`.strip
 
         processed_remote_url, credential_exists,
         repo_username_key, repo_password_key = get_remote_credentials remote_url
@@ -279,7 +283,7 @@ module TeracyDev
           if credential_exists
             @logger.debug "Attempting to pull #{remote_name}:#{remote_url} again"
 
-            `git remote set-url '#{remote_name}' '#{processed_remote_url}'`
+            `git remote set-url #{remote_name} #{processed_remote_url}`
 
             pull_success, = git_fetch remote_name
 
@@ -323,7 +327,7 @@ module TeracyDev
           # it is https url
           # and wheter it has credentials or not, still clone it
 
-          @logger.info("Attempting to using your configurated credentials for #{remote_url}")
+          @logger.info("Attempting to using your configured credentials for #{remote_url}")
 
           clone_success, error_msg = git_clone processed_remote_url, dir
 
@@ -390,8 +394,8 @@ module TeracyDev
         return remote_url, credential_exists, repo_username_key, repo_password_key
       end
 
-      def git_fetch remote_name
-        stdout, stderr, status = Open3.capture3("git fetch '#{remote_name}'")
+      def git_fetch remote_name, fetch_options = ''
+        stdout, stderr, status = Open3.capture3("git fetch #{remote_name} #{fetch_options}")
 
         # the pull is success but still has stderr return
         # if stderr is not contains 'fatal: ' message then we consider it is a success
@@ -407,7 +411,7 @@ module TeracyDev
       end
 
       def git_clone remote_url, dir
-        stdout, stderr, status = Open3.capture3("git clone '#{remote_url}' #{dir}")
+        stdout, stderr, status = Open3.capture3("git clone #{remote_url} #{dir}")
 
         # the clone is success but still has stderr return
         if status.to_s.match('exit (128|0)')
