@@ -41,26 +41,43 @@ Manual Installation on macOS
 
 Open the terminal window:
 
-1. Install ``Homebrew`` and ``Homebrew Cask``
+1. Install ``Homebrew``
 
    - http://brew.sh/
-   - https://caskroom.github.io/
+
 
 2. Install ``virtualbox`` and ``vagrant``
 
-   - Install ``virtualbox`` (v5.2.22 or above):
+   - Install ``virtualbox`` (>= v5.2.22):
 
      .. code-block:: bash
 
         $ brew cask install virtualbox
 
-   - Install ``vagrant`` (v2.1.0 or above):
+   - Install ``vagrant`` (>= v2.2.0):
 
      .. code-block:: bash
 
         $ brew cask install vagrant
 
      ..  note::
+
+         - If you encounter the following similar error:
+           ..  code-block:: bash
+
+              ==> default: Box 'bento/ubuntu-16.04' could not be found. Attempting to find and install...
+                  default: Box Provider: virtualbox
+                  default: Box Version: >= 0
+              The box 'bento/ubuntu-16.04' could not be found or
+              could not be accessed in the remote catalog. If this is a private
+              box on HashiCorp's Atlas, please verify you're logged in via
+              `vagrant login`. Also, please double-check the name. The expanded
+              URL and error message are shown below:
+
+              URL: ["https://atlas.hashicorp.com/bento/ubuntu-16.04"]
+
+           then fix it with ``$ sudo rm -rf /opt/vagrant/embedded/bin/curl`` (Details at
+           https://github.com/mitchellh/vagrant/issues/7969#issuecomment-258878970)
 
          - // TODO(hoatle): https://github.com/teracyhq/dev/issues/175
 
@@ -88,19 +105,22 @@ Open the terminal window:
       $ sudo apt-get update
       $ sudo apt-get install -y git
 
-2. Install ``virtualbox`` (v5.2.22 or above):
+2. Install ``virtualbox`` (>= v5.2.22):
 
    ..  code-block:: bash
 
       $ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add - \
       && wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add - \
       && sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian `lsb_release -cs` contrib"
-      && sudo apt-get update && sudo apt-get install virtualbox -y
+      && sudo apt-get update && sudo apt-get install virtualbox-5.2 -y # or virtualbox-6.0
 
-3. Install ``vagrant`` (v2.1.0 or above):
+3. Install ``vagrant`` (>= v2.2.0):
+
    ..  code-block:: bash
 
-      $ sudo apt-get update && sudo apt-get install vagrant
+      $ version=2.2.3 && cd /tmp \
+      && wget $(if [ `uname -m` == "x86_64" ]; then echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_x86_64.deb"; else echo "https://releases.hashicorp.com/vagrant/$version/vagrant_${version}_i686.deb"; fi;) \
+      && sudo dpkg -i vagrant_${version}* && rm vagrant_${version}* && cd --
 
 
 Please check out the instruction video below for more details:
@@ -122,7 +142,7 @@ Automatic Installation on Windows
 
 .. _manual-installation-on-windows-to-use-git-bash:
 
-Manual Installation on Windows to use Git Bash
+Manual Installation on Windows to Use Git Bash
 ----------------------------------------------
 
 1. Install `chocolatey <https://chocolatey.org/install#installing-chocolatey>`_:
@@ -135,7 +155,7 @@ Manual Installation on Windows to use Git Bash
 
    After the installation is finished, restart the machine.
 
-2. Install `git <https://git-scm.com/downloads>`_ (>= 2.20.1):
+2. Install `git <https://git-scm.com/>`_:
 
    ..  code-block:: bash
 
@@ -147,7 +167,7 @@ Manual Installation on Windows to use Git Bash
 
        $ choco install virtualbox --version 5.2.22
 
-4. Install `vagrant <https://www.vagrantup.com/>`_ (>= 2.2.3):
+4. Install `vagrant <https://www.vagrantup.com/>`_ (>= 2.2.0):
 
    ..  code-block:: bash
 
@@ -163,7 +183,7 @@ Now everything is done, head over to `teracy-dev Git Clone and Vagrant Up <terac
 
 .. _manual-installation-on-windows-to-use-cygwin:
 
-Manual Installation on Windows to use Cygwin
+Manual Installation on Windows to Use Cygwin
 --------------------------------------------
 
 This should be the same on Windows 10, Windows 8 and Windows 7.
@@ -179,7 +199,7 @@ Follow step by step instructions below:
 
 1. Install ``chocolatey``
 
-   Run ``Command Prompt`` **as administrator** and paste the Cmd.exe command copied from
+   Run ``Command Prompt`` **as administrator** and paste the Cmd.exe command copied from the
    https://chocolatey.org/install#install-with-cmdexe section.
 
    It should look similar to the following command:
@@ -257,17 +277,17 @@ Follow step by step instructions below:
 
         $ cyg-get.bat git
 
-   - Install ``virtualbox`` (v5.2.22 or above):
+   - Install ``virtualbox`` (>= v5.2.22):
 
      .. code-block:: bash
 
         $ choco install virtualbox --version 5.2.22 -y
 
-   - Install ``vagrant`` (v2.1.0 or above):
+   - Install ``vagrant`` (>= v2.2.0):
 
      .. code-block:: bash
 
-        $ choco install vagrant --version 2.1.2 -y
+        $ choco install vagrant --version 2.2.3 -y
 
    After finishing the ``vagrant`` installation, restart the machine.
 

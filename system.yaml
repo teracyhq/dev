@@ -1,6 +1,6 @@
 # teracy-dev system config, not overriable
 vagrant:
-  require_version: ">= 2.1.0"
+  require_version: ">= 2.2.0" # require >= 2.2.0 to have full trigger support
   # rubygems (vagrant plugins)
   plugins: []
     # - name: wisper
