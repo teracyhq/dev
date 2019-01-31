@@ -12,7 +12,6 @@ module TeracyDev
       def process(settings)
         settings
       end
-
     end
   end
 end

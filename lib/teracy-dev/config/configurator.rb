@@ -19,16 +19,12 @@ module TeracyDev
       end
 
       protected
-      # sub class should override this
-      def configure_common(settings, config)
-
-      end
 
       # sub class should override this
-      def configure_node(settings, config)
+      def configure_common(settings, config); end
 
-      end
-
+      # sub class should override this
+      def configure_node(settings, config); end
     end
   end
 end

@@ -1,7 +1,31 @@
-sudo: required
+dist: xenial
 
-services:
-  - docker
+git:
+  depth: 1
 
-script:
-- echo "OK"
+jobs:
+  include:
+    - stage: "Check Style"
+      name: "check style"
+      before_install: bundle install
+      script: bundle exec rubocop
+
+    - stage: "Tests"
+      name: "tests"
+      script: bundle exec rspec
+
+    - stage: Deploy
+      services:
+        - docker
+      env:
+        - DOCKER_FILE=Dockerfile CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+      before_script:
+        - chmod ugo+x ./.travis/deploy.sh
+        - git config --global user.name "Teracy Bot"
+        - git config --global user.email "teracy.com@gmail.com"
+        - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+        - . ./.travis/setup.sh
+        - echo $DEPLOY_HTML_DIR
+        - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
+        - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$TAG
+      script: ./.travis/deploy.sh

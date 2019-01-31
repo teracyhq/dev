@@ -6,6 +6,6 @@ module TeracyDev
 
     EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= 'workspace/teracy-dev-entry'
 
-    DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions' # relative to the Vagrantfile
+    DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions'.freeze # relative to the Vagrantfile
   end
 end

@@ -11,27 +11,27 @@ require_relative 'location/manager'
 
 module TeracyDev
   class Loader
-    @@instance = nil
+    @instance = nil
 
-    attr_reader :processorsManager, :configManager, :settings
+    attr_reader :processors_manager, :config_manager, :settings
 
     def initialize
-      if !!@@instance
-        raise "TeracyDev::Loader can only be initialized once"
-      end
-      @@instance = self
+      raise 'TeracyDev::Loader can only be initialized once' if !!@instance
+
+      @instance = self
       @logger = Logging.logger_for(self.class.name)
     end
 
     def start
-      @processorsManager = Processors::Manager.new
-      @configManager = Config::Manager.new
-      @settingsManager = Settings::Manager.new
+      @processors_manager = Processors::Manager.new
+      @config_manager = Config::Manager.new
+      @settings_manager = Settings::Manager.new
       @extension_entry_path = File.join(TeracyDev::BASE_DIR, TeracyDev::EXTENSION_ENTRY_PATH)
       # we sync teracy-dev and teracy-dev-entry before extensions
-      sync()
-      settings = build_settings().freeze
-      require_vagrant_version(settings['vagrant']['require_version']) if TeracyDev::Util.exist?(settings['vagrant']['require_version'])
+      sync
+      settings = build_settings.freeze
+      vagrant_version = settings['vagrant']['require_version']
+      require_vagrant_version(vagrant_version) if TeracyDev::Util.exist?(vagrant_version)
       require_teracy_dev_version(settings['teracy-dev']['require_version'])
       configure_vagrant(settings)
     end
@@ -39,11 +39,12 @@ module TeracyDev
     private
 
     def sync
-      # teracy_dev_location and teracy_dev_entry_location is built from teracy-dev and teracy-dev-entry settings
+      # teracy_dev_location and teracy_dev_entry_location is built
+      # from teracy-dev and teracy-dev-entry settings
       # with the override mechanism
       # extensions settings for these syncs are not accepted
-      teracy_dev_settings = @settingsManager.build_teracy_dev_settings()
-      entry_settings = @settingsManager.build_entry_settings(@extension_entry_path)
+      teracy_dev_settings = @settings_manager.build_teracy_dev_settings
+      entry_settings = @settings_manager.build_entry_settings(@extension_entry_path)
       settings = Util.override(teracy_dev_settings, entry_settings)
       @logger.debug("settings: #{settings}")
       sync_teracy_dev(settings['teracy-dev']['location'])
@@ -51,16 +52,14 @@ module TeracyDev
     end
 
     def sync_teracy_dev(location)
-      location.merge!({
-        "path" => TeracyDev::BASE_DIR
-      })
+      location['path'] = TeracyDev::BASE_DIR
       @logger.debug("location: #{location}")
 
-      if Location::Manager.sync(location, location['sync']) == true
-        # reload
-        @logger.info("reloading...")
-        exec "vagrant #{ARGV.join(" ")}"
-      end
+      return unless Location::Manager.sync(location, location['sync']) == true
+
+      # reload
+      @logger.info('reloading...')
+      exec "vagrant #{ARGV.join(' ')}"
     end
 
     def sync_teracy_dev_entry(location)
@@ -68,37 +67,44 @@ module TeracyDev
       lookup_path = TeracyDev::EXTENSION_ENTRY_PATH.split('/')[0..-2].join('/')
       lookup_path = File.join(TeracyDev::BASE_DIR, lookup_path)
       dir = TeracyDev::EXTENSION_ENTRY_PATH.split('/').last
-
-      location.merge!({
-        "lookup_path" => lookup_path,
-        "path" => path,
-      })
+      location['lookup_path'] = lookup_path
+      location['path'] = path
 
       # override/init with env vars if available
-      # this is useful to init the teracy-dev-entry or to override existing settings to enable auto sync
+      # this is useful to init the teracy-dev-entry
+      # or to override existing settings to enable auto sync.
       # TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN, TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH
       # TERACY_DEV_ENTRY_LOCATION_GIT_REF, TERACY_DEV_ENTRY_LOCATION_SYNC
-      git_remote_origin = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN'] || ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
-      git_branch = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH'] || ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
-      git_ref = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REF'] || ENV['TERACY_DEV_ENTRY_LOCATION_REF']
-      git_tag = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_TAG'] || ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
+      git_remote_origin = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REMOTE_ORIGIN']
+      git_remote_origin ||= ENV['TERACY_DEV_ENTRY_LOCATION_GIT']
+
+      git_branch = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_BRANCH']
+      git_branch ||= ENV['TERACY_DEV_ENTRY_LOCATION_BRANCH']
+
+      git_ref = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_REF']
+      git_ref ||= ENV['TERACY_DEV_ENTRY_LOCATION_REF']
+
+      git_tag = ENV['TERACY_DEV_ENTRY_LOCATION_GIT_TAG']
+      git_tag ||= ENV['TERACY_DEV_ENTRY_LOCATION_TAG']
+
       sync = ENV['TERACY_DEV_ENTRY_LOCATION_SYNC']
 
-      deprecated_env = [
-        'TERACY_DEV_ENTRY_LOCATION_GIT', 'TERACY_DEV_ENTRY_LOCATION_BRANCH',
-        'TERACY_DEV_ENTRY_LOCATION_TAG', 'TERACY_DEV_ENTRY_LOCATION_REF'
-      ]
+      deprecated_env = %w[TERACY_DEV_ENTRY_LOCATION_GIT
+                          TERACY_DEV_ENTRY_LOCATION_BRANCH
+                          TERACY_DEV_ENTRY_LOCATION_TAG
+                          TERACY_DEV_ENTRY_LOCATION_REF]
 
-      if (deprecated_env & ENV.keys).any?
-        @logger.warn("deprecated: #{deprecated_env & ENV.keys}, please use this format instead: TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF>")
-      end
+      @logger.warn("deprecated: #{deprecated_env & ENV.keys}, " \
+      'please use this format instead: ' \
+      'TERACY_DEV_ENTRY_LOCATION_GIT_<REMOTE_ORIGIN|BRANCH|TAG|REF>' \
+      '.') if (deprecated_env & ENV.keys).any?
 
       location['git'] ||= ''
 
       if location['git'].instance_of? String
         location['git'] = {
-          "remote" => {
-            "origin" => location['git']
+          'remote' => {
+            'origin' => location['git']
           }
         }
       end
@@ -119,19 +125,17 @@ module TeracyDev
       @logger.debug("location: #{location}")
 
       # because teracy-dev.entry_location is optional, so if not configured, just continue
-      if location['git']['remote']['origin'] == nil
-        return
-      end
+      return if location['git']['remote']['origin'].nil?
 
-      if Location::Manager.sync(location, location['sync']) == true
-        # reload
-        @logger.info("reloading...")
-        exec "vagrant #{ARGV.join(" ")}"
-      end
+      return unless Location::Manager.sync(location, location['sync']) == true
+
+      # reload
+      @logger.info('reloading...')
+      exec "vagrant #{ARGV.join(' ')}"
     end
 
     def build_settings
-      settings = @settingsManager.build_settings(@extension_entry_path)
+      settings = @settings_manager.build_settings(@extension_entry_path)
       load_extension_entry_files(settings)
       load_entry_file(@extension_entry_path)
 
@@ -139,8 +143,8 @@ module TeracyDev
       # updating nodes here so that processors have change to adjust nodes by adjusting default
       # create nodes by overrides each node with the default
       @logger.debug("settings: #{settings}")
-      settings["nodes"].each_with_index do |node, index|
-        settings["nodes"][index] = Util.override(settings['default'], node)
+      settings['nodes'].each_with_index do |node, index|
+        settings['nodes'][index] = Util.override(settings['default'], node)
       end
       if Util.true?(ENV['LOG_SETTINGS_YAML'])
         @logger.debug("final settings: \n #{settings.to_yaml}")
@@ -167,7 +171,9 @@ module TeracyDev
       extensions = settings['teracy-dev']['extensions'] ||= []
       extensions.each do |extension|
         next unless Util.true?(extension['enabled'])
-        lookup_path = File.join(TeracyDev::BASE_DIR, extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH)
+
+        ext_lookup_path = extension['path']['lookup'] ||= DEFAULT_EXTENSION_LOOKUP_PATH
+        lookup_path = File.join(TeracyDev::BASE_DIR, ext_lookup_path)
         path = File.join(lookup_path, extension['path']['extension'])
         entry_file_path = File.join(path, 'teracy-dev-ext.rb')
         @logger.debug("entry_file_path: #{entry_file_path}")
@@ -180,44 +186,44 @@ module TeracyDev
     end
 
     def process(settings)
-      @processorsManager.process(settings)
+      @processors_manager.process(settings)
     end
 
     def require_vagrant_version(*requirements)
       vagrant_version = Vagrant::VERSION
 
-      if !Util.require_version_valid?(vagrant_version, *requirements)
-        @logger.error("vagrant's current version: #{vagrant_version}")
-        @logger.error("`#{requirements}` is required, make sure to update vagrant to satisfy the requirements.")
-        abort
-      end
+      return if TeracyDev::Util.require_version_valid?(vagrant_version, *requirements)
+
+      @logger.error("vagrant's current version: #{vagrant_version}")
+      @logger.error("`#{requirements}` is required, " \
+      'make sure to update vagrant to satisfy the requirements.')
+      abort
     end
 
     def require_teracy_dev_version(*requirements)
-      if !Util.require_version_valid?(TeracyDev::VERSION, *requirements)
-        @logger.error("teracy-dev's current version: #{VERSION}")
-        @logger.error("`#{requirements}` is required, make sure to update teracy-dev to satisfy the requirements.")
-        abort
-      end
+      return if TeracyDev::Util.require_version_valid?(TeracyDev::VERSION, *requirements)
+
+      @logger.error("teracy-dev's current version: #{VERSION}")
+      @logger.error("`#{requirements}` is required, " \
+      'make sure to update teracy-dev to satisfy the requirements.')
+      abort
     end
 
     def configure(settings, config, type:)
-      @configManager.configure(settings, config, type: type)
+      @config_manager.configure(settings, config, type: type)
     end
 
     def configure_vagrant(settings)
-      Vagrant.configure("2") do |common|
-
+      Vagrant.configure('2') do |common|
         configure(settings, common, type: 'common')
         settings['nodes'].each do |node_settings|
           primary = node_settings['primary'] ||= false
-          autostart = node_settings['autostart'] === false ? false : true
+          autostart = node_settings['autostart'] != false
           common.vm.define node_settings['name'], primary: primary, autostart: autostart do |node|
             configure(node_settings, node, type: 'node')
           end
         end
       end
     end
-
   end
 end

@@ -11,10 +11,8 @@ require_relative 'teracy-dev/logging/progname_acceptor'
 require_relative 'teracy-dev/logging/mask_filter'
 require_relative 'teracy-dev/location/git_synch'
 
-
 # define public APIs here
 module TeracyDev
-
   # TODO(hoatle): find a way to add warning log for these deprecated var
   # deprecated, use TeracyDev::Env instead
   BASE_DIR = File.join(File.dirname(__FILE__), '..')
@@ -23,28 +21,25 @@ module TeracyDev
   EXTENSION_ENTRY_PATH = ENV['TERACY_DEV_EXTENSION_ENTRY_PATH'] ||= 'workspace/teracy-dev-entry'
 
   # deprecated, use TeracyDev::Env instead
-  DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions' # relative to the Vagrantfile
+  DEFAULT_EXTENSION_LOOKUP_PATH = 'extensions'.freeze # relative to the Vagrantfile
 
-
-  @@logger = TeracyDev::Logging.logger_for(self)
+  @logger = TeracyDev::Logging.logger_for(self)
 
   # we can only create one Loader instance and accessible on this only
-  @@loader = TeracyDev::Loader.new
+  @loader = TeracyDev::Loader.new
 
   def self.register_processor(processor, weight = 5)
-    @@loader.processorsManager.register(processor, weight)
+    @loader.processors_manager.register(processor, weight)
   end
 
   def self.register_configurator(configurator, weight = 5)
-    @@loader.configManager.register(configurator, weight)
+    @loader.config_manager.register(configurator, weight)
   end
-
 
   def self.init
     Logging.add_acceptor(Logging::PrognameAcceptor.new)
     Logging.add_filter(Logging::MaskFilter.new)
     Location::Manager.add_synch(Location::GitSynch.new)
-    @@loader.start
+    @loader.start
   end
-
 end
