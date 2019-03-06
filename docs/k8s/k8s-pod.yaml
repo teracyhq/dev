@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: docs
+spec:
+  containers:
+  - name: docs
+    image: teracy/teracy-dev-docs-dev
+    workingDir: /opt/app
+    command:
+    - /bin/sh
+    - -c
+    - |
+      make livehtml
+    ports:
+    - containerPort: 8000
