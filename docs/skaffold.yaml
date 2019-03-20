@@ -1,4 +1,4 @@
-apiVersion: skaffold/v1beta6
+apiVersion: skaffold/v1beta7
 kind: Config
 build:
   artifacts:
@@ -10,8 +10,7 @@ build:
 deploy:
   kubectl:
     manifests:
-    - "k8s/*.yaml"
-
+      - k8s/*.yaml
 profiles:
   # `$ skaffold dev -p helm` to use helm chart deployment instead of the current default kubectl deployment
   # this is not default due to this bug: https://github.com/GoogleContainerTools/skaffold/issues/1691

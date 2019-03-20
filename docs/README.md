@@ -1,18 +1,30 @@
 # teracy-dev docs
 
-Follow this guide to work on the docs
+Follow this guide to work on the docs.
 
 ## Prerequisites
 
-- `docker-registry` must be available by following https://github.com/teracyhq-incubator/teracy-dev-k8s/blob/develop/docs/docker-registry.md
+- `docker-registry` must be available by following
+  https://github.com/teracyhq-incubator/teracy-dev-k8s/blob/develop/docs/docker-registry.md.
 
-- `docker`, `kubectl`, `helm`, `skaffold` must be installed on your host machine and make sure it works
-  with the k8s cluster
+- `docker daemon remote access` must be available by following
+   https://github.com/teracyhq-incubator/teracy-dev-k8s/blob/develop/docs/docker-daemon-remote-access.md.
 
-## Set default-repo for Skaffold
+- `kubectl`, `helm`, `skaffold`, `docker cli` must be installed on your host machine and make sure it works
+  with the k8s cluster.
+
+## Set the default-repo for Skaffold
 
 ```bash
 $ skaffold config set default-repo registry.k8s.local
+```
+
+## Use the `docker daemon remote access`
+
+- To access the docker daemon remotely:
+
+```
+$ export DOCKER_HOST="tcp://k8s.local:2375"
 ```
 
 ## Skaffold dev mode with kubectl
@@ -220,7 +232,7 @@ Watching for changes every 1s...
 ```
 
 - Configure the domain alias by editing the `k8s-dev/workspace/teracy-dev-entry/config_override.yaml`
-with the following configuration:
+with the configuration below:
 
 ```yaml
 nodes:
