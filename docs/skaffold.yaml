@@ -4,7 +4,7 @@ build:
   artifacts:
     - image: teracy/teracy-dev-docs-dev
       sync:
-        '*.rst': .
+        '**/*.rst': .
       docker:
         dockerfile: Dockerfile-dev
 deploy:
@@ -22,6 +22,6 @@ profiles:
           chartPath: helm-charts/teracy-dev-docs-dev
           values:
             image: teracy/teracy-dev-docs-dev
-          namespace: teracy-dev
+          # namespace: teracy-dev
           imageStrategy:
             helm: {}

@@ -153,6 +153,8 @@ docs/_build/**
 extensions/*
 !extensions/.gitkeep
 
+!.dockerignore
+
 # Ignore workspace sub directories
 workspace/*
 !workspace/.gitkeep
