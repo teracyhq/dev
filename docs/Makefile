@@ -7,6 +7,11 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
 
+# PORT for livehtml
+ifndef PORT
+PORT      = 8000
+endif
+
 # User-friendly check for sphinx-build
 # disable this to use Docker to build, and use this for deployment outside Docker container
 # ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -179,6 +184,6 @@ pseudoxml:
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
 livehtml:
-	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0 --port 80
+	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html -H 0.0.0.0 --port $(PORT)
 
 include sphinx_deployment.mk

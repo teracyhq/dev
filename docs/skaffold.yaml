@@ -1,0 +1,27 @@
+apiVersion: skaffold/v1beta7
+kind: Config
+build:
+  artifacts:
+    - image: teracy/teracy-dev-docs-dev
+      sync:
+        '**/*.rst': .
+      docker:
+        dockerfile: Dockerfile-dev
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml
+profiles:
+  # `$ skaffold dev -p helm` to use helm chart deployment instead of the current default kubectl deployment
+  # this is not default due to this bug: https://github.com/GoogleContainerTools/skaffold/issues/1691
+  - name: helm
+    deploy:
+      helm:
+        releases:
+        - name: teracy-dev-docs-dev
+          chartPath: helm-charts/teracy-dev-docs-dev
+          values:
+            image: teracy/teracy-dev-docs-dev
+          # namespace: teracy-dev
+          imageStrategy:
+            helm: {}

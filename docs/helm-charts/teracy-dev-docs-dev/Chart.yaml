@@ -1,0 +1,6 @@
+apiVersion: v0.1
+appVersion: "0.1"
+description: teracy-dev docs with dev mode helm chart
+name: teracy-dev-docs-dev
+version: 0.1.0-SNAPSHOT
+
