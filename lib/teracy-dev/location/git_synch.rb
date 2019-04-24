@@ -148,7 +148,15 @@ module TeracyDev
             abort
           end
 
-          Dir.mkdir(lookup_path) unless File.exists?(lookup_path)
+          unless Dir.exist?(lookup_path)
+            if File.exist?(lookup_path)
+              @logger.error("#{lookup_path} is a file, please delete it or use a difference name!")
+
+              abort
+            end
+
+            Dir.mkdir(lookup_path)
+          end
 
           Dir.chdir(lookup_path) do
             @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
