@@ -4,10 +4,14 @@
 
 replicaCount: 1
 
-image:
-  repository: teracy/teracy-dev-docs-dev
-  tag: develop
-  pullPolicy: IfNotPresent
+# waiting for https://github.com/GoogleContainerTools/skaffold/issues/1379
+# image:
+#   repository: teracy/teracy-dev-docs-dev
+#   tag: develop
+#   pullPolicy: IfNotPresent
+
+image: teracy/teracy-dev-docs-dev:develop
+pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
@@ -18,9 +22,8 @@ service:
 
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    certmanager.k8s.io/cluster-issuer: ca-cluster-issuer
+  # annotations:
+    # certmanager.k8s.io/cluster-issuer: ca-cluster-issuer
   path: /
   hosts:
     - dev.docs.teracy-dev.local

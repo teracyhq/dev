@@ -21,8 +21,8 @@ spec:
     spec:
       containers:
         - name: docs
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image }}"
+          imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http
               containerPort: 8000
