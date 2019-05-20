@@ -154,6 +154,17 @@ module TeracyDev
             @logger.error('git is not available')
             abort
           end
+
+          unless Dir.exist?(lookup_path)
+            if File.exist?(lookup_path)
+              @logger.error("#{lookup_path} is a file, please delete it or use a difference name!")
+
+              abort
+            end
+
+            Dir.mkdir(lookup_path)
+          end
+
           Dir.chdir(lookup_path) do
             @logger.info("cd #{lookup_path} && git clone #{git_remote_url} #{dir}")
 

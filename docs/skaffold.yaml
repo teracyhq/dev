@@ -1,0 +1,24 @@
+apiVersion: skaffold/v1beta10
+kind: Config
+build:
+  artifacts:
+    - image: teracy/teracy-dev-docs-dev
+      sync:
+        manual:
+        - src: '**/*.rst'
+          dest: .
+      docker:
+        dockerfile: Dockerfile-dev
+# `$ TILLER_NAMESPACE=hoatle skaffold dev --namespace=hoatle` for example
+deploy:
+  helm:
+    releases:
+    - name: teracy-dev-docs-dev
+      chartPath: helm-charts/teracy-dev-docs-dev
+      values:
+        image: teracy/teracy-dev-docs-dev
+      valuesFiles:
+      - override.yaml
+      # waiting for https://github.com/GoogleContainerTools/skaffold/issues/1379
+      # imageStrategy:
+      #   helm: {}
