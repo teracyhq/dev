@@ -134,6 +134,8 @@ Session.vim
 !.gitmodules
 !.chef
 !.travis
+!.rubocop.yml
+!.rubocop_todo.yml
 
 # docs
 _deploy

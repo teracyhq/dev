@@ -111,7 +111,7 @@ setup_gh_pages: init_gh_pages
 	@cd $(DEPLOY_DIR);\
 		git fetch origin;\
 		git reset --hard origin/$(DEPLOY_BRANCH);\
-		git branch --set-upstream $(DEPLOY_BRANCH) origin/$(DEPLOY_BRANCH)
+		git branch --set-upstream-to=origin/$(DEPLOY_BRANCH) $(DEPLOY_BRANCH)
 	@echo "Now you can deploy to Github Pages with 'make generate' and then 'make deploy'"
 
 generate: html

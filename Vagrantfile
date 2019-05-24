@@ -22,7 +22,7 @@ if ARGV[0] && !unloadable_sub_commands.include?(ARGV[0])
     TeracyDev.init
   rescue
     # add tracing for easier debugging and fixing
-    puts $@
+    puts $ERROR_POSITION
     raise
   end
 

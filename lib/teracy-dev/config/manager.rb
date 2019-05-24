@@ -5,26 +5,26 @@ module TeracyDev
   module Config
     # Manage the vagrant configuration from the provided settings hash object
     class Manager
-      @@instance = nil
+      @instance = nil
 
       def initialize
-        if !!@@instance
-          raise "TeracyDev::Config::Manager can only be initialized once"
-        end
-        @@instance = self
+        raise 'TeracyDev::Config::Manager can only be initialized once' if !!@instance
 
+        @instance = self
         @logger = TeracyDev::Logging.logger_for(self.class.name)
         @items = []
       end
 
       def register(configurator, weight)
-        if !configurator.respond_to?(:configure)
+        unless configurator.respond_to?(:configure)
           @logger.warn("configurator #{configurator} must implement configure method, ignored")
           return
         end
 
-        unless weight.is_a? Integer and (0..9).include?(weight)
-          @logger.warn("#{configurator}'s weight (#{weight}) must be an integer and have value in range (0..9), otherwise it will be set to default (5)")
+        unless weight.is_a?(Integer) && (0..9).include?(weight)
+          @logger.warn("#{configurator}'s weight (#{weight}) " \
+          'must be an integer and have value in range (0..9),' \
+          'otherwise it will be set to default (5)')
           weight = 5
         end
 
@@ -40,7 +40,6 @@ module TeracyDev
           configurator.configure(Util.deep_copy(settings).freeze, config, type: type)
         end
       end
-
     end
   end
 end

@@ -4,26 +4,25 @@ require_relative '../util'
 module TeracyDev
   module Processors
     class Manager
-      @@instance = nil
+      @instance = nil
 
       def initialize
-        if !!@@instance
-          raise "TeracyDev::Processors::Manager can only be initialized once"
-        end
-        @@instance = self
+        raise 'TeracyDev::Processors::Manager can only be initialized once' if !!@instance
 
+        @instance = self
         @logger = Logging.logger_for(self.class.name)
         @items = []
       end
 
       def register(processor, weight)
-        if !processor.respond_to?(:process)
+        unless processor.respond_to?(:process)
           @logger.warn("processor #{processor} must implement process method, ignored")
           return
         end
 
-        unless weight.is_a? Integer and (0..9).include?(weight)
-          @logger.warn("#{processor}'s weight (#{weight}) must be an integer and have value in range (0..9), otherwise it will be set to default (5)")
+        unless weight.is_a?(Integer) && (0..9).include?(weight)
+          @logger.warn("#{processor}'s weight (#{weight}) must be an integer " \
+          'and have value in range (0..9), otherwise it will be set to default (5)')
           weight = 5
         end
 
@@ -33,12 +32,11 @@ module TeracyDev
 
       # run the pipelines
       def process(settings)
-
         TeracyDev::Util.multi_sort(@items, weight: :desc, id: :asc).each do |item|
           processor = item[:processor]
           @logger.debug("#{processor} starts processing")
           result = processor.process(settings)
-          if !result
+          unless result
             @logger.warn("invalid result from #{processor}, ignored")
             next
           end
@@ -47,7 +45,6 @@ module TeracyDev
 
         settings
       end
-
     end
   end
 end

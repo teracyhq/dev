@@ -8,9 +8,10 @@ module TeracyDev
       end
 
       protected
+
       # to be implemented by subclass, return true or false
       # return true => log will be displayed
-      def accept(severity, datetime, progname, msg)
+      def accept(_severity, _datetime, _progname, _msg)
         return true
       end
     end

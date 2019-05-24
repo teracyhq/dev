@@ -8,6 +8,7 @@ module TeracyDev
       end
 
       protected
+
       # to be implemented by subclass, return the filtered message
       def filter(msg)
         return msg
