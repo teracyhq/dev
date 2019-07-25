@@ -271,11 +271,11 @@ Follow step by step instructions below:
            file with the new name *cygwinsetup.exe* into the *cygwin* folder (Details at
            https://github.com/chocolatey/chocolatey-coreteampackages/issues/176#issuecomment-212939458.)
 
-   - Install ``git``:
+   - Install ``git``, ``curl``, ``tar`` and ``wget``:
 
      .. code-block:: bash
 
-        $ cyg-get.bat git
+        $ cyg-get.bat git curl wget tar
 
    - Install ``virtualbox`` (>= v5.2.22):
 
@@ -289,7 +289,17 @@ Follow step by step instructions below:
 
         $ choco install vagrant --version 2.2.3 -y
 
-   After finishing the ``vagrant`` installation, restart the machine.
+   - Install Winpty for cygwin:
+
+     .. code-block:: bash
+        $ curl -L https://github.com/rprichard/winpty/releases/download/0.4.3/winpty-0.4.3-cygwin-2.8.0-x64.tar.gz | tar xzv --strip-components= -C /;
+        $ echo "alias vagrant=\"winpty vagrant\"" >> ~/.bashrc;
+
+   - Also please make sure ``echo $VAGRANT_PREFER_SYSTEM_BIN`` returns ``true``, if not then add it by ``echo "export VAGRANT_PREFER_SYSTEM_BIN=true" >> ~/.bashrc"``
+
+   - Restart the machine after the installation is finished.
+
+
 
 Please check out the instruction video below for more details:
 
