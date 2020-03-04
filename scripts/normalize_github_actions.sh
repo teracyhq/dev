@@ -27,16 +27,8 @@ if [ -z "${CI_REGISTRY_IMAGE}" ]; then
   if [ -z "$DOCKER_USERNAME" ] && [ -z "$DOCKER_PASSWORD" ] ; then
     export DOCKER_USERNAME=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f1)
     export DOCKER_PASSWORD=${GITHUB_TOKEN}
-    # disable DOCKER_PUSH_ENABLED by default if username, password not defined in this case
-    # set this to true on secrets to enable
-    if [ "$GITHUB_REGISTRY_ENABLED" != "true" ] ; then
-      export DOCKER_PUSH_ENABLED="false"
-    fi
   fi
 
-
-# else
-#   echo "CI_REGISTRY_IMAGE env var defined: $CI_REGISTRY_IMAGE"
 fi
 
 contains() {

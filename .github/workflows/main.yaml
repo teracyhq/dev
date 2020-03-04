@@ -21,8 +21,6 @@ env:
   DOCKER_PASSWORD_DEVELOP: ${{ secrets.DOCKER_PASSWORD_DEVELOP }}
   DOCKER_PASSWORD_MASTER: ${{ secrets.DOCKER_PASSWORD_MASTER }}
   DOCKER_PUSH_ENABLED: ${{ secrets.DOCKER_PUSH_ENABLED }}
-  DOCKER_PUSH_ENABLED_DEVELOP: ${{ secrets.DOCKER_PUSH_ENABLED_DEVELOP }}
-  DOCKER_PUSH_ENABLED_MASTER: ${{ secrets.DOCKER_PUSH_ENABLED_MASTER }}
   SKIP_BUILD_DOCS: ${{ secrets.SKIP_BUILD_DOCS }}
   SKIP_BUILD_DOCS_DEVELOP: ${{ secrets.SKIP_BUILD_DOCS_DEVELOP }}
   SKIP_BUILD_DOCS_MASTER: ${{ secrets.SKIP_BUILD_DOCS_MASTER }}
@@ -69,7 +67,7 @@ jobs:
     - name: Build
       run: |
         cd docs
-        docker build -f Dockerfile -t teracy/teracy-dev-docs:develop .
+        docker build -f Dockerfile -t teracy/teracy-dev-docs:$IMG_TAG .
       if: env.SKIP_BUILD_DOCS != 'true'
 
     - name: Login to docker registry with username and password
@@ -99,6 +97,6 @@ jobs:
 
     - name: Publish
       run: |
-          docker tag teracy/teracy-dev-docs:develop $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
+          docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
           docker push $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
       if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true'
