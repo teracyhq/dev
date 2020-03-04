@@ -2,13 +2,19 @@ AllCops:
   DisplayCopNames: true
   StyleGuideCopsOnly: false
   Exclude:
-    - "tmp/**/*"
-    - "vendor/**/*"
     - "docs/**/*"
-    - "spec/fixtures/**/*"
     - "workspace/**/*"
     - "extensions/**/*"
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
   Enabled: false
 
 Layout/TrailingWhitespace:
@@ -17,7 +23,7 @@ Layout/TrailingWhitespace:
 Metrics/ClassLength:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
 
 Metrics/MethodLength:
@@ -29,7 +35,7 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Enabled: false
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Style/DoubleNegation:
@@ -40,9 +46,6 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Max: 50
-
-Performance/RangeInclude:
-  Enabled: false
 
 Style/RescueStandardError:
   EnforcedStyle: implicit
@@ -58,6 +61,9 @@ Style/RedundantReturn:
 
 Style/RaiseArgs:
   EnforcedStyle: compact
+
+Style/WordArray:
+  Enabled: false
 
 Metrics/BlockNesting:
   Max: 5
@@ -75,4 +81,7 @@ Style/RedundantBegin:
   Enabled: false
 
 Naming/FileName:
+  Enabled: false
+
+Naming/RescuedExceptionsVariableName:
   Enabled: false

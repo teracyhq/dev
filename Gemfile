@@ -1,12 +1,8 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 
 ruby '>= 2.4.4'
 
-# gem 'rake', >= 11.2.2'
-
-group:test do
-  gem 'rspec'
-  gem 'rubocop', require: false
+group :development do
+  gem 'rspec', '~> 3.9.0'
+  gem 'rubocop', '~> 0.80.1', require: false
 end

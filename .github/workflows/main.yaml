@@ -1,0 +1,102 @@
+name: CI
+
+on: [push, pull_request]
+
+#TODO(hoatle): find the way to get all secrets and export as env var instead of manual like this
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_REGISTRY_ENABLED: ${{ secrets.GITHUB_REGISTRY_ENABLED }}
+  GITHUB_REGISTRY_ENABLED_DEVELOP: ${{ secrets.GITHUB_REGISTRY_ENABLED_DEVELOP }}
+  GITHUB_REGISTRY_ENABLED_MASTER: ${{ secrets.GITHUB_REGISTRY_ENABLED_MASTER }}
+  CI_REGISTRY_IMAGE: ${{ secrets.CI_REGISTRY_IMAGE }}
+  CI_REGISTRY_IMAGE_DEVELOP: ${{ secrets.CI_REGISTRY_IMAGE_DEVELOP }}
+  CI_REGISTRY_IMAGE_MASTER: ${{ secrets.CI_REGISTRY_IMAGE_MASTER }}
+  GCP_KEY_FILE: ${{ secrets.GCP_KEY_FILE }}
+  GCP_KEY_FILE_DEVELOP: ${{ secrets.GCP_KEY_FILE_DEVELOP }}
+  GCP_KEY_FILE_MASTER: ${{ secrets.GCP_KEY_FILE_MASTER }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_USERNAME_DEVELOP: ${{ secrets.DOCKER_USERNAME_DEVELOP }}
+  DOCKER_USERNAME_MASTER: ${{ secrets.DOCKER_USERNAME_MASTER }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  DOCKER_PASSWORD_DEVELOP: ${{ secrets.DOCKER_PASSWORD_DEVELOP }}
+  DOCKER_PASSWORD_MASTER: ${{ secrets.DOCKER_PASSWORD_MASTER }}
+  DOCKER_PUSH_ENABLED: ${{ secrets.DOCKER_PUSH_ENABLED }}
+  SKIP_BUILD_DOCS: ${{ secrets.SKIP_BUILD_DOCS }}
+  SKIP_BUILD_DOCS_DEVELOP: ${{ secrets.SKIP_BUILD_DOCS_DEVELOP }}
+  SKIP_BUILD_DOCS_MASTER: ${{ secrets.SKIP_BUILD_DOCS_MASTER }}
+
+jobs:
+
+  # review by commenting on code (experimental)
+  rubocop-review:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Rubocop review
+      uses: andrewmcodes/rubocop-linter-action@v3.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Rubocop
+      run: |
+        docker-compose run --rm verify bash -c "bundle install && bundle exec rubocop"
+
+    - name: RSpec
+      run: |
+        docker-compose run --rm verify bash -c "bundle install && bundle exec rspec"
+
+
+  build-docs:
+    needs: [verify]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Normalize env vars
+      run: |
+        set -e
+        . ./scripts/normalize_github_actions.sh
+
+    - name: Build
+      run: |
+        cd docs
+        docker build -f Dockerfile -t teracy/teracy-dev-docs:$IMG_TAG .
+      if: env.SKIP_BUILD_DOCS != 'true'
+
+    - name: Login to docker registry with username and password
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.CI_REGISTRY_IMAGE }}
+        username: ${{ env.DOCKER_USERNAME }}
+        password: ${{ env.DOCKER_PASSWORD }}
+      if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true' && env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' && env.PUSH_TO_GCR != 'true'
+
+
+    - name: Get Google Container Registry credentials
+      id: gcloud
+      uses: elgohr/gcloud-login-action@0.2
+      with:
+        account_key: ${{ env.GCP_KEY_FILE }}
+      if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true' && env.PUSH_TO_GCR == 'true' && env.GCP_KEY_FILE != ''
+
+    - name: Login to GCR with credentials
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.CI_REGISTRY_IMAGE }}
+        username: ${{ steps.gcloud.outputs.username }}
+        password: ${{ steps.gcloud.outputs.password }}
+      if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true' && env.PUSH_TO_GCR == 'true' && env.GCP_KEY_FILE != ''
+
+
+    - name: Publish
+      run: |
+          docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
+          docker push $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
+      if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true'
