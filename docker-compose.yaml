@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  verify:
+    image: ${RUBY_IMAGE:-ruby:2.7}
+    working_dir: /src
+    command: bash -c "./scripts/run_verify.sh"
+    tty: true
+    volumes:
+      - .:/src

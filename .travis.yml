@@ -3,20 +3,18 @@ dist: xenial
 git:
   depth: 1
 
+install: true
+
 jobs:
   include:
     - stage: "Check Style"
-      name: "check style"
-      before_install: bundle install
-      script: bundle exec rubocop
+      script: docker-compose run --rm verify bash -c "bundle install && bundle exec rubocop"
 
     - stage: "Tests"
       name: "tests"
-      script: bundle exec rspec
+      script: docker-compose run --rm verify bash -c "bundle install && bundle exec rspec"
 
     - stage: Deploy
-      services:
-        - docker
       env:
         - DOCKER_FILE=Dockerfile CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
       before_script:
