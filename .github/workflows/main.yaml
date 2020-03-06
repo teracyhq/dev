@@ -97,6 +97,6 @@ jobs:
 
     - name: Publish
       run: |
-          docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/docs:$IMG_TAG
-          docker push $CI_REGISTRY_IMAGE/docs:$IMG_TAG
+        docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/docs:$IMG_TAG
+        docker push $CI_REGISTRY_IMAGE/docs:$IMG_TAG
       if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true'

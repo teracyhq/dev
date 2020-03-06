@@ -2,6 +2,17 @@
 
 set -e
 
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
 # allow to specify the target branch name, otherwise, use $GITHUB_REF to extract info
 if [ -z "${BRANCH_NAME}" ]; then
   # see: https://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
@@ -10,8 +21,19 @@ if [ -z "${BRANCH_NAME}" ]; then
 fi
 
 echo "\$BRANCH_NAME: $BRANCH_NAME"
-. ./scripts/normalize_image_tag.sh $BRANCH_NAME
-. ./scripts/re_export_env_var.sh _${IMG_TAG^^}
+
+# affix
+AFFIX=$(echo "$BRANCH_NAME" | awk '{print tolower($0)}' | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g' | sed -e 's/[\.]/_/g');
+
+. ./scripts/re_export_env_var.sh _${AFFIX^^}
+
+if contains "$GITHUB_REF" "refs/tags/"; then
+  . ./scripts/normalize_image_tag.sh $BRANCH_NAME
+else
+  CI_COMMIT_SHORT_SHA=$(git rev-parse --short HEAD)
+  . ./scripts/normalize_image_tag.sh $BRANCH_NAME-$CI_COMMIT_SHORT_SHA
+fi
+
 
 # push to develop/master branch by default if env var not defined
 if [ -z "${DOCKER_PUSH_ENABLED}" ]; then
@@ -31,20 +53,11 @@ if [ -z "${CI_REGISTRY_IMAGE}" ]; then
 
 fi
 
-contains() {
-    string="$1"
-    substring="$2"
-    if test "${string#*$substring}" != "$string"
-    then
-        return 0    # $substring is in $string
-    else
-        return 1    # $substring is not in $string
-    fi
-}
 
 if contains "$CI_REGISTRY_IMAGE" "gcr.io" ; then
   echo "::set-env name=PUSH_TO_GCR::true"
 fi
+
 
 echo "::set-env name=IMG_TAG::$IMG_TAG"
 echo "::set-env name=CI_REGISTRY_IMAGE::$CI_REGISTRY_IMAGE"
