@@ -9,7 +9,10 @@ build:
           dest: .
       docker:
         dockerfile: Dockerfile-dev
-# `$ TILLER_NAMESPACE=hoatle skaffold dev --namespace=hoatle` for example
+  tagPolicy:
+    gitCommit:
+      variant: TreeSha
+
 deploy:
   helm:
     releases:
@@ -19,6 +22,13 @@ deploy:
         image: teracy/teracy-dev-docs-dev
       valuesFiles:
       - override.yaml
-      # waiting for https://github.com/GoogleContainerTools/skaffold/issues/1379
-      # imageStrategy:
-      #   helm: {}
+      imageStrategy:
+        helm: {}
+    flags:
+      upgrade:
+        - "--install" # remove this on skaffold v1.5.0
+
+profiles:
+- name: cloudbuild
+  build:
+    googleCloudBuild: {}
