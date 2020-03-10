@@ -1,0 +1,40 @@
+# build docker images from git repos, useful for odl released docs
+
+# example:
+# $ export GIT_BRANCH=v0.1.0
+# docker build -t teracy/teracy-dev-docs:$GIT_BRANCH -f Dockerfile-git-repo . --build-arg GIT_BRANCH=$GIT_BRANCH
+# $ docker run -p 8000:80 teracy/teracy-dev-docs:$GIT_BRANCH
+# open localhost:8000 to check
+
+ARG PYTHON_VERSION=3.7
+ARG NGINX_VERSION=1.17-alpine
+
+#building
+FROM python:$PYTHON_VERSION as builder
+
+ARG GIT_REPO=teracyhq/dev
+ARG GIT_BRANCH=develop
+
+ENV TERM=xterm-256color APP=/opt/app
+
+WORKDIR $APP
+
+RUN git clone --depth 1 https://github.com/$GIT_REPO.git -b $GIT_BRANCH /tmp/teracy-dev && \
+    cp -rf /tmp/teracy-dev/docs/. $APP
+
+RUN pip install -r requirements.txt
+
+RUN make html
+
+# packaging
+FROM nginx:$NGINX_VERSION
+
+LABEL authors="hoatle <hoatle@teracy.com>"
+
+RUN mkdir -p /opt/app
+
+ENV TERM=xterm APP=/opt/app
+
+WORKDIR $APP
+
+COPY --from=builder /opt/app/_build/html /usr/share/nginx/html
