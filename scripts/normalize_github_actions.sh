@@ -35,9 +35,19 @@ else
 fi
 
 
-# push to develop/master branch by default if env var not defined
-if [ -z "${DOCKER_PUSH_ENABLED}" ]; then
-  export DOCKER_PUSH_ENABLED=`if [ "$BRANCH_NAME" == "develop" ] || [ "$BRANCH_NAME" == "master" ]; then echo "true"; else echo "false"; fi`
+# push to the registry if $CI_REGISTRY_IMAGE is specified and $DOCKER_PUSH_ENABLED is not specified
+if [ -n "${CI_REGISTRY_IMAGE}" ] && [ -z "$DOCKER_PUSH_ENABLED" ] ; then
+  export DOCKER_PUSH_ENABLED=true
+
+  if contains "$CI_REGISTRY_IMAGE" "/"; then
+    # gcr.io/hoatle/teracy/dev, registry.gitlab.com/hoatle/teracy-dev for example
+    export DOCKER_LOGIN_SERVER=$CI_REGISTRY_IMAGE # maybe use only domain part? fix this when bug happens
+  else
+    # CI_REGISTRY_IMAGE is a docker hub username (without any slash), hoatle, for example
+    export DOCKER_LOGIN_SERVER=https://index.docker.io/v1/
+  fi
+  echo "::set-env name=DOCKER_LOGIN_SERVER::$DOCKER_LOGIN_SERVER"
+
 fi
 
 if [ -z "${CI_REGISTRY_IMAGE}" ]; then
@@ -45,7 +55,7 @@ if [ -z "${CI_REGISTRY_IMAGE}" ]; then
   export GITHUB_REPOSITORY=$(echo "${GITHUB_REPOSITORY}" | awk '{print tolower($0)}')
   export CI_REGISTRY_IMAGE=docker.pkg.github.com/$GITHUB_REPOSITORY
   echo "CI_REGISTRY_IMAGE env var not defined, set default to: $CI_REGISTRY_IMAGE"
-
+  echo "::set-env name=GITHUB_PACKAGE_REGISTRY::true"
   if [ -z "$DOCKER_USERNAME" ] && [ -z "$DOCKER_PASSWORD" ] ; then
     export DOCKER_USERNAME=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f1)
     export DOCKER_PASSWORD=${GITHUB_TOKEN}

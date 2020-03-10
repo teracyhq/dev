@@ -73,7 +73,7 @@ jobs:
     - name: Login to docker registry with username and password
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ env.CI_REGISTRY_IMAGE }}
+        login-server: ${{ env.DOCKER_LOGIN_SERVER }}
         username: ${{ env.DOCKER_USERNAME }}
         password: ${{ env.DOCKER_PASSWORD }}
       if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true' && env.DOCKER_USERNAME != '' && env.DOCKER_PASSWORD != '' && env.PUSH_TO_GCR != 'true'
@@ -89,7 +89,7 @@ jobs:
     - name: Login to GCR with credentials
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ env.CI_REGISTRY_IMAGE }}
+        login-server: ${{ env.DOCKER_LOGIN_SERVER }}
         username: ${{ steps.gcloud.outputs.username }}
         password: ${{ steps.gcloud.outputs.password }}
       if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true' && env.PUSH_TO_GCR == 'true' && env.GCP_KEY_FILE != ''
@@ -97,6 +97,11 @@ jobs:
 
     - name: Publish
       run: |
-        docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/docs:$IMG_TAG
-        docker push $CI_REGISTRY_IMAGE/docs:$IMG_TAG
+        if [ "$GITHUB_PACKAGE_REGISTRY" = 'true' ]; then
+          docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/docs:$IMG_TAG
+          docker push $CI_REGISTRY_IMAGE/docs:$IMG_TAG
+        else
+          docker tag teracy/teracy-dev-docs:$IMG_TAG $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
+          docker push $CI_REGISTRY_IMAGE/teracy-dev-docs:$IMG_TAG
+        fi
       if: env.SKIP_BUILD_DOCS != 'true' && env.DOCKER_PUSH_ENABLED == 'true'

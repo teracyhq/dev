@@ -19,6 +19,6 @@ function deploy_docker_img {
 cd docs
 docker_build
 deploy_docker_img
-cd ..
+# cd ..
 # allow this to be failed
-deploy_docs
+# deploy_docs

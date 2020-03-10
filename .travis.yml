@@ -14,7 +14,7 @@ jobs:
       name: "tests"
       script: docker-compose run --rm verify bash -c "bundle install && bundle exec rspec"
 
-    - stage: Deploy
+    - stage: Publish
       env:
         - DOCKER_FILE=Dockerfile CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
       before_script:
@@ -24,6 +24,8 @@ jobs:
         - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
         - . ./.travis/setup.sh
         - echo $DEPLOY_HTML_DIR
-        - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
-        - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$TAG
+        - export TAG=`echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'`
+        - export CI_COMMIT_SHORT_SHA=$(git rev-parse --short HEAD)
+        - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$TAG-$CI_COMMIT_SHORT_SHA
       script: ./.travis/deploy.sh
+
