@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "teracy-dev-docs-dev.fullname" . }}
@@ -21,8 +21,8 @@ spec:
     spec:
       containers:
         - name: docs
-          image: "{{ .Values.image }}"
-          imagePullPolicy: {{ .Values.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8000

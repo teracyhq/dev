@@ -4,14 +4,11 @@
 
 replicaCount: 1
 
-# waiting for https://github.com/GoogleContainerTools/skaffold/issues/1379
-# image:
-#   repository: teracy/teracy-dev-docs-dev
-#   tag: develop
-#   pullPolicy: IfNotPresent
+image:
+  repository: teracy/teracy-dev-docs-dev
+  tag: develop
+  pullPolicy: IfNotPresent
 
-image: teracy/teracy-dev-docs-dev:develop
-pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
@@ -23,14 +20,14 @@ service:
 ingress:
   enabled: true
   # annotations:
-    # certmanager.k8s.io/cluster-issuer: ca-cluster-issuer
+  #   cert-manager.io/cluster-issuer: ca-cluster-issuer
   path: /
   hosts:
-    - dev.docs.teracy-dev.local
+    - dev.teracy-dev-docs.teracy.local
   tls:
-   - secretName: dev-docs-teracy-dev-local-tls
+   - secretName: dev-teracy-dev-docs-teracy-local-tls
      hosts:
-       - dev.docs.teracy-dev.local
+       - dev.teracy-dev-docs.teracy.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

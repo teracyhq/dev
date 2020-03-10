@@ -63,6 +63,7 @@ Open the terminal window:
      ..  note::
 
          - If you encounter the following similar error:
+
            ..  code-block:: bash
 
               ==> default: Box 'bento/ubuntu-16.04' could not be found. Attempting to find and install...
@@ -292,6 +293,7 @@ Follow step by step instructions below:
    - Install Winpty for cygwin:
 
      .. code-block:: bash
+
         $ curl -L https://github.com/rprichard/winpty/releases/download/0.4.3/winpty-0.4.3-cygwin-2.8.0-x64.tar.gz | tar xzv --strip-components= -C /;
         $ echo "alias vagrant=\"winpty vagrant\"" >> ~/.bashrc;
 
