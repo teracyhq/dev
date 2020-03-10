@@ -5,25 +5,30 @@ git:
 
 install: true
 
+stages:
+  - verify
+  - name: build-docs
+
 jobs:
   include:
-    - stage: "Check Style"
+    - stage: "verify"
       script: docker-compose run --rm verify bash -c "bundle install && bundle exec rubocop"
 
-    - stage: "Tests"
-      name: "tests"
+    - stage: "verify"
       script: docker-compose run --rm verify bash -c "bundle install && bundle exec rspec"
 
-    - stage: Deploy
-      env:
-        - DOCKER_FILE=Dockerfile CI_REGISTRY_IMAGE=$DOCS_DOCKER_IMAGE CI_BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-      before_script:
-        - chmod ugo+x ./.travis/deploy.sh
-        - git config --global user.name "Teracy Bot"
-        - git config --global user.email "teracy.com@gmail.com"
-        - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
-        - . ./.travis/setup.sh
-        - echo $DEPLOY_HTML_DIR
-        - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
-        - export CONTAINER_IMAGE=$CI_REGISTRY_IMAGE:$TAG
-      script: ./.travis/deploy.sh
+
+    - stage: "build-docs"
+      script:
+        - set -e
+        - |
+          export IMG_TAG=`echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'`
+          export CI_COMMIT_SHORT_SHA=$(git rev-parse --short HEAD)
+          docker build -t teracy/teracy-dev-docs:$IMG_TAG docs
+        # only if DOCKER_USERNAME, DOCKER_PASSWORD specified
+        - |
+          if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ]; then
+            echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            docker tag teracy/teracy-dev-docs:$IMG_TAG $DOCKER_USERNAME/teracy-dev-docs:$IMG_TAG-$CI_COMMIT_SHORT_SHA
+            docker push $DOCKER_USERNAME/teracy-dev-docs:$IMG_TAG-$CI_COMMIT_SHORT_SHA
+          fi
