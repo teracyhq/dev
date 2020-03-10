@@ -44,7 +44,7 @@ if [ -n "${CI_REGISTRY_IMAGE}" ] && [ -z "$DOCKER_PUSH_ENABLED" ] ; then
     export DOCKER_LOGIN_SERVER=$CI_REGISTRY_IMAGE # maybe use only domain part? fix this when bug happens
   else
     # CI_REGISTRY_IMAGE is a docker hub username (without any slash), hoatle, for example
-    export DOCKER_LOGIN_SERVER=https://index.docker.io/v1/
+    export DOCKER_LOGIN_SERVER=https://index.docker.io/v1/ # or https://registry-1.docker.io/v2/ ?
   fi
   echo "::set-env name=DOCKER_LOGIN_SERVER::$DOCKER_LOGIN_SERVER"
 
