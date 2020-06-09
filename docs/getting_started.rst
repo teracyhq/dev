@@ -294,7 +294,7 @@ Follow step by step instructions below:
 
      .. code-block:: bash
 
-        $ curl -L https://github.com/rprichard/winpty/releases/download/0.4.3/winpty-0.4.3-cygwin-2.8.0-x64.tar.gz | tar xzv --strip-components= -C /;
+        $ curl -L https://github.com/rprichard/winpty/releases/download/0.4.3/winpty-0.4.3-cygwin-2.8.0-x64.tar.gz | tar xzv --strip-components=1 -C /;
         $ echo "alias vagrant=\"winpty vagrant\"" >> ~/.bashrc;
 
    - Also please make sure ``echo $VAGRANT_PREFER_SYSTEM_BIN`` returns ``true``, if not then add it by ``echo "export VAGRANT_PREFER_SYSTEM_BIN=true" >> ~/.bashrc"``
