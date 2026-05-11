@@ -90,7 +90,7 @@ module TeracyDev
       if File.exist? file_path
         # TODO: exception handling
         result = YAML.load_file(file_path)
-        if result == false
+        if result == false || result.nil?
           @logger.debug("#{file_path} is empty")
           result = {}
         end
@@ -177,8 +177,11 @@ module TeracyDev
     # TODO: refactor this into a new module (merger.rb), currently, maintaining this is a nightmare
     def self.override(origin_hash, source_hash)
       # immutable
-      origin_hash = origin_hash.clone
-      source_hash = source_hash.clone
+      origin_hash = origin_hash.clone unless origin_hash.nil?
+      source_hash = source_hash.clone unless source_hash.nil?
+
+      origin_hash ||= {}
+      source_hash ||= {}
 
       source_hash.each do |key, value|
         next if value.nil?
