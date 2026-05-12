@@ -11,6 +11,22 @@ describe 'utility' do
       end
     end
 
+    context 'given a nil obj2' do
+      it 'returns the same obj1' do
+        obj1 = { 'msg' => 'hello' }
+        new_obj = TeracyDev::Util.override(obj1, nil)
+        expect(new_obj).to eql(obj1)
+      end
+    end
+
+    context 'when loading an empty YAML file' do
+      it 'returns an empty hash' do
+        file = File.dirname(__FILE__) + '/fixtures/teracy-dev/util/empty.yaml'
+        result = TeracyDev::Util.load_yaml_file(file)
+        expect(result).to eql({})
+      end
+    end
+
     context 'given a simple obj2' do
       it 'returns the new obj' do
         obj1 = { 'msg' => 'hello' }
