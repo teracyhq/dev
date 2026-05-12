@@ -31,7 +31,7 @@ jobs:
   rubocop-review:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Rubocop review
       uses: andrewmcodes/rubocop-linter-action@v3.0.0
@@ -42,15 +42,15 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Rubocop
       run: |
-        docker-compose run --rm verify bash -c "bundle install && bundle exec rubocop"
+        docker compose run --rm verify bash -c "bundle install && bundle exec rubocop"
 
     - name: RSpec
       run: |
-        docker-compose run --rm verify bash -c "bundle install && bundle exec rspec"
+        docker compose run --rm verify bash -c "bundle install && bundle exec rspec"
 
 
   build-docs:
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Normalize env vars
       run: |

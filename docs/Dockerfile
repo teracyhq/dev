@@ -2,7 +2,7 @@ ARG PYTHON_VERSION=3.7
 ARG NGINX_VERSION=1.17-alpine
 
 #building
-FROM python:$PYTHON_VERSION as builder
+FROM python:$PYTHON_VERSION AS builder
 
 RUN mkdir -p /opt/app
 
