@@ -46,7 +46,7 @@ if [ -n "${CI_REGISTRY_IMAGE}" ] && [ -z "$DOCKER_PUSH_ENABLED" ] ; then
     # CI_REGISTRY_IMAGE is a docker hub username (without any slash), hoatle, for example
     export DOCKER_LOGIN_SERVER=https://index.docker.io/v1/ # or https://registry-1.docker.io/v2/ ?
   fi
-  echo "::set-env name=DOCKER_LOGIN_SERVER::$DOCKER_LOGIN_SERVER"
+  echo "DOCKER_LOGIN_SERVER=$DOCKER_LOGIN_SERVER" >> $GITHUB_ENV
 
 fi
 
@@ -55,7 +55,7 @@ if [ -z "${CI_REGISTRY_IMAGE}" ]; then
   export GITHUB_REPOSITORY=$(echo "${GITHUB_REPOSITORY}" | awk '{print tolower($0)}')
   export CI_REGISTRY_IMAGE=docker.pkg.github.com/$GITHUB_REPOSITORY
   echo "CI_REGISTRY_IMAGE env var not defined, set default to: $CI_REGISTRY_IMAGE"
-  echo "::set-env name=GITHUB_PACKAGE_REGISTRY::true"
+  echo "GITHUB_PACKAGE_REGISTRY=true" >> $GITHUB_ENV
   if [ -z "$DOCKER_USERNAME" ] && [ -z "$DOCKER_PASSWORD" ] ; then
     export DOCKER_USERNAME=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f1)
     export DOCKER_PASSWORD=${GITHUB_TOKEN}
@@ -65,12 +65,12 @@ fi
 
 
 if contains "$CI_REGISTRY_IMAGE" "gcr.io" ; then
-  echo "::set-env name=PUSH_TO_GCR::true"
+  echo "PUSH_TO_GCR=true" >> $GITHUB_ENV
 fi
 
 
-echo "::set-env name=IMG_TAG::$IMG_TAG"
-echo "::set-env name=CI_REGISTRY_IMAGE::$CI_REGISTRY_IMAGE"
-echo "::set-env name=DOCKER_USERNAME::$DOCKER_USERNAME"
-echo "::set-env name=DOCKER_PASSWORD::$DOCKER_PASSWORD"
-echo "::set-env name=DOCKER_PUSH_ENABLED::$DOCKER_PUSH_ENABLED"
+echo "IMG_TAG=$IMG_TAG" >> $GITHUB_ENV
+echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE" >> $GITHUB_ENV
+echo "DOCKER_USERNAME=$DOCKER_USERNAME" >> $GITHUB_ENV
+echo "DOCKER_PASSWORD=$DOCKER_PASSWORD" >> $GITHUB_ENV
+echo "DOCKER_PUSH_ENABLED=$DOCKER_PUSH_ENABLED" >> $GITHUB_ENV

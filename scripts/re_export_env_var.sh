@@ -19,7 +19,7 @@ do
       export $new_key=${!k}
       if [ -n "${GITHUB_WORKSPACE}" ]; then
         # export it here if github actions
-        echo "::set-env name=$new_key::${!k}"
+        echo "$new_key=${!k}" >> $GITHUB_ENV
       fi
     fi
   fi

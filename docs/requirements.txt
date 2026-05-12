@@ -4,6 +4,9 @@
 Sphinx
 sphinx-autobuild
 
+# fix CI/CD first
+livereload
+
 # tempory fix for https://github.com/lepture/python-livereload/issues/132
-git+https://github.com/hoatle/python-livereload.git#master
+# git+https://github.com/hoatle/python-livereload.git@master
 
