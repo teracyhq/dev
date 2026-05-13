@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+[v0.6.0-a8][] (2019-01-18)
+--------------------------
+
+- Bug Fixes:
+    + backport for v0.6.0-a8: windows: git clone '' (with the quote) trigger fatal error #596
+    + git sync: tag not found bug should be fixed #593
+
+Details: https://github.com/teracyhq/dev/milestone/17?closed=1
+
+
 [v0.6.0-a7][] (2019-01-17)
 --------------------------
 
@@ -425,3 +435,4 @@ Release the first milestone
 [v0.6.0-a5]: https://github.com/teracyhq/dev/milestone/12?closed=1
 [v0.6.0-a6]: https://github.com/teracyhq/dev/milestone/15?closed=1
 [v0.6.0-a7]: https://github.com/teracyhq/dev/milestone/16?closed=1
+[v0.6.0-a8]: https://github.com/teracyhq/dev/milestone/17?closed=1

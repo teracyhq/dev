@@ -203,18 +203,15 @@ module TeracyDev
 
             current_remote_url = stdout.strip
 
-            next if remote_url.nil? || current_remote_url == remote_url
+            if !remote_url.nil? and current_remote_url != remote_url
+              `git remote remove #{remote_name}` if !current_remote_url.empty?
 
-            `git remote remove #{remote_name}` unless current_remote_url.empty?
+              `git remote add #{remote_name} #{remote_url}`
 
-            `git remote add #{remote_name} #{remote_url}`
-
-            updated = true
+              updated = true
+            end
           end
         end
-
-        updated
-      end
 
       def check_ref(current_ref, ref_string)
         @logger.debug("ref detected, checking out #{ref_string}")
