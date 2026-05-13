@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+[v0.6.0-a7][] (2019-01-17)
+--------------------------
+
+- Improvements:
+    + should release v0.6.0-a7 with proper fix for git sync with different system locales #590
+
+Details: https://github.com/teracyhq/dev/milestone/16?closed=1
+
+
 [v0.6.0-a6][] (2018-12-21)
 --------------------------
 
@@ -415,3 +424,4 @@ Release the first milestone
 [v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1
 [v0.6.0-a5]: https://github.com/teracyhq/dev/milestone/12?closed=1
 [v0.6.0-a6]: https://github.com/teracyhq/dev/milestone/15?closed=1
+[v0.6.0-a7]: https://github.com/teracyhq/dev/milestone/16?closed=1
