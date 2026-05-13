@@ -12,7 +12,6 @@ config.yaml
 -----------
 
 - Update teracy-dev's require_version
-- Update teracy-dev-core extension config
 
 
 docs/conf.py
