@@ -1,6 +1,44 @@
 Change Log
 ==========
 
+[v0.6.0-b1][] (2026-05-14)
+--------------------------
+
+- Features:
+    + should load <teracy-dev-entry>/teracy-dev-ext.rb if available #559
+    + should add Location::Manager.add_synch for extension support #572
+
+- Improvements:
+    + should support specifying vagrant version requirements from the settings #548
+    + should deprecate logging filter.filtered and use filter.filter instead for consistency #567
+    + should use TeracyDev.init for convention consistence with extensions #570
+    + git sync should work in multi language with all recent git versions  #586
+    + should update the skaffold setup + instruction to develop the docs #605
+    + should update k8s dev mode, helm chart with github actions CI/CD to migrate docs #611
+
+- Bug Fixes:
+    + ctrl-c did not always terminate the vagrant running process #532
+    + windows: git clone '' (with the quote) trigger fatal error #561
+    + Util.override with nil source should return the origin object #574
+    + failed to uninstall plugins #575
+    + backport for v0.6.0-b1: git sync: tag not found bug should be fixed #597
+    + should create extensions directory if not exist #603
+    + Bug: vagrant status fails with undefined method 'each' for nil #624
+
+- Tasks:
+    + should update the travis-ci configuration #423
+    + should setup dev mode for docs on k8s #478
+    + should upgrade packages on getting started docs #511
+    + should add code docs for the GitSynch::sync function #547
+    + should use MIT license instead #558
+    + should add docs how to add export env var one time only on Cygwin #565
+    + should check to make sure teracy-dev works well with virtualbox 6.0 #600
+    + should upgrade teracy-dev-core from v0.4.0 to v0.5.0 #622
+
+
+Details: https://github.com/teracyhq/dev/milestone/13?closed=1
+
+
 [v0.6.0-a6][] (2018-12-21)
 --------------------------
 
@@ -415,3 +453,4 @@ Release the first milestone
 [v0.6.0-a4]: https://github.com/teracyhq/dev/milestone/11?closed=1
 [v0.6.0-a5]: https://github.com/teracyhq/dev/milestone/12?closed=1
 [v0.6.0-a6]: https://github.com/teracyhq/dev/milestone/15?closed=1
+[v0.6.0-b1]: https://github.com/teracyhq/dev/milestone/13?closed=1
