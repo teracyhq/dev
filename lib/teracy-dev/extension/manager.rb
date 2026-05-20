@@ -59,9 +59,12 @@ module TeracyDev
           'lookup_path' => lookup_path,
           'path' => path
         }
+        extension['path']['lookup'] = ext_lookup_path
         extension['location'].merge!(location)
+        @logger.debug("extension: #{extension}")
         sync_existing = extension['path']['lookup'] == DEFAULT_EXTENSION_LOOKUP_PATH
 
+        @logger.info("Syncning #{extension['path']['extension']} @ #{extension['location']} ")
         Location::Manager.sync(extension['location'], sync_existing)
       end
 
