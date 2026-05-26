@@ -2,6 +2,18 @@ Change Log
 ==========
 
 
+[v0.6.0-b2][] (2026-05-26)
+--------------------------
+
+- Bug Fixes:
+    + extensions should be auto-updated #631
+
+- Improvements:
+    + should upgrade to use teracy-dev-core v0.5.1 #634
+
+Details: https://github.com/teracyhq/dev/milestone/18?closed=1
+
+
 [v0.6.0-b1][] (2026-05-14)
 --------------------------
 
@@ -475,3 +487,4 @@ Release the first milestone
 [v0.6.0-a7]: https://github.com/teracyhq/dev/milestone/16?closed=1
 [v0.6.0-a8]: https://github.com/teracyhq/dev/milestone/17?closed=1
 [v0.6.0-b1]: https://github.com/teracyhq/dev/milestone/13?closed=1
+[v0.6.0-b2]: https://github.com/teracyhq/dev/milestone/18?closed=1
